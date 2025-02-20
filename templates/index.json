@@ -1,8 +1,10 @@
 {
   "sections": {
     "elemento-test-index": {
-      "type": "elemento-test-index"
+      "type": "elemento-test-index",
+      "settings": {}
     }
   },
-  "order": ["elemento-test-index"]
+  "order": ["elemento-test-index"],
+  "wrapper": "div.index-template"
 }
