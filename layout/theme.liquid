@@ -66,13 +66,15 @@
   </head>
 
   <body>
-    {%- if settings.cart_type == 'drawer' -%}
-      {%- render 'cart-drawer' -%}
-    {%- endif -%}
+    {% comment %}
+      {%- if settings.cart_type == 'drawer' -%}
+        {%- render 'cart-drawer' -%}
+      {%- endif -%}
+    {% endcomment %}
 
     {% sections 'header-group' %}
 
-    <main>
+    <main style="position: relative;">
       {{ content_for_layout }}
     </main>
 
