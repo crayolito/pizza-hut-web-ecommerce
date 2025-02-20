@@ -1,5 +1,5 @@
 {
-  "name": "t:sections.header.name",
+  "name": "Header Personalizado",
   "type": "header",
   "sections": {
     "header": {
