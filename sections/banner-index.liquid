@@ -50,51 +50,7 @@
 </div>
 
 <style>
-  .informacion-banner {
-    width: 260px;
-    position: absolute;
-    top: 53%;
-    left: 22%;
-    transform: translate(-50%, -50%);
-    text-align: start;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    gap: 95px;
-  }
-
-  .titulo-banner {
-    color: #FFF;
-    font-size: 50px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 85%;
-    letter-spacing: -1px;
-    text-transform: uppercase;
-    text-align: left;
-    font-family: var(--fuente-principal);
-    transform: scaleY(1.9);
-    transform-origin: top;
-    line-height: 96%;
-  }
-
-  .boton-banner {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem 2rem;
-    background-color:  #C8102E;
-    color: #FFF;
-    text-decoration: none;
-    border-radius: 4px;
-    transition: all 0.3s ease;
-  }
-
-  .texto-boton {
-    font-weight: 500;
-    font-family: var(--fuente-secundaria);
-  }
-
+  /* Carrusel y contenedor principal */
   .carrusel-encabezado {
     position: relative;
     width: 100%;
@@ -108,6 +64,58 @@
     height: 100%;
   }
 
+  /* Banner información */
+  .informacion-banner {
+    width: 333px;
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+    text-align: start;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+  }
+
+  /* Título */
+  .titulo-banner {
+    color: #FFF;
+    font-size: clamp(32px, 5vw, 50px);
+    font-style: normal;
+    font-weight: 700;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+    text-align: left;
+    font-family: var(--fuente-principal);
+    transform: scaleY(1.9);
+    transform-origin: top;
+    line-height: 96%;
+  }
+
+  /* Botón */
+  .boton-banner {
+    width: fit-content;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.8rem 1.5rem;
+    background-color: #C8102E;
+    color: #FFF;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+
+  .texto-boton {
+    font-weight: 500;
+    font-family: var(--fuente-secundaria);
+    font-size: 14px;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  /* Diapositivas */
   .diapositivas {
     position: relative;
     width: 100%;
@@ -132,37 +140,7 @@
     object-fit: cover;
   }
 
-  .contenido-diapositiva {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    color: white;
-    z-index: 2;
-  }
-
-  .contenido-diapositiva h2 {
-    font-size: 3rem;
-    margin-bottom: 20px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-  }
-
-  .boton {
-    display: inline-block;
-    padding: 12px 24px;
-    background-color: #fff;
-    color: #000;
-    text-decoration: none;
-    border-radius: 4px;
-    transition: all 0.3s ease;
-  }
-
-  .boton:hover {
-    background-color: #000;
-    color: #fff;
-  }
-
+  /* Botones de navegación */
   .boton-carrusel {
     position: absolute;
     top: 60%;
@@ -199,6 +177,7 @@
     right: 59px;
   }
 
+  /* Indicadores */
   .indicadores {
     position: absolute;
     bottom: 20px;
@@ -229,31 +208,102 @@
     transform: scale(1.2);
   }
 
-  /* Estilos responsivos */
-  @media screen and (max-width: 768px) {
-    .contenido-diapositiva h2 {
-      font-size: 2rem;
-    }
+  /* Estados hover */
+  .boton-banner:hover {
+    background-color: #a30f27;
+    transform: translateY(-2px);
+  }
 
-    .boton-carrusel {
-      width: 36px;
-      height: 36px;
-    }
-
-    .boton {
-      padding: 8px 16px;
-      font-size: 14px;
+  /* Media Queries */
+  @media screen and (max-width: 1200px) {
+    .informacion-banner {
+      left: 30%;
+      width: 300px;
+      gap: 40px;
     }
   }
 
-  @media screen and (max-width: 480px) {
-    .contenido-diapositiva h2 {
-      font-size: 1.5rem;
+  @media screen and (max-width: 768px) {
+    .informacion-banner {
+      left: 50%;
+      width: 280px;
+      gap: 30px;
+    }
+
+    .titulo-banner {
+      font-size: 36px;
+      transform: scaleY(1.7);
+    }
+
+    .boton-banner {
+      padding: 0.7rem 1.3rem;
+    }
+
+    .texto-boton {
+      font-size: 13px;
     }
 
     .boton-carrusel {
       width: 32px;
       height: 32px;
+    }
+
+    .anterior {
+      left: 20px;
+    }
+
+    .siguiente {
+      right: 20px;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .informacion-banner {
+      width: 250px;
+      gap: 25px;
+      top: 45%;
+    }
+
+    .titulo-banner {
+      font-size: 28px;
+      transform: scaleY(1.6);
+      line-height: 90%;
+    }
+
+    .boton-banner {
+      padding: 0.6rem 1.2rem;
+    }
+
+    .texto-boton {
+      font-size: 12px;
+    }
+  }
+
+  /* Para pantallas muy pequeñas */
+  @media screen and (max-width: 320px) {
+    .informacion-banner {
+      width: 220px;
+      gap: 20px;
+    }
+
+    .titulo-banner {
+      font-size: 24px;
+    }
+  }
+
+  /* Para modo landscape */
+  @media screen and (max-height: 500px) and (orientation: landscape) {
+    .informacion-banner {
+      top: 60%;
+      gap: 20px;
+    }
+  }
+
+  /* Para pantallas retina */
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .titulo-banner {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
   }
 </style>
