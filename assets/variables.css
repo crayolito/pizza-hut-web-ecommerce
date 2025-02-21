@@ -1,0 +1,18 @@
+:root {
+  /* Fuentes */
+  --fuente-principal: "League Gothic", sans-serif;
+  --fuente-secundaria: "Montserrat", sans-serif;
+
+  /* Tamaños */
+  --tamano-titulo-desktop: 96px;
+  --tamano-titulo-mobile: 48px;
+
+  /* Colores */
+  --color-primario: #e31837;
+  --color-secundario: #c41430;
+  --color-texto: #ffffff;
+
+  /* Espaciados */
+  --espaciado-base: 1rem;
+  --espaciado-doble: 2rem;
+}
