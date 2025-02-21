@@ -7,6 +7,7 @@
       right: 0;
       z-index: 1000;
       padding: 0;
+      font-family: 'League Gothic', sans-serif;
     "
   >
     <div
@@ -19,7 +20,7 @@
         border: 1px solid #DEDEDE;
         background: #FFF;
         margin: 30px 59px 0 59px;
-        padding: 10px 15px;
+        padding: 10px 40px;
       "
     >
       <!-- LOGO DE PIZZA HUT -->
@@ -28,57 +29,69 @@
           <img
             src="{{ 'logo-pizza-hut.png' | asset_url }}"
             alt="Pizza Hut Logo"
-            style="
-              height: 35px;
-              width: 170px;
-              object-fit: contain;
-            "
+            style="height: 35px; width: 170px; object-fit: contain;"
           >
         </a>
       </div>
 
       <!-- OPCIONES -->
       <nav class="menu-options" style="display: flex; align-items: center; gap: 32px;">
-        <a
-          href="/menu"
+        <h4
           style="
-            text-decoration: none;
-            color: #333;
-            font-size: 16px;
-            font-weight: 500;
-            line-height: normal;
+            font-family: 'League Gothic';
+            font-size: 24px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 27px;
+            letter-spacing: -0.48px;
+            text-transform: uppercase;
+            color: #231F20;
+            margin: 0;
           "
-          >Menú</a
         >
+          <a href="/menu" style="text-decoration: none; color: inherit;">Menú</a>
+        </h4>
 
-        <a
-          href="/promociones"
+        <h4
           style="
-            text-decoration: none;
-            color: #333;
-            font-size: 16px;
-            font-weight: 500;
+            font-family: 'League Gothic';
+            font-size: 24px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 27px;
+            letter-spacing: -0.48px;
+            text-transform: uppercase;
+            color: #231F20;
+            margin: 0;
             display: flex;
             align-items: center;
             gap: 4px;
-            line-height: normal;
           "
         >
-          Hut Coins
-          {% render 'icon-flecha-hutcoins' %}
-        </a>
+          <a
+            href="/promociones"
+            style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 4px;"
+          >
+            Hut Coins
+            {% render 'icons' with 'arrow-down' %}
+          </a>
+        </h4>
 
-        <a
-          href="/restaurantes"
+        <h4
           style="
-            text-decoration: none;
-            color: #333;
-            font-size: 16px;
-            font-weight: 500;
-            line-height: normal;
+            font-family: 'League Gothic';
+            font-size: 24px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 27px;
+            letter-spacing: -0.48px;
+            text-transform: uppercase;
+            color: #231F20;
+            margin: 0;
           "
-          >Sobre Nosotros</a
         >
+          <a href="/restaurantes" style="text-decoration: none; color: inherit;">Sobre Nosotros</a>
+        </h4>
       </nav>
 
       <!-- BUSCADOR -->
@@ -94,7 +107,7 @@
           align-self: stretch;
         "
       >
-        {% render 'icon-search' %}
+        {% render 'icons' with 'search' %}
         <input
           type="search"
           placeholder="Buscar..."
@@ -103,12 +116,11 @@
             padding: 8px 12px 8px 40px;
             border-radius: 4px;
             border: 1px solid #6E6E6E;
-            font-size: 16px;
-            font-family: var(--fuente-secundaria);
-            outline: none;
+            font-family: 'League Gothic';
+            font-size: 24px;
             font-weight: 400;
-            color: #717171;
-            background: #FFF;
+            color: #231F20;
+            outline: none;
           "
         >
       </div>
@@ -125,7 +137,7 @@
           align-items: center;
         "
       >
-        {% render 'icon-carrito' %}
+        {% render 'icons' with 'cart' %}
       </div>
 
       <!-- MODALIDAD DE ENTREGA -->
@@ -139,17 +151,18 @@
           gap: 5px;
         "
       >
-        {% render 'icon-domicilio' %}
+        {% render 'icons' with 'delivery' %}
         <h4
           style="
-            color: #231F20;
-            font-family: var(--fuente-principal);
+            font-family: 'League Gothic';
             font-size: 24px;
             font-style: normal;
             font-weight: 400;
             line-height: 27px;
             letter-spacing: -0.48px;
             text-transform: uppercase;
+            color: #231F20;
+            margin: 0;
           "
         >
           DOMICILIO
@@ -157,14 +170,20 @@
       </div>
 
       <!-- ESTADO USUARIO -->
-      <div class="user-status" style="">
-        {% render 'icon-perfil-usuario' %}
-        {% render 'icon-flecha-abajo' %}
+      <div
+        class="user-status"
+        style="
+          display: flex;
+          align-items: center;
+          gap: 4px;
+        "
+      >
+        {% render 'icons' with 'user' %}
+        {% render 'icons' with 'arrow-down' %}
       </div>
     </div>
   </header>
 </sticky-header>
-
 <script>
   class HeaderPrincipal extends HTMLElement {}
 
