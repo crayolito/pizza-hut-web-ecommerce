@@ -1,0 +1,340 @@
+<div class="carrusel-encabezado">
+  <div class="contenedor-carrusel">
+    <!-- Botones de navegación -->
+    <button class="boton-carrusel anterior" aria-label="Anterior">
+      <svg width="24" height="24" viewBox="0 0 24 24">
+        <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+      </svg>
+    </button>
+
+    <button class="boton-carrusel siguiente" aria-label="Siguiente">
+      <svg width="24" height="24" viewBox="0 0 24 24">
+        <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/>
+      </svg>
+    </button>
+
+    <!-- Diapositivas -->
+    <div class="diapositivas">
+      {% for block in section.blocks %}
+        <div class="diapositiva {% if forloop.first %}activa{% endif %}">
+          <img src="{{ block.settings.imagen | img_url: 'master' }}" alt="{{ block.settings.titulo }}">
+          <div class="contenido-diapositiva">
+            <h2>{{ block.settings.titulo }}</h2>
+            {% if block.settings.texto_boton != blank %}
+              <a href="{{ block.settings.enlace_boton }}" class="boton">
+                {{ block.settings.texto_boton }}
+              </a>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- Indicadores -->
+    <div class="indicadores">
+      {% for block in section.blocks %}
+        <button class="punto {% if forloop.first %}activo{% endif %}" data-diapositiva="{{ forloop.index0 }}"></button>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<style>
+  .carrusel-encabezado {
+    position: relative;
+    width: 100%;
+    height: {{ section.settings.altura_carrusel }}px;
+    overflow: hidden;
+  }
+
+  .contenedor-carrusel {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .diapositivas {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .diapositiva {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+
+  .diapositiva.activa {
+    opacity: 1;
+  }
+
+  .diapositiva img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .contenido-diapositiva {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    z-index: 2;
+  }
+
+  .contenido-diapositiva h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  }
+
+  .boton {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #fff;
+    color: #000;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+
+  .boton:hover {
+    background-color: #000;
+    color: #fff;
+  }
+
+  .boton-carrusel {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.3);
+    border: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s, background 0.3s;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .contenedor-carrusel:hover .boton-carrusel {
+    opacity: 1;
+  }
+
+  .boton-carrusel:hover {
+    background: rgba(255, 255, 255, 0.8);
+  }
+
+  .boton-carrusel svg {
+    fill: #000;
+    width: 24px;
+    height: 24px;
+  }
+
+  .anterior {
+    left: 20px;
+  }
+
+  .siguiente {
+    right: 20px;
+  }
+
+  .indicadores {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 2;
+  }
+
+  .punto {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s;
+    padding: 0;
+  }
+
+  .punto:hover {
+    background: rgba(255, 255, 255, 0.8);
+  }
+
+  .punto.activo {
+    background: white;
+    transform: scale(1.2);
+  }
+
+  /* Estilos responsivos */
+  @media screen and (max-width: 768px) {
+    .contenido-diapositiva h2 {
+      font-size: 2rem;
+    }
+
+    .boton-carrusel {
+      width: 36px;
+      height: 36px;
+    }
+
+    .boton {
+      padding: 8px 16px;
+      font-size: 14px;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .contenido-diapositiva h2 {
+      font-size: 1.5rem;
+    }
+
+    .boton-carrusel {
+      width: 32px;
+      height: 32px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Carrusel Principal",
+  "settings": [
+    {
+      "type": "range",
+      "id": "altura_carrusel",
+      "min": 400,
+      "max": 1000,
+      "step": 50,
+      "unit": "px",
+      "label": "Altura del carrusel",
+      "default": 600
+    },
+    {
+      "type": "range",
+      "id": "tiempo_transicion",
+      "min": 3,
+      "max": 10,
+      "step": 1,
+      "unit": "seg",
+      "label": "Tiempo entre diapositivas",
+      "default": 5
+    },
+    {
+      "type": "checkbox",
+      "id": "reproduccion_automatica",
+      "label": "Reproducción automática",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "mostrar_indicadores",
+      "label": "Mostrar indicadores",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "mostrar_botones",
+      "label": "Mostrar botones de navegación",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "diapositiva",
+      "name": "Diapositiva",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "imagen",
+          "label": "Imagen"
+        },
+        {
+          "type": "text",
+          "id": "titulo",
+          "label": "Título"
+        },
+        {
+          "type": "text",
+          "id": "texto_boton",
+          "label": "Texto del botón"
+        },
+        {
+          "type": "url",
+          "id": "enlace_boton",
+          "label": "Enlace del botón"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Carrusel Principal",
+      "blocks": [
+        {
+          "type": "diapositiva"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const diapositivas = document.querySelectorAll('.diapositiva');
+    const puntos = document.querySelectorAll('.punto');
+    const botonAnterior = document.querySelector('.anterior');
+    const botonSiguiente = document.querySelector('.siguiente');
+    let diapositivaActual = 0;
+
+    // Configuración desde el admin
+    const configuracion = {
+      reproduccionAutomatica: {{ section.settings.reproduccion_automatica | json }},
+      tiempoTransicion: {{ section.settings.tiempo_transicion | times: 1000 }},
+      mostrarIndicadores: {{ section.settings.mostrar_indicadores | json }},
+      mostrarBotones: {{ section.settings.mostrar_botones | json }}
+    };
+
+    // Mostrar/ocultar elementos según configuración
+    if (!configuracion.mostrarIndicadores) {
+      document.querySelector('.indicadores').style.display = 'none';
+    }
+
+    if (!configuracion.mostrarBotones) {
+      botonAnterior.style.display = 'none';
+      botonSiguiente.style.display = 'none';
+    }
+
+    function mostrarDiapositiva(n) {
+      diapositivas[diapositivaActual].classList.remove('activa');
+      puntos[diapositivaActual].classList.remove('activo');
+      diapositivaActual = (n + diapositivas.length) % diapositivas.length;
+      diapositivas[diapositivaActual].classList.add('activa');
+      puntos[diapositivaActual].classList.add('activo');
+    }
+
+    botonAnterior.addEventListener('click', () => mostrarDiapositiva(diapositivaActual - 1));
+    botonSiguiente.addEventListener('click', () => mostrarDiapositiva(diapositivaActual + 1));
+
+    puntos.forEach((punto, index) => {
+      punto.addEventListener('click', () => mostrarDiapositiva(index));
+    });
+
+    // Reproducción automática configurable
+    if (configuracion.reproduccionAutomatica) {
+      setInterval(() => mostrarDiapositiva(diapositivaActual + 1), configuracion.tiempoTransicion);
+    }
+  });
+</script>
