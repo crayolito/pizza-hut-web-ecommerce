@@ -1,6 +1,10 @@
 {
   "sections": {
-    "banner-index": {
+    "header": {
+      "type": "header",
+      "settings": {}
+    },
+    "banner-principal": {
       "type": "banner-index",
       "settings": {
         "altura_carrusel": 600,
@@ -13,24 +17,14 @@
         {
           "type": "diapositiva",
           "settings": {
-            "imagen": "https://russosuae.com/wp-content/uploads/2024/10/new-web-bannar-copy.jpg",
+            "imagen": "",
             "titulo": "Primera Diapositiva",
             "texto_boton": "Comprar Ahora",
             "enlace_boton": "/collections/all"
           }
-        },
-        {
-          "type": "diapositiva",
-          "settings": {
-            "imagen": "https://russosuae.com/wp-content/uploads/2024/10/new-web-bannar-copy.jpg",
-            "titulo": "Segunda Diapositiva",
-            "texto_boton": "Ver más",
-            "enlace_boton": "/collections/all"
-          }
         }
-      ],
-      "block_order": ["diapositiva-1", "diapositiva-2"]
+      ]
     }
   },
-  "order": ["banner-index"]
+  "order": ["header", "banner-principal"]
 }

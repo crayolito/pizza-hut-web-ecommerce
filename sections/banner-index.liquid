@@ -209,7 +209,9 @@
 
 {% schema %}
 {
-  "name": "Carrusel Principal",
+  "name": "Banner Principal",
+  "tag": "section",
+  "class": "banner-section",
   "settings": [
     {
       "type": "range",
@@ -280,14 +282,16 @@
   ],
   "presets": [
     {
-      "name": "Carrusel Principal",
+      "name": "Banner Principal",
+      "category": "Imagen",
       "blocks": [
         {
           "type": "diapositiva"
         }
       ]
     }
-  ]
+  ],
+  "templates": ["index", "page"]
 }
 {% endschema %}
 
