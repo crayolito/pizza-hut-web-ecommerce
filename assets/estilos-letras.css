@@ -2,12 +2,10 @@
 @font-face {
   font-family: "League Gothic";
   src: url("https://fonts.googleapis.com/css2?family=League+Gothic&display=swap");
-  font-display: swap;
 }
 
 /* Montserrat */
 @font-face {
   font-family: "Montserrat";
   src: url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
-  font-display: swap;
 }
