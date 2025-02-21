@@ -14,14 +14,14 @@
     </button>
 
     <!-- Texto de la banner + button -->
-    <div class="informacion-banner">
-      <h2 class="titulo-banner">{{ section.settings.texto_titulo }}</h2>
-      {% if section.settings.mostrar_boton %}
+    {% if section.settings.mostrar_info_banner %}
+      <div class="informacion-banner">
+        <h2 class="titulo-banner">{{ section.settings.texto_titulo }}</h2>
         <a href="{{  section.settings.url_boton }}" class="boton-banner">
           <span class="texto-boton">{{ section.settings.texto_boton }}</span>
         </a>
-      {% endif %}
-    </div>
+      </div>
+    {% endif %}
 
     <!-- Diapositivas -->
     <div class="diapositivas">
@@ -284,8 +284,8 @@
     },
     {
       "type": "checkbox",
-      "id": "mostrar_boton",
-      "label": "Mostrar Botón",
+      "id": "mostrar_info_banner",
+      "label": "Mostrar Informacion Banner",
       "default": true
     },
     {
