@@ -46,7 +46,7 @@
         "diapositiva_eWJc43"
       ],
       "settings": {
-        "altura_carrusel": 600,
+        "altura_carrusel": 550,
         "tiempo_transicion": 5,
         "reproduccion_automatica": true,
         "mostrar_indicadores": true,
