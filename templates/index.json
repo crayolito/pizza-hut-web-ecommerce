@@ -1,10 +1,6 @@
 {
   "sections": {
-    "header": {
-      "type": "header",
-      "settings": {}
-    },
-    "banner-principal": {
+    "banner-index": {
       "type": "banner-index",
       "settings": {
         "altura_carrusel": 600,
@@ -12,19 +8,8 @@
         "reproduccion_automatica": true,
         "mostrar_indicadores": true,
         "mostrar_botones": true
-      },
-      "blocks": [
-        {
-          "type": "diapositiva",
-          "settings": {
-            "imagen": "",
-            "titulo": "Primera Diapositiva",
-            "texto_boton": "Comprar Ahora",
-            "enlace_boton": "/collections/all"
-          }
-        }
-      ]
+      }
     }
   },
-  "order": ["header", "banner-principal"]
+  "order": ["banner-index"]
 }
