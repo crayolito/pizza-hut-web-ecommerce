@@ -67,44 +67,26 @@
   }
 
   .titulo-banner {
-    /* Tipografía */
-    font-family: var(--fuente-principal);
+    color: #FFF;
     font-size: 96px;
     font-style: normal;
     font-weight: 400;
-
-    /* Espaciado y alineación */
-    line-height: 90%;          /* Ajustado para el espaciado entre líneas */
-    letter-spacing: 0px;       /* Sin espaciado negativo */
+    line-height: 100%;
+    letter-spacing: -1.92px;
     text-transform: uppercase;
-
-    /* Color y visibilidad */
-    color: #FFF;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.15);
-
-    /* Posicionamiento */
-    position: relative;
-    z-index: 2;
-    text-align: left;
-    width: 330px;             /* Ancho fijo para el texto */
-    margin-left: 35%;
-
-    /* Responsive */
-    font-size: clamp(48px, 8vw, 96px);
+    font-family: var(--fuente-principal);
   }
 
   .boton-banner {
-    background-color: #C8102E;
-    color: #FFF;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     padding: 1rem 2rem;
-    border-radius: 4px;
-    font-family: var(--fuente-secundaria);
-    font-weight: 500;
-    font-size: 16px;
+    background-color:  #C8102E;
+    color: #FFF;
     text-decoration: none;
-    display: inline-block;
-    margin-top: 20px;
-    transition: background-color 0.3s ease;
+    border-radius: 4px;
+    transition: all 0.3s ease;
   }
 
   .boton-banner:hover {
