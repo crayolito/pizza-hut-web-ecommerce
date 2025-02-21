@@ -57,41 +57,54 @@
 
 
   .informacion-banner {
-    width: 333px;
+    width: 330px;
     position: absolute;
     top: 50%;
-    left: 30%;
+    left: 35%;
     transform: translate(-50%, -50%);
-    text-align: center;
+    text-align: start;
     z-index: 2;
   }
 
   .titulo-banner {
-    /* Significa:
-    - Tamaño mínimo: 48px
-    - Tamaño preferido: 8vw (8% del ancho de la ventana)
-    - Tamaño máximo: 96px
-    */
-    color: #FFF;
+    /* Tipografía */
+    font-family: var(--fuente-principal);
     font-size: 96px;
     font-style: normal;
     font-weight: 400;
-    line-height: 100%;
-    letter-spacing: -1.92px;
+
+    /* Espaciado y alineación */
+    line-height: 90%;          /* Ajustado para el espaciado entre líneas */
+    letter-spacing: 0px;       /* Sin espaciado negativo */
     text-transform: uppercase;
-    font-family: var(--fuente-principal);
+
+    /* Color y visibilidad */
+    color: #FFF;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.15);
+
+    /* Posicionamiento */
+    position: relative;
+    z-index: 2;
+    text-align: left;
+    width: 330px;             /* Ancho fijo para el texto */
+    margin-left: 35%;
+
+    /* Responsive */
+    font-size: clamp(48px, 8vw, 96px);
   }
 
   .boton-banner {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem 2rem;
-    background-color:  #C8102E;
+    background-color: #C8102E;
     color: #FFF;
-    text-decoration: none;
+    padding: 1rem 2rem;
     border-radius: 4px;
-    transition: all 0.3s ease;
+    font-family: var(--fuente-secundaria);
+    font-weight: 500;
+    font-size: 16px;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
   }
 
   .boton-banner:hover {
