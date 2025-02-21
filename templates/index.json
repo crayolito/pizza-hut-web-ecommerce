@@ -41,7 +41,9 @@
         "tiempo_transicion": 5,
         "reproduccion_automatica": true,
         "mostrar_indicadores": true,
-        "mostrar_botones": true
+        "mostrar_botones": true,
+        "titulo": "LA MEJOR PIZZA DEL MUNDO",
+        "mostrar_info_banner": true
       }
     }
   },
