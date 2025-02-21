@@ -7,6 +7,8 @@
     <meta name="theme-color" content="">
     <link rel="canonical" href="{{ canonical_url }}">
 
+    {{ 'estilos-letras.css' | asset_url | stylesheet_tag }}
+
     {%- if settings.favicon != blank -%}
       <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
     {%- endif -%}
@@ -51,10 +53,9 @@
         font-weight: var(--font-body-weight);
       }
 
-      @media screen and (min-width: 750px) {
-        body {
-          font-size: 1.6rem;
-        }
+      :root {
+        --fuente-principal: 'League Gothic', sans-serif;
+        --fuente-secundaria: 'Montserrat', sans-serif;
       }
     {% endstyle %}
   </head>

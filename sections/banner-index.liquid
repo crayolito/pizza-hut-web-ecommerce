@@ -13,6 +13,16 @@
       </svg>
     </button>
 
+    <!-- Texto de la banner + button -->
+    <div class="informacion-banner">
+      <h2 class="titulo-banner">{{ section.settings.texto_titulo }}</h2>
+      {% if section.settings.mostrar_boton %}
+        <a href="{{  section.settings.url_boton }}" class="boton-banner">
+          <span class="texto-boton">{{ section.settings.texto_boton }}</span>
+        </a>
+      {% endif %}
+    </div>
+
     <!-- Diapositivas -->
     <div class="diapositivas">
       {% for block in section.blocks %}
@@ -40,6 +50,54 @@
 </div>
 
 <style>
+  .informacion-banner {
+    position: absolute;
+    top: 50%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 2;
+  }
+
+  .titulo-banner {
+    /* Significa:
+    - Tamaño mínimo: 48px
+    - Tamaño preferido: 8vw (8% del ancho de la ventana)
+    - Tamaño máximo: 96px
+    */
+    font-size: clamp(48px, 8vw, 96px);
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -1.92px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    margin-bottom: 2rem;
+    font-family:;
+  }
+
+  .boton-banner {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2rem;
+    background-color:  #C8102E;
+    color: #FFF;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+
+  .boton-banner:hover {
+    background-color: var(--color-secundario);
+    transform: translateY(-2px);
+  }
+
+  .texto-boton {
+    font-weight: 500;
+    font-family: var(--fuente-secundaria);
+  }
+
   .carrusel-encabezado {
     position: relative;
     width: 100%;
@@ -209,6 +267,41 @@
   "tag": "section",
   "class": "banner-section",
   "settings": [
+    {
+      "type": "text",
+      "id": "texto_titulo",
+      "label": "Texto del Título",
+      "default": "LA MEJOR PIZZA DEL MUNDO"
+    },
+    {
+      "type": "color",
+      "id": "color_secundario",
+      "label": "Color Secundario",
+      "default": "#C41430"
+    },
+    {
+      "type": "color",
+      "id": "color_texto",
+      "label": "Color del Texto",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "checkbox",
+      "id": "mostrar_boton",
+      "label": "Mostrar Botón",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "texto_boton",
+      "label": "Texto del Botón",
+      "default": "Pedir Ahora"
+    },
+    {
+      "type": "url",
+      "id": "url_boton",
+      "label": "Enlace del Botón"
+    }
     {
       "type": "range",
       "id": "altura_carrusel",
