@@ -126,6 +126,28 @@
     align-items: center;
     gap: 4px;
   }
+
+  /* Media Queries para adaptabilidad */
+  /* Laptops y Desktops pequeños: 1024px - 1366px */
+  @media screen and (min-width: 1367px) and (max-width: 1439px) {
+    .test-prueba-tama1 {
+      display: flex;
+    }
+  }
+
+  /* Monitores grandes: 1440px - 1919px */
+  @media screen and (min-width: 1440px) and (max-width: 1919px) {
+    .test-prueba-tama2 {
+      display: flex;
+    }
+  }
+
+  /* Monitores extra grandes: 1920px y superior */
+  @media screen and (min-width: 1920px) {
+    .test-prueba-tama3 {
+      display: flex;
+    }
+  }
 {% endstyle %}
 
 <sticky-header>
