@@ -1,58 +1,37 @@
 {% style %}
-  /* Variables globales con naming consistente */
   :root {
-    --font-primary: 'League Gothic', sans-serif;
-    --font-secondary: var(--fuente-secundaria);
-    --color-text-primary: #231f20;
-    --color-border-light: #dedede;
-    --color-border-dark: #969696;
-    --header-height: 78px;
-    --header-padding: 10px 20px;
-    --header-margin: 30px 59px 0;
-    --border-radius: 8px;
-    --spacing-xs: 4px;
-    --spacing-sm: 8px;
-    --spacing-md: 12px;
-    --spacing-lg: 20px;
-    --spacing-xl: 24px;
-    --spacing-xxl: 32px;
+    --fuente-principal: 'League Gothic', sans-serif;
+    --fuente-secundaria: var(--fuente-secundaria);
+    --color-primario: #231f20;
+    --color-borde: #dedede;
+    --color-borde-oscuro: #969696;
   }
 
-  /* Estilos base del header */
   .encabezado {
-    position: sticky;
+    position: absolute;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1000;
     padding: 0;
-    font-family: var(--font-primary);
-    background-color: transparent;
+    font-family: var(--fuente-principal);
   }
 
   .contenedor-encabezado {
     display: flex;
-    height: var(--header-height);
+    height: 78px;
     justify-content: space-between;
     align-items: center;
-    border-radius: var(--border-radius);
-    border: 1px solid var(--color-border-light);
+    border-radius: 8px;
+    border: 1px solid var(--color-borde);
     background: #fff;
-    margin: var(--header-margin);
-    padding: var(--header-padding);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    margin: 30px 59px 0;
+    padding: 10px 20px;
   }
 
-  /* Logo styles */
   .contenedor-logo {
     height: 35px;
     width: 170px;
-    flex-shrink: 0;
-  }
-
-  .enlace-logo {
-    display: block;
-    height: 100%;
   }
 
   .enlace-logo img {
@@ -61,22 +40,21 @@
     object-fit: contain;
   }
 
-  /* Menu styles */
   .menu-opciones {
     display: flex;
     align-items: center;
-    gap: var(--spacing-xxl);
+    gap: 32px;
   }
 
   .menu-item {
+    font-family: var(--fuente-principal);
     font-size: 24px;
     font-weight: 400;
     line-height: 1.2;
     letter-spacing: -0.48px;
     text-transform: uppercase;
-    color: var(--color-text-primary);
+    color: var(--color-primario);
     margin: 0;
-    transition: color 0.2s ease;
   }
 
   .menu-item a {
@@ -85,156 +63,68 @@
     white-space: nowrap;
   }
 
-  .menu-item a:hover {
-    color: #e31837; /* Color rojo de Pizza Hut */
-  }
-
   .enlace-hutcoins {
     display: flex;
     align-items: center;
-    gap: var(--spacing-xs);
+    gap: 4px;
   }
 
-  /* Search container styles */
   .contenedor-buscador {
     position: relative;
     display: flex;
-    padding: var(--spacing-lg);
+    padding: 20px;
     align-items: center;
-    gap: var(--spacing-xs);
+    gap: 4px;
+    align-self: stretch;
     min-width: 200px;
-    max-width: 300px;
-    flex-grow: 1;
   }
 
   .input-buscador {
     width: 100%;
-    padding: var(--spacing-sm) var(--spacing-md) var(--spacing-sm) 40px;
+    padding: 8px 12px 8px 40px;
     border-radius: 4px;
-    border: 1px solid var(--color-border-dark);
-    font-family: var(--font-secondary);
+    border: 1px solid var(--color-borde-oscuro);
+    font-family: var(--fuente-secundaria);
     font-size: 16px;
-    color: var(--color-text-primary);
+    font-weight: 400;
+    color: var(--color-primario);
     outline: none;
-    transition: border-color 0.2s ease;
   }
 
-  .input-buscador:focus {
-    border-color: #e31837;
-  }
-
-  /* Cart and delivery styles */
   .contenedor-carrito {
     height: 65%;
-    border-right: 1.5px solid var(--color-border-dark);
-    border-left: 1.5px solid var(--color-border-dark);
-    padding: 0 var(--spacing-xl);
+    border-right: 1.5px solid var(--color-borde-oscuro);
+    border-left: 1.5px solid var(--color-borde-oscuro);
+    padding: 0 24px;
     display: flex;
     align-items: center;
-    gap: var(--spacing-xl);
+    gap: 24px;
   }
 
   .modo-entrega {
     display: flex;
     align-items: center;
-    gap: var(--spacing-sm);
-    padding-left: var(--spacing-xl);
-    border-left: 1.5px solid var(--color-border-dark);
+    gap: 8px;
+    padding-left: 24px;
+    border-left: 1.5px solid var(--color-borde-oscuro);
     height: 100%;
   }
 
   .texto-entrega {
+    font-family: var(--fuente-principal);
     font-size: 24px;
     font-weight: 400;
     line-height: 1.2;
     letter-spacing: -0.48px;
     text-transform: uppercase;
-    color: var(--color-text-primary);
+    color: var(--color-primario);
     margin: 0;
   }
 
   .estado-usuario {
     display: flex;
     align-items: center;
-    gap: var(--spacing-xs);
-    cursor: pointer;
-    padding: 0 var(--spacing-sm);
-  }
-
-  /* Media Queries */
-  /* Laptops y Desktops pequeños */
-  @media screen and (min-width: 1024px) and (max-width: 1366px) {
-    :root {
-      --header-margin: 20px 30px 0;
-    }
-
-    .menu-item {
-      font-size: 20px;
-    }
-
-    .contenedor-logo {
-      width: 140px;
-    }
-
-    .texto-entrega {
-      font-size: 20px;
-    }
-
-    .contenedor-buscador {
-      min-width: 160px;
-    }
-
-    .contenedor-carrito {
-      padding: 0 var(--spacing-lg);
-      gap: var(--spacing-lg);
-    }
-  }
-
-  /* Desktops medianos */
-  @media screen and (min-width: 1367px) and (max-width: 1439px) {
-    :root {
-      --header-margin: 25px 40px 0;
-    }
-
-    .menu-item {
-      font-size: 22px;
-    }
-
-    .contenedor-buscador {
-      min-width: 180px;
-    }
-  }
-
-  /* Monitores grandes */
-  @media screen and (min-width: 1440px) and (max-width: 1919px) {
-    :root {
-      --header-margin: 30px 50px 0;
-    }
-
-    .contenedor-buscador {
-      min-width: 220px;
-    }
-  }
-
-  /* Monitores extra grandes */
-  @media screen and (min-width: 1920px) {
-    :root {
-      --header-margin: 30px 80px 0;
-    }
-
-    .contenedor-encabezado {
-      max-width: 1800px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .contenedor-buscador {
-      min-width: 250px;
-    }
-
-    .menu-opciones {
-      gap: calc(var(--spacing-xxl) * 1.5);
-    }
+    gap: 4px;
   }
 {% endstyle %}
 
