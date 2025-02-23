@@ -124,7 +124,7 @@
         >
       </div>
 
-      <!-- CARRITO -->
+      <!-- CARRITO y MODALIDAD DE ENTREGA -->
       <div
         class="cart-container"
         style="
@@ -137,39 +137,45 @@
         "
       >
         {% render 'icon-carrito' %}
+
+        <div
+          style="            border-left: 1.5px solid #969696;"
+        >
+          {% render 'icon-domicilio' %}
+          <h4
+            style="
+              font-family: 'League Gothic';
+              font-size: 24px;
+              font-style: normal;
+              font-weight: 400;
+              line-height: 27px;
+              letter-spacing: -0.48px;
+              text-transform: uppercase;
+              color: #231F20;
+              margin: 0;
+            "
+          >
+            DOMICILIO
+          </h4>
+        </div>
       </div>
 
-      <!-- MODALIDAD DE ENTREGA -->
-      <div
-        class="delivery-mode"
-        style="
-          height: 65%;
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          justify-content: center;
-          gap: 5px;
-          border-right: 1.5px solid #969696;
-          padding: 0px 24px;
-        "
-      >
-        {% render 'icon-domicilio' %}
-        <h4
+      <!--  -->
+      {% comment %}
+        <div
+          class="delivery-mode"
           style="
-            font-family: 'League Gothic';
-            font-size: 24px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: 27px;
-            letter-spacing: -0.48px;
-            text-transform: uppercase;
-            color: #231F20;
-            margin: 0;
+            height: 65%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            border-right: 1.5px solid #969696;
+            padding: 0px 24px;
           "
-        >
-          DOMICILIO
-        </h4>
-      </div>
+        ></div>
+      {% endcomment %}
 
       <!-- ESTADO USUARIO -->
       <div
