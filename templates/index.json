@@ -45,7 +45,13 @@
         "titulo": "LA MEJOR PIZZA DEL MUNDO",
         "mostrar_info_banner": true
       }
-    }
+    },
+    "sub-menu-index": {},
+    "productos-index": {},
+    "oferta-index": {},
+    "oferta-hut-coins-index-1": {},
+    "oferta-hut-coins-index-2": {},
+    "detalle-sucursales": {}
   },
   "order": ["banner-index"]
 }
