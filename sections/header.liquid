@@ -134,12 +134,20 @@
           padding: 0px 24px;
           display: flex;
           align-items: center;
+          gap: 24px; /* Añade espacio entre el carrito y el contenedor de domicilio */
         "
       >
         {% render 'icon-carrito' %}
 
         <div
-          style="            border-left: 1.5px solid #969696;"
+          style="
+            display: flex;         /* Para alinear el ícono y el texto */
+            align-items: center;   /* Centra verticalmente */
+            gap: 8px;             /* Espacio entre el ícono y el texto */
+            padding-left: 24px;    /* Espacio antes del borde */
+            border-left: 1.5px solid #969696;
+            height: 100%;         /* Para que el borde ocupe toda la altura */
+          "
         >
           {% render 'icon-domicilio' %}
           <h4
