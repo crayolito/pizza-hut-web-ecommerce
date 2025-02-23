@@ -37,8 +37,11 @@
     {{ content_for_header }}
 
     {% style %}
-      --fuente-principal: 'League Gothic', sans-serif;
-      --fuente-secundaria: 'Montserrat', sans-serif;
+      :root {
+        /* Fuentes */
+        --fuente-principal: 'League Gothic', sans-serif;
+        --fuente-secundaria: 'Montserrat', sans-serif;
+      }
 
       *,
       *::before,
