@@ -1,207 +1,184 @@
+{% style %}
+  :root {
+    --fuente-principal: 'League Gothic', sans-serif;
+    --fuente-secundaria: var(--fuente-secundaria);
+    --color-primario: #231f20;
+    --color-borde: #dedede;
+    --color-borde-oscuro: #969696;
+  }
+
+  .encabezado {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 0;
+    font-family: var(--fuente-principal);
+  }
+
+  .contenedor-encabezado {
+    display: flex;
+    height: 78px;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 8px;
+    border: 1px solid var(--color-borde);
+    background: #fff;
+    margin: 30px 59px 0;
+    padding: 10px 20px;
+  }
+
+  .contenedor-logo {
+    height: 35px;
+    width: 170px;
+  }
+
+  .enlace-logo img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+  }
+
+  .menu-opciones {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .menu-item {
+    font-family: var(--fuente-principal);
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: -0.48px;
+    text-transform: uppercase;
+    color: var(--color-primario);
+    margin: 0;
+  }
+
+  .menu-item a {
+    text-decoration: none;
+    color: inherit;
+    white-space: nowrap;
+  }
+
+  .enlace-hutcoins {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .contenedor-buscador {
+    position: relative;
+    display: flex;
+    padding: 20px;
+    align-items: center;
+    gap: 4px;
+    align-self: stretch;
+    min-width: 200px;
+  }
+
+  .input-buscador {
+    width: 100%;
+    padding: 8px 12px 8px 40px;
+    border-radius: 4px;
+    border: 1px solid var(--color-borde-oscuro);
+    font-family: var(--fuente-secundaria);
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--color-primario);
+    outline: none;
+  }
+
+  .contenedor-carrito {
+    height: 65%;
+    border-right: 1.5px solid var(--color-borde-oscuro);
+    border-left: 1.5px solid var(--color-borde-oscuro);
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .modo-entrega {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-left: 24px;
+    border-left: 1.5px solid var(--color-borde-oscuro);
+    height: 100%;
+  }
+
+  .texto-entrega {
+    font-family: var(--fuente-principal);
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: -0.48px;
+    text-transform: uppercase;
+    color: var(--color-primario);
+    margin: 0;
+  }
+
+  .estado-usuario {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+{% endstyle %}
+
 <sticky-header>
-  <header
-    style="
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-      padding: 0;
-      font-family: 'League Gothic', sans-serif;
-    "
-  >
-    <div
-      style="
-        display: flex;
-        height: 78px;
-        justify-content: space-between;
-        align-items: center;
-        border-radius: 8px;
-        border: 1px solid #DEDEDE;
-        background: #FFF;
-        margin: 30px 59px 0 59px;
-        padding: 10px 20px;
-      "
-    >
-      <!-- LOGO DE PIZZA HUT -->
-      <div class="logo-container">
-        <a href="/">
-          <img
-            src="{{ 'logo-pizza-hut.png' | asset_url }}"
-            alt="Pizza Hut Logo"
-            style="height: 35px; width: 170px; object-fit: contain;"
-          >
+  <header class="encabezado">
+    <div class="contenedor-encabezado">
+      <!-- Logo -->
+      <div class="contenedor-logo">
+        <a href="/" class="enlace-logo">
+          <img src="{{ 'logo-pizza-hut.png' | asset_url }}" alt="Logo Pizza Hut">
         </a>
       </div>
 
-      <!-- OPCIONES -->
-      <nav class="menu-options" style="display: flex; align-items: center; gap: 32px;">
-        <h4
-          style="
-            font-family: var(--fuente-principal);
-            font-size: 24px;
-            font-weight: 500;
-            line-height: 27px;
-            letter-spacing: -1px;
-            text-transform: uppercase;
-            color: #231F20;
-            margin: 0;
-          "
-        >
-          <a href="/menu" style="text-decoration: none; color: inherit;">Menú</a>
+      <!-- Menú de Navegación -->
+      <nav class="menu-opciones">
+        <h4 class="menu-item">
+          <a href="/menu">Menú</a>
         </h4>
-
-        <h4
-          style="
-            font-family: 'League Gothic';
-            font-size: 24px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: 27px;
-            letter-spacing: -0.48px;
-            text-transform: uppercase;
-            color: #231F20;
-            margin: 0;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-          "
-        >
-          <a
-            href="/promociones"
-            style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 4px;"
-          >
+        <h4 class="menu-item">
+          <a href="/promociones" class="enlace-hutcoins">
             Hut Coins
-            {% render 'icon-flecha-hutcoins' %}
+            {% render 'icono-flecha-hutcoins' %}
           </a>
         </h4>
-
-        <h4
-          style="
-            font-family: 'League Gothic';
-            font-size: 24px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: 27px;
-            letter-spacing: -0.48px;
-            text-transform: uppercase;
-            color: #231F20;
-            margin: 0;
-          "
-        >
-          <a href="/restaurantes" style="text-decoration: none; color: inherit;">Sobre Nosotros</a>
+        <h4 class="menu-item">
+          <a href="/restaurantes">Sobre Nosotros</a>
         </h4>
       </nav>
 
-      <!-- BUSCADOR -->
-      <div
-        class="search-container"
-        style="
-          position: relative;
-          display: flex;
-          padding: 20px;
-          align-items: center;
-          gap: 4px;
-          align-self: stretch;
-        "
-      >
-        {% render 'icon-search' %}
-        <input
-          type="search"
-          placeholder="Buscar..."
-          style="
-            width: 100%;
-            padding: 8px 12px 8px 40px;
-            border-radius: 4px;
-            border: 1px solid #6E6E6E;
-            font-family: var(--fuente-secundaria);
-            font-style: normal;
-            font-size: 16px;
-            font-weight: 400;
-            color: #231F20;
-            outline: none;
-          "
-        >
+      <!-- Buscador -->
+      <div class="contenedor-buscador">
+        {% render 'icono-buscar' %}
+        <input type="search" class="input-buscador" placeholder="Buscar...">
       </div>
 
-      <!-- CARRITO y MODALIDAD DE ENTREGA -->
-      <div
-        class="cart-container"
-        style="
-          height: 65%;
-          border-right: 1.5px solid #969696;
-          border-left: 1.5px solid #969696;
-          padding: 0px 24px;
-          display: flex;
-          align-items: center;
-          gap: 24px;
-        "
-      >
-        {% render 'icon-carrito' %}
-
-        <div
-          style="
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding-left: 24px;
-            border-left: 1.5px solid #969696;
-            height: 100%;
-          "
-        >
-          {% render 'icon-domicilio' %}
-          <h4
-            style="
-              font-family: 'League Gothic';
-              font-size: 24px;
-              font-style: normal;
-              font-weight: 400;
-              line-height: 27px;
-              letter-spacing: -0.48px;
-              text-transform: uppercase;
-              color: #231F20;
-              margin: 0;
-            "
-          >
-            DOMICILIO
-          </h4>
+      <!-- Carrito y Entrega -->
+      <div class="contenedor-carrito">
+        {% render 'icono-carrito' %}
+        <div class="modo-entrega">
+          {% render 'icono-domicilio' %}
+          <h4 class="texto-entrega">DOMICILIO</h4>
         </div>
       </div>
 
-      <!--  -->
-      {% comment %}
-        <div
-          class="delivery-mode"
-          style="
-            height: 65%;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
-            border-right: 1.5px solid #969696;
-            padding: 0px 24px;
-          "
-        ></div>
-      {% endcomment %}
-
-      <!-- ESTADO USUARIO -->
-      <div
-        class="user-status"
-        style="
-          display: flex;
-          align-items: center;
-          gap: 4px;
-        "
-      >
-        {% render 'icon-perfil-usuario' %}
-        {% render 'icon-flecha-abajo' %}
+      <!-- Estado Usuario -->
+      <div class="estado-usuario">
+        {% render 'icono-perfil-usuario' %}
+        {% render 'icono-flecha-abajo' %}
       </div>
     </div>
   </header>
 </sticky-header>
+
 <script>
   class HeaderPrincipal extends HTMLElement {}
-
   customElements.define('sticky-header', HeaderPrincipal);
 </script>
