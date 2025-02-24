@@ -17,6 +17,7 @@
       border-bottom: 1px solid #969696;
       padding: 50px;
       margin-bottom: 40px;
+      font-family: var(--fuente-principal);
     "
   >
     <div
@@ -41,6 +42,16 @@
     </div>
   </div>
 </div>
+
+{% style %}
+  :root {
+    --fuente-principal: 'League Gothic', sans-serif;
+    --fuente-secundaria: 'Montserrat', sans-serif;
+    --color-primario: #231f20;
+    --color-borde: #dedede;
+    --color-borde-oscuro: #969696;
+  }
+{% endstyle %}
 
 {% schema %}
 {
