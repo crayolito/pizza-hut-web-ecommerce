@@ -66,14 +66,96 @@
         align-self: stretch;
         width: 19.375rem;
         height: 37.25rem;
-        background-color: blue;
       "
       class="item-producto"
     >
-      <div class="imagen-producto"></div>
-      <div class="descripcion-producto"></div>
-      <div class="input-producto"></div>
-      <button class="proceso-compra"></button>
+      <div
+        style="
+          height: 16.875rem;
+          width: 100%;
+        "
+        class="imagen-producto"
+      >
+        <img
+          src="{{ 'imagen-pizza-1.png' | asset_url }}"
+          alt="Pizza 1"
+          style="
+            height: 100%;
+            width: 100%;
+            object-fit: content;
+          "
+        >
+      </div>
+      <div
+        style="
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: flex-start;
+          gap:  0.75rem;
+          align-self: stretch;
+        "
+        class="descripcion-producto"
+      >
+        <h3>PEPPERONI</h3>
+        <p>Sala de tomate, queso mozarella, y Pepperoni</p>
+      </div>
+      <div
+        style="
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: flex-start;
+          gap: 0.25rem;
+          align-self: stretch;
+        "
+        class="input-producto"
+      >
+        <p>Tamaño</p>
+        <div
+          style="
+            display: flex;
+            height: 3rem;
+            padding: var(--XL, 1.25rem);
+            justify-content: space-between;
+            align-items: center;
+            align-self: stretch;
+          "
+        >
+          <p>Mediana</p>
+          {% render 'icon-flecha-abajo' %}
+        </div>
+      </div>
+      <div
+        style="
+          display: flex;
+          height:  3rem;
+          padding: 1.25rem;
+          justify-content: center;
+          align-items: center;
+          gap: 0.25rem;
+          flex-shrink: 0;
+          align-self: stretch;
+          border-radius:  0.25rem;
+          background:  #C8102E;
+        "
+        class="proceso-compra"
+      >
+        <p
+          style="
+            font-family: Montserrat;
+            color:  #FFF;
+            font-size: 1rem;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+            letter-spacing: -0.04rem;
+            text-transform: uppercase;
+          "
+        >
+          90 Bs • Continuar
+        </p>
+      </div>
     </div>
     <div
       style="
