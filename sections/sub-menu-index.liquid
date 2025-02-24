@@ -1,53 +1,18 @@
-<div
-  style="
-    width: 100%;
-    height: 196px;
-        margin-bottom: 54px;
-        padding: 0px 4rem;
-  "
-  class="contenedor-base"
->
-  <div
-    class="contendor-secundario"
-    style="
-      width: 100%;
-      height: 100%;
-      padding: 0px 64px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1.5px solid #969696;
-      padding: 50px;
-      margin-bottom: 40px;
-      font-family: var(--fuente-principal);
-    "
-  >
-    <div
-      style="
-        padding: 0px 71px;
-        height: 100%; width: 371px; display: flex; align-items: center; justify-content: center;
-      "
-    >
-      <span style="color: #231F20; text-align: center; font-size: 70px; font-style: normal; font-weight: 400; line-height: 100%; letter-spacing: -1.4px; text-transform: uppercase;"
-        >MENÚ</span
-      >
+<div class="contenedor-base">
+  <div class="contenedor-secundario">
+    <div class="seccion-menu">
+      <span class="texto-menu">MENÚ</span>
     </div>
 
-    <div style="padding: 0px 71px; height: 100%; width: 371px; display: flex; align-items: center; justify-content: center; border-left: 1.5px solid #969696; border-right: 1.5px solid #969696;">
-      <span style="color: #231F20; text-align: center; font-size: 70px; font-style: normal; font-weight: 400; line-height: 100%; letter-spacing: -1.4px; text-transform: uppercase;"
-        >OFERTAS</span
-      >
+    <div class="seccion-ofertas">
+      <span class="texto-menu">OFERTAS</span>
     </div>
 
-    <div style="padding: 0px 71px; height: 100%; width: 371px; display: flex; align-items: center; justify-content: center;">
+    <div class="seccion-logo">
       <img
         src="{{ 'logo-pizza-hut.png' | asset_url }}"
         alt="Logo Pizza Hut"
-        style="
-          width: 100%;
-          height: 100%;
-          object-fit: contain;
-        "
+        class="imagen-logo"
       >
     </div>
   </div>
@@ -60,6 +25,73 @@
     --color-primario: #231f20;
     --color-borde: #dedede;
     --color-borde-oscuro: #969696;
+  }
+
+  .contenedor-base {
+    width: 100%;
+    height: 196px;
+    margin-bottom: 54px;
+    padding: 0 4rem;
+  }
+
+  .contenedor-secundario {
+    width: 100%;
+    height: 100%;
+    padding: 50px;
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1.5px solid #969696;
+    font-family: var(--fuente-principal);
+  }
+
+  .seccion-menu,
+  .seccion-ofertas,
+  .seccion-logo {
+    padding: 0 71px;
+    height: 100%;
+    width: 371px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .seccion-ofertas {
+    border-left: 1.5px solid #969696;
+    border-right: 1.5px solid #969696;
+  }
+
+  .texto-menu {
+    color: #231f20;
+    text-align: center;
+    font-size: 70px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%;
+    letter-spacing: -1.4px;
+    text-transform: uppercase;
+  }
+
+  .imagen-logo {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  /* Media Queries para adaptabilidad */
+  /* Laptops y Desktops pequeños: 1024px - 1366px */
+  @media screen and (min-width: 1367px) and (max-width: 1439px) {
+    .contenedor-buscador {
+      width: 37%;
+    }
+  }
+
+  /* Monitores grandes: 1440px - 1919px */
+  @media screen and (min-width: 1440px) and (max-width: 1919px) {
+    .contenedor-buscador {
+      width: 45%;
+    }
   }
 {% endstyle %}
 
