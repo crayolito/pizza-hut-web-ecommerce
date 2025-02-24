@@ -1,8 +1,9 @@
-<!-- productos-index.liquid -->
+<!-- sections/productos-index.liquid -->
+
 <div class="contenedor-base">
   <div class="contenedor-header">
-    <span class="texto-principal">TU PIZZA FAVORITA</span>
-    <span class="texto-destacado">¡Te espera!</span>
+    <span class="titulo">TU PIZZA FAVORITA</span>
+    <span class="titulo highlight">¡Te espera!</span>
   </div>
 
   <div class="contenedor-body">
@@ -12,13 +13,13 @@
         <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza Pepperoni">
       </div>
       <div class="descripcion-producto">
-        <h3 class="titulo-producto">PEPPERONI</h3>
-        <p class="texto-producto">Salsa de tomate, queso mozzarella, y Pepperoni</p>
+        <h3 class="nombre-producto">PEPPERONI</h3>
+        <p class="detalle-producto">Sala de tomate, queso mozarella, y Pepperoni</p>
       </div>
       <div class="input-producto">
         <p class="label-tamano">Tamaño</p>
         <div class="selector-tamano">
-          <p class="texto-tamano">Mediana</p>
+          <p class="opcion-tamano">Mediana</p>
           {% render 'icon-flecha-abajo' %}
         </div>
       </div>
@@ -33,15 +34,15 @@
         <img src="{{ 'imagen-pizza-2.png' | asset_url }}" alt="Pizza Supreme">
       </div>
       <div class="descripcion-producto">
-        <h3 class="titulo-producto">SUPREME</h3>
-        <p class="texto-producto">
-          Salsa de tomate, queso mozzarella, Pepperoni, Jamón, carnes mixtas res y cerdo, salchicha italiana y tocino.
+        <h3 class="nombre-producto">SUPREME</h3>
+        <p class="detalle-producto">
+          Sala de tomate, queso mozarella, Pepperoni, Jamón, carnes mixtas res y cerdo, salchicha italiana y tocino.
         </p>
       </div>
       <div class="input-producto">
         <p class="label-tamano">Tamaño</p>
         <div class="selector-tamano">
-          <p class="texto-tamano">Mediana</p>
+          <p class="opcion-tamano">Mediana</p>
           {% render 'icon-flecha-abajo' %}
         </div>
       </div>
@@ -56,13 +57,13 @@
         <img src="{{ 'imagen-pizza-3.png' | asset_url }}" alt="Pizza Jamón">
       </div>
       <div class="descripcion-producto">
-        <h3 class="titulo-producto">JAMÓN</h3>
-        <p class="texto-producto">Salsa de tomate, queso mozzarella y Jamón</p>
+        <h3 class="nombre-producto">Jamón</h3>
+        <p class="detalle-producto">Sala de tomate, queso mozarella y Jamón</p>
       </div>
       <div class="input-producto">
         <p class="label-tamano">Tamaño</p>
         <div class="selector-tamano">
-          <p class="texto-tamano">Mediana</p>
+          <p class="opcion-tamano">Mediana</p>
           {% render 'icon-flecha-abajo' %}
         </div>
       </div>
@@ -71,19 +72,19 @@
       </div>
     </div>
 
-    <!-- Producto 4: Cheesy Lovers -->
+    <!-- Producto 4: Cheesy lovers -->
     <div class="item-producto">
       <div class="imagen-producto">
-        <img src="{{ 'imagen-pizza-4.png' | asset_url }}" alt="Pizza Cheesy Lovers">
+        <img src="{{ 'imagen-pizza-4.png' | asset_url }}" alt="Pizza Cheesy lovers">
       </div>
       <div class="descripcion-producto">
-        <h3 class="titulo-producto">CHEESY LOVERS</h3>
-        <p class="texto-producto">Salsa de tomate y doble queso mozzarella</p>
+        <h3 class="nombre-producto">Cheesy lovers</h3>
+        <p class="detalle-producto">Sala de tomate y doble queso mozarella</p>
       </div>
       <div class="input-producto">
         <p class="label-tamano">Tamaño</p>
         <div class="selector-tamano">
-          <p class="texto-tamano">Mediana</p>
+          <p class="opcion-tamano">Mediana</p>
           {% render 'icon-flecha-abajo' %}
         </div>
       </div>
@@ -94,8 +95,8 @@
   </div>
 </div>
 
-{% style %}
-  /* Contenedor base */
+<style>
+  /* Base container styles */
   .contenedor-base {
     width: 100%;
     display: flex;
@@ -103,13 +104,13 @@
     justify-content: center;
     flex: 1 0 0;
     align-self: stretch;
-    color: var(--color-primario, #231f20);
-    padding: 0 3.125rem;
+    color: var(--Black, #231f20);
+    padding: 0px 3.125rem;
     margin-top: 4rem;
     gap: 1rem;
   }
 
-  /* Encabezado */
+  /* Header styles */
   .contenedor-header {
     display: flex;
     justify-content: center;
@@ -120,7 +121,7 @@
     gap: 0.5rem;
   }
 
-  .texto-principal {
+  .contenedor-header .titulo {
     font-size: 4.375rem;
     font-style: normal;
     font-weight: 400;
@@ -128,16 +129,11 @@
     letter-spacing: -0.0875rem;
   }
 
-  .texto-destacado {
+  .contenedor-header .highlight {
     color: #c8102e;
-    font-size: 4.375rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 100%;
-    letter-spacing: -0.0875rem;
   }
 
-  /* Contenedor de productos */
+  /* Body container styles */
   .contenedor-body {
     display: flex;
     justify-content: space-between;
@@ -147,7 +143,7 @@
     font-family: var(--fuente-principal);
   }
 
-  /* Producto individual */
+  /* Product item styles */
   .item-producto {
     display: flex;
     justify-content: space-between;
@@ -158,7 +154,7 @@
     height: 37.25rem;
   }
 
-  /* Imagen del producto */
+  /* Product image styles */
   .imagen-producto {
     height: 16.875rem;
     width: 100%;
@@ -167,10 +163,10 @@
   .imagen-producto img {
     height: 100%;
     width: 100%;
-    object-fit: contain;
+    object-fit: content;
   }
 
-  /* Información del producto */
+  /* Product description styles */
   .descripcion-producto {
     display: flex;
     flex-direction: column;
@@ -182,7 +178,7 @@
     height: 10rem;
   }
 
-  .titulo-producto {
+  .nombre-producto {
     color: #231f20;
     font-size: 2rem;
     font-style: normal;
@@ -190,22 +186,18 @@
     line-height: normal;
     letter-spacing: -0.04rem;
     text-transform: uppercase;
-    margin: 0;
-    padding: 0;
   }
 
-  .texto-producto {
+  .detalle-producto {
     color: #231f20;
     font-family: Montserrat;
     font-size: 1rem;
     font-style: normal;
     font-weight: 400;
     line-height: 1.5rem;
-    margin: 0;
-    padding: 0;
   }
 
-  /* Selector de tamaño */
+  /* Product input styles */
   .input-producto {
     display: flex;
     flex-direction: column;
@@ -213,7 +205,6 @@
     align-items: flex-start;
     gap: 0.25rem;
     align-self: stretch;
-    width: 100%;
   }
 
   .label-tamano {
@@ -223,8 +214,6 @@
     font-style: normal;
     font-weight: 600;
     line-height: normal;
-    margin: 0;
-    padding: 0;
   }
 
   .selector-tamano {
@@ -237,21 +226,18 @@
     border-radius: 0.25rem;
     border: 1px solid #353535;
     background: #fff;
-    width: 100%;
   }
 
-  .texto-tamano {
+  .opcion-tamano {
     color: #231f20;
     font-family: Montserrat;
     font-size: 1rem;
     font-style: normal;
     font-weight: 400;
     line-height: 1.5rem;
-    margin: 0;
-    padding: 0;
   }
 
-  /* Botón de compra */
+  /* Purchase button styles */
   .proceso-compra {
     display: flex;
     height: 3rem;
@@ -263,7 +249,7 @@
     align-self: stretch;
     border-radius: 0.25rem;
     background: #c8102e;
-    width: 100%;
+    cursor: pointer;
   }
 
   .texto-compra {
@@ -275,10 +261,8 @@
     line-height: normal;
     letter-spacing: -0.04rem;
     text-transform: uppercase;
-    margin: 0;
-    padding: 0;
   }
-{% endstyle %}
+</style>
 
 {% schema %}
 {
@@ -286,11 +270,6 @@
   "tag": "section",
   "class": "productos-index",
   "settings": [],
-  "blocks": [],
-  "presets": [
-    {
-      "name": "Productos Destacados"
-    }
-  ]
+  "blocks": []
 }
 {% endschema %}
