@@ -1,9 +1,9 @@
 <div
   style="
     width: 100%;
-    height: var(--height-container);
-    margin-bottom: 54px;
-    padding: 0 var(--padding-container);
+    height: 196px;
+        margin-bottom: 54px;
+        padding: 0px 4rem;
   "
   class="contenedor-base"
 >
@@ -12,76 +12,34 @@
     style="
       width: 100%;
       height: 100%;
+      padding: 0px 64px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1.5px solid var(--border-color);
+      border-bottom: 1.5px solid #969696;
+      padding: 50px;
+      margin-bottom: 40px;
       font-family: var(--fuente-principal);
-      padding: 0 var(--padding-container);
     "
   >
     <div
       style="
-        height: 100%;
-        width: 33.33%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0 2rem;
+        padding: 0px 71px;
+        height: 100%; width: 371px; display: flex; align-items: center; justify-content: center;
       "
     >
-      <span
-        style="
-          color: #231F20;
-          text-align: center;
-          font-size: var(--font-size-menu);
-          font-style: normal;
-          font-weight: 400;
-          line-height: 100%;
-          letter-spacing: -1.4px;
-          text-transform: uppercase;
-        "
+      <span style="color: #231F20; text-align: center; font-size: 70px; font-style: normal; font-weight: 400; line-height: 100%; letter-spacing: -1.4px; text-transform: uppercase;"
         >MENÚ</span
       >
     </div>
 
-    <div
-      style="
-        height: 100%;
-        width: 33.33%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0 2rem;
-        border-left: 1.5px solid var(--border-color);
-        border-right: 1.5px solid var(--border-color);
-      "
-    >
-      <span
-        style="
-          color: #231F20;
-          text-align: center;
-          font-size: var(--font-size-menu);
-          font-style: normal;
-          font-weight: 400;
-          line-height: 100%;
-          letter-spacing: -1.4px;
-          text-transform: uppercase;
-        "
+    <div style="padding: 0px 71px; height: 100%; width: 371px; display: flex; align-items: center; justify-content: center; border-left: 1.5px solid #969696; border-right: 1.5px solid #969696;">
+      <span style="color: #231F20; text-align: center; font-size: 70px; font-style: normal; font-weight: 400; line-height: 100%; letter-spacing: -1.4px; text-transform: uppercase;"
         >OFERTAS</span
       >
     </div>
 
-    <div
-      style="
-        height: 100%;
-        width: 33.33%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0 2rem;
-      "
-    >
+    <div style="padding: 0px 71px; height: 100%; width: 371px; display: flex; align-items: center; justify-content: center;">
       <img
         src="{{ 'logo-pizza-hut.png' | asset_url }}"
         alt="Logo Pizza Hut"
@@ -89,9 +47,8 @@
           width: 100%;
           height: 100%;
           object-fit: contain;
-          min-width: 150px;
-          min-height: 120px;
-          max-width: 200px;
+          min-width: 200px;
+          min-height: 150px;
         "
       >
     </div>
@@ -105,35 +62,6 @@
     --color-primario: #231f20;
     --color-borde: #dedede;
     --color-borde-oscuro: #969696;
-    --padding-container: 4rem;
-    --height-container: 196px;
-    --font-size-menu: 70px;
-    --border-color: #969696;
-  }
-
-  /* Media queries para diferentes tamaños */
-  @media (max-width: 1440px) {
-    :root {
-      --padding-container: 3rem;
-      --height-container: 160px;
-      --font-size-menu: 60px;
-    }
-  }
-
-  @media (max-width: 1024px) {
-    :root {
-      --padding-container: 2rem;
-      --height-container: 140px;
-      --font-size-menu: 50px;
-    }
-  }
-
-  @media (max-width: 768px) {
-    :root {
-      --padding-container: 1.5rem;
-      --height-container: 120px;
-      --font-size-menu: 40px;
-    }
   }
 {% endstyle %}
 
