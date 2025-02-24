@@ -1,0 +1,51 @@
+<div
+  style="
+    width: 100%;
+    padding: 0px 3.125rem;
+    height: 61.25rem;
+  "
+  class="ds-contenedor-base"
+>
+  <div
+    style="
+      width: 50%;
+      height: 100%;
+      padding: 12.81rem 5.44rem;
+      background: linear-gradient(0deg, rgba(255, 255, 255, 0.20) 0%, rgba(255, 255, 255, 0.20) 100%), url(<path-to-image>) lightgray -408.12px -188.638px / 327.677% 143.673% no-repeat;
+    "
+    class="ds-contenedor-left"
+  >
+    <img
+      src="{{ 'image-sucursales-aux.png' | asset_url }}"
+      style="
+        width: 27.5625rem;
+        height: 18.5625rem;
+      "
+    >
+    <div
+      style="
+        width: 100%;
+        height: 100%;
+        background: chocolate;
+      "
+      class="ds-informacion-seleccion"
+    ></div>
+  </div>
+  <div
+    style="
+      width: 50%;
+      height: 100%;
+    "
+    class="ds-contenedor-right"
+  ></div>
+</div>
+
+{% schema %}
+{
+  "name": "Detalle de sucursales",
+  "tag": "section",
+  "class": "detalle-sucursales",
+  "settings": [],
+  "blocks": []
+}
+{% endschema %}
