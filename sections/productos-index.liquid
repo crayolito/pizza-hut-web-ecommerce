@@ -1,268 +1,664 @@
-<!-- sections/productos-index.liquid -->
-
-<div class="contenedor-base">
-  <div class="contenedor-header">
-    <span class="titulo">TU PIZZA FAVORITA</span>
-    <span class="titulo highlight">¡Te espera!</span>
-  </div>
-
-  <div class="contenedor-body">
-    <!-- Producto 1: Pepperoni -->
-    <div class="item-producto">
-      <div class="imagen-producto">
-        <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza Pepperoni">
-      </div>
-      <div class="descripcion-producto">
-        <h3 class="nombre-producto">PEPPERONI</h3>
-        <p class="detalle-producto">Sala de tomate, queso mozarella, y Pepperoni</p>
-      </div>
-      <div class="input-producto">
-        <p class="label-tamano">Tamaño</p>
-        <div class="selector-tamano">
-          <p class="opcion-tamano">Mediana</p>
-          {% render 'icon-flecha-abajo' %}
-        </div>
-      </div>
-      <div class="proceso-compra">
-        <p class="texto-compra">90 Bs • Continuar</p>
-      </div>
-    </div>
-
-    <!-- Producto 2: Supreme -->
-    <div class="item-producto">
-      <div class="imagen-producto">
-        <img src="{{ 'imagen-pizza-2.png' | asset_url }}" alt="Pizza Supreme">
-      </div>
-      <div class="descripcion-producto">
-        <h3 class="nombre-producto">SUPREME</h3>
-        <p class="detalle-producto">
-          Sala de tomate, queso mozarella, Pepperoni, Jamón, carnes mixtas res y cerdo, salchicha italiana y tocino.
-        </p>
-      </div>
-      <div class="input-producto">
-        <p class="label-tamano">Tamaño</p>
-        <div class="selector-tamano">
-          <p class="opcion-tamano">Mediana</p>
-          {% render 'icon-flecha-abajo' %}
-        </div>
-      </div>
-      <div class="proceso-compra">
-        <p class="texto-compra">90 Bs • Continuar</p>
-      </div>
-    </div>
-
-    <!-- Producto 3: Jamón -->
-    <div class="item-producto">
-      <div class="imagen-producto">
-        <img src="{{ 'imagen-pizza-3.png' | asset_url }}" alt="Pizza Jamón">
-      </div>
-      <div class="descripcion-producto">
-        <h3 class="nombre-producto">Jamón</h3>
-        <p class="detalle-producto">Sala de tomate, queso mozarella y Jamón</p>
-      </div>
-      <div class="input-producto">
-        <p class="label-tamano">Tamaño</p>
-        <div class="selector-tamano">
-          <p class="opcion-tamano">Mediana</p>
-          {% render 'icon-flecha-abajo' %}
-        </div>
-      </div>
-      <div class="proceso-compra">
-        <p class="texto-compra">90 Bs • Continuar</p>
-      </div>
-    </div>
-
-    <!-- Producto 4: Cheesy lovers -->
-    <div class="item-producto">
-      <div class="imagen-producto">
-        <img src="{{ 'imagen-pizza-4.png' | asset_url }}" alt="Pizza Cheesy lovers">
-      </div>
-      <div class="descripcion-producto">
-        <h3 class="nombre-producto">Cheesy lovers</h3>
-        <p class="detalle-producto">Sala de tomate y doble queso mozarella</p>
-      </div>
-      <div class="input-producto">
-        <p class="label-tamano">Tamaño</p>
-        <div class="selector-tamano">
-          <p class="opcion-tamano">Mediana</p>
-          {% render 'icon-flecha-abajo' %}
-        </div>
-      </div>
-      <div class="proceso-compra">
-        <p class="texto-compra">90 Bs • Continuar</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<style>
-  /* Base container styles */
-  .contenedor-base {
+<div
+  style="
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     flex: 1 0 0;
     align-self: stretch;
-    color: var(--Black, #231f20);
+    color: var(--Black, #231F20);
     padding: 0px 3.125rem;
     margin-top: 4rem;
     gap: 1rem;
-  }
+  "
+  class="contendor-base"
+>
+  <div
+    style="
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      font-family: var(--fuente-principal);
+      text-transform: uppercase;
+      gap: 0.5rem;
+    "
+    class="contendor-header"
+  >
+    <span
+      style="
+        font-size: 4.375rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 100%;
+        letter-spacing: -0.0875rem;
+      "
+      >TU PIZZA FAVORITA</span
+    >
+    <span
+      style="
+        color: #C8102E;
+        font-size: 4.375rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 100%;
+        letter-spacing: -0.0875rem;
+      "
+    >
+      ¡Te espera!</span
+    >
+  </div>
+  <div
+    style="
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      align-self: stretch;
+      gap: 1rem;
+      font-family: var(--fuente-principal);
+    "
+    class="contendor-body"
+  >
+    <div
+      style="
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        align-items: center;
+        align-self: stretch;
+        width: 19.375rem;
+        height: 37.25rem;
+      "
+      class="item-producto"
+    >
+      <div
+        style="
+          height: 16.875rem;
+          width: 100%;
+        "
+        class="imagen-producto"
+      >
+        <img
+          src="{{ 'imagen-pizza-1.png' | asset_url }}"
+          alt="Pizza 1"
+          style="
+            height: 100%;
+            width: 100%;
+            object-fit: content;
+          "
+        >
+      </div>
+      <div
+        style="
+          display: flex;
+          flex-direction: column;
+          justify-content: start;
+          align-items: flex-start;
+          gap: 0.75rem;
+          align-self: stretch;
+          width: 100%; height: 10rem;
+        "
+        class="descripcion-producto"
+      >
+        <h3
+          style="
+            color: #231F20;
+            font-size: 2rem;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            letter-spacing: -0.04rem;
+            text-transform: uppercase;
+          "
+        >
+          PEPPERONI
+        </h3>
+        <p
+          style="
+            color:  #231F20;
+            font-family: Montserrat;
+            font-size: 1rem;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 1.5rem;
+          "
+        >
+          Sala de tomate, queso mozarella, y Pepperoni
+        </p>
+      </div>
+      <div
+        style="
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: flex-start;
+          gap: 0.25rem;
+          align-self: stretch;
+        "
+        class="input-producto"
+      >
+        <p
+          style="
+            color: #231F20;
+            font-family: Montserrat;
+            font-size: 1rem;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+          "
+        >
+          Tamaño
+        </p>
+        <div
+          style="
+            display: flex;
+            height: 3rem;
+            padding:  1.25rem;
+            justify-content: space-between;
+            align-items: center;
+            align-self: stretch;
+            border-radius:  0.25rem;
+            border: 1px solid  #353535;
+            background:  #FFF;
+          "
+        >
+          <p
+            style="
+              color:  #231F20;
+              font-family: Montserrat;
+              font-size: 1rem;
+              font-style: normal;
+              font-weight: 400;
+              line-height: 1.5rem;
+            "
+          >
+            Mediana
+          </p>
+          {% render 'icon-flecha-abajo' %}
+        </div>
+      </div>
+      <div
+        style="
+          display: flex;
+          height:  3rem;
+          padding: 1.25rem;
+          justify-content: center;
+          align-items: center;
+          gap: 0.25rem;
+          flex-shrink: 0;
+          align-self: stretch;
+          border-radius:  0.25rem;
+          background:  #C8102E;
+        "
+        class="proceso-compra"
+      >
+        <p
+          style="
+            font-family: Montserrat;
+            color:  #FFF;
+            font-size: 1rem;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+            letter-spacing: -0.04rem;
+            text-transform: uppercase;
+          "
+        >
+          90 Bs • Continuar
+        </p>
+      </div>
+    </div>
+    <div
+      style="
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        align-items: center;
+        align-self: stretch;
+        width: 19.375rem;
+        height: 37.25rem;
+      "
+      class="item-producto"
+    >
+      <div
+        style="
+          height: 16.875rem;
+          width: 100%;
+        "
+        class="imagen-producto"
+      >
+        <img
+          src="{{ 'imagen-pizza-2.png' | asset_url }}"
+          alt="Pizza 1"
+          style="
+            height: 100%;
+            width: 100%;
+            object-fit: content;
+          "
+        >
+      </div>
+      <div
+        style="
+          display: flex;
+          flex-direction: column;
+          justify-content: start;
+          align-items: flex-start;
+          gap: 0.75rem;
+          align-self: stretch;
+          width: 100%; height: 10rem;
+        "
+        class="descripcion-producto"
+      >
+        <h3
+          style="
+            color: #231F20;
+            font-size: 2rem;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            letter-spacing: -0.04rem;
+            text-transform: uppercase;
+          "
+        >
+          SUPREME
+        </h3>
+        <p
+          style="
+            color:  #231F20;
+            font-family: Montserrat;
+            font-size: 1rem;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 1.5rem;
+          "
+        >
+          Sala de tomate, queso mozarella, Pepperoni, Jamón, carnes mixtas res y cerdo, salchicha italiana y tocino.
+        </p>
+      </div>
+      <div
+        style="
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: flex-start;
+          gap: 0.25rem;
+          align-self: stretch;
+        "
+        class="input-producto"
+      >
+        <p
+          style="
+            color: #231F20;
+            font-family: Montserrat;
+            font-size: 1rem;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+          "
+        >
+          Tamaño
+        </p>
+        <div
+          style="
+            display: flex;
+            height: 3rem;
+            padding:  1.25rem;
+            justify-content: space-between;
+            align-items: center;
+            align-self: stretch;
+            border-radius:  0.25rem;
+            border: 1px solid  #353535;
+            background:  #FFF;
+          "
+        >
+          <p
+            style="
+              color:  #231F20;
+              font-family: Montserrat;
+              font-size: 1rem;
+              font-style: normal;
+              font-weight: 400;
+              line-height: 1.5rem;
+            "
+          >
+            Mediana
+          </p>
+          {% render 'icon-flecha-abajo' %}
+        </div>
+      </div>
+      <div
+        style="
+          display: flex;
+          height:  3rem;
+          padding: 1.25rem;
+          justify-content: center;
+          align-items: center;
+          gap: 0.25rem;
+          flex-shrink: 0;
+          align-self: stretch;
+          border-radius:  0.25rem;
+          background:  #C8102E;
+        "
+        class="proceso-compra"
+      >
+        <p
+          style="
+            font-family: Montserrat;
+            color:  #FFF;
+            font-size: 1rem;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+            letter-spacing: -0.04rem;
+            text-transform: uppercase;
+          "
+        >
+          90 Bs • Continuar
+        </p>
+      </div>
+    </div>
+    <div
+      style="
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        align-items: center;
+        align-self: stretch;
+        width: 19.375rem;
+        height: 37.25rem;
+      "
+      class="item-producto"
+    >
+      <div
+        style="
+          height: 16.875rem;
+          width: 100%;
+        "
+        class="imagen-producto"
+      >
+        <img
+          src="{{ 'imagen-pizza-3.png' | asset_url }}"
+          alt="Pizza 1"
+          style="
+            height: 100%;
+            width: 100%;
+            object-fit: content;
+          "
+        >
+      </div>
+      <div
+        style="
+          display: flex;
+          flex-direction: column;
+          justify-content: start;
+          align-items: flex-start;
+          gap: 0.75rem;
+          align-self: stretch;
+          width: 100%; height: 10rem;
+        "
+        class="descripcion-producto"
+      >
+        <h3
+          style="
+            color: #231F20;
+            font-size: 2rem;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            letter-spacing: -0.04rem;
+            text-transform: uppercase;
+          "
+        >
+          Jamón
+        </h3>
+        <p
+          style="
+            color:  #231F20;
+            font-family: Montserrat;
+            font-size: 1rem;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 1.5rem;
+          "
+        >
+          Sala de tomate, queso mozarella y Jamón
+        </p>
+      </div>
+      <div
+        style="
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: flex-start;
+          gap: 0.25rem;
+          align-self: stretch;
+        "
+        class="input-producto"
+      >
+        <p
+          style="
+            color: #231F20;
+            font-family: Montserrat;
+            font-size: 1rem;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+          "
+        >
+          Tamaño
+        </p>
+        <div
+          style="
+            display: flex;
+            height: 3rem;
+            padding:  1.25rem;
+            justify-content: space-between;
+            align-items: center;
+            align-self: stretch;
+            border-radius:  0.25rem;
+            border: 1px solid  #353535;
+            background:  #FFF;
+          "
+        >
+          <p
+            style="
+              color:  #231F20;
+              font-family: Montserrat;
+              font-size: 1rem;
+              font-style: normal;
+              font-weight: 400;
+              line-height: 1.5rem;
+            "
+          >
+            Mediana
+          </p>
+          {% render 'icon-flecha-abajo' %}
+        </div>
+      </div>
+      <div
+        style="
+          display: flex;
+          height:  3rem;
+          padding: 1.25rem;
+          justify-content: center;
+          align-items: center;
+          gap: 0.25rem;
+          flex-shrink: 0;
+          align-self: stretch;
+          border-radius:  0.25rem;
+          background:  #C8102E;
+        "
+        class="proceso-compra"
+      >
+        <p
+          style="
+            font-family: Montserrat;
+            color:  #FFF;
+            font-size: 1rem;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+            letter-spacing: -0.04rem;
+            text-transform: uppercase;
+          "
+        >
+          90 Bs • Continuar
+        </p>
+      </div>
+    </div>
+    <div
+      style="
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        align-items: center;
+        align-self: stretch;
+        width: 19.375rem;
+        height: 37.25rem;
+      "
+      class="item-producto"
+    >
+      <div
+        style="
+          height: 16.875rem;
+          width: 100%;
+        "
+        class="imagen-producto"
+      >
+        <img
+          src="{{ 'imagen-pizza-4.png' | asset_url }}"
+          alt="Pizza 1"
+          style="
+            height: 100%;
+            width: 100%;
+            object-fit: content;
+          "
+        >
+      </div>
+      <div
+        style="
+          display: flex;
+          flex-direction: column;
+          justify-content: start;
+          align-items: flex-start;
+          gap: 0.75rem;
+          align-self: stretch;
+          width: 100%; height: 10rem;
+        "
+        class="descripcion-producto"
+      >
+        <h3
+          style="
+            color: #231F20;
+            font-size: 2rem;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            letter-spacing: -0.04rem;
+            text-transform: uppercase;
+          "
+        >
+          Cheesy lovers
+        </h3>
+        <p
+          style="
+            color:  #231F20;
+            font-family: Montserrat;
+            font-size: 1rem;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 1.5rem;
+          "
+        >
+          Sala de tomate y doble queso mozarella
+        </p>
+      </div>
+      <div
+        style="
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: flex-start;
+          gap: 0.25rem;
+          align-self: stretch;
+        "
+        class="input-producto"
+      >
+        <p
+          style="
+            color: #231F20;
+            font-family: Montserrat;
+            font-size: 1rem;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+          "
+        >
+          Tamaño
+        </p>
+        <div
+          style="
+            display: flex;
+            height: 3rem;
+            padding:  1.25rem;
+            justify-content: space-between;
+            align-items: center;
+            align-self: stretch;
+            border-radius:  0.25rem;
+            border: 1px solid  #353535;
+            background:  #FFF;
+          "
+        >
+          <p
+            style="
+              color:  #231F20;
+              font-family: Montserrat;
+              font-size: 1rem;
+              font-style: normal;
+              font-weight: 400;
+              line-height: 1.5rem;
+            "
+          >
+            Mediana
+          </p>
+          {% render 'icon-flecha-abajo' %}
+        </div>
+      </div>
+      <div
+        style="
+          display: flex;
+          height:  3rem;
+          padding: 1.25rem;
+          justify-content: center;
+          align-items: center;
+          gap: 0.25rem;
+          flex-shrink: 0;
+          align-self: stretch;
+          border-radius:  0.25rem;
+          background:  #C8102E;
+        "
+        class="proceso-compra"
+      >
+        <p
+          style="
+            font-family: Montserrat;
+            color:  #FFF;
+            font-size: 1rem;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+            letter-spacing: -0.04rem;
+            text-transform: uppercase;
+          "
+        >
+          90 Bs • Continuar
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
 
-  /* Header styles */
-  .contenedor-header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    font-family: var(--fuente-principal);
-    text-transform: uppercase;
-    gap: 0.5rem;
-  }
-
-  .contenedor-header .titulo {
-    font-size: 4.375rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 100%;
-    letter-spacing: -0.0875rem;
-  }
-
-  .contenedor-header .highlight {
-    color: #c8102e;
-  }
-
-  /* Body container styles */
-  .contenedor-body {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    align-self: stretch;
-    gap: 1rem;
-    font-family: var(--fuente-principal);
-  }
-
-  /* Product item styles */
-  .item-producto {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-    align-items: center;
-    align-self: stretch;
-    width: 19.375rem;
-    height: 37.25rem;
-  }
-
-  /* Product image styles */
-  .imagen-producto {
-    height: 16.875rem;
-    width: 100%;
-  }
-
-  .imagen-producto img {
-    height: 100%;
-    width: 100%;
-    object-fit: content;
-  }
-
-  /* Product description styles */
-  .descripcion-producto {
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: flex-start;
-    gap: 0.75rem;
-    align-self: stretch;
-    width: 100%;
-    height: 10rem;
-  }
-
-  .nombre-producto {
-    color: #231f20;
-    font-size: 2rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    letter-spacing: -0.04rem;
-    text-transform: uppercase;
-  }
-
-  .detalle-producto {
-    color: #231f20;
-    font-family: Montserrat;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 1.5rem;
-  }
-
-  /* Product input styles */
-  .input-producto {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 0.25rem;
-    align-self: stretch;
-  }
-
-  .label-tamano {
-    color: #231f20;
-    font-family: Montserrat;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-  }
-
-  .selector-tamano {
-    display: flex;
-    height: 3rem;
-    padding: 1.25rem;
-    justify-content: space-between;
-    align-items: center;
-    align-self: stretch;
-    border-radius: 0.25rem;
-    border: 1px solid #353535;
-    background: #fff;
-  }
-
-  .opcion-tamano {
-    color: #231f20;
-    font-family: Montserrat;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 1.5rem;
-  }
-
-  /* Purchase button styles */
-  .proceso-compra {
-    display: flex;
-    height: 3rem;
-    padding: 1.25rem;
-    justify-content: center;
-    align-items: center;
-    gap: 0.25rem;
-    flex-shrink: 0;
-    align-self: stretch;
-    border-radius: 0.25rem;
-    background: #c8102e;
-    cursor: pointer;
-  }
-
-  .texto-compra {
-    font-family: Montserrat;
-    color: #fff;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-    letter-spacing: -0.04rem;
-    text-transform: uppercase;
-  }
-</style>
+<style></style>
 
 {% schema %}
 {
