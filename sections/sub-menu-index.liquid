@@ -1,44 +1,28 @@
-<div
-  style="
-    width: 100%;
-    height: 196px;
-  "
-  class="contenedor-base"
->
-  <div
-    class="contendor-secundario"
-    style="
-      width: 100%;
-      height: 100%;
-      padding: 0px 64px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid #969696;
-      padding: 50px;
-      margin-bottom: 40px;
-      font-family: var(--fuente-principal);
-    "
-  >
+<div style="width: 100%; margin-bottom: 40px;" class="sub-menu-index">
+  <div style="width: 100%; height: 196px; padding: 0; position: relative;" class="sub-menu-container">
     <div
-      style="
-        padding: 0px 71px;
-        height: 100%; width: 33.33%; display: flex; align-items: center; justify-content: center;
-      "
+      style="width: 100%; height: 100%; padding: 0 64px; display: flex; justify-content: space-between; align-items: center; position: relative; border-bottom: 1px solid #969696; margin: 0 64px;"
+      class="sub-menu-wrapper"
     >
-      <span style="color: #231F20; text-align: center; font-size: 70px; font-style: normal; font-weight: 400; line-height: 100%; letter-spacing: -1.4px; text-transform: uppercase;"
-        >MENÚ</span
-      >
-    </div>
+      <div style="height: 100%; width: 33.33%; display: flex; align-items: center; justify-content: center;">
+        <span style="color: #231F20; text-align: center; font-size: 70px; font-style: normal; font-weight: 400; line-height: 100%; letter-spacing: -1.4px; text-transform: uppercase;">
+          {{ section.settings.menu_text | default: 'MENÚ' }}
+        </span>
+      </div>
 
-    <div style="padding: 0px 71px; height: 100%; width: 33.33%; display: flex; align-items: center; justify-content: center; border-left: 1px solid #969696; border-right: 1px solid #969696;">
-      <span style="color: #231F20; text-align: center; font-size: 70px; font-style: normal; font-weight: 400; line-height: 100%; letter-spacing: -1.4px; text-transform: uppercase;"
-        >OFERTAS</span
-      >
-    </div>
+      <div style="height: 100%; width: 33.33%; display: flex; align-items: center; justify-content: center; border-left: 1px solid #969696; border-right: 1px solid #969696;">
+        <span style="color: #231F20; text-align: center; font-size: 70px; font-style: normal; font-weight: 400; line-height: 100%; letter-spacing: -1.4px; text-transform: uppercase;">
+          {{ section.settings.ofertas_text | default: 'OFERTAS' }}
+        </span>
+      </div>
 
-    <div style="padding: 0px 71px; height: 100%; width: 33.33%; display: flex; align-items: center; justify-content: center;">
-      <img src="{{ 'logo-pizza-hut.png' | asset_url }}" alt="Logo Pizza Hut" style="max-height: 80%; width: auto;">
+      <div style="height: 100%; width: 33.33%; display: flex; align-items: center; justify-content: center;">
+        <img
+          src="{{ section.settings.logo | default: 'logo-pizza-hut.png' | asset_url }}"
+          alt="Logo Pizza Hut"
+          style="max-height: 80%; width: auto;"
+        >
+      </div>
     </div>
   </div>
 </div>
