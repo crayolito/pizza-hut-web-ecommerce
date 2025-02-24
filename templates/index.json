@@ -48,9 +48,12 @@
     },
     "sub-menu-index": {
       "type": "sub-menu-index"
+    },
+    "productos-index": {
+      "type": "productos-index"
     }
   },
-  "order": ["banner-index", "sub-menu-index"]
+  "order": ["banner-index", "sub-menu-index", "productos-index"]
 }
 
 // "productos-index": {},
