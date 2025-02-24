@@ -46,7 +46,9 @@
         "mostrar_info_banner": true
       }
     },
-    "sub-menu-index": {},
+    "sub-menu-index": {
+      "type": "sub-menu-index"
+    },
     "productos-index": {},
     "oferta-index": {},
     "oferta-hut-coins-index-1": {},
