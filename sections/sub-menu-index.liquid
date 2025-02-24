@@ -1,39 +1,118 @@
-<div
-  style="
+<div class="sub-menu-index">
+  <div class="sub-menu-container">
+    <div class="sub-menu-item">
+      <span class="sub-menu-text">MENÚ</span>
+    </div>
+
+    <div class="sub-menu-item sub-menu-bordered">
+      <span class="sub-menu-text">OFERTAS</span>
+    </div>
+
+    <div class="sub-menu-item">
+      <img
+        src="{{ 'logo-pizza-hut.png' | asset_url }}"
+        alt="Logo Pizza Hut"
+        class="sub-menu-logo"
+      >
+    </div>
+  </div>
+</div>
+
+<style>
+  .sub-menu-index {
     width: 100%;
+    margin-bottom: 40px;
+  }
+
+  .sub-menu-container {
     height: 196px;
-    padding: 0px 64px;
+    padding: 0 64px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #969696;
-  "
-  class="contenedor-base"
->
-  <div style="height: 100%; width: 33.33%; display: flex; align-items: center; justify-content: center;">
-    <span style="color: #231F20; text-align: center; font-size: 70px; font-style: normal; font-weight: 400; line-height: 100%; letter-spacing: -1.4px; text-transform: uppercase;"
-      >MENÚ</span
-    >
-  </div>
+    position: relative;
+  }
 
-  <div style="height: 100%; width: 33.33%; display: flex; align-items: center; justify-content: center; border-left: 1px solid #969696; border-right: 1px solid #969696;">
-    <span style="color: #231F20; text-align: center; font-size: 70px; font-style: normal; font-weight: 400; line-height: 100%; letter-spacing: -1.4px; text-transform: uppercase;"
-      >OFERTAS</span
-    >
-  </div>
+  .sub-menu-container::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 64px;
+    right: 64px;
+    height: 1px;
+    background-color: #969696;
+  }
 
-  <div style="height: 100%; width: 33.33%; display: flex; align-items: center; justify-content: center;">
-    <img src="{{ 'logo-pizza-hut.png' | asset_url }}" alt="Logo Pizza Hut" style="max-height: 80%; width: auto;">
-  </div>
-</div>
+  .sub-menu-item {
+    height: 100%;
+    width: 33.33%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .sub-menu-text {
+    color: #231f20;
+    text-align: center;
+    font-size: 70px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%;
+    letter-spacing: -1.4px;
+    text-transform: uppercase;
+  }
+
+  .sub-menu-bordered {
+    border-left: 1px solid #969696;
+    border-right: 1px solid #969696;
+  }
+
+  .sub-menu-logo {
+    max-height: 80%;
+    width: auto;
+  }
+
+  /* Media queries para responsividad */
+  @media screen and (max-width: 768px) {
+    .sub-menu-container {
+      padding: 0 32px;
+      height: 120px;
+    }
+
+    .sub-menu-text {
+      font-size: 40px;
+    }
+
+    .sub-menu-container::after {
+      left: 32px;
+      right: 32px;
+    }
+  }
+</style>
 
 {% schema %}
 {
   "name": "Sub Menu Principal",
   "tag": "section",
   "class": "sub-menu-index",
-  "settings": [],
-  "blocks": []
+  "settings": [
+    {
+      "type": "text",
+      "id": "menu_text",
+      "label": "Texto Menú",
+      "default": "MENÚ"
+    },
+    {
+      "type": "text",
+      "id": "ofertas_text",
+      "label": "Texto Ofertas",
+      "default": "OFERTAS"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    }
+  ]
 }
 {% endschema %}
-{% comment %} asd {% endcomment %}
