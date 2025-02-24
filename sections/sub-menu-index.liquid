@@ -19,7 +19,8 @@
 </div>
 
 {% style %}
-  :root {
+    :root {
+      :root {
     --fuente-principal: 'League Gothic', sans-serif;
     --fuente-secundaria: 'Montserrat', sans-serif;
     --color-primario: #231f20;
@@ -79,18 +80,90 @@
     object-fit: contain;
   }
 
-  /* Media Queries para adaptabilidad */
+  /* Tablets y dispositivos pequeños: 768px - 1023px */
+  @media screen and (max-width: 1023px) {
+    .contenedor-base {
+      height: 150px;
+      padding: 0 2rem;
+    }
+
+    .contenedor-secundario {
+      padding: 30px;
+    }
+
+    .seccion-menu,
+    .seccion-ofertas,
+    .seccion-logo {
+      padding: 0 40px;
+      width: 250px;
+    }
+
+    .texto-menu {
+      font-size: 50px;
+    }
+  }
+
   /* Laptops y Desktops pequeños: 1024px - 1366px */
-  @media screen and (min-width: 1367px) and (max-width: 1439px) {
-    .contenedor-buscador {
-      width: 37%;
+  @media screen and (min-width: 1024px) and (max-width: 1366px) {
+    .contenedor-base {
+      height: 170px;
+      padding: 0 3rem;
+    }
+
+    .contenedor-secundario {
+      padding: 40px;
+    }
+
+    .seccion-menu,
+    .seccion-ofertas,
+    .seccion-logo {
+      padding: 0 50px;
+      width: 300px;
+    }
+
+    .texto-menu {
+      font-size: 60px;
     }
   }
 
   /* Monitores grandes: 1440px - 1919px */
   @media screen and (min-width: 1440px) and (max-width: 1919px) {
-    .contenedor-buscador {
-      width: 45%;
+    .contenedor-base {
+      height: 196px;
+      padding: 0 4rem;
+    }
+
+    .seccion-menu,
+    .seccion-ofertas,
+    .seccion-logo {
+      width: 371px;
+    }
+
+    .texto-menu {
+      font-size: 70px;
+    }
+  }
+
+  /* Pantallas extra grandes: 1920px y superior */
+  @media screen and (min-width: 1920px) {
+    .contenedor-base {
+      height: 220px;
+      padding: 0 5rem;
+    }
+
+    .contenedor-secundario {
+      padding: 60px;
+    }
+
+    .seccion-menu,
+    .seccion-ofertas,
+    .seccion-logo {
+      padding: 0 80px;
+      width: 400px;
+    }
+
+    .texto-menu {
+      font-size: 80px;
     }
   }
 {% endstyle %}
