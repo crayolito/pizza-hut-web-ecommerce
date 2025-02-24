@@ -54,12 +54,20 @@
     },
     "oferta-index": {
       "type": "oferta-index"
+    },
+    "oferta-hut-coins-index-1": {
+      "type": "oferta-hut-coins-index-1"
     }
   },
-  "order": ["banner-index", "sub-menu-index", "productos-index", "oferta-index"]
+  "order": [
+    "banner-index",
+    "sub-menu-index",
+    "productos-index",
+    "oferta-index",
+    "oferta-hut-coins-index-1"
+  ]
 }
 
-// "oferta-index": {},
 // "oferta-hut-coins-index-1": {},
 // "oferta-hut-coins-index-2": {},
 // "detalle-sucursales": {}
