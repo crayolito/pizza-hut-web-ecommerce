@@ -57,6 +57,9 @@
     },
     "oferta-hut-coins-index-1": {
       "type": "oferta-hut-coins-index-1"
+    },
+    "oferta-hut-coins-index-2": {
+      "type": "oferta-hut-coins-index-2"
     }
   },
   "order": [
@@ -64,7 +67,8 @@
     "sub-menu-index",
     "productos-index",
     "oferta-index",
-    "oferta-hut-coins-index-1"
+    "oferta-hut-coins-index-1",
+    "oferta-hut-coins-index-2"
   ]
 }
 
