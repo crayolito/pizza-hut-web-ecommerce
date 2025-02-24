@@ -55,5 +55,5 @@
     "oferta-hut-coins-index-2": {},
     "detalle-sucursales": {}
   },
-  "order": ["banner-index"]
+  "order": ["banner-index", "sub-menu-index"]
 }
