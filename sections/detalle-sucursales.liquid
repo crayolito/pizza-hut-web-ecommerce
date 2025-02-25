@@ -96,12 +96,12 @@
       width: 50%;
       height: 100%;
       display: flex;
-      flex-direction: center;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
-      gap: 3rem;
+      gap:  4rem;
       flex: 1 0 0;
-      justify-content: space-between;
+      align-self: stretch;
     "
     class="ds-contenedor-right"
   >
@@ -227,7 +227,15 @@
         "
         class="ds-ids-ver-boton"
       >
-        <p style="color: #C8102E">Abrir ubicación en mapa</p>
+        <p
+          style="
+            color: #C8102E;
+            font-size: 1rem;
+            font-weight: 600;
+          "
+        >
+          Abrir ubicación en mapa
+        </p>
         {% render 'icon-map' %}
       </div>
     </div>
