@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitud de Método de Entrega</title>
+
+    <script
+      defer
+      src="https://maps.googleapis.com/maps/api/js?key={{settings.keyGoogleMap}}&libraries=places"
+    ></script>
+  </head>
+
+  <body>
+    <div class="p-sme-contenedor-base">
+      <div class="p-sme-pizza-background">
+        <img src="{{ 'img-aux-background-solicitud-entrega.png' | asset_url }}" alt="Logo Pizza Hut">
+      </div>
+      <div class="p-sme-pizza-logo"></div>
+      <div class="p-sme-informacion-seleccion-cliente"></div>
+      <div class="p-sme-opciones-cliente"></div>
+      <div class="p-sme-contenido-recogida-local"></div>
+      <div class="p-sme-contenido-envio-domicilio"></div>
+    </div>
+
+    <!-- Modal para selección de ubicación -->
+    <div class="p-sme-modal-mapa-envio-domicilio">
+      <div class="p-sme-modal">
+        <div class="p-sme-modal-header">
+          <div class="p-sme-message">
+            {% render 'icon-info' %}
+            <p>Si es necesario, cambia la ubicación del pin en el mapa</p>
+          </div>
+          <div class="p-sme-close-icon">
+            {% render 'icon-close-custom' %}
+          </div>
+        </div>
+        <div class="p-sme-mapa"></div>
+        <div class="p-sme-modal-footer">
+          <button class="p-sme-boton-cerrar">Cerrar</button>
+          <button class="p-sme-boton-confirmar">Confirmar Dirección</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+<script>
+  // Variable global para almacenar la ubicación del cliente
+  let ubicacionCliente = { lat: -17.783315017953004, lng: -63.18214577296119 };
+  let map;
+  let marker;
+
+  // Función para inicializar el mapa
+  function inicializarMapa() {
+    // Elemento donde se mostrará el mapa
+    const mapElement = document.querySelector('.p-sme-mapa');
+
+    // Opciones del mapa
+    const mapOptions = {
+      center: ubicacionCliente,
+      zoom: 15,
+      mapTypeControl: false,
+      streetViewControl: false,
+      fullscreenControl: false,
+    };
+
+    // Crear el mapa
+    map = new google.maps.Map(mapElement, mapOptions);
+
+    // Crear el marcador
+    marker = new google.maps.Marker({
+      position: ubicacionCliente,
+      map: map,
+      draggable: true,
+      animation: google.maps.Animation.DROP,
+      title: 'Tu ubicación',
+    });
+
+    // Actualizar ubicación cuando se arrastra el marcador
+    google.maps.event.addListener(marker, 'dragend', function () {
+      ubicacionCliente = {
+        lat: marker.getPosition().lat(),
+        lng: marker.getPosition().lng(),
+      };
+      console.log('Nueva ubicación:', ubicacionCliente);
+    });
+
+    // Permitir hacer clic en el mapa para mover el marcador
+    google.maps.event.addListener(map, 'click', function (event) {
+      marker.setPosition(event.latLng);
+      ubicacionCliente = {
+        lat: event.latLng.lat(),
+        lng: event.latLng.lng(),
+      };
+      console.log('Nueva ubicación:', ubicacionCliente);
+    });
+  }
+
+  // Función para solicitar la ubicación del usuario
+  function solicitarUbicacion() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        // Éxito
+        function (position) {
+          ubicacionCliente = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          };
+          console.log('Ubicación obtenida:', ubicacionCliente);
+
+          // Actualizar el mapa con la nueva ubicación
+          if (map && marker) {
+            map.setCenter(ubicacionCliente);
+            marker.setPosition(ubicacionCliente);
+          }
+        },
+        // Error
+        function (error) {
+          console.error('Error al obtener la ubicación:', error);
+          // Usar ubicación predeterminada
+          alert(
+            'No se pudo obtener tu ubicación. Utilizaremos una ubicación predeterminada. Por favor, ajusta el pin en el mapa.'
+          );
+        },
+        // Opciones
+        {
+          enableHighAccuracy: true,
+          timeout: 5000,
+          maximumAge: 0,
+        }
+      );
+    } else {
+      console.error('Geolocalización no soportada por este navegador');
+      alert('Tu navegador no soporta geolocalización. Por favor, ajusta manualmente el pin en el mapa.');
+    }
+  }
+
+  // Función para abrir el modal
+  function abrirModal() {
+    const modal = document.querySelector('.p-sme-modal-mapa-envio-domicilio');
+    modal.style.display = 'flex';
+
+    // Inicializar el mapa después de que el modal esté visible
+    setTimeout(function () {
+      inicializarMapa();
+    }, 100);
+  }
+
+  // Función para cerrar el modal
+  function cerrarModal() {
+    const modal = document.querySelector('.p-sme-modal-mapa-envio-domicilio');
+    modal.style.display = 'none';
+  }
+
+  // Función para confirmar la dirección
+  function confirmarDireccion() {
+    console.log('Ubicación confirmada:', ubicacionCliente);
+
+    // Aquí puedes agregar código para guardar la ubicación en un campo oculto del formulario
+    // o realizar otras acciones con la ubicación confirmada
+
+    // Cerrar el modal
+    cerrarModal();
+
+    // Mostrar mensaje de confirmación
+    alert('Dirección confirmada correctamente');
+  }
+
+  // Inicializar cuando el DOM esté cargado
+  document.addEventListener('DOMContentLoaded', function () {
+    // Configurar el modal para que esté oculto inicialmente
+    const modal = document.querySelector('.p-sme-modal-mapa-envio-domicilio');
+    modal.style.display = 'none';
+
+    // Configurar el contenedor del mapa
+    const mapContainer = document.querySelector('.p-sme-mapa');
+    if (mapContainer) {
+      mapContainer.style.width = '100%';
+      mapContainer.style.height = '70vh';
+      mapContainer.style.backgroundColor = '#f0f0f0';
+    }
+
+    // Configurar eventos de los botones
+    const botonCerrar = document.querySelector('.p-sme-boton-cerrar');
+    if (botonCerrar) {
+      botonCerrar.addEventListener('click', cerrarModal);
+      botonCerrar.style.cursor = 'pointer';
+    }
+
+    const botonConfirmar = document.querySelector('.p-sme-boton-confirmar');
+    if (botonConfirmar) {
+      botonConfirmar.addEventListener('click', confirmarDireccion);
+      botonConfirmar.style.cursor = 'pointer';
+    }
+
+    const iconoCerrar = document.querySelector('.p-sme-modal-header svg');
+    if (iconoCerrar) {
+      iconoCerrar.addEventListener('click', cerrarModal);
+      iconoCerrar.style.cursor = 'pointer';
+    }
+
+    // Solicitar ubicación y abrir el modal automáticamente al cargar la página
+    setTimeout(function () {
+      solicitarUbicacion();
+      abrirModal();
+    }, 1000);
+  });
+
+  // Asegurarse de que el mapa se redimensione correctamente cuando cambia el tamaño de la ventana
+  window.addEventListener('resize', function () {
+    if (map) {
+      google.maps.event.trigger(map, 'resize');
+      map.setCenter(ubicacionCliente);
+    }
+  });
+</script>
+
+<style>
+  /* Estilos base */
+  body,
+  html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+  }
+
+  /* Contenedor principal */
+  .p-sme-contenedor-base {
+    width: 100%;
+    height: 110rem;
+    position: relative;
+  }
+
+  /* Imagen de fondo */
+  .p-sme-pizza-background {
+    width: 68.0625rem;
+    height: 42.4375rem;
+    top: 36.25rem;
+    left: 0rem;
+    z-index: 2;
+    position: absolute;
+  }
+
+  .p-sme-pizza-background img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Modal de mapa */
+  .p-sme-modal-mapa-envio-domicilio {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(35, 31, 32, 0.9);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(3px);
+  }
+
+  .p-sme-modal {
+    background-color: white;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    max-height: 95vh;
+    width: 80vw;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    animation: modalFadeIn 0.3s ease-out;
+  }
+
+  @keyframes modalFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Cabecera del modal */
+  .p-sme-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem;
+    background-color: #f8f8f8;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .p-sme-message {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .p-sme-message p {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #333;
+    font-weight: 500;
+  }
+
+  .p-sme-close-icon {
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+  }
+
+  .p-sme-close-icon:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  /* Contenedor del mapa */
+  .p-sme-mapa {
+    flex-grow: 1;
+    min-height: 400px;
+    width: 100%;
+    background-color: #f0f0f0;
+    position: relative;
+  }
+
+  /* Pie del modal */
+  .p-sme-modal-footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.25rem;
+    background-color: #f8f8f8;
+    border-top: 1px solid #e0e0e0;
+  }
+
+  /* Botones */
+  .p-sme-boton-cerrar,
+  .p-sme-boton-confirmar {
+    display: flex;
+    width: 19.375rem;
+    height: 3rem;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.25rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    outline: none;
+  }
+
+  .p-sme-boton-cerrar {
+    color: #c8102e;
+    background-color: transparent;
+    border: 2px solid #c8102e;
+  }
+
+  .p-sme-boton-cerrar:hover {
+    background-color: rgba(200, 16, 46, 0.1);
+  }
+
+  .p-sme-boton-confirmar {
+    color: #fff;
+    background-color: #c8102e;
+    box-shadow: 0 2px 4px rgba(200, 16, 46, 0.3);
+  }
+
+  .p-sme-boton-confirmar:hover {
+    background-color: #a50d26;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(200, 16, 46, 0.4);
+  }
+
+  .p-sme-boton-confirmar:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(200, 16, 46, 0.3);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .p-sme-modal {
+      width: 95vw;
+    }
+
+    .p-sme-modal-footer {
+      flex-direction: column-reverse;
+      gap: 1rem;
+    }
+
+    .p-sme-boton-cerrar,
+    .p-sme-boton-confirmar {
+      width: 100%;
+    }
+  }
+</style>
