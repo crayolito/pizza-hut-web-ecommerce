@@ -1,1 +1,15 @@
-{{ content_for_layout }}
+<!doctype html>
+<html lang="{{ shop.locale }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page_title }}</title>
+    {{ content_for_header }}
+  </head>
+  <body>
+    <!-- Contenido principal -->
+    <main>
+      {{ content_for_layout }}
+    </main>
+  </body>
+</html>
