@@ -38,9 +38,8 @@
 
     {% style %}
       :root {
-        /* Fuentes */
         --fuente-principal: 'League Gothic', sans-serif;
-        --fuente-secundaria: 'Montserrat', sans-serif;
+        --fuente-letra-secundaria: 'Montserrat', sans-serif;
       }
 
       *,
@@ -75,6 +74,16 @@
         margin: 0;
         padding: 0;
         list-style: none;
+      }
+
+      h3 {
+        font-family: var(--fuente-principal);
+        font-size: 2rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        letter-spacing: -0.04rem;
+        text-transform: uppercase;
       }
 
       body {
