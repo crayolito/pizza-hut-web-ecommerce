@@ -4,6 +4,7 @@
     padding: 0px 3.125rem;
     height: 57.25rem;
     margin: 1.94rem 0rem;
+    display: flex;
   "
   class="ds-contenedor-base"
 >
@@ -14,7 +15,7 @@
       height: 100%;
       padding: 11.81rem 4.5rem;
       border-radius: 0.5rem;
-      background: linear-gradient(0deg, rgba(255, 255, 255, 0.20) 0%, ;rgba(255, 255, 255, 0.20) 100%), lightgray;
+      background: linear-gradient(0deg, rgba(255, 255, 255, 0.20) 0%, rgba(255, 255, 255, 0.20) 100%), url({{ 'image-sucursales-aux.png' | asset_url }}) lightgray -408.12px -188.638px / 327.677% 143.673% no-repeat;
     "
     class="ds-contenedor-left"
   >
@@ -103,7 +104,123 @@
       justify-content: space-between;
     "
     class="ds-contenedor-right"
-  ></div>
+  >
+    <div
+      style="
+        display: flex;
+        width: 28.6875rem;
+        padding:  1.2rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+        border-radius: 0.5rem;
+        background: #F5F5F5;
+      "
+      class="ds-item-detalle-sucursal"
+    >
+      <div
+        style="
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: space-between;
+        "
+        class="ds-ids-titulos"
+      >
+        <h3 style="color: #231F20;">Santa Cruz</h3>
+        <h3 style="color: #C8102E; ">Las Palmas</h3>
+      </div>
+      <div
+        style="
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0.55rem;
+          align-self: stretch;
+        "
+        class="ds-ids-informacion"
+      >
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            align-self: stretch;
+          "
+          class="ds-ids-opcion-localizacion"
+        >
+          {% render 'icon-location-on' %}
+          <p>Doble vía a La Guardia</p>
+        </div>
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            align-self: stretch;
+          "
+          class="ds-ids-opcion-telefono"
+        >
+          {% render 'icon-headser-mic' %}
+          <p>+591 78452415</p>
+        </div>
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            align-self: stretch;
+          "
+          class="ds-ids-opcion-horario"
+        >
+          {% render 'icon-clock' %}
+          <p>Lunes a Viernes 8:00 a 23:00</p>
+          {% render 'icon-option-point' %}
+          <p style="color: #C8102E">ABIERTO</p>
+        </div>
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            align-self: stretch;
+          "
+          class="ds-ids-opcion-opciones"
+        >
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              gap:  0.5rem;
+            "
+            class="ds-ids-opcion"
+          >
+            {% render 'icon-check' %}
+          </div>
+          <div
+            style="
+              display: flex;
+              height:  3rem;
+              padding: 1.25rem;
+              justify-content: center;
+              align-items: center;
+              gap: 0.5rem;
+              align-self: stretch;
+              border-radius:  0.25rem;
+              border: 1px solid  #C8102E;
+              background: #FFF;
+              text-transform: uppercase;
+            "
+            class="ds-ids-opcion"
+          >
+            <p style="color: #C8102E">Abrir ubicación en mapa</p>
+            {% render 'icon-map' %}
+          </div>
+        </div>
+      </div>
+      <div class="ds-ids-ver-boton"></div>
+    </div>
+  </div>
 </div>
 
 {% schema %}
