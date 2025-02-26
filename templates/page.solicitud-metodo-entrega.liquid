@@ -14,252 +14,63 @@
   </head>
 
   <body style="font-family: var(--fuente-principal);">
-    <div
-      style=""
-      class="p-sme-contenedor-base"
-    >
+    <div class="p-sme-contenedor-base">
       <div class="p-sme-pizza-background">
-        <img
-          src="{{ 'img-aux-background-solicitud-entrega.png' | asset_url }}"
-          alt="Logo Pizza Hut"
-        >
+        <img src="{{ 'img-aux-background-solicitud-entrega.png' | asset_url }}" alt="Logo Pizza Hut">
       </div>
-      <div
-        style="
-          width: 9.625rem;
-          height: 2.3046rem;
-          top: 6.4768rem;
-          left: 50%;
-          transform: translateX(-50%);
-          z-index: 2;
-          position: absolute;
-        "
-        class="p-sme-pizza-logo"
-      >
-        <img
-          style="
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-          "
-          src="{{ 'logo-pizza-hut.png' | asset_url }}"
-          alt="Logo Pizza Hut"
-        >
+
+      <div class="p-sme-pizza-logo">
+        <img src="{{ 'logo-pizza-hut.png' | asset_url }}" alt="Logo Pizza Hut">
       </div>
-      <div
-        style="
-          display: flex;
-          width: 35.365rem;
-          flex-direction: column;
-          align-items: center;
-          gap:  2.64rem;
-           top: 12.2672rem;
-          left: 50%;
-          transform: translateX(-50%);
-          z-index: 2;
-                    position: absolute;
-        "
-        class="p-sme-informacion-seleccion-cliente"
-      >
-        <div
-          style="
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 1.1rem;
-            text-align: center;
-          "
-          class="p-sme-menesajes-informacion-cliente"
-        >
-          <span
-            style="
-              color:  #231F20;
-              text-align: center;
-              font-size: 3.85rem;
-              font-style: normal;
-              font-weight: 400;
-              line-height: 100%;
-              letter-spacing: -0.077rem;
-              text-transform: uppercase;
-            "
-            >¿cómo quieres recibir tu pizza?
-          </span>
+
+      <div class="p-sme-informacion-seleccion-cliente">
+        <div class="p-sme-menesajes-informacion-cliente">
+          <span>¿cómo quieres recibir tu pizza?</span>
           <p>
             Elige si la llevamos hasta la puerta de tu casa o si prefieres recogerla tú mismo desde nuestro local más
             cercano.
           </p>
         </div>
-        <div
-          style="
-            display: flex;
-            width: 35.2rem;
-            justify-content: space-between;
-            align-items: center;
-          "
-          class="p-sme-seccion-seleccion-cliente"
-        >
-          <button
-            style="
-                                          display: flex;
-              width: 17.05rem;
-              height: 3.85rem;
-              padding: 0.22rem  0.88rem;
-              justify-content: space-between;
-              align-items: center;
-              flex-shrink: 0;
-              border-radius: 0.55rem;
-                border: 1px solid  #969696;
-                background:  #FFF;
-            "
-            class="p-sme-boton-recoger-local"
-          >
+
+        <div class="p-sme-seccion-seleccion-cliente">
+          <button class="p-sme-boton-recoger-local">
             {% render 'icon-recogo-local' %}
             <div class="p-sme-texto-boton-recoger-local">
-              <p
-                style="
-                              font-size: 0.88rem;
-                  font-weight: 600;
-                "
-              >
-                Recoger en local
-              </p>
-              <p
-                style="
-                              color: #5A5A5A;
-                  font-size: 0.88rem;
-                  font-weight: 400;
-                "
-              >
-                Sin costo alguno
-              </p>
+              <p>Recoger en local</p>
+              <p>Sin costo alguno</p>
             </div>
             {% render 'icon-estado-off' %}
           </button>
-          <button
-            style="
-                                          display: flex;
-              width: 17.05rem;
-              height: 3.85rem;
-              padding: 0.22rem  0.88rem;
-              justify-content: space-between;
-              align-items: center;
-              flex-shrink: 0;
-              border-radius: 0.55rem;
-                border: 1px solid  #969696;
-                background:  #FFF;
-            "
-            class="p-sme-boton-recoger-local"
-          >
+
+          <button class="p-sme-boton-recoger-local">
             {% render 'icon-recogo-local' %}
             <div class="p-sme-texto-boton-recoger-local">
-              <p
-                style="
-                              font-size: 0.88rem;
-                  font-weight: 600;
-                "
-              >
-                Envío a domicilio
-              </p>
-              <p
-                style="
-                              color: #5A5A5A;
-                  font-size: 0.88rem;
-                  font-weight: 400;
-                "
-              >
-                Envio a solo Bs 2
-              </p>
+              <p>Envío a domicilio</p>
+              <p>Envio a solo Bs 2</p>
             </div>
             {% render 'icon-estado-off' %}
           </button>
         </div>
       </div>
-      <div
-        style="
-          padding: 0 3.52rem;
-          width: 100%;
-          height: 5.06rem;
-          position: sticky;
-          top: 80vh;
-          z-index: 100;
-        "
-        class="p-sme-opciones-cliente"
-      >
-        <div
-          style="
-            width: 100%;
-            height: 100%;
-            display: flex;
-            padding: var(--XXXL, 2.64rem);
-            justify-content: flex-end;
-            align-items: center;
-            gap: var(--XXL, 1.32rem);
-            flex-shrink: 0;
-            border-radius: var(--S, 0.44rem);
-            border: 1px solid var(--gris-light-active, #DEDEDE);
-            background: var(--White, #FFF);
-          "
-          class="p-sme-opciones-cliente-contenido"
-        >
-          <button
-            style="
-              display: flex;
-              width: 17.05rem;
-              height: 2.64rem;
-              padding: 1.1rem;
-              justify-content: center;
-              align-items: center;
-              gap: 0.22rem;
-              flex-shrink: 0;
-              border-radius: var(--XS, 0.22rem);
-              border: 1px solid var(--Pizza-Hut-Red, #C8102E);
-              background: var(--White, #FFF);
-            "
-          >
-            <p style="color: #C8102E;font-weight: 600;">OMITIR</p>
+
+      <div class="p-sme-opciones-cliente">
+        <div class="p-sme-opciones-cliente-contenido">
+          <button class="p-sme-boton-omitir">
+            <p style="color: #C8102E; font-weight: 600;">OMITIR</p>
             {% render 'icon-close-rojo' %}
           </button>
-          <button
-            style="
-              display: flex;
-              width: 17.05rem;
-              height: 2.64rem;
-              padding: 1.1rem;
-              justify-content: center;
-              align-items: center;
-              gap: 0.22rem;
-              flex-shrink: 0;
-            "
-          >
-            <p style="color: #717171; font-weight: 600;">Siguiente</p>
+
+          <button class="p-sme-boton-siguiente">
+            <p style="color: #FFFFFF; font-weight: 600;">Siguiente</p>
           </button>
         </div>
       </div>
+
       <div class="p-sme-contenido-recogida-local"></div>
       <div class="p-sme-contenido-envio-domicilio"></div>
     </div>
 
     <!-- Modal para selección de ubicación -->
-    {% comment %}
-      <div class="p-sme-modal-mapa-envio-domicilio">
-        <div class="p-sme-modal">
-          <div class="p-sme-modal-header">
-            <div class="p-sme-message">
-              {% render 'icon-info' %}
-              <p>Si es necesario, cambia la ubicación del pin en el mapa</p>
-            </div>
-            <div class="p-sme-close-icon">
-              {% render 'icon-close-custom' %}
-            </div>
-          </div>
-          <div class="p-sme-mapa"></div>
-          <div class="p-sme-modal-footer">
-            <button class="p-sme-boton-cerrar">Cerrar</button>
-            <button class="p-sme-boton-confirmar">Confirmar Dirección</button>
-          </div>
-        </div>
-      </div>
-    {% endcomment %}
   </body>
 </html>
 
@@ -269,7 +80,7 @@
   html {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
+    font-family: var(--fuente-principal);
   }
 
   /* Contenedor principal */
@@ -279,7 +90,132 @@
     position: relative;
   }
 
-  /* Imagen de fondo */
+  /* Sección de selección de método */
+  .p-sme-informacion-seleccion-cliente {
+    width: 35.365rem;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.64rem;
+    top: 12.2672rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    position: absolute;
+  }
+
+  .p-sme-menesajes-informacion-cliente {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.1rem;
+    text-align: center;
+  }
+
+  .p-sme-menesajes-informacion-cliente span {
+    color: #231f20;
+    font-size: 3.85rem;
+    font-weight: 400;
+    line-height: 100%;
+    letter-spacing: -0.077rem;
+    text-transform: uppercase;
+  }
+
+  .p-sme-seccion-seleccion-cliente {
+    width: 35.2rem;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* Botones de selección */
+  .p-sme-boton-recoger-local {
+    display: flex;
+    width: 17.05rem;
+    height: 3.85rem;
+    padding: 0.22rem 0.88rem;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 0.55rem;
+    border: 1px solid #969696;
+    background: #fff;
+  }
+
+  .p-sme-texto-boton-recoger-local p:first-child {
+    font-size: 0.88rem;
+    font-weight: 600;
+  }
+
+  .p-sme-texto-boton-recoger-local p:last-child {
+    color: #5a5a5a;
+    font-size: 0.88rem;
+    font-weight: 400;
+  }
+
+  /* Sección de opciones inferiores */
+  .p-sme-opciones-cliente {
+    padding: 0 3.52rem;
+    width: 100%;
+    height: 5.06rem;
+    position: sticky;
+    top: 80vh;
+    z-index: 100;
+  }
+
+  .p-sme-opciones-cliente-contenido {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    padding: var(--XXXL, 2.64rem);
+    justify-content: flex-end;
+    align-items: center;
+    gap: var(--XXL, 1.32rem);
+    border-radius: var(--S, 0.44rem);
+    border: 1px solid var(--gris-light-active, #dedede);
+    background: var(--White, #fff);
+  }
+
+  /* Botones de acción */
+  .p-sme-boton-omitir {
+    display: flex;
+    width: 17.05rem;
+    height: 2.64rem;
+    padding: 1.1rem;
+    justify-content: center;
+    align-items: center;
+    gap: 0.22rem;
+    border-radius: var(--XS, 0.22rem);
+    border: 1px solid var(--Pizza-Hut-Red, #c8102e);
+    background: var(--White, #fff);
+  }
+
+  .p-sme-boton-siguiente {
+    display: flex;
+    width: 17.05rem;
+    height: 2.64rem;
+    padding: 1.1rem;
+    justify-content: center;
+    align-items: center;
+    gap: 0.22rem;
+    background: #c8102e;
+    border-radius: var(--XS, 0.22rem);
+  }
+
+  /* Elementos de imagen */
+  .p-sme-pizza-logo {
+    width: 9.625rem;
+    height: 2.3046rem;
+    top: 6.4768rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    position: absolute;
+  }
+
+  .p-sme-pizza-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
   .p-sme-pizza-background {
     width: 59.895rem;
     height: 37.345rem;
@@ -293,157 +229,5 @@
     width: 100%;
     height: 100%;
     object-fit: contain;
-  }
-
-  /* Modal de mapa */
-  .p-sme-modal-mapa-envio-domicilio {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(35, 31, 32, 0.9);
-    z-index: 1000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    backdrop-filter: blur(3px);
-  }
-
-  .p-sme-modal {
-    background-color: white;
-    border-radius: 0.75rem;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    max-height: 95vh;
-    width: 80vw;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
-    animation: modalFadeIn 0.3s ease-out;
-  }
-
-  @keyframes modalFadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  /* Cabecera del modal */
-  .p-sme-modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.25rem;
-    background-color: #f8f8f8;
-    border-bottom: 1px solid #e0e0e0;
-  }
-
-  .p-sme-message {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
-
-  .p-sme-message p {
-    margin: 0;
-    font-size: 1.1rem;
-    color: #333;
-    font-weight: 500;
-  }
-
-  .p-sme-close-icon {
-    cursor: pointer;
-    padding: 0.5rem;
-    border-radius: 50%;
-    transition: background-color 0.2s;
-  }
-
-  .p-sme-close-icon:hover {
-    background-color: rgba(0, 0, 0, 0.1);
-  }
-
-  /* Contenedor del mapa */
-  .p-sme-mapa {
-    flex-grow: 1;
-    min-height: 400px;
-    width: 100%;
-    background-color: #f0f0f0;
-    position: relative;
-  }
-
-  /* Pie del modal */
-  .p-sme-modal-footer {
-    display: flex;
-    justify-content: space-between;
-    padding: 1.25rem;
-    background-color: #f8f8f8;
-    border-top: 1px solid #e0e0e0;
-  }
-
-  /* Botones */
-  .p-sme-boton-cerrar,
-  .p-sme-boton-confirmar {
-    display: flex;
-    width: 19.375rem;
-    height: 3rem;
-    padding: 0;
-    justify-content: center;
-    align-items: center;
-    border-radius: 0.25rem;
-    font-size: 1.1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border: none;
-    outline: none;
-  }
-
-  .p-sme-boton-cerrar {
-    color: #c8102e;
-    background-color: transparent;
-    border: 2px solid #c8102e;
-  }
-
-  .p-sme-boton-cerrar:hover {
-    background-color: rgba(200, 16, 46, 0.1);
-  }
-
-  .p-sme-boton-confirmar {
-    color: #fff;
-    background-color: #c8102e;
-    box-shadow: 0 2px 4px rgba(200, 16, 46, 0.3);
-  }
-
-  .p-sme-boton-confirmar:hover {
-    background-color: #a50d26;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(200, 16, 46, 0.4);
-  }
-
-  .p-sme-boton-confirmar:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 4px rgba(200, 16, 46, 0.3);
-  }
-
-  /* Responsive */
-  @media (max-width: 768px) {
-    .p-sme-modal {
-      width: 95vw;
-    }
-
-    .p-sme-modal-footer {
-      flex-direction: column-reverse;
-      gap: 1rem;
-    }
-
-    .p-sme-boton-cerrar,
-    .p-sme-boton-confirmar {
-      width: 100%;
-    }
   }
 </style>
