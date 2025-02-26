@@ -14,6 +14,7 @@
   </head>
 
   <body style="font-family: var(--fuente-principal);">
+    <!-- SECCIÓN HTML -->
     <div class="p-sme-contenedor-base">
       <div class="p-sme-pizza-background">
         <img src="{{ 'img-aux-background-solicitud-entrega.png' | asset_url }}" alt="Logo Pizza Hut">
@@ -25,8 +26,8 @@
 
       <div class="p-sme-informacion-seleccion-cliente">
         <div class="p-sme-menesajes-informacion-cliente">
-          <span>¿cómo quieres recibir tu pizza?</span>
-          <p>
+          <span class="p-sme-titulo-principal">¿cómo quieres recibir tu pizza?</span>
+          <p class="p-sme-texto-descripcion">
             Elige si la llevamos hasta la puerta de tu casa o si prefieres recogerla tú mismo desde nuestro local más
             cercano.
           </p>
@@ -36,8 +37,8 @@
           <button class="p-sme-boton-recoger-local">
             {% render 'icon-recogo-local' %}
             <div class="p-sme-texto-boton-recoger-local">
-              <p>Recoger en local</p>
-              <p>Sin costo alguno</p>
+              <p class="p-sme-texto-boton-titulo">Recoger en local</p>
+              <p class="p-sme-texto-boton-subtitulo">Sin costo alguno</p>
             </div>
             {% render 'icon-estado-off' %}
           </button>
@@ -45,8 +46,8 @@
           <button class="p-sme-boton-recoger-local">
             {% render 'icon-recogo-local' %}
             <div class="p-sme-texto-boton-recoger-local">
-              <p>Envío a domicilio</p>
-              <p>Envio a solo Bs 2</p>
+              <p class="p-sme-texto-boton-titulo">Envío a domicilio</p>
+              <p class="p-sme-texto-boton-subtitulo">Envio a solo Bs 2</p>
             </div>
             {% render 'icon-estado-off' %}
           </button>
@@ -56,12 +57,11 @@
       <div class="p-sme-opciones-cliente">
         <div class="p-sme-opciones-cliente-contenido">
           <button class="p-sme-boton-omitir">
-            <p style="color: #C8102E; font-weight: 600;">OMITIR</p>
+            <p class="p-sme-texto-omitir">OMITIR</p>
             {% render 'icon-close-rojo' %}
           </button>
-
           <button class="p-sme-boton-siguiente">
-            <p style="color: #FFFFFF; font-weight: 600;">Siguiente</p>
+            <p class="p-sme-texto-siguiente">Siguiente</p>
           </button>
         </div>
       </div>
@@ -69,7 +69,6 @@
       <div class="p-sme-contenido-recogida-local"></div>
       <div class="p-sme-contenido-envio-domicilio"></div>
     </div>
-
     <!-- Modal para selección de ubicación -->
   </body>
 </html>
@@ -82,16 +81,42 @@
     padding: 0;
     font-family: var(--fuente-principal);
   }
-
-  /* Contenedor principal */
+  /* Contenedores principales */
   .p-sme-contenedor-base {
     width: 100%;
     height: 110rem;
     position: relative;
   }
 
-  /* Sección de selección de método */
+  /* Background y logo */
+  .p-sme-pizza-background {
+    width: 59.895rem;
+    height: 37.345rem;
+    top: 31.9rem;
+    left: -11rem;
+    z-index: 2;
+    position: absolute;
+  }
+
+  .p-sme-pizza-logo {
+    width: 9.625rem;
+    height: 2.3046rem;
+    top: 6.4768rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    position: absolute;
+  }
+
+  .p-sme-pizza-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Sección de selección */
   .p-sme-informacion-seleccion-cliente {
+    display: flex;
     width: 35.365rem;
     flex-direction: column;
     align-items: center;
@@ -111,19 +136,22 @@
     text-align: center;
   }
 
-  .p-sme-menesajes-informacion-cliente span {
+  /* Textos */
+  .p-sme-titulo-principal {
     color: #231f20;
+    text-align: center;
     font-size: 3.85rem;
+    font-style: normal;
     font-weight: 400;
     line-height: 100%;
     letter-spacing: -0.077rem;
     text-transform: uppercase;
   }
 
-  .p-sme-seccion-seleccion-cliente {
-    width: 35.2rem;
-    justify-content: space-between;
-    align-items: center;
+  .p-sme-texto-descripcion {
+    color: #231f20;
+    font-size: 1rem;
+    line-height: normal;
   }
 
   /* Botones de selección */
@@ -134,23 +162,24 @@
     padding: 0.22rem 0.88rem;
     justify-content: space-between;
     align-items: center;
+    flex-shrink: 0;
     border-radius: 0.55rem;
     border: 1px solid #969696;
     background: #fff;
   }
 
-  .p-sme-texto-boton-recoger-local p:first-child {
+  .p-sme-texto-boton-titulo {
     font-size: 0.88rem;
     font-weight: 600;
   }
 
-  .p-sme-texto-boton-recoger-local p:last-child {
+  .p-sme-texto-boton-subtitulo {
     color: #5a5a5a;
     font-size: 0.88rem;
     font-weight: 400;
   }
 
-  /* Sección de opciones inferiores */
+  /* Sección inferior */
   .p-sme-opciones-cliente {
     padding: 0 3.52rem;
     width: 100%;
@@ -168,6 +197,7 @@
     justify-content: flex-end;
     align-items: center;
     gap: var(--XXL, 1.32rem);
+    flex-shrink: 0;
     border-radius: var(--S, 0.44rem);
     border: 1px solid var(--gris-light-active, #dedede);
     background: var(--White, #fff);
@@ -182,9 +212,15 @@
     justify-content: center;
     align-items: center;
     gap: 0.22rem;
+    flex-shrink: 0;
     border-radius: var(--XS, 0.22rem);
     border: 1px solid var(--Pizza-Hut-Red, #c8102e);
     background: var(--White, #fff);
+  }
+
+  .p-sme-texto-omitir {
+    color: #c8102e;
+    font-weight: 600;
   }
 
   .p-sme-boton-siguiente {
@@ -195,39 +231,11 @@
     justify-content: center;
     align-items: center;
     gap: 0.22rem;
-    background: #c8102e;
-    border-radius: var(--XS, 0.22rem);
+    flex-shrink: 0;
   }
 
-  /* Elementos de imagen */
-  .p-sme-pizza-logo {
-    width: 9.625rem;
-    height: 2.3046rem;
-    top: 6.4768rem;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 2;
-    position: absolute;
-  }
-
-  .p-sme-pizza-logo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .p-sme-pizza-background {
-    width: 59.895rem;
-    height: 37.345rem;
-    top: 31.9rem;
-    left: -11rem;
-    z-index: 2;
-    position: absolute;
-  }
-
-  .p-sme-pizza-background img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+  .p-sme-texto-siguiente {
+    color: #717171;
+    font-weight: 600;
   }
 </style>
