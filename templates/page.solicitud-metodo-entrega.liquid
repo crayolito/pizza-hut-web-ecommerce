@@ -366,8 +366,6 @@
 <script>
   class ClienteLocalizacion extends HTMLElement {
 
-
-
     constructor() {
       super();
       this.coordenadasBase = {lat : -17.783315017953004, lng: -63.18214577296119};
@@ -399,7 +397,7 @@
     verificarLocalStorage() {
         if (localStorage.getItem('ubicacion-cliente')) {
             let ubicacionCliente = JSON.parse(localStorage.getItem('ubicacion-cliente'));
-            coordenadasBase = ubicacionCliente;
+            this.coordenadasBase = ubicacionCliente;
         }else{
             this.obtenerUbicacion();
         }
@@ -409,7 +407,7 @@
         if(navigator.geolocation){
             navigator.geolocation.getCurrentPosition(
                 (position) => {
-                    coordenadasBase = {lat : position.coords.latitude, lng: position.coords.longitude};
+                    this.coordenadasBase = {lat : position.coords.latitude, lng: position.coords.longitude};
                     console.log('Coordenadas de Browser: ', coordenadasBase);
                 },
                 (error) => {
