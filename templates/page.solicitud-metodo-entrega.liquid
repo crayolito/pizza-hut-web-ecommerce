@@ -365,17 +365,16 @@
 
 <script>
   class ClienteLocalizacion extends HTMLElement {
-
     constructor() {
       super();
-      this.coordenadasBase = {lat : -17.783315017953004, lng: -63.18214577296119};
+      this.coordenadasBase = { lat: -17.783315017953004, lng: -63.18214577296119 };
       this.pizzaLocations = [
-          { lat: -17.757619, lng: -63.178738, name: 'BANZER 3ER ANILLO' },
-          { lat: -17.700010, lng: -63.160219, name: 'BANZER KM 8.5' },
-          { lat: -17.807739, lng: -63.204363, name: 'LAS PALMAS' },
-          { lat: -17.758879, lng: -63.199480, name: 'SAN MARTIN' },
-          { lat: -17.820341, lng: -63.184337, name: 'SANTOS DUMONT' }
-        ];
+        { lat: -17.757619, lng: -63.178738, name: 'BANZER 3ER ANILLO' },
+        { lat: -17.70001, lng: -63.160219, name: 'BANZER KM 8.5' },
+        { lat: -17.807739, lng: -63.204363, name: 'LAS PALMAS' },
+        { lat: -17.758879, lng: -63.19948, name: 'SAN MARTIN' },
+        { lat: -17.820341, lng: -63.184337, name: 'SANTOS DUMONT' },
+      ];
     }
 
     connectedCallback() {
@@ -392,70 +391,69 @@
       this.botonEnvioDomicilio.addEventListener('click', this.accionBotonEnvioDomicilio.bind(this));
     }
 
-    mostrarModal(){}
+    mostrarModal() {}
 
     verificarLocalStorage() {
-        if (localStorage.getItem('ubicacion-cliente')) {
-            let ubicacionCliente = JSON.parse(localStorage.getItem('ubicacion-cliente'));
-            this.coordenadasBase = ubicacionCliente;
-        }else{
-            this.obtenerUbicacion();
-        }
+      if (localStorage.getItem('ubicacion-cliente')) {
+        let ubicacionCliente = JSON.parse(localStorage.getItem('ubicacion-cliente'));
+        this.coordenadasBase = ubicacionCliente;
+      } else {
+        this.obtenerUbicacion();
+      }
     }
 
     obtenerUbicacion() {
-        if(navigator.geolocation){
-            navigator.geolocation.getCurrentPosition(
-                (position) => {
-                    this.coordenadasBase = {lat : position.coords.latitude, lng: position.coords.longitude};
-                    console.log('Coordenadas de Browser: ', coordenadasBase);
-                },
-                (error) => {
-                    alert('Error al obtener la ubicación: Por favor, verifique la ubicación de su dispositivo');
-                    console.log('Error al obtener la ubicación: ', error);
-                }
-            );
-        }
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            this.coordenadasBase = { lat: position.coords.latitude, lng: position.coords.longitude };
+            console.log('Coordenadas de Browser: ', coordenadasBase);
+          },
+          (error) => {
+            alert('Error al obtener la ubicación: Por favor, verifique la ubicación de su dispositivo');
+            console.log('Error al obtener la ubicación: ', error);
+          }
+        );
+      }
     }
 
     accionBotonRecogerLocal() {
-        // Alternar estado activo
-        const estaActivo = this.botonRecogerLocal.classList.toggle('p-sme-boton--activo');
+      // Alternar estado activo
+      const estaActivo = this.botonRecogerLocal.classList.toggle('p-sme-boton--activo');
 
-        // Obtener elementos del botón
-        const iconoPrincipal = this.botonRecogerLocal.querySelector('svg:first-child');
-        const iconoEstado = this.botonRecogerLocal.querySelector('svg:last-child');
+      // Obtener elementos del botón
+      const iconoPrincipal = this.botonRecogerLocal.querySelector('svg:first-child');
+      const iconoEstado = this.botonRecogerLocal.querySelector('svg:last-child');
 
-        // Aplicar cambios visuales
-        if(estaActivo) {
-          // Cambiar ícono principal
-          iconoPrincipal?.classList.add('p-sme-icono-activo', 'p-sme-icono-fondo');
+      // Aplicar cambios visuales
+      if (estaActivo) {
+        // Cambiar ícono principal
+        iconoPrincipal?.classList.add('p-sme-icono-activo', 'p-sme-icono-fondo');
 
-          // Cambiar ícono de estado
-          const nuevoIcono = document.createElement('div');
-          nuevoIcono.innerHTML = '{% render 'icon-estado-on' %}';
-          iconoEstado?.replaceWith(nuevoIcono.firstChild);
+        // Cambiar ícono de estado
+        const nuevoIcono = document.createElement('div');
+        nuevoIcono.innerHTML = `{% render 'icon-estado-on' %}`;
+        iconoEstado?.replaceWith(nuevoIcono.firstChild);
 
-          // Cambiar color del texto
-          this.botonRecogerLocal.querySelectorAll('p').forEach(p => {
-            p.style.color = 'white';
-          });
-        } else {
-          // Restaurar estado original
-          iconoPrincipal?.classList.remove('p-sme-icono-activo', 'p-sme-icono-fondo');
+        // Cambiar color del texto
+        this.botonRecogerLocal.querySelectorAll('p').forEach((p) => {
+          p.style.color = 'white';
+        });
+      } else {
+        // Restaurar estado original
+        iconoPrincipal?.classList.remove('p-sme-icono-activo', 'p-sme-icono-fondo');
 
-          const iconoOriginal = document.createElement('div');
-          iconoOriginal.innerHTML = `{% render 'icon-estado-off' %}`;
-          iconoEstado?.replaceWith(iconoOriginal.firstChild);
+        const iconoOriginal = document.createElement('div');
+        iconoOriginal.innerHTML = `{% render 'icon-estado-off' %}`;
+        iconoEstado?.replaceWith(iconoOriginal.firstChild);
 
-          this.botonRecogerLocal.querySelectorAll('p').forEach(p => {
-            p.style.color = ''; // Restaurar color original
-          });
-        }
+        this.botonRecogerLocal.querySelectorAll('p').forEach((p) => {
+          p.style.color = ''; // Restaurar color original
+        });
       }
+    }
 
     accionBotonEnvioDomicilio() {}
-
   }
 
   customElements.define('cliente-localizacion', ClienteLocalizacion);
