@@ -355,6 +355,12 @@
   .p-sme-icono-activo {
     filter: brightness(0) invert(1);
   }
+
+  .p-sme-icono-contenedor {
+    border-radius: 50%;
+    padding: 0.2rem;
+    background: #FFF;
+  }
 </style>
 
 <script>
@@ -427,6 +433,7 @@
 
         // Cambiar ícono de estado
         const nuevoIcono = document.createElement('div');
+        nuevoIcono.classList.add('p-sme-icono-contenedor');
         nuevoIcono.innerHTML = `{% render 'icon-estado-on' %}`;
         iconoEstado?.replaceWith(nuevoIcono.firstChild);
 
