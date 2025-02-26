@@ -418,44 +418,78 @@
     }
 
     accionBotonRecogerLocal() {
-      // Alternar estado activo
+      // 1. Alternar estado principal del botón
       const estaActivo = this.botonRecogerLocal.classList.toggle('p-sme-boton-recoger-local-activo');
 
-      // Obtener los divs de los iconos que estan dentro del boton
+      // 2. Obtener elementos hijos relevantes
       const iconoPrincipal = this.botonRecogerLocal.querySelector('.p-sme-icono-recogo-local');
       const iconoEstado = this.botonRecogerLocal.querySelector('.p-sme-icono-selecionado');
+      const textos = this.botonRecogerLocal.querySelectorAll('p');
 
-      // Aplicar cambios visuales
       if (estaActivo) {
-        // Cambiar el color del icono que es un svg
+        // ===== MODO ACTIVADO =====
+        // 2.1 Estilos para icono principal
         iconoPrincipal.classList.add('p-sme-icono-activo');
 
-        // Cambiar el icono de estado
+        // 2.2 Actualizar icono de estado (check)
         iconoEstado.innerHTML = `{% render 'icon-estado-on' %}`;
         iconoEstado.classList.add('p-sme-icono-activo');
 
-        // Cambiar color del texto
-        this.botonRecogerLocal.querySelectorAll('p').forEach((p) => {
-          p.style.color = 'white';
-        });
+        // 2.3 Cambiar color de textos a blanco
+        textos.forEach((p) => (p.style.color = 'white'));
       } else {
+        // ===== MODO DESACTIVADO =====
+        // 3.1 Forzar remoción de clase principal (por si hay errores en el toggle)
         this.botonRecogerLocal.classList.remove('p-sme-boton-recoger-local-activo');
 
-        // Restaurar estado originall
+        // 3.2 Restaurar icono principal
         iconoPrincipal?.classList.remove('p-sme-icono-activo');
 
-        // Cambiar el icono de estado
+        // 3.3 Restaurar icono de estado (cross)
         iconoEstado.innerHTML = `{% render 'icon-estado-off' %}`;
         iconoEstado.classList.remove('p-sme-icono-activo');
 
-        // Cambiar color del texto
-        this.botonRecogerLocal.querySelectorAll('p').forEach((p) => {
-          p.style.color = '';
-        });
+        // 3.4 Restaurar color original de textos
+        textos.forEach((p) => (p.style.color = ''));
       }
     }
 
-    accionBotonEnvioDomicilio() {}
+    accionBotonEnvioDomicilio() {
+      // 1. Alternar estado principal del botón
+      const estaActivo = this.botonEnvioDomicilio.classList.toggle('p-sme-boton-envio-domicilio-activo');
+
+      // 2. Obtener elementos hijos relevantes
+      const iconoPrincipal = this.botonEnvioDomicilio.querySelector('.p-sme-icono-recogo-local');
+      const iconoEstado = this.botonEnvioDomicilio.querySelector('.p-sme-icono-selecionado');
+      const textos = this.botonEnvioDomicilio.querySelectorAll('p');
+
+      if (estaActivo) {
+        // ===== MODO ACTIVADO =====
+        // 2.1 Estilos para icono principal
+        iconoPrincipal.classList.add('p-sme-icono-activo');
+
+        // 2.2 Actualizar icono de estado (check)
+        iconoEstado.innerHTML = `{% render 'icon-estado-on' %}`;
+        iconoEstado.classList.add('p-sme-icono-activo');
+
+        // 2.3 Cambiar color de textos a blanco
+        textos.forEach((p) => (p.style.color = 'white'));
+      } else {
+        // ===== MODO DESACTIVADO =====
+        // 3.1 Forzar remoción de clase principal (por si hay errores en el toggle)
+        this.botonEnvioDomicilio.classList.remove('p-sme-boton-envio-domicilio-activo');
+
+        // 3.2 Restaurar icono principal
+        iconoPrincipal?.classList.remove('p-sme-icono-activo');
+
+        // 3.3 Restaurar icono de estado (cross)
+        iconoEstado.innerHTML = `{% render 'icon-estado-off' %}`;
+        iconoEstado.classList.remove('p-sme-icono-activo');
+
+        // 3.4 Restaurar color original de textos
+        textos.forEach((p) => (p.style.color = ''));
+      }
+    }
   }
 
   customElements.define('cliente-localizacion', ClienteLocalizacion);
