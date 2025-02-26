@@ -445,7 +445,7 @@
           iconoPrincipal?.classList.remove('p-sme-icono-activo', 'p-sme-icono-fondo');
 
           const iconoOriginal = document.createElement('div');
-          iconoOriginal.innerHTML = '{% render 'icon-estado-off' %}';
+          iconoOriginal.innerHTML = `{% render 'icon-estado-off' %}`;
           iconoEstado?.replaceWith(iconoOriginal.firstChild);
 
           this.botonRecogerLocal.querySelectorAll('p').forEach(p => {
