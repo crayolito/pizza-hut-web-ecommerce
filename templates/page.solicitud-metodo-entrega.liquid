@@ -43,7 +43,133 @@
           alt="Logo Pizza Hut"
         >
       </div>
-      <div class="p-sme-informacion-seleccion-cliente"></div>
+      <div
+        style="
+          display: flex;
+          width: 40.1875rem;
+          flex-direction: column;
+          align-items: center;
+          gap:  3rem;
+           top: 13.94rem;
+          left: 50%;
+          transform: translateX(-50%);
+          z-index: 2;
+                    position: absolute;
+        "
+        class="p-sme-informacion-seleccion-cliente"
+      >
+        <div
+          style="
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1.25rem;
+          "
+          class="p-sme-menesajes-informacion-cliente"
+        >
+          <span
+            style="
+              color:  #231F20;
+              text-align: center;
+              font-size: 4.375rem;
+              font-style: normal;
+              font-weight: 400;
+              line-height: 100%;
+              letter-spacing: -0.0875rem;
+              text-transform: uppercase;
+            "
+            >¿cómo quieres recibir tu pizza?
+          </span>
+          <p>
+            Elige si la llevamos hasta la puerta de tu casa o si prefieres recogerla tú mismo desde nuestro local más
+            cercano.
+          </p>
+        </div>
+        <div
+          style="
+            display: flex;
+            width: 40rem;
+            justify-content: space-between;
+            align-items: center;
+          "
+          class="p-sme-seccion-seleccion-cliente"
+        >
+          <button
+            style="
+                                          display: flex;
+              width: 19.375rem;
+              height: 4.375rem;
+              padding: 0.25rem  1rem;
+              justify-content: space-between;
+              align-items: center;
+              flex-shrink: 0;
+              border-radius: 0.625rem;
+                border: 1px solid  #969696;
+                background:  #FFF;
+            "
+            class="p-sme-boton-recoger-local"
+          >
+            {% render 'icon-recogo-local' %}
+            <div class="p-sme-texto-boton-recoger-local">
+              <p
+                style="
+                              font-size: 1rem;
+                  font-weight: 600;
+                "
+              >
+                Recoger en local
+              </p>
+              <p
+                style="
+                              color: #5A5A5A;
+                  font-size: 1rem;
+                  font-weight: 400;
+                "
+              >
+                Recoge tu pizza en el local más cercano.
+              </p>
+            </div>
+            {% render 'icon-estado-off' %}
+          </button>
+          <button
+            style="
+                                          display: flex;
+              width: 19.375rem;
+              height: 4.375rem;
+              padding: 0.25rem  1rem;
+              justify-content: space-between;
+              align-items: center;
+              flex-shrink: 0;
+              border-radius: 0.625rem;
+                border: 1px solid  #969696;
+                background:  #FFF;
+            "
+            class="p-sme-boton-recoger-local"
+          >
+            {% render 'icon-recogo-local' %}
+            <div class="p-sme-texto-boton-recoger-local">
+              <p
+                style="
+                              font-size: 1rem;
+                  font-weight: 600;
+                "
+              >
+                Recoger en local
+              </p>
+              <p
+                style="
+                              color: #5A5A5A;
+                  font-size: 1rem;
+                  font-weight: 400;
+                "
+              >
+                Recoge tu pizza en el local más cercano.
+              </p>
+            </div>
+            {% render 'icon-estado-off' %}
+          </button>
+        </div>
+      </div>
       <div class="p-sme-opciones-cliente"></div>
       <div class="p-sme-contenido-recogida-local"></div>
       <div class="p-sme-contenido-envio-domicilio"></div>
