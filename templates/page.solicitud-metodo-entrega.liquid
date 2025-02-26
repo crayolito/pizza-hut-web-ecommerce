@@ -433,20 +433,10 @@
         iconoPrincipal?.classList.add('p-sme-icono-activo', 'p-sme-icono-fondo');
 
         // Cambiar ícono de estado
-        // 1. Crear contenedor y asignar clase
-        const contenedorIcono = document.createElement('div');
-        contenedorIcono.classList.add('p-sme-icono-estado-on');
-
-        // 2. Crear SVG desde template pre-existente
-        const templateIcono = document.createElement('template');
-        templateIcono.innerHTML = `{% render 'icon-estado-on' %}`;
-
-        // 3. Clonar y agregar el SVG
-        const svg = templateIcono.content.cloneNode(true);
-        contenedorIcono.appendChild(svg);
-
-        // 4. Reemplazar el elemento original
-        iconoEstado?.replaceWith(contenedorIcono);
+        const nuevoIcono = document.createElement('div');
+        nuevoIcono.classList.add('p-sme-icono-estado-on');
+        nuevoIcono.innerHTML = `{% render 'icon-estado-on' %}`;
+        iconoEstado?.replaceWith(nuevoIcono.firstChild);
 
         // Cambiar color del texto
         this.botonRecogerLocal.querySelectorAll('p').forEach((p) => {
