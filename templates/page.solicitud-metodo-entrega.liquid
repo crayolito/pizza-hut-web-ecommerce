@@ -418,7 +418,6 @@
     }
 
     accionBotonRecogerLocal() {
-      console.log('accionBotonRecogerLocal');
       // Alternar estado activo
       const estaActivo = this.botonRecogerLocal.classList.toggle('p-sme-boton-recoger-local-activo');
 
@@ -432,15 +431,24 @@
         iconoPrincipal.classList.add('p-sme-icono-activo');
 
         // Cambiar el icono de estado
-        const iconoSeleccionado = this.botonRecogerLocal.querySelector('.p-sme-icono-selecionado');
-        iconoSeleccionado.innerHTML = `{% render 'icon-estado-on' %}`;
-        iconoSeleccionado.classList.add('p-sme-icono-activo');
+        iconoEstado.innerHTML = `{% render 'icon-estado-on' %}`;
+        iconoEstado.classList.add('p-sme-icono-activo');
 
         // Cambiar color del texto
         this.botonRecogerLocal.querySelectorAll('p').forEach((p) => {
           p.style.color = 'white';
         });
       } else {
+        // Restaurar estado original
+        iconoPrincipal?.classList.remove('p-sme-icono-activo', 'p-sme-icono-fondo');
+
+        const iconoOriginal = document.createElement('div');
+        iconoOriginal.innerHTML = `{% render 'icon-estado-off' %}`;
+        iconoEstado?.replaceWith(iconoOriginal.firstChild);
+
+        this.botonRecogerLocal.querySelectorAll('p').forEach((p) => {
+          p.style.color = '';
+        });
       }
     }
 
