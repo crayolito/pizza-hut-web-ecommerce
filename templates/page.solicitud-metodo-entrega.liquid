@@ -12,65 +12,62 @@
       src="https://maps.googleapis.com/maps/api/js?key={{settings.keyGoogleMap}}&libraries=places"
     ></script>
   </head>
-
-  <body style="font-family: var(--fuente-principal);">
-    <!-- SECCIÓN HTML -->
-    <div class="p-sme-contenedor-base">
-      <div class="p-sme-pizza-background">
-        <img src="{{ 'img-aux-background-solicitud-entrega.png' | asset_url }}" alt="Logo Pizza Hut">
-      </div>
-
-      <div class="p-sme-pizza-logo">
-        <img src="{{ 'logo-pizza-hut.png' | asset_url }}" alt="Logo Pizza Hut">
-      </div>
-
-      <div class="p-sme-informacion-seleccion-cliente">
-        <div class="p-sme-menesajes-informacion-cliente">
-          <span class="p-sme-titulo-principal">¿cómo quieres recibir tu pizza?</span>
-          <p class="p-sme-texto-descripcion">
-            Elige si la llevamos hasta la puerta de tu casa o si prefieres recogerla tú mismo desde nuestro local más
-            cercano.
-          </p>
+  <cliente-localizacion>
+    <body style="font-family: var(--fuente-principal);">
+      <div class="p-sme-contenedor-base">
+        <div class="p-sme-pizza-background">
+          <img src="{{ 'img-aux-background-solicitud-entrega.png' | asset_url }}" alt="Logo Pizza Hut">
         </div>
-
-        <div class="p-sme-seccion-seleccion-cliente">
-          <button class="p-sme-boton-recoger-local">
-            {% render 'icon-recogo-local' %}
-            <div class="p-sme-texto-boton-recoger-local">
-              <p class="p-sme-texto-boton-titulo">Recoger en local</p>
-              <p class="p-sme-texto-boton-subtitulo">Sin costo alguno</p>
-            </div>
-            {% render 'icon-estado-off' %}
-          </button>
-
-          <button class="p-sme-boton-recoger-local">
-            {% render 'icon-recogo-local' %}
-            <div class="p-sme-texto-boton-recoger-local">
-              <p class="p-sme-texto-boton-titulo">Envío a domicilio</p>
-              <p class="p-sme-texto-boton-subtitulo">Envio a solo Bs 2</p>
-            </div>
-            {% render 'icon-estado-off' %}
-          </button>
+        <div class="p-sme-pizza-logo">
+          <img src="{{ 'logo-pizza-hut.png' | asset_url }}" alt="Logo Pizza Hut">
         </div>
+        <div class="p-sme-informacion-seleccion-cliente">
+          <div class="p-sme-menesajes-informacion-cliente">
+            <span class="p-sme-titulo-principal">¿cómo quieres recibir tu pizza?</span>
+            <p class="p-sme-texto-descripcion">
+              Elige si la llevamos hasta la puerta de tu casa o si prefieres recogerla tú mismo desde nuestro local más
+              cercano.
+            </p>
+          </div>
+
+          <div class="p-sme-seccion-seleccion-cliente">
+            <button class="p-sme-boton-recoger-local">
+              {% render 'icon-recogo-local' %}
+              <div class="p-sme-texto-boton-recoger-local">
+                <p class="p-sme-texto-boton-titulo">Recoger en local</p>
+                <p class="p-sme-texto-boton-subtitulo">Sin costo alguno</p>
+              </div>
+              {% render 'icon-estado-off' %}
+            </button>
+
+            <button class="p-sme-boton-recoger-local">
+              {% render 'icon-recogo-local' %}
+              <div class="p-sme-texto-boton-recoger-local">
+                <p class="p-sme-texto-boton-titulo">Envío a domicilio</p>
+                <p class="p-sme-texto-boton-subtitulo">Envio a solo Bs 2</p>
+              </div>
+              {% render 'icon-estado-off' %}
+            </button>
+          </div>
+        </div>
+        <div class="p-sme-opciones-cliente">
+          <div class="p-sme-opciones-cliente-contenido">
+            <button class="p-sme-boton-omitir">
+              <p class="p-sme-texto-omitir">OMITIR</p>
+              {% render 'icon-close-rojo' %}
+            </button>
+            <button class="p-sme-boton-siguiente">
+              <p class="p-sme-texto-siguiente">Siguiente</p>
+            </button>
+          </div>
+        </div>
+        <div class="p-sme-contenido-recogida-local"></div>
+        <div class="p-sme-contenido-envio-domicilio"></div>
       </div>
 
-      <div class="p-sme-opciones-cliente">
-        <div class="p-sme-opciones-cliente-contenido">
-          <button class="p-sme-boton-omitir">
-            <p class="p-sme-texto-omitir">OMITIR</p>
-            {% render 'icon-close-rojo' %}
-          </button>
-          <button class="p-sme-boton-siguiente">
-            <p class="p-sme-texto-siguiente">Siguiente</p>
-          </button>
-        </div>
-      </div>
-
-      <div class="p-sme-contenido-recogida-local"></div>
-      <div class="p-sme-contenido-envio-domicilio"></div>
-    </div>
-    <!-- Modal para selección de ubicación -->
-  </body>
+      <!-- Modal para selección de ubicación -->
+    </body>
+  </cliente-localizacion>
 </html>
 
 <style>
@@ -156,6 +153,7 @@
 
   /* Botones de selección */
   .p-sme-boton-recoger-local {
+    cursor: pointer;
     display: flex;
     width: 17.05rem;
     height: 3.85rem;
@@ -238,6 +236,8 @@
     align-items: center;
     gap: 0.22rem;
     flex-shrink: 0;
+    border-radius: var(--XS, 0.22rem);
+    border: 0;
   }
 
   .p-sme-texto-siguiente {
@@ -245,3 +245,68 @@
     font-weight: 600;
   }
 </style>
+
+<script>
+  class ClienteLocalizacion extends HTMLElement {
+
+    let coordenadasBase = {lat : -17.783315017953004, lng: -63.18214577296119};
+    const pizzaLocations = [
+        { lat: -17.757619, lng: -63.178738, name: 'BANZER 3ER ANILLO' },
+        { lat: -17.700010, lng: -63.160219, name: 'BANZER KM 8.5' },
+        { lat: -17.807739, lng: -63.204363, name: 'LAS PALMAS' },
+        { lat: -17.758879, lng: -63.199480, name: 'SAN MARTIN' },
+        { lat: -17.820341, lng: -63.184337, name: 'SANTOS DUMONT' }
+      ];
+
+    constructor() {
+      super();
+    }
+
+    connectedCallback() {
+      // Capturar elementos
+      this.botonRecogerLocal = this.querySelector('.p-sme-boton-recoger-local');
+      this.botonEnvioDomicilio = this.querySelector('.p-sme-boton-recoger-local');
+      this.contenidoRecogidaLocal = this.querySelector('.p-sme-contenido-recogida-local');
+      this.contenidoEnvioDomicilio = this.querySelector('.p-sme-contenido-envio-domicilio');
+
+      // Asignar event listeners
+      this.botonRecogerLocal.addEventListener('click', this.accionBotonRecogerLocal.bind(this));
+      this.botonEnvioDomicilio.addEventListener('click', this.accionBotonEnvioDomicilio.bind(this));
+    }
+
+    mostrarModal(){
+
+    }
+
+    verificarLocalStorage() {
+        if (localStorage.getItem('ubicacion-cliente')) {
+            let ubicacionCliente = JSON.parse(localStorage.getItem('ubicacion-cliente'));
+            coordenadasBase = ubicacionCliente;
+        }else{
+            this.obtenerUbicacion();
+        }
+    }
+
+    obtenerUbicacion() {
+        if(navigator.geolocation){
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    coordenadasBase = {lat : position.coords.latitude, lng: position.coords.longitude};
+                    console.log('Coordenadas de Browser: ', coordenadasBase);
+                },
+                (error) => {
+                    alert('Error al obtener la ubicación: Por favor, verifique la ubicación de su dispositivo');
+                    console.log('Error al obtener la ubicación: ', error);
+                }
+            );
+        }
+    }
+
+    accionBotonRecogerLocal() {}
+
+    accionBotonEnvioDomicilio() {}
+
+  }
+
+  customElements.define('cliente-localizacion', ClienteLocalizacion);
+</script>
