@@ -439,8 +439,10 @@
           p.style.color = 'white';
         });
       } else {
+        this.botonRecogerLocal.classList.remove('p-sme-boton-recoger-local-activo');
+
         // Restaurar estado originall
-        iconoPrincipal?.classList.remove('p-sme-boton-recoger-local-activo');
+        iconoPrincipal?.classList.remove('p-sme-icono-activo');
 
         // Cambiar el icono de estado
         iconoEstado.innerHTML = `{% render 'icon-estado-off' %}`;
