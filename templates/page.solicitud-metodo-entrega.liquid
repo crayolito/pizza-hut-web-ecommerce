@@ -430,7 +430,7 @@
       // Aplicar cambios visuales
       if (estaActivo) {
         // Cambiar ícono principal
-        iconoPrincipal?.classList.add('p-sme-icono-activo', 'p-sme-icono-fondo');
+        iconoPrincipal?.classList.add('p-sme-icono-estado-on', 'p-sme-icono-fondo');
 
         // Cambiar ícono de estado
         const nuevoIcono = document.createElement('div');
@@ -444,7 +444,7 @@
         });
       } else {
         // Restaurar estado original
-        iconoPrincipal?.classList.remove('p-sme-icono-activo', 'p-sme-icono-fondo');
+        iconoPrincipal?.classList.remove('p-sme-icono-estado-on', 'p-sme-icono-fondo');
 
         const iconoOriginal = document.createElement('div');
         iconoOriginal.innerHTML = `{% render 'icon-estado-off' %}`;
