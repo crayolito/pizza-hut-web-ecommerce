@@ -32,12 +32,16 @@
 
           <div class="p-sme-seccion-seleccion-cliente">
             <button class="p-sme-boton-recoger-local">
-              {% render 'icon-recogo-local' %}
+              <div class="p-sme-icono-recogo-local">
+                {% render 'icon-recogo-local' %}
+              </div>
               <div class="p-sme-texto-boton-recoger-local">
                 <p class="p-sme-texto-boton-titulo">Recoger en local</p>
                 <p class="p-sme-texto-boton-subtitulo">Sin costo alguno</p>
               </div>
-              {% render 'icon-estado-off' %}
+              <div class="p-sme-icono-selecionado">
+                {% render 'icon-estado-off' %}
+              </div>
             </button>
 
             <button class="p-sme-boton-envio-domicilio">
@@ -46,7 +50,9 @@
                 <p class="p-sme-texto-boton-titulo">Envío a domicilio</p>
                 <p class="p-sme-texto-boton-subtitulo">Envio a solo Bs 2</p>
               </div>
-              {% render 'icon-estado-off' %}
+              <div class="p-sme-icono-selecionado">
+                {% render 'icon-estado-off' %}
+              </div>
             </button>
           </div>
         </div>
@@ -347,21 +353,20 @@
     font-weight: 600;
   }
 
-  .p-sme-boton--activo {
+  .p-sme-boton-recoger-local-activo {
     border-color: #c8102e !important;
     background: #c8102e !important;
   }
 
-  .p-sme-icono-activo {
-    filter: brightness(0) invert(1);
-  }
-
-  .p-sme-icono-estado-on {
+  .p-sme-icono-selecionado..p-sme-icono-activo {
     border-radius: 50%;
     padding: 0.2rem;
     background: #FFF;
   }
-  {% comment %} hola mundo {% endcomment %}
+
+  .p-sme-icono-recogo-local.p-sme-icono-activo {
+    filter: brightness(0) invert(1);
+  }
 </style>
 
 <script>
@@ -419,24 +424,22 @@
     }
 
     accionBotonRecogerLocal() {
-      console.log('accionBotonRecogerLocal');
       // Alternar estado activo
-      const estaActivo = this.botonRecogerLocal.classList.toggle('p-sme-boton--activo');
+      const estaActivo = this.botonRecogerLocal.classList.toggle('p-sme-boton-recoger-local-activo');
 
-      // Obtener elementos del botón
-      const iconoPrincipal = this.botonRecogerLocal.querySelector('svg:first-child');
-      const iconoEstado = this.botonRecogerLocal.querySelector('svg:last-child');
+      // Obtener los divs de los iconos que estan dentro del boton
+      const iconoPrincipal = this.botonRecogerLocal.querySelector('.p-sme-icono-recogo-local');
+      const iconoEstado = this.botonRecogerLocal.querySelector('.p-sme-icono-opcion-off');
 
       // Aplicar cambios visuales
       if (estaActivo) {
-        // Cambiar ícono principal
-        iconoPrincipal?.classList.add('p-sme-icono-estado-on', 'p-sme-icono-fondo');
+        // Cambiar el color del icono que es un svg
+        iconoPrincipal.classList.add('p-sme-icono-activo');
 
-        // Cambiar ícono de estado
-        const nuevoIcono = document.createElement('div');
-        nuevoIcono.classList.add('p-sme-icono-estado-on');
-        nuevoIcono.innerHTML = `{% render 'icon-estado-on' %}`;
-        iconoEstado?.replaceWith(nuevoIcono.firstChild);
+        // Cambiar el icono de estado
+        const iconoSeleccionado = this.botonRecogerLocal.querySelector('.p-sme-icono-selecionado');
+        iconoSeleccionado.innerHTML = "{% render 'icon-estado-on' %}";
+        iconoSeleccionado.classList.add('p-sme-icono-activo');
 
         // Cambiar color del texto
         this.botonRecogerLocal.querySelectorAll('p').forEach((p) => {
@@ -444,7 +447,7 @@
         });
       } else {
         // Restaurar estado original
-        iconoPrincipal?.classList.remove('p-sme-icono-estado-on', 'p-sme-icono-fondo');
+        iconoPrincipal?.classList.remove('p-sme-icono-activo', 'p-sme-icono-fondo');
 
         const iconoOriginal = document.createElement('div');
         iconoOriginal.innerHTML = `{% render 'icon-estado-off' %}`;
