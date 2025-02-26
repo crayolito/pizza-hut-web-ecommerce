@@ -40,7 +40,7 @@
               {% render 'icon-estado-off' %}
             </button>
 
-            <button class="p-sme-boton-recoger-local">
+            <button class="p-sme-boton-envio-domicilio">
               {% render 'icon-recogo-local' %}
               <div class="p-sme-texto-boton-recoger-local">
                 <p class="p-sme-texto-boton-titulo">Envío a domicilio</p>
@@ -177,12 +177,19 @@
 
   /* Background y logo */
   .p-sme-pizza-background {
+    /* SITUACION DEL ENVIO A DOMICILIO */
+    /* width: 40.7528rem; */
+    /* SITUACION DEL ENVIO A DOMICILIO */
+    /* display: none; */
+    /* NORMAL */
     width: 59.895rem;
     height: 37.345rem;
     top: 31.9rem;
     left: 0rem;
     z-index: 2;
     position: absolute;
+
+    /* NORMAL */
   }
 
   .p-sme-pizza-logo {
@@ -243,6 +250,20 @@
 
   /* Botones de selección */
   .p-sme-boton-recoger-local {
+    cursor: pointer;
+    display: flex;
+    width: 17.05rem;
+    height: 3.85rem;
+    padding: 0.22rem 0.88rem;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 0.55rem;
+    border: 1px solid #969696;
+    background: #fff;
+  }
+
+  .p-sme-boton-envio-domicilio {
     cursor: pointer;
     display: flex;
     width: 17.05rem;
@@ -336,6 +357,21 @@
     color: #717171;
     font-weight: 600;
   }
+
+  .p-sme-boton--activo {
+    border-color: #c8102e !important;
+    background: #c8102e !important;
+  }
+
+  .p-sme-icono-activo {
+    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
+  }
+
+  .p-sme-icono-fondo {
+    background: white;
+    border-radius: 50%;
+    padding: 0.2rem;
+  }
 </style>
 
 <script>
@@ -357,7 +393,7 @@
     connectedCallback() {
       // Capturar elementos
       this.botonRecogerLocal = this.querySelector('.p-sme-boton-recoger-local');
-      this.botonEnvioDomicilio = this.querySelector('.p-sme-boton-recoger-local');
+      this.botonEnvioDomicilio = this.querySelector('.p-sme-boton-envio-domicilio');
       this.botonOmitir = this.querySelector('.p-sme-boton-omitir');
       this.botonSiguiente = this.querySelector('.p-sme-boton-siguiente');
       this.contenidoRecogidaLocal = this.querySelector('.p-sme-contenido-recogida-local');
@@ -394,7 +430,41 @@
         }
     }
 
-    accionBotonRecogerLocal() {}
+    accionBotonRecogerLocal() {
+        // Alternar estado activo
+        const estaActivo = this.botonRecogerLocal.classList.toggle('p-sme-boton--activo');
+
+        // Obtener elementos del botón
+        const iconoPrincipal = this.botonRecogerLocal.querySelector('svg:first-child');
+        const iconoEstado = this.botonRecogerLocal.querySelector('svg:last-child');
+
+        // Aplicar cambios visuales
+        if(estaActivo) {
+          // Cambiar ícono principal
+          iconoPrincipal?.classList.add('p-sme-icono-activo', 'p-sme-icono-fondo');
+
+          // Cambiar ícono de estado
+          const nuevoIcono = document.createElement('div');
+          nuevoIcono.innerHTML = '{% render 'icon-estado-on' %}';
+          iconoEstado?.replaceWith(nuevoIcono.firstChild);
+
+          // Cambiar color del texto
+          this.botonRecogerLocal.querySelectorAll('p').forEach(p => {
+            p.style.color = 'white';
+          });
+        } else {
+          // Restaurar estado original
+          iconoPrincipal?.classList.remove('p-sme-icono-activo', 'p-sme-icono-fondo');
+
+          const iconoOriginal = document.createElement('div');
+          iconoOriginal.innerHTML = '{% render 'icon-estado-off' %}';
+          iconoEstado?.replaceWith(iconoOriginal.firstChild);
+
+          this.botonRecogerLocal.querySelectorAll('p').forEach(p => {
+            p.style.color = ''; // Restaurar color original
+          });
+        }
+      }
 
     accionBotonEnvioDomicilio() {}
 
