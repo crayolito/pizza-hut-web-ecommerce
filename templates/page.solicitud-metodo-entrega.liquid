@@ -611,13 +611,13 @@
       this.botonUbicacionActual.addEventListener('click', this.mostrarModal.bind(this));
 
       // Inicializar contenidos ocultos
-      this.contenidoRecogidaLocal.style.display = 'none';
-      this.contenidoEnvioDomicilio.style.display = 'none';
-      this.contenidoModal.style.display = 'none';
+      this.contenidoRecogidaLocal.style.visibility = 'hidden';
+      this.contenidoEnvioDomicilio.style.visibility = 'hidden';
+      this.contenidoModal.style.visibility = 'hidden';
     }
 
     mostrarModal() {
-      this.contenidoModal.style.display = 'block';
+      this.contenidoModal.style.visibility = 'visible';
       // Inicializar el mapa
       this.inicializarMapa();
     }
@@ -710,7 +710,7 @@
     }
 
     cerrarModal() {
-      this.contenidoModal.style.display = 'none';
+      this.contenidoModal.style.visibility = 'hidden';
     } 
 
     verificarLocalStorage() {
@@ -762,8 +762,8 @@
       }
 
       // Mostrar contenido de recogida local
-      this.contenidoRecogidaLocal.style.display = 'block';
-      this.contenidoEnvioDomicilio.style.display = 'none';
+      this.contenidoRecogidaLocal.style.visibility = 'visible';
+      this.contenidoEnvioDomicilio.style.visibility = 'hidden';
 
       // Acomodar el contenido de la pagina
       const imagenAuxiliarFondo = document.querySelector('.p-sme-pizza-background');
@@ -799,8 +799,8 @@
       imagenAuxiliarFondo.style.top = '40.7528rem';
 
       // Mostrar contenido de envío a domicilio
-      this.contenidoRecogidaLocal.style.display = 'none';
-      this.contenidoEnvioDomicilio.style.display = 'block';
+      this.contenidoRecogidaLocal.style.visibility = 'hidden';
+      this.contenidoEnvioDomicilio.style.visibility = 'visible';
 
       // Desactivar contenido de recogida local
       this.desactivarBotonRecogerLocal();
