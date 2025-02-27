@@ -632,15 +632,19 @@
         return;
       }
 
-      // Opciones del mapa para mostrar calles y avenidas claramente
+      // Opciones del mapa simplificadas con solo control de zoom
       const opcionesMapa = {
         center: this.coordenadasBase,
         zoom: 15,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
-        mapTypeControl: true,
-        streetViewControl: true,
-        fullscreenControl: true,
-        zoomControl: true,
+        mapTypeControl: false,  // Oculta los botones de Mapa/Satélite
+        streetViewControl: false,  // Oculta el control de Street View
+        fullscreenControl: false,  // Oculta el botón de pantalla completa
+        zoomControl: true,  // Mantiene solo los controles de zoom
+        scaleControl: false,
+        rotateControl: false,
+        panControl: false,
+        disableDefaultUI: false
       };
 
       // Crear el mapa con el contenedor seleccionado
