@@ -773,69 +773,63 @@
       }
     }
 
-    /**
-     * Maneja la selección del método de envío a domicilio:
-     * 1. Cambia apariencia del botón
-     * 2. Muestra/oculta el formulario de dirección
-     * 3. Gestiona conflicto con modo "Recoger en local"
-     */
     accionBotonEnvioDomicilio() {
-      // Alternar estado activo del botón
+      // 1. Cambiar estado visual del botón y obtener elementos clave
       const estaActivo = this.botonEnvioDomicilio.classList.toggle('p-sme-boton-envio-domicilio-activo');
-
-      // Elementos a modificar
-      const iconoCheck = this.botonEnvioDomicilio.querySelector('.p-sme-icono-selecionado');
+      const iconoEstado = this.botonEnvioDomicilio.querySelector('.p-sme-icono-selecionado');
       const iconoPrincipal = this.botonEnvioDomicilio.querySelector('.p-sme-icono-envio-domicilio');
-      const textosBoton = this.botonEnvioDomicilio.querySelectorAll('p');
+      const textos = this.botonEnvioDomicilio.querySelectorAll('p');
 
       if (estaActivo) {
-        // ACTIVAR MODO ENVÍO
-        // 1. Icono check y color blanco
+        // === MODO ACTIVACIÓN ===
+        // Actualizar elementos visuales del botón
         iconoPrincipal.classList.add('p-sme-icono-activo');
-        iconoCheck.innerHTML = `{% render 'icon-estado-on' %}`;
-        textosBoton.forEach((p) => (p.style.color = 'white'));
+        iconoEstado.innerHTML = `{% render 'icon-estado-on' %}`;
+        iconoEstado.classList.add('p-sme-icono-activo');
+        textos.forEach((p) => (p.style.color = 'white'));
 
-        // 2. Mostrar formulario y ajustar fondo
+        // Ajustar interfaz para modo envio a domicilio:
+        // - Bajar imagen de fondo para hacer espacio al formulario
+        // - Mostrar sección de entrada de dirección
         this.imagenAuxiliarFondo.style.top = '40.7528rem';
         this.contenidoEnvioDomicilio.style.visibility = 'visible';
-
-        // 3. Si estaba activo "Recoger en local", desactivarlo
-        if (this.contenidoRecogidaLocal.style.visibility === 'visible') {
-          this.contenidoRecogidaLocal.style.visibility = 'hidden';
-          this.imagenAuxiliarFondo.style.visibility = 'visible';
-          this.desactivarBotonRecogerLocal();
-        }
       } else {
-        // DESACTIVAR MODO ENVÍO
-        // 1. Restaurar elementos a estado original
-        iconoPrincipal.classList.remove('p-sme-icono-activo');
-        iconoCheck.innerHTML = `{% render 'icon-estado-off' %}`;
-        textosBoton.forEach((p) => (p.style.color = ''));
+        // === MODO DESACTIVACIÓN ===
+        // Restaurar estado original del botón y elementos relacionados
+        this.desactivarBotonEnvioDomicilio();
 
-        // 2. Ocultar formulario y restaurar fondo
+        // Revertir cambios de interfaz:
+        // - Restaurar posición original de la imagen de fondoo
+        // - Ocultar sección de dirección
         this.contenidoEnvioDomicilio.style.visibility = 'hidden';
         this.imagenAuxiliarFondo.style.top = '31.9rem';
       }
+
+      // Desactivar modo recogida en local si está activo
+      if (this.contenidoRecogidaLocal.style.visibility === 'visible') {
+        this.contenidoRecogidaLocal.style.visibility = 'hidden';
+        this.imagenAuxiliarFondo.style.visibility = 'visible';
+        this.desactivarBotonRecogerLocal();
+      }
     }
 
-    /**
-     * Restaura el botón de envío a su estado inicial
-     * (Usado cuando se activa otro modo o hay errores)
-     */
     desactivarBotonEnvioDomicilio() {
-      // Quitar clase activa
+      const iconoEstado = this.botonEnvioDomicilio.querySelector('.p-sme-icono-selecionado');
+      const iconoPrincipal = this.botonEnvioDomicilio.querySelector('.p-sme-icono-envio-domicilio');
+      const textos = this.botonEnvioDomicilio.querySelectorAll('p');
+
+      // ===== MODO DESACTIVADO =====
+      // 3.1 Forzar remoción de clase principal (por si hay errores en el toggle)
       this.botonEnvioDomicilio.classList.remove('p-sme-boton-envio-domicilio-activo');
 
-      // Restaurar elementos internos
-      const iconoCheck = this.botonEnvioDomicilio.querySelector('.p-sme-icono-selecionado');
-      const iconoPrincipal = this.botonEnvioDomicilio.querySelector('.p-sme-icono-envio-domicilio');
-      const textosBoton = this.botonEnvioDomicilio.querySelectorAll('p');
+      // 3.2 Restaurar icono principal
+      iconoPrincipal?.classList.remove('p-sme-icono-activo');
 
-      if (iconoCheck && iconoPrincipal && textosBoton) {
-        iconoPrincipal.classList.remove('p-sme-icono-activo');
-        iconoCheck.innerHTML = `{% render 'icon-estado-off' %}`;
-        textosBoton.forEach((p) => (p.style.color = ''));
-      }
+      // 3.3 Restaurar icono de estado (cross)
+      iconoEstado.innerHTML = `{% render 'icon-estado-off' %}`;
+      iconoEstado.classList.remove('p-sme-icono-activo');
+
+      textos.forEach((p) => (p.style.color = ''));
     }
 
     desactivarBotonRecogerLocal() {
