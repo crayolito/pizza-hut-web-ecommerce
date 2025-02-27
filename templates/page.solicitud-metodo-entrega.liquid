@@ -143,11 +143,11 @@
     /* Background y logo */
     .p-sme-pizza-background {
       /* SITUACION DEL ENVIO A DOMICILIO */
-      top: 40.7528rem;
+      {% comment %} top: 40.7528rem; {% endcomment %}
       /* SITUACION DEL ENVIO A DOMICILIO */
        {% comment %} display: none;  {% endcomment %}
        /* NORMAL */
-       {% comment %} top: 31.9rem; {% endcomment %}
+      top: 31.9rem;
       width: 59.895rem;
       height: 37.345rem;
       left: 0rem;
@@ -658,7 +658,7 @@
     
         // 3. Configurar eventos del marcador
         this.configurarEventosMarcador(mapa);
-        
+
         // 5. Pedir ubicación solo después de tener todo configurad
         this.solicitarUbicacionUsuario(mapa);
         
