@@ -624,6 +624,100 @@
 
     inicializarMapa() {
       try {
+        // 1. Configurar mapa con marcador base primero
+        this.contenedorMapa = this.querySelector('.p-sme-mapa');
+        if (!this.contenedorMapa) {
+          alert('Error: No se pudo cargar el mapa. Por favor recarga la página');
+          return;
+        }
+    
+        // Opciones del mapa simplificadas con solo control de zoom
+        const opcionesMapa = {
+          center: this.coordenadasBase,
+          zoom: 15,
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
+          mapTypeControl: false,  // Oculta los botones de Mapa/Satélite
+          streetViewControl: false,  // Oculta el control de Street View
+          fullscreenControl: false,  // Oculta el botón de pantalla completa
+          zoomControl: true,  // Mantiene solo los controles de zoom
+          scaleControl: false,
+          rotateControl: false,
+          panControl: false,
+          disableDefaultUI: false
+        };
+
+        const mapa = new google.maps.Map(this.contenedorMapa, opcionesMapa);
+    
+        // 2. Crear marcador en posición base
+        this.marcadorMovible = new google.maps.Marker({
+          position: this.coordenadasBase,
+          map: mapa,
+          draggable: true,
+          animation: google.maps.Animation.DROP
+        });
+    
+        // 3. Configurar eventos del marcador
+        this.configurarEventosMarcador(mapa);
+    
+        // 4. Crear y configurar botón de ubicación
+        const botonUbicacion = this.crearBotonUbicacion(mapa);
+    
+        // 5. Pedir ubicación solo después de tener todo configurado
+        this.solicitarUbicacionUsuario(mapa);
+        
+      } catch (error) {
+        alert('Error al cargar el mapa. Por favor, recarga la página');
+      }
+    }
+    
+    solicitarUbicacionUsuario(mapa) {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (posicion) => {
+            try {
+              const miUbicacion = {
+                lat: posicion.coords.latitude,
+                lng: posicion.coords.longitude
+              };
+              
+              // Mover marcador solo si se obtiene la ubicación
+              this.marcadorMovible.setPosition(miUbicacion);
+              mapa.panTo(miUbicacion);
+              this.coordenadas = miUbicacion;
+            } catch (error) {
+              alert('Error al procesar tu ubicación');
+            }
+          },
+          (error) => {
+            // No hacer nada si hay error, mantener marcador en posición base
+            console.log('Ubicación no obtenida, usando posición default');
+          }
+        );
+      }
+    }
+    
+    // Métodos auxiliares
+    configurarEventosMarcador(mapa) {
+      this.marcadorMovible.addListener('dragend', (evento) => {
+        try {
+          const posicion = this.marcadorMovible.getPosition();
+          this.coordenadas = { lat: posicion.lat(), lng: posicion.lng() };
+          mapa.panTo(posicion);
+        } catch (error) {
+          alert('Error al actualizar la posición');
+        }
+      });
+    }
+    
+    crearBotonUbicacion(mapa) {
+      const boton = document.createElement('div');
+      // ... configuración del botón ...
+      boton.addEventListener('click', () => { /*...*/ });
+      return boton;
+    }
+
+    {% comment %} inicializarMapa() {
+      try {
         // Seleccionar contenedor del mapa dentro del modal
       this.contenedorMapa = this.querySelector('.p-sme-mapa');
       
@@ -703,7 +797,7 @@
       } catch (error) {
         alert('Error al cargar el mapa. Por favor, recarga la página');
       }
-    }
+    } {% endcomment %}
 
     cerrarModal() {
       this.contenidoModal.style.display = 'none';
