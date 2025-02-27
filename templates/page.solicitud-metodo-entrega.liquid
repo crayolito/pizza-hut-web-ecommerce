@@ -111,10 +111,10 @@
           </div>
           <div class="p-sme-mapa"></div>
           <div class="p-sme-modal-footer">
-            <button class="p-sme-boton-cerrar">
+            <button id="p-sme-boton-cerrar-modal" class="p-sme-boton-cerrar">
               <p>Cerrar</p>
             </button>
-            <button class="p-sme-boton-confirmar">
+            <button id="p-sme-boton-confirmar-modal" class="p-sme-boton-confirmar">
               <p>Confirmar Dirección</p>
             </button>
           </div>
@@ -427,6 +427,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
   }
 
   /* Contenedor del modal */
@@ -436,6 +437,7 @@
     background-color: #fff;
     border-radius: 0.22rem;
     padding: 1rem;
+    cursor: auto;
   }
 
   /* Header del modal */
@@ -590,10 +592,14 @@
       this.contenidoRecogidaLocal = this.querySelector('.p-sme-contenido-recogida-local');
       this.contenidoEnvioDomicilio = this.querySelector('.p-sme-contenido-envio-domicilio');
       this.contenidoModal = this.querySelector('.p-sme-modal-mapa-envio-domicilio');
+      this.botonCerrarModal = this.querySelector('#p-sme-boton-cerrar-modal');
+      this.botonConfirmarModal = this.querySelector('#p-sme-boton-confirmar-modal');
 
       // Asignar event listeners
       this.botonRecogerLocal.addEventListener('click', this.accionBotonRecogerLocal.bind(this));
       this.botonEnvioDomicilio.addEventListener('click', this.accionBotonEnvioDomicilio.bind(this));
+      this.contenidoModal.addEventListener('click', this.cerrarModal.bind(this)); 
+      this.botonCerrarModal.addEventListener('click', this.cerrarModal.bind(this));
 
       // Inicializar contenidos ocultos
       this.contenidoRecogidaLocal.style.display = 'none';
@@ -604,8 +610,84 @@
     mostrarModal() {
       this.contenidoModal.style.display = 'block';
 
+      // Inicializar el mapa
+      this.inicializarMapa();
+    }
+
+    inicializarMapa() {
+      // Opciones del mapa para mostrar calles y avenidas claramente
+      const opcionesMapa = {
+        center: this.coordenadasBase,
+        zoom: 15,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        mapTypeControl: true,
+        streetViewControl: true,
+        fullscreenControl: true,
+        zoomControl: true,
+      };
+
+      // Crear el mapa con las opciones definidas
+      const mapa = new google.maps.Map(this.mapa, opcionesMapa);
+
+      // Crear un marcador arrastrable que se puede mover
+      const marcadorMovible = new google.maps.Marker({
+        position: this.coordenadasBase,
+        map: mapa,
+        draggable: true, // Permite arrastrar el marcador
+        animation: google.maps.Animation.DROP // Animación al colocar el marcador
+      });
+
+       // Agregar evento cuando se termina de arrastrar el marcador
+       marcadorMovible.addListener('dragend', (evento) => {
+        // Actualizar coordenadas en el objeto this cuando se mueve el marcador
+        const posicion = marcadorMovible.getPosition();
+        this.coordenadas = {
+          lat: posicion.lat(),
+          lng: posicion.lng()
+        };
+        console.log("Nuevas coordenadas:", this.coordenadas);
+      });
+
+      // Evento para el botón de ubicación actual
+      botonUbicacion.addEventListener('click', () => {
+        // Verificar si el navegador soporta geolocalización
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+            (posicion) => {
+              // Si se obtiene la ubicación correctamente
+              const miUbicacion = {
+                lat: posicion.coords.latitude,
+                lng: posicion.coords.longitude
+              };
+              
+              // Centrar mapa en la ubicación actual
+              mapa.setCenter(miUbicacion);
+              
+              // Mover el marcador a la ubicación actual
+              marcadorMovible.setPosition(miUbicacion);
+              
+              // Actualizar coordenadas en el objeto
+              this.coordenadas = miUbicacion;
+              console.log("Ubicación actual:", this.coordenadas);
+            },
+            (error) => {
+              // Si hay error al obtener la ubicación
+              console.error("Error al obtener ubicación:", error);
+              alert("No se pudo obtener tu ubicación actual");
+            }
+          );
+        } else {
+          // Si el navegador no soporta geolocalización
+          alert("Tu navegador no soporta geolocalización");
+        }
+      });
 
     }
+
+
+    cerrarModal() {
+      this.contenidoModal.style.display = 'none';
+    } 
 
     verificarLocalStorage() {
       if (localStorage.getItem('ubicacion-cliente')) {
