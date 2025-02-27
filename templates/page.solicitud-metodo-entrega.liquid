@@ -702,46 +702,14 @@
         try {
           const posicion = this.marcadorMovible.getPosition();
           this.coordenadas = { lat: posicion.lat(), lng: posicion.lng() };
+
+          console.log('Coordenadas: ', this.coordenadas); 
           mapa.panTo(posicion);
         } catch (error) {
           alert('Error al actualizar la posición');
         }
       });
     }
-    
-    crearBotonUbicacion() {
-      const boton = document.createElement('button');
-      boton.innerHTML = '📍 Mi ubicación';
-      boton.style.cssText = `
-        background: #fff;
-        border: 2px solid #ccc;
-        padding: 10px 15px;
-        margin: 10px;
-        cursor: pointer;
-        border-radius: 5px;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-        font-family: Arial, sans-serif;
-      `;
-      
-      boton.addEventListener('click', () => {
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(
-            (pos) => {
-              const nuevaPos = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
-              this.marcadorMovible.setPosition(nuevaPos);
-              this.mapa.panTo(nuevaPos);
-              this.coordenadas = { lat: nuevaPos.lat(), lng: nuevaPos.lng() };
-            },
-            (error) => {
-              alert('Activa los permisos de ubicación en tu navegador');
-            }
-          );
-        }
-      });
-      
-      return boton;
-    }
-    
 
     cerrarModal() {
       this.contenidoModal.style.display = 'none';
