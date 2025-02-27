@@ -796,10 +796,13 @@
 
         // Desactivar modo recogida en local si está activo
         if (this.contenidoRecogidaLocal.style.visibility === 'visible') {
+          const iconoPrincipal = this.botonRecogerLocal.querySelector('.p-sme-icono-recogo-local');
+          const iconoEstado = this.botonRecogerLocal.querySelector('.p-sme-icono-selecionado');
+          const textos = this.botonRecogerLocal.querySelectorAll('p');
           this.contenidoRecogidaLocal.style.visibility = 'hidden';
           this.imagenAuxiliarFondo.style.visibility = 'visible';
           this.imagenAuxiliarFondo.style.top = '31.9rem';
-          this.desactivarBotonRecogerLocal();
+          this.desactivarBotonRecogerLocal(iconoPrincipal, iconoEstado, textos);
         }
       } else {
         // === MODO DESACTIVACIÓN ===
