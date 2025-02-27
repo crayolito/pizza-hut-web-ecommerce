@@ -788,7 +788,7 @@
         iconoEstado.classList.add('p-sme-icono-activo');
         textos.forEach((p) => (p.style.color = 'white'));
 
-        // Ajustar interfaz para modo delivery:
+        // Ajustar interfaz para modo envio a domicilio:
         // - Bajar imagen de fondo para hacer espacio al formulario
         // - Mostrar sección de entrada de dirección
         this.imagenAuxiliarFondo.style.top = '40.7528rem';
@@ -801,7 +801,6 @@
           const textos = this.botonRecogerLocal.querySelectorAll('p');
           this.contenidoRecogidaLocal.style.visibility = 'hidden';
           this.imagenAuxiliarFondo.style.visibility = 'visible';
-          this.imagenAuxiliarFondo.style.top = '31.9rem';
           this.desactivarBotonRecogerLocal(iconoPrincipal, iconoEstado, textos);
         }
       } else {
