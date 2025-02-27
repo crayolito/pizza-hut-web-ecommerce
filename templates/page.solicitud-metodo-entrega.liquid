@@ -819,6 +819,9 @@
 
       // Desactivar contenido de recogida local
       if (this.contenidoRecogidaLocal.style.visibility === 'visible') {
+        const iconoPrincipal = this.botonRecogerLocal.querySelector('.p-sme-icono-recogo-local');
+        const iconoEstado = this.botonRecogerLocal.querySelector('.p-sme-icono-selecionado');
+        const textos = this.botonRecogerLocal.querySelectorAll('p');
         // Ocultar contenido de recogida local
         this.contenidoRecogidaLocal.style.visibility = 'hidden';
         this.desactivarBotonRecogerLocal(iconoPrincipal, iconoEstado, textos);
