@@ -623,12 +623,13 @@
     }
 
     inicializarMapa() {
-      // Seleccionar contenedor del mapa dentro del modal
+      try {
+        // Seleccionar contenedor del mapa dentro del modal
       this.contenedorMapa = this.querySelector('.p-sme-mapa');
       
       // Verificar que existe el elemento
       if (!this.contenedorMapa) {
-        console.error('No se encontró el contenedor del mapa');
+        alert('Error: No se pudo cargar el mapa. Por favor recarga la página');
         return;
       }
 
@@ -661,48 +662,47 @@
        // Agregar evento cuando se termina de arrastrar el marcador
        marcadorMovible.addListener('dragend', (evento) => {
         // Actualizar coordenadas en el objeto this cuando se mueve el marcador
-        const posicion = marcadorMovible.getPosition();
-        this.coordenadas = {
-          lat: posicion.lat(),
-          lng: posicion.lng()
-        };
-        console.log("Nuevas coordenadas:", this.coordenadas);
+        try {
+          const posicion = marcadorMovible.getPosition();
+          this.coordenadas = {
+            lat: posicion.lat(),
+            lng: posicion.lng()
+          };
+          mapa.panTo(posicion);
+        } catch (error) {
+          alert('Error al actualizar la posición. Intenta mover el marcador nuevamente');
+        }
       });
 
       // Evento para el botón de ubicación actual
       botonUbicacion.addEventListener('click', () => {
-        // Verificar si el navegador soporta geolocalización
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(
             (posicion) => {
-              // Si se obtiene la ubicación correctamente
-              const miUbicacion = {
-                lat: posicion.coords.latitude,
-                lng: posicion.coords.longitude
-              };
-              
-              // Centrar mapa en la ubicación actual
-              mapa.setCenter(miUbicacion);
-              
-              // Mover el marcador a la ubicación actual
-              marcadorMovible.setPosition(miUbicacion);
-              
-              // Actualizar coordenadas en el objeto
-              this.coordenadas = miUbicacion;
-              console.log("Ubicación actual:", this.coordenadas);
+              try {
+                // ... código existente ...
+              } catch (error) {
+                alert('Error al procesar tu ubicación');
+              }
             },
             (error) => {
-              // Si hay error al obtener la ubicación
-              console.error("Error al obtener ubicación:", error);
-              alert("No se pudo obtener tu ubicación actual");
+              let mensaje = 'No pudimos obtener tu ubicación. ';
+              if (error.code === error.PERMISSION_DENIED) {
+                mensaje += 'Por favor habilita los permisos de ubicación en tu navegador';
+              }
+              alert(mensaje);
             }
           );
         } else {
-          // Si el navegador no soporta geolocalización
-          alert("Tu navegador no soporta geolocalización");
+          alert('Tu navegador no soporta geolocalización. Actualízalo o usa otro dispositivo');
         }
       });
 
+      // Pedir la ubicación actual del usuario
+      this.obtenerUbicacion();
+      } catch (error) {
+        alert('Error al cargar el mapa. Por favor, recarga la página');
+      }
     }
 
     cerrarModal() {
