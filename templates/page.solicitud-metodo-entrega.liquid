@@ -756,6 +756,7 @@
       const textos = this.botonRecogerLocal.querySelectorAll('p');
 
       if (estaActivo) {
+        console.log('Entra a activar modo recogida en local test 1');
         // === MODO ACTIVACIÓN ===
         // Actualizar elementos visuales del botón
         iconoPrincipal.classList.add('p-sme-icono-activo');
@@ -766,7 +767,6 @@
         // Ajustar interfaz para modo recogida en local:
         // - Ocultar la imagen auxiliar de fondo
         this.imagenAuxiliarFondo.style.visibility = 'hidden';
-        console.log('se va ejecutar : ', this.contenidoRecogidaLocal.style.visibility);
         this.contenidoRecogidaLocal.style.visibility = 'visible';
       } else {
         // === MODO DESACTIVACIÓN ===
