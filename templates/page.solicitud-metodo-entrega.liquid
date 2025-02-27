@@ -777,14 +777,13 @@
         // - Restaurar posición original de la imagen de fondo
         // - Restaurar visibilidad de la sección de envío a domicilio
         this.imagenAuxiliarFondo.style.visibility = 'visible';
-        this.contenidoEnvioDomicilio.style.visibility = 'visible';
         this.imagenAuxiliarFondo.style.top = '31.9rem';
+        this.contenidoEnvioDomicilio.style.visibility = 'visible';
       }
 
       // Desactivar modo envío a domicilio si está activo
       if (this.contenidoEnvioDomicilio.style.visibility === 'visible') {
         this.contenidoEnvioDomicilio.style.visibility = 'hidden';
-        {% comment %} this.imagenAuxiliarFondo.style.visibility = 'visible'; {% endcomment %}
         this.desactivarBotonEnvioDomicilio();
       }
     }
