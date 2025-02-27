@@ -597,7 +597,8 @@
       this.botonCerrarModal = this.querySelector('#p-sme-boton-cerrar-modal');
       this.botonConfirmarModal = this.querySelector('#p-sme-boton-confirmar-modal');
       this.botonUbicacionActual = this.querySelector('#p-sme-boton-ubicacion-actual');
-      
+      this.imagenAuxiliarFondo = this.querySelector('.p-sme-pizza-background');
+
       // Asignar event listeners
       this.botonRecogerLocal.addEventListener('click', this.accionBotonRecogerLocal.bind(this));
       this.botonEnvioDomicilio.addEventListener('click', this.accionBotonEnvioDomicilio.bind(this));
@@ -618,7 +619,6 @@
 
     mostrarModal() {
       this.contenidoModal.style.visibility = 'visible';
-      // Inicializar el mapa
       this.inicializarMapa();
     }
 
@@ -630,44 +630,43 @@
           alert('Error: No se pudo cargar el mapa. Por favor recarga la página');
           return;
         }
-    
+
         // Opciones del mapa simplificadas con solo control de zoom
         const opcionesMapa = {
           center: this.coordenadasBase,
           zoom: 15,
           mapTypeId: google.maps.MapTypeId.ROADMAP,
-          mapTypeControl: false,  // Oculta los botones de Mapa/Satélite
-          streetViewControl: false,  // Oculta el control de Street View
-          fullscreenControl: false,  // Oculta el botón de pantalla completa
-          zoomControl: true,  // Mantiene solo los controles de zoom
+          mapTypeControl: false, // Oculta los botones de Mapa/Satélite
+          streetViewControl: false, // Oculta el control de Street View
+          fullscreenControl: false, // Oculta el botón de pantalla completa
+          zoomControl: true, // Mantiene solo los controles de zoom
           scaleControl: false,
           rotateControl: false,
           panControl: false,
-          disableDefaultUI: false
+          disableDefaultUI: false,
         };
 
         const mapa = new google.maps.Map(this.contenedorMapa, opcionesMapa);
-    
+
         // 2. Crear marcador en posición base
         this.marcadorMovible = new google.maps.Marker({
           position: this.coordenadasBase,
           map: mapa,
           draggable: true,
-          animation: google.maps.Animation.DROP
+          animation: google.maps.Animation.DROP,
         });
-    
+
         // 3. Configurar eventos del marcador
         this.configurarEventosMarcador(mapa);
 
         // 5. Pedir ubicación solo después de tener todo configurad
         this.solicitarUbicacionUsuario(mapa);
-        
       } catch (error) {
         alert('Error al cargar el mapa. Por favor, recarga la página');
         console.log('Error al cargar el mapa: ', error);
       }
     }
-    
+
     solicitarUbicacionUsuario(mapa) {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
@@ -675,9 +674,9 @@
             try {
               const miUbicacion = {
                 lat: posicion.coords.latitude,
-                lng: posicion.coords.longitude
+                lng: posicion.coords.longitude,
               };
-              
+
               // Mover marcador solo si se obtiene la ubicación
               this.marcadorMovible.setPosition(miUbicacion);
               mapa.panTo(miUbicacion);
@@ -693,7 +692,7 @@
         );
       }
     }
-    
+
     // Métodos auxiliares
     configurarEventosMarcador(mapa) {
       this.marcadorMovible.addListener('dragend', (evento) => {
@@ -701,7 +700,7 @@
           const posicion = this.marcadorMovible.getPosition();
           this.coordenadas = { lat: posicion.lat(), lng: posicion.lng() };
 
-          console.log('Coordenadas: ', this.coordenadas); 
+          console.log('Coordenadas: ', this.coordenadas);
           mapa.panTo(posicion);
         } catch (error) {
           alert('Error al actualizar la posición');
@@ -711,7 +710,7 @@
 
     cerrarModal() {
       this.contenidoModal.style.visibility = 'hidden';
-    } 
+    }
 
     verificarLocalStorage() {
       if (localStorage.getItem('ubicacion-cliente')) {
@@ -757,17 +756,21 @@
 
         // 2.3 Cambiar color de textos a blanco
         textos.forEach((p) => (p.style.color = 'white'));
+
+        // Acomodar el contenido de la pagina
+        this.imagenAuxiliarFondo.style.display = 'none';
+
+        // Desactivar contenido de envio domicilio
+        if (this.contenidoEnvioDomicilio.style.visibility === 'visible') {
+          // Ocultar contenido de envio domicilio
+          this.desactivarBotonEnvioDomicilio(iconoPrincipal, iconoEstado, textos);
+        }
+
+        // Mostrar contenido de recogida local
+        this.contenidoRecogidaLocal.style.visibility = 'visible';
       } else {
-        this.desactivarBotonRecogerLocal();
+        this.desactivarBotonRecogerLocal(iconoPrincipal, iconoEstado, textos);
       }
-
-      // Mostrar contenido de recogida local
-      this.contenidoRecogidaLocal.style.visibility = 'visible';
-      this.contenidoEnvioDomicilio.style.visibility = 'hidden';
-
-      // Acomodar el contenido de la pagina
-      const imagenAuxiliarFondo = document.querySelector('.p-sme-pizza-background');
-      {% comment %} imagenAuxiliarFondo.style. {% endcomment %}
     }
 
     accionBotonEnvioDomicilio() {
@@ -792,26 +795,24 @@
         textos.forEach((p) => (p.style.color = 'white'));
 
         // Acomodar el contenido de la pagina
-        const imagenAuxiliarFondo = document.querySelector('.p-sme-pizza-background');
-        imagenAuxiliarFondo.style.top = '40.7528rem';
-
-        // Mostrar contenido de envío a domicilio
-        this.contenidoRecogidaLocal.style.visibility = 'hidden';
-        this.contenidoEnvioDomicilio.style.visibility = 'visible';
+        this.imagenAuxiliarFondo.style.top = '40.7528rem';
 
         // Desactivar contenido de recogida local
-        this.desactivarBotonRecogerLocal();
+        if (this.contenidoRecogidaLocal.style.visibility === 'visible') {
+          // Ocultar contenido de recogida local
+          this.contenidoRecogidaLocal.style.visibility = 'hidden';
+          this.desactivarBotonRecogerLocal(iconoPrincipal, iconoEstado, textos);
+        }
+
+        // Mostrar contenido de envío a domicilio
+        this.contenidoEnvioDomicilio.style.visibility = 'visible';
       } else {
         console.log('Entra a desactivar boton envio domicilio');
         this.desactivarBotonEnvioDomicilio();
       }
     }
 
-    desactivarBotonEnvioDomicilio() {
-      const iconoPrincipal = this.botonEnvioDomicilio.querySelector('.p-sme-icono-envio-domicilio');
-      const iconoEstado = this.botonEnvioDomicilio.querySelector('.p-sme-icono-selecionado');
-      const textos = this.botonEnvioDomicilio.querySelectorAll('p');
-
+    desactivarBotonEnvioDomicilio(iconoPrincipal, iconoEstado, textos) {
       // ===== MODO DESACTIVADO =====
       // 3.1 Forzar remoción de clase principal (por si hay errores en el toggle)
       this.botonEnvioDomicilio.classList.remove('p-sme-boton-envio-domicilio-activo');
@@ -823,21 +824,15 @@
       iconoEstado.innerHTML = `{% render 'icon-estado-off' %}`;
       iconoEstado.classList.remove('p-sme-icono-activo');
 
-      // 3.4 Restaurar color original de textos
       textos.forEach((p) => (p.style.color = ''));
 
       // Acomodar el contenido de la pagina
       const imagenAuxiliarFondo = document.querySelector('.p-sme-pizza-background');
       imagenAuxiliarFondo.style.top = '31.9rem';
-      console.log('Poner el contenido de envio domicilio en hidden s');
       this.contenidoEnvioDomicilio.style.visibility = 'hidden';
     }
 
-    desactivarBotonRecogerLocal() {
-      const iconoPrincipal = this.botonRecogerLocal.querySelector('.p-sme-icono-recogo-local');
-      const iconoEstado = this.botonRecogerLocal.querySelector('.p-sme-icono-selecionado');
-      const textos = this.botonRecogerLocal.querySelectorAll('p');
-
+    desactivarBotonRecogerLocal(iconoPrincipal, iconoEstado, textos) {
       // ===== MODO DESACTIVADO =====
       // 3.1 Forzar remoción de clase principal (por si hay errores en el toggle)
       this.botonRecogerLocal.classList.remove('p-sme-boton-recoger-local-activo');
