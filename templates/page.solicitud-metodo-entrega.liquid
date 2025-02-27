@@ -70,83 +70,18 @@
           </div>
         </div>
         <div class="p-sme-contenido-recogida-local"></div>
-        <div
-          style="
-            display: flex;
-            width: 35.42rem;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 1.1rem;
-            position: absolute;
-            top: 28.99rem;
-            left: 50%;
-            transform: translateX(-50%);
-          "
-          class="p-sme-contenido-envio-domicilio"
-        >
-          <p
-            style="color: #717171;"
-          >
-            Ingresa una dirección o usa tu ubicación actual
-          </p>
-          <button
-            style="
-              width: 100%;
-              display: flex;
-              height: 2.64rem;
-              padding: 1.1rem;
-              justify-content: center;
-              align-items: center;
-              gap: 0.22rem;
-              border-radius: 0.22rem;
-              border: 1px solid var(--Pizza-Hut-Red, #C8102E);
-              background: var(--White, #FFF);
-            "
-          >
+        <div id="p-sme-boton-abrir-modal-mapa" class="p-sme-contenido-envio-domicilio">
+          <p>Ingresa una dirección o usa tu ubicación actual</p>
+          <button>
             {% render 'icon-gps-rojo' %}
-            <p
-              style="
-                color: #C8102E;
-                font-size: 0.88rem;
-                font-weight: 600;
-              "
-            >
-              Usar mi ubicación actual
-            </p>
+            <p>Usar mi ubicación actual</p>
           </button>
-          <div
-            style="
-              width: 100%;
-              display: flex;
-              justify-content: space-between;
-              align-items: center;
-              align-self: stretch;
-            "
-            class="p-sme-decoracion-contenedor"
-          >
-            <hr
-              style="width: 13.75rem; background: #DEDEDE;"
-            >
+          <div class="p-sme-decoracion-contenedor">
+            <hr>
             <p>O</p>
-            <hr
-              style="width: 13.75rem; background: #DEDEDE;"
-            >
+            <hr>
           </div>
-          <div
-            style="
-              display: flex;
-              height: 2.64rem;
-              padding: 1.1rem;
-              justify-content: center;
-              align-items: center;
-              gap: 0.22rem;
-              align-self: stretch;
-              border-radius: 0.22rem;
-              border: 1px solid #717171;
-              background: #FFF;
-            "
-            class="p-sme-contenedor-input-direccion"
-          >
+          <div class="p-sme-contenedor-input-direccion">
             {% render 'icon-location-on-negro' %}
             <input type="text" placeholder="Ingresa dirección o punto de referencia">
           </div>
@@ -154,224 +89,339 @@
       </div>
 
       <!-- Modal para selección de ubicación -->
+      <div 
+        style="
+          width: 100vw;
+          height: 100vh;
+          position: fixed;
+          top: 0;
+          left: 0;
+          background-color: rgba(0, 0, 0, 0.5);
+          z-index: 1000;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        "
+        class="p-sme-modal-mapa-envio-domicilio">
+        <div 
+          style="
+            width: 60vw;
+            height: 90vh;
+            background-color: #fff;
+            border-radius: 0.22rem;
+            padding: 1rem;
+          "
+          class="p-sme-modal">
+          <div class="p-sme-modal-header">
+            <div class="p-sme-message">
+              {% render 'icon-info' %}
+              <p>Si es necesario, cambia la ubicación del pin en el mapa</p>
+            </div>
+            <div class="p-sme-close-icon">
+              {% render 'icon-close-custom' %}
+            </div>
+          </div>
+          <div class="p-sme-mapa"></div>
+          <div class="p-sme-modal-footer">
+            <button class="p-sme-boton-cerrar">Cerrar</button>
+            <button class="p-sme-boton-confirmar">Confirmar Dirección</button>
+          </div>
+        </div>
+      </div>
     </body>
   </cliente-localizacion>
 </html>
 
 <style>
-  /* Estilos base */
-  body,
-  html {
-    margin: 0;
-    padding: 0;
-    font-family: var(--fuente-principal);
-  }
+    /* Estilos base */
+    body,
+    html {
+      margin: 0;
+      padding: 0;
+      font-family: var(--fuente-principal);
+    }
 
-  /* Contenedores principales */
-  .p-sme-contenedor-base {
-    width: 100%;
-    height: 110rem;
-    position: relative;
-  }
+    /* Contenedores principales */
+    .p-sme-contenedor-base {
+      width: 100%;
+      height: 110rem;
+      position: relative;
+    }
 
-  /* Background y logo */
-  .p-sme-pizza-background {
-    /* SITUACION DEL ENVIO A DOMICILIO */
-    top: 40.7528rem;
-    /* SITUACION DEL ENVIO A DOMICILIO */
-     {% comment %} display: none;  {% endcomment %}
-     /* NORMAL */
-     {% comment %} top: 31.9rem; {% endcomment %}
-    width: 59.895rem;
-    height: 37.345rem;
-    left: 0rem;
-    z-index: 2;
-    position: absolute;
-  }
+    /* Background y logo */
+    .p-sme-pizza-background {
+      /* SITUACION DEL ENVIO A DOMICILIO */
+      top: 40.7528rem;
+      /* SITUACION DEL ENVIO A DOMICILIO */
+       {% comment %} display: none;  {% endcomment %}
+       /* NORMAL */
+       {% comment %} top: 31.9rem; {% endcomment %}
+      width: 59.895rem;
+      height: 37.345rem;
+      left: 0rem;
+      z-index: 2;
+      position: absolute;
+    }
 
-  .p-sme-pizza-logo {
-    width: 9.625rem;
-    height: 2.3046rem;
-    top: 6.4768rem;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 2;
-    position: absolute;
-  }
+    .p-sme-pizza-logo {
+      width: 9.625rem;
+      height: 2.3046rem;
+      top: 6.4768rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      position: absolute;
+    }
 
-  .p-sme-pizza-logo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+    .p-sme-pizza-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
 
-  /* Sección de selección */
-  .p-sme-informacion-seleccion-cliente {
-    display: flex;
-    width: 35.365rem;
-    flex-direction: column;
-    align-items: center;
-    gap: 2.64rem;
-    top: 12.2672rem;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 2;
-    position: absolute;
-  }
+    /* Sección de selección */
+    .p-sme-informacion-seleccion-cliente {
+      display: flex;
+      width: 35.365rem;
+      flex-direction: column;
+      align-items: center;
+      gap: 2.64rem;
+      top: 12.2672rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      position: absolute;
+    }
 
-  .p-sme-menesajes-informacion-cliente {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1.1rem;
-    text-align: center;
-  }
+    .p-sme-menesajes-informacion-cliente {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.1rem;
+      text-align: center;
+    }
 
-  /* Textos */
-  .p-sme-titulo-principal {
-    color: #231f20;
-    text-align: center;
-    font-size: 3.85rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 100%;
-    letter-spacing: -0.077rem;
-    text-transform: uppercase;
-  }
+    /* Textos */
+    .p-sme-titulo-principal {
+      color: #231f20;
+      text-align: center;
+      font-size: 3.85rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 100%;
+      letter-spacing: -0.077rem;
+      text-transform: uppercase;
+    }
 
-  .p-sme-texto-descripcion {
-    color: #231f20;
-    font-size: 1rem;
-    line-height: normal;
-  }
+    .p-sme-texto-descripcion {
+      color: #231f20;
+      font-size: 1rem;
+      line-height: normal;
+    }
 
-  /* Botones de selección */
-  .p-sme-boton-recoger-local {
-    cursor: pointer;
-    display: flex;
-    width: 17.05rem;
-    height: 3.85rem;
-    padding: 0.22rem 0.88rem;
-    justify-content: space-between;
-    align-items: center;
-    flex-shrink: 0;
-    border-radius: 0.55rem;
-    border: 1px solid #969696;
-    background: #fff;
-  }
+    /* Botones de selección */
+    .p-sme-boton-recoger-local {
+      cursor: pointer;
+      display: flex;
+      width: 17.05rem;
+      height: 3.85rem;
+      padding: 0.22rem 0.88rem;
+      justify-content: space-between;
+      align-items: center;
+      flex-shrink: 0;
+      border-radius: 0.55rem;
+      border: 1px solid #969696;
+      background: #fff;
+    }
 
-  .p-sme-boton-envio-domicilio {
-    cursor: pointer;
-    display: flex;
-    width: 17.05rem;
-    height: 3.85rem;
-    padding: 0.22rem 0.88rem;
-    justify-content: space-between;
-    align-items: center;
-    flex-shrink: 0;
-    border-radius: 0.55rem;
-    border: 1px solid #969696;
-    background: #fff;
-  }
+    .p-sme-boton-envio-domicilio {
+      cursor: pointer;
+      display: flex;
+      width: 17.05rem;
+      height: 3.85rem;
+      padding: 0.22rem 0.88rem;
+      justify-content: space-between;
+      align-items: center;
+      flex-shrink: 0;
+      border-radius: 0.55rem;
+      border: 1px solid #969696;
+      background: #fff;
+    }
 
-  .p-sme-texto-boton-titulo {
-    font-size: 0.88rem;
-    font-weight: 600;
-  }
+    .p-sme-texto-boton-titulo {
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
 
-  .p-sme-texto-boton-subtitulo {
-    color: #5a5a5a;
-    font-size: 0.88rem;
-    font-weight: 400;
-  }
+    .p-sme-texto-boton-subtitulo {
+      color: #5a5a5a;
+      font-size: 0.88rem;
+      font-weight: 400;
+    }
 
-  /* Sección inferior */
-  .p-sme-opciones-cliente {
-    padding: 0 3.52rem;
-    width: 100%;
-    height: 5.06rem;
-    position: sticky;
-    top: 80vh;
-    z-index: 100;
-  }
+    /* Sección inferior */
+    .p-sme-opciones-cliente {
+      padding: 0 3.52rem;
+      width: 100%;
+      height: 5.06rem;
+      position: sticky;
+      top: 80vh;
+      z-index: 100;
+    }
 
-  .p-sme-opciones-cliente-contenido {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    padding: var(--XXXL, 2.64rem);
-    justify-content: flex-end;
-    align-items: center;
-    gap: var(--XXL, 1.32rem);
-    flex-shrink: 0;
-    border-radius: var(--S, 0.44rem);
-    border: 1px solid var(--gris-light-active, #dedede);
-    background: var(--White, #fff);
-  }
+    .p-sme-opciones-cliente-contenido {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      padding: var(--XXXL, 2.64rem);
+      justify-content: flex-end;
+      align-items: center;
+      gap: var(--XXL, 1.32rem);
+      flex-shrink: 0;
+      border-radius: var(--S, 0.44rem);
+      border: 1px solid var(--gris-light-active, #dedede);
+      background: var(--White, #fff);
+    }
 
-  .p-sme-seccion-seleccion-cliente {
-    display: flex;
-    width: 35rem;
-    justify-content: space-between;
-  }
+    .p-sme-seccion-seleccion-cliente {
+      display: flex;
+      width: 35rem;
+      justify-content: space-between;
+    }
 
-  /* Botones de acción */
-  .p-sme-boton-omitir {
-    cursor: pointer;
-    display: flex;
-    width: 17.05rem;
-    height: 2.64rem;
-    padding: 1.1rem;
-    justify-content: center;
-    align-items: center;
-    gap: 0.22rem;
-    flex-shrink: 0;
-    border-radius: var(--XS, 0.22rem);
-    border: 1px solid var(--Pizza-Hut-Red, #c8102e);
-    background: var(--White, #fff);
-  }
+    /* Botones de acción */
+    .p-sme-boton-omitir {
+      cursor: pointer;
+      display: flex;
+      width: 17.05rem;
+      height: 2.64rem;
+      padding: 1.1rem;
+      justify-content: center;
+      align-items: center;
+      gap: 0.22rem;
+      flex-shrink: 0;
+      border-radius: var(--XS, 0.22rem);
+      border: 1px solid var(--Pizza-Hut-Red, #c8102e);
+      background: var(--White, #fff);
+    }
 
-  .p-sme-texto-omitir {
-    color: #c8102e;
-    font-weight: 600;
-  }
+    .p-sme-texto-omitir {
+      color: #c8102e;
+      font-weight: 600;
+    }
 
-  .p-sme-boton-siguiente {
-    cursor: pointer;
-    display: flex;
-    width: 17.05rem;
-    height: 2.64rem;
-    padding: 1.1rem;
-    justify-content: center;
-    align-items: center;
-    gap: 0.22rem;
-    flex-shrink: 0;
-    border-radius: var(--XS, 0.22rem);
-    border: 0;
-  }
+    .p-sme-boton-siguiente {
+      cursor: pointer;
+      display: flex;
+      width: 17.05rem;
+      height: 2.64rem;
+      padding: 1.1rem;
+      justify-content: center;
+      align-items: center;
+      gap: 0.22rem;
+      flex-shrink: 0;
+      border-radius: var(--XS, 0.22rem);
+      border: 0;
+    }
 
-  .p-sme-texto-siguiente {
-    color: #717171;
-    font-weight: 600;
-  }
+    .p-sme-texto-siguiente {
+      color: #717171;
+      font-weight: 600;
+    }
 
-  .p-sme-boton-recoger-local-activo {
-    border-color: #c8102e !important;
-    background: #c8102e !important;
-  }
+    /* Estilos para el contenedor principal */
+  .p-sme-contenido-envio-domicilio {
+      display: flex;
+      width: 35.42rem;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.1rem;
+      position: absolute;
+      top: 28.99rem;
+      left: 50%;
+      transform: translateX(-50%);
+    }
 
-  .p-sme-icono-recogo-local.p-sme-icono-activo {
-    filter: brightness(0) invert(1);
-  }
+    /* Estilos para el texto introductorio */
+    .p-sme-contenido-envio-domicilio p:first-of-type {
+      color: #717171;
+    }
 
-  .p-sme-boton-envio-domicilio-activo {
-    border-color: #c8102e !important;
-    background: #c8102e !important;
-  }
+    /* Estilos para el botón de ubicación */
+    .p-sme-contenido-envio-domicilio button {
+      cursor: pointer;
+      width: 100%;
+      display: flex;
+      height: 2.64rem;
+      padding: 1.1rem;
+      justify-content: center;
+      align-items: center;
+      gap: 0.22rem;
+      border-radius: 0.22rem;
+      border: 1px solid var(--Pizza-Hut-Red, #C8102E);
+      background: var(--White, #FFF);
+    }
 
-  .p-sme-icono-envio-domicilio.p-sme-icono-activo {
-    filter: brightness(0) invert(1);
-  }
+    /* Estilos para el texto del botón */
+    .p-sme-contenido-envio-domicilio button p {
+      color: #C8102E;
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+
+    /* Estilos para el separador (O) */
+    .p-sme-decoracion-contenedor {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      align-self: stretch;
+    }
+
+    /* Estilos para las líneas del separador */
+    .p-sme-decoracion-contenedor hr {
+      width: 13.75rem;
+      background: #DEDEDE;
+    }
+
+    /* Estilos para el contenedor del input */
+    .p-sme-contenedor-input-direccion {
+      display: flex;
+      height: 2.64rem;
+      padding: 1.1rem;
+      justify-content: center;
+      align-items: center;
+      gap: 0.22rem;
+      align-self: stretch;
+      border-radius: 0.22rem;
+      border: 1px solid #717171;
+      background: #FFF;
+    }
+
+    /* Estilos para el input */
+    .p-sme-contenedor-input-direccion input {
+      border: none;
+      outline: none;
+      width: 100%;
+    }
+
+    .p-sme-boton-recoger-local-activo {
+      border-color: #c8102e !important;
+      background: #c8102e !important;
+    }
+
+    .p-sme-icono-recogo-local.p-sme-icono-activo {
+      filter: brightness(0) invert(1);
+    }
+
+    .p-sme-boton-envio-domicilio-activo {
+      border-color: #c8102e !important;
+      background: #c8102e !important;
+    }
+
+    .p-sme-icono-envio-domicilio.p-sme-icono-activo {
+      filter: brightness(0) invert(1);
+    }
 </style>
 
 <script>
@@ -396,10 +446,16 @@
       this.botonSiguiente = this.querySelector('.p-sme-boton-siguiente');
       this.contenidoRecogidaLocal = this.querySelector('.p-sme-contenido-recogida-local');
       this.contenidoEnvioDomicilio = this.querySelector('.p-sme-contenido-envio-domicilio');
+      this.contenidoModal = this.querySelector('.p-sme-modal-mapa-envio-domicilio');
 
       // Asignar event listeners
       this.botonRecogerLocal.addEventListener('click', this.accionBotonRecogerLocal.bind(this));
       this.botonEnvioDomicilio.addEventListener('click', this.accionBotonEnvioDomicilio.bind(this));
+
+      // Inicializar contenidos ocultos
+      this.contenidoRecogidaLocal.style.display = 'none';
+      this.contenidoEnvioDomicilio.style.display = 'none';
+      this.contenidoModal.style.display = 'none';
     }
 
     mostrarModal() {}
@@ -449,20 +505,17 @@
         // 2.3 Cambiar color de textos a blanco
         textos.forEach((p) => (p.style.color = 'white'));
       } else {
-        // ===== MODO DESACTIVADO =====
-        // 3.1 Forzar remoción de clase principal (por si hay errores en el toggle)
-        this.botonRecogerLocal.classList.remove('p-sme-boton-recoger-local-activo');
-
-        // 3.2 Restaurar icono principal
-        iconoPrincipal?.classList.remove('p-sme-icono-activo');
-
-        // 3.3 Restaurar icono de estado (cross)
-        iconoEstado.innerHTML = `{% render 'icon-estado-off' %}`;
-        iconoEstado.classList.remove('p-sme-icono-activo');
-
-        // 3.4 Restaurar color original de textos
-        textos.forEach((p) => (p.style.color = ''));
+        this.desactivarBotonRecogerLocal();
       }
+
+      // Mostrar contenido de recogida local
+      this.contenidoRecogidaLocal.style.display = 'block';
+      this.contenidoEnvioDomicilio.style.display = 'none';
+
+      // Acomodar el contenido de la pagina
+      const imagenAuxiliarFondo = document.querySelector('.p-sme-pizza-background');
+      imagenAuxiliarFondo.style.
+
     }
 
     accionBotonEnvioDomicilio() {
@@ -486,20 +539,51 @@
         // 2.3 Cambiar color de textos a blanco
         textos.forEach((p) => (p.style.color = 'white'));
       } else {
-        // ===== MODO DESACTIVADO =====
-        // 3.1 Forzar remoción de clase principal (por si hay errores en el toggle)
-        this.botonEnvioDomicilio.classList.remove('p-sme-boton-envio-domicilio-activo');
-
-        // 3.2 Restaurar icono principal
-        iconoPrincipal?.classList.remove('p-sme-icono-activo');
-
-        // 3.3 Restaurar icono de estado (cross)
-        iconoEstado.innerHTML = `{% render 'icon-estado-off' %}`;
-        iconoEstado.classList.remove('p-sme-icono-activo');
-
-        // 3.4 Restaurar color original de textos
-        textos.forEach((p) => (p.style.color = ''));
+        this.desactivarBotonEnvioDomicilio();
       }
+
+      // Acomodar el contenido de la pagina
+      const imagenAuxiliarFondo = document.querySelector('.p-sme-pizza-background');
+      imagenAuxiliarFondo.style.top = '40.7528rem';
+
+      // Mostrar contenido de envío a domicilio
+      this.contenidoRecogidaLocal.style.display = 'none';
+      this.contenidoEnvioDomicilio.style.display = 'block';
+
+      // Desactivar contenido de recogida local
+      this.desactivarBotonRecogerLocal();
+    }
+
+    desactivarBotonEnvioDomicilio() {
+      // ===== MODO DESACTIVADO =====
+      // 3.1 Forzar remoción de clase principal (por si hay errores en el toggle)
+      this.botonEnvioDomicilio.classList.remove('p-sme-boton-envio-domicilio-activo');
+
+      // 3.2 Restaurar icono principal
+      iconoPrincipal?.classList.remove('p-sme-icono-activo');
+
+      // 3.3 Restaurar icono de estado (cross)
+      iconoEstado.innerHTML = `{% render 'icon-estado-off' %}`;
+      iconoEstado.classList.remove('p-sme-icono-activo');
+
+      // 3.4 Restaurar color original de textos
+      textos.forEach((p) => (p.style.color = ''));
+    }
+
+    desactivarBotonRecogerLocal() {
+      // ===== MODO DESACTIVADO =====
+      // 3.1 Forzar remoción de clase principal (por si hay errores en el toggle)
+      this.botonRecogerLocal.classList.remove('p-sme-boton-recoger-local-activo');
+
+      // 3.2 Restaurar icono principal
+      iconoPrincipal?.classList.remove('p-sme-icono-activo');
+
+      // 3.3 Restaurar icono de estado (cross)
+      iconoEstado.innerHTML = `{% render 'icon-estado-off' %}`;
+      iconoEstado.classList.remove('p-sme-icono-activo');
+
+      // 3.4 Restaurar color original de textos
+      textos.forEach((p) => (p.style.color = ''));
     }
   }
 
