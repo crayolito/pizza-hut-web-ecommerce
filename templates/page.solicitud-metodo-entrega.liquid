@@ -783,9 +783,8 @@
 
       // Desactivar modo envío a domicilio si está activo
       if (this.contenidoEnvioDomicilio.style.visibility === 'visible') {
-        console.log('Entra a desactivar modo envío a domicilio');
         this.contenidoEnvioDomicilio.style.visibility = 'hidden';
-        this.imagenAuxiliarFondo.style.visibility = 'visible';
+        {% comment %} this.imagenAuxiliarFondo.style.visibility = 'visible'; {% endcomment %}
         this.desactivarBotonEnvioDomicilio();
       }
     }
