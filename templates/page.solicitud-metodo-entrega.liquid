@@ -89,7 +89,7 @@
       </div>
 
       <!-- Modal para selección de ubicación -->
-      <div 
+      <div
         style="
           width: 100vw;
           height: 100vh;
@@ -102,8 +102,9 @@
           justify-content: center;
           align-items: center;
         "
-        class="p-sme-modal-mapa-envio-domicilio">
-        <div 
+        class="p-sme-modal-mapa-envio-domicilio"
+      >
+        <div
           style="
             width: 60vw;
             height: 90vh;
@@ -111,14 +112,74 @@
             border-radius: 0.22rem;
             padding: 1rem;
           "
-          class="p-sme-modal">
-          <div class="p-sme-modal-header">
-            <div class="p-sme-message">
-              {% render 'icon-info' %}
-              <p>Si es necesario, cambia la ubicación del pin en el mapa</p>
+          class="p-sme-modal"
+        >
+          <div
+            style="
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              gap: 1rem;
+            "
+            class="p-sme-modal-header"
+          >
+            <div
+              style="
+                width:5rem;
+                height: 1.25rem;
+              "
+              class="p-sme-modal-pizza-logo"
+            >
+              <img
+                style="
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                "
+                src="{{ 'logo-pizza-hut.png' | asset_url }}"
+                alt="Logo Pizza Hut"
+              >
             </div>
-            <div class="p-sme-close-icon">
-              {% render 'icon-close-custom' %}
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+                width: 40.1875rem;
+              "
+              class="p-sme-informacion-seleccion-cliente-modal"
+            >
+              <div class="p-sme-menesajes-informacion-cliente-modal">
+                <span class="font-size: 2.375rem; p-sme-titulo-principal-modal">¿cómo quieres recibir tu pizza?</span>
+                <p class="font-size: 0.5rem; p-sme-texto-descripcion-modal">
+                  Elige si la llevamos hasta la puerta de tu casa o si prefieres recogerla tú mismo desde nuestro local
+                  más cercano.
+                </p>
+              </div>
+
+              <div
+                style="
+                                                    display: flex;
+                                    width: 40.1875rem;
+                                    height: 3.75rem;
+                                    padding: 0rem 0.625rem 0rem 1.25rem;
+                                    align-items: center;
+                                    gap: 0.375rem;
+                                    flex-shrink: 0;
+                                    border-radius: var(--XS, 0.25rem);
+                  border-left: 4px solid #A9B5F3;
+
+                  background: #F4F7FF;
+                "
+                class="p-sme-seccion-mensaje-modal"
+              >
+                {% render 'icon-info' %}
+
+                <p class="font-size: 0.5rem; p-sme-texto-descripcion-modal">
+                  Seleccionar dirección en el mapa o en la lista
+                </p>
+              </div>
             </div>
           </div>
           <div class="p-sme-mapa"></div>
