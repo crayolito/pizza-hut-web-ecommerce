@@ -785,6 +785,10 @@
     }
 
     desactivarBotonEnvioDomicilio() {
+      const iconoPrincipal = this.botonEnvioDomicilio.querySelector('.p-sme-icono-envio-domicilio');
+      const iconoEstado = this.botonEnvioDomicilio.querySelector('.p-sme-icono-selecionado');
+      const textos = this.botonEnvioDomicilio.querySelectorAll('p');
+
       // ===== MODO DESACTIVADO =====
       // 3.1 Forzar remoción de clase principal (por si hay errores en el toggle)
       this.botonEnvioDomicilio.classList.remove('p-sme-boton-envio-domicilio-activo');
@@ -801,6 +805,10 @@
     }
 
     desactivarBotonRecogerLocal() {
+      const iconoPrincipal = this.botonRecogerLocal.querySelector('.p-sme-icono-recogo-local');
+      const iconoEstado = this.botonRecogerLocal.querySelector('.p-sme-icono-selecionado');
+      const textos = this.botonRecogerLocal.querySelectorAll('p');
+
       // ===== MODO DESACTIVADO =====
       // 3.1 Forzar remoción de clase principal (por si hay errores en el toggle)
       this.botonRecogerLocal.classList.remove('p-sme-boton-recoger-local-activo');
