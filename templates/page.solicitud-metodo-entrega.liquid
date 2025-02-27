@@ -618,6 +618,15 @@
     }
 
     inicializarMapa() {
+      // Seleccionar contenedor del mapa dentro del modal
+      this.contenedorMapa = this.querySelector('.p-sme-mapa');
+      
+      // Verificar que existe el elemento
+      if (!this.contenedorMapa) {
+        console.error('No se encontró el contenedor del mapa');
+        return;
+      }
+
       // Opciones del mapa para mostrar calles y avenidas claramente
       const opcionesMapa = {
         center: this.coordenadasBase,
@@ -629,8 +638,8 @@
         zoomControl: true,
       };
 
-      // Crear el mapa con las opciones definidas
-      const mapa = new google.maps.Map(this.mapa, opcionesMapa);
+      // Crear el mapa con el contenedor seleccionado
+      const mapa = new google.maps.Map(this.contenedorMapa, opcionesMapa);
 
       // Crear un marcador arrastrable que se puede mover
       const marcadorMovible = new google.maps.Marker({
