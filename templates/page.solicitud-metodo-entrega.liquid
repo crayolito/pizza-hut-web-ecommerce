@@ -793,23 +793,21 @@
 
         // 2.3 Cambiar color de textos a blanco
         textos.forEach((p) => (p.style.color = 'white'));
-
-        // Acomodar el contenido de la pagina
-        this.imagenAuxiliarFondo.style.top = '40.7528rem';
-
-        // Desactivar contenido de recogida local
-        if (this.contenidoRecogidaLocal.style.visibility === 'visible') {
-          // Ocultar contenido de recogida local
-          this.contenidoRecogidaLocal.style.visibility = 'hidden';
-          this.desactivarBotonRecogerLocal(iconoPrincipal, iconoEstado, textos);
-        }
-
-        // Mostrar contenido de envío a domicilio
-        this.contenidoEnvioDomicilio.style.visibility = 'visible';
       } else {
         console.log('Entra a desactivar boton envio domicilio');
-        this.desactivarBotonEnvioDomicilio();
+        this.desactivarBotonEnvioDomicilio(iconoPrincipal, iconoEstado, textos);
       }
+
+      // Desactivar contenido de recogida local
+      if (this.contenidoRecogidaLocal.style.visibility === 'visible') {
+        // Ocultar contenido de recogida local
+        this.contenidoRecogidaLocal.style.visibility = 'hidden';
+        this.desactivarBotonRecogerLocal(iconoPrincipal, iconoEstado, textos);
+      }
+
+      // Mostrar contenido de envío a domicilio
+      this.imagenAuxiliarFondo.style.top = '40.7528rem';
+      this.contenidoEnvioDomicilio.style.visibility = 'visible';
     }
 
     desactivarBotonEnvioDomicilio(iconoPrincipal, iconoEstado, textos) {
