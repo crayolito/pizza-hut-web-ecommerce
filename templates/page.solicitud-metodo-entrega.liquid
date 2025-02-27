@@ -72,7 +72,7 @@
         <div class="p-sme-contenido-recogida-local"></div>
         <div id="p-sme-boton-abrir-modal-mapa" class="p-sme-contenido-envio-domicilio">
           <p>Ingresa una dirección o usa tu ubicación actual</p>
-          <button>
+          <button id="p-sme-boton-ubicacion-actual">
             {% render 'icon-gps-rojo' %}
             <p>Usar mi ubicación actual</p>
           </button>
@@ -594,22 +594,23 @@
       this.contenidoModal = this.querySelector('.p-sme-modal-mapa-envio-domicilio');
       this.botonCerrarModal = this.querySelector('#p-sme-boton-cerrar-modal');
       this.botonConfirmarModal = this.querySelector('#p-sme-boton-confirmar-modal');
-
+      this.botonUbicacionActual = this.querySelector('#p-sme-boton-ubicacion-actual');
+      
       // Asignar event listeners
       this.botonRecogerLocal.addEventListener('click', this.accionBotonRecogerLocal.bind(this));
       this.botonEnvioDomicilio.addEventListener('click', this.accionBotonEnvioDomicilio.bind(this));
       this.contenidoModal.addEventListener('click', this.cerrarModal.bind(this)); 
       this.botonCerrarModal.addEventListener('click', this.cerrarModal.bind(this));
+      this.botonUbicacionActual.addEventListener('click', this.mostrarModal.bind(this));
 
       // Inicializar contenidos ocultos
       this.contenidoRecogidaLocal.style.display = 'none';
       this.contenidoEnvioDomicilio.style.display = 'none';
-      {% comment %} this.contenidoModal.style.display = 'none'; {% endcomment %}
+      this.contenidoModal.style.display = 'none';
     }
 
     mostrarModal() {
       this.contenidoModal.style.display = 'block';
-
       // Inicializar el mapa
       this.inicializarMapa();
     }
