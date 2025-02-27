@@ -125,448 +125,448 @@
 </html>
 
 <style>
-      /* Estilos base */
-      body,
-      html {
-        margin: 0;
-        padding: 0;
-        font-family: var(--fuente-principal);
-      }
+    /* Estilos base */
+    body,
+    html {
+      margin: 0;
+      padding: 0;
+      font-family: var(--fuente-principal);
+    }
 
-      /* Contenedores principales */
-      .p-sme-contenedor-base {
-        width: 100%;
-        height: 110rem;
-        position: relative;
-      }
+    /* Contenedores principales */
+    .p-sme-contenedor-base {
+      width: 100%;
+      height: 110rem;
+      position: relative;
+    }
 
-      /* Background y logo */
-      .p-sme-pizza-background {
-        /* SITUACION DEL ENVIO A DOMICILIO */
-        top: 40.7528rem;
-        /* SITUACION DEL ENVIO A DOMICILIO */
-         {% comment %} display: none;  {% endcomment %}
-         /* NORMAL */
-         {% comment %} top: 31.9rem; {% endcomment %}
-        width: 59.895rem;
-        height: 37.345rem;
-        left: 0rem;
-        z-index: 2;
-        position: absolute;
-      }
+    /* Background y logo */
+    .p-sme-pizza-background {
+      /* SITUACION DEL ENVIO A DOMICILIO */
+      top: 40.7528rem;
+      /* SITUACION DEL ENVIO A DOMICILIO */
+       {% comment %} display: none;  {% endcomment %}
+       /* NORMAL */
+       {% comment %} top: 31.9rem; {% endcomment %}
+      width: 59.895rem;
+      height: 37.345rem;
+      left: 0rem;
+      z-index: 2;
+      position: absolute;
+    }
 
-      .p-sme-pizza-logo {
-        width: 9.625rem;
-        height: 2.3046rem;
-        top: 6.4768rem;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 2;
-        position: absolute;
-      }
+    .p-sme-pizza-logo {
+      width: 9.625rem;
+      height: 2.3046rem;
+      top: 6.4768rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      position: absolute;
+    }
 
-      .p-sme-pizza-logo img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
+    .p-sme-pizza-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
 
-      /* Sección de selección */
-      .p-sme-informacion-seleccion-cliente {
-        display: flex;
-        width: 35.365rem;
-        flex-direction: column;
-        align-items: center;
-        gap: 2.64rem;
-        top: 12.2672rem;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 2;
-        position: absolute;
-      }
+    /* Sección de selección */
+    .p-sme-informacion-seleccion-cliente {
+      display: flex;
+      width: 35.365rem;
+      flex-direction: column;
+      align-items: center;
+      gap: 2.64rem;
+      top: 12.2672rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      position: absolute;
+    }
 
-      .p-sme-menesajes-informacion-cliente {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1.1rem;
-        text-align: center;
-      }
+    .p-sme-menesajes-informacion-cliente {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.1rem;
+      text-align: center;
+    }
 
-      /* Textos */
-      .p-sme-titulo-principal {
-        color: #231f20;
-        text-align: center;
-        font-size: 3.85rem;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 100%;
-        letter-spacing: -0.077rem;
-        text-transform: uppercase;
-      }
+    /* Textos */
+    .p-sme-titulo-principal {
+      color: #231f20;
+      text-align: center;
+      font-size: 3.85rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 100%;
+      letter-spacing: -0.077rem;
+      text-transform: uppercase;
+    }
 
-      .p-sme-texto-descripcion {
-        color: #231f20;
-        font-size: 1rem;
-        line-height: normal;
-      }
+    .p-sme-texto-descripcion {
+      color: #231f20;
+      font-size: 1rem;
+      line-height: normal;
+    }
 
-      /* Botones de selección */
-      .p-sme-boton-recoger-local {
-        cursor: pointer;
-        display: flex;
-        width: 17.05rem;
-        height: 3.85rem;
-        padding: 0.22rem 0.88rem;
-        justify-content: space-between;
-        align-items: center;
-        flex-shrink: 0;
-        border-radius: 0.55rem;
-        border: 1px solid #969696;
-        background: #fff;
-      }
+    /* Botones de selección */
+    .p-sme-boton-recoger-local {
+      cursor: pointer;
+      display: flex;
+      width: 17.05rem;
+      height: 3.85rem;
+      padding: 0.22rem 0.88rem;
+      justify-content: space-between;
+      align-items: center;
+      flex-shrink: 0;
+      border-radius: 0.55rem;
+      border: 1px solid #969696;
+      background: #fff;
+    }
 
-      .p-sme-boton-envio-domicilio {
-        cursor: pointer;
-        display: flex;
-        width: 17.05rem;
-        height: 3.85rem;
-        padding: 0.22rem 0.88rem;
-        justify-content: space-between;
-        align-items: center;
-        flex-shrink: 0;
-        border-radius: 0.55rem;
-        border: 1px solid #969696;
-        background: #fff;
-      }
+    .p-sme-boton-envio-domicilio {
+      cursor: pointer;
+      display: flex;
+      width: 17.05rem;
+      height: 3.85rem;
+      padding: 0.22rem 0.88rem;
+      justify-content: space-between;
+      align-items: center;
+      flex-shrink: 0;
+      border-radius: 0.55rem;
+      border: 1px solid #969696;
+      background: #fff;
+    }
 
-      .p-sme-texto-boton-titulo {
-        font-size: 0.88rem;
-        font-weight: 600;
-      }
+    .p-sme-texto-boton-titulo {
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
 
-      .p-sme-texto-boton-subtitulo {
-        color: #5a5a5a;
-        font-size: 0.88rem;
-        font-weight: 400;
-      }
+    .p-sme-texto-boton-subtitulo {
+      color: #5a5a5a;
+      font-size: 0.88rem;
+      font-weight: 400;
+    }
 
-      /* Sección inferior */
-      .p-sme-opciones-cliente {
-        padding: 0 3.52rem;
-        width: 100%;
-        height: 5.06rem;
-        position: sticky;
-        top: 80vh;
-        z-index: 100;
-      }
+    /* Sección inferior */
+    .p-sme-opciones-cliente {
+      padding: 0 3.52rem;
+      width: 100%;
+      height: 5.06rem;
+      position: sticky;
+      top: 80vh;
+      z-index: 100;
+    }
 
-      .p-sme-opciones-cliente-contenido {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        padding: var(--XXXL, 2.64rem);
-        justify-content: flex-end;
-        align-items: center;
-        gap: var(--XXL, 1.32rem);
-        flex-shrink: 0;
-        border-radius: var(--S, 0.44rem);
-        border: 1px solid var(--gris-light-active, #dedede);
-        background: var(--White, #fff);
-      }
+    .p-sme-opciones-cliente-contenido {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      padding: var(--XXXL, 2.64rem);
+      justify-content: flex-end;
+      align-items: center;
+      gap: var(--XXL, 1.32rem);
+      flex-shrink: 0;
+      border-radius: var(--S, 0.44rem);
+      border: 1px solid var(--gris-light-active, #dedede);
+      background: var(--White, #fff);
+    }
 
-      .p-sme-seccion-seleccion-cliente {
-        display: flex;
-        width: 35rem;
-        justify-content: space-between;
-      }
+    .p-sme-seccion-seleccion-cliente {
+      display: flex;
+      width: 35rem;
+      justify-content: space-between;
+    }
 
-      /* Botones de acción */
-      .p-sme-boton-omitir {
-        cursor: pointer;
-        display: flex;
-        width: 17.05rem;
-        height: 2.64rem;
-        padding: 1.1rem;
-        justify-content: center;
-        align-items: center;
-        gap: 0.22rem;
-        flex-shrink: 0;
-        border-radius: var(--XS, 0.22rem);
-        border: 1px solid var(--Pizza-Hut-Red, #c8102e);
-        background: var(--White, #fff);
-      }
+    /* Botones de acción */
+    .p-sme-boton-omitir {
+      cursor: pointer;
+      display: flex;
+      width: 17.05rem;
+      height: 2.64rem;
+      padding: 1.1rem;
+      justify-content: center;
+      align-items: center;
+      gap: 0.22rem;
+      flex-shrink: 0;
+      border-radius: var(--XS, 0.22rem);
+      border: 1px solid var(--Pizza-Hut-Red, #c8102e);
+      background: var(--White, #fff);
+    }
 
-      .p-sme-texto-omitir {
-        color: #c8102e;
-        font-weight: 600;
-      }
+    .p-sme-texto-omitir {
+      color: #c8102e;
+      font-weight: 600;
+    }
 
-      .p-sme-boton-siguiente {
-        cursor: pointer;
-        display: flex;
-        width: 17.05rem;
-        height: 2.64rem;
-        padding: 1.1rem;
-        justify-content: center;
-        align-items: center;
-        gap: 0.22rem;
-        flex-shrink: 0;
-        border-radius: var(--XS, 0.22rem);
-        border: 0;
-      }
+    .p-sme-boton-siguiente {
+      cursor: pointer;
+      display: flex;
+      width: 17.05rem;
+      height: 2.64rem;
+      padding: 1.1rem;
+      justify-content: center;
+      align-items: center;
+      gap: 0.22rem;
+      flex-shrink: 0;
+      border-radius: var(--XS, 0.22rem);
+      border: 0;
+    }
 
-      .p-sme-texto-siguiente {
-        color: #717171;
-        font-weight: 600;
-      }
+    .p-sme-texto-siguiente {
+      color: #717171;
+      font-weight: 600;
+    }
 
-      /* Estilos para el contenedor principal */
-    .p-sme-contenido-envio-domicilio {
-        display: flex;
-        width: 35.42rem;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1.1rem;
-        position: absolute;
-        top: 28.99rem;
-        left: 50%;
-        transform: translateX(-50%);
-      }
+    /* Estilos para el contenedor principal */
+  .p-sme-contenido-envio-domicilio {
+      display: flex;
+      width: 35.42rem;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.1rem;
+      position: absolute;
+      top: 28.99rem;
+      left: 50%;
+      transform: translateX(-50%);
+    }
 
-      /* Estilos para el texto introductorio */
-      .p-sme-contenido-envio-domicilio p:first-of-type {
-        color: #717171;
-      }
+    /* Estilos para el texto introductorio */
+    .p-sme-contenido-envio-domicilio p:first-of-type {
+      color: #717171;
+    }
 
-      /* Estilos para el botón de ubicación */
-      .p-sme-contenido-envio-domicilio button {
-        cursor: pointer;
-        width: 100%;
-        display: flex;
-        height: 2.64rem;
-        padding: 1.1rem;
-        justify-content: center;
-        align-items: center;
-        gap: 0.22rem;
-        border-radius: 0.22rem;
-        border: 1px solid var(--Pizza-Hut-Red, #C8102E);
-        background: var(--White, #FFF);
-      }
+    /* Estilos para el botón de ubicación */
+    .p-sme-contenido-envio-domicilio button {
+      cursor: pointer;
+      width: 100%;
+      display: flex;
+      height: 2.64rem;
+      padding: 1.1rem;
+      justify-content: center;
+      align-items: center;
+      gap: 0.22rem;
+      border-radius: 0.22rem;
+      border: 1px solid var(--Pizza-Hut-Red, #C8102E);
+      background: var(--White, #FFF);
+    }
 
-      /* Estilos para el texto del botón */
-      .p-sme-contenido-envio-domicilio button p {
-        color: #C8102E;
-        font-size: 0.88rem;
-        font-weight: 600;
-      }
+    /* Estilos para el texto del botón */
+    .p-sme-contenido-envio-domicilio button p {
+      color: #C8102E;
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
 
-      /* Estilos para el separador (O) */
-      .p-sme-decoracion-contenedor {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        align-self: stretch;
-      }
+    /* Estilos para el separador (O) */
+    .p-sme-decoracion-contenedor {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      align-self: stretch;
+    }
 
-      /* Estilos para las líneas del separador */
-      .p-sme-decoracion-contenedor hr {
-        width: 13.75rem;
-        background: #DEDEDE;
-      }
+    /* Estilos para las líneas del separador */
+    .p-sme-decoracion-contenedor hr {
+      width: 13.75rem;
+      background: #DEDEDE;
+    }
 
-      /* Estilos para el contenedor del input */
-      .p-sme-contenedor-input-direccion {
-        display: flex;
-        height: 2.64rem;
-        padding: 1.1rem;
-        justify-content: center;
-        align-items: center;
-        gap: 0.22rem;
-        align-self: stretch;
-        border-radius: 0.22rem;
-        border: 1px solid #717171;
-        background: #FFF;
-      }
+    /* Estilos para el contenedor del input */
+    .p-sme-contenedor-input-direccion {
+      display: flex;
+      height: 2.64rem;
+      padding: 1.1rem;
+      justify-content: center;
+      align-items: center;
+      gap: 0.22rem;
+      align-self: stretch;
+      border-radius: 0.22rem;
+      border: 1px solid #717171;
+      background: #FFF;
+    }
 
-      /* Estilos para el input */
-      .p-sme-contenedor-input-direccion input {
-        border: none;
-        outline: none;
-        width: 100%;
-      }
+    /* Estilos para el input */
+    .p-sme-contenedor-input-direccion input {
+      border: none;
+      outline: none;
+      width: 100%;
+    }
 
-      .p-sme-boton-recoger-local-activo {
-        border-color: #c8102e !important;
-        background: #c8102e !important;
-      }
+    .p-sme-boton-recoger-local-activo {
+      border-color: #c8102e !important;
+      background: #c8102e !important;
+    }
 
-      .p-sme-icono-recogo-local.p-sme-icono-activo {
-        filter: brightness(0) invert(1);
-      }
+    .p-sme-icono-recogo-local.p-sme-icono-activo {
+      filter: brightness(0) invert(1);
+    }
 
-      .p-sme-boton-envio-domicilio-activo {
-        border-color: #c8102e !important;
-        background: #c8102e !important;
-      }
+    .p-sme-boton-envio-domicilio-activo {
+      border-color: #c8102e !important;
+      background: #c8102e !important;
+    }
 
-      .p-sme-icono-envio-domicilio.p-sme-icono-activo {
-        filter: brightness(0) invert(1);
-      }
+    .p-sme-icono-envio-domicilio.p-sme-icono-activo {
+      filter: brightness(0) invert(1);
+    }
 
-      /* Modal principal */
-  .p-sme-modal-mapa-envio-domicilio {
-    width: 100vw;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-  }
+    /* Modal principal */
+    .p-sme-modal-mapa-envio-domicilio {
+      width: 100vw;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
 
-  /* Contenedor del modal */
-  .p-sme-modal {
-    width: 60vw;
-    height: 95vh;
-    background-color: #fff;
-    border-radius: 0.22rem;
-    padding: 1rem;
-    cursor: auto;
-  }
+    /* Contenedor del modal */
+    .p-sme-modal {
+      width: 60vw;
+      height: 95vh;
+      background-color: #fff;
+      border-radius: 0.22rem;
+      padding: 1rem;
+      cursor: auto;
+    }
 
-  /* Header del modal */
-  .p-sme-modal-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    width: 100%;
-    height: 38%;
-  }
+    /* Header del modal */
+    .p-sme-modal-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      width: 100%;
+      height: 38%;
+    }
 
-  /* Logo de Pizza Hut */
-  .p-sme-modal-pizza-logo {
-    width: 8rem;
-    height: 2.25rem;
-  }
+    /* Logo de Pizza Hut */
+    .p-sme-modal-pizza-logo {
+      width: 8rem;
+      height: 2.25rem;
+    }
 
-  .p-sme-modal-pizza-logo img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
+    .p-sme-modal-pizza-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
 
-  /* Información de selección del cliente */
-  .p-sme-informacion-seleccion-cliente-modal {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    width: 40.1875rem;
-  }
+    /* Información de selección del cliente */
+    .p-sme-informacion-seleccion-cliente-modal {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      width: 40.1875rem;
+    }
 
-  /* Mensajes de información */
-  .p-sme-menesajes-informacion-cliente-modal {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    width: 40.1875rem;
-    text-align: center;
-  }
+    /* Mensajes de información */
+    .p-sme-menesajes-informacion-cliente-modal {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      width: 40.1875rem;
+      text-align: center;
+    }
 
-  /* Título principal */
-  .p-sme-titulo-principal-modal {
-    font-size: 1.7rem;
-    color: #231f20;
-    text-align: center;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 100%;
-    letter-spacing: -0.077rem;
-    text-transform: uppercase;
-  }
+    /* Título principal */
+    .p-sme-titulo-principal-modal {
+      font-size: 1.7rem;
+      color: #231f20;
+      text-align: center;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 100%;
+      letter-spacing: -0.077rem;
+      text-transform: uppercase;
+    }
 
-  /* Texto descriptivo */
-  .p-sme-texto-descripcion-modal {
-    font-size: 0.85rem !important;
-  }
+    /* Texto descriptivo */
+    .p-sme-texto-descripcion-modal {
+      font-size: 0.85rem !important;
+    }
 
-  /* Sección de mensaje */
-  .p-sme-seccion-mensaje-modal {
-    display: flex;
-    width: 27.1875rem;
-    height: 2.75rem;
-    padding: 0rem 0.3rem 0rem 1rem;
-    align-items: center;
-    gap: 0.375rem;
-    flex-shrink: 0;
-    border-radius: var(--XS, 0.25rem);
-    border-left: 4px solid #A9B5F3;
-    background: #F4F7FF;
-  }
+    /* Sección de mensaje */
+    .p-sme-seccion-mensaje-modal {
+      display: flex;
+      width: 27.1875rem;
+      height: 2.75rem;
+      padding: 0rem 0.3rem 0rem 1rem;
+      align-items: center;
+      gap: 0.375rem;
+      flex-shrink: 0;
+      border-radius: var(--XS, 0.25rem);
+      border-left: 4px solid #A9B5F3;
+      background: #F4F7FF;
+    }
 
-  /* Sección del mapa */
-  .p-sme-mapa {
-    width: 100%;
-    height: 54%;
-  }
+    /* Sección del mapa */
+    .p-sme-mapa {
+      width: 100%;
+      height: 54%;
+    }
 
-  /* Footer del modal */
-  .p-sme-modal-footer {
-    height: 10%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: var(--XXL, 1.32rem);
-  }
+    /* Footer del modal */
+    .p-sme-modal-footer {
+      height: 10%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: var(--XXL, 1.32rem);
+    }
 
-  /* Botón cerrar */
-  .p-sme-boton-cerrar {
-    display: flex;
-    width: 13.05rem;
-    height: 1.64rem;
-    padding: 1.10rem;
-    justify-content: center;
-    align-items: center;
-    gap: 0.22rem;
-    flex-shrink: 0;
-    border-radius: var(--XS, 0.22rem);
-    border: 1px solid var(--Pizza-Hut-Red, #C8102E);
-    background: var(--White, #FFF);
-  }
+    /* Botón cerrar */
+    .p-sme-boton-cerrar {
+      display: flex;
+      width: 13.05rem;
+      height: 1.64rem;
+      padding: 1.10rem;
+      justify-content: center;
+      align-items: center;
+      gap: 0.22rem;
+      flex-shrink: 0;
+      border-radius: var(--XS, 0.22rem);
+      border: 1px solid var(--Pizza-Hut-Red, #C8102E);
+      background: var(--White, #FFF);
+    }
 
-  .p-sme-boton-cerrar p {
-    color: #C8102E;
-    font-weight: 600;
-    font-size: 0.77rem;
-  }
+    .p-sme-boton-cerrar p {
+      color: #C8102E;
+      font-weight: 600;
+      font-size: 0.77rem;
+    }
 
-  /* Botón confirmar */
-  .p-sme-boton-confirmar {
-    display: flex;
-    width: 13.05rem;
-    height: 1.64rem;
-    padding: 1.10rem;
-    justify-content: center;
-    align-items: center;
-    gap: 0.22rem;
-    flex-shrink: 0;
-    border-radius: var(--XS, 0.22rem);
-    background: var(--gris-light-hover, #C8102E);
-  }
+    /* Botón confirmar */
+    .p-sme-boton-confirmar {
+      display: flex;
+      width: 13.05rem;
+      height: 1.64rem;
+      padding: 1.10rem;
+      justify-content: center;
+      align-items: center;
+      gap: 0.22rem;
+      flex-shrink: 0;
+      border-radius: var(--XS, 0.22rem);
+      background: var(--gris-light-hover, #C8102E);
+    }
 
-  .p-sme-boton-confirmar p {
-    color: #FFF;
-    font-weight: 600;
-    font-size: 0.77rem;
-  }
+    .p-sme-boton-confirmar p {
+      color: #FFF;
+      font-weight: 600;
+      font-size: 0.77rem;
+    }
 </style>
 
 <script>
