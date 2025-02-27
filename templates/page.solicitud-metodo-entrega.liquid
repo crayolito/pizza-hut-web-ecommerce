@@ -793,16 +793,6 @@
         // - Mostrar sección de entrada de dirección
         this.imagenAuxiliarFondo.style.top = '40.7528rem';
         this.contenidoEnvioDomicilio.style.visibility = 'visible';
-
-        // Desactivar modo recogida en local si está activo
-        if (this.contenidoRecogidaLocal.style.visibility === 'visible') {
-          const iconoPrincipal = this.botonRecogerLocal.querySelector('.p-sme-icono-recogo-local');
-          const iconoEstado = this.botonRecogerLocal.querySelector('.p-sme-icono-selecionado');
-          const textos = this.botonRecogerLocal.querySelectorAll('p');
-          this.contenidoRecogidaLocal.style.visibility = 'hidden';
-          this.imagenAuxiliarFondo.style.visibility = 'visible';
-          this.desactivarBotonRecogerLocal(iconoPrincipal, iconoEstado, textos);
-        }
       } else {
         // === MODO DESACTIVACIÓN ===
         // Restaurar estado original del botón y elementos relacionados
@@ -815,17 +805,17 @@
         // Revertir cambios de interfaz:
         // - Restaurar posición original de la imagen de fondoo
         // - Ocultar sección de dirección
-        this.imagenAuxiliarFondo.style.top = '31.9rem';
         this.contenidoEnvioDomicilio.style.visibility = 'hidden';
+        this.imagenAuxiliarFondo.style.top = '31.9rem';
       }
 
-      // Desactivar contenido de recogida local
+      // Desactivar modo recogida en local si está activo
       if (this.contenidoRecogidaLocal.style.visibility === 'visible') {
         const iconoPrincipal = this.botonRecogerLocal.querySelector('.p-sme-icono-recogo-local');
         const iconoEstado = this.botonRecogerLocal.querySelector('.p-sme-icono-selecionado');
         const textos = this.botonRecogerLocal.querySelectorAll('p');
-        // Ocultar contenido de recogida local
         this.contenidoRecogidaLocal.style.visibility = 'hidden';
+        this.imagenAuxiliarFondo.style.visibility = 'visible';
         this.desactivarBotonRecogerLocal(iconoPrincipal, iconoEstado, textos);
       }
     }
