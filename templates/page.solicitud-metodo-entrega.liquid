@@ -771,6 +771,7 @@
 
       // Desactivar modo envío a domicilio si está activo
       if (this.contenidoEnvioDomicilio.style.visibility === 'visible') {
+        console.log('Entra a desactivar modo envío a domicilio');
         this.contenidoEnvioDomicilio.style.visibility = 'hidden';
         this.imagenAuxiliarFondo.style.visibility = 'visible';
         this.desactivarBotonEnvioDomicilio();
@@ -811,6 +812,7 @@
 
       // Desactivar modo recogida en local si está activo
       if (this.contenidoRecogidaLocal.style.visibility === 'visible') {
+        console.log('Entra a desactivar modo recogida en local');
         this.contenidoRecogidaLocal.style.visibility = 'hidden';
         this.imagenAuxiliarFondo.style.visibility = 'visible';
         this.desactivarBotonRecogerLocal();
