@@ -769,7 +769,7 @@
         // Mostrar contenido de recogida local
         this.contenidoRecogidaLocal.style.visibility = 'visible';
       } else {
-        this.desactivarBotonRecogerLocal(iconoPrincipal, iconoEstado, textos);
+        this.desactivarBotonRecogerLocal();
       }
     }
 
@@ -796,11 +796,7 @@
       } else {
         // === MODO DESACTIVACIÓN ===
         // Restaurar estado original del botón y elementos relacionados
-        this.botonEnvioDomicilio.classList.remove('p-sme-boton-envio-domicilio-activo');
-        iconoPrincipal?.classList.remove('p-sme-icono-activo');
-        iconoEstado.innerHTML = `{% render 'icon-estado-off' %}`;
-        iconoEstado.classList.remove('p-sme-icono-activo');
-        textos.forEach((p) => (p.style.color = ''));
+        this.desactivarBotonEnvioDomicilio();
 
         // Revertir cambios de interfaz:
         // - Restaurar posición original de la imagen de fondoo
@@ -811,12 +807,9 @@
 
       // Desactivar modo recogida en local si está activo
       if (this.contenidoRecogidaLocal.style.visibility === 'visible') {
-        const iconoPrincipal = this.botonRecogerLocal.querySelector('.p-sme-icono-recogo-local');
-        const iconoEstado = this.botonRecogerLocal.querySelector('.p-sme-icono-selecionado');
-        const textos = this.botonRecogerLocal.querySelectorAll('p');
         this.contenidoRecogidaLocal.style.visibility = 'hidden';
         this.imagenAuxiliarFondo.style.visibility = 'visible';
-        this.desactivarBotonRecogerLocal(iconoPrincipal, iconoEstado, textos);
+        this.desactivarBotonRecogerLocal();
       }
     }
 
@@ -839,7 +832,7 @@
       textos.forEach((p) => (p.style.color = ''));
     }
 
-    desactivarBotonRecogerLocal(iconoPrincipal, iconoEstado, textos) {
+    desactivarBotonRecogerLocal() {
       const iconoPrincipal = this.botonRecogerLocal.querySelector('.p-sme-icono-recogo-local');
       const iconoEstado = this.botonRecogerLocal.querySelector('.p-sme-icono-selecionado');
       const textos = this.botonRecogerLocal.querySelectorAll('p');
