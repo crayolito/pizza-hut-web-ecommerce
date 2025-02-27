@@ -709,95 +709,39 @@
       });
     }
     
-    crearBotonUbicacion(mapa) {
-      const boton = document.createElement('div');
-      // ... configuración del botón ...
-      boton.addEventListener('click', () => { /*...*/ });
-      return boton;
-    }
-
-    {% comment %} inicializarMapa() {
-      try {
-        // Seleccionar contenedor del mapa dentro del modal
-      this.contenedorMapa = this.querySelector('.p-sme-mapa');
+    crearBotonUbicacion() {
+      const boton = document.createElement('button');
+      boton.innerHTML = '📍 Mi ubicación';
+      boton.style.cssText = `
+        background: #fff;
+        border: 2px solid #ccc;
+        padding: 10px 15px;
+        margin: 10px;
+        cursor: pointer;
+        border-radius: 5px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+        font-family: Arial, sans-serif;
+      `;
       
-      // Verificar que existe el elemento
-      if (!this.contenedorMapa) {
-        alert('Error: No se pudo cargar el mapa. Por favor recarga la página');
-        return;
-      }
-
-      // Opciones del mapa simplificadas con solo control de zoom
-      const opcionesMapa = {
-        center: this.coordenadasBase,
-        zoom: 15,
-        mapTypeId: google.maps.MapTypeId.ROADMAP,
-        mapTypeControl: false,  // Oculta los botones de Mapa/Satélite
-        streetViewControl: false,  // Oculta el control de Street View
-        fullscreenControl: false,  // Oculta el botón de pantalla completa
-        zoomControl: true,  // Mantiene solo los controles de zoom
-        scaleControl: false,
-        rotateControl: false,
-        panControl: false,
-        disableDefaultUI: false
-      };
-
-      // Crear el mapa con el contenedor seleccionado
-      const mapa = new google.maps.Map(this.contenedorMapa, opcionesMapa);
-
-      // Crear un marcador arrastrable que se puede mover
-      const marcadorMovible = new google.maps.Marker({
-        position: this.coordenadasBase,
-        map: mapa,
-        draggable: true, // Permite arrastrar el marcador
-        animation: google.maps.Animation.DROP // Animación al colocar el marcador
-      });
-
-       // Agregar evento cuando se termina de arrastrar el marcador
-       marcadorMovible.addListener('dragend', (evento) => {
-        // Actualizar coordenadas en el objeto this cuando se mueve el marcador
-        try {
-          const posicion = marcadorMovible.getPosition();
-          this.coordenadas = {
-            lat: posicion.lat(),
-            lng: posicion.lng()
-          };
-          mapa.panTo(posicion);
-        } catch (error) {
-          alert('Error al actualizar la posición. Intenta mover el marcador nuevamente');
-        }
-      });
-
-      // Evento para el botón de ubicación actual
-      botonUbicacion.addEventListener('click', () => {
+      boton.addEventListener('click', () => {
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(
-            (posicion) => {
-              try {
-                // ... código existente ...
-              } catch (error) {
-                alert('Error al procesar tu ubicación');
-              }
+            (pos) => {
+              const nuevaPos = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
+              this.marcadorMovible.setPosition(nuevaPos);
+              this.mapa.panTo(nuevaPos);
+              this.coordenadas = { lat: nuevaPos.lat(), lng: nuevaPos.lng() };
             },
             (error) => {
-              let mensaje = 'No pudimos obtener tu ubicación. ';
-              if (error.code === error.PERMISSION_DENIED) {
-                mensaje += 'Por favor habilita los permisos de ubicación en tu navegador';
-              }
-              alert(mensaje);
+              alert('Activa los permisos de ubicación en tu navegador');
             }
           );
-        } else {
-          alert('Tu navegador no soporta geolocalización. Actualízalo o usa otro dispositivo');
         }
       });
-
-      // Pedir la ubicación actual del usuario
-      this.obtenerUbicacion();
-      } catch (error) {
-        alert('Error al cargar el mapa. Por favor, recarga la página');
-      }
-    } {% endcomment %}
+      
+      return boton;
+    }
+    
 
     cerrarModal() {
       this.contenidoModal.style.display = 'none';
