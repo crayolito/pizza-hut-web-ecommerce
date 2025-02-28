@@ -80,11 +80,16 @@
     <!-- Buscador -->
     <div
       style="
-         display: flex;
-        width: clamp(8.75rem, 8.11rem + 0.2vw, 10.94rem);
-        flex-direction: column;
-        align-items: flex-start;
-        gap: clamp(0.18rem, 0.17rem + 0.01vw, 0.22rem);
+        display: flex;
+        height: clamp(2.1rem, 1.95rem + 0.75vw, 2.625rem); /* 3rem - 12.5% */
+        padding: clamp(0.87rem, 0.81rem + 0.3vw, 1.09rem); /* 1.25rem - 12.5% */
+        align-items: center;
+        gap: clamp(0.18rem, 0.17rem + 0.01vw, 0.22rem); /* 0.25rem - 12.5% */
+        align-self: stretch;
+
+        border-radius: clamp(0.18rem, 0.17rem + 0.01vw, 0.22rem); /* 0.25rem - 12.5% */
+        border: 1px solid var(--Minka-Gris-medio-Normal, #6E6E6E);
+        background: var(--Blanco, #FFF);
       "
       class="contenedor-buscador"
     >
