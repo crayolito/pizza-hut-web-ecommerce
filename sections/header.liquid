@@ -9,12 +9,6 @@
 
   .encabezado {
     width: 100%;
-    padding: 0;
-    font-family: var(--fuente-principal);
-  }
-
-  .contenedor-encabezado {
-    width: 100%;
     height: auto;
     max-width: 89.9375rem;
     min-height: 6.25rem;
@@ -36,51 +30,48 @@
 
 <sticky-header>
   <header class="encabezado">
-    <div class="contenedor-encabezado">
-      <!-- Logo -->
-      <div class="contenedor-logo">
-        <img src="{{ 'logo-pizza-hut.png' | asset_url }}" alt="Logo Pizza Hut">
+    <div class="contenedor-logo">
+      <img src="{{ 'logo-pizza-hut.png' | asset_url }}" alt="Logo Pizza Hut">
+    </div>
+
+    {% comment %}
+      <!-- Menú de Navegación -->
+      <nav class="menu-opciones">
+        <h4 class="menu-item">
+          <a href="/menu">Menú</a>
+        </h4>
+        <h4 class="menu-item">
+          <a href="/promociones" class="enlace-hutcoins">
+            Hut Coins
+            {% render 'icon-flecha-hutcoins' %}
+          </a>
+        </h4>
+        <h4 class="menu-item">
+          <a href="/restaurantes">Sobre Nosotros</a>
+        </h4>
+      </nav>
+
+      <!-- Buscador -->
+      <div class="contenedor-buscador">
+        {% render 'icon-search' %}
+        <input type="search" class="input-buscador" placeholder="Buscar...">
       </div>
 
-      {% comment %}
-        <!-- Menú de Navegación -->
-        <nav class="menu-opciones">
-          <h4 class="menu-item">
-            <a href="/menu">Menú</a>
-          </h4>
-          <h4 class="menu-item">
-            <a href="/promociones" class="enlace-hutcoins">
-              Hut Coins
-              {% render 'icon-flecha-hutcoins' %}
-            </a>
-          </h4>
-          <h4 class="menu-item">
-            <a href="/restaurantes">Sobre Nosotros</a>
-          </h4>
-        </nav>
-
-        <!-- Buscador -->
-        <div class="contenedor-buscador">
-          {% render 'icon-search' %}
-          <input type="search" class="input-buscador" placeholder="Buscar...">
+      <!-- Carrito y Entrega -->
+      <div class="contenedor-carrito">
+        {% render 'icon-carrito' %}
+        <div class="modo-entrega">
+          {% render 'icon-domicilio' %}
+          <h4 class="texto-entrega">DOMICILIO</h4>
         </div>
+      </div>
 
-        <!-- Carrito y Entrega -->
-        <div class="contenedor-carrito">
-          {% render 'icon-carrito' %}
-          <div class="modo-entrega">
-            {% render 'icon-domicilio' %}
-            <h4 class="texto-entrega">DOMICILIO</h4>
-          </div>
-        </div>
-
-        <!-- Estado Usuario -->
-        <div class="estado-usuario">
-          {% render 'icon-perfil-usuario' %}
-          {% render 'icon-flecha-abajo' %}
-        </div>
-      {% endcomment %}
-    </div>
+      <!-- Estado Usuario -->
+      <div class="estado-usuario">
+        {% render 'icon-perfil-usuario' %}
+        {% render 'icon-flecha-abajo' %}
+      </div>
+    {% endcomment %}
   </header>
 </sticky-header>
 
