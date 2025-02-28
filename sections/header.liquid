@@ -26,13 +26,6 @@
     object-fit: contain;
   }
 
-  .icon-control-custom {
-    width: clamp(1.05rem, 0.98rem + 0.35vw, 1.31rem); /* 1.5rem - 12.5% = 1.31rem */
-    height: clamp(1.05rem, 0.98rem + 0.35vw, 1.31rem);
-    display: inline-block;
-    vertical-align: middle;
-  }
-
   /* Nota de calculos para el uso de clamps para responsividad en ves de usar los medias querys
     Width(ancho):
     Tablet y desktop pequeño: Reducir un  20%  del valor original
@@ -66,7 +59,7 @@
       style="
         display: flex;
         align-items: center;
-        gap: var(--XXL, 1.5rem);
+        gap: clamp(1.05rem, 0.98rem + 0.35vw, 1.31rem); /* 1.5rem - 12.5% = 1.31rem */
       "
       class="menu-opciones"
     >
@@ -84,13 +77,22 @@
       </h4>
     </nav>
 
-    {% comment %}
-      <!-- Buscador -->
-      <div class="contenedor-buscador">
-        {% render 'icon-search' %}
-        <input type="search" class="input-buscador" placeholder="Buscar...">
-      </div>
+    <!-- Buscador -->
+    <div
+      style="
+         display: flex;
+        width: clamp(8.75rem, 8.11rem + 0.2vw, 10.94rem); /* 12.5rem - 12.5% = 10.94rem */
+        flex-direction: column;
+        align-items: flex-start;
+        gap: clamp(0.18rem, 0.17rem + 0.01vw, 0.22rem); /* 0.25rem - 12.5% = 0.22rem */
+      "
+      class="contenedor-buscador"
+    >
+      {% render 'icon-search', class: 'icon-control-custom' %}
+      <input type="search" class="input-buscador" placeholder="Buscar...">
+    </div>
 
+    {% comment %}
       <!-- Carrito y Entrega -->
       <div class="contenedor-carrito">
         {% render 'icon-carrito' %}
