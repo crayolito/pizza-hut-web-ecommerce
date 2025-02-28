@@ -10,10 +10,7 @@
   .encabezado {
     display: flex;
     width: 100%;
-    /* Altura: 3.5rem (móvil) -> 5.47rem (desktop) */
     height: clamp(3.5rem, 2.47rem + 4.08vw, 5.47rem);
-    /* Padding vertical: 1rem (móvil) -> 1.875rem (desktop) */
-    /* Padding horizontal: 1rem (móvil) -> 2.5rem (desktop) */
     padding: clamp(1rem, 0.52rem + 1.89vw, 1.875rem) clamp(1rem, 0.12rem + 3.5vw, 2.5rem);
     justify-content: space-between;
     align-items: center;
@@ -23,7 +20,6 @@
   }
 
   .contenedor-logo img {
-    /* Ancho: 5rem (móvil) -> 8.2rem (desktop) */
     width: clamp(5rem, 3.2rem + 7.14vw, 8.2rem);
     aspect-ratio: 83/20;
     height: auto;
@@ -58,23 +54,30 @@
       <img src="{{ 'logo-pizza-hut.png' | asset_url }}" alt="Logo Pizza Hut">
     </div>
 
-    {% comment %}
-      <!-- Menú de Navegación -->
-      <nav class="menu-opciones">
-        <h4 class="menu-item">
-          <a href="/menu">Menú</a>
-        </h4>
-        <h4 class="menu-item">
-          <a href="/promociones" class="enlace-hutcoins">
-            Hut Coins
-            {% render 'icon-flecha-hutcoins' %}
-          </a>
-        </h4>
-        <h4 class="menu-item">
-          <a href="/restaurantes">Sobre Nosotros</a>
-        </h4>
-      </nav>
+    <!-- Menú de Navegación -->
+    <nav
+      style="
+        display: flex;
+        align-items: center;
+        gap: var(--XXL, 1.5rem);
+      "
+      class="menu-opciones"
+    >
+      <h4 class="menu-item">
+        <a href="/menu">Menú</a>
+      </h4>
+      <h4 class="menu-item">
+        <a href="/promociones" class="enlace-hutcoins">
+          Hut Coins
+          {% render 'icon-flecha-hutcoins', class: 'icon-control-custom' %}
+        </a>
+      </h4>
+      <h4 class="menu-item">
+        <a href="/restaurantes">Sobre Nosotros</a>
+      </h4>
+    </nav>
 
+    {% comment %}
       <!-- Buscador -->
       <div class="contenedor-buscador">
         {% render 'icon-search' %}

@@ -144,6 +144,27 @@
         margin: 0;
         padding: 0;
       }
+
+      /* Nota de calculos para el uso de clamps para responsividad en ves de usar los medias querys
+    Width(ancho):
+    Tablet y desktop pequeño: Reducir un  20%  del valor original
+    Móvil: Reducir un  40%  del valor original
+
+    Padding y Margin:
+    Tablet y desktop pequeño: Reudcir un 25% del valor original
+    Móvil: Reudcir un 50% del valor original
+
+    Height(alto):
+    Tablet y desktop pequeño: Reducir un 20% del valor original
+    Móvil: Reducir un 35% del valor original
+
+    Simplificado:
+    clamp(min, min + (max - min) * (100vw - tamaño-mín) / (tamaño-máx - tamaño-mín), max)
+
+    En nuestro caso:
+    tamaño-mín = 320px (típico ancho mínimo móvil)
+    tamaño-máx = 1440px (típico ancho máximo desktop)
+  */
     {% endstyle %}
   </head>
 
