@@ -8,41 +8,29 @@
   }
 
   .encabezado {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
+    width: 100%;
     padding: 0;
     font-family: var(--fuente-principal);
   }
 
   .contenedor-encabezado {
-    display: flex;
-    height: 78px;
+    width: 100%;
+    height: auto;
+    max-width: 89.9375rem;
+    min-height: 6.25rem;
+    padding: clamp(1.5rem, 5vw, 3rem) clamp(1rem, 8vw, 4rem);
     justify-content: space-between;
     align-items: center;
-    border-radius: 8px;
-    border: 1px solid var(--color-borde);
+    border-radius: var(--0, 0rem);
+    border: 1px solid #dedede;
     background: #fff;
-    margin: 30px 59px 0;
-    padding: 10px 24px;
+    margin: 0 auto;
   }
 
-  .contenedor-logo {
-    padding-right: 24px;
-  }
-
-  .contenedor-logo a {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .enlace-logo img {
-    height: 100%;
-    width: 125px;
-    object-fit: contain;
+  .contenedor-logo img {
+    width: clamp(6.25rem, 15vw, 9.375rem);
+    height: auto;
+    max-height: 2.25rem;
   }
 
   .menu-opciones {
@@ -163,47 +151,47 @@
     <div class="contenedor-encabezado">
       <!-- Logo -->
       <div class="contenedor-logo">
-        <a href="/" class="enlace-logo">
-          <img src="{{ 'logo-pizza-hut.png' | asset_url }}" alt="Logo Pizza Hut">
-        </a>
+        <img src="{{ 'logo-pizza-hut.png' | asset_url }}" alt="Logo Pizza Hut">
       </div>
 
-      <!-- Menú de Navegación -->
-      <nav class="menu-opciones">
-        <h4 class="menu-item">
-          <a href="/menu">Menú</a>
-        </h4>
-        <h4 class="menu-item">
-          <a href="/promociones" class="enlace-hutcoins">
-            Hut Coins
-            {% render 'icon-flecha-hutcoins' %}
-          </a>
-        </h4>
-        <h4 class="menu-item">
-          <a href="/restaurantes">Sobre Nosotros</a>
-        </h4>
-      </nav>
+      {% comment %}
+        <!-- Menú de Navegación -->
+        <nav class="menu-opciones">
+          <h4 class="menu-item">
+            <a href="/menu">Menú</a>
+          </h4>
+          <h4 class="menu-item">
+            <a href="/promociones" class="enlace-hutcoins">
+              Hut Coins
+              {% render 'icon-flecha-hutcoins' %}
+            </a>
+          </h4>
+          <h4 class="menu-item">
+            <a href="/restaurantes">Sobre Nosotros</a>
+          </h4>
+        </nav>
 
-      <!-- Buscador -->
-      <div class="contenedor-buscador">
-        {% render 'icon-search' %}
-        <input type="search" class="input-buscador" placeholder="Buscar...">
-      </div>
-
-      <!-- Carrito y Entrega -->
-      <div class="contenedor-carrito">
-        {% render 'icon-carrito' %}
-        <div class="modo-entrega">
-          {% render 'icon-domicilio' %}
-          <h4 class="texto-entrega">DOMICILIO</h4>
+        <!-- Buscador -->
+        <div class="contenedor-buscador">
+          {% render 'icon-search' %}
+          <input type="search" class="input-buscador" placeholder="Buscar...">
         </div>
-      </div>
 
-      <!-- Estado Usuario -->
-      <div class="estado-usuario">
-        {% render 'icon-perfil-usuario' %}
-        {% render 'icon-flecha-abajo' %}
-      </div>
+        <!-- Carrito y Entrega -->
+        <div class="contenedor-carrito">
+          {% render 'icon-carrito' %}
+          <div class="modo-entrega">
+            {% render 'icon-domicilio' %}
+            <h4 class="texto-entrega">DOMICILIO</h4>
+          </div>
+        </div>
+
+        <!-- Estado Usuario -->
+        <div class="estado-usuario">
+          {% render 'icon-perfil-usuario' %}
+          {% render 'icon-flecha-abajo' %}
+        </div>
+      {% endcomment %}
     </div>
   </header>
 </sticky-header>
