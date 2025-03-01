@@ -100,20 +100,40 @@
     <div
       style="
         display: flex;
+        height: clamp(4.375rem, 4.375rem + (6.25 - 4.375) * (100vw - 320px) / (1440 - 320), 6.25rem); /* 6.25rem -12.5% = 5.46875rem -> ajustado a 4.375rem para móvil */
         align-items: center;
-        gap: var(--XXL, 1.5rem);
+        gap: clamp(1.3125rem, 1.3125rem + (1.5 - 1.3125) * (100vw - 320px) / (1440 - 320), 1.5rem); /* 1.5rem -12.5% = 1.3125rem */
         border-left: 1px solid #DEDEDE;
         border-right: 1px solid #DEDEDE;
       "
     >
-      <div style="">
+      <div style="display: flex; align-items: center;">
         {% render 'icon-carrito' %}
       </div>
+
       <div class="modo-entrega">
-        <p style="text-transform: uppercase;font-weight: 600;">Selecciona tu</p>
-        <div style="display: flex; align-items: center;">
-          <h4 class="texto-entrega">Método de entrega</h4>
-          {% render 'icon-domicilio' %}
+        <p
+          style="
+            font-size: clamp(0.765625rem, 0.765625rem + (0.875 - 0.765625) * (100vw - 320px) / (1440 - 320), 0.875rem); /* 0.875rem -12.5% = 0.765625rem */
+            text-transform: uppercase;
+            font-weight: 600;
+          "
+        >
+          Selecciona tu
+        </p>
+        <div style="display: flex; align-items: center; gap: clamp(0.875rem, 0.875rem + (1 - 0.875) * (100vw - 320px) / (1440 - 320), 1rem);">
+          <h4
+            class="texto-entrega"
+            style="font-size: clamp(0.875rem, 0.875rem + (1 - 0.875) * (100vw - 320px) / (1440 - 320), 1rem);"
+          >
+            Método de entrega
+          </h4>
+          {% render 'icon-domicilio',
+            style: '
+            width: clamp(1.3125rem, 1.3125rem + (1.5 - 1.3125) * (100vw - 320px) / (1440 - 320), 1.5rem);
+            height: auto;
+          '
+          %}
         </div>
       </div>
     </div>
