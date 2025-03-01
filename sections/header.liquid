@@ -86,7 +86,7 @@
         align-items: center;
         gap: clamp(0.18rem, 0.17rem + 0.01vw, 0.22rem);
         align-self: stretch;
-        border-radius: 0.22rem;
+        border-radius: 0.25rem;
         border: 1px solid  #6E6E6E;
         background:  #FFF;
       "
@@ -94,6 +94,28 @@
     >
       {% render 'icon-search', class: 'icon-theme-custom' %}
       <input type="search" class="input-buscador" placeholder="Buscar...">
+    </div>
+
+    <!-- Carrito - Metodo Entrega y Estado Usuario -->
+    <div
+      style="
+        display: flex;
+        align-items: center;
+        gap: var(--XXL, 1.5rem);
+        border-left: 1px solid #DEDEDE;
+        border-right: 1px solid #DEDEDE;
+      "
+    >
+      <div style="">
+        {% render 'icon-carrito' %}
+      </div>
+      <div class="modo-entrega">
+        <p style="text-transform: uppercase;font-weight: 600;">Selecciona tu</p>
+        <div style="display: flex; align-items: center;">
+          <h4 class="texto-entrega">Método de entrega</h4>
+          {% render 'icon-domicilio' %}
+        </div>
+      </div>
     </div>
 
     {% comment %}
