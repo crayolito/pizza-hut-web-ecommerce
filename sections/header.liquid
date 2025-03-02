@@ -7,6 +7,7 @@
     --color-borde-oscuro: #969696;
   }
 
+  /* Estilos base */
   h4 {
     font-family: var(--fuente-principal);
     font-size: 1.5rem;
@@ -65,15 +66,18 @@
     width: 100%;
   }
 
-  /* Estilos para el header responsivo */
+  /* Estilos para el header con ancho fijo */
   .encabezado {
     width: 100%;
+    min-width: 800px; /* Ancho mínimo para evitar compresión */
     height: 90px;
-    padding: 0 5vw;
+    padding: 0 53px;
     background-color: #fff;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    overflow-x: auto; /* Permite scroll horizontal si es necesario */
+    overflow-y: hidden;
   }
 
   .contenedor-logo {
@@ -91,8 +95,9 @@
   .menu-navegacion {
     display: flex;
     align-items: center;
-    gap: 3vw;
+    gap: 29px;
     width: auto;
+    flex-shrink: 0;
   }
 
   .menu-item {
@@ -108,13 +113,12 @@
   .contenedor-opciones {
     display: flex;
     align-items: center;
-    gap: 2vw;
+    gap: 27px;
+    flex-shrink: 0;
   }
 
   .contenedor-buscador {
-    width: 15vw;
-    max-width: 177px;
-    min-width: 100px;
+    width: 177px;
     height: 43px;
     gap: 8px;
     display: flex;
@@ -123,6 +127,7 @@
     border: 1.5px solid #6e6e6e;
     background-color: #fff;
     padding: 14px;
+    flex-shrink: 0;
   }
 
   .contenedor-carrito {
@@ -130,20 +135,22 @@
     align-items: center;
     justify-content: center;
     height: 36px;
-    padding: 0 2vw;
+    padding: 0 27px;
     border-left: 1.5px solid #dedede;
     border-right: 1.5px solid #dedede;
+    flex-shrink: 0;
   }
 
   .modo-entrega {
     display: flex;
     height: 36px;
-    padding: 0 2vw 0 0;
+    padding: 0 27px 0 0;
     gap: 0 8px;
     border-right: 1.5px solid #dedede;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
+    flex-shrink: 0;
   }
 
   .texto-entrega-titulo {
@@ -169,6 +176,7 @@
     height: 36px;
     border: none;
     cursor: pointer;
+    flex-shrink: 0;
   }
 
   .texto-login {
@@ -176,9 +184,9 @@
     white-space: nowrap;
   }
 
-  /* Media query para móviles */
+  /* Solo para móviles - aquí implementarías un diseño completamente diferente */
   @media screen and (max-width: 767px) {
-    /* Aquí iría el diseño móvil */
+    /* Código para diseño móvil */
   }
 {% endstyle %}
 
