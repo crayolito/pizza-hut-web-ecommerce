@@ -1,380 +1,244 @@
-{% comment %}
-  header.liquid - Componente de header para Shopify
-  Sigue las convenciones de nomenclatura BEM de Shopify
-{% endcomment %}
-
-<header class="site-header">
-  <div class="site-header__logo-wrapper">
+<!-- Mantiene exactamente tu estructura HTML original -->
+<!-- Solo quita los estilos inline y los reemplaza por clases -->
+<header class="encabezado">
+  <div class="contenedor-logo">
     <img
       src="{{ 'logo-pizza-hut.png' | asset_url }}"
       alt="Logo Pizza Hut"
-      class="site-header__logo"
+      class="logo"
     >
   </div>
 
-  <nav class="site-header__nav">
-    <div class="site-header__nav-item">
+  <nav class="menu-navegacion">
+    <div class="menu-item">
       <a href="/menu">
         <h4>Menú</h4>
       </a>
     </div>
-    <div class="site-header__nav-item site-header__nav-item--hutcoins">
+    <div class="menu-item menu-hutcoins">
       <a href="/promociones">
         <h4>Hut Coins</h4>
         {% render 'icon-flecha-hutcoins' %}
       </a>
     </div>
-    <div class="site-header__nav-item">
+    <div class="menu-item">
       <a href="/restaurantes">
         <h4>Sobre Nosotros</h4>
       </a>
     </div>
   </nav>
 
-  <div class="site-header__options">
-    <div class="site-header__search">
-      {% render 'icon-search', class: 'site-header__search-icon' %}
-      <input type="search" class="site-header__search-input" placeholder="Buscar...">
+  <div class="contenedor-opciones">
+    <div class="contenedor-buscador">
+      {% render 'icon-search', class: 'icono-buscar' %}
+      <input type="search" class="campo-busqueda" placeholder="Buscar...">
     </div>
 
-    <div class="site-header__cart">
+    <div class="contenedor-carrito">
       {% render 'icon-carrito' %}
     </div>
 
-    <div class="site-header__delivery">
-      <p class="site-header__delivery-title">Selecciona tu</p>
-      <div class="site-header__delivery-method">
-        <h4 class="site-header__delivery-text">Método de entrega</h4>
-        {% render 'icon-domicilio', class: 'site-header__delivery-icon' %}
+    <div class="modo-entrega">
+      <p class="texto-entrega-titulo">Selecciona tu</p>
+      <div class="contenedor-metodo">
+        <h4 class="texto-metodo">Método de entrega</h4>
+        {% render 'icon-domicilio', class: 'icono-domicilio' %}
       </div>
     </div>
 
-    <button class="site-header__login-button">
-      <h4 class="site-header__login-text">Iniciar sesión</h4>
-      {% render 'icon-search', class: 'site-header__login-icon' %}
+    <button class="boton-login">
+      <h4 class="texto-login">Iniciar sesión</h4>
+      {% render 'icon-search', class: 'icono-login' %}
     </button>
   </div>
 </header>
 
-{% schema %}
-{
-  "name": "Header",
-  "settings": [
-    {
-      "type": "header",
-      "content": "Configuración general"
-    },
-    {
-      "type": "color",
-      "id": "header_bg_color",
-      "label": "Color de fondo",
-      "default": "#FFFFFF"
-    },
-    {
-      "type": "color",
-      "id": "header_text_color",
-      "label": "Color de texto",
-      "default": "#000000"
-    },
-    {
-      "type": "color",
-      "id": "button_color",
-      "label": "Color del botón",
-      "default": "#C8102E"
-    }
-  ]
-}
-{% endschema %}
+<!-- Añadir esto a tu archivo theme.liquid para incluir el CSS -->
+<!--
+  {% comment %}
+    {{ 'header-responsivo.css' | asset_url | stylesheet_tag }}
+  {% endcomment %}
+-->
 
 <style>
-  /* Header principal - siguiendo convenciones de Shopify */
-  .site-header {
+  /* Estilos que mantienen exactamente tu diseño original */
+  .encabezado {
     width: 100%;
-    /* Convertimos height: 90px a min-height para mantener apariencia pero permitir expansión */
-    min-height: 90px;
-    /* Convertimos padding: 0 53px a valores relativos (equivalentes en pantallas grandes) */
-    padding: 0 5%;
+    height: 90px; /* Mantenemos altura exacta en desktop */
+    padding: 0 53px; /* Mantenemos padding exacto en desktop */
     background-color: #fff;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* Añadimos flex-wrap para permitir reorganización en pantallas pequeñas */
-    flex-wrap: wrap;
-    /* Transición suave al cambiar tamaños */
-    transition: padding 0.3s ease;
   }
 
-  /* Logo - manteniendo proporción original pero haciéndolo responsivo */
-  .site-header__logo-wrapper {
-    /* Mantenemos medidas originales como máximos */
+  .contenedor-logo {
     height: 37px;
     width: 136px;
-    /* Aseguramos que nunca sea mayor que su contenedor */
-    max-width: 100%;
-    /* Margen para mantener espaciado en modo móvil */
-    margin: 0.5rem 0;
   }
 
-  .site-header__logo {
+  .logo {
     height: 100%;
     width: 100%;
     object-fit: contain;
   }
 
-  /* Navegación principal */
-  .site-header__nav {
+  .menu-navegacion {
     display: flex;
     align-items: center;
-    /* Convertimos gap: 29px a unidades relativas */
-    gap: 1.8rem;
+    gap: 29px; /* Mantenemos gap exacto */
     width: auto;
   }
 
-  .site-header__nav-item {
-    transition: transform 0.2s ease;
-  }
-
-  .site-header__nav-item a {
+  .menu-item a {
     text-decoration: none;
     color: inherit;
   }
 
-  .site-header__nav-item h4 {
-    margin: 0;
-    font-size: 1rem;
-  }
-
-  .site-header__nav-item--hutcoins a {
+  .menu-hutcoins a {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.25rem;
   }
 
-  /* Contenedor de opciones (buscador, carrito, etc) */
-  .site-header__options {
+  .contenedor-opciones {
     display: flex;
     align-items: center;
-    /* Convertimos gap: 27px a unidades relativas */
-    gap: 1.7rem;
-    flex-wrap: wrap;
+    gap: 27px; /* Mantenemos gap exacto */
   }
 
-  /* Buscador */
-  .site-header__search {
-    /* Mantenemos ancho original como máximo */
+  .contenedor-buscador {
     width: 177px;
-    /* Altura automática pero manteniendo proporción */
-    min-height: 43px;
-    /* Convertimos gap: 8px a unidades relativas */
-    gap: 0.5rem;
+    height: 43px;
+    gap: 8px;
     display: flex;
     align-items: center;
     border-radius: 4px;
     border: 1.5px solid #6e6e6e;
     background-color: #fff;
-    /* Convertimos padding: 14px a unidades relativas */
-    padding: 0.875rem;
+    padding: 14px;
   }
 
-  .site-header__search-input {
+  .campo-busqueda {
     width: 100%;
     border: none;
     outline: none;
-    background: transparent;
   }
 
-  /* Icono de búsqueda */
-  .site-header__search-icon {
-    flex-shrink: 0;
-  }
-
-  /* Carrito */
-  .site-header__cart {
+  .contenedor-carrito {
     display: flex;
     align-items: center;
     justify-content: center;
-    /* Altura mínima para mantener proporción */
-    min-height: 36px;
-    /* Convertimos padding: 0px 27px a unidades relativas */
-    padding: 0 1.7rem;
+    height: 36px;
+    padding: 0px 27px;
     border-left: 1.5px solid #dedede;
     border-right: 1.5px solid #dedede;
   }
 
-  /* Modo de entrega */
-  .site-header__delivery {
+  .modo-entrega {
     display: flex;
-    min-height: 36px;
-    /* Convertimos padding: 0px 27px 0px 0px a unidades relativas */
-    padding: 0 1.7rem 0 0;
-    /* Convertimos gap: 0px 8px a unidades relativas */
-    gap: 0 0.5rem;
+    height: 36px;
+    padding: 0px 27px 0px 0px;
+    gap: 0px 8px;
     border-right: 1.5px solid #dedede;
     flex-direction: column;
     align-items: start;
     justify-content: center;
   }
 
-  .site-header__delivery-title {
+  .texto-entrega-titulo {
     text-transform: uppercase;
     font-weight: 600;
     margin: 0;
-    font-size: 0.75rem;
   }
 
-  .site-header__delivery-method {
+  .contenedor-metodo {
     display: flex;
     align-items: center;
-    /* Convertimos gap: 4px a unidades relativas */
-    gap: 0.25rem;
+    gap: 4px;
   }
 
-  .site-header__delivery-text {
+  .texto-metodo {
     margin: 0;
-    font-size: 0.875rem;
   }
 
-  /* Botón de login */
-  .site-header__login-button {
+  .boton-login {
     border-radius: 4px;
     background: #c8102e;
-    /* Convertimos gap: 8px a unidades relativas */
-    gap: 0.5rem;
-    /* Convertimos padding: 8px 16px a unidades relativas */
-    padding: 0.5rem 1rem;
+    gap: 8px;
+    padding: 8px 16px;
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 36px;
+    height: 36px;
     border: none;
     cursor: pointer;
   }
 
-  .site-header__login-text {
+  .texto-login {
     color: #fff;
     margin: 0;
-    font-size: 0.875rem;
-    font-weight: bold;
   }
 
-  /* Media queries para pantallas medianas (tablets) */
+  /* SOLO CAMBIOS PARA TABLETS - MÍNIMOS */
   @media screen and (max-width: 992px) {
-    .site-header {
-      /* Reducimos padding lateral en tablets */
-      padding: 0 3%;
+    .encabezado {
+      padding: 0 30px; /* Único cambio: reducimos ligeramente el padding lateral */
     }
 
-    .site-header__nav {
-      /* Reducimos espacio entre elementos de navegación */
-      gap: 1.2rem;
-    }
-
-    .site-header__options {
-      /* Reducimos espacio entre opciones */
-      gap: 1rem;
-    }
-
-    .site-header__search {
-      /* Reducimos ligeramente el buscador */
-      width: 160px;
-    }
-
-    .site-header__cart,
-    .site-header__delivery {
-      /* Reducimos padding lateral */
-      padding: 0 1.2rem 0 0;
-    }
+    /* Todos los demás elementos mantienen sus dimensiones exactas */
   }
 
-  /* Media queries para móviles */
+  /* CAMBIOS PARA MÓVILES - DONDE SÍ SON NECESARIOS */
   @media screen and (max-width: 768px) {
-    .site-header {
-      /* En móvil reorganizamos verticalmente */
-      padding: 0.5rem 4%;
-      justify-content: center;
+    .encabezado {
+      height: auto; /* Permitimos que crezca verticalmente */
+      padding: 15px 20px;
+      flex-wrap: wrap; /* Permitimos que los elementos salten a la siguiente línea */
     }
 
-    .site-header__nav {
-      /* Centramos la navegación y la hacemos ocupar todo el ancho */
-      order: 2;
+    .contenedor-logo {
+      /* Centrar logo */
+      margin: 0 auto 15px;
+    }
+
+    .menu-navegacion {
       width: 100%;
       justify-content: center;
-      margin: 0.5rem 0;
+      gap: 20px; /* Reducimos espacio entre elementos */
+      margin-bottom: 15px;
     }
 
-    .site-header__options {
-      /* Opciones debajo de la navegación */
-      order: 3;
+    .contenedor-opciones {
       width: 100%;
       justify-content: center;
-      gap: 0.8rem;
-      margin-top: 0.5rem;
+      flex-wrap: wrap;
+      gap: 15px;
     }
 
-    .site-header__logo-wrapper {
-      /* Logo arriba del todo */
-      order: 1;
-      margin-bottom: 0.5rem;
+    .contenedor-buscador {
+      width: 100%;
+      max-width: 300px;
     }
 
-    .site-header__cart,
-    .site-header__delivery {
-      /* Eliminamos bordes laterales que no tienen sentido en móvil */
-      border: none;
-      padding: 0.25rem 0.5rem;
+    .contenedor-carrito,
+    .modo-entrega {
+      border: none; /* Eliminamos bordes verticales que no se ven bien en móvil */
+      padding: 0 10px;
     }
 
-    .site-header__search {
-      /* Buscador más compacto */
-      width: 150px;
-      padding: 0.5rem;
+    .boton-login {
+      margin-top: 10px;
+      width: 100%;
+      max-width: 300px;
     }
   }
 
-  /* Media queries para móviles pequeños */
+  /* SOLO PARA MÓVILES MUY PEQUEÑOS */
   @media screen and (max-width: 480px) {
-    .site-header__nav {
-      /* En móviles muy pequeños, navegación en columna */
+    .menu-navegacion {
       flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    .site-header__options {
-      /* Mayor separación vertical entre grupos de elementos */
-      gap: 0.5rem 0.3rem;
-    }
-
-    /* Hacemos el buscador más ancho para mejor usabilidad en pantallas pequeñas */
-    .site-header__search {
-      width: 100%;
-      max-width: 280px;
-      order: 1;
-    }
-
-    /* Reorganizamos los botones */
-    .site-header__cart {
-      order: 2;
-    }
-
-    .site-header__delivery {
-      order: 3;
-    }
-
-    .site-header__login-button {
-      order: 4;
-      width: 100%;
-      max-width: 280px;
-      margin-top: 0.5rem;
-    }
-
-    /* Reducimos tamaño de texto */
-    .site-header__delivery-title {
-      font-size: 0.7rem;
-    }
-
-    .site-header__delivery-text {
-      font-size: 0.8rem;
+      gap: 10px;
     }
   }
 </style>
