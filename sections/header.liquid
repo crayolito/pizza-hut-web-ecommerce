@@ -10,27 +10,27 @@
   /* Estilos de tipografía exactamente como los tenías */
   h4 {
     font-family: var(--fuente-principal);
-    font-size: 1.5rem;
+    font-size: clamp(0.75rem, 0.75rem + 0.67vw, 1.5rem);
     font-style: normal;
     font-weight: 400;
-    line-height: 1.6875rem;
-    letter-spacing: -0.03rem;
+    line-height: clamp(0.84rem, 0.84rem + 0.76vw, 1.69rem);
+    letter-spacing: clamp(-0.015rem, -0.015rem - 0.013vw, -0.03rem);
     text-transform: uppercase;
   }
 
   h3 {
     font-family: var(--fuente-principal);
-    font-size: 2rem;
+    font-size: clamp(1rem, 1rem + 0.89vw, 2rem);
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    letter-spacing: -0.04rem;
+    letter-spacing: clamp(-0.02rem, -0.02rem - 0.018vw, -0.04rem);
     text-transform: uppercase;
   }
 
   h2 {
     font-family: var(--fuente-principal);
-    font-size: 2.25rem;
+    font-size: clamp(1.13rem, 1.13rem + 1vw, 2.25rem);
     font-style: normal;
     line-height: normal;
     text-transform: uppercase;
@@ -38,10 +38,10 @@
 
   p {
     font-family: var(--fuente-secundaria);
-    font-size: 1rem;
+    font-size: clamp(0.5rem, 0.5rem + 0.45vw, 1rem);
     font-style: normal;
     font-weight: 400;
-    line-height: 1.6875rem;
+    line-height: clamp(0.84rem, 0.84rem + 0.76vw, 1.69rem);
   }
 
   a {
@@ -52,38 +52,14 @@
 
   input {
     font-family: var(--fuente-secundaria);
-    font-size: 1rem;
-    line-height: 1.6875rem;
+    font-size: clamp(0.5rem, 0.5rem + 0.45vw, 1rem);
+    line-height: clamp(0.84rem, 0.84rem + 0.76vw, 1.69rem);
     margin: 0;
     padding: 0;
     border: none;
     outline: none;
     background: transparent;
     width: 100%;
-  }
-
-  /* Solo estas reglas básicas para prevenir roturas */
-  header.encabezado {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow: visible;
-  }
-
-  .menu-item h4,
-  .texto-login {
-    white-space: nowrap;
-  }
-
-  .contenedor-logo {
-    flex-shrink: 0;
-  }
-
-  .menu-navegacion {
-    flex-shrink: 1;
-  }
-
-  .contenedor-opciones {
-    flex-shrink: 0;
   }
 {% endstyle %}
 
