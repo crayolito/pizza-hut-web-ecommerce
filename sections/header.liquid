@@ -95,30 +95,86 @@
       </div>
     </nav>
 
-    <div class="contenedor-opciones">
-      <div class="contenedor-buscador">
+    <div
+      style="
+        display: flex;
+        align-items: center;
+        gap: 27px;
+      "
+      class="contenedor-opciones"
+    >
+      <div
+        style="
+          width: 177px;
+          height: 41px;
+          gap: 8px;
+          display: flex;
+          align-items: center;
+          border-radius: 4px;
+          border: 1.5px solid #6E6E6E;
+          background-color: #FFF;
+          padding: 14px;
+        "
+        class="contenedor-buscador"
+      >
         {% render 'icon-search', class: 'icono-buscar' %}
         <input type="search" class="campo-busqueda" placeholder="Buscar...">
       </div>
 
-      <div class="contenedor-usuario">
-        <div class="contenedor-carrito">
-          {% render 'icon-carrito', class: 'icono-carrito' %}
-        </div>
-
-        <div class="modo-entrega">
-          <p class="texto-entrega-titulo">Selecciona tu</p>
-          <div class="contenedor-metodo">
-            <h4 class="texto-metodo">Método de entrega</h4>
-            {% render 'icon-domicilio', class: 'icono-domicilio' %}
-          </div>
-        </div>
-
-        <button class="boton-login">
-          <span class="texto-login">Iniciar sesión</span>
-          {% render 'icon-search', class: 'icono-login' %}
-        </button>
+      <div
+        style="height: 36px;padding: 27px; border-left: 1.5px solid #DEDEDE; border-right: 1.5px solid #DEDEDE;"
+        class="contenedor-carrito"
+      >
+        {% render 'icon-carrito' %}
       </div>
+
+      <div
+        style="
+          display: flex;
+          padding: 27px;
+          font-size: 14px;
+          gap: 8px;
+          border-right: 1.5px solid #DEDEDE;
+        "
+        class="modo-entrega"
+      >
+        <p
+          style="
+            text-transform: uppercase;
+            font-weight: 600;
+          "
+          class="texto-entrega-titulo"
+        >
+          Selecciona tu
+        </p>
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            gap: 4px;
+          "
+          class="contenedor-metodo"
+        >
+          <h4 class="texto-metodo">Método de entrega</h4>
+          {% render 'icon-domicilio', class: 'icono-domicilio' %}
+        </div>
+      </div>
+
+      <button
+        style="
+                   border-radius:  4px;
+          background: #C8102E;
+          gap: 8px;
+          padding: 8px 16px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        "
+        class="boton-login"
+      >
+        <span class="texto-login">Iniciar sesión</span>
+        {% render 'icon-search', class: 'icono-login' %}
+      </button>
     </div>
   </header>
 </sticky-header>
