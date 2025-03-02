@@ -5,6 +5,7 @@
     --color-primario: #231f20;
     --color-borde: #dedede;
     --color-borde-oscuro: #969696;
+    --color-rojo: #c8102e;
   }
 
   /* Estilos base */
@@ -66,18 +67,22 @@
     width: 100%;
   }
 
-  /* Estilos para el header con ancho fijo */
+  /* Box-sizing universal */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  /* Header responsivo */
   .encabezado {
     width: 100%;
-    min-width: 800px; /* Ancho mínimo para evitar compresión */
     height: 90px;
     padding: 0 53px;
     background-color: #fff;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    overflow-x: auto; /* Permite scroll horizontal si es necesario */
-    overflow-y: hidden;
   }
 
   .contenedor-logo {
@@ -97,7 +102,7 @@
     align-items: center;
     gap: 29px;
     width: auto;
-    flex-shrink: 0;
+    margin: 0 15px;
   }
 
   .menu-item {
@@ -114,7 +119,6 @@
     display: flex;
     align-items: center;
     gap: 27px;
-    flex-shrink: 0;
   }
 
   .contenedor-buscador {
@@ -127,7 +131,6 @@
     border: 1.5px solid #6e6e6e;
     background-color: #fff;
     padding: 14px;
-    flex-shrink: 0;
   }
 
   .contenedor-carrito {
@@ -136,9 +139,8 @@
     justify-content: center;
     height: 36px;
     padding: 0 27px;
-    border-left: 1.5px solid #dedede;
-    border-right: 1.5px solid #dedede;
-    flex-shrink: 0;
+    border-left: 1.5px solid var(--color-borde);
+    border-right: 1.5px solid var(--color-borde);
   }
 
   .modo-entrega {
@@ -146,11 +148,10 @@
     height: 36px;
     padding: 0 27px 0 0;
     gap: 0 8px;
-    border-right: 1.5px solid #dedede;
+    border-right: 1.5px solid var(--color-borde);
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    flex-shrink: 0;
   }
 
   .texto-entrega-titulo {
@@ -167,7 +168,7 @@
 
   .boton-login {
     border-radius: 4px;
-    background: #c8102e;
+    background: var(--color-rojo);
     gap: 8px;
     padding: 8px 16px;
     display: flex;
@@ -176,7 +177,6 @@
     height: 36px;
     border: none;
     cursor: pointer;
-    flex-shrink: 0;
   }
 
   .texto-login {
@@ -184,9 +184,101 @@
     white-space: nowrap;
   }
 
-  /* Solo para móviles - aquí implementarías un diseño completamente diferente */
-  @media screen and (max-width: 767px) {
-    /* Código para diseño móvil */
+  /* Media queries para adaptación responsiva */
+  @media screen and (max-width: 1200px) {
+    .encabezado {
+      padding: 0 30px;
+    }
+
+    .menu-navegacion {
+      gap: 20px;
+    }
+
+    .contenedor-opciones {
+      gap: 15px;
+    }
+
+    .contenedor-buscador {
+      width: 150px;
+    }
+
+    .contenedor-carrito {
+      padding: 0 20px;
+    }
+
+    .modo-entrega {
+      padding: 0 20px 0 0;
+    }
+  }
+
+  @media screen and (max-width: 992px) {
+    .encabezado {
+      padding: 0 20px;
+    }
+
+    .menu-navegacion {
+      gap: 15px;
+    }
+
+    .contenedor-opciones {
+      gap: 10px;
+    }
+
+    .contenedor-buscador {
+      width: 120px;
+    }
+
+    .contenedor-carrito {
+      padding: 0 15px;
+    }
+
+    .modo-entrega {
+      padding: 0 15px 0 0;
+    }
+
+    h4 {
+      font-size: 1.3rem;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .encabezado {
+      padding: 0 15px;
+    }
+
+    .menu-navegacion {
+      gap: 10px;
+    }
+
+    .contenedor-opciones {
+      gap: 8px;
+    }
+
+    .contenedor-buscador {
+      width: 100px;
+      padding: 8px;
+    }
+
+    .contenedor-carrito {
+      padding: 0 10px;
+    }
+
+    .modo-entrega {
+      padding: 0 10px 0 0;
+    }
+
+    h4 {
+      font-size: 1.2rem;
+    }
+
+    .texto-entrega-titulo {
+      display: none;
+    }
+  }
+
+  /* Diseño específico para móviles - se debe crear por separado */
+  @media screen and (max-width: 640px) {
+    /* Aquí iría el código para el diseño móvil */
   }
 {% endstyle %}
 
