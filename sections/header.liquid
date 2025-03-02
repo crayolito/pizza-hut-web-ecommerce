@@ -15,6 +15,7 @@
     line-height: 1.6875rem;
     letter-spacing: -0.03rem;
     text-transform: uppercase;
+    margin: 0;
   }
 
   h3 {
@@ -25,6 +26,7 @@
     line-height: normal;
     letter-spacing: -0.04rem;
     text-transform: uppercase;
+    margin: 0;
   }
 
   h2 {
@@ -33,6 +35,7 @@
     font-style: normal;
     line-height: normal;
     text-transform: uppercase;
+    margin: 0;
   }
 
   p {
@@ -41,6 +44,7 @@
     font-style: normal;
     font-weight: 400;
     line-height: 1.6875rem;
+    margin: 0;
   }
 
   a {
@@ -61,11 +65,11 @@
     width: 100%;
   }
 
-  /* Reglas para hacer el header responsivo */
+  /* Estilos para el header responsivo */
   .encabezado {
     width: 100%;
     height: 90px;
-    padding: 0 53px;
+    padding: 0 5vw;
     background-color: #fff;
     display: flex;
     justify-content: space-between;
@@ -75,6 +79,7 @@
   .contenedor-logo {
     height: 37px;
     width: 136px;
+    flex-shrink: 0;
   }
 
   .logo {
@@ -86,8 +91,12 @@
   .menu-navegacion {
     display: flex;
     align-items: center;
-    gap: 29px;
+    gap: 3vw;
     width: auto;
+  }
+
+  .menu-item {
+    white-space: nowrap;
   }
 
   .menu-hutcoins a {
@@ -99,11 +108,13 @@
   .contenedor-opciones {
     display: flex;
     align-items: center;
-    gap: 27px;
+    gap: 2vw;
   }
 
   .contenedor-buscador {
-    width: 177px;
+    width: 15vw;
+    max-width: 177px;
+    min-width: 100px;
     height: 43px;
     gap: 8px;
     display: flex;
@@ -119,17 +130,17 @@
     align-items: center;
     justify-content: center;
     height: 36px;
-    padding: 0px 27px;
-    border-left: 1.5px solid var(--color-borde);
-    border-right: 1.5px solid var(--color-borde);
+    padding: 0 2vw;
+    border-left: 1.5px solid #dedede;
+    border-right: 1.5px solid #dedede;
   }
 
   .modo-entrega {
     display: flex;
     height: 36px;
-    padding: 0px 27px 0px 0px;
-    gap: 0px 8px;
-    border-right: 1.5px solid var(--color-borde);
+    padding: 0 2vw 0 0;
+    gap: 0 8px;
+    border-right: 1.5px solid #dedede;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
@@ -144,6 +155,7 @@
     display: flex;
     align-items: center;
     gap: 4px;
+    white-space: nowrap;
   }
 
   .boton-login {
@@ -156,72 +168,24 @@
     justify-content: center;
     height: 36px;
     border: none;
+    cursor: pointer;
   }
 
   .texto-login {
     color: #fff;
+    white-space: nowrap;
   }
 
-  /* Media queries simple para diferentes tamaños de pantalla */
-  @media screen and (max-width: 1200px) {
-    .encabezado {
-      padding: 0 40px;
-    }
-    .menu-navegacion {
-      gap: 20px;
-    }
-    .contenedor-opciones {
-      gap: 20px;
-    }
-  }
-
-  @media screen and (max-width: 992px) {
-    .encabezado {
-      padding: 0 30px;
-    }
-    .menu-navegacion {
-      gap: 15px;
-    }
-    .contenedor-opciones {
-      gap: 15px;
-    }
-    .contenedor-buscador {
-      width: 140px;
-    }
-  }
-
-  @media screen and (max-width: 768px) {
-    .encabezado {
-      padding: 0 20px;
-    }
-    .menu-navegacion {
-      gap: 10px;
-    }
-    .contenedor-opciones {
-      gap: 10px;
-    }
-    .contenedor-buscador {
-      width: 120px;
-    }
-    h4 {
-      font-size: 1.2rem;
-    }
-  }
-
-  /* Media query para dispositivos móviles */
-  @media screen and (max-width: 640px) {
-    /* Código para el diseño móvil */
+  /* Media query para móviles */
+  @media screen and (max-width: 767px) {
+    /* Aquí iría el diseño móvil */
   }
 {% endstyle %}
 
 <sticky-header>
   <header class="encabezado">
     <div class="contenedor-logo">
-      <img
-        class="logo"
-        src="{{ 'logo-pizza-hut.png' | asset_url }}"
-        alt="Logo Pizza Hut"
-      >
+      <img class="logo" src="{{ 'logo-pizza-hut.png' | asset_url }}" alt="Logo Pizza Hut">
     </div>
 
     <nav class="menu-navegacion">
