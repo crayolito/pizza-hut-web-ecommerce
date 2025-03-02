@@ -68,218 +68,215 @@
 </script>
 
 <style>
-  /* Variables globales */
+  /* Variables principales con rangos más precisos */
   :root {
     --fuente-principal: 'League Gothic', sans-serif;
     --fuente-secundaria: 'Montserrat', sans-serif;
     --color-primario: #231f20;
     --color-borde: #dedede;
     --color-borde-oscuro: #969696;
-    --padding-lateral: clamp(1rem, 4vw, 53px);
-    --altura-header: clamp(70px, 9vh, 90px);
     --color-rojo: #c8102e;
+
+    /* Rangos de tamaño basados en los 90px originales */
+    --header-height: max(70px, min(90px, 8vh));
+    --logo-height: max(30px, min(37px, calc(var(--header-height) * 0.41)));
+
+    /* Espaciados proporcionales */
+    --spacing-xs: max(4px, min(8px, 0.5vw));
+    --spacing-sm: max(8px, min(16px, 1vw));
+    --spacing-md: max(16px, min(27px, 2vw));
+    --spacing-lg: max(27px, min(53px, 4vw));
   }
 
-  /* Reset y estilos base */
-  * {
+  /* Reset mejorado */
+  *,
+  *::before,
+  *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
   }
 
-  /* Estilos de tipografía */
+  /* Sistema de tipografía flexible */
   h4 {
     font-family: var(--fuente-principal);
-    font-size: 1.5rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 1.6875rem;
-    letter-spacing: -0.03rem;
+    font-size: max(1.25rem, min(1.5rem, calc(var(--header-height) * 0.2)));
+    line-height: 1.125;
+    letter-spacing: -0.03em;
     text-transform: uppercase;
-  }
-
-  h3 {
-    font-family: var(--fuente-principal);
-    font-size: 2rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    letter-spacing: -0.04rem;
-    text-transform: uppercase;
-  }
-
-  h2 {
-    font-family: var(--fuente-principal);
-    font-size: 2.25rem;
-    font-style: normal;
-    line-height: normal;
-    text-transform: uppercase;
+    white-space: nowrap;
   }
 
   p {
     font-family: var(--fuente-secundaria);
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 1.6875rem;
+    font-size: max(0.875rem, min(1rem, calc(var(--header-height) * 0.15)));
+    line-height: 1.5;
+    white-space: nowrap;
   }
 
-  /* Estilos de enlaces e inputs */
-  a {
-    text-decoration: none;
-    color: inherit;
-    cursor: pointer;
-  }
-
-  input {
-    font-family: var(--fuente-secundaria);
-    font-size: 1rem;
-    line-height: 1.6875rem;
-    margin: 0;
-    padding: 0;
-    border: none;
-    outline: none;
-    background: transparent;
-    width: 100%;
-  }
-
-  /* Header Principal */
+  /* Header principal con flexibilidad controlada */
   .encabezado {
     width: 100%;
-    height: var(--altura-header);
-    padding: 0 var(--padding-lateral);
+    height: var(--header-height);
+    padding: 0 var(--spacing-lg);
     background-color: #fff;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: clamp(1rem, 2vw, 2rem);
+    gap: var(--spacing-md);
+    min-height: 70px; /* Altura mínima absoluta */
+    position: relative;
   }
 
-  /* Logo */
+  /* Logo con proporción fija */
   .contenedor-logo {
-    height: clamp(30px, 5vh, 37px);
-    width: clamp(110px, 12vw, 136px);
+    height: var(--logo-height);
+    aspect-ratio: 136/37;
     flex-shrink: 0;
+    display: flex;
+    align-items: center;
   }
 
   .logo {
-    height: 100%;
     width: 100%;
+    height: 100%;
     object-fit: contain;
   }
 
-  /* Menú de Navegación */
+  /* Navegación con distribución flexible */
   .menu-navegacion {
     display: flex;
     align-items: center;
-    gap: clamp(1rem, 2vw, 29px);
+    gap: var(--spacing-md);
     flex: 1;
     justify-content: center;
-    min-width: 0;
+    padding: 0 var(--spacing-md);
+    min-width: min-content;
   }
 
   .menu-item {
-    white-space: nowrap;
+    flex-shrink: 0;
   }
 
   .link-hutcoins {
     display: flex;
     align-items: center;
-    justify-content: center;
+    gap: var(--spacing-xs);
   }
 
-  /* Contenedor de Opciones */
+  /* Contenedor de opciones con mejor control de espacio */
   .contenedor-opciones {
     display: flex;
     align-items: center;
-    gap: clamp(1rem, 2vw, 27px);
-    flex-shrink: 1;
+    gap: var(--spacing-md);
+    flex-shrink: 0;
   }
 
-  /* Buscador */
+  /* Buscador con tamaño mínimo garantizado */
   .contenedor-buscador {
-    width: clamp(150px, 15vw, 177px);
-    height: clamp(36px, 5vh, 43px);
-    gap: 8px;
+    width: max(150px, min(177px, 15vw));
+    height: max(36px, min(43px, calc(var(--header-height) * 0.48)));
+    border: 1.5px solid #6e6e6e;
+    border-radius: 4px;
     display: flex;
     align-items: center;
-    border-radius: 4px;
-    border: 1.5px solid #6e6e6e;
-    background-color: #fff;
-    padding: 14px;
+    padding: var(--spacing-sm);
+    gap: var(--spacing-xs);
+    flex-shrink: 1;
+    min-width: 120px;
   }
 
-  /* Carrito */
+  .campo-busqueda {
+    font-family: var(--fuente-secundaria);
+    font-size: max(0.875rem, min(1rem, calc(var(--header-height) * 0.15)));
+    width: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+  }
+
+  /* Carrito con bordes consistentes */
   .contenedor-carrito {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: clamp(32px, 4vh, 36px);
-    padding: 0 clamp(1rem, 2vw, 27px);
+    height: max(32px, min(36px, calc(var(--header-height) * 0.4)));
+    padding: 0 var(--spacing-md);
     border-left: 1.5px solid var(--color-borde);
     border-right: 1.5px solid var(--color-borde);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
   }
 
-  /* Modo de Entrega */
+  /* Modo de entrega con mejor alineación */
   .modo-entrega {
-    display: flex;
-    height: clamp(32px, 4vh, 36px);
-    padding-right: clamp(1rem, 2vw, 27px);
-    gap: 0 8px;
+    height: max(32px, min(36px, calc(var(--header-height) * 0.4)));
+    padding-right: var(--spacing-md);
     border-right: 1.5px solid var(--color-borde);
+    display: flex;
     flex-direction: column;
-    align-items: start;
     justify-content: center;
+    flex-shrink: 0;
   }
 
   .texto-entrega-titulo {
     text-transform: uppercase;
     font-weight: 600;
+    margin-bottom: calc(var(--spacing-xs) * 0.5);
   }
 
   .contenedor-metodo {
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: var(--spacing-xs);
   }
 
-  /* Botón de Login */
+  /* Botón de login con tamaño consistente */
   .boton-login {
-    border-radius: 4px;
+    height: max(32px, min(36px, calc(var(--header-height) * 0.4)));
+    padding: 0 var(--spacing-sm);
     background: var(--color-rojo);
-    gap: 8px;
-    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
     display: flex;
     align-items: center;
-    justify-content: center;
-    height: clamp(32px, 4vh, 36px);
-    border: none;
+    gap: var(--spacing-xs);
     cursor: pointer;
+    flex-shrink: 0;
   }
 
   .texto-login {
     color: #fff;
-    white-space: nowrap;
   }
 
-  /* Media Queries */
+  /* Prevención de desbordamiento */
   @media screen and (max-width: 1200px) {
-    .texto-entrega-titulo {
-      font-size: 0.875rem;
+    :root {
+      --header-height: max(70px, min(80px, 7vh));
     }
 
-    .texto-metodo {
-      font-size: 1.25rem;
+    .texto-entrega-titulo {
+      font-size: max(0.75rem, min(0.875rem, calc(var(--header-height) * 0.13)));
     }
   }
 
   @media screen and (max-width: 1024px) {
     .contenedor-opciones {
-      gap: clamp(0.5rem, 1vw, 1rem);
+      gap: var(--spacing-sm);
     }
 
     .contenedor-buscador {
-      width: clamp(120px, 12vw, 150px);
+      min-width: 100px;
+    }
+
+    :root {
+      --spacing-md: max(12px, min(20px, 1.5vw));
+    }
+  }
+
+  /* Manejo de overflow */
+  @supports (-webkit-hyphens: none) {
+    .encabezado {
+      overflow: visible; /* Previene corte en Safari */
     }
   }
 </style>
