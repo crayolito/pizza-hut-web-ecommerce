@@ -1,14 +1,93 @@
-{% style %}
+<!-- Header Component -->
+<sticky-header>
+  <header class="encabezado">
+    <!-- Logo Section -->
+    <div class="contenedor-logo">
+      <img
+        src="{{ 'logo-pizza-hut.png' | asset_url }}"
+        alt="Logo Pizza Hut"
+        class="logo"
+      >
+    </div>
+
+    <!-- Navigation Menu -->
+    <nav class="menu-navegacion">
+      <div class="menu-item">
+        <a href="/menu">
+          <h4>Menú</h4>
+        </a>
+      </div>
+      <div class="menu-item menu-hutcoins">
+        <a class="link-hutcoins" href="/promociones">
+          <h4>Hut Coins</h4>
+          {% render 'icon-flecha-hutcoins' %}
+        </a>
+      </div>
+      <div class="menu-item">
+        <a href="/restaurantes">
+          <h4>Sobre Nosotros</h4>
+        </a>
+      </div>
+    </nav>
+
+    <!-- Options Container -->
+    <div class="contenedor-opciones">
+      <!-- Search Bar -->
+      <div class="contenedor-buscador">
+        {% render 'icon-search', class: 'icono-buscar' %}
+        <input type="search" class="campo-busqueda" placeholder="Buscar...">
+      </div>
+
+      <!-- Shopping Cart -->
+      <div class="contenedor-carrito">
+        {% render 'icon-carrito' %}
+      </div>
+
+      <!-- Delivery Mode -->
+      <div class="modo-entrega">
+        <p class="texto-entrega-titulo">Selecciona tu</p>
+        <div class="contenedor-metodo">
+          <h4 class="texto-metodo">Método de entrega</h4>
+          {% render 'icon-domicilio', class: 'icono-domicilio' %}
+        </div>
+      </div>
+
+      <!-- Login Button -->
+      <button class="boton-login">
+        <h4 class="texto-login">Iniciar sesión</h4>
+        {% render 'icon-search', class: 'icono-login' %}
+      </button>
+    </div>
+  </header>
+</sticky-header>
+
+<!-- Custom Element Definition -->
+<script>
+  class HeaderPrincipal extends HTMLElement {}
+  customElements.define('sticky-header', HeaderPrincipal);
+</script>
+
+<style>
+  /* Variables globales */
   :root {
     --fuente-principal: 'League Gothic', sans-serif;
     --fuente-secundaria: 'Montserrat', sans-serif;
     --color-primario: #231f20;
     --color-borde: #dedede;
     --color-borde-oscuro: #969696;
+    --padding-lateral: clamp(1rem, 4vw, 53px);
+    --altura-header: clamp(70px, 9vh, 90px);
     --color-rojo: #c8102e;
   }
 
-  /* Estilos base */
+  /* Reset y estilos base */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  /* Estilos de tipografía */
   h4 {
     font-family: var(--fuente-principal);
     font-size: 1.5rem;
@@ -17,7 +96,6 @@
     line-height: 1.6875rem;
     letter-spacing: -0.03rem;
     text-transform: uppercase;
-    margin: 0;
   }
 
   h3 {
@@ -28,7 +106,6 @@
     line-height: normal;
     letter-spacing: -0.04rem;
     text-transform: uppercase;
-    margin: 0;
   }
 
   h2 {
@@ -37,7 +114,6 @@
     font-style: normal;
     line-height: normal;
     text-transform: uppercase;
-    margin: 0;
   }
 
   p {
@@ -46,9 +122,9 @@
     font-style: normal;
     font-weight: 400;
     line-height: 1.6875rem;
-    margin: 0;
   }
 
+  /* Estilos de enlaces e inputs */
   a {
     text-decoration: none;
     color: inherit;
@@ -67,27 +143,22 @@
     width: 100%;
   }
 
-  /* Box-sizing universal */
-  *,
-  *::before,
-  *::after {
-    box-sizing: border-box;
-  }
-
-  /* Header responsivo */
+  /* Header Principal */
   .encabezado {
     width: 100%;
-    height: 90px;
-    padding: 0 53px;
+    height: var(--altura-header);
+    padding: 0 var(--padding-lateral);
     background-color: #fff;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: clamp(1rem, 2vw, 2rem);
   }
 
+  /* Logo */
   .contenedor-logo {
-    height: 37px;
-    width: 136px;
+    height: clamp(30px, 5vh, 37px);
+    width: clamp(110px, 12vw, 136px);
     flex-shrink: 0;
   }
 
@@ -97,33 +168,38 @@
     object-fit: contain;
   }
 
+  /* Menú de Navegación */
   .menu-navegacion {
     display: flex;
     align-items: center;
-    gap: 29px;
-    width: auto;
-    margin: 0 15px;
+    gap: clamp(1rem, 2vw, 29px);
+    flex: 1;
+    justify-content: center;
+    min-width: 0;
   }
 
   .menu-item {
     white-space: nowrap;
   }
 
-  .menu-hutcoins a {
+  .link-hutcoins {
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
+  /* Contenedor de Opciones */
   .contenedor-opciones {
     display: flex;
     align-items: center;
-    gap: 27px;
+    gap: clamp(1rem, 2vw, 27px);
+    flex-shrink: 1;
   }
 
+  /* Buscador */
   .contenedor-buscador {
-    width: 177px;
-    height: 43px;
+    width: clamp(150px, 15vw, 177px);
+    height: clamp(36px, 5vh, 43px);
     gap: 8px;
     display: flex;
     align-items: center;
@@ -133,24 +209,26 @@
     padding: 14px;
   }
 
+  /* Carrito */
   .contenedor-carrito {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 36px;
-    padding: 0 27px;
+    height: clamp(32px, 4vh, 36px);
+    padding: 0 clamp(1rem, 2vw, 27px);
     border-left: 1.5px solid var(--color-borde);
     border-right: 1.5px solid var(--color-borde);
   }
 
+  /* Modo de Entrega */
   .modo-entrega {
     display: flex;
-    height: 36px;
-    padding: 0 27px 0 0;
+    height: clamp(32px, 4vh, 36px);
+    padding-right: clamp(1rem, 2vw, 27px);
     gap: 0 8px;
     border-right: 1.5px solid var(--color-borde);
     flex-direction: column;
-    align-items: flex-start;
+    align-items: start;
     justify-content: center;
   }
 
@@ -163,9 +241,9 @@
     display: flex;
     align-items: center;
     gap: 4px;
-    white-space: nowrap;
   }
 
+  /* Botón de Login */
   .boton-login {
     border-radius: 4px;
     background: var(--color-rojo);
@@ -174,7 +252,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 36px;
+    height: clamp(32px, 4vh, 36px);
     border: none;
     cursor: pointer;
   }
@@ -184,156 +262,24 @@
     white-space: nowrap;
   }
 
-  /* Media queries para adaptación responsiva */
+  /* Media Queries */
   @media screen and (max-width: 1200px) {
-    .encabezado {
-      padding: 0 30px;
-    }
-
-    .menu-navegacion {
-      gap: 20px;
-    }
-
-    .contenedor-opciones {
-      gap: 15px;
-    }
-
-    .contenedor-buscador {
-      width: 150px;
-    }
-
-    .contenedor-carrito {
-      padding: 0 20px;
-    }
-
-    .modo-entrega {
-      padding: 0 20px 0 0;
-    }
-  }
-
-  @media screen and (max-width: 992px) {
-    .encabezado {
-      padding: 0 20px;
-    }
-
-    .menu-navegacion {
-      gap: 15px;
-    }
-
-    .contenedor-opciones {
-      gap: 10px;
-    }
-
-    .contenedor-buscador {
-      width: 120px;
-    }
-
-    .contenedor-carrito {
-      padding: 0 15px;
-    }
-
-    .modo-entrega {
-      padding: 0 15px 0 0;
-    }
-
-    h4 {
-      font-size: 1.3rem;
-    }
-  }
-
-  @media screen and (max-width: 768px) {
-    .encabezado {
-      padding: 0 15px;
-    }
-
-    .menu-navegacion {
-      gap: 10px;
-    }
-
-    .contenedor-opciones {
-      gap: 8px;
-    }
-
-    .contenedor-buscador {
-      width: 100px;
-      padding: 8px;
-    }
-
-    .contenedor-carrito {
-      padding: 0 10px;
-    }
-
-    .modo-entrega {
-      padding: 0 10px 0 0;
-    }
-
-    h4 {
-      font-size: 1.2rem;
-    }
-
     .texto-entrega-titulo {
-      display: none;
+      font-size: 0.875rem;
+    }
+
+    .texto-metodo {
+      font-size: 1.25rem;
     }
   }
 
-  /* Diseño específico para móviles - se debe crear por separado */
-  @media screen and (max-width: 640px) {
-    /* Aquí iría el código para el diseño móvil */
+  @media screen and (max-width: 1024px) {
+    .contenedor-opciones {
+      gap: clamp(0.5rem, 1vw, 1rem);
+    }
+
+    .contenedor-buscador {
+      width: clamp(120px, 12vw, 150px);
+    }
   }
-{% endstyle %}
-
-<sticky-header>
-  <header class="encabezado">
-    <div class="contenedor-logo">
-      <img class="logo" src="{{ 'logo-pizza-hut.png' | asset_url }}" alt="Logo Pizza Hut">
-    </div>
-
-    <nav class="menu-navegacion">
-      <div class="menu-item">
-        <a href="/menu">
-          <h4>Menú</h4>
-        </a>
-      </div>
-      <div class="menu-item menu-hutcoins">
-        <a href="/promociones">
-          <h4>Hut Coins</h4>
-          {% render 'icon-flecha-hutcoins' %}
-        </a>
-      </div>
-      <div class="menu-item">
-        <a href="/restaurantes">
-          <h4>Sobre Nosotros</h4>
-        </a>
-      </div>
-    </nav>
-
-    <div class="contenedor-opciones">
-      <div class="contenedor-buscador">
-        {% render 'icon-search', class: 'icono-buscar' %}
-        <input type="search" class="campo-busqueda" placeholder="Buscar...">
-      </div>
-
-      <div class="contenedor-carrito">
-        {% render 'icon-carrito' %}
-      </div>
-
-      <div class="modo-entrega">
-        <p class="texto-entrega-titulo">Selecciona tu</p>
-        <div class="contenedor-metodo">
-          <h4 class="texto-metodo">Método de entrega</h4>
-          {% render 'icon-domicilio', class: 'icono-domicilio' %}
-        </div>
-      </div>
-
-      <button class="boton-login">
-        <h4 class="texto-login">Iniciar sesión</h4>
-        {% render 'icon-search', class: 'icono-login' %}
-      </button>
-    </div>
-  </header>
-</sticky-header>
-
-<script>
-  class HeaderPrincipal extends HTMLElement {}
-  customElements.define('sticky-header', HeaderPrincipal);
-</script>
+</style>
