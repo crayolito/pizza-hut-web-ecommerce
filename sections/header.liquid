@@ -5,42 +5,53 @@
     --color-primario: #231f20;
     --color-borde: #dedede;
     --color-borde-oscuro: #969696;
+    --color-rojo: #c8102e;
   }
 
+  /* Reset y estilos base */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Tipografía responsiva con fluid typography */
   h4 {
     font-family: var(--fuente-principal);
-    font-size: 1.5rem;
+    font-size: clamp(1rem, 1vw + 0.7rem, 1.5rem);
     font-style: normal;
     font-weight: 400;
-    line-height: 1.6875rem;
-    letter-spacing: -0.03rem;
+    line-height: 1.2;
+    letter-spacing: -0.03em;
     text-transform: uppercase;
   }
 
   h3 {
     font-family: var(--fuente-principal);
-    font-size: 2rem;
+    font-size: clamp(1.5rem, 1.5vw + 1rem, 2rem);
     font-style: normal;
     font-weight: 400;
-    line-height: normal;
-    letter-spacing: -0.04rem;
+    line-height: 1.2;
+    letter-spacing: -0.04em;
     text-transform: uppercase;
   }
 
   h2 {
     font-family: var(--fuente-principal);
-    font-size: 2.25rem;
+    font-size: clamp(1.75rem, 2vw + 1rem, 2.25rem);
     font-style: normal;
-    line-height: normal;
+    line-height: 1.2;
     text-transform: uppercase;
   }
 
   p {
     font-family: var(--fuente-secundaria);
-    font-size: 1rem;
+    font-size: clamp(0.875rem, 0.5vw + 0.7rem, 1rem);
     font-style: normal;
     font-weight: 400;
-    line-height: 1.6875rem;
+    line-height: 1.5;
   }
 
   a {
@@ -52,7 +63,7 @@
   input {
     font-family: var(--fuente-secundaria);
     font-size: 1rem;
-    line-height: 1.6875rem;
+    line-height: 1.5;
     margin: 0;
     padding: 0;
     border: none;
@@ -61,72 +72,211 @@
     width: 100%;
   }
 
-  /* Estilos solo para móvil */
-  @media screen and (max-width: 767px) {
-    /* Aquí iría el CSS para la versión móvil cuando la desarrolles */
+  button {
+    cursor: pointer;
+    font-family: var(--fuente-principal);
+    border: none;
+  }
+
+  /* Header y componentes principales */
+  .encabezado {
+    width: 100%;
+    height: auto;
+    min-height: 4.5rem;
+    padding: 0.75rem 5%;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    position: relative;
+  }
+
+  .contenedor-logo {
+    height: auto;
+    width: clamp(6rem, 10vw, 8.5rem);
+    flex-shrink: 0;
+  }
+
+  .logo {
+    height: auto;
+    width: 100%;
+    max-height: 2.3rem;
+    object-fit: contain;
+  }
+
+  .menu-navegacion {
+    display: flex;
+    align-items: center;
+    gap: clamp(0.75rem, 2vw, 1.8rem);
+    flex-grow: 1;
+    justify-content: center;
+  }
+
+  .menu-item {
+    white-space: nowrap;
+  }
+
+  .menu-hutcoins a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+  }
+
+  .contenedor-opciones {
+    display: flex;
+    align-items: center;
+    gap: clamp(0.5rem, 1.5vw, 1.7rem);
+    flex-shrink: 0;
+  }
+
+  .contenedor-buscador {
+    width: clamp(2.5rem, 15vw, 11rem);
+    height: 2.7rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 0.25rem;
+    border: 1.5px solid #6e6e6e;
+    background-color: #fff;
+    padding: 0 0.875rem;
+    transition: width 0.3s ease;
+  }
+
+  .icono-buscar {
+    flex-shrink: 0;
+  }
+
+  .campo-busqueda {
+    width: 100%;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+  }
+
+  .contenedor-carrito {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2.25rem;
+    padding: 0 clamp(0.5rem, 1.5vw, 1.7rem);
+    border-left: 1.5px solid var(--color-borde);
+    border-right: 1.5px solid var(--color-borde);
+  }
+
+  .modo-entrega {
+    display: flex;
+    height: 2.25rem;
+    padding-right: clamp(0.5rem, 1.5vw, 1.7rem);
+    gap: 0 0.5rem;
+    border-right: 1.5px solid var(--color-borde);
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .texto-entrega-titulo {
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: clamp(0.6rem, 0.5vw, 0.75rem);
+    line-height: 1;
+  }
+
+  .contenedor-metodo {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .texto-metodo {
+    font-size: clamp(0.75rem, 0.7vw + 0.6rem, 1rem);
+    white-space: nowrap;
+  }
+
+  .boton-login {
+    border-radius: 0.25rem;
+    background: var(--color-rojo);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.5rem clamp(0.75rem, 1vw, 1rem);
+    height: 2.25rem;
+  }
+
+  .texto-login {
+    color: #fff;
+    white-space: nowrap;
+  }
+
+  /* Media queries para diferentes dispositivos */
+  @media screen and (min-width: 1200px) {
     .encabezado {
-      padding: 0 20px !important;
+      padding: 0 3.3rem;
+      height: 5.625rem;
     }
 
-    /* Se podrían agregar más reglas específicas para móvil */
+    .contenedor-buscador {
+      width: 11rem;
+    }
+  }
+
+  @media screen and (max-width: 992px) {
+    .encabezado {
+      padding: 0.75rem 2rem;
+    }
+
+    .menu-navegacion {
+      gap: 1.25rem;
+    }
+
+    .contenedor-opciones {
+      gap: 1rem;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .menu-navegacion {
+      gap: 0.75rem;
+    }
+
+    .contenedor-buscador:focus-within {
+      width: 8rem;
+      position: absolute;
+      right: 8.5rem;
+      top: 1.5rem;
+      z-index: 10;
+    }
+
+    .texto-entrega-titulo {
+      display: none;
+    }
+  }
+
+  /* Versión móvil (requeriría un diseño completamente diferente) */
+  @media screen and (max-width: 640px) {
+    /* Aquí se añadiría el código específico para móvil */
   }
 {% endstyle %}
 
 <sticky-header>
-  <header
-    style="
-      width: 100%;
-      height: 90px;
-      padding: 0 53px;
-      background-color: #FFF;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    "
-    class="encabezado"
-  >
-    <div
-      style="
-        height: 37px;
-        width: 136px;
-      "
-      class="contenedor-logo"
-    >
+  <header class="encabezado">
+    <div class="contenedor-logo">
       <img
-        style="
-          height: 100%;
-          width: 100%;
-          object-fit: contain;
-        "
+        class="logo"
         src="{{ 'logo-pizza-hut.png' | asset_url }}"
         alt="Logo Pizza Hut"
-        class="logo"
       >
     </div>
 
-    <nav
-      style="
-        display: flex;
-        align-items: center;
-        gap: 29px;
-        width: auto;
-      "
-      class="menu-navegacion"
-    >
+    <nav class="menu-navegacion">
       <div class="menu-item">
         <a href="/menu">
           <h4>Menú</h4>
         </a>
       </div>
       <div class="menu-item menu-hutcoins">
-        <a
-          style="
-            display: flex;
-            align-items: center;
-            justify-content: center;
-          "
-          href="/promociones"
-        >
+        <a href="/promociones">
           <h4>Hut Coins</h4>
           {% render 'icon-flecha-hutcoins' %}
         </a>
@@ -138,93 +288,26 @@
       </div>
     </nav>
 
-    <div
-      style="
-        display: flex;
-        align-items: center;
-        gap: 27px;
-      "
-      class="contenedor-opciones"
-    >
-      <div
-        style="
-          width: 177px;
-          height: 43px;
-          gap: 8px;
-          display: flex;
-          align-items: center;
-          border-radius: 4px;
-          border: 1.5px solid #6E6E6E;
-          background-color: #FFF;
-          padding: 14px;
-        "
-        class="contenedor-buscador"
-      >
+    <div class="contenedor-opciones">
+      <div class="contenedor-buscador">
         {% render 'icon-search', class: 'icono-buscar' %}
         <input type="search" class="campo-busqueda" placeholder="Buscar...">
       </div>
 
-      <div
-        style="display:flex; align-items: center; justify-content: center; height: 36px;padding: 0px 27px; border-left: 1.5px solid #DEDEDE; border-right: 1.5px solid #DEDEDE;"
-        class="contenedor-carrito"
-      >
+      <div class="contenedor-carrito">
         {% render 'icon-carrito' %}
       </div>
 
-      <div
-        style="
-          display: flex;
-          height: 36px;
-          padding: 0px 27px 0px 0px;
-          gap: 0px 8px;
-          border-right: 1.5px solid #DEDEDE;
-          flex-direction: column;
-          align-items: start;
-          justify-content: center;
-        "
-        class="modo-entrega"
-      >
-        <p
-          style="
-            text-transform: uppercase;
-            font-weight: 600;
-          "
-          class="texto-entrega-titulo"
-        >
-          Selecciona tu
-        </p>
-        <div
-          style="
-            display: flex;
-            align-items: center;
-            gap: 4px;
-          "
-          class="contenedor-metodo"
-        >
+      <div class="modo-entrega">
+        <p class="texto-entrega-titulo">Selecciona tu</p>
+        <div class="contenedor-metodo">
           <h4 class="texto-metodo">Método de entrega</h4>
           {% render 'icon-domicilio', class: 'icono-domicilio' %}
         </div>
       </div>
 
-      <button
-        style="
-          border-radius: 4px;
-          background: #C8102E;
-          gap: 8px;
-          padding: 8px 16px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          height: 36px;
-        "
-        class="boton-login"
-      >
-        <h4
-          style="color: #FFF;"
-          class="texto-login"
-        >
-          Iniciar sesión
-        </h4>
+      <button class="boton-login">
+        <h4 class="texto-login">Iniciar sesión</h4>
         {% render 'icon-search', class: 'icono-login' %}
       </button>
     </div>
@@ -235,5 +318,3 @@
   class HeaderPrincipal extends HTMLElement {}
   customElements.define('sticky-header', HeaderPrincipal);
 </script>
-
-{% comment %} asda {% endcomment %}
