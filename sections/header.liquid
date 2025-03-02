@@ -5,11 +5,8 @@
     --color-primario: #231f20;
     --color-borde: #dedede;
     --color-borde-oscuro: #969696;
-    --color-rojo: #c8102e;
-    --espaciado-estandar: 1rem;
   }
 
-  /* Estilos generales reutilizables */
   h4 {
     font-family: var(--fuente-principal);
     font-size: 1.5rem;
@@ -18,7 +15,6 @@
     line-height: 1.6875rem;
     letter-spacing: -0.03rem;
     text-transform: uppercase;
-    margin: 0;
   }
 
   h3 {
@@ -29,7 +25,6 @@
     line-height: normal;
     letter-spacing: -0.04rem;
     text-transform: uppercase;
-    margin: 0;
   }
 
   h2 {
@@ -38,7 +33,6 @@
     font-style: normal;
     line-height: normal;
     text-transform: uppercase;
-    margin: 0;
   }
 
   p {
@@ -47,7 +41,6 @@
     font-style: normal;
     font-weight: 400;
     line-height: 1.6875rem;
-    margin: 0;
   }
 
   a {
@@ -68,224 +61,72 @@
     width: 100%;
   }
 
-  /* Estilos específicos del header */
-  .encabezado {
-    width: 100%;
-    height: 5.625rem; /* 90px convertido a rem */
-    padding: 0 3.3rem; /* 53px convertido a rem */
-    background-color: #fff;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-sizing: border-box;
-  }
-
-  .contenedor-logo {
-    height: 2.3125rem; /* 37px convertido a rem */
-    width: 8.5rem; /* 136px convertido a rem */
-    min-width: 5rem;
-  }
-
-  .logo {
-    height: 100%;
-    width: 100%;
-    object-fit: contain;
-  }
-
-  .menu-navegacion {
-    display: flex;
-    align-items: center;
-    gap: 1.8125rem; /* 29px convertido a rem */
-    width: auto;
-  }
-
-  .menu-item {
-    white-space: nowrap;
-  }
-
-  .menu-hutcoins a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .contenedor-opciones {
-    display: flex;
-    align-items: center;
-    gap: 1.6875rem; /* 27px convertido a rem */
-  }
-
-  .contenedor-buscador {
-    width: 11.0625rem; /* 177px convertido a rem */
-    height: 2.6875rem; /* 43px convertido a rem */
-    gap: 0.5rem; /* 8px convertido a rem */
-    display: flex;
-    align-items: center;
-    border-radius: 0.25rem; /* 4px convertido a rem */
-    border: 1.5px solid #6e6e6e;
-    background-color: #fff;
-    padding: 0.875rem; /* 14px convertido a rem */
-    box-sizing: border-box;
-    transition: width 0.3s ease;
-  }
-
-  .contenedor-carrito {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 2.25rem; /* 36px convertido a rem */
-    padding: 0 1.6875rem; /* 27px convertido a rem */
-    border-left: 1.5px solid var(--color-borde);
-    border-right: 1.5px solid var(--color-borde);
-  }
-
-  .modo-entrega {
-    display: flex;
-    height: 2.25rem; /* 36px convertido a rem */
-    padding: 0 1.6875rem 0 0; /* 27px 0 0 convertido a rem */
-    gap: 0 0.5rem; /* 0 8px convertido a rem */
-    border-right: 1.5px solid var(--color-borde);
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-  }
-
-  .texto-entrega-titulo {
-    text-transform: uppercase;
-    font-weight: 600;
-    font-size: 0.75rem;
-    line-height: 1rem;
-  }
-
-  .contenedor-metodo {
-    display: flex;
-    align-items: center;
-    gap: 0.25rem; /* 4px convertido a rem */
-  }
-
-  .texto-metodo {
-    font-size: 1rem;
-  }
-
-  .boton-login {
-    border-radius: 0.25rem; /* 4px convertido a rem */
-    background: var(--color-rojo);
-    gap: 0.5rem; /* 8px convertido a rem */
-    padding: 0.5rem 1rem; /* 8px 16px convertido a rem */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 2.25rem; /* 36px convertido a rem */
-    border: none;
-    cursor: pointer;
-  }
-
-  .texto-login {
-    color: #fff;
-    font-size: 1rem;
-  }
-
-  /* Media queries para distintos tamaños de pantalla */
-  @media screen and (max-width: 1200px) {
+  /* Estilos solo para móvil */
+  @media screen and (max-width: 767px) {
+    /* Aquí iría el CSS para la versión móvil cuando la desarrolles */
     .encabezado {
-      padding: 0 2rem;
+      padding: 0 20px !important;
     }
 
-    .menu-navegacion {
-      gap: 1.25rem;
-    }
-
-    .contenedor-opciones {
-      gap: 1rem;
-    }
-
-    .contenedor-buscador {
-      width: 9rem;
-    }
-
-    .contenedor-carrito,
-    .modo-entrega {
-      padding: 0 1rem;
-    }
-  }
-
-  @media screen and (max-width: 992px) {
-    .texto-entrega-titulo {
-      display: none;
-    }
-
-    .contenedor-buscador {
-      width: 7rem;
-    }
-
-    .texto-metodo {
-      font-size: 0.875rem;
-    }
-
-    h4 {
-      font-size: 1.25rem;
-    }
-  }
-
-  @media screen and (max-width: 768px) {
-    .encabezado {
-      padding: 0 1rem;
-      height: 4.5rem;
-    }
-
-    .menu-navegacion {
-      gap: 0.75rem;
-    }
-
-    .contenedor-opciones {
-      gap: 0.5rem;
-    }
-
-    .contenedor-buscador {
-      width: 2.5rem;
-      overflow: hidden;
-    }
-
-    .contenedor-buscador:focus-within {
-      width: 7rem;
-      position: absolute;
-      right: 8.5rem;
-      background: white;
-      z-index: 10;
-    }
-
-    .campo-busqueda {
-      opacity: 0;
-    }
-
-    .contenedor-buscador:focus-within .campo-busqueda {
-      opacity: 1;
-    }
-
-    .modo-entrega {
-      border-right: none;
-    }
+    /* Se podrían agregar más reglas específicas para móvil */
   }
 {% endstyle %}
 
 <sticky-header>
-  <header class="encabezado">
-    <div class="contenedor-logo">
+  <header
+    style="
+      width: 100%;
+      height: 90px;
+      padding: 0 53px;
+      background-color: #FFF;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    "
+    class="encabezado"
+  >
+    <div
+      style="
+        height: 37px;
+        width: 136px;
+      "
+      class="contenedor-logo"
+    >
       <img
-        class="logo"
+        style="
+          height: 100%;
+          width: 100%;
+          object-fit: contain;
+        "
         src="{{ 'logo-pizza-hut.png' | asset_url }}"
         alt="Logo Pizza Hut"
+        class="logo"
       >
     </div>
 
-    <nav class="menu-navegacion">
+    <nav
+      style="
+        display: flex;
+        align-items: center;
+        gap: 29px;
+        width: auto;
+      "
+      class="menu-navegacion"
+    >
       <div class="menu-item">
         <a href="/menu">
           <h4>Menú</h4>
         </a>
       </div>
       <div class="menu-item menu-hutcoins">
-        <a href="/promociones">
+        <a
+          style="
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          "
+          href="/promociones"
+        >
           <h4>Hut Coins</h4>
           {% render 'icon-flecha-hutcoins' %}
         </a>
@@ -297,26 +138,93 @@
       </div>
     </nav>
 
-    <div class="contenedor-opciones">
-      <div class="contenedor-buscador">
+    <div
+      style="
+        display: flex;
+        align-items: center;
+        gap: 27px;
+      "
+      class="contenedor-opciones"
+    >
+      <div
+        style="
+          width: 177px;
+          height: 43px;
+          gap: 8px;
+          display: flex;
+          align-items: center;
+          border-radius: 4px;
+          border: 1.5px solid #6E6E6E;
+          background-color: #FFF;
+          padding: 14px;
+        "
+        class="contenedor-buscador"
+      >
         {% render 'icon-search', class: 'icono-buscar' %}
         <input type="search" class="campo-busqueda" placeholder="Buscar...">
       </div>
 
-      <div class="contenedor-carrito">
+      <div
+        style="display:flex; align-items: center; justify-content: center; height: 36px;padding: 0px 27px; border-left: 1.5px solid #DEDEDE; border-right: 1.5px solid #DEDEDE;"
+        class="contenedor-carrito"
+      >
         {% render 'icon-carrito' %}
       </div>
 
-      <div class="modo-entrega">
-        <p>Selecciona tu</p>
-        <div class="contenedor-metodo">
-          <h4>Método de entrega</h4>
+      <div
+        style="
+          display: flex;
+          height: 36px;
+          padding: 0px 27px 0px 0px;
+          gap: 0px 8px;
+          border-right: 1.5px solid #DEDEDE;
+          flex-direction: column;
+          align-items: start;
+          justify-content: center;
+        "
+        class="modo-entrega"
+      >
+        <p
+          style="
+            text-transform: uppercase;
+            font-weight: 600;
+          "
+          class="texto-entrega-titulo"
+        >
+          Selecciona tu
+        </p>
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            gap: 4px;
+          "
+          class="contenedor-metodo"
+        >
+          <h4 class="texto-metodo">Método de entrega</h4>
           {% render 'icon-domicilio', class: 'icono-domicilio' %}
         </div>
       </div>
 
-      <button class="boton-login">
-        <h4>Iniciar sesión</h4>
+      <button
+        style="
+          border-radius: 4px;
+          background: #C8102E;
+          gap: 8px;
+          padding: 8px 16px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 36px;
+        "
+        class="boton-login"
+      >
+        <h4
+          style="color: #FFF;"
+          class="texto-login"
+        >
+          Iniciar sesión
+        </h4>
         {% render 'icon-search', class: 'icono-login' %}
       </button>
     </div>
