@@ -37,166 +37,166 @@
     {{ content_for_header }}
 
     {% style %}
-      :root {
-        --fuente-principal: 'League Gothic', sans-serif;
-        --fuente-letra-secundaria: 'Montserrat', sans-serif;
-      }
+          :root {
+            --fuente-principal: 'League Gothic', sans-serif;
+            --fuente-letra-secundaria: 'Montserrat', sans-serif;
+          }
 
-      *,
-      *::before,
-      *::after {
-        box-sizing: inherit;
-      }
+          *,
+          *::before,
+          *::after {
+            box-sizing: inherit;
+          }
 
-      html {
-        box-sizing: border-box;
-        font-size: 16px;
-        height: 100%;
-      }
+          html {
+            box-sizing: border-box;
+            font-size: 16px;
+            height: 100%;
+          }
 
-      body,
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6,
-      p,
-      figure,
-      blockquote,
-      dl,
-      dd {
-        margin: 0;
-      }
+          body,
+          h1,
+          h2,
+          h3,
+          h4,
+          h5,
+          h6,
+          p,
+          figure,
+          blockquote,
+          dl,
+          dd {
+            margin: 0;
+          }
 
-      ul,
-      ol {
-        margin: 0;
-        padding: 0;
-        list-style: none;
-      }
+          ul,
+          ol {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+          }
 
-      h4 {
-        font-family: var(--fuente-principal);
-        font-size: 1.5rem;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 1.6875rem;
-        letter-spacing: -0.03rem;
-        text-transform: uppercase;
-      }
+          /* h4 {
+            font-family: var(--fuente-principal);
+            font-size: 1.5rem;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 1.6875rem;
+            letter-spacing: -0.03rem;
+            text-transform: uppercase;
+          }
 
-      h3 {
-        font-family: var(--fuente-principal);
-        font-size: 2rem;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-        letter-spacing: -0.04rem;
-        text-transform: uppercase;
-      }
+          h3 {
+            font-family: var(--fuente-principal);
+            font-size: 2rem;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            letter-spacing: -0.04rem;
+            text-transform: uppercase;
+          }
 
-      h2 {
-        font-family: var(--fuente-principal);
-        font-size: 2.25rem;
-        font-style: normal;
-        line-height: normal;
-        text-transform: uppercase;
-      }
+          h2 {
+            font-family: var(--fuente-principal);
+            font-size: 2.25rem;
+            font-style: normal;
+            line-height: normal;
+            text-transform: uppercase;
+          }
 
-      p {
-        font-family: var(--fuente-letra-secundaria);
-        font-size: 1rem;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 1.6875rem;
-      }
+          p {
+            font-family: var(--fuente-letra-secundaria);
+            font-size: 1rem;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 1.6875rem;
+          }
 
-      a {
-        text-decoration: none;
-        color: inherit;
-        cursor: pointer;
-      }
+          a {
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+          }
 
-      input {
-        font-family: var(--fuente-letra-secundaria); /* Misma fuente que p */
-        font-size: clamp(0.88rem, 0.8rem + 0.2vw, 1.09rem);
-        line-height: 1.6875rem; /* Mismo interlineado */
-        margin: 0; /* Sin márgenes */
-        padding: 0; /* Sin padding */
-        border: none; /* Sin bordes */
-        outline: none; /* Quita el focus outline */
-        background: transparent; /* Fondo transparente */
-        width: 100%; /* Ocupa todo el ancho */
-      }
+          input {
+            font-family: var(--fuente-letra-secundaria); /* Misma fuente que p */
+            font-size: clamp(0.88rem, 0.8rem + 0.2vw, 1.09rem);
+            line-height: 1.6875rem; /* Mismo interlineado */
+            margin: 0; /* Sin márgenes */
+            padding: 0; /* Sin padding */
+            border: none; /* Sin bordes */
+            outline: none; /* Quita el focus outline */
+            background: transparent; /* Fondo transparente */
+            width: 100%; /* Ocupa todo el ancho */
+          } */
 
-      body {
-        display: grid;
-        grid-template-rows: auto auto 1fr auto;
-        grid-template-columns: 100%;
-        min-height: 100%;
-        margin: 0;
-        letter-spacing: 0.06rem;
-      }
+          body {
+            display: grid;
+            grid-template-rows: auto auto 1fr auto;
+            grid-template-columns: 100%;
+            min-height: 100%;
+            margin: 0;
+            letter-spacing: 0.06rem;
+          }
 
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6,
-      p,
-      ul,
-      ol,
-      span {
-        margin: 0;
-        padding: 0;
-      }
+          h1,
+          h2,
+          h3,
+          h4,
+          h5,
+          h6,
+          p,
+          ul,
+          ol,
+          span {
+            margin: 0;
+            padding: 0;
+          }
 
-      svg {
-        width: 24px !important;
-        height: 24px !important;
-      }
+          /* svg {
+            width: 24px !important;
+            height: 24px !important;
+          } */
 
-      button {
-        border: none;
-        background: transparent;
-        cursor: pointer;
-      }
+          button {
+            border: none;
+            background: transparent;
+            cursor: pointer;
+          }
 
-      /* svg {
-        width: clamp(1.05rem, 0.98rem + 0.35vw, 1.5rem);
-        height: clamp(1.05rem, 0.98rem + 0.35vw, 1.5rem);
-      } */
+          /* svg {
+            width: clamp(1.05rem, 0.98rem + 0.35vw, 1.5rem);
+            height: clamp(1.05rem, 0.98rem + 0.35vw, 1.5rem);
+          } */
 
-      /* Nota de calculos para el uso de clamps para responsividad en ves de usar los medias querys
-    Width(ancho):
-    Tablet y desktop pequeño: Reducir un  20%  del valor original
-    Móvil: Reducir un  40%  del valor original
+          /* Nota de calculos para el uso de clamps para responsividad en ves de usar los medias querys
+        Width(ancho):
+        Tablet y desktop pequeño: Reducir un  20%  del valor original
+        Móvil: Reducir un  40%  del valor original
 
-    Padding y Margin:
-    Tablet y desktop pequeño: Reudcir un 25% del valor original
-    Móvil: Reudcir un 50% del valor original
+        Padding y Margin:
+        Tablet y desktop pequeño: Reudcir un 25% del valor original
+        Móvil: Reudcir un 50% del valor original
 
-    Height(alto):
-    Tablet y desktop pequeño: Reducir un 20% del valor original
-    Móvil: Reducir un 35% del valor original
+        Height(alto):
+        Tablet y desktop pequeño: Reducir un 20% del valor original
+        Móvil: Reducir un 35% del valor original
 
-    Gap(espaciado):
-    Tablet y desktop pequeño: Reudcir un 25% del valor original
-    Móvil: Reudcir un 50% del valor original  
+        Gap(espaciado):
+        Tablet y desktop pequeño: Reudcir un 25% del valor original
+        Móvil: Reudcir un 50% del valor original
 
-    Font-size(tamaño de letra):
-    Tablet y desktop pequeño: Reudcir un 25% del valor original
-    Móvil: Reudcir un 50% del valor original
+        Font-size(tamaño de letra):
+        Tablet y desktop pequeño: Reudcir un 25% del valor original
+        Móvil: Reudcir un 50% del valor original
 
-    Simplificado:
-    clamp(min, min + (max - min) * (100vw - tamaño-mín) / (tamaño-máx - tamaño-mín), max)
+        Simplificado:
+        clamp(min, min + (max - min) * (100vw - tamaño-mín) / (tamaño-máx - tamaño-mín), max)
 
-    En nuestro caso:
-    tamaño-mín = 320px (típico ancho mínimo móvil)
-    tamaño-máx = 1440px (típico ancho máximo desktop)
-  */
+        En nuestro caso:
+        tamaño-mín = 320px (típico ancho mínimo móvil)
+        tamaño-máx = 1440px (típico ancho máximo desktop)
+      */
     {% endstyle %}
   </head>
 
