@@ -6,53 +6,54 @@
     --color-borde: #dedede;
     --color-borde-oscuro: #969696;
     --color-rojo: #c8102e;
-    --altura-header: 5.625rem; /* 90px convertido a rem */
-    --padding-lateral: 3.3125rem; /* 53px convertido a rem */
-    --espacio-items: 1.8125rem; /* 29px convertido a rem */
+    --altura-header: 90px; /* Mantenemos px para consistencia con el personalizador */
+    --espacio-items: 29px;
   }
 
-  /* Estilos generales responsivos */
+  /* Reseteo básico para consistencia */
   * {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
   }
 
-  /* Estilos de tipografía con unidades relativas */
+  /* Estilos de tipografía consistentes */
   h4 {
     font-family: var(--fuente-principal);
-    font-size: 1.5rem;
+    font-size: 24px; /* Mantenemos tamaño fijo para evitar problemas en personalizador */
     font-style: normal;
     font-weight: 400;
-    line-height: 1.6875rem;
-    letter-spacing: -0.03rem;
+    line-height: 27px;
+    letter-spacing: -0.03em;
     text-transform: uppercase;
+    margin: 0;
   }
 
   h3 {
     font-family: var(--fuente-principal);
-    font-size: 2rem;
+    font-size: 32px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    letter-spacing: -0.04rem;
+    letter-spacing: -0.04em;
     text-transform: uppercase;
+    margin: 0;
   }
 
   h2 {
     font-family: var(--fuente-principal);
-    font-size: 2.25rem;
+    font-size: 36px;
     font-style: normal;
     line-height: normal;
     text-transform: uppercase;
+    margin: 0;
   }
 
   p {
     font-family: var(--fuente-secundaria);
-    font-size: 1rem;
+    font-size: 16px;
     font-style: normal;
     font-weight: 400;
-    line-height: 1.6875rem;
+    line-height: 27px;
+    margin: 0;
   }
 
   a {
@@ -63,8 +64,8 @@
 
   input {
     font-family: var(--fuente-secundaria);
-    font-size: 1rem;
-    line-height: 1.6875rem;
+    font-size: 16px;
+    line-height: 27px;
     margin: 0;
     padding: 0;
     border: none;
@@ -73,22 +74,25 @@
     width: 100%;
   }
 
-  /* Estilos del encabezado responsivos */
+  /* Estilos del encabezado para garantizar estabilidad */
   header.encabezado {
     width: 100%;
     height: var(--altura-header);
-    padding: 0 var(--padding-lateral);
+    padding: 0 53px;
     background-color: #fff;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: nowrap; /* Evita que los elementos se envuelvan en filas nuevas */
+    position: relative; /* Para posicionamiento absoluto si es necesario */
   }
 
   .contenedor-logo {
-    height: 2.3125rem; /* 37px */
-    width: 8.5rem; /* 136px */
-    flex-shrink: 0;
-    margin-right: 1rem;
+    height: 37px;
+    width: 136px;
+    min-width: 100px; /* Ancho mínimo para evitar que se comprima demasiado */
+    flex-shrink: 1; /* Permitir algo de compresión si es necesario */
+    margin-right: 20px;
   }
 
   .logo {
@@ -101,61 +105,65 @@
     display: flex;
     align-items: center;
     gap: var(--espacio-items);
-    flex-grow: 1;
-    flex-basis: 0;
+    flex: 1; /* Toma el espacio disponible */
     justify-content: center;
-    overflow-x: auto;
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
-  }
-
-  .menu-navegacion::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
+    min-width: 0; /* Permite que flex-basis: 0 funcione correctamente */
+    overflow: visible; /* Evitamos scroll horizontal */
   }
 
   .menu-item {
     white-space: nowrap;
+    flex-shrink: 0; /* No permitimos que estos ítems se compriman */
+  }
+
+  .menu-item a {
+    display: flex;
+    align-items: center;
   }
 
   .contenedor-opciones {
     display: flex;
     align-items: center;
-    gap: 1.6875rem; /* 27px */
-    flex-shrink: 0;
-    margin-left: 1rem;
+    gap: 27px;
+    margin-left: 20px;
   }
 
   .contenedor-buscador {
-    width: 11.0625rem; /* 177px */
-    height: 2.6875rem; /* 43px */
-    gap: 0.5rem; /* 8px */
+    width: 177px;
+    height: 43px;
+    gap: 8px;
     display: flex;
     align-items: center;
-    border-radius: 0.25rem; /* 4px */
-    border: 0.09375rem solid #6e6e6e; /* 1.5px */
+    border-radius: 4px;
+    border: 1.5px solid #6e6e6e;
     background-color: #fff;
-    padding: 0.875rem; /* 14px */
+    padding: 14px;
+    min-width: 150px; /* Ancho mínimo para mantener la funcionalidad */
+    flex-shrink: 1; /* Permitir compresión si es necesario */
   }
 
   .contenedor-carrito {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 2.25rem; /* 36px */
-    padding: 0 1.6875rem; /* 0 27px */
-    border-left: 0.09375rem solid var(--color-borde); /* 1.5px */
-    border-right: 0.09375rem solid var(--color-borde); /* 1.5px */
+    height: 36px;
+    padding: 0 27px;
+    border-left: 1.5px solid var(--color-borde);
+    border-right: 1.5px solid var(--color-borde);
+    flex-shrink: 0; /* No comprimir */
   }
 
   .modo-entrega {
     display: flex;
-    height: 2.25rem; /* 36px */
-    padding: 0 1.6875rem 0 0; /* 0 27px 0 0 */
-    gap: 0 0.5rem; /* 0 8px */
-    border-right: 0.09375rem solid var(--color-borde); /* 1.5px */
+    height: 36px;
+    padding: 0 27px 0 0;
+    gap: 0 8px;
+    border-right: 1.5px solid var(--color-borde);
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
+    flex-shrink: 1; /* Puede comprimirse si es necesario */
+    min-width: 150px; /* Pero mantiene un mínimo */
   }
 
   .texto-entrega-titulo {
@@ -166,20 +174,25 @@
   .contenedor-metodo {
     display: flex;
     align-items: center;
-    gap: 0.25rem; /* 4px */
+    gap: 4px;
+  }
+
+  .texto-metodo {
+    white-space: nowrap;
   }
 
   .boton-login {
-    border-radius: 0.25rem; /* 4px */
+    border-radius: 4px;
     background: var(--color-rojo);
-    gap: 0.5rem; /* 8px */
-    padding: 0.5rem 1rem; /* 8px 16px */
+    gap: 8px;
+    padding: 8px 16px;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 2.25rem; /* 36px */
+    height: 36px;
     border: none;
     cursor: pointer;
+    flex-shrink: 0; /* No permitir compresión */
   }
 
   .texto-login {
@@ -187,44 +200,128 @@
     white-space: nowrap;
   }
 
-  /* Media queries para ajustar a distintos tamaños de pantalla */
-  @media screen and (max-width: 1200px) {
-    :root {
-      --padding-lateral: 2rem;
-      --espacio-items: 1.25rem;
+  /* Media queries refinadas para diferentes dispositivos 
+   * centradas en tablets hacia arriba */
+  @media screen and (max-width: 1300px) {
+    header.encabezado {
+      padding: 0 30px; /* Reducción del padding lateral */
     }
 
     .contenedor-buscador {
-      width: 9rem;
+      width: 150px; /* Reducción del ancho del buscador */
     }
 
-    .contenedor-carrito,
+    .menu-navegacion {
+      gap: 20px; /* Reducción del espacio entre elementos de navegación */
+    }
+
+    .contenedor-opciones {
+      gap: 20px; /* Reducción del espacio entre opciones */
+    }
+  }
+
+  @media screen and (max-width: 1150px) {
+    /* Ajustar tamaños de texto para tablets grandes y desktops pequeños */
+    h4 {
+      font-size: 20px;
+    }
+
+    .contenedor-buscador {
+      width: 130px;
+      padding: 10px;
+    }
+
+    .contenedor-carrito {
+      padding: 0 15px;
+    }
+
     .modo-entrega {
-      padding: 0 1rem;
+      min-width: 130px;
+      padding: 0 15px 0 0;
     }
   }
 
   @media screen and (max-width: 992px) {
-    .modo-entrega {
-      display: none;
+    header.encabezado {
+      padding: 0 20px;
     }
 
+    .contenedor-logo {
+      width: 110px;
+      margin-right: 15px;
+    }
+
+    .menu-navegacion {
+      justify-content: flex-start; /* Alinear a la izquierda para mejor control de espacio */
+      gap: 15px;
+    }
+
+    .contenedor-opciones {
+      gap: 15px;
+    }
+
+    .modo-entrega {
+      min-width: 0;
+    }
+
+    /* Ajustar la altura y el padding del botón de login */
+    .boton-login {
+      padding: 8px 12px;
+    }
+  }
+
+  @media screen and (max-width: 850px) {
+    /* Optimización para iPads y tablets */
     .contenedor-buscador {
-      width: 8rem;
+      width: 100px;
+      padding: 8px;
+    }
+
+    .contenedor-carrito {
+      padding: 0 10px;
+    }
+
+    h4 {
+      font-size: 18px;
     }
   }
 
   @media screen and (max-width: 768px) {
-    :root {
-      --padding-lateral: 1rem;
-    }
-
-    h4 {
-      font-size: 1.25rem;
+    /* Para tablets en modo vertical */
+    header.encabezado {
+      padding: 0 15px;
+      height: 80px; /* Reducir altura del header */
     }
 
     .contenedor-logo {
-      width: 6.5rem;
+      width: 90px;
+      height: 30px;
+    }
+
+    /* Reordenar prioridades de flexbox para preservar elementos importantes */
+    .menu-navegacion {
+      flex: 0 1 auto;
+      gap: 10px;
+    }
+
+    .contenedor-buscador {
+      min-width: 0;
+      width: 36px; /* Mostrar solo el ícono */
+      overflow: hidden;
+    }
+
+    .campo-busqueda {
+      opacity: 0; /* Ocultar el input pero mantener funcionalidad */
+      width: 0;
+    }
+
+    .modo-entrega {
+      border-right: none;
+      padding: 0;
+    }
+
+    .texto-entrega-titulo {
+      display: none;
     }
   }
 {% endstyle %}
@@ -246,7 +343,7 @@
         </a>
       </div>
       <div class="menu-item menu-hutcoins">
-        <a style="display: flex; align-items: center; justify-content: center;" href="/promociones">
+        <a href="/promociones">
           <h4>Hut Coins</h4>
           {% render 'icon-flecha-hutcoins' %}
         </a>
