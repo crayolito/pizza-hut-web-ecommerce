@@ -7,10 +7,10 @@
     --color-borde-oscuro: #969696;
   }
 
-  /* Estilos base con medidas responsivas */
+  /* Estilos base con medidas responsivas compatibles con Shopify admin */
   h4 {
     font-family: var(--fuente-principal);
-    font-size: calc(1.2rem + 0.3vw); /* Texto responsivo */
+    font-size: 1.5rem; /* Tamaño base */
     font-style: normal;
     font-weight: 400;
     line-height: 1.6875rem;
@@ -21,7 +21,7 @@
 
   h3 {
     font-family: var(--fuente-principal);
-    font-size: calc(1.5rem + 0.5vw); /* Texto responsivo */
+    font-size: 2rem; /* Tamaño base */
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -32,7 +32,7 @@
 
   h2 {
     font-family: var(--fuente-principal);
-    font-size: calc(1.8rem + 0.5vw); /* Texto responsivo */
+    font-size: 2.25rem; /* Tamaño base */
     font-style: normal;
     line-height: normal;
     text-transform: uppercase;
@@ -41,7 +41,7 @@
 
   p {
     font-family: var(--fuente-secundaria);
-    font-size: calc(0.9rem + 0.1vw); /* Texto responsivo */
+    font-size: 1rem; /* Tamaño base */
     font-style: normal;
     font-weight: 400;
     line-height: 1.6875rem;
@@ -66,11 +66,18 @@
     width: 100%;
   }
 
+  /* Selector universal para box-sizing */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
   /* Estilos base responsivos para la estructura */
   .encabezado {
     width: 100%;
     height: 90px;
-    padding: 0 min(53px, 5%); /* Responsivo con mínimo */
+    padding: 0 53px;
     background-color: #fff;
     display: flex;
     justify-content: space-between;
@@ -92,7 +99,7 @@
   .menu-navegacion {
     display: flex;
     align-items: center;
-    gap: min(29px, 3vw); /* Responsivo con mínimo */
+    gap: 29px;
     width: auto;
   }
 
@@ -105,11 +112,11 @@
   .contenedor-opciones {
     display: flex;
     align-items: center;
-    gap: min(27px, 2.5vw); /* Responsivo con mínimo */
+    gap: 27px;
   }
 
   .contenedor-buscador {
-    width: min(177px, 15vw); /* Responsivo con mínimo */
+    width: 177px;
     height: 43px;
     gap: 8px;
     display: flex;
@@ -125,7 +132,7 @@
     align-items: center;
     justify-content: center;
     height: 36px;
-    padding: 0 min(27px, 2vw); /* Responsivo con mínimo */
+    padding: 0px 27px;
     border-left: 1.5px solid var(--color-borde);
     border-right: 1.5px solid var(--color-borde);
   }
@@ -133,8 +140,8 @@
   .modo-entrega {
     display: flex;
     height: 36px;
-    padding: 0 min(27px, 2vw) 0 0; /* Responsivo con mínimo */
-    gap: 0 8px;
+    padding: 0px 27px 0px 0px;
+    gap: 0px 8px;
     border-right: 1.5px solid var(--color-borde);
     flex-direction: column;
     align-items: flex-start;
@@ -150,7 +157,7 @@
     display: flex;
     align-items: center;
     gap: 4px;
-    white-space: nowrap; /* Evita que el texto se rompa */
+    white-space: nowrap;
   }
 
   .boton-login {
@@ -168,11 +175,90 @@
 
   .texto-login {
     color: #fff;
-    white-space: nowrap; /* Evita que el texto se rompa */
+    white-space: nowrap;
+  }
+
+  /* Media queries compatibles con Shopify admin */
+  @media screen and (max-width: 1200px) {
+    .encabezado {
+      padding: 0 40px;
+    }
+
+    .menu-navegacion {
+      gap: 20px;
+    }
+
+    .contenedor-opciones {
+      gap: 20px;
+    }
+
+    h4 {
+      font-size: 1.4rem;
+    }
+  }
+
+  @media screen and (max-width: 992px) {
+    .encabezado {
+      padding: 0 30px;
+    }
+
+    .menu-navegacion {
+      gap: 15px;
+    }
+
+    .contenedor-opciones {
+      gap: 15px;
+    }
+
+    .contenedor-buscador {
+      width: 150px;
+    }
+
+    .contenedor-carrito {
+      padding: 0 20px;
+    }
+
+    .modo-entrega {
+      padding: 0 20px 0 0;
+    }
+
+    h4 {
+      font-size: 1.3rem;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .encabezado {
+      padding: 0 20px;
+    }
+
+    .menu-navegacion {
+      gap: 10px;
+    }
+
+    .contenedor-opciones {
+      gap: 10px;
+    }
+
+    .contenedor-buscador {
+      width: 120px;
+    }
+
+    .contenedor-carrito {
+      padding: 0 15px;
+    }
+
+    .modo-entrega {
+      padding: 0 15px 0 0;
+    }
+
+    h4 {
+      font-size: 1.2rem;
+    }
   }
 
   /* Media query específico para dispositivos móviles (no implementado) */
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 640px) {
     /* El diseño móvil iría aquí - se haría completamente diferente */
   }
 {% endstyle %}
