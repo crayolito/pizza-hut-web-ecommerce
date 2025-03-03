@@ -16,25 +16,37 @@
     justify-content: space-between;
     align-items: center;
   }
+
+  .contenedor-logo {
+    height: 5.5rem;
+    width: 8.5rem;
+  }
+
+  .logo {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+  }
+
+  .menu-navegacion {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    width: auto;
+    margin: 0rem 4rem;
+  }
+
+  .hut-coins {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 {% endstyle %}
 
 <sticky-header>
-  <header
-    class="encabezado"
-  >
-    <div
-      style="
-        height: 37px;
-        width: 136px;
-      "
-      class="contenedor-logo"
-    >
+  <header class="encabezado">
+    <div class="contenedor-logo">
       <img
-        style="
-          height: 100%;
-          width: 100%;
-          object-fit: contain;
-        "
         src="{{ 'logo-pizza-hut.png' | asset_url }}"
         alt="Logo Pizza Hut"
         class="logo"
@@ -42,13 +54,6 @@
     </div>
 
     <nav
-      style="
-        display: flex;
-        align-items: center;
-        gap: 2rem;
-        width: auto;
-        margin: 0rem 4rem;
-      "
       class="menu-navegacion"
     >
       <div class="menu-item">
@@ -58,11 +63,7 @@
       </div>
       <div class="menu-item menu-hutcoins">
         <a
-          style="
-            display: flex;
-            align-items: center;
-            justify-content: center;
-          "
+          class="hut-coins"
           href="/promociones"
         >
           <h4>Hut Coins</h4>
