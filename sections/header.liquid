@@ -6,6 +6,13 @@
     --color-borde: #dedede;
     --color-borde-oscuro: #969696;
     --color-rojo: #c8102e;
+
+    /* Dimensiones comunes para reutilización */
+    --altura-botones: 2.25rem; /* 36px */
+    --padding-contenedores: 0.75rem; /* 12px */
+    --gap-elementos: 0.5rem; /* 8px */
+    --border-radius-default: 0.25rem; /* 4px */
+    --border-width: 0.094rem; /* 1.5px */
   }
 
   /* Base styles (mobile first) */
@@ -32,91 +39,78 @@
     object-fit: contain;
   }
 
-  /* Menú de navegación */
   .menu-navegacion {
-    display: none; /* Oculto en móvil por defecto */
+    display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 1rem; /* 16px */
     width: auto;
   }
 
+  .menu-item a {
+    text-decoration: none;
+    color: var(--color-primario);
+  }
+
   .menu-item h4 {
+    margin: 0;
     font-family: var(--fuente-principal);
-    white-space: nowrap;
   }
 
   .hut-coins {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 4px;
   }
 
-  /* Botón de menú hamburguesa para móvil */
-  .menu-toggle {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 1.5rem; /* 24px */
-    height: 1.25rem; /* 20px */
-    cursor: pointer;
-  }
-
-  .menu-toggle span {
-    display: block;
-    height: 2px;
-    width: 100%;
-    background-color: var(--color-primario);
-    transition: all 0.3s ease;
-  }
-
-  /* Contenedor de opciones */
-  .contenedor-opciones {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem; /* 12px en móvil */
-  }
-
-  /* Buscador */
+  /* Contenedor buscador - mejorado para accesibilidad */
   .contenedor-buscador {
     width: 8rem; /* 128px */
     height: 2rem; /* 32px */
     gap: 0.25rem; /* 4px */
     display: flex;
     align-items: center;
-    border-radius: 0.25rem; /* 4px */
-    border: 0.094rem solid var(--color-borde-oscuro); /* 1.5px */
+    border-radius: var(--border-radius-default);
+    border: var(--border-width) solid #6e6e6e;
     background-color: #fff;
     padding: 0.5rem; /* 8px */
     font-size: 0.875rem; /* 14px */
   }
 
-  .campo-busqueda {
+  /* Asegurar que los inputs dentro del buscador sean accesibles */
+  .contenedor-buscador input {
     border: none;
     outline: none;
+    background: transparent;
     width: 100%;
     font-family: var(--fuente-secundaria);
     font-size: inherit;
   }
 
-  /* Carrito */
+  /* Mejora para el contenedor de opciones - mover los inline styles al CSS */
+  .contenedor-opciones {
+    display: flex;
+    align-items: center;
+    gap: 1.7rem; /* 27px - como en tu código original */
+  }
+
+  /* Contenedor de carrito - mover inline styles al CSS */
   .contenedor-carrito {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 2.25rem; /* 36px */
-    padding: 0 0.75rem; /* 0px 12px */
-    border-left: 1.5px solid var(--color-borde);
-    border-right: 1.5px solid var(--color-borde);
+    height: var(--altura-botones); /* 36px */
+    padding: 0 1.7rem; /* 0px 27px */
+    border-left: var(--border-width) solid var(--color-borde);
+    border-right: var(--border-width) solid var(--color-borde);
   }
 
-  /* Modo entrega - Oculto en móvil */
+  /* Modo entrega - mover inline styles al CSS */
   .modo-entrega {
-    display: none;
-    height: 2.25rem; /* 36px */
-    padding: 0 0.75rem 0 0; /* 0px 12px 0px 0px */
+    display: flex;
+    height: var(--altura-botones); /* 36px */
+    padding: 0 1.7rem 0 0; /* 0px 27px 0px 0px */
     gap: 0 0.5rem; /* 0px 8px */
-    border-right: 1.5px solid var(--color-borde);
+    border-right: var(--border-width) solid var(--color-borde);
     flex-direction: column;
     align-items: start;
     justify-content: center;
@@ -126,33 +120,31 @@
     text-transform: uppercase;
     font-weight: 600;
     font-family: var(--fuente-secundaria);
-    font-size: 0.6875rem; /* 11px */
     margin: 0;
+    font-size: 0.75rem; /* 12px */
   }
 
   .contenedor-metodo {
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 0.25rem; /* 4px */
   }
 
   .texto-metodo {
     font-family: var(--fuente-principal);
-    font-size: 0.875rem; /* 14px */
     margin: 0;
-    white-space: nowrap;
   }
 
-  /* Botón login */
+  /* Botón login - mover inline styles al CSS */
   .boton-login {
-    border-radius: 4px;
+    border-radius: var(--border-radius-default);
     background: var(--color-rojo);
-    gap: 8px;
-    padding: 4px 8px; /* Reducido para móvil */
+    gap: 0.5rem; /* 8px */
+    padding: 0.5rem 1rem; /* 8px 16px */
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 2.25rem; /* 36px */
+    height: var(--altura-botones); /* 36px */
     border: none;
     cursor: pointer;
   }
@@ -160,16 +152,7 @@
   .texto-login {
     color: #fff;
     font-family: var(--fuente-principal);
-    font-size: 0.875rem; /* 14px */
     margin: 0;
-    white-space: nowrap;
-  }
-
-  /* Ocultar texto de login en móvil */
-  @media screen and (max-width: 767px) {
-    .texto-login {
-      display: none;
-    }
   }
 
   /* Móviles pequeños (hasta 320px) */
@@ -184,6 +167,12 @@
       width: 5rem; /* 80px */
     }
 
+    .menu-navegacion {
+      /* Ocultar o modificar en móviles pequeños */
+      gap: 0.5rem; /* 8px */
+    }
+
+    /* Reducir espaciado en opciones */
     .contenedor-opciones {
       gap: 0.5rem; /* 8px */
     }
@@ -195,14 +184,26 @@
       font-size: 0.75rem; /* 12px */
     }
 
+    /* Reducir tamaño del carrito */
     .contenedor-carrito {
       padding: 0 0.5rem; /* 0px 8px */
       height: 1.75rem; /* 28px */
     }
 
-    .boton-login {
-      padding: 4px;
+    /* Ajustar modo entrega */
+    .modo-entrega {
+      padding: 0 0.5rem 0 0; /* 0px 8px 0px 0px */
       height: 1.75rem; /* 28px */
+    }
+
+    /* Ajustar botón login */
+    .boton-login {
+      padding: 0.25rem 0.5rem; /* 4px 8px */
+      height: 1.75rem; /* 28px */
+    }
+
+    .texto-login {
+      font-size: 0.75rem; /* 12px */
     }
   }
 
@@ -218,8 +219,20 @@
       width: 5.5rem; /* 88px */
     }
 
+    .contenedor-opciones {
+      gap: 0.75rem; /* 12px */
+    }
+
     .contenedor-buscador {
       width: 7rem; /* 112px */
+    }
+
+    .contenedor-carrito {
+      padding: 0 0.75rem; /* 0px 12px */
+    }
+
+    .modo-entrega {
+      padding: 0 0.75rem 0 0; /* 0px 12px 0px 0px */
     }
   }
 
@@ -233,6 +246,10 @@
     .contenedor-logo {
       height: 4rem;
       width: 6rem; /* 96px */
+    }
+
+    .contenedor-opciones {
+      gap: 1rem; /* 16px */
     }
   }
 
@@ -248,14 +265,26 @@
       width: 7rem; /* 112px */
     }
 
+    .menu-navegacion {
+      gap: 1.25rem; /* 20px */
+    }
+
     .contenedor-opciones {
-      gap: 1rem; /* 16px */
+      gap: 1.25rem; /* 20px */
     }
 
     .contenedor-buscador {
       width: 9rem; /* 144px */
       height: 2.25rem; /* 36px */
       font-size: 0.9375rem; /* 15px */
+    }
+
+    .contenedor-carrito {
+      padding: 0 1rem; /* 0px 16px */
+    }
+
+    .modo-entrega {
+      padding: 0 1rem 0 0; /* 0px 16px 0px 0px */
     }
   }
 
@@ -271,14 +300,12 @@
       width: 7.5rem; /* 120px */
     }
 
-    /* Mostrar menú en tablets */
     .menu-navegacion {
-      display: flex;
       gap: 1.5rem; /* 24px */
     }
 
     .contenedor-opciones {
-      gap: 1.25rem; /* 20px */
+      gap: 1.5rem; /* 24px */
     }
 
     .contenedor-buscador {
@@ -288,17 +315,12 @@
       font-size: 1rem; /* 16px */
     }
 
-    /* Mostrar modo entrega en tablets */
+    .contenedor-carrito {
+      padding: 0 1.25rem; /* 0px 20px */
+    }
+
     .modo-entrega {
-      display: flex;
-    }
-
-    .menu-toggle {
-      display: none; /* Ocultar hamburguesa en tablets */
-    }
-
-    .boton-login {
-      padding: 6px 12px;
+      padding: 0 1.25rem 0 0; /* 0px 20px 0px 0px */
     }
   }
 
@@ -319,15 +341,19 @@
     }
 
     .contenedor-opciones {
-      gap: 1.5rem; /* 24px */
+      gap: 1.625rem; /* 26px */
     }
 
     .contenedor-buscador {
       width: 10.5rem; /* 168px */
     }
 
+    .contenedor-carrito {
+      padding: 0 1.5rem; /* 0px 24px */
+    }
+
     .modo-entrega {
-      padding: 0 1rem 0 0; /* 0px 16px 0px 0px */
+      padding: 0 1.5rem 0 0; /* 0px 24px 0px 0px */
     }
   }
 
@@ -348,7 +374,7 @@
     }
 
     .contenedor-opciones {
-      gap: 1.75rem; /* 28px */
+      gap: 1.7rem; /* 27px - mantener tu valor original */
     }
 
     .contenedor-buscador {
@@ -357,13 +383,15 @@
       padding: 0.88rem; /* 14px */
     }
 
+    /* Mantener valores originales para pantallas de 1200-1439px */
     .contenedor-carrito {
+      height: var(--altura-botones); /* 36px */
       padding: 0 1.7rem; /* 0px 27px */
     }
 
     .modo-entrega {
+      height: var(--altura-botones); /* 36px */
       padding: 0 1.7rem 0 0; /* 0px 27px 0px 0px */
-      gap: 0 0.5rem; /* 0px 8px */
     }
   }
 
@@ -394,58 +422,83 @@
       font-size: 1.125rem; /* 18px */
     }
 
+    .contenedor-carrito {
+      height: 2.5rem; /* 40px */
+      padding: 0 2rem; /* 0px 32px */
+    }
+
+    .modo-entrega {
+      height: 2.5rem; /* 40px */
+      padding: 0 2rem 0 0; /* 0px 32px 0px 0px */
+    }
+
     .texto-entrega-titulo {
-      font-size: 0.75rem; /* 12px */
+      font-size: 0.875rem; /* 14px */
     }
 
     .texto-metodo {
-      font-size: 1rem; /* 16px */
+      font-size: 1.125rem; /* 18px */
     }
 
     .boton-login {
-      padding: 8px 16px;
+      height: 2.5rem; /* 40px */
+      padding: 0.625rem 1.25rem; /* 10px 20px */
     }
 
     .texto-login {
-      font-size: 1rem; /* 16px */
+      font-size: 1.125rem; /* 18px */
     }
   }
 
-  /* Menú móvil desplegable */
-  .menu-movil {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background-color: #fff;
-    padding: 1rem;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-    z-index: 90;
+  /* Optimizaciones para rendimiento */
+  .encabezado * {
+    box-sizing: border-box;
   }
 
-  .menu-movil.activo {
+  /* Transiciones suaves para mejor UX */
+  .menu-item a,
+  .boton-login {
+    transition: opacity 0.2s ease;
+  }
+
+  .menu-item a:hover,
+  .boton-login:hover {
+    opacity: 0.9;
+  }
+
+  /* Para evitar problemas con encabezado sticky */
+  sticky-header {
     display: block;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
   }
 
-  .menu-movil .menu-item {
-    padding: 0.75rem 0;
-    border-bottom: 1px solid var(--color-borde);
+  /* Optimizaciones para impresión */
+  @media print {
+    .encabezado {
+      position: static;
+      height: auto;
+      padding: 1rem;
+    }
+
+    .boton-login,
+    .contenedor-buscador {
+      display: none;
+    }
   }
 
-  .menu-movil .menu-item:last-child {
-    border-bottom: none;
+  /* Optimizaciones para accesibilidad con teclado */
+  .contenedor-buscador input:focus,
+  .boton-login:focus,
+  .menu-item a:focus {
+    outline: 2px solid #4a90e2;
+    outline-offset: 2px;
   }
 {% endstyle %}
 
 <sticky-header>
   <header class="encabezado">
-    <div class="menu-toggle" id="toggle-menu">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-
     <div class="contenedor-logo">
       <img
         src="{{ 'logo-pizza-hut.png' | asset_url }}"
@@ -453,15 +506,19 @@
         class="logo"
       >
     </div>
-
-    <nav class="menu-navegacion">
+    <nav
+      class="menu-navegacion"
+    >
       <div class="menu-item">
         <a href="/menu">
           <h4>Menú</h4>
         </a>
       </div>
       <div class="menu-item menu-hutcoins">
-        <a class="hut-coins" href="/promociones">
+        <a
+          class="hut-coins"
+          href="/promociones"
+        >
           <h4>Hut Coins</h4>
           {% render 'icon-flecha-hutcoins' %}
         </a>
@@ -472,55 +529,52 @@
         </a>
       </div>
     </nav>
-
-    <div class="contenedor-opciones">
+    <div
+      class="contenedor-opciones"
+    >
       <div class="contenedor-buscador">
         {% render 'icon-search', class: 'icono-buscar' %}
         <input type="search" class="campo-busqueda" placeholder="Buscar...">
       </div>
-
-      <div class="contenedor-carrito">
+      <div
+        class="contenedor-carrito"
+      >
         {% render 'icon-carrito' %}
       </div>
-
-      <div class="modo-entrega">
-        <p class="texto-entrega-titulo">Selecciona tu</p>
-        <div class="contenedor-metodo">
+      <div
+        class="modo-entrega"
+      >
+        <p
+          class="texto-entrega-titulo"
+        >
+          Selecciona tu
+        </p>
+        <div
+          class="contenedor-metodo"
+        >
           <h4 class="texto-metodo">Método de entrega</h4>
           {% render 'icon-domicilio', class: 'icono-domicilio' %}
         </div>
       </div>
-
-      <button class="boton-login">
-        <h4 class="texto-login">Iniciar sesión</h4>
+      <button
+        class="boton-login"
+      >
+        <h4
+          class="texto-login"
+        >
+          Iniciar sesión
+        </h4>
         {% render 'icon-search', class: 'icono-login' %}
       </button>
     </div>
   </header>
-
-  <!-- Menú móvil desplegable -->
-  <div class="menu-movil" id="menu-movil">
-    <div class="menu-item">
-      <a href="/menu">
-        <h4>Menú</h4>
-      </a>
-    </div>
-    <div class="menu-item menu-hutcoins">
-      <a class="hut-coins" href="/promociones">
-        <h4>Hut Coins</h4>
-        {% render 'icon-flecha-hutcoins' %}
-      </a>
-    </div>
-    <div class="menu-item">
-      <a href="/restaurantes">
-        <h4>Sobre Nosotros</h4>
-      </a>
-    </div>
-  </div>
 </sticky-header>
+<script>
+  class HeaderPrincipal extends HTMLElement {}
+  customElements.define('sticky-header', HeaderPrincipal);
+</script>
 
 <script>
   class HeaderPrincipal extends HTMLElement {}
-
   customElements.define('sticky-header', HeaderPrincipal);
 </script>
