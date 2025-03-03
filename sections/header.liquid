@@ -10,58 +10,12 @@
   .encabezado {
     width: 100%;
     height: 5.5rem;
-    padding: 2vh 4vw;
+    padding: 0 3rem;
     background-color: #fff;
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
-
-  /* Móvil (pequeño) */
-  @media screen and (max-width: 479px) {
-    .encabezado {
-      height: 4rem; /* Más pequeño en móviles pequeños */
-      padding: 1vh 3vw; /* Menos padding */
-      flex-direction: column; /* Apilar elementos en pantallas muy pequeñas si es necesario */
-      justify-content: center;
-    }
-  }
-
-  /* Móvil (mediano a grande) */
-  @media screen and (min-width: 480px) and (max-width: 767px) {
-    .encabezado {
-      height: 4.5rem; /* Ligeramente más grande que en móviles pequeños */
-      padding: 1.5vh 3.5vw;
-    }
-  }
-
-  /* Tablets */
-  @media screen and (min-width: 768px) and (max-width: 991px) {
-    .encabezado {
-      height: 5rem; /* Tamaño intermedio para tablets */
-      padding: 1.8vh 3.8vw;
-    }
-  }
-
-  /* Laptop/Desktop (pequeño) */
-  @media screen and (min-width: 992px) and (max-width: 1199px) {
-    .encabezado {
-      height: 5.5rem; /* Tamaño original para laptops/desktops pequeños */
-      padding: 2vh 4vw;
-    }
-  }
-
-  /* Desktop (grande) */
-  @media screen and (min-width: 1200px) {
-    .encabezado {
-      height: 6rem; /* Ligeramente más grande para pantallas grandes */
-      padding: 2.5vh 4.5vw;
-      max-width: 1800px; /* Limitar el ancho máximo para evitar que se estire demasiado */
-      margin: 0 auto; /* Centrar en pantallas muy grandes */
-    }
-  }
-
-  /* Estilos de tipografía exactamente como los tenías */
 {% endstyle %}
 
 <sticky-header>
