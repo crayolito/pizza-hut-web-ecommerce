@@ -5,32 +5,21 @@
     --color-primario: #231f20;
     --color-borde: #dedede;
     --color-borde-oscuro: #969696;
-    --color-rojo: #c8102e;
-
-    /* Dimensiones comunes para reutilización */
-    --altura-botones: 2.25rem; /* 36px */
-    --padding-contenedores: 0.75rem; /* 12px */
-    --gap-elementos: 0.5rem; /* 8px */
-    --border-radius-default: 0.25rem; /* 4px */
-    --border-width: 0.094rem; /* 1.5px */
   }
 
-  /* Base styles (mobile first) */
   .encabezado {
     width: 100%;
-    height: 4rem; /* 64px */
-    padding: 0 1rem; /* 16px */
+    height: 5.5rem;
+    padding: 0 3rem;
     background-color: #fff;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: relative;
-    z-index: 100;
   }
 
   .contenedor-logo {
-    height: 4rem;
-    width: 6rem; /* 96px */
+    height: 5.5rem;
+    width: 8.5rem;
   }
 
   .logo {
@@ -42,18 +31,8 @@
   .menu-navegacion {
     display: flex;
     align-items: center;
-    gap: 1rem; /* 16px */
+    gap: 2rem;
     width: auto;
-  }
-
-  .menu-item a {
-    text-decoration: none;
-    color: var(--color-primario);
-  }
-
-  .menu-item h4 {
-    margin: 0;
-    font-family: var(--fuente-principal);
   }
 
   .hut-coins {
@@ -62,438 +41,17 @@
     justify-content: center;
   }
 
-  /* Contenedor buscador - mejorado para accesibilidad */
   .contenedor-buscador {
-    width: 8rem; /* 128px */
-    height: 2rem; /* 32px */
-    gap: 0.25rem; /* 4px */
+    width: 11.06rem;
+    height: 2.69rem;
+    gap: 0.5rem;
     display: flex;
     align-items: center;
-    border-radius: var(--border-radius-default);
-    border: var(--border-width) solid #6e6e6e;
+    border-radius: 0.25rem;
+    border: 0.094rem solid #6e6e6e;
     background-color: #fff;
-    padding: 0.5rem; /* 8px */
-    font-size: 0.875rem; /* 14px */
-  }
-
-  /* Asegurar que los inputs dentro del buscador sean accesibles */
-  .contenedor-buscador input {
-    border: none;
-    outline: none;
-    background: transparent;
-    width: 100%;
-    font-family: var(--fuente-secundaria);
-    font-size: inherit;
-  }
-
-  /* Mejora para el contenedor de opciones - mover los inline styles al CSS */
-  .contenedor-opciones {
-    display: flex;
-    align-items: center;
-    gap: 1.7rem; /* 27px - como en tu código original */
-  }
-
-  /* Contenedor de carrito - mover inline styles al CSS */
-  .contenedor-carrito {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: var(--altura-botones); /* 36px */
-    padding: 0 1.7rem; /* 0px 27px */
-    border-left: var(--border-width) solid var(--color-borde);
-    border-right: var(--border-width) solid var(--color-borde);
-  }
-
-  /* Modo entrega - mover inline styles al CSS */
-  .modo-entrega {
-    display: flex;
-    height: var(--altura-botones); /* 36px */
-    padding: 0 1.7rem 0 0; /* 0px 27px 0px 0px */
-    gap: 0 0.5rem; /* 0px 8px */
-    border-right: var(--border-width) solid var(--color-borde);
-    flex-direction: column;
-    align-items: start;
-    justify-content: center;
-  }
-
-  .texto-entrega-titulo {
-    text-transform: uppercase;
-    font-weight: 600;
-    font-family: var(--fuente-secundaria);
-    margin: 0;
-    font-size: 0.75rem; /* 12px */
-  }
-
-  .contenedor-metodo {
-    display: flex;
-    align-items: center;
-    gap: 0.25rem; /* 4px */
-  }
-
-  .texto-metodo {
-    font-family: var(--fuente-principal);
-    margin: 0;
-  }
-
-  /* Botón login - mover inline styles al CSS */
-  .boton-login {
-    border-radius: var(--border-radius-default);
-    background: var(--color-rojo);
-    gap: 0.5rem; /* 8px */
-    padding: 0.5rem 1rem; /* 8px 16px */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: var(--altura-botones); /* 36px */
-    border: none;
-    cursor: pointer;
-  }
-
-  .texto-login {
-    color: #fff;
-    font-family: var(--fuente-principal);
-    margin: 0;
-  }
-
-  /* Móviles pequeños (hasta 320px) */
-  @media screen and (max-width: 320px) {
-    .encabezado {
-      height: 3.5rem; /* 56px */
-      padding: 0 0.75rem; /* 12px */
-    }
-
-    .contenedor-logo {
-      height: 3.5rem;
-      width: 5rem; /* 80px */
-    }
-
-    .menu-navegacion {
-      /* Ocultar o modificar en móviles pequeños */
-      gap: 0.5rem; /* 8px */
-    }
-
-    /* Reducir espaciado en opciones */
-    .contenedor-opciones {
-      gap: 0.5rem; /* 8px */
-    }
-
-    .contenedor-buscador {
-      width: 6.25rem; /* 100px */
-      height: 1.75rem; /* 28px */
-      padding: 0.375rem; /* 6px */
-      font-size: 0.75rem; /* 12px */
-    }
-
-    /* Reducir tamaño del carrito */
-    .contenedor-carrito {
-      padding: 0 0.5rem; /* 0px 8px */
-      height: 1.75rem; /* 28px */
-    }
-
-    /* Ajustar modo entrega */
-    .modo-entrega {
-      padding: 0 0.5rem 0 0; /* 0px 8px 0px 0px */
-      height: 1.75rem; /* 28px */
-    }
-
-    /* Ajustar botón login */
-    .boton-login {
-      padding: 0.25rem 0.5rem; /* 4px 8px */
-      height: 1.75rem; /* 28px */
-    }
-
-    .texto-login {
-      font-size: 0.75rem; /* 12px */
-    }
-  }
-
-  /* Móviles medianos (321px - 375px) */
-  @media screen and (min-width: 321px) and (max-width: 375px) {
-    .encabezado {
-      height: 3.75rem; /* 60px */
-      padding: 0 0.875rem; /* 14px */
-    }
-
-    .contenedor-logo {
-      height: 3.75rem;
-      width: 5.5rem; /* 88px */
-    }
-
-    .contenedor-opciones {
-      gap: 0.75rem; /* 12px */
-    }
-
-    .contenedor-buscador {
-      width: 7rem; /* 112px */
-    }
-
-    .contenedor-carrito {
-      padding: 0 0.75rem; /* 0px 12px */
-    }
-
-    .modo-entrega {
-      padding: 0 0.75rem 0 0; /* 0px 12px 0px 0px */
-    }
-  }
-
-  /* Móviles grandes (376px - 480px) */
-  @media screen and (min-width: 376px) and (max-width: 480px) {
-    .encabezado {
-      height: 4rem; /* 64px */
-      padding: 0 1rem; /* 16px */
-    }
-
-    .contenedor-logo {
-      height: 4rem;
-      width: 6rem; /* 96px */
-    }
-
-    .contenedor-opciones {
-      gap: 1rem; /* 16px */
-    }
-  }
-
-  /* Móviles en horizontal y tablets pequeñas (481px - 767px) */
-  @media screen and (min-width: 481px) and (max-width: 767px) {
-    .encabezado {
-      height: 4.5rem; /* 72px */
-      padding: 0 1.5rem; /* 24px */
-    }
-
-    .contenedor-logo {
-      height: 4.5rem;
-      width: 7rem; /* 112px */
-    }
-
-    .menu-navegacion {
-      gap: 1.25rem; /* 20px */
-    }
-
-    .contenedor-opciones {
-      gap: 1.25rem; /* 20px */
-    }
-
-    .contenedor-buscador {
-      width: 9rem; /* 144px */
-      height: 2.25rem; /* 36px */
-      font-size: 0.9375rem; /* 15px */
-    }
-
-    .contenedor-carrito {
-      padding: 0 1rem; /* 0px 16px */
-    }
-
-    .modo-entrega {
-      padding: 0 1rem 0 0; /* 0px 16px 0px 0px */
-    }
-  }
-
-  /* Tablets (768px - 991px) */
-  @media screen and (min-width: 768px) and (max-width: 991px) {
-    .encabezado {
-      height: 5rem; /* 80px */
-      padding: 0 2rem; /* 32px */
-    }
-
-    .contenedor-logo {
-      height: 5rem;
-      width: 7.5rem; /* 120px */
-    }
-
-    .menu-navegacion {
-      gap: 1.5rem; /* 24px */
-    }
-
-    .contenedor-opciones {
-      gap: 1.5rem; /* 24px */
-    }
-
-    .contenedor-buscador {
-      width: 10rem; /* 160px */
-      height: 2.5rem; /* 40px */
-      padding: 0.75rem; /* 12px */
-      font-size: 1rem; /* 16px */
-    }
-
-    .contenedor-carrito {
-      padding: 0 1.25rem; /* 0px 20px */
-    }
-
-    .modo-entrega {
-      padding: 0 1.25rem 0 0; /* 0px 20px 0px 0px */
-    }
-  }
-
-  /* Tablets grandes y laptops pequeñas (992px - 1199px) */
-  @media screen and (min-width: 992px) and (max-width: 1199px) {
-    .encabezado {
-      height: 5.25rem; /* 84px */
-      padding: 0 2.5rem; /* 40px */
-    }
-
-    .contenedor-logo {
-      height: 5.25rem;
-      width: 8rem; /* 128px */
-    }
-
-    .menu-navegacion {
-      gap: 1.75rem; /* 28px */
-    }
-
-    .contenedor-opciones {
-      gap: 1.625rem; /* 26px */
-    }
-
-    .contenedor-buscador {
-      width: 10.5rem; /* 168px */
-    }
-
-    .contenedor-carrito {
-      padding: 0 1.5rem; /* 0px 24px */
-    }
-
-    .modo-entrega {
-      padding: 0 1.5rem 0 0; /* 0px 24px 0px 0px */
-    }
-  }
-
-  /* Desktops y laptops (1200px - 1439px) */
-  @media screen and (min-width: 1200px) and (max-width: 1439px) {
-    .encabezado {
-      height: 5.5rem; /* 88px */
-      padding: 0 3rem; /* 48px */
-    }
-
-    .contenedor-logo {
-      height: 5.5rem;
-      width: 8.5rem; /* 136px */
-    }
-
-    .menu-navegacion {
-      gap: 2rem; /* 32px */
-    }
-
-    .contenedor-opciones {
-      gap: 1.7rem; /* 27px - mantener tu valor original */
-    }
-
-    .contenedor-buscador {
-      width: 11.06rem; /* 177px */
-      height: 2.69rem; /* 43px */
-      padding: 0.88rem; /* 14px */
-    }
-
-    /* Mantener valores originales para pantallas de 1200-1439px */
-    .contenedor-carrito {
-      height: var(--altura-botones); /* 36px */
-      padding: 0 1.7rem; /* 0px 27px */
-    }
-
-    .modo-entrega {
-      height: var(--altura-botones); /* 36px */
-      padding: 0 1.7rem 0 0; /* 0px 27px 0px 0px */
-    }
-  }
-
-  /* Pantallas grandes (1440px en adelante) */
-  @media screen and (min-width: 1440px) {
-    .encabezado {
-      height: 6rem; /* 96px */
-      padding: 0 4rem; /* 64px */
-    }
-
-    .contenedor-logo {
-      height: 6rem;
-      width: 9.5rem; /* 152px */
-    }
-
-    .menu-navegacion {
-      gap: 2.5rem; /* 40px */
-    }
-
-    .contenedor-opciones {
-      gap: 2rem; /* 32px */
-    }
-
-    .contenedor-buscador {
-      width: 12.5rem; /* 200px */
-      height: 3rem; /* 48px */
-      padding: 1rem; /* 16px */
-      font-size: 1.125rem; /* 18px */
-    }
-
-    .contenedor-carrito {
-      height: 2.5rem; /* 40px */
-      padding: 0 2rem; /* 0px 32px */
-    }
-
-    .modo-entrega {
-      height: 2.5rem; /* 40px */
-      padding: 0 2rem 0 0; /* 0px 32px 0px 0px */
-    }
-
-    .texto-entrega-titulo {
-      font-size: 0.875rem; /* 14px */
-    }
-
-    .texto-metodo {
-      font-size: 1.125rem; /* 18px */
-    }
-
-    .boton-login {
-      height: 2.5rem; /* 40px */
-      padding: 0.625rem 1.25rem; /* 10px 20px */
-    }
-
-    .texto-login {
-      font-size: 1.125rem; /* 18px */
-    }
-  }
-
-  /* Optimizaciones para rendimiento */
-  .encabezado * {
-    box-sizing: border-box;
-  }
-
-  /* Transiciones suaves para mejor UX */
-  .menu-item a,
-  .boton-login {
-    transition: opacity 0.2s ease;
-  }
-
-  .menu-item a:hover,
-  .boton-login:hover {
-    opacity: 0.9;
-  }
-
-  /* Para evitar problemas con encabezado sticky */
-  sticky-header {
-    display: block;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-  }
-
-  /* Optimizaciones para impresión */
-  @media print {
-    .encabezado {
-      position: static;
-      height: auto;
-      padding: 1rem;
-    }
-
-    .boton-login,
-    .contenedor-buscador {
-      display: none;
-    }
-  }
-
-  /* Optimizaciones para accesibilidad con teclado */
-  .contenedor-buscador input:focus,
-  .boton-login:focus,
-  .menu-item a:focus {
-    outline: 2px solid #4a90e2;
-    outline-offset: 2px;
+    padding: 0.88rem;
+    font-size: 1rem;
   }
 {% endstyle %}
 
@@ -506,6 +64,7 @@
         class="logo"
       >
     </div>
+
     <nav
       class="menu-navegacion"
     >
@@ -529,37 +88,77 @@
         </a>
       </div>
     </nav>
+
     <div
+      style="
+        display: flex;
+        align-items: center;
+        gap: 27px;
+      "
       class="contenedor-opciones"
     >
       <div class="contenedor-buscador">
         {% render 'icon-search', class: 'icono-buscar' %}
         <input type="search" class="campo-busqueda" placeholder="Buscar...">
       </div>
+
       <div
+        style="display:flex; align-items: center; justify-content: center; height: 36px;padding: 0px 27px; border-left: 1.5px solid #DEDEDE; border-right: 1.5px solid #DEDEDE;"
         class="contenedor-carrito"
       >
         {% render 'icon-carrito' %}
       </div>
+
       <div
+        style="
+          display: flex;
+          height: 36px;
+          padding: 0px 27px 0px 0px;
+          gap: 0px 8px;
+          border-right: 1.5px solid #DEDEDE;
+          flex-direction: column;
+          align-items: start;
+          justify-content: center;
+        "
         class="modo-entrega"
       >
         <p
+          style="
+            text-transform: uppercase;
+            font-weight: 600;
+          "
           class="texto-entrega-titulo"
         >
           Selecciona tu
         </p>
         <div
+          style="
+            display: flex;
+            align-items: center;
+            gap: 4px;
+          "
           class="contenedor-metodo"
         >
           <h4 class="texto-metodo">Método de entrega</h4>
           {% render 'icon-domicilio', class: 'icono-domicilio' %}
         </div>
       </div>
+
       <button
+        style="
+          border-radius: 4px;
+          background: #C8102E;
+          gap: 8px;
+          padding: 8px 16px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 36px;
+        "
         class="boton-login"
       >
         <h4
+          style="color: #FFF;"
           class="texto-login"
         >
           Iniciar sesión
@@ -569,10 +168,6 @@
     </div>
   </header>
 </sticky-header>
-<script>
-  class HeaderPrincipal extends HTMLElement {}
-  customElements.define('sticky-header', HeaderPrincipal);
-</script>
 
 <script>
   class HeaderPrincipal extends HTMLElement {}
