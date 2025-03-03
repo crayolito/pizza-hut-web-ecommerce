@@ -437,3 +437,90 @@
     border-bottom: none;
   }
 {% endstyle %}
+
+<sticky-header>
+  <header class="encabezado">
+    <div class="menu-toggle" id="toggle-menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <div class="contenedor-logo">
+      <img
+        src="{{ 'logo-pizza-hut.png' | asset_url }}"
+        alt="Logo Pizza Hut"
+        class="logo"
+      >
+    </div>
+
+    <nav class="menu-navegacion">
+      <div class="menu-item">
+        <a href="/menu">
+          <h4>Menú</h4>
+        </a>
+      </div>
+      <div class="menu-item menu-hutcoins">
+        <a class="hut-coins" href="/promociones">
+          <h4>Hut Coins</h4>
+          {% render 'icon-flecha-hutcoins' %}
+        </a>
+      </div>
+      <div class="menu-item">
+        <a href="/restaurantes">
+          <h4>Sobre Nosotros</h4>
+        </a>
+      </div>
+    </nav>
+
+    <div class="contenedor-opciones">
+      <div class="contenedor-buscador">
+        {% render 'icon-search', class: 'icono-buscar' %}
+        <input type="search" class="campo-busqueda" placeholder="Buscar...">
+      </div>
+
+      <div class="contenedor-carrito">
+        {% render 'icon-carrito' %}
+      </div>
+
+      <div class="modo-entrega">
+        <p class="texto-entrega-titulo">Selecciona tu</p>
+        <div class="contenedor-metodo">
+          <h4 class="texto-metodo">Método de entrega</h4>
+          {% render 'icon-domicilio', class: 'icono-domicilio' %}
+        </div>
+      </div>
+
+      <button class="boton-login">
+        <h4 class="texto-login">Iniciar sesión</h4>
+        {% render 'icon-search', class: 'icono-login' %}
+      </button>
+    </div>
+  </header>
+
+  <!-- Menú móvil desplegable -->
+  <div class="menu-movil" id="menu-movil">
+    <div class="menu-item">
+      <a href="/menu">
+        <h4>Menú</h4>
+      </a>
+    </div>
+    <div class="menu-item menu-hutcoins">
+      <a class="hut-coins" href="/promociones">
+        <h4>Hut Coins</h4>
+        {% render 'icon-flecha-hutcoins' %}
+      </a>
+    </div>
+    <div class="menu-item">
+      <a href="/restaurantes">
+        <h4>Sobre Nosotros</h4>
+      </a>
+    </div>
+  </div>
+</sticky-header>
+
+<script>
+  class HeaderPrincipal extends HTMLElement {}
+
+  customElements.define('sticky-header', HeaderPrincipal);
+</script>
