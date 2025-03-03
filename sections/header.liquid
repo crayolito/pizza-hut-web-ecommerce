@@ -53,6 +53,29 @@
     padding: 0.88rem;
     font-size: 1rem;
   }
+
+  .boton-login {
+    border-radius: 4px;
+    background: #c8102e;
+    gap: 8px;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 36px;
+    /* Importante: asegurar que el contenido no rompa el botón */
+    overflow: hidden; /* Previene que el contenido sobresalga */
+    white-space: nowrap; /* Evita que el texto se envuelva */
+  }
+
+  .texto-login {
+    color: #fff;
+    font-size: clamp(14px, 0.5vw + 12px, 16px); /* Fórmula más conservadora */
+    margin: 0;
+    /* Opciones de seguridad adicionales */
+    line-height: 1.2; /* Controlar la altura de línea */
+    max-height: 20px; /* Limitar altura máxima del texto */
+  }
 {% endstyle %}
 
 <sticky-header>
@@ -145,16 +168,6 @@
       </div>
 
       <button
-        style="
-          border-radius: 4px;
-          background: #C8102E;
-          gap: 8px;
-          padding: 8px 16px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          height: 36px;
-        "
         class="boton-login"
       >
         <h4
@@ -163,7 +176,7 @@
         >
           Iniciar sesión
         </h4>
-        {% render 'icon-search', class: 'icono-login' %}
+        {% render 'icon-search' %}
       </button>
     </div>
   </header>
