@@ -156,7 +156,62 @@
       /* svg {
             width: 24px !important;
             height: 24px !important;
-          } */
+      } 
+      */
+
+      h4 {
+        font-family: var(--fuente-principal);
+        font-size: clamp(0.75rem, 0.75rem + 0.67vw, 1.5rem);
+        font-style: normal;
+        font-weight: 400;
+        line-height: clamp(0.84rem, 0.84rem + 0.76vw, 1.69rem);
+        letter-spacing: clamp(-0.015rem, -0.015rem - 0.013vw, -0.03rem);
+        text-transform: uppercase;
+      }
+
+      h3 {
+        font-family: var(--fuente-principal);
+        font-size: clamp(1rem, 1rem + 0.89vw, 2rem);
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        letter-spacing: clamp(-0.02rem, -0.02rem - 0.018vw, -0.04rem);
+        text-transform: uppercase;
+      }
+
+      h2 {
+        font-family: var(--fuente-principal);
+        font-size: clamp(1.13rem, 1.13rem + 1vw, 2.25rem);
+        font-style: normal;
+        line-height: normal;
+        text-transform: uppercase;
+      }
+
+      p {
+        font-family: var(--fuente-secundaria);
+        font-size: clamp(0.5rem, 0.5rem + 0.45vw, 1rem);
+        font-style: normal;
+        font-weight: 400;
+        line-height: clamp(0.84rem, 0.84rem + 0.76vw, 1.69rem);
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+        cursor: pointer;
+      }
+
+      input {
+        font-family: var(--fuente-secundaria);
+        font-size: clamp(0.5rem, 0.5rem + 0.45vw, 1rem);
+        line-height: clamp(0.84rem, 0.84rem + 0.76vw, 1.69rem);
+        margin: 0;
+        padding: 0;
+        border: none;
+        outline: none;
+        background: transparent;
+        width: 100%;
+      }
 
       button {
         border: none;
@@ -169,33 +224,36 @@
             height: clamp(1.05rem, 0.98rem + 0.35vw, 1.5rem);
           } */
 
-      /* Nota de calculos para el uso de clamps para responsividad en ves de usar los medias querys
-        Width(ancho):
-        Tablet y desktop pequeño: Reducir un  20%  del valor original
-        Móvil: Reducir un  40%  del valor original
+      /* 
+      El valor 
 
-        Padding y Margin:
-        Tablet y desktop pequeño: Reudcir un 25% del valor original
-        Móvil: Reudcir un 50% del valor original
+      Docuemntacion para el uso de clamps:
+      clamp(min, preferred, max)
+      clamp(valor minimo,(y+c),valor maximo)
+      x : unidad vh o vw
+      y : unidad px
 
-        Height(alto):
-        Tablet y desktop pequeño: Reducir un 20% del valor original
-        Móvil: Reducir un 35% del valor original
+      min: valor mínimo para el tamaño de la pantalla
+      preferred: valor preferido para el tamaño de la pantalla
+      max: valor máximo para el tamaño de la pantalla
 
-        Gap(espaciado):
-        Tablet y desktop pequeño: Reudcir un 25% del valor original
-        Móvil: Reudcir un 50% del valor original
+      Proceso
+      1. Primero se tiene el valor base 
+      2. Se calcula el valor mínimo : valor base * 0.7
+      3. Se calcula el valor máximo : valor base * 1.3
+      4. Sacar el valor (x) ,  x : (valor base  ÷ tamaño de la pantalla ) * 100
+      5. Sacar el valor (y) , y : 
 
-        Font-size(tamaño de letra):
-        Tablet y desktop pequeño: Reudcir un 25% del valor original
-        Móvil: Reudcir un 50% del valor original
-
-        Simplificado:
-        clamp(min, min + (max - min) * (100vw - tamaño-mín) / (tamaño-máx - tamaño-mín), max)
-
-        En nuestro caso:
-        tamaño-mín = 320px (típico ancho mínimo móvil)
-        tamaño-máx = 1440px (típico ancho máximo desktop)
+      Ejemplo : height: clamp(63px, 10vh + 35px, 117px)
+      valor base : 90px
+      tamaño de la pantalla : 551.33px
+      valor minimo : 63px
+      valor maximo : 117px
+      valor x : (90 ÷ 551.33) * 100 = 16.33vh
+      valor y : x * 0.6 = 9.8vh = 10vh
+      valor a : 10vh = 10% 
+      valor b : 551.33px * 0.1 = 55.13px 
+      valor c : 90px - 55.13px = 34.87px = 35px
       */
     {% endstyle %}
   </head>
