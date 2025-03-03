@@ -25,16 +25,20 @@
   >
     <div
       style="
-               width: min(136px, 40%);
-        height: auto;
-        aspect-ratio: 136/37;
+        height: max(37px, min(5vh, 50px));
+        width: max(136px, min(30vw, 200px));
+        display: flex;
+        align-items: center;
+        justify-content: center;
       "
       class="contenedor-logo"
     >
       <img
         style="
-          height: 100%;
-          width: 100%;
+          max-width: 100%;
+          max-height: 100%;
+          width: auto;
+          height: auto;
           object-fit: contain;
         "
         src="{{ 'logo-pizza-hut.png' | asset_url }}"
