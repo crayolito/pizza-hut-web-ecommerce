@@ -219,14 +219,12 @@
         cursor: pointer;
       }
 
-      /* svg {
-            width: clamp(1.05rem, 0.98rem + 0.35vw, 1.5rem);
-            height: clamp(1.05rem, 0.98rem + 0.35vw, 1.5rem);
-          } */
+      svg {
+        width: 24px;
+        height: 24px;
+      }
 
       /* 
-      El valor 
-
       Docuemntacion para el uso de clamps:
       clamp(min, preferred, max)
       clamp(valor minimo,(y+c),valor maximo)
@@ -250,10 +248,9 @@
       valor minimo : 63px
       valor maximo : 117px
       valor x : (90 ÷ 551.33) * 100 = 16.33vh
-      valor y : x * 0.6 = 9.8vh = 10vh
-      valor a : 10vh = 10% 
-      valor b : 551.33px * 0.1 = 55.13px 
-      valor c : 90px - 55.13px = 34.87px = 35px
+      valor y : x * 0.6 = 9.8vh = 10vh = 10% = 0.1
+      valor b : 551.33px * y = 55.13px 
+      valor c : 90px - b = 34.87px = 35px
       */
     {% endstyle %}
   </head>
