@@ -15,7 +15,7 @@
     style="
       width: 100%;
       height: clamp(65px, 10vh + 35px, 120px);
-      padding: 0 clamp(37px, 2.2vw + 21px, 69px);
+      padding: 0 53px;
       background-color: #FFF;
       display: flex;
       justify-content: space-between;
@@ -25,8 +25,9 @@
   >
     <div
       style="
-        height: clamp(26px, 1.5vw + 12px, 52px);
-        width: clamp(95px, 5.7vw + 55px, 177px);
+               width: min(136px, 40%);
+        height: auto;
+        aspect-ratio: 136/37;
       "
       class="contenedor-logo"
     >
@@ -46,7 +47,7 @@
       style="
         display: flex;
         align-items: center;
-        gap: clamp(20px, 1.2vw + 12px, 38px);
+        gap: 29px;
         width: auto;
       "
       class="menu-navegacion"
@@ -80,38 +81,30 @@
       style="
         display: flex;
         align-items: center;
-        gap: clamp(19px, 1.1vw + 11px, 35px);
+        gap: 27px;
       "
       class="contenedor-opciones"
     >
       <div
         style="
-           width: clamp(124px, 7.4vw + 68px, 230px);
-           height: clamp(30px, 1.8vw + 17px, 56px);
-          gap: clamp(4px, 0.25vw + 2px, 8px);
-           display: flex;
-           align-items: center;
-           border-radius: 4px;
-           border: 1.5px solid #6E6E6E;
-           background-color: #FFF;
-           padding: clamp(10px, 0.6vw + 6px, 18px);
+          width: 177px;
+          height: 43px;
+          gap: 8px;
+          display: flex;
+          align-items: center;
+          border-radius: 4px;
+          border: 1.5px solid #6E6E6E;
+          background-color: #FFF;
+          padding: 14px;
         "
         class="contenedor-buscador"
       >
-        {% render 'icon-search' %}
+        {% render 'icon-search', class: 'icono-buscar' %}
         <input type="search" class="campo-busqueda" placeholder="Buscar...">
       </div>
 
       <div
-        style="
-          display:flex;
-          align-items: center;
-          justify-content: center;
-          height: clamp(25px, 1.5vw + 13px, 47px);
-          padding: 0px clamp(19px, 1.1vw + 8px, 35px);;
-          border-left: 1.5px solid #DEDEDE;
-          border-right: 1.5px solid #DEDEDE;
-        "
+        style="display:flex; align-items: center; justify-content: center; height: 36px;padding: 0px 27px; border-left: 1.5px solid #DEDEDE; border-right: 1.5px solid #DEDEDE;"
         class="contenedor-carrito"
       >
         {% render 'icon-carrito' %}
@@ -120,9 +113,9 @@
       <div
         style="
           display: flex;
-          height: clamp(25px, 1.5vw + 13px, 47px);
-          padding: 0px clamp(19px, 1.1vw + 8px, 35px) 0px 0px;
-          gap: clamp(4px, 0.25vw + 2px, 8px);
+          height: 36px;
+          padding: 0px 27px 0px 0px;
+          gap: 0px 8px;
           border-right: 1.5px solid #DEDEDE;
           flex-direction: column;
           align-items: start;
@@ -134,7 +127,6 @@
           style="
             text-transform: uppercase;
             font-weight: 600;
-                font-size: clamp(9px, 0.5vw + 5px, 17px);
           "
           class="texto-entrega-titulo"
         >
@@ -144,7 +136,7 @@
           style="
             display: flex;
             align-items: center;
-            gap: clamp(3px, 0.2vw + 2px, 5px);
+            gap: 4px;
           "
           class="contenedor-metodo"
         >
@@ -155,15 +147,14 @@
 
       <button
         style="
-          height: clamp(27px, 1.6vh + 15px, 49px);
-          width: clamp(101px, 6vw + 58px, 187px);
-                              border-radius: 4px;
-                              background: #C8102E;
-                              gap: clamp(6px, 0.3vw + 3px, 10px);
-                              padding: clamp(6px, 0.3vw + 5px, 10px) clamp(11px, 0.7vw + 8px, 21px);
-                              display: flex;
-                              align-items: center;
-                              justify-content: center;
+          border-radius: 4px;
+          background: #C8102E;
+          gap: 8px;
+          padding: 8px 16px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 36px;
         "
         class="boton-login"
       >
