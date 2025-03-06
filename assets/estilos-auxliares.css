@@ -101,8 +101,8 @@
   height: 3rem;
   aspect-ratio: 1/1;
   fill: var(--colorp-primary);
-  /* color: var(--colorp-primary); */
-  /* stroke: var(--colorp-primary); */
+  color: var(--colorp-primary);
+  stroke: var(--colorp-primary);
 }
 
 .psme-info-select-text {
