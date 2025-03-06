@@ -11,9 +11,9 @@
 .psme-pizza-logo-background {
   position: absolute;
   bottom: 0;
-  left: 0;
+  left: -30%;
   width: 90%;
-  height: 40%;
+  height: 38%;
 }
 
 .psme-pizza-logo-background img {
@@ -50,15 +50,16 @@
 
 .psme-opciones-entrega {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, 45%);
   width: 100%;
   padding: 0 var(--espaciado-xl);
   place-items: center;
+  justify-content: space-between;
   margin: auto;
 }
 
 .psme-opcion {
-  width: 11.25rem;
+  /* width: 11.25rem; */
   height: 11.25rem;
   display: flex;
   flex-direction: column;
