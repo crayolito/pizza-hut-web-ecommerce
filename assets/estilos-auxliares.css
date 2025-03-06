@@ -49,10 +49,11 @@
 }
 
 .psme-opciones-entrega {
-  padding: 0 var(--espaciado-xl);
   display: grid;
-  grid-template-rows: repeat(2, 1fr);
-  gap: auto;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--espaciado-xl);
+  width: 100%;
+  padding: 0 var(--espaciado-xl);
 }
 
 .psme-opcion {
