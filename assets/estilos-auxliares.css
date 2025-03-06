@@ -121,6 +121,10 @@
     margin-top: var(--espaciado-xxl);
   }
 
+  .psme-opcion {
+    padding: var(--espaciado-l);
+  }
+
   .psme-mensaje {
     display: flex;
     flex-direction: column;
