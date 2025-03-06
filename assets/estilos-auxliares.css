@@ -65,6 +65,6 @@
   gap: auto;
   padding: var(--espaciado-xl);
   border: 1px solid var(--colorb-primary);
-  background-color: var(--colorp-primary);
+  background-color: var(--colorp-secondary);
   border-radius: var(--border-radius-3);
 }
