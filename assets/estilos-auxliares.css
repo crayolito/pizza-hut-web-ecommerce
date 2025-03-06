@@ -55,7 +55,6 @@
 
 .psme-opciones-entrega {
   display: flex;
-  place-items: center;
   justify-content: space-between;
   gap: var(--espaciado-m);
 }
@@ -108,6 +107,7 @@
 @media screen and (min-width: 768px) {
   .psme-pizza-logo-background {
     left: 0;
+    top: 97%;
     width: 50%;
     height: 45%;
     transform: translateY(83%);
@@ -121,10 +121,6 @@
 
   .psme-opcion {
     padding: var(--espaciado-xl);
-  }
-
-  .psme-info-select {
-    display: flex;
   }
 }
 
@@ -141,8 +137,6 @@
   }
 
   .psme-info-select {
-    display: flex;
     flex-direction: row;
-    gap: var(--espaciado-s);
   }
 }
