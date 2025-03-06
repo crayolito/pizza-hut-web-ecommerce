@@ -118,7 +118,8 @@
 
 @media screen and (min-width: 1024px) {
   .psme-contenido-principal {
-    margin-top: var(--espaciado-xxl);
+    margin-top: var(--espaciado-big);
+    gap: var(--espaciado-xxxl);
   }
 
   .psme-opcion {
