@@ -114,9 +114,40 @@
 }
 
 @media screen and (min-width: 768px) {
+  .psme-pizza-logo-background {
+    width: 50%;
+    height: 45%;
+    transform: translateY(83%);
+  }
+
+  .psme-contenido-principal {
+    margin-top: var(--espaciado-xxxl);
+    gap: var(--espaciado-xxl);
+  }
+
+  .psme-opcion {
+    padding: var(--espaciado-xl);
+  }
+
+  .psme-mensaje,
+  .psme-opciones-entrega {
+    padding: 0 12rem;
+  }
+
+  .psme-info-select {
+    display: flex;
+    flex-direction: row;
+    gap: var(--espaciado-s);
+  }
 }
 
 @media screen and (min-width: 1024px) {
+  .psme-pizza-logo-background {
+    width: 50%;
+    height: 45%;
+    transform: translateY(83%);
+  }
+
   .psme-contenido-principal {
     margin-top: var(--espaciado-big);
     gap: var(--espaciado-xxxl);
@@ -126,20 +157,12 @@
     padding: var(--espaciado-l);
   }
 
-  .psme-mensaje {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    gap: var(--espaciado-xl);
-    padding: 0 20rem;
-  }
-
   .psme-info-select {
     display: flex;
     flex-direction: row;
     gap: var(--espaciado-s);
   }
-
+  .psme-mensaje,
   .psme-opciones-entrega {
     padding: 0 20rem;
   }
