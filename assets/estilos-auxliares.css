@@ -109,13 +109,13 @@
 .psme-opciones {
   display: flex;
   flex-direction: column;
-  gap: var(--espaciado-xl);
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
   z-index: 1;
   background-color: var(--colorp-secondary);
+  padding: var(--espaciado-l);
 }
 
 .psme-opciones p {
