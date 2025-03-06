@@ -178,6 +178,7 @@
   .psme-boton-siguiente,
   .psme-boton-omitir {
     width: 15.11rem;
+    height: var(--espaciado-xxxl);
   }
 
   .psme-opciones {
@@ -190,7 +191,7 @@
     justify-content: end;
     border: 1.5px solid #dedede;
     padding: var(--espaciado-m);
-    height: var(--espaciado-xxxl);
+    /* height: var(--espaciado-xxxl); */
     border-radius: var(--espaciado-s);
   }
 
