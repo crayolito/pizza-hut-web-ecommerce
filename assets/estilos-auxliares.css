@@ -13,8 +13,8 @@
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 75%;
-  height: 45%;
+  width: 90%;
+  height: 40%;
 }
 
 .psme-pizza-logo-background img {
@@ -46,4 +46,24 @@
   flex-direction: column;
   text-align: center;
   gap: var(--espaciado-xl);
+  padding: 0 var(--espaciado-xl);
+}
+
+.psme-opciones-entrega {
+  padding: 0 var(--espaciado-xl);
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  gap: auto;
+}
+
+.psme-opcion {
+  display: flex;
+  flex-direction: column;
+  flex-direction: column;
+  justify-content: center;
+  gap: auto;
+  padding: var(--espaciado-xl);
+  border: 1px solid var(--colorb-primary);
+  background-color: var(--colorp-primary);
+  border-radius: var(--border-radius-3);
 }
