@@ -15,6 +15,7 @@
   width: 90%;
   height: 40%;
   z-index: 0;
+  transform: translateY(7%);
 }
 
 .psme-pizza-logo-background img {
