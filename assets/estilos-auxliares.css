@@ -74,4 +74,29 @@
   border: 1.5px solid var(--colorb-primary);
   background-color: var(--colorp-secondary);
   border-radius: var(--border-radius-3);
+  position: relative;
+}
+
+.psme-icono-select {
+  position: absolute;
+  right: var(--espaciado-s);
+  top: var(--espaciado-s);
+  width: 1.875rem;
+  height: 1.875rem;
+}
+
+.psme-info-select {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--espaciado-xxl);
+}
+
+.psme-info-select svg {
+  width: 3rem;
+  height: 3rem;
+  aspect-ratio: 1/1;
+  fill: var(--colorb-primary);
 }

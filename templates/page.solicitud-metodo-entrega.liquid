@@ -38,23 +38,26 @@
           </div>
           <section class="psme-opciones-entrega">
             <button class="psme-opcion" id="p-sme-boton-recoger-local">
-              {% comment %}
-                <div class="psme-icono">
-                  <img src="{{ 'icon-recoger-local.png' | asset_url }}" alt="Icono Recoger Local">
+              <div class="psme-icono-select">
+                <img src="{{ 'icon-recoger-local.png' | asset_url }}" alt="Icono Recoger Local">
+              </div>
+              <div class="psme-info-select">
+                {% render 'icon-estado-off' %}
+                <div class="psme-info-select-text">
+                  <p style="font-weight: 600;">Recoger en local</p>
+                  <p style="font-weight: 600;">Sin costo alguno</p>
                 </div>
-              {% endcomment %}
-              <div class="psme-info-select"></div>
+              </div>
             </button>
             <button class="psme-opcion" id="p-sme-boton-envio-domicilio">
-              {% comment %}
-                <div class="psme-icono">
-                  <img src="{{ 'icon-envio-domicilio.png' | asset_url }}" alt="Icono Envio Domicilio">
-                </div>
-              {% endcomment %}
+              <div class="psme-icono-select">
+                <img src="{{ 'icon-envio-domicilio.png' | asset_url }}" alt="Icono Envio Domicilio">
+              </div>
               <div class="psme-info-select"></div>
             </button>
           </section>
         </section>
+        <section class="psme-opciones"></section>
       </div>
     </body>
   </cliente-localizacion>
