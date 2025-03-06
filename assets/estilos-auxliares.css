@@ -28,6 +28,7 @@
 }
 
 .psme-contenido-principal {
+  width: 23.25rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -128,10 +129,6 @@
     padding: var(--espaciado-xl);
   }
 
-  .psme-mensaje,
-  .psme-opciones-entrega {
-  }
-
   .psme-info-select {
     display: flex;
   }
@@ -159,8 +156,5 @@
     display: flex;
     flex-direction: row;
     gap: var(--espaciado-s);
-  }
-  .psme-mensaje,
-  .psme-opciones-entrega {
   }
 }
