@@ -115,6 +115,7 @@
   left: 0;
   width: 100%;
   z-index: 1;
+  background-color: var(--colorp-secondary);
 }
 
 .psme-opciones p {
