@@ -102,9 +102,11 @@
   gap: var(--espaciado-s);
 }
 
-.psme-info-select svg {
+.psme-info-select svg path {
   width: 3rem;
   height: 3rem;
   aspect-ratio: 1/1;
   fill: var(--colorb-primary);
+  color: var(--colorb-primary);
+  stroke: var(--colorb-primary);
 }
