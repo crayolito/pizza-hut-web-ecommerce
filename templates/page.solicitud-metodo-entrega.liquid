@@ -42,7 +42,53 @@
   </cliente-localizacion>
 </html>
 
-<style></style>
+<style>
+  body {
+    width: 100%;
+    height: 100vh;
+  }
+
+  .psme-base-container {
+    background-color: var(--colorp-primary);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    padding: 0 var(--espaciado-xl);
+    gap: var(--espaciado-xxxl);
+  }
+
+  .psme-pizza-logo-background {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 47.8125rem;
+    height: 29.8125rem;
+    flex-shrink: 0;
+  }
+
+  .psme-contenido-principal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: var(--espaciado-m);
+    gap: var(--espaciado-xxxl);
+  }
+
+  .psme-base-container h1 {
+    font-size: 3.3125rem;
+    line-height: 3.4375rem;
+    letter-spacing: -0.06625rem;
+    text-transform: uppercase;
+  }
+
+  .psme-mensaje {
+    display: flex;
+    padding: var(--espaciado-xl) 0;
+  }
+</style>
 
 <script>
   class ClienteLocalizacion extends HTMLElement {
