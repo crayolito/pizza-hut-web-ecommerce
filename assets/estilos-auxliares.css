@@ -6,7 +6,6 @@
   flex-direction: column;
   align-items: center;
   position: relative;
-  padding: 0 var(--espaciado-xl);
 }
 
 .psme-pizza-logo-background {
