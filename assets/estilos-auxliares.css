@@ -191,7 +191,6 @@
     justify-content: end;
     border: 1.5px solid #dedede;
     padding: var(--espaciado-m);
-    /* height: var(--espaciado-xxxl); */
     border-radius: var(--espaciado-s);
   }
 
