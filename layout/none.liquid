@@ -2,7 +2,10 @@
 <html lang="{{ shop.locale }}">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
+    <meta name="theme-color" content="">
+    <link rel="canonical" href="{{ canonical_url }}">
     <title>{{ page_title }}</title>
     {{ content_for_header }}
 
@@ -164,6 +167,12 @@
       img {
         max-width: 100%;
         height: auto;
+      }
+
+      @media screen and (min-width: 750px) {
+        body {
+          font-size: 1.6rem;
+        }
       }
     {% endstyle %}
   </head>
