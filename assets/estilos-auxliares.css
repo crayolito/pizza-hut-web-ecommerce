@@ -177,7 +177,7 @@
 
   .psme-boton-siguiente,
   .psme-boton-omitir {
-    width: 15.1125rem;
+    width: 15.11rem;
   }
 
   .psme-boton-omitir {
@@ -215,6 +215,11 @@
     justify-content: end;
     border: 1.5px solid #dedede;
     border-radius: var(--espaciado-s);
+  }
+
+  .psme-boton-siguiente,
+  .psme-boton-omitir {
+    width: 19.375rem;
   }
 }
 
