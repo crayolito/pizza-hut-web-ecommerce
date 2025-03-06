@@ -140,7 +140,7 @@
   }
 }
 
-@media screen and (min-width: 1025px) {
+@media screen and (min-width: 1024px) {
   .psme-pizza-logo-background {
     left: 0;
     width: 50%;
@@ -154,7 +154,7 @@
   }
 
   .psme-opcion {
-    height: 4.375rem;
+    width: 19.375rem;
     padding: var(--espaciado-l);
   }
 
