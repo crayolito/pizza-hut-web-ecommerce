@@ -50,7 +50,7 @@
 
 .psme-opciones-entrega {
   display: grid;
-  grid-template-columns: repeat(2, 45%);
+  grid-template-columns: repeat(2, 47.5%);
   width: 100%;
   padding: 0 var(--espaciado-xl);
   place-items: center;
@@ -60,6 +60,7 @@
 
 .psme-opcion {
   /* width: 11.25rem; */
+  flex: 0 0 47.5%;
   height: 11.25rem;
   display: flex;
   flex-direction: column;
