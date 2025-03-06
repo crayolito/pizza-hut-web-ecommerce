@@ -130,19 +130,16 @@
     flex-direction: column;
     text-align: center;
     gap: var(--espaciado-xl);
-    padding: 0 12rem;
+    padding: 0 20rem;
   }
 
   .psme-info-select {
-    width: 100%;
-    height: 100%;
     display: flex;
     flex-direction: row;
     gap: var(--espaciado-s);
-    /* asd */
   }
 
   .psme-opciones-entrega {
-    padding: 0 12rem;
+    padding: 0 20rem;
   }
 }
