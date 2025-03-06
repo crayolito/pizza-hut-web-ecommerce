@@ -153,6 +153,7 @@
   }
 
   .psme-opcion {
+    height: 4.375rem;
     padding: var(--espaciado-l);
   }
 
