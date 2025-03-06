@@ -189,6 +189,7 @@
     bottom: var(--espaciado-xl);
     justify-content: end;
     border: 1.5px solid #dedede;
+    /* asd */
     border-radius: var(--espaciado-s);
   }
 
