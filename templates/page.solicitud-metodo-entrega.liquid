@@ -14,14 +14,14 @@
   </head>
   <cliente-localizacion>
     <body>
-      <section class="psme-base-container">
-        <div class="psme-contenido-principal">
-          <div class="psme-pizza-logo-background">
-            <img
-              src="{{ 'img-aux-background-solicitud-entrega.png' | asset_url }}"
-              alt="Pizza Background"
-            >
-          </div>
+      <div class="psme-base-container">
+        <div class="psme-pizza-logo-background">
+          <img
+            src="{{ 'img-aux-background-solicitud-entrega.png' | asset_url }}"
+            alt="Pizza Background"
+          >
+        </div>
+        <section class="psme-contenido-principal">
           <div class="psme-pizza-logo">
             <img
               src="{{ 'logo-secondary-2.png' | asset_url }}"
@@ -36,22 +36,17 @@
             </p>
           </div>
           <section class="psme-opciones-entrega"></section>
-        </div>
-      </section>
+        </section>
+      </div>
     </body>
   </cliente-localizacion>
 </html>
 
 <style>
-  body {
-    width: 100%;
-    height: 100vh;
-  }
-
   .psme-base-container {
     background-color: var(--colorp-secondary);
     width: 100%;
-    height: 100%;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -64,8 +59,8 @@
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 47.8125rem;
-    height: 29.8125rem;
+    width: 55%;
+    height: 65%;
   }
 
   .psme-pizza-logo {
