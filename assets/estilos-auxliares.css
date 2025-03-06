@@ -101,8 +101,8 @@
   height: 3rem;
   aspect-ratio: 1/1;
   fill: var(--colorp-primary);
-  color: var(--colorp-primary);
-  stroke: var(--colorp-primary);
+  filter: brightness(0) saturate(100%) invert(15%) sepia(100%) saturate(2000%)
+    hue-rotate(-10deg) brightness(90%) contrast(110%);
 }
 
 .psme-info-select-text {
