@@ -116,6 +116,7 @@
   z-index: 1;
   background-color: var(--colorp-secondary);
   padding: var(--espaciado-l);
+  gap: var(--espaciado-xl);
 }
 
 .psme-opciones p {
@@ -139,11 +140,19 @@
 
 .psme-boton-omitir {
   height: var(--espaciado-big);
+  color: var(--colorp-primary);
+  border: 1.5px solid var(--colorp-primary);
+  border-radius: var(--border-radius-1);
   display: flex;
   justify-content: center;
   align-items: center;
   gap: var(--espaciado-s);
   padding: var(--espaciado-xs);
+}
+
+.psme-boton-omitir svg {
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 @media screen and (min-width: 768px) {
