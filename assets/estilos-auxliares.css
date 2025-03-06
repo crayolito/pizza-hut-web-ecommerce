@@ -70,7 +70,7 @@
   flex-direction: column;
   flex-direction: column;
   justify-content: center;
-  padding: var(--espaciado-xl);
+  padding: var(--espaciado-xxl);
   border: 1.5px solid var(--colorb-primary);
   background-color: var(--colorp-secondary);
   border-radius: var(--border-radius-3);
@@ -90,7 +90,7 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  align-content: center;
+  align-items: center;
   justify-content: space-between;
   gap: var(--espaciado-s);
   text-align: center;
