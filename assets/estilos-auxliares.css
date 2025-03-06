@@ -14,6 +14,7 @@
   left: -30%;
   width: 90%;
   height: 40%;
+  z-index: 0;
 }
 
 .psme-pizza-logo-background img {
@@ -31,6 +32,8 @@
   align-items: center;
   margin-top: var(--espaciado-m);
   gap: var(--espaciado-xxl);
+  position: relative;
+  z-index: 1;
 }
 
 .psme-base-container h1 {
