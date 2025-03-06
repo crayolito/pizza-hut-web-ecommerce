@@ -136,8 +136,6 @@
 
   .psme-info-select {
     display: flex;
-    flex-direction: row;
-    gap: var(--espaciado-s);
   }
 }
 
