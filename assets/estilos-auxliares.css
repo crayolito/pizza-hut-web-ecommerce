@@ -128,6 +128,7 @@
 }
 
 .psme-boton-siguiente {
+  height: var(--espaciado-big);
   background-color: var(--colorp-primary);
   color: var(--colorp-secondary);
   border-radius: var(--border-radius-1);
