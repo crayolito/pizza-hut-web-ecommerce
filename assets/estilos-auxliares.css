@@ -135,4 +135,8 @@
     display: flex;
     gap: var(--espaciado-s);
   }
+
+  .psme-opciones-entrega {
+    padding: 0 12rem;
+  }
 }
