@@ -132,7 +132,7 @@
 
   .psme-mensaje,
   .psme-opciones-entrega {
-    padding: 0 12rem;
+    padding: 0 clamp(1.25rem, 5vw, 20rem);
   }
 
   .psme-info-select {
@@ -164,6 +164,6 @@
   }
   .psme-mensaje,
   .psme-opciones-entrega {
-    padding: 0 20rem;
+    padding: 0 clamp(1.25rem, 5vw, 20rem);
   }
 }
