@@ -114,6 +114,7 @@
 
 @media screen and (min-width: 768px) {
   .psme-pizza-logo-background {
+    left: 0;
     width: 50%;
     height: 45%;
     transform: translateY(83%);
@@ -142,6 +143,7 @@
 
 @media screen and (min-width: 1025px) {
   .psme-pizza-logo-background {
+    left: 0;
     width: 50%;
     height: 45%;
     transform: translateY(83%);
