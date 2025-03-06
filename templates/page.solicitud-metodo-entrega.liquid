@@ -51,9 +51,15 @@
             </button>
             <button class="psme-opcion" id="p-sme-boton-envio-domicilio">
               <div class="psme-icono-select">
-                <img src="{{ 'icon-envio-domicilio.png' | asset_url }}" alt="Icono Envio Domicilio">
+                {% render 'icon-estado-off' %}
               </div>
-              <div class="psme-info-select"></div>
+              <div class="psme-info-select">
+                {% render 'icon-domicilio' %}
+                <div class="psme-info-select-text">
+                  <p style="font-weight: 600;">Envío a domicilio</p>
+                  <p>Envío a solo Bs 2</p>
+                </div>
+              </div>
             </button>
           </section>
         </section>
