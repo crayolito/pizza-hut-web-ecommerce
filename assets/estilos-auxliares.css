@@ -153,7 +153,6 @@
 .psme-boton-omitir svg {
   width: 1.5rem;
   height: 1.5rem;
-  fill: var(--colorp-primary);
 }
 
 @media screen and (min-width: 768px) {
