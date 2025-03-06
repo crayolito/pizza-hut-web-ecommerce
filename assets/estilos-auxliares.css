@@ -17,9 +17,7 @@
   height: 45%;
 }
 
-.psme-pizza-logo-background {
-  width: 100%;
-  height: 100%;
+.psme-pizza-logo-background img {
   object-fit: cover;
 }
 
