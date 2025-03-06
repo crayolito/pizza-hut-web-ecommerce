@@ -64,7 +64,6 @@
   width: 11.25rem;
   display: flex;
   flex-direction: column;
-  flex-direction: column;
   justify-content: center;
   padding: var(--espaciado-xxl);
   border: 1.5px solid var(--colorb-primary);
@@ -115,6 +114,7 @@
   }
 
   .psme-contenido-principal {
+    width: 31.71rem;
     margin-top: var(--espaciado-xxxl);
     gap: var(--espaciado-xxl);
   }
@@ -129,13 +129,6 @@
 }
 
 @media screen and (min-width: 1024px) {
-  .psme-pizza-logo-background {
-    left: 0;
-    width: 50%;
-    height: 45%;
-    transform: translateY(83%);
-  }
-
   .psme-contenido-principal {
     width: 40.1875rem;
     margin-top: var(--espaciado-big);
