@@ -196,11 +196,23 @@
     left: 4rem;
     right: 4rem;
     flex-direction: row;
+    bottom: var(--espaciado-xxl);
+    justify-content: end;
+    border: 1.5px solid #dedede;
+    border-radius: var(--espaciado-s);
   }
 
   .psme-boton-siguiente,
   .psme-boton-omitir {
     width: 19.375rem;
+  }
+
+  .psme-boton-omitir {
+    order: 1;
+  }
+
+  .psme-boton-siguiente {
+    order: 2;
   }
 }
 
