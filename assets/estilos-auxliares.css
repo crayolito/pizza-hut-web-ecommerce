@@ -191,6 +191,17 @@
   .psme-info-select {
     flex-direction: row;
   }
+
+  .psme-opciones {
+    left: 4rem;
+    right: 4rem;
+    flex-direction: row;
+  }
+
+  .psme-boton-siguiente,
+  .psme-boton-omitir {
+    width: 19.375rem;
+  }
 }
 
 /* 
