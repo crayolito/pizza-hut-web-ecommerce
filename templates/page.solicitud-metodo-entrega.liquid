@@ -39,13 +39,13 @@
           <section class="psme-opciones-entrega">
             <button class="psme-opcion" id="p-sme-boton-recoger-local">
               <div class="psme-icono-select">
-                <img src="{{ 'icon-recoger-local.png' | asset_url }}" alt="Icono Recoger Local">
+                {% render 'icon-option-point' %}
               </div>
               <div class="psme-info-select">
                 {% render 'icon-recogo-local' %}
                 <div class="psme-info-select-text">
                   <p style="font-weight: 600;">Recoger en local</p>
-                  <p style="font-weight: 600;">Sin costo alguno</p>
+                  <p>Sin costo alguno</p>
                 </div>
               </div>
             </button>
