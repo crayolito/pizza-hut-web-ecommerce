@@ -30,7 +30,7 @@
   flex-direction: column;
   align-items: center;
   margin-top: var(--espaciado-m);
-  gap: var(--espaciado-xxxl);
+  gap: var(--espaciado-xxl);
 }
 
 .psme-base-container h1 {
