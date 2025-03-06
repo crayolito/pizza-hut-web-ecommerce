@@ -53,13 +53,12 @@
 }
 
 .psme-opciones-entrega {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  width: 100%;
-  /* padding: 0 var(--espaciado-xl); */
+  display: flex;
+  flex-direction: row;
+
+  width: 11.25rem;
   padding: 0 clamp(1.25rem, 5vw, 20rem);
   place-items: center;
-  justify-content: space-between;
   margin: auto;
   gap: var(--espaciado-m);
 }
