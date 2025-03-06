@@ -56,7 +56,7 @@
   place-items: center;
   justify-content: space-between;
   margin: auto;
-  gap: var(--espaciado-s);
+  gap: var(--espaciado-m);
 }
 
 .psme-opcion {
