@@ -100,9 +100,6 @@
   width: 3rem;
   height: 3rem;
   aspect-ratio: 1/1;
-  fill: var(--colorp-primary);
-  filter: invert(15%) sepia(99%) saturate(4148%) hue-rotate(345deg)
-    brightness(90%) contrast(101%);
 }
 
 .psme-info-select-text {
