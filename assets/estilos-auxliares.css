@@ -180,6 +180,18 @@
     width: 15.11rem;
   }
 
+  .psme-opciones {
+    left: var(--espaciado-xxl);
+    right: var(--espaciado-xxl);
+    width: auto;
+    max-width: calc(100% - 3rem);
+    flex-direction: row;
+    bottom: var(--espaciado-xl);
+    justify-content: end;
+    border: 1.5px solid #dedede;
+    border-radius: var(--espaciado-s);
+  }
+
   .psme-boton-omitir {
     order: 1;
   }
@@ -208,13 +220,8 @@
   .psme-opciones {
     left: var(--espaciado-xxxl);
     right: var(--espaciado-xxxl);
-    width: auto;
     max-width: calc(100% - 6rem);
-    flex-direction: row;
     bottom: var(--espaciado-xxl);
-    justify-content: end;
-    border: 1.5px solid #dedede;
-    border-radius: var(--espaciado-s);
   }
 
   .psme-boton-siguiente,
