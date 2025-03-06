@@ -135,6 +135,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.psme-boton-omitir {
+  height: var(--espaciado-big);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--espaciado-s);
   padding: var(--espaciado-xs);
 }
 
