@@ -59,8 +59,7 @@
 }
 
 .psme-opcion {
-  /* width: 11.25rem; */
-  flex: 0 0 47.5%;
+  flex: 0 1 47.5%;
   height: 11.25rem;
   display: flex;
   flex-direction: column;
