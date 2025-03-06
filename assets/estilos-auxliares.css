@@ -51,9 +51,10 @@
 .psme-opciones-entrega {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: var(--espaciado-xl);
   width: 100%;
   padding: 0 var(--espaciado-xl);
+  place-items: center;
+  margin: auto;
 }
 
 .psme-opcion {
@@ -63,9 +64,8 @@
   flex-direction: column;
   flex-direction: column;
   justify-content: center;
-  gap: auto;
   padding: var(--espaciado-xl);
-  border: 1px solid var(--colorb-primary);
+  border: 1.5px solid var(--colorb-primary);
   background-color: var(--colorp-secondary);
   border-radius: var(--border-radius-3);
 }
