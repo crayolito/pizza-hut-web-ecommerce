@@ -54,15 +54,9 @@
 }
 
 .psme-opciones-entrega {
-  /* display: grid; */
-  /* grid-template-columns: repeat(2, 1fr); */
-  /* width: 100%; */
   display: flex;
-  /* padding: 0 var(--espaciado-xl); */
-  padding: 0 clamp(1.25rem, 5vw, 20rem);
   place-items: center;
   justify-content: space-between;
-  margin: auto;
   gap: var(--espaciado-m);
 }
 
@@ -143,6 +137,7 @@
   }
 
   .psme-contenido-principal {
+    width: 40.1875rem;
     margin-top: var(--espaciado-big);
     gap: var(--espaciado-xxxl);
   }
