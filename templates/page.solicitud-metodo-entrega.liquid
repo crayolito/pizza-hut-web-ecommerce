@@ -322,9 +322,9 @@
       {% comment %} this.botonUbicacionActual.addEventListener('click', this.mostrarModal.bind(this)); {% endcomment %}
 
       // Inicializar contenidos ocultos
-      this.contenidoModal.style.visibility = 'hidden';
+      {% comment %} this.contenidoModal.style.visibility = 'hidden';
       this.contenidoRecogidaLocal.style.visibility = 'hidden';
-      this.contenidoEnvioDomicilio.style.visibility = 'hidden';
+      this.contenidoEnvioDomicilio.style.visibility = 'hidden'; {% endcomment %}
     }
 
     mostrarModal() {
