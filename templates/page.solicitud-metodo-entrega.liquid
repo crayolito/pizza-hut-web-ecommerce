@@ -157,7 +157,7 @@
         }
       });
       this.botonCerrarModal.addEventListener('click', this.cerrarModal.bind(this));
-      this.botonUbicacionActual.addEventListener('click', this.mostrarModal.bind(this));
+      {% comment %} this.botonUbicacionActual.addEventListener('click', this.mostrarModal.bind(this)); {% endcomment %}
 
       // Inicializar contenidos ocultos
       this.contenidoModal.style.visibility = 'hidden';
