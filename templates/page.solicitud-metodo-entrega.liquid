@@ -134,7 +134,7 @@
     }
 
     connectedCallback() {
-      // Capturar elementos
+      {% comment %} // Capturar elementos
       this.botonRecogerLocal = this.querySelector('.p-sme-boton-recoger-local');
       this.botonEnvioDomicilio = this.querySelector('.p-sme-boton-envio-domicilio');
       this.botonOmitir = this.querySelector('.p-sme-boton-omitir');
@@ -162,7 +162,7 @@
       // Inicializar contenidos ocultos
       this.contenidoRecogidaLocal.style.visibility = 'hidden';
       this.contenidoEnvioDomicilio.style.visibility = 'hidden';
-      this.contenidoModal.style.visibility = 'hidden';
+      this.contenidoModal.style.visibility = 'hidden'; {% endcomment %}
     }
 
     mostrarModal() {
