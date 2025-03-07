@@ -18,7 +18,6 @@
   width: 24rem;
   height: 24rem;
   z-index: 0;
-  /* transform: translateY(7%); */
 }
 
 .psme-pizza-logo-background img {
@@ -524,13 +523,12 @@
 }
 
 @media screen and (min-width: 768px) {
-  /* .psme-pizza-logo-background {
-    left: 0;
-    top: 55%;
-    width: 47%;
-    height: 27%;
-    transform: translateY(42%);
-  } */
+  .psme-pizza-logo-background {
+    top: 29rem;
+    left: 0rem;
+    width: 27rem;
+    height: 26rem;
+  }
 
   .psme-contenido-principal {
     width: 31.71rem;
@@ -610,9 +608,9 @@
 }
 
 @media screen and (min-width: 1024px) {
-  /* .psme-pizza-logo-background {
-    transform: translateY(139%);
-  } */
+  .psme-pizza-logo-background {
+    width: 29rem;
+  }
 
   .psme-contenido-principal {
     width: 40.1875rem;
