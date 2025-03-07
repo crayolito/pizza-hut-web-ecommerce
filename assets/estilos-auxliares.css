@@ -19,7 +19,7 @@
   z-index: 0;
   transform: translateY(7%);
   /* MODIFIQUE AQUI */
-  /* visibility: hidden; */
+  visibility: hidden;
 }
 
 .psme-pizza-logo-background img {
@@ -169,7 +169,7 @@
   gap: var(--espaciado-l);
   width: 100%;
   text-align: center;
-  /* TENGO QUE EDITAR ESTO */
+  /* MODIFIQUE AQUI */
   display: none;
 }
 
