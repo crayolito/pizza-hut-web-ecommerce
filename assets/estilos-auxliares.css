@@ -365,7 +365,7 @@
   justify-content: center;
   align-items: center;
   gap: var(--espaciado-xxl);
-  padding: var(--espaciado-xxl) 0 var(--espaciado-big) 0;
+  padding: var(--espaciado-xxl) 0 12rem 0;
 }
 
 .psme-rl-local {
@@ -430,12 +430,14 @@
 }
 
 .psme-rl-boton {
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: var(--espaciado-s);
   height: var(--espaciado-big);
   padding: var(--espaciado-xl);
+  border-radius: var(--border-radius-1);
 }
 
 .psme-rl-boton p {
