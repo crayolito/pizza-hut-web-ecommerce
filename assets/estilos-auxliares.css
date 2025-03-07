@@ -12,13 +12,13 @@
 
 .psme-pizza-logo-background {
   position: absolute;
-  top: 45rem;
+  top: 34rem;
   bottom: 0;
-  left: -30%;
-  width: 90%;
-  height: 40%;
+  left: -10rem;
+  width: 24rem;
+  height: 24rem;
   z-index: 0;
-  transform: translateY(7%);
+  /* transform: translateY(7%); */
 }
 
 .psme-pizza-logo-background img {
