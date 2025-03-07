@@ -380,6 +380,14 @@
   gap: var(--espaciado-xxl);
 }
 
+.psme-rl-local-seleccionado {
+  border: 1.5px solid var(--colorp-primary);
+}
+
+.psme-rl-local-no-seleccionado {
+  border: 1.5px solid #969696;
+}
+
 .psme-rl-disponibilidad,
 .psme-rl-titulos {
   width: 100%;
@@ -392,14 +400,34 @@
   display: flex;
   align-items: center;
   gap: var(--espaciado-xs);
-  background: #e3ffc9;
   border-radius: var(--border-radius-4);
   padding: var(--espaciado-xs) var(--espaciado-s);
 }
 
-.psme-rl-disponibilidad-info p {
+.psme-rl-abierto {
+  background: #e3ffc9;
+}
+
+.psme-rl-abierto p {
   font-weight: 600;
   color: #478c5c;
+}
+
+.psme-rl-abierto svg {
+  fill: #478c5c;
+}
+
+.psme-rl-cerrado {
+  background: #ffebeb;
+}
+
+.psme-rl-cerrado p {
+  font-weight: 600;
+  color: #c8102e;
+}
+
+.psme-rl-cerrado svg {
+  fill: #c8102e;
 }
 
 .psme-rl-disponibilidad-info svg {
