@@ -414,7 +414,9 @@
 }
 
 .psme-rl-abierto svg {
-  fill: #478c5c;
+  /* fill: #478c5c; */
+  filter: brightness(0) saturate(100%) invert(42%) sepia(29%) saturate(709%)
+    hue-rotate(105deg) brightness(87%) contrast(84%);
 }
 /*  */
 
@@ -428,7 +430,8 @@
 }
 
 .psme-rl-cerrado svg {
-  fill: #c8102e;
+  filter: brightness(0) saturate(100%) invert(13%) sepia(93%) saturate(5266%)
+    hue-rotate(350deg) brightness(87%) contrast(99%);
 }
 
 .psme-rl-disponibilidad-info svg {
