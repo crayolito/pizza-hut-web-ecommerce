@@ -164,6 +164,9 @@
   flex-direction: column;
   gap: var(--espaciado-l);
   width: 100%;
+  text-align: center;
+  /* TENGO QUE EDITAR ESTO */
+  visibility: hidden;
 }
 
 .psme-boton-ubicacion-actual {
@@ -325,7 +328,7 @@
     left: 0;
     top: 55%;
     width: 50%;
-    height: 45%;
+    height: 13%;
     transform: translateY(83%);
   }
 
@@ -393,6 +396,10 @@
   .psme-boton-siguiente,
   .psme-boton-omitir {
     width: 19.375rem;
+  }
+
+  .psme-input-direccion {
+    padding: var(--espaciado-s);
   }
 }
 
