@@ -371,7 +371,7 @@
 .psme-rl-local {
   width: 23.25rem;
   padding: var(--espaciado-xxl);
-  border: 1.5px solid #969696;
+  border: 1.5px solid var(--colorp-primary);
   border-radius: var(--border-radius-2);
   background-color: var(--colorp-secondary);
   display: flex;
