@@ -465,7 +465,7 @@
 
         // Ajustar interfaz para modo recogida en local:
         // - Ocultar la imagen auxiliar de fondo
-        this.imagenBackground.style.transform = 'translateY(45%)';
+        this.imagenBackground.style.display = 'none';
         this.contenedorOpcionesEnvioDomicilio.style.display = 'none';
       } else {
         // === MODO DESACTIVACIÓN ===
@@ -475,6 +475,7 @@
         // Revertir cambios de interfaz:
         // - Restaurar posición original de la imagen de fondo
         // - Restaurar visibilidad de la sección de envío a domicilio
+        this.imagenBackground.style.display = 'block';
         {% comment %} this.imagenAuxiliarFondo.style.visibility = 'visible'; {% endcomment %}
         {% comment %} this.imagenAuxiliarFondo.style.top = '31.9rem'; {% endcomment %}
         {% comment %} this.contenidoRecogidaLocal.style.visibility = 'hidden'; {% endcomment %}
