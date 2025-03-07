@@ -600,6 +600,7 @@
   }
 
   .psme-recoger-local-info {
+    height: 53.5rem;
     width: calc(100% - 4rem);
     flex-direction: row;
     gap: var(--espaciado-xxl);
@@ -612,7 +613,7 @@
   }
 
   .psme-rl-locales {
-    height: 53.5rem;
+    justify-content: start;
     flex: 1 1 calc(50% - 2rem);
     order: 1;
     padding: 1.5rem;
@@ -620,6 +621,14 @@
 
   .psme-rl-locales {
     padding-top: 0;
+    overflow: auto;
+  }
+
+  .psme-rl-locales {
+    padding-top: 0;
+    overflow: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #9e9e9e transparent;
   }
 
   .psme-rl-local {
