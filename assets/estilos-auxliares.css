@@ -601,11 +601,13 @@
   }
 
   .psme-recoger-local-mapa {
+    order: 2;
     flex: 1 1 calc(50% - 2rem);
   }
 
   .psme-rl-locales {
     flex: 1 1 calc(50% - 2rem);
+    order: 1;
   }
 }
 
