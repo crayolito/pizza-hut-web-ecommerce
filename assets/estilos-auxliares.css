@@ -184,9 +184,18 @@
 
 .psme-modal-header {
   width: 100%;
+  height: 11%;
   display: flex;
   justify-content: space-between;
-  border-bottom: 1.5px solid #dedede;
+  border-bottom: 1px solid #dee2e6;
+  padding-bottom: var(--espaciado-m);
+}
+
+.psme-modal-boton-cerrar {
+  display: flex;
+  justify-content: center;
+  width: 12%;
+  align-items: center;
 }
 
 .psme-modal-mensaje {
@@ -195,6 +204,26 @@
   gap: var(--espaciado-s);
   border-radius: var(--espaciado-xs);
   border-left: 4px solid #a9b5f3;
+  height: 3.75rem;
+  background: #f4f7ff;
+  width: 88%;
+  padding-left: var(--espaciado-m);
+}
+
+.psme-modal-body {
+  width: 100%;
+  height: 78%;
+  padding: 0 var(--espaciado-l);
+}
+
+.psme-modal-footer {
+  width: 100%;
+  height: 11%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid #dee2e6;
+  padding-top: var(--espaciado-m);
 }
 
 @media screen and (min-width: 768px) {
