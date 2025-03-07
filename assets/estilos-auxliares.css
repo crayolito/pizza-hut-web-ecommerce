@@ -12,7 +12,7 @@
 
 .psme-pizza-logo-background {
   position: absolute;
-  top: 54%;
+  top: 45rem;
   bottom: 0;
   left: -30%;
   width: 90%;
@@ -524,13 +524,13 @@
 }
 
 @media screen and (min-width: 768px) {
-  .psme-pizza-logo-background {
+  /* .psme-pizza-logo-background {
     left: 0;
     top: 55%;
     width: 47%;
     height: 27%;
     transform: translateY(42%);
-  }
+  } */
 
   .psme-contenido-principal {
     width: 31.71rem;
@@ -610,9 +610,9 @@
 }
 
 @media screen and (min-width: 1024px) {
-  .psme-pizza-logo-background {
+  /* .psme-pizza-logo-background {
     transform: translateY(139%);
-  }
+  } */
 
   .psme-contenido-principal {
     width: 40.1875rem;
