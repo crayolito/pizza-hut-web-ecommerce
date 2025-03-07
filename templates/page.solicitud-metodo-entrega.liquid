@@ -551,10 +551,9 @@
     {% endcomment %}
 
     desactivarBotonRecogerLocal() {
-      const iconoEstado = this.botonRecogerLocal.querySelector('.psme-icono-select');
-      this.botonRecogerLocal.classList.remove('psme-opcion-seleccionado');
+      const iconoEstado = this.botonOpcionRecogerLocal.querySelector('.psme-icono-select');
+      iconoEstado.classList.remove('psme-opcion-seleccionado');
       iconoEstado.innerHTML = `{% render 'icon-estado-off' %}`;
-      iconoEstado.classList.remove('p-sme-icono-activo');
     } 
   }
 
