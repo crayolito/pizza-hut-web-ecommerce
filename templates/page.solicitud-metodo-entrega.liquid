@@ -134,15 +134,15 @@
     }
 
     connectedCallback() {
-      {% comment %} // Capturar elementos
+      // Capturar elementos
       this.botonRecogerLocal = this.querySelector('.p-sme-boton-recoger-local');
       this.botonEnvioDomicilio = this.querySelector('.p-sme-boton-envio-domicilio');
       this.botonOmitir = this.querySelector('.p-sme-boton-omitir');
       this.botonSiguiente = this.querySelector('.p-sme-boton-siguiente');
       this.contenidoRecogidaLocal = this.querySelector('.p-sme-contenido-recogida-local');
       this.contenidoEnvioDomicilio = this.querySelector('.p-sme-contenido-envio-domicilio');
-      this.contenidoModal = this.querySelector('.p-sme-modal-mapa-envio-domicilio');
-      this.botonCerrarModal = this.querySelector('#p-sme-boton-cerrar-modal');
+      this.contenidoModal = this.querySelector('.psme-modal-mapa-envio-domicilio');
+      this.botonCerrarModal = this.querySelector('#psme-modal-boton-cerrar');
       this.botonConfirmarModal = this.querySelector('#p-sme-boton-confirmar-modal');
       this.botonUbicacionActual = this.querySelector('#p-sme-boton-ubicacion-actual');
       this.imagenAuxiliarFondo = this.querySelector('.p-sme-pizza-background');
@@ -162,7 +162,7 @@
       // Inicializar contenidos ocultos
       this.contenidoRecogidaLocal.style.visibility = 'hidden';
       this.contenidoEnvioDomicilio.style.visibility = 'hidden';
-      this.contenidoModal.style.visibility = 'hidden'; {% endcomment %}
+      this.contenidoModal.style.visibility = 'hidden';
     }
 
     mostrarModal() {
