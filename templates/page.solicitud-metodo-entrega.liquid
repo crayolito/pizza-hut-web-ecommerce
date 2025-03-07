@@ -455,36 +455,33 @@
       if (estaActivo) {
         // === MODO ACTIVACIÓN ===
         // Actualizar elementos visuales del botón
-        iconoPrincipal.classList.add('p-sme-icono-activo');
         iconoEstado.innerHTML = `{% render 'icon-estado-on' %}`;
-        iconoEstado.classList.add('p-sme-icono-activo');
-        textos.forEach((p) => (p.style.color = 'white'));
 
         // Ajustar interfaz para modo recogida en local:
         // - Ocultar la imagen auxiliar de fondo
-        this.imagenAuxiliarFondo.style.visibility = 'hidden';
-        this.contenidoRecogidaLocal.style.visibility = 'visible';
+        {% comment %} this.imagenAuxiliarFondo.style.visibility = 'hidden'; {% endcomment %}
+        {% comment %} this.contenidoRecogidaLocal.style.visibility = 'visible'; {% endcomment %}
       } else {
         // === MODO DESACTIVACIÓN ===
         // Restaurar estado original del botón y elementos relacionados
-        this.desactivarBotonRecogerLocal();
+        {% comment %} this.desactivarBotonRecogerLocal(); {% endcomment %}
 
         // Revertir cambios de interfaz:
         // - Restaurar posición original de la imagen de fondo
         // - Restaurar visibilidad de la sección de envío a domicilio
-        this.imagenAuxiliarFondo.style.visibility = 'visible';
-        this.imagenAuxiliarFondo.style.top = '31.9rem';
-        this.contenidoRecogidaLocal.style.visibility = 'hidden';
+        {% comment %} this.imagenAuxiliarFondo.style.visibility = 'visible'; {% endcomment %}
+        {% comment %} this.imagenAuxiliarFondo.style.top = '31.9rem'; {% endcomment %}
+        {% comment %} this.contenidoRecogidaLocal.style.visibility = 'hidden'; {% endcomment %}
       }
 
       // Desactivar modo envío a domicilio si está activo
-      if (this.contenidoEnvioDomicilio.style.visibility === 'visible') {
+      {% comment %} if (this.contenidoEnvioDomicilio.style.visibility === 'visible') {
         this.contenidoEnvioDomicilio.style.visibility = 'hidden';
         this.desactivarBotonEnvioDomicilio();
-      }
+      } {% endcomment %}
     }
 
-    accionBotonEnvioDomicilio() {
+    {% comment %} accionBotonEnvioDomicilio() {
       // 1. Cambiar estado visual del botón y obtener elementos clave
       const estaActivo = this.botonEnvioDomicilio.classList.toggle('p-sme-boton-envio-domicilio-activo');
       const iconoEstado = this.botonEnvioDomicilio.querySelector('.p-sme-icono-selecionado');
@@ -555,7 +552,7 @@
       iconoEstado.classList.remove('p-sme-icono-activo');
 
       textos.forEach((p) => (p.style.color = ''));
-    }
+    } {% endcomment %}
   }
 
   customElements.define('cliente-localizacion', ClienteLocalizacion);
