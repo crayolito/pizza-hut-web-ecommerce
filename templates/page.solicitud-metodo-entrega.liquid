@@ -511,7 +511,8 @@
 
      // Desactivar el modo de recoger en local si está activo
      if (this.botonOpcionRecogerLocal.classList.contains('psme-opcion-seleccionado')) {
-       this.contenidoRecogidaLocal.style.display = 'none';
+      console.log('Voy a desactivar el modo de recoger en local');
+       this.contenedorOpcionesRecogerLocal.style.display = 'none';
        this.desactivarBotonRecogerLocal();
      } 
     }
