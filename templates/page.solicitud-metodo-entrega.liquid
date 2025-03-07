@@ -466,7 +466,7 @@
         // Ajustar interfaz para modo recogida en local:
         // - Ocultar la imagen auxiliar de fondo
         this.imagenBackground.style.display = 'none';
-        this.contenedorOpcionesEnvioDomicilio.style.display = 'none';
+        this.contenedorOpcionesEnvioDomicilio.style.removeProperty('display');
       } else {
         // === MODO DESACTIVACIÓN ===
         // Restaurar estado original del botón y elementos relacionados
