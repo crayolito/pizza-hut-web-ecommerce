@@ -173,12 +173,28 @@
 }
 
 .psme-modal-contenedor-base {
-  width: 97%;
+  width: 96%;
   height: 75vh;
   background-color: var(--colorp-secondary);
-  border-radius: var(--border-radius-3);
+  border-radius: var(--border-radius-2);
   display: flex;
   flex-direction: column;
+  padding: var(--espaciado-l);
+}
+
+.psme-modal-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1.5px solid #dedede;
+}
+
+.psme-modal-mensaje {
+  display: flex;
+  align-items: center;
+  gap: var(--espaciado-s);
+  border-radius: var(--espaciado-xs);
+  border-left: 4px solid #a9b5f3;
 }
 
 @media screen and (min-width: 768px) {
