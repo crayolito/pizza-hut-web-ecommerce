@@ -160,7 +160,7 @@
 /* MODAL UBICACIÓN ENVÍO A DOMICILIO */
 
 .psme-modal-mapa-envio-domicilio {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -213,7 +213,7 @@
 .psme-modal-body {
   width: 100%;
   height: 78%;
-  padding: 0 var(--espaciado-l);
+  padding: var(--espaciado-l) 0;
 }
 
 .psme-modal-footer {
@@ -224,6 +224,30 @@
   align-items: center;
   border-top: 1px solid #dee2e6;
   padding-top: var(--espaciado-m);
+  gap: var(--espaciado-l);
+}
+
+.psme-modal-boton-confirmar {
+  flex: 0 0 49.5%;
+  height: 100%;
+  background-color: var(--colorp-primary);
+  color: var(--colorp-secondary);
+  border-radius: var(--border-radius-1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.psme-modal-boton-cancelar {
+  flex: 0 0 49.5%;
+  height: 100%;
+  background-color: var(--colorp-secondary);
+  color: var(--colorp-primary);
+  border: 1.5px solid var(--colorp-primary);
+  border-radius: var(--border-radius-1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @media screen and (min-width: 768px) {
