@@ -482,50 +482,36 @@
       } 
     }
 
-    {% comment %} accionBotonEnvioDomicilio() {
-      // 1. Cambiar estado visual del botón y obtener elementos clave
-      const estaActivo = this.botonEnvioDomicilio.classList.toggle('p-sme-boton-envio-domicilio-activo');
-      const iconoEstado = this.botonEnvioDomicilio.querySelector('.p-sme-icono-selecionado');
-      const iconoPrincipal = this.botonEnvioDomicilio.querySelector('.p-sme-icono-envio-domicilio');
-      const textos = this.botonEnvioDomicilio.querySelectorAll('p');
+    accionBotonEnvioDomicilio() {
+     // 1. Cambiar estado visual del botón y obtener elementos clave
+     const estaActivo = this.botonOpcionEnvioDomicilio.classList.toggle('psme-opcion-seleccionado');
+     const iconoEstado = this.botonOpcionEnvioDomicilio.querySelector('.psme-icono-select');
+     const imagenBackground = this.imagenBackground
 
-      if (estaActivo) {
-        // === MODO ACTIVACIÓN ===
-        // Actualizar elementos visuales del botón
-        iconoPrincipal.classList.add('p-sme-icono-activo');
-        iconoEstado.innerHTML = `{% render 'icon-estado-on' %}`;
-        iconoEstado.classList.add('p-sme-icono-activo');
-        textos.forEach((p) => (p.style.color = 'white'));
+     if (estaActivo) {
+       console.log('Entra a activar modo envío a domicilio test 1');
 
-        // Ajustar interfaz para modo envio a domicilio:
-        // - Bajar imagen de fondo para hacer espacio al formulario
-        // - Mostrar sección de entrada de dirección
-        this.imagenAuxiliarFondo.style.top = '40.7528rem';
-        this.contenidoEnvioDomicilio.style.visibility = 'visible';
-      } else {
-        // === MODO DESACTIVACIÓN ===
-        // Restaurar estado original del botón y elementos relacionados
-        this.desactivarBotonEnvioDomicilio();
+       // === MODO ACTIVACIÓN ===
+       iconoEstado.innerHTML = `{% render 'icon-estado-on' %}`;
 
-        // Revertir cambios de interfaz:
-        // - Restaurar posición original de la imagen de fondoo
-        // - Ocultar sección de dirección
-        this.contenidoEnvioDomicilio.style.visibility = 'hidden';
-        this.imagenAuxiliarFondo.style.top = '31.9rem';
-      }
+       // Ajustar interfaz para modo envío a domicilio:
+       this.imagenBackground.style.visibility = 'hidden';
+       this.contenedorOpcionesEnvioDomicilio.style.removeProperty('display');
+     } else {
+       // === MODO DESACTIVACIÓN ===
+       this.desactivarBotonEnvioDomicilio();
 
-      // Desactivar modo recogida en local si está activo
-      if (this.contenidoRecogidaLocal.style.visibility === 'visible') {
-        console.log('Entra a desactivar modo recogida en local');
-        this.contenidoRecogidaLocal.style.visibility = 'hidden';
-        this.imagenAuxiliarFondo.style.visibility = 'visible';
-        this.desactivarBotonRecogerLocal();
-      }
+       // Revertir cambios de interfaz:
+       this.imagenBackground.style.removeProperty('visibility');
+       this.contenedorOpcionesEnvioDomicilio.style.display = 'none';
+     }
+
+     // Desactivar modo envío a domicilio si está activo
+     if (this.botonOpcionRecogerLocal.classList.contains('psme-opcion-seleccionado')) {
+       this.contenidoRecogidaLocal.style.display = 'none';
+       this.desactivarBotonRecogerLocal();
+     } 
     }
-
-
-
-    {% endcomment %}
 
     desactivarBotonEnvioDomicilio() {
       const iconoEstado = this.botonOpcionEnvioDomicilio.querySelector('.psme-icono-select');
