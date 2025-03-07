@@ -151,7 +151,7 @@
       this.botonRecogerLocal.addEventListener('click', this.accionBotonRecogerLocal.bind(this));
       this.botonEnvioDomicilio.addEventListener('click', this.accionBotonEnvioDomicilio.bind(this));
       this.contenidoModal.addEventListener('click', (event) => {
-        // Verificar si el click fue en el contenedor principal (fondo oscuro)
+        // Verificar si el click fue en el contenedor principal (fondo oscuroo)
         if (event.target === this.contenidoModal) {
           this.cerrarModal();
         }
@@ -160,9 +160,9 @@
       this.botonUbicacionActual.addEventListener('click', this.mostrarModal.bind(this));
 
       // Inicializar contenidos ocultos
+      this.contenidoModal.style.visibility = 'hidden';
       this.contenidoRecogidaLocal.style.visibility = 'hidden';
       this.contenidoEnvioDomicilio.style.visibility = 'hidden';
-      this.contenidoModal.style.visibility = 'hidden';
     }
 
     mostrarModal() {
