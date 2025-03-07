@@ -296,6 +296,9 @@
 
       // ELEMENTOS DEL MODAL DE ENVIO A DOMICILIO
 
+      // SECTOR ELEMENTO OPCIONES ENVIO A DOMICILIO
+      this.contenedorOpcionesEnvioDomicilio = this.querySelector('.psme-opciones-envio-domicilio');
+
       // SELECTORES DE ELEMENTOS SOBRE EL MODAL
       this.contenidoModal = this.querySelector('.psme-modal-mapa-envio-domicilio');
       this.botonRecogerLocal = this.querySelector('.p-sme-boton-recoger-local');
@@ -451,6 +454,7 @@
       // 1. Cambiar estado visual del botón y obtener elementos clave
       const estaActivo = this.botonOpcionRecogerLocal.classList.toggle('psme-opcion-seleccionado');
       const iconoEstado = this.botonOpcionRecogerLocal.querySelector('.psme-icono-select');
+      const imagenBackground = this.imagenBackground
 
       if (estaActivo) {
         console.log('Entra a activar modo recogida en local test 1');
@@ -461,8 +465,8 @@
 
         // Ajustar interfaz para modo recogida en local:
         // - Ocultar la imagen auxiliar de fondo
-        {% comment %} this.imagenAuxiliarFondo.style.visibility = 'hidden'; {% endcomment %}
-        {% comment %} this.contenidoRecogidaLocal.style.visibility = 'visible'; {% endcomment %}
+        this.imagenBackground.style.transform = 'translateY(45%)';
+        this.contenedorOpcionesEnvioDomicilio.style.display = 'none';
       } else {
         // === MODO DESACTIVACIÓN ===
         // Restaurar estado original del botón y elementos relacionados
@@ -474,6 +478,7 @@
         {% comment %} this.imagenAuxiliarFondo.style.visibility = 'visible'; {% endcomment %}
         {% comment %} this.imagenAuxiliarFondo.style.top = '31.9rem'; {% endcomment %}
         {% comment %} this.contenidoRecogidaLocal.style.visibility = 'hidden'; {% endcomment %}
+       
       }
 
       // Desactivar modo envío a domicilio si está activo
@@ -543,18 +548,14 @@
       textos.forEach((p) => (p.style.color = ''));
     }
 
-    desactivarBotonRecogerLocal() {
-      const iconoEstado = this.botonRecogerLocal.querySelector('.p-sme-icono-selecionado');
-      const iconoPrincipal = this.botonRecogerLocal.querySelector('.p-sme-icono-recogo-local');
-      const textos = this.botonRecogerLocal.querySelectorAll('p');
+    {% endcomment %}
 
-      this.botonRecogerLocal.classList.remove('p-sme-boton-recoger-local-activo');
-      iconoPrincipal?.classList.remove('p-sme-icono-activo');
+    desactivarBotonRecogerLocal() {
+      const iconoEstado = this.botonRecogerLocal.querySelector('.psme-icono-select');
+      this.botonRecogerLocal.classList.remove('psme-opcion-seleccionado');
       iconoEstado.innerHTML = `{% render 'icon-estado-off' %}`;
       iconoEstado.classList.remove('p-sme-icono-activo');
-
-      textos.forEach((p) => (p.style.color = ''));
-    } {% endcomment %}
+    } 
   }
 
   customElements.define('cliente-localizacion', ClienteLocalizacion);
