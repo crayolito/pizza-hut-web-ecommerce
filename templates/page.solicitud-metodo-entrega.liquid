@@ -39,7 +39,7 @@
             </p>
           </div>
           <section class="psme-opciones-entrega">
-            <button class="psme-opcion" id="p-sme-boton-recoger-local">
+            <button class="psme-opcion" id="psme-boton-recoger-local">
               <div class="psme-icono-select">
                 {% render 'icon-estado-off' %}
               </div>
@@ -51,7 +51,7 @@
                 </div>
               </div>
             </button>
-            <button class="psme-opcion" id="p-sme-boton-envio-domicilio">
+            <button class="psme-opcion" id="psme-boton-envio-domicilio">
               <div class="psme-icono-select">
                 {% render 'icon-estado-off' %}
               </div>
@@ -228,7 +228,7 @@
 
         <!-- OPCIONES DE SELECCIÓN -->
         <section class="psme-opciones">
-          <button class="psme-boton-siguiente" id="p-sme-boton-siguiente">
+          <button class="psme-boton-siguiente" id="psme-boton-siguiente">
             <p>Siguiente</p>
           </button>
           <button class="psme-boton-omitir" id="p-sme-boton-omitir">
@@ -282,22 +282,35 @@
     }
 
     connectedCallback() {
-      // Capturar elementos
+      // CAPTURA DE ELEMENTOS
+      // IMAGEN BACKGROUND DEL CONTENEDOR PRINCIPAL
+      
+      
+      // SELECTORES DE OPCIONES DE OBTENER SU PRODUCTO
+      this.botonOpcionRecogerLocal = this.querySelector('#psme-boton-recoger-local');
+      this.botonOpcionEnvioDomicilio = this.querySelector('#psme-boton-envio-domicilio');
+
+      // SELECTORES DE OPCIONES DEL CLIENTE
+      this.botonOpcionSiguiente = this.querySelector('#psme-boton-siguiente');
+      this.botonOpcionOmitir = this.querySelector('#psme-boton-omitir');
+
+
+      // SELECTORES DE ELEMENTOS SOBRE EL MODAL
+      this.contenidoModal = this.querySelector('.psme-modal-mapa-envio-domicilio');
       this.botonRecogerLocal = this.querySelector('.p-sme-boton-recoger-local');
       this.botonEnvioDomicilio = this.querySelector('.p-sme-boton-envio-domicilio');
       this.botonOmitir = this.querySelector('.p-sme-boton-omitir');
       this.botonSiguiente = this.querySelector('.p-sme-boton-siguiente');
       this.contenidoRecogidaLocal = this.querySelector('.p-sme-contenido-recogida-local');
       this.contenidoEnvioDomicilio = this.querySelector('.p-sme-contenido-envio-domicilio');
-      this.contenidoModal = this.querySelector('.psme-modal-mapa-envio-domicilio');
       this.botonCerrarModal = this.querySelector('#psme-boton-cerrar-modal');
       this.botonConfirmarModal = this.querySelector('#p-sme-boton-confirmar-modal');
       this.botonUbicacionActual = this.querySelector('#p-sme-boton-ubicacion-actual');
       this.imagenAuxiliarFondo = this.querySelector('.p-sme-pizza-background');
 
       // Asignar event listeners
-      {% comment %} this.botonRecogerLocal.addEventListener('click', this.accionBotonRecogerLocal.bind(this)); {% endcomment %}
-      {% comment %} this.botonEnvioDomicilio.addEventListener('click', this.accionBotonEnvioDomicilio.bind(this)); {% endcomment %}
+      this.botonRecogerLocal.addEventListener('click', this.accionBotonRecogerLocal.bind(this)); 
+      this.botonEnvioDomicilio.addEventListener('click', this.accionBotonEnvioDomicilio.bind(this)); 
       this.contenidoModal.addEventListener('click', (event) => {
         // Verificar si el click fue en el contenedor principal (fondo oscuroo)
         if (event.target === this.contenidoModal) {

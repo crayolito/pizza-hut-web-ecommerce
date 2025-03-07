@@ -167,7 +167,7 @@
   width: 100%;
   text-align: center;
   /* TENGO QUE EDITAR ESTO */
-  display: none;
+  /* display: none; */
 }
 
 .psme-boton-ubicacion-actual {
@@ -333,6 +333,7 @@
   align-items: center;
   gap: var(--espaciado-xxl);
   margin-top: var(--espaciado-xxl);
+  display: none;
 }
 
 .psme-opciones-recoger-local-mensaje {
@@ -570,7 +571,7 @@
     justify-content: start;
     flex: 1 1 calc(50% - 1rem);
     order: 1;
-    padding: var(--espaciado-xl);
+    /* padding: var(--espaciado-xl); */
   }
 
   .psme-rl-locales {
