@@ -328,6 +328,10 @@
 
 .psme-opciones-recoger-local {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--espaciado-xxl);
 }
 
 .psme-opciones-recoger-local-mensaje {
