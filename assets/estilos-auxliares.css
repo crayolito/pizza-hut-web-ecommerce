@@ -397,6 +397,11 @@
   padding: var(--espaciado-xs) var(--espaciado-s);
 }
 
+.psme-rl-disponibilidad-info p {
+  font-weight: 600;
+  color: #478c5c;
+}
+
 .psme-rl-disponibilidad-info svg {
   width: 0.375rem;
   height: 0.375rem;
