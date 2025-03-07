@@ -325,6 +325,7 @@
       {% comment %} this.botonUbicacionActual.addEventListener('click', this.mostrarModal.bind(this)); {% endcomment %}
 
       // Inicializar contenidos ocultoss
+      this.contenedorOpcionesEnvioDomicilio.style.display = 'none';
       {% comment %} this.contenidoModal.style.visibility = 'hidden';
       this.contenidoRecogidaLocal.style.visibility = 'hidden';
       this.contenidoEnvioDomicilio.style.visibility = 'hidden'; {% endcomment %}
@@ -475,7 +476,7 @@
         // Revertir cambios de interfaz:
         // - Restaurar posición original de la imagen de fondo
         // - Restaurar visibilidad de la sección de envío a domicilio
-        this.imagenBackground.style.display = 'block';
+        this.contenedorOpcionesEnvioDomicilio.style.display = 'none';
         {% comment %} this.imagenAuxiliarFondo.style.visibility = 'visible'; {% endcomment %}
         {% comment %} this.imagenAuxiliarFondo.style.top = '31.9rem'; {% endcomment %}
         {% comment %} this.contenidoRecogidaLocal.style.visibility = 'hidden'; {% endcomment %}
