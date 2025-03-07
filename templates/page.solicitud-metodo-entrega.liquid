@@ -66,13 +66,18 @@
           </section>
           <section class="psme-opciones-envio-domicilio">
             <p>Ingresar dirección o usar mi ubicación actual</p>
-            <button></button>
-            <div>
+            <button id="psme-boton-ubicacion-actual" class="psme-boton-ubicacion-actual">
+              {% render 'icon-location-on' %}
+              <p>Ubicación actual</p>
+            </button>
+            <div class="psme-linea-separadora">
               <hr>
               o
               <hr>
             </div>
-            <div>
+            <div class="psme-input-direccion">
+              {% render 'icon-location-on-negro' %}
+
               <input type="text" placeholder="Ingresar dirección o punto de referencia">
             </div>
           </section>

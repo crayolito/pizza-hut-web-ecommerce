@@ -50,7 +50,7 @@
   flex-direction: column;
   text-align: center;
   gap: var(--espaciado-xl);
-  padding: 0 var(--espaciado-xl);
+  /* padding: 0 var(--espaciado-xl); */
 }
 
 .psme-opciones-entrega {
@@ -157,6 +157,28 @@
   height: 1.5rem;
 }
 
+/* SECTOR DE OPCIONES ENVIO A DOMICILIO */
+
+.psme-opciones-envio-domicilio {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaciado-l);
+}
+
+.psme-boton-ubicacion-actual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--espaciado-xs);
+  color: var(--colorp-primary);
+  width: 100%;
+  height: var(--espaciado-xxxl);
+  border: 1.5px solid var(--colorp-primary);
+  border-radius: var(--border-radius-1);
+  padding: var(--espaciado-xs);
+  padding: var(--espaciado-xl);
+}
+
 /* MODAL UBICACIÓN ENVÍO A DOMICILIO */
 
 .psme-modal-mapa-envio-domicilio {
@@ -248,6 +270,49 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.psme-boton-ubicacion-actual {
+  width: 100%;
+  height: var(--espaciado-xxxl);
+  background: var(--colorp-secondary);
+  border: 1.5px solid var(--colorp-primary);
+  border-radius: var(--border-radius-1);
+  padding: var(--espaciado-xl);
+}
+
+.psme-linea-ubicacion-actual p {
+  font-weight: 600;
+  color: var(--colorp-primary);
+}
+
+.psme-linea-separadora {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--espaciado-l);
+}
+
+.psme-linea-separadora hr {
+  height: 0.0625rem;
+  width: 100%;
+  background-color: #dedede;
+}
+
+.psme-input-direccion {
+  width: 100%;
+  height: var(--espaciado-xxxl);
+  border: 1.5px solid #717171;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--border-radius-1);
+  padding: var(--espaciado-xl);
+  background-color: var(--colorp-secondary);
+}
+
+.psme-input-direccion input {
+  width: 100%;
 }
 
 @media screen and (min-width: 768px) {
