@@ -352,7 +352,7 @@
   align-items: center;
   gap: var(--espaciado-xxl);
   margin-top: var(--espaciado-xxl);
-  /* display: none; */
+  display: none;
 }
 
 .psme-opciones-recoger-local-mensaje {
