@@ -175,8 +175,12 @@
   height: var(--espaciado-xxxl);
   border: 1.5px solid var(--colorp-primary);
   border-radius: var(--border-radius-1);
-  padding: var(--espaciado-xs);
-  padding: var(--espaciado-xl);
+  padding: var(--espaciado-s);
+}
+
+.psme-boton-ubicacion-actual p {
+  font-weight: 600;
+  color: var(--colorp-primary);
 }
 
 /* MODAL UBICACIÓN ENVÍO A DOMICILIO */
