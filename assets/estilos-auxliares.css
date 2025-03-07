@@ -553,6 +553,41 @@
   .psme-opciones-recoger-local-mensaje {
     width: 31.71rem;
   }
+
+  .psme-recoger-local-info {
+    height: 41.73em;
+    width: calc(100% - 2rem);
+    flex-direction: row;
+    gap: var(--espaciado-xl);
+  }
+
+  .psme-recoger-local-mapa {
+    order: 2;
+    flex: 1 1 calc(50% - 1rem);
+  }
+
+  .psme-rl-locales {
+    justify-content: start;
+    flex: 1 1 calc(50% - 1rem);
+    order: 1;
+    padding: var(--espaciado-xl);
+  }
+
+  .psme-rl-locales {
+    padding-top: 0;
+    overflow: auto;
+  }
+
+  .psme-rl-locales {
+    padding-top: 0;
+    overflow: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #9e9e9e transparent;
+  }
+
+  .psme-rl-local {
+    width: 100%;
+  }
 }
 
 @media screen and (min-width: 1024px) {
@@ -602,73 +637,18 @@
   .psme-recoger-local-info {
     height: 53.5rem;
     width: calc(100% - 4rem);
-    flex-direction: row;
     gap: var(--espaciado-xxl);
   }
 
   .psme-recoger-local-mapa {
     height: 53.5rem;
-    order: 2;
     flex: 1 1 calc(50% - 2rem);
   }
 
   .psme-rl-locales {
     justify-content: start;
     flex: 1 1 calc(50% - 2rem);
-    order: 1;
-    padding: 1.5rem;
-  }
-
-  .psme-rl-locales {
-    padding-top: 0;
-    overflow: auto;
-  }
-
-  .psme-rl-locales {
-    padding-top: 0;
-    overflow: auto;
-
-    /* Firefox */
-    scrollbar-width: auto;
-    scrollbar-color: #9e9e9e #f0f0f0;
-
-    /* Añadimos un borde al contenedor mismo */
-    border-right: 2px solid #e0e0e0;
-  }
-
-  /* Base del scrollbar - más ancho y visible */
-  .psme-rl-locales::-webkit-scrollbar {
-    width: 16px; /* Más ancho para mayor visibilidad */
-  }
-
-  /* Track con fondo muy visible */
-  .psme-rl-locales::-webkit-scrollbar-track {
-    background: #f0f0f0; /* Fondo gris claro visible */
-    border-radius: 10px;
-    border: 1px solid #e0e0e0; /* Borde visible alrededor del track */
-    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1); /* Sombra interna */
-  }
-
-  /* Thumb con colores más contrastantes */
-  .psme-rl-locales::-webkit-scrollbar-thumb {
-    background-color: #9e9e9e;
-    border-radius: 8px;
-    border: 2px solid #f0f0f0; /* Borde que coincide con el track */
-  }
-
-  /* Hover del thumb con cambio de color más notorio */
-  .psme-rl-locales::-webkit-scrollbar-thumb:hover {
-    background-color: #757575;
-    border-color: #e0e0e0;
-  }
-
-  /* Track cuando se está scrolleando activamente - efecto visual */
-  .psme-rl-locales::-webkit-scrollbar-track:active {
-    background-color: #e5e5e5;
-  }
-
-  .psme-rl-local {
-    width: 100%;
+    padding: var(--espaciado-xxl);
   }
 }
 
