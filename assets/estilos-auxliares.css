@@ -371,6 +371,10 @@
 }
 
 @media screen and (min-width: 1024px) {
+  .psme-pizza-logo-background {
+    transform: translateY(139%);
+  }
+
   .psme-contenido-principal {
     width: 40.1875rem;
     margin-top: var(--espaciado-big);
