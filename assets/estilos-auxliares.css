@@ -281,7 +281,7 @@
   padding: var(--espaciado-xl);
 }
 
-.psme-linea-ubicacion-actual p {
+.psme-boton-ubicacion-actual p {
   font-weight: 600;
   color: var(--colorp-primary);
 }
@@ -307,7 +307,7 @@
   align-items: center;
   justify-content: center;
   border-radius: var(--border-radius-1);
-  padding: var(--espaciado-xl);
+  padding: var(--espaciado-s);
   background-color: var(--colorp-secondary);
 }
 
