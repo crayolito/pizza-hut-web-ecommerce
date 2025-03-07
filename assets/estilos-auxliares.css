@@ -8,6 +8,8 @@
   position: relative;
 }
 
+/* SECTOR DE LA IMAGEN BACKGROUND DEL CONTENEDOR PRINCIPAL */
+
 .psme-pizza-logo-background {
   position: absolute;
   bottom: 0;
@@ -16,7 +18,8 @@
   height: 40%;
   z-index: 0;
   transform: translateY(7%);
-  visibility: hidden;
+  /* MODIFIQUE AQUI */
+  /* visibility: hidden; */
 }
 
 .psme-pizza-logo-background img {
@@ -167,7 +170,7 @@
   width: 100%;
   text-align: center;
   /* TENGO QUE EDITAR ESTO */
-  /* display: none; */
+  display: none;
 }
 
 .psme-boton-ubicacion-actual {
