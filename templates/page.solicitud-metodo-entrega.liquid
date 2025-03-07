@@ -64,6 +64,8 @@
               </div>
             </button>
           </section>
+
+          <!-- SECTOR DE OPCIONES ENVIO A DOMICILIO -->
           <section class="psme-opciones-envio-domicilio">
             <p>Ingresar dirección o usar mi ubicación actual</p>
             <button id="psme-boton-ubicacion-actual" class="psme-boton-ubicacion-actual">
@@ -78,6 +80,20 @@
             <div class="psme-input-direccion">
               {% render 'icon-location-on-negro' %}
               <input type="text" placeholder="Ingresar dirección o punto de referencia">
+            </div>
+          </section>
+
+          <!-- SECTOR PARA ELECCION DE RECOGER EN LOCAL -->
+          <section class="psme-opciones-recoger-local">
+            <div class="psme-opciones-recoger-local-mensaje">
+              {% render 'icon-info' %}
+              <p>Selecciona en el mapa o en la lista la dirección del local de donde quieres recoger tu pedido.</p>
+            </div>
+            <div class="psme-recoger-local-info">
+              <div class="psme-recoger-local-mapa"></div>
+              <div class="psme-rl-locales">
+                <div class="psme-rl-local"></div>
+              </div>
             </div>
           </section>
         </section>

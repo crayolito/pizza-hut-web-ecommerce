@@ -16,6 +16,7 @@
   height: 40%;
   z-index: 0;
   transform: translateY(7%);
+  visibility: hidden;
 }
 
 .psme-pizza-logo-background img {
@@ -187,7 +188,7 @@
   color: var(--colorp-primary);
 }
 
-/* MODAL UBICACIÓN ENVÍO A DOMICILIO */
+/* SECTOR MODAL UBICACIÓN ENVÍO A DOMICILIO */
 
 .psme-modal-mapa-envio-domicilio {
   position: fixed;
@@ -321,6 +322,25 @@
 
 .psme-input-direccion input {
   width: 100%;
+}
+
+/* SECTOR PARA ELECCION DE RECOGER EN LOCAL */
+
+.psme-opciones-recoger-local {
+  width: 100%;
+}
+
+.psme-opciones-recoger-local-mensaje {
+  width: 23.25rem;
+  padding: var(--espaciado-l);
+  display: flex;
+  align-items: center;
+  gap: var(--espaciado-s);
+  border-radius: var(--espaciado-xs);
+  border-left: 4px solid #a9b5f3;
+  background: #f4f7ff;
+  width: 85%;
+  padding-left: var(--espaciado-m);
 }
 
 @media screen and (min-width: 768px) {
