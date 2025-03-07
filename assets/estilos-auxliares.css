@@ -548,6 +548,10 @@
   .psme-boton-siguiente {
     order: 2;
   }
+
+  .psme-opciones-recoger-local-mensaje {
+    width: 31.71rem;
+  }
 }
 
 @media screen and (min-width: 1024px) {
@@ -584,6 +588,24 @@
 
   .psme-input-direccion {
     padding: var(--espaciado-s);
+  }
+
+  .psme-opciones-recoger-local-mensaje {
+    width: 40.1875rem;
+  }
+
+  .psme-recoger-local-info {
+    width: calc(100% - 4rem);
+    flex-direction: row;
+    gap: var(--espaciado-xxxl);
+  }
+
+  .psme-recoger-local-mapa {
+    flex: 1 1 calc(50% - 2rem);
+  }
+
+  .psme-rl-locales {
+    flex: 1 1 calc(50% - 2rem);
   }
 }
 
