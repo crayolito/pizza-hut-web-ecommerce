@@ -445,11 +445,11 @@
 }
 
 .psme-rl-empezar {
-  background-color: var(--colorp-secondary);
+  background-color: var(--colorp-primary);
 }
 
 .psme-rl-empezar p {
-  color: var(--colorp-primary);
+  color: var(--colorp-secondary);
 }
 
 .psme-rl-ubicacion {
