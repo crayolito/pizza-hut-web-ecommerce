@@ -13,8 +13,8 @@
     ></script>
     {{ 'estilos-auxliares.css' | asset_url | stylesheet_tag }}
   </head>
-  <cliente-localizacion>
-    <body>
+  <body>
+    <cliente-localizacion>
       <div class="psme-base-container">
         <!-- IMAGEN BACKGROUND CONTENEDOR BASE -->
         <div class="psme-pizza-logo-background">
@@ -91,32 +91,32 @@
       </div>
 
       <section class="psme-container"></section>
-    </body>
 
-    <!-- MODAL DE UBICACIÓN ENVÍO A DOMICILIO -->
-    <section class="psme-modal-mapa-envio-domicilio">
-      <div class="psme-modal-contenedor-base">
-        <div class="psme-modal-header">
-          <div class="psme-modal-mensaje">
-            {% render 'icon-info' %}
-            <p>Si es necesario, cambia la ubicación del pin en el mapa.</p>
+      <!-- MODAL DE UBICACIÓN ENVÍO A DOMICILIO -->
+      <section class="psme-modal-mapa-envio-domicilio">
+        <div class="psme-modal-contenedor-base">
+          <div class="psme-modal-header">
+            <div class="psme-modal-mensaje">
+              {% render 'icon-info' %}
+              <p>Si es necesario, cambia la ubicación del pin en el mapa.</p>
+            </div>
+            <button class="psme-modal-boton-cerrar" id="p-sme-boton-cerrar-modal">
+              {% render 'icon-close-rojo' %}
+            </button>
           </div>
-          <button class="psme-modal-boton-cerrar" id="p-sme-boton-cerrar-modal">
-            {% render 'icon-close-rojo' %}
-          </button>
+          <div class="psme-modal-body"></div>
+          <div class="psme-modal-footer">
+            <button class="psme-modal-boton-confirmar" id="p-sme-boton-confirmar-modal">
+              <p>Confirmar</p>
+            </button>
+            <button class="psme-modal-boton-cancelar" id="p-sme-boton-cancelar-modal">
+              <p>Cerrar</p>
+            </button>
+          </div>
         </div>
-        <div class="psme-modal-body"></div>
-        <div class="psme-modal-footer">
-          <button class="psme-modal-boton-confirmar" id="p-sme-boton-confirmar-modal">
-            <p>Confirmar</p>
-          </button>
-          <button class="psme-modal-boton-cancelar" id="p-sme-boton-cancelar-modal">
-            <p>Cerrar</p>
-          </button>
-        </div>
-      </div>
-    </section>
-  </cliente-localizacion>
+      </section>
+    </cliente-localizacion>
+  </body>
 </html>
 
 <script>
