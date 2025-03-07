@@ -299,6 +299,9 @@
       // SECTOR ELEMENTO OPCIONES ENVIO A DOMICILIO
       this.contenedorOpcionesEnvioDomicilio = this.querySelector('.psme-opciones-envio-domicilio');
 
+      // SECTOR ELEMENTO OPCIONES RECIBIR EN LOCAL
+      this.contenedorOpcionesRecogerLocal = this.querySelector('.psme-opciones-recoger-local');
+
       // SELECTORES DE ELEMENTOS SOBRE EL MODAL
       this.contenidoModal = this.querySelector('.psme-modal-mapa-envio-domicilio');
       this.botonRecogerLocal = this.querySelector('.p-sme-boton-recoger-local');
@@ -326,7 +329,7 @@
 
       // Inicializar contenidos ocultoss
       this.contenedorOpcionesEnvioDomicilio.style.display = 'none';
-      {% comment %} this.contenedorOpcionesEnvioDomicilio.style.display = 'none'; {% endcomment %}
+      this.contenedorOpcionesRecogerLocal.style.display = 'none';
 
       {% comment %} this.contenidoModal.style.visibility = 'hidden';
       this.contenidoRecogidaLocal.style.visibility = 'hidden';
@@ -508,7 +511,7 @@
        this.contenedorOpcionesEnvioDomicilio.style.display = 'none';
      }
 
-     // Desactivar modo envío a domicilio si está activo
+     // Desactivar el modo de recoger en local si está activo
      if (this.botonOpcionRecogerLocal.classList.contains('psme-opcion-seleccionado')) {
        this.contenidoRecogidaLocal.style.display = 'none';
        this.desactivarBotonRecogerLocal();
