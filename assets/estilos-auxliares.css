@@ -167,7 +167,7 @@
   width: 100%;
   text-align: center;
   /* TENGO QUE EDITAR ESTO */
-  visibility: hidden;
+  display: none;
 }
 
 .psme-boton-ubicacion-actual {
@@ -332,15 +332,42 @@
 
 .psme-opciones-recoger-local-mensaje {
   width: 23.25rem;
-  padding: var(--espaciado-l);
+  padding: var(--espaciado-m);
   display: flex;
   align-items: center;
   gap: var(--espaciado-s);
   border-radius: var(--espaciado-xs);
   border-left: 4px solid #a9b5f3;
   background: #f4f7ff;
-  width: 85%;
   padding-left: var(--espaciado-m);
+}
+
+.psme-recoger-local-info {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.psme-recoger-local-mapa {
+  height: 35.6875rem;
+  width: 100%;
+}
+
+.psme-rl-locales {
+  width: 23.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var(--espaciado-xxl);
+  padding: var(--espaciado-xxl) 0;
+}
+
+.psme-rl-local {
+  padding: var(--espaciado-xxl);
+  border: 1.5px solid #dedede;
+  border-radius: var(--border-radius-2);
+  background-color: var(--colorp-secondary);
 }
 
 @media screen and (min-width: 768px) {
