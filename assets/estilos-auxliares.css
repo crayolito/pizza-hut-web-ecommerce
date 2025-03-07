@@ -204,6 +204,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  /* MODIFIQUE AQUI */
+  display: none;
 }
 
 .psme-modal-contenedor-base {
