@@ -638,7 +638,6 @@
     width: 12px;
   }
 
-  /* Track con borde sutil */
   .psme-rl-locales::-webkit-scrollbar-track {
     background: rgba(230, 230, 230, 0.2);
     border-radius: 20px;
