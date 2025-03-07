@@ -332,6 +332,7 @@
   flex-direction: column;
   align-items: center;
   gap: var(--espaciado-xxl);
+  margin-top: var(--espaciado-xxl);
 }
 
 .psme-opciones-recoger-local-mensaje {
@@ -358,7 +359,7 @@
 }
 
 .psme-rl-locales {
-  width: 23.25rem;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -368,10 +369,105 @@
 }
 
 .psme-rl-local {
+  width: 23.25rem;
   padding: var(--espaciado-xxl);
-  border: 1.5px solid #dedede;
+  border: 1.5px solid #969696;
   border-radius: var(--border-radius-2);
   background-color: var(--colorp-secondary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--espaciado-xxl);
+}
+
+.psme-rl-titulos {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.psme-rl-disponibilidad {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.psme-rl-disponibilidad-info {
+  display: flex;
+  align-items: center;
+  gap: var(--espaciado-xs);
+  background: #e3ffc9;
+  border-radius: var(--border-radius-4);
+  padding: var(--espaciado-xs) var(--espaciado-s);
+}
+
+.psme-rl-disponibilidad-info svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.psme-rl-info-local {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaciado-m);
+}
+
+.psme-rl-info-local-item {
+  display: flex;
+  align-items: center;
+  gap: var(--espaciado-s);
+}
+
+.psme-rl-info-servicios {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaciado-xs);
+}
+
+.psme-rl-info-servicio {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--espaciado-s);
+}
+
+.psme-rl-boton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--espaciado-s);
+  height: var(--espaciado-big);
+  padding: var(--espaciado-xl);
+}
+
+.psme-rl-boton p {
+  font-weight: 600;
+}
+
+.psme-rl-empezar {
+  background-color: var(--colorp-primary);
+}
+
+.psme-rl-empezar p {
+  color: var(--colorp-primary);
+}
+
+.psme-rl-ubicacion {
+  border: 1.5px solid var(--colorp-primary);
+  background-color: var(--colorp-secondary);
+}
+
+.psme-rl-ubicacion p {
+  color: var(--colorp-primary);
+}
+
+.psme-rl-boton svg {
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 @media screen and (min-width: 768px) {

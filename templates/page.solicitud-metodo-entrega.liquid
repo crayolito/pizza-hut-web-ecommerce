@@ -93,7 +93,49 @@
           <div class="psme-recoger-local-info">
             <div class="psme-recoger-local-mapa"></div>
             <div class="psme-rl-locales">
-              <div class="psme-rl-local"></div>
+              <div class="psme-rl-local">
+                <div class="psme-rl-titulos">
+                  <h3>sANTA CRUZ</h3>
+                  <h3 style="color: #C8102E;">las palmas</h3>
+                </div>
+                <div class="psme-rl-disponibilidad">
+                  <div class="psme-rl-disponibilidad-info">
+                    {% render 'icon-disponibilidad' %}
+                    <p style="font-weight: 600;">Disponible</p>
+                  </div>
+                </div>
+                <div class="psme-rl-info-local">
+                  <div class="psme-rl-info-local-item">
+                    {% render 'icon-location-on' %}
+                    <p>Doble vía a La Guardia</p>
+                  </div>
+                  <div class="psme-rl-info-local-item">
+                    {% render 'icon-headser-mic' %}
+                    <p>78452415</p>
+                  </div>
+                  <div class="psme-rl-info-local-item">
+                    {% render 'icon-clock' %}
+                    <p>Abre a las 11:00 AM</p>
+                  </div>
+                  <div id="psme-rl-info-servicios">
+                    <div id="psme-rl-info-servicio">
+                      {% render 'icon-check' %}
+                      <p>Envío a domicilio</p>
+                    </div>
+                    <div id="psme-rl-info-servicio">
+                      {% render 'icon-check' %}
+                      <p>Recoger en local</p>
+                    </div>
+                  </div>
+                </div>
+                <button class="psme-rl-boton psme-rl-empezar">
+                  <p style="font-weight: 600;">EMPEZAR MI PEDIDO</p>
+                </button>
+                <button class="psme-rl-boton psme-rl-ubicacion">
+                  <p>Abrir ubicación en mapa</p>
+                  {% render 'icon-map' %}
+                </button>
+              </div>
             </div>
           </div>
         </section>
