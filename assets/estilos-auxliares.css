@@ -75,6 +75,20 @@
   position: relative;
 }
 
+.psme-opcion-seleccionado {
+  background: var(--colorp-primary);
+  border: 0;
+}
+
+.psme-opcion-seleccionado p {
+  color: var(--colorp-secondary);
+}
+
+.psme-opcion-seleccionado svg {
+  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7495%)
+    hue-rotate(180deg) brightness(100%) contrast(100%);
+}
+
 .psme-icono-select {
   position: absolute;
   right: var(--espaciado-s);

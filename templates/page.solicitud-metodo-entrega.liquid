@@ -284,7 +284,7 @@
     connectedCallback() {
       // CAPTURA DE ELEMENTOS
       // IMAGEN BACKGROUND DEL CONTENEDOR PRINCIPAL
-      
+      this.imagenBackground = this.querySelector('.psme-pizza-logo-background');
       
       // SELECTORES DE OPCIONES DE OBTENER SU PRODUCTO
       this.botonOpcionRecogerLocal = this.querySelector('#psme-boton-recoger-local');
@@ -294,6 +294,7 @@
       this.botonOpcionSiguiente = this.querySelector('#psme-boton-siguiente');
       this.botonOpcionOmitir = this.querySelector('#psme-boton-omitir');
 
+      // ELEMENTOS DEL MODAL DE ENVIO A DOMICILIO
 
       // SELECTORES DE ELEMENTOS SOBRE EL MODAL
       this.contenidoModal = this.querySelector('.psme-modal-mapa-envio-domicilio');
@@ -309,8 +310,8 @@
       this.imagenAuxiliarFondo = this.querySelector('.p-sme-pizza-background');
 
       // Asignar event listeners
-      this.botonRecogerLocal.addEventListener('click', this.accionBotonRecogerLocal.bind(this)); 
-      this.botonEnvioDomicilio.addEventListener('click', this.accionBotonEnvioDomicilio.bind(this)); 
+      this.botonOpcionRecogerLocal.addEventListener('click', this.accionBotonRecogerLocal.bind(this)); 
+      this.botonOpcionEnvioDomicilio.addEventListener('click', this.accionBotonEnvioDomicilio.bind(this)); 
       this.contenidoModal.addEventListener('click', (event) => {
         // Verificar si el click fue en el contenedor principal (fondo oscuroo)
         if (event.target === this.contenidoModal) {
@@ -448,13 +449,10 @@
 
     accionBotonRecogerLocal() {
       // 1. Cambiar estado visual del botón y obtener elementos clave
-      const estaActivo = this.botonRecogerLocal.classList.toggle('p-sme-boton-recoger-local-activo');
-      const iconoEstado = this.botonRecogerLocal.querySelector('.p-sme-icono-selecionado');
-      const iconoPrincipal = this.botonRecogerLocal.querySelector('.p-sme-icono-recogo-local');
-      const textos = this.botonRecogerLocal.querySelectorAll('p');
+      const estaActivo = this.botonRecogerLocal.classList.toggle('.psme-opcion-seleccionado');
+      const iconoEstado = this.botonRecogerLocal.querySelector('.psme-icono-select');
 
       if (estaActivo) {
-        console.log('Entra a activar modo recogida en local test 1');
         // === MODO ACTIVACIÓN ===
         // Actualizar elementos visuales del botón
         iconoPrincipal.classList.add('p-sme-icono-activo');
