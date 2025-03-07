@@ -75,6 +75,7 @@
   position: absolute;
   right: var(--espaciado-s);
   top: var(--espaciado-s);
+  overflow: visible;
 }
 
 .psme-icono-select svg {
@@ -154,6 +155,30 @@
 .psme-boton-omitir svg {
   width: 1.5rem;
   height: 1.5rem;
+}
+
+/* MODAL UBICACIÓN ENVÍO A DOMICILIO */
+
+.psme-modal-mapa-envio-domicilio {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.psme-modal-contenedor-base {
+  width: 97%;
+  height: 75vh;
+  background-color: var(--colorp-secondary);
+  border-radius: var(--border-radius-3);
+  display: flex;
+  flex-direction: column;
 }
 
 @media screen and (min-width: 768px) {

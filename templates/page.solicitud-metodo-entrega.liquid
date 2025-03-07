@@ -16,12 +16,14 @@
   <cliente-localizacion>
     <body>
       <div class="psme-base-container">
+        <!-- IMAGEN BACKGROUND CONTENEDOR BASE -->
         <div class="psme-pizza-logo-background">
           <img
             src="{{ 'img-aux-background-solicitud-entrega.png' | asset_url }}"
             alt="Pizza Background"
           >
         </div>
+        <!-- CONTENIDO PRINCIPAL -->
         <section class="psme-contenido-principal">
           <div class="psme-pizza-logo">
             <img
@@ -62,7 +64,43 @@
               </div>
             </button>
           </section>
+          <section class="psme-opciones-envio-domicilio">
+            <p>Ingresar dirección o usar mi ubicación actual</p>
+            <button></button>
+            <div>
+              <hr>
+              o
+              <hr>
+            </div>
+            <div>
+              <input type="text" placeholder="Ingresar dirección o punto de referencia">
+            </div>
+          </section>
         </section>
+        <!-- MODAL DE UBICACIÓN ENVÍO A DOMICILIO -->
+        <section class="psme-modal-mapa-envio-domicilio">
+          <div class="psme-modal-contenedor-base">
+            <div class="psme-modal-header">
+              <div class="psme-modal-mensaje">
+                {% render 'icon-info' %}
+                <p>Si es necesario, cambia la ubicación del pin en el mapa.</p>
+              </div>
+              <button class="psme-modal-boton-cerrar" id="p-sme-boton-cerrar-modal">
+                {% render 'icon-close-rojo' %}
+              </button>
+            </div>
+            <div class="psme-modal-body"></div>
+            <div class="psme-modal-footer">
+              <button class="psme-modal-boton-confirmar" id="p-sme-boton-confirmar-modal">
+                <p>Confirmar</p>
+              </button>
+              <button class="psme-modal-boton-cancelar" id="p-sme-boton-cancelar-modal">
+                <p>Cerrar</p>
+              </button>
+            </div>
+          </div>
+        </section>
+        <!-- OPCIONES DE SELECCIÓN -->
         <section class="psme-opciones">
           <button class="psme-boton-siguiente" id="p-sme-boton-siguiente">
             <p>Siguiente</p>
@@ -73,6 +111,8 @@
           </button>
         </section>
       </div>
+
+      <section class="psme-container"></section>
     </body>
   </cliente-localizacion>
 </html>
