@@ -365,7 +365,7 @@
   justify-content: center;
   align-items: center;
   gap: var(--espaciado-xxl);
-  padding: var(--espaciado-xxl) 0;
+  padding: var(--espaciado-xxl) 0 var(--espaciado-big) 0;
 }
 
 .psme-rl-local {
