@@ -453,6 +453,8 @@
       const iconoEstado = this.botonOpcionRecogerLocal.querySelector('psme-icono-select');
 
       if (estaActivo) {
+        console.log('Entra a activar modo recogida en local test 1');
+
         // === MODO ACTIVACIÓN ===
         // Actualizar elementos visuales del botón
         iconoEstado.innerHTML = `{% render 'icon-estado-on' %}`;
