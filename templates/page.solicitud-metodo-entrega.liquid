@@ -476,6 +476,7 @@
         // Revertir cambios de interfaz:
         // - Restaurar posición original de la imagen de fondo
         // - Restaurar visibilidad de la sección de envío a domicilio
+        this.imagenBackground.style.removeProperty('display');
         this.contenedorOpcionesEnvioDomicilio.style.display = 'none';
         {% comment %} this.imagenAuxiliarFondo.style.visibility = 'visible'; {% endcomment %}
         {% comment %} this.imagenAuxiliarFondo.style.top = '31.9rem'; {% endcomment %}
