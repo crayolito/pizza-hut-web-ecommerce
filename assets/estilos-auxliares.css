@@ -613,6 +613,15 @@
   .psme-rl-locales {
     flex: 1 1 calc(50% - 2rem);
     order: 1;
+    padding: 1.5rem;
+  }
+
+  .psme-rl-locales {
+    padding-top: 0;
+  }
+
+  .psme-rl-local {
+    width: 100%;
   }
 }
 
