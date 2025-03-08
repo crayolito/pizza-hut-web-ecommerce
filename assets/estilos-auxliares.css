@@ -602,6 +602,11 @@
   .psme-rl-local {
     width: 100%;
   }
+
+  .psme-modal-contenedor-base {
+    width: 33rem;
+    height: 25rem;
+  }
 }
 
 @media screen and (min-width: 1024px) {
@@ -670,13 +675,8 @@
   }
 
   .psme-modal-contenedor-base {
-    /* width: 60%;
-    height: 80vh;
-    background-color: var(--colorp-secondary);
-    border-radius: var(--border-radius-2);
-    display: flex;
-    flex-direction: column;
-    padding: var(--espaciado-l); */
+    width: 40rem;
+    height: 34rem;
   }
 }
 
