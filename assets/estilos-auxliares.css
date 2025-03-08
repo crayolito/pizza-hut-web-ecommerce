@@ -668,6 +668,16 @@
   .psme-opciones-envio-domicilio {
     margin-bottom: 9rem;
   }
+
+  .psme-modal-contenedor-base {
+    width: 60%;
+    height: 80vh;
+    background-color: var(--colorp-secondary);
+    border-radius: var(--border-radius-2);
+    display: flex;
+    flex-direction: column;
+    padding: var(--espaciado-l);
+  }
 }
 
 /* 
