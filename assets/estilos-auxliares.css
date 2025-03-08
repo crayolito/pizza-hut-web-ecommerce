@@ -221,8 +221,8 @@
 }
 
 .psme-modal-contenedor-base {
-  width: 96%;
-  height: 75vh;
+  width: 26rem;
+  height: 41rem;
   background-color: var(--colorp-secondary);
   border-radius: var(--border-radius-2);
   display: flex;
