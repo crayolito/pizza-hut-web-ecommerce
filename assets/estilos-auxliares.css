@@ -217,7 +217,7 @@
   justify-content: center;
   align-items: center;
   /* MODIFIQUE AQUI */
-  display: none;
+  /* display: none; */
 }
 
 .psme-modal-contenedor-base {
@@ -350,7 +350,6 @@
   align-items: center;
   gap: var(--espaciado-xxl);
   margin-top: var(--espaciado-xxl);
-  /* display: none; */
 }
 
 .psme-opciones-recoger-local-mensaje {
@@ -433,11 +432,9 @@
 }
 
 .psme-rl-abierto svg {
-  /* fill: #478c5c; */
   filter: brightness(0) saturate(100%) invert(42%) sepia(29%) saturate(709%)
     hue-rotate(105deg) brightness(87%) contrast(84%);
 }
-/*  */
 
 .psme-rl-cerrado {
   background: #ffebeb;

@@ -285,39 +285,24 @@
       // CAPTURA DE ELEMENTOS
       // IMAGEN BACKGROUND DEL CONTENEDOR PRINCIPAL
       this.imagenBackground = this.querySelector('.psme-pizza-logo-background');
-      
       // SELECTORES DE OPCIONES DE OBTENER SU PRODUCTO
       this.botonOpcionRecogerLocal = this.querySelector('#psme-boton-recoger-local');
       this.botonOpcionEnvioDomicilio = this.querySelector('#psme-boton-envio-domicilio');
-
       // SELECTORES DE OPCIONES DEL CLIENTE
       this.botonOpcionSiguiente = this.querySelector('#psme-boton-siguiente');
       this.botonOpcionOmitir = this.querySelector('#psme-boton-omitir');
-
-      // ELEMENTOS DEL MODAL DE ENVIO A DOMICILIO
-
       // SECTOR ELEMENTO OPCIONES ENVIO A DOMICILIO
       this.contenedorOpcionesEnvioDomicilio = this.querySelector('.psme-opciones-envio-domicilio');
-
+      this.botonUsarMiUbicacionActual = this.querySelector('#psme-boton-ubicacion-actual');
       // SECTOR ELEMENTO OPCIONES RECIBIR EN LOCAL
       this.contenedorOpcionesRecogerLocal = this.querySelector('.psme-opciones-recoger-local');
-
       // SELECTORES DE ELEMENTOS SOBRE EL MODAL
       this.contenidoModal = this.querySelector('.psme-modal-mapa-envio-domicilio');
-      this.botonRecogerLocal = this.querySelector('.p-sme-boton-recoger-local');
-      this.botonEnvioDomicilio = this.querySelector('.p-sme-boton-envio-domicilio');
-      this.botonOmitir = this.querySelector('.p-sme-boton-omitir');
-      this.botonSiguiente = this.querySelector('.p-sme-boton-siguiente');
-      this.contenidoRecogidaLocal = this.querySelector('.p-sme-contenido-recogida-local');
-      this.contenidoEnvioDomicilio = this.querySelector('.p-sme-contenido-envio-domicilio');
-      this.botonCerrarModal = this.querySelector('#psme-boton-cerrar-modal');
-      this.botonConfirmarModal = this.querySelector('#p-sme-boton-confirmar-modal');
-      this.botonUbicacionActual = this.querySelector('#p-sme-boton-ubicacion-actual');
-      this.imagenAuxiliarFondo = this.querySelector('.p-sme-pizza-background');
+      // ELEMENTOS DEL MODAL DE ENVIO A DOMICILIO
 
       // Asignar event listeners
-      this.botonOpcionRecogerLocal.addEventListener('click', this.accionBotonRecogerLocal.bind(this)); 
-      this.botonOpcionEnvioDomicilio.addEventListener('click', this.accionBotonEnvioDomicilio.bind(this)); 
+      this.botonOpcionRecogerLocal.addEventListener('click', this.accionBotonRecogerLocal.bind(this));
+      this.botonOpcionEnvioDomicilio.addEventListener('click', this.accionBotonEnvioDomicilio.bind(this));
       this.contenidoModal.addEventListener('click', (event) => {
         // Verificar si el click fue en el contenedor principal (fondo oscuroo)
         if (event.target === this.contenidoModal) {
@@ -325,15 +310,10 @@
         }
       });
       this.botonCerrarModal.addEventListener('click', this.cerrarModal.bind(this));
-      {% comment %} this.botonUbicacionActual.addEventListener('click', this.mostrarModal.bind(this)); {% endcomment %}
 
       // Inicializar contenidos ocultoss
       this.contenedorOpcionesRecogerLocal.style.display = 'none';
       this.contenedorOpcionesEnvioDomicilio.style.display = 'none';
-
-      {% comment %} this.contenidoModal.style.visibility = 'hidden';
-      this.contenidoRecogidaLocal.style.visibility = 'hidden';
-      this.contenidoEnvioDomicilio.style.visibility = 'hidden'; {% endcomment %}
     }
 
     mostrarModal() {
@@ -460,7 +440,7 @@
       // 1. Cambiar estado visual del botón y obtener elementos clave
       const estaActivo = this.botonOpcionRecogerLocal.classList.toggle('psme-opcion-seleccionado');
       const iconoEstado = this.botonOpcionRecogerLocal.querySelector('.psme-icono-select');
-      const imagenBackground = this.imagenBackground
+      const imagenBackground = this.imagenBackground;
 
       if (estaActivo) {
         console.log('Entra a activar modo recogida en local test 1');
@@ -484,37 +464,40 @@
       if (this.botonOpcionEnvioDomicilio.classList.contains('psme-opcion-seleccionado')) {
         this.contenedorOpcionesEnvioDomicilio.style.display = 'none';
         this.desactivarBotonEnvioDomicilio();
-      } 
+      }
+
+      // Activar mapa para el modo de recogida en local
+      {% comment %} this.inicializarMapa(); {% endcomment %}
     }
 
     accionBotonEnvioDomicilio() {
-     // 1. Cambiar estado visual del botón y obtener elementos clave
-     const estaActivo = this.botonOpcionEnvioDomicilio.classList.toggle('psme-opcion-seleccionado');
-     const iconoEstado = this.botonOpcionEnvioDomicilio.querySelector('.psme-icono-select');
-     const imagenBackground = this.imagenBackground
+      // 1. Cambiar estado visual del botón y obtener elementos clave
+      const estaActivo = this.botonOpcionEnvioDomicilio.classList.toggle('psme-opcion-seleccionado');
+      const iconoEstado = this.botonOpcionEnvioDomicilio.querySelector('.psme-icono-select');
+      const imagenBackground = this.imagenBackground;
 
-     if (estaActivo) {
-       // === MODO ACTIVACIÓN ===
-       iconoEstado.innerHTML = `{% render 'icon-estado-on' %}`;
+      if (estaActivo) {
+        // === MODO ACTIVACIÓN ===
+        iconoEstado.innerHTML = `{% render 'icon-estado-on' %}`;
 
-       // Ajustar interfaz para modo envío a domicilio:
-       this.imagenBackground.style.visibility = 'hidden';
-       this.contenedorOpcionesEnvioDomicilio.style.removeProperty('display');
-     } else {
-       // === MODO DESACTIVACIÓN ===
-       this.desactivarBotonEnvioDomicilio();
+        // Ajustar interfaz para modo envío a domicilio:
+        this.imagenBackground.style.visibility = 'hidden';
+        this.contenedorOpcionesEnvioDomicilio.style.removeProperty('display');
+      } else {
+        // === MODO DESACTIVACIÓN ===
+        this.desactivarBotonEnvioDomicilio();
 
-       // Revertir cambios de interfaz:
-       this.imagenBackground.style.removeProperty('visibility');
-       this.contenedorOpcionesEnvioDomicilio.style.display = 'none';
-     }
+        // Revertir cambios de interfaz:
+        this.imagenBackground.style.removeProperty('visibility');
+        this.contenedorOpcionesEnvioDomicilio.style.display = 'none';
+      }
 
-     // Desactivar el modo de recoger en local si está activo
-     if (this.botonOpcionRecogerLocal.classList.contains('psme-opcion-seleccionado')) {
-      console.log('Voy a desactivar el modo de recoger en local');
-       this.contenedorOpcionesRecogerLocal.style.display = 'none';
-       this.desactivarBotonRecogerLocal();
-     } 
+      // Desactivar el modo de recoger en local si está activo
+      if (this.botonOpcionRecogerLocal.classList.contains('psme-opcion-seleccionado')) {
+        console.log('Voy a desactivar el modo de recoger en local');
+        this.contenedorOpcionesRecogerLocal.style.display = 'none';
+        this.desactivarBotonRecogerLocal();
+      }
     }
 
     desactivarBotonEnvioDomicilio() {
@@ -527,7 +510,7 @@
       this.botonOpcionRecogerLocal.classList.remove('psme-opcion-seleccionado');
       const iconoEstado = this.botonOpcionRecogerLocal.querySelector('.psme-icono-select');
       iconoEstado.innerHTML = `{% render 'icon-estado-off' %}`;
-    } 
+    }
   }
 
   customElements.define('cliente-localizacion', ClienteLocalizacion);
