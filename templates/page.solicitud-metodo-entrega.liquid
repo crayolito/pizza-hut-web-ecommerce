@@ -304,7 +304,7 @@
       // Asignar event listeners
       this.botonOpcionRecogerLocal.addEventListener('click', this.accionBotonRecogerLocal.bind(this));
       this.botonOpcionEnvioDomicilio.addEventListener('click', this.accionBotonEnvioDomicilio.bind(this));
-      this.botonUsarMiUbicacionActual.addEventListener('click', this.accionBotonUbicacionActual.bind(this));
+      {% comment %} this.botonUsarMiUbicacionActual.addEventListener('click', this.accionBotonUbicacionActual.bind(this)); {% endcomment %}
       this.contenidoModal.addEventListener('click', (event) => {
         // Verificar si el click fue en el contenedor principal (fondo oscuroo)
         if (event.target === this.contenidoModal) {
