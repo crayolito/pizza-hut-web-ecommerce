@@ -487,6 +487,7 @@
       // Desactivar modo envío a domicilio si está activo
       if (this.botonOpcionEnvioDomicilio.classList.contains('psme-opcion-seleccionado')) {
         this.botonSiguienteOpcion.style.removeProperty('display');
+        this.contenedorOpcionesEnvioDomicilio.style.display = 'none';
         this.desactivarBotonEnvioDomicilio();
       }
 
