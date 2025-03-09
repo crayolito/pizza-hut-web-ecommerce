@@ -630,12 +630,19 @@
   border-radius: 4px;
   z-index: 10;
   display: none;
+  margin-top: 5px;
 }
 
 .psme-sugerencia-item {
   padding: 10px;
   cursor: pointer;
   border-bottom: 1px solid #eee;
+  text-align: left;
+}
+
+.psme-sugerencia-item p {
+  margin: 0;
+  text-align: left;
 }
 
 .psme-sugerencia-item:hover {

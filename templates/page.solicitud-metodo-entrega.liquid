@@ -80,8 +80,8 @@
             <div class="psme-input-direccion">
               {% render 'icon-location-on-negro' %}
               <input type="text" id="psme-input-direccion" placeholder="Ingresar dirección o punto de referencia">
-              <div id="psme-sugerencias-direccion" class="psme-sugerencias-container"></div>
             </div>
+            <div id="psme-sugerencias-direccion" class="psme-sugerencias-container"></div>
           </section>
         </section>
 
@@ -506,7 +506,7 @@
       // Opciones para la búsqueda
       const opcionesBusqueda = {
         input: query,
-        componentRestrictions: { country: 'bo' } // Ajusta al país (Bolivia )
+        componentRestrictions: { country: 'bo' } // Ajusta al país (Bolivia)
       };
       
       // Realizar la búsqueda
@@ -526,7 +526,11 @@
         sugerencias.forEach(sugerencia => {
           const elemento = document.createElement('div');
           elemento.classList.add('psme-sugerencia-item');
-          elemento.textContent = sugerencia.description;
+          
+          // Crear elemento p para el texto
+          const textoElemento = document.createElement('p');
+          textoElemento.textContent = sugerencia.description;
+          elemento.appendChild(textoElemento);
           
           // Agregar evento de clic
           elemento.addEventListener('click', () => {
@@ -544,7 +548,6 @@
         }
       });
     }
-
     seleccionarDireccion(sugerencia) {
       // Actualizar el valor del input
       this.inputDireccion.value = sugerencia.description;
