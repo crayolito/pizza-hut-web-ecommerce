@@ -289,8 +289,9 @@
       this.botonOpcionRecogerLocal = this.querySelector('#psme-boton-recoger-local');
       this.botonOpcionEnvioDomicilio = this.querySelector('#psme-boton-envio-domicilio');
       // SELECTORES DE OPCIONES DEL CLIENTE
-      this.botonOpcionSiguiente = this.querySelector('#psme-boton-siguiente');
-      this.botonOpcionOmitir = this.querySelector('#psme-boton-omitir');
+      this.contenedorOpcionesUsuario = this.querySelector('.psme-opciones');
+      this.botonSiguienteOpcion = this.querySelector('#psme-boton-siguiente');
+      this.botonOmitirOpcion = this.querySelector('#p-sme-boton-omitir');
       // SECTOR ELEMENTO OPCIONES ENVIO A DOMICILIO
       this.contenedorOpcionesEnvioDomicilio = this.querySelector('.psme-opciones-envio-domicilio');
       this.botonUsarMiUbicacionActual = this.querySelector('#psme-boton-ubicacion-actual');
@@ -301,10 +302,12 @@
       // ELEMENTOS DEL MODAL DE ENVIO A DOMICILIO
       this.contenedorTotalModal = this.querySelector('.psme-modal-mapa-envio-domicilio');
       this.botonCerrarModal = this.querySelector('#p-sme-boton-cancelar-modal');
+  
 
       // Asignar event listeners
       this.botonOpcionRecogerLocal.addEventListener('click', this.accionBotonRecogerLocal.bind(this));
       this.botonOpcionEnvioDomicilio.addEventListener('click', this.accionBotonEnvioDomicilio.bind(this));
+      this.botonUsarMiUbicacionActual.addEventListener('click', this.accionUbicacionActualEnvioDomicilio.bind(this));
       this.botonCerrarModal.addEventListener('click', this.cerrarModal.bind(this));
       this.contenidoModal.addEventListener('click', (event) => {
         // Verificar si el click fue en el contenedor principal (fondo oscuroo)
@@ -410,8 +413,6 @@
       });
     }
 
-   
-
     verificarLocalStorage() {
       if (localStorage.getItem('ubicacion-cliente')) {
         let ubicacionCliente = JSON.parse(localStorage.getItem('ubicacion-cliente'));
@@ -438,6 +439,12 @@
 
     cerrarModal() {
       this.contenidoModal.style.removeProperty('visibility');
+    }
+
+    accionUbicacionActualEnvioDomicilio() {
+      this.contenedorOpcionesUsuario.style.display = 'none';
+      this.contenedorTotalModal.style.visibility = 'visible';
+      // Activar el mapa dentro del modal
     }
 
     accionBotonRecogerLocal() {
