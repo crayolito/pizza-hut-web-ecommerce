@@ -302,6 +302,7 @@
       // ELEMENTOS DEL MODAL DE ENVIO A DOMICILIO
       this.contenedorTotalModal = this.querySelector('.psme-modal-mapa-envio-domicilio');
       this.botonCerrarModal = this.querySelector('#p-sme-boton-cancelar-modal');
+      this.botonIconoCerrarModal = this.querySelector('#psme-boton-cerrar-modal');
   
 
       // Asignar event listeners
@@ -309,6 +310,7 @@
       this.botonOpcionEnvioDomicilio.addEventListener('click', this.accionBotonEnvioDomicilio.bind(this));
       this.botonUsarMiUbicacionActual.addEventListener('click', this.accionUbicacionActualEnvioDomicilio.bind(this));
       this.botonCerrarModal.addEventListener('click', this.cerrarModal.bind(this));
+      this.botonIconoCerrarModal.addEventListener('click', this.cerrarModal.bind(this));
       this.contenidoModal.addEventListener('click', (event) => {
         // Verificar si el click fue en el contenedor principal (fondo oscuroo)
         if (event.target === this.contenidoModal) {
