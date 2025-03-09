@@ -474,13 +474,14 @@
       // 3. Configurar el evento del marcador
       marcadorMovible.addListener('dragend', (evento) => {
         try{
-          const posicion = this.marcadorMovible.getPosition();
+          const posicion = marcadorMovible.getPosition();
           this.coordenadas = { lat: posicion.lat(), lng: posicion.lng() };
 
           console.log('Coordenadas: ', this.coordenadas);
           mapa.panTo(posicion);
         } catch {
           alert('Error al actualizar la posición');
+          console.error(error);
         }
       });
 
