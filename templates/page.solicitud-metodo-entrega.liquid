@@ -534,10 +534,13 @@
 
     desactivarBotonSiguientePrincipal(){
       console.log('Entra a desactivar boton siguiente principal');
-      if(!this.botonOpcionEnvioDomicilio.classList.contains('psme-opcion-seleccionado') || !this.botonOpcionRecogerLocal.classList.contains('psme-opcion-seleccionado')){
-        this.botonSiguienteOpcion.disabled = true;
-      } else {
+      if(this.botonOpcionEnvioDomicilio.classList.contains('psme-opcion-seleccionado') || 
+      this.botonOpcionRecogerLocal.classList.contains('psme-opcion-seleccionado')) {
+        // Al menos uno está seleccionado, ACTIVAR el botón
         this.botonSiguienteOpcion.disabled = false;
+      } else {
+        // Ninguno está seleccionado, DESACTIVAR el botón
+        this.botonSiguienteOpcion.disabled = true;
       }
     }
 
