@@ -221,7 +221,7 @@
 }
 
 .psme-modal-contenedor-base {
-  width: 26rem;
+  width: 25rem;
   height: 41rem;
   background-color: var(--colorp-secondary);
   border-radius: var(--border-radius-2);
@@ -232,7 +232,7 @@
 
 .psme-modal-header {
   width: 100%;
-  height: 11%;
+  height: 14%;
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid #dee2e6;
@@ -242,7 +242,7 @@
 .psme-modal-boton-cerrar {
   display: flex;
   justify-content: center;
-  width: 12%;
+  width: 15%;
   align-items: center;
 }
 
@@ -260,7 +260,7 @@
 
 .psme-modal-body {
   width: 100%;
-  height: 78%;
+  height: 75%;
   padding: var(--espaciado-l) 0;
 }
 
@@ -604,8 +604,8 @@
   }
 
   .psme-modal-contenedor-base {
-    width: 33rem;
-    height: 25rem;
+    width: 35rem;
+    height: 34rem;
   }
 }
 
