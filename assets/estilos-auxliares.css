@@ -618,6 +618,30 @@
   }
 }
 
+/* SECTOR SUGERENCIAS MEDIANTE INPUT POR DIRECCION DE GOOGLE MAPS */
+
+.psme-sugerencias-container {
+  position: absolute;
+  width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
+  background-color: white;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  z-index: 10;
+  display: none;
+}
+
+.psme-sugerencia-item {
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+}
+
+.psme-sugerencia-item:hover {
+  background-color: #f9f9f9;
+}
+
 @media screen and (min-width: 1024px) {
   .psme-pizza-logo-background {
     width: 29rem;

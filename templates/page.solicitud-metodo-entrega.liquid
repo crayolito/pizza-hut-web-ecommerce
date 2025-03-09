@@ -79,7 +79,8 @@
             </div>
             <div class="psme-input-direccion">
               {% render 'icon-location-on-negro' %}
-              <input type="text" placeholder="Ingresar dirección o punto de referencia">
+              <input type="text" id="psme-input-direccion" placeholder="Ingresar dirección o punto de referencia">
+              <div id="psme-sugerencias-direccion" class="psme-sugerencias-container"></div>
             </div>
           </section>
         </section>
@@ -305,6 +306,10 @@
       this.botonCerrarModal = this.querySelector('#p-sme-boton-cancelar-modal');
       this.botonConfirmarModal = this.querySelector('#p-sme-boton-confirmar-modal');
       this.botonIconoCerrarModal = this.querySelector('#psme-boton-cerrar-modal');
+      // ELEMENTOS DEL INPUT DE DIRECCION
+      this.inputDireccion = this.querySelector('#psme-input-direccion');
+      this.contenedorSugerencias = this.querySelector('#psme-sugerencias-direccion');
+
 
       // Asignar event listeners
       this.botonOpcionRecogerLocal.addEventListener('click', this.accionBotonRecogerLocal.bind(this));
@@ -326,6 +331,7 @@
       this.contenedorOpcionesEnvioDomicilio.style.display = 'none';
       this.contenedorTotalModal.style.visibility = 'hidden';
       this.verificarActivacionBotonSiguientePrincipal();
+      this.configurarAutocompletadoDirecciones();
     }
 
     {% comment %} mostrarModal() {
@@ -442,6 +448,113 @@
         );
       }
     } {% endcomment %}
+
+    configurarAutocompletadoDirecciones() {
+      // Verificar que el input existe
+      if (!this.inputDireccion) return;
+      
+      // Variable para almacenar el timer del debounce
+      let timeoutId = null;
+      
+      // Variable para el servicio de Places
+      this.placesService = new google.maps.places.AutocompleteService();
+      
+      // Escuchar el evento input
+      this.inputDireccion.addEventListener('input', (e) => {
+        // Limpiar el timer anterior si existe
+        if (timeoutId) {
+          clearTimeout(timeoutId);
+        }
+        
+        const query = e.target.value.trim();
+        
+        // Si el input está vacío, ocultar sugerencias
+        if (!query) {
+          this.contenedorSugerencias.style.display = 'none';
+          return;
+        }
+        
+        // Configurar debounce (500ms)
+        timeoutId = setTimeout(() => {
+          this.buscarSugerenciasDirecciones(query);
+        }, 500);
+      });
+      
+      // Cerrar sugerencias al hacer clic fuera
+      document.addEventListener('click', (e) => {
+        if (!this.inputDireccion.contains(e.target) && !this.contenedorSugerencias.contains(e.target)) {
+          this.contenedorSugerencias.style.display = 'none';
+        }
+      });
+    }
+
+    buscarSugerenciasDirecciones(query) {
+      // Opciones para la búsqueda
+      const opcionesBusqueda = {
+        input: query,
+        componentRestrictions: { country: 'bo' } // Ajusta al país (Bolivia )
+      };
+      
+      // Realizar la búsqueda
+      this.placesService.getPlacePredictions(opcionesBusqueda, (predictions, status) => {
+        // Limpiar contenedor de sugerencias
+        this.contenedorSugerencias.innerHTML = '';
+        
+        if (status !== google.maps.places.PlacesServiceStatus.OK || !predictions) {
+          this.contenedorSugerencias.style.display = 'none';
+          return;
+        }
+        
+        // Limitar a 3 sugerencias
+        const sugerencias = predictions.slice(0, 3);
+        
+        // Mostrar sugerencias
+        sugerencias.forEach(sugerencia => {
+          const elemento = document.createElement('div');
+          elemento.classList.add('psme-sugerencia-item');
+          elemento.textContent = sugerencia.description;
+          
+          // Agregar evento de clic
+          elemento.addEventListener('click', () => {
+            this.seleccionarDireccion(sugerencia);
+          });
+          
+          this.contenedorSugerencias.appendChild(elemento);
+        });
+        
+        // Mostrar el contenedor
+        if (sugerencias.length > 0) {
+          this.contenedorSugerencias.style.display = 'block';
+        } else {
+          this.contenedorSugerencias.style.display = 'none';
+        }
+      });
+    }
+
+    seleccionarDireccion(sugerencia) {
+      // Actualizar el valor del input
+      this.inputDireccion.value = sugerencia.description;
+      
+      // Ocultar sugerencias
+      this.contenedorSugerencias.style.display = 'none';
+      
+      // Obtener las coordenadas del lugar seleccionado
+      const geocoder = new google.maps.Geocoder();
+      geocoder.geocode({ placeId: sugerencia.place_id }, (results, status) => {
+        if (status === google.maps.GeocoderStatus.OK && results[0]) {
+          const ubicacion = results[0].geometry.location;
+          this.coordenadas = { 
+            lat: ubicacion.lat(), 
+            lng: ubicacion.lng() 
+          };
+          
+          console.log('Coordenadas de dirección seleccionada:', this.coordenadas);
+          
+          // Aquí puedes hacer lo que necesites con las coordenadas
+          // Por ejemplo, mostrar el modal con el mapa centrado en estas coordenadas
+        }
+      });
+    }
 
     inicializarMapaRecogerLocal() {}
 
