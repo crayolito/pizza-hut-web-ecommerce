@@ -303,7 +303,6 @@
       this.contenedorTotalModal = this.querySelector('.psme-modal-mapa-envio-domicilio');
       this.botonCerrarModal = this.querySelector('#p-sme-boton-cancelar-modal');
       this.botonIconoCerrarModal = this.querySelector('#psme-boton-cerrar-modal');
-  
 
       // Asignar event listeners
       this.botonOpcionRecogerLocal.addEventListener('click', this.accionBotonRecogerLocal.bind(this));
@@ -324,7 +323,7 @@
       this.contenedorTotalModal.style.visibility = 'hidden';
     }
 
-    mostrarModal() {
+    {% comment %} mostrarModal() {
       this.contenidoModal.style.visibility = 'visible';
       this.inicializarMapa();
     }
@@ -437,7 +436,15 @@
           }
         );
       }
-    }
+    } {% endcomment %}
+
+    inicializarMapaRecogerLocal() {}
+
+    inicializarMapaEnvioDomicilio() {}
+
+    crearElementosSeleccionLocal() {}
+
+    actualizarElementosSeleccionLocal() {}
 
     cerrarModal() {
       this.contenedorOpcionesUsuario.style.removeProperty('display');
@@ -448,6 +455,7 @@
       this.contenedorOpcionesUsuario.style.display = 'none';
       this.contenedorTotalModal.style.visibility = 'visible';
       // Activar el mapa dentro del modal
+      this.inicializarMapaEnvioDomicilio();
     }
 
     accionBotonRecogerLocal() {
@@ -465,6 +473,7 @@
         // Ajustar interfaz para modo recogida en local:
         this.imagenBackground.style.visibility = 'hidden';
         this.contenedorOpcionesRecogerLocal.style.removeProperty('display');
+        this.botonSiguienteOpcion.style.display = 'none';
       } else {
         // === MODO DESACTIVACIÓN ===
         this.desactivarBotonRecogerLocal();
@@ -472,16 +481,18 @@
         // Revertir cambios de interfaz:
         this.imagenBackground.style.removeProperty('visibility');
         this.contenedorOpcionesRecogerLocal.style.display = 'none';
+        this.botonSiguienteOpcion.style.removeProperty('display');
       }
 
       // Desactivar modo envío a domicilio si está activo
       if (this.botonOpcionEnvioDomicilio.classList.contains('psme-opcion-seleccionado')) {
-        this.contenedorOpcionesEnvioDomicilio.style.display = 'none';
         this.desactivarBotonEnvioDomicilio();
       }
 
-      // Activar mapa para el modo de recogida en local
-      {% comment %} this.inicializarMapa(); {% endcomment %}
+      // Inicializar mapa para el modo de recogida en local
+      this.inicializarMapaRecogerLocal();
+      // Crear elementos de seleccion de local
+      this.crearElementosSeleccionLocal();
     }
 
     accionBotonEnvioDomicilio() {
@@ -515,9 +526,10 @@
     }
 
     desactivarBotonEnvioDomicilio() {
+      this.contenedorOpcionesEnvioDomicilio.style.display = 'none';
       this.botonOpcionEnvioDomicilio.classList.remove('psme-opcion-seleccionado');
       const iconoEstado = this.botonOpcionEnvioDomicilio.querySelector('.psme-icono-select');
-      iconoEstado.innerHTML = `{% render 'icon-estado-off' %}`;
+      this.botonSiguienteOpcion.style.removeProperty('display');
     }
 
     desactivarBotonRecogerLocal() {
