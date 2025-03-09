@@ -331,7 +331,21 @@
       this.contenedorOpcionesEnvioDomicilio.style.display = 'none';
       this.contenedorTotalModal.style.visibility = 'hidden';
       this.verificarActivacionBotonSiguientePrincipal();
-      this.configurarAutocompletadoDirecciones();
+      {% comment %} this.configurarAutocompletadoDirecciones(); {% endcomment %}
+      if (typeof google === 'undefined') {
+        console.log('Google Maps aún no está cargado, esperando...');
+        // Esperar a que Google Maps se cargue
+        window.addEventListener('load', () => {
+          if (typeof google !== 'undefined') {
+            this.configurarAutocompletadoDirecciones();
+          } else {
+            console.error('Google Maps no se pudo cargar correctamente');
+          }
+        });
+      } else {
+        // Google Maps ya está disponible
+        this.configurarAutocompletadoDirecciones();
+      }
     }
 
     {% comment %} mostrarModal() {
