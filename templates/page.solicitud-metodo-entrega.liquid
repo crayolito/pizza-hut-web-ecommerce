@@ -300,22 +300,23 @@
       this.contenidoModal = this.querySelector('.psme-modal-mapa-envio-domicilio');
       // ELEMENTOS DEL MODAL DE ENVIO A DOMICILIO
       this.contenedorTotalModal = this.querySelector('.psme-modal-mapa-envio-domicilio');
+      this.botonCerrarModal = this.querySelector('#p-sme-boton-cancelar-modal');
 
       // Asignar event listeners
       this.botonOpcionRecogerLocal.addEventListener('click', this.accionBotonRecogerLocal.bind(this));
       this.botonOpcionEnvioDomicilio.addEventListener('click', this.accionBotonEnvioDomicilio.bind(this));
-      {% comment %} this.botonUsarMiUbicacionActual.addEventListener('click', this.accionBotonUbicacionActual.bind(this)); {% endcomment %}
+      this.botonCerrarModal.addEventListener('click', this.cerrarModal.bind(this));
       this.contenidoModal.addEventListener('click', (event) => {
         // Verificar si el click fue en el contenedor principal (fondo oscuroo)
         if (event.target === this.contenidoModal) {
           this.cerrarModal();
         }
       });
-      {% comment %} this.botonCerrarModal.addEventListener('click', this.cerrarModal.bind(this)); {% endcomment %}
 
       // Inicializar contenidos ocultoss
       this.contenedorOpcionesRecogerLocal.style.display = 'none';
       this.contenedorOpcionesEnvioDomicilio.style.display = 'none';
+      this.contenedorTotalModal.style.visibility = 'hidden';
     }
 
     mostrarModal() {
@@ -409,10 +410,7 @@
       });
     }
 
-    cerrarModal() {
-      this.contenidoModal.style.visibility = 'hidden';
-      console.log('Cerrar modal');
-    }
+   
 
     verificarLocalStorage() {
       if (localStorage.getItem('ubicacion-cliente')) {
@@ -436,6 +434,10 @@
           }
         );
       }
+    }
+
+    cerrarModal() {
+      this.contenidoModal.style.removeProperty('visibility');
     }
 
     accionBotonRecogerLocal() {
