@@ -300,6 +300,7 @@
       // SELECTORES DE ELEMENTOS SOBRE EL MODAL
       this.contenidoModal = this.querySelector('.psme-modal-mapa-envio-domicilio');
       // ELEMENTOS DEL MODAL DE ENVIO A DOMICILIO
+      this.contenedorMapaModal = this.querySelector('.psme-modal-body');
       this.contenedorTotalModal = this.querySelector('.psme-modal-mapa-envio-domicilio');
       this.botonCerrarModal = this.querySelector('#p-sme-boton-cancelar-modal');
       this.botonIconoCerrarModal = this.querySelector('#psme-boton-cerrar-modal');
@@ -440,7 +441,76 @@
 
     inicializarMapaRecogerLocal() {}
 
-    inicializarMapaEnvioDomicilio() {}
+    inicializarMapaEnvioDomicilio() {
+      // 1. Crear el mapa
+      if (!this.contenedorMapaModal) {
+        alert('Error: No se pudo cargar el mapa. Por favor recarga la página');
+        return;
+      }
+
+      const configuracionMapa = new google.maps.Map(this.contenedorMapaModal, {
+        center: this.coordenadasBase,
+        zoom: 16,
+        mapTypeControl: false,  
+        streetViewControl: false, 
+        fullscreenControl: false,   
+        zoomControl: true,  
+        scaleControl: false,
+        rotateControl: false,
+        panControl: false,
+        disableDefaultUI: false,
+      });
+
+      const mapa = new google.maps.Map(this.contenedorMapaModal, configuracionMapa);
+      
+      // 2. Crear el marcador movible 
+      const marcadorMovible = new google.maps.Marker({
+        position: this.coordenadasBase,
+        map: mapa,
+        draggable: true,
+        animation: google.maps.Animation.DROP,
+      });
+
+      // 3. Configurar el evento del marcador
+      marcadorMovible.addListener('dragend', (evento) => {
+        try{
+          const posicion = this.marcadorMovible.getPosition();
+          this.coordenadas = { lat: posicion.lat(), lng: posicion.lng() };
+
+          console.log('Coordenadas: ', this.coordenadas);
+          mapa.panTo(posicion);
+        } catch {
+          alert('Error al actualizar la posición');
+        }
+      });
+
+      // 4. Pedir la ubicacion del usuario y actualizar el marcador a esa posicion
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+             try{
+              const miUbicacion = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude,
+              };
+
+              marcadorMovible.setPosition(miUbicacion);
+              mapa.panTo(miUbicacion);
+              this.coordenadas = miUbicacion;
+            }catch{
+              alert('Error al obtener la ubicación: Por favor, verifique la ubicación de su dispositivo');
+              console.log('Error al obtener la ubicación 1: ', error);
+            }
+          },
+          (error) => {
+            alert('Error al obtener la ubicación: Por favor, verifique la ubicación de su dispositivo');
+            console.log('Error al obtener la ubicación 2: ', error);
+          }
+        );
+      }
+    }
+
+
 
     crearElementosSeleccionLocal() {}
 
@@ -543,3 +613,17 @@
 
   customElements.define('cliente-localizacion', ClienteLocalizacion);
 </script>
+
+{% comment %}
+  TAREAS PARA TERMINAR
+  - Activar el modal en el envio a domicilio
+    - Hacer mapa del modal con el Usar mi ubicacion actual
+    - Hacer el input se direccion dinamica
+  - Activar el mapa en el recoger local
+    - Hacer la creacion dinamica elementos de seleccion de local
+    - Ordenar locales por distancia (coordenadas) default - cliente
+    - Hacer marcadores dinamicos que click recoordenen la lista de locales
+    - Hacer que la lista que la lista haga el mapa dinamico
+    - Seleccion de local y peticion de datos del local (todos los locales - o uno en especifico)
+{% endcomment %}
+]
