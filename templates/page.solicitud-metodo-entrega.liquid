@@ -481,6 +481,7 @@
         // Revertir cambios de interfaz:
         this.imagenBackground.style.removeProperty('visibility');
         this.contenedorOpcionesRecogerLocal.style.display = 'none';
+        this.botonSiguienteOpcion.style.removeProperty('display');
       }
 
       // Desactivar modo envío a domicilio si está activo
@@ -493,7 +494,6 @@
       // Crear elementos de seleccion de local
       this.crearElementosSeleccionLocal();
       // Activar la visualizacion del boton siguiente
-      this.botonSiguienteOpcion.style.removeProperty('display');
     }
 
     accionBotonEnvioDomicilio() {
