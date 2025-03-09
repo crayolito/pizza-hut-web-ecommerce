@@ -486,6 +486,7 @@
 
       // Desactivar modo envío a domicilio si está activo
       if (this.botonOpcionEnvioDomicilio.classList.contains('psme-opcion-seleccionado')) {
+        this.botonSiguienteOpcion.style.removeProperty('display');
         this.desactivarBotonEnvioDomicilio();
       }
 
@@ -519,7 +520,6 @@
 
       // Desactivar el modo de recoger en local si está activo
       if (this.botonOpcionRecogerLocal.classList.contains('psme-opcion-seleccionado')) {
-        console.log('Voy a desactivar el modo de recoger en local');
         this.contenedorOpcionesRecogerLocal.style.display = 'none';
         this.desactivarBotonRecogerLocal();
       }
