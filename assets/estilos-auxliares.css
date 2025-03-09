@@ -156,6 +156,15 @@
   align-items: center;
 }
 
+.psme-boton-siguiente:disabled {
+  background-color: #efefef;
+  cursor: not-allowed;
+}
+
+.psme-boton-siguiente:disabled p {
+  color: #717171;
+}
+
 .psme-boton-omitir {
   height: var(--espaciado-big);
   color: var(--colorp-primary);

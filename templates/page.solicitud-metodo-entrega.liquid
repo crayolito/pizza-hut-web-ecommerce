@@ -303,6 +303,7 @@
       this.contenedorMapaModal = this.querySelector('.psme-modal-body');
       this.contenedorTotalModal = this.querySelector('.psme-modal-mapa-envio-domicilio');
       this.botonCerrarModal = this.querySelector('#p-sme-boton-cancelar-modal');
+      this.botonConfirmarModal = this.querySelector('#p-sme-boton-confirmar-modal');
       this.botonIconoCerrarModal = this.querySelector('#psme-boton-cerrar-modal');
 
       // Asignar event listeners
@@ -311,6 +312,8 @@
       this.botonUsarMiUbicacionActual.addEventListener('click', this.accionUbicacionActualEnvioDomicilio.bind(this));
       this.botonCerrarModal.addEventListener('click', this.cerrarModal.bind(this));
       this.botonIconoCerrarModal.addEventListener('click', this.cerrarModal.bind(this));
+      this.botonConfirmarModal.addEventListener('click', this.accionConfirmarModal.bind(this));
+      this.botonOmitirOpcion.addEventListener('click', this.botonOmitirPrincipal.bind(this));
       this.contenidoModal.addEventListener('click', (event) => {
         // Verificar si el click fue en el contenedor principal (fondo oscuroo)
         if (event.target === this.contenidoModal) {
@@ -322,6 +325,7 @@
       this.contenedorOpcionesRecogerLocal.style.display = 'none';
       this.contenedorOpcionesEnvioDomicilio.style.display = 'none';
       this.contenedorTotalModal.style.visibility = 'hidden';
+      this.desactivarBotonSiguientePrincipal();
     }
 
     {% comment %} mostrarModal() {
@@ -511,6 +515,31 @@
       }
     }
 
+    accionConfirmarModal() {
+      localStorage.setItem('ubicacion-cliente', JSON.stringify(this.coordenadas));
+      console.log('Ubicacion guardada en localStorage: ', localStorage.getItem('ubicacion-cliente'));
+      this.cerrarModal();
+      // Navegar a la siguiente pagina que corresponde
+    }
+
+    botonOmitirPrincipal(){
+      // Navegar a la siguiente pagina que corresponde
+      console.log('Se presiono el boton omitir procede ir a la siguiente pagina');
+    }
+
+    botonSiguientePrincipal(){
+      // Navegar a la siguiente pagina que corresponde
+      console.log('Se presiono el boton siguiente procede ir a la siguiente pagina');
+    }
+
+    desactivarBotonSiguientePrincipal(){
+      if(this.botonOpcionEnvioDomicilio.classList.contains('psme-boton-siguiente:disabled') && this.botonOpcionRecogerLocal.classList.contains('psme-boton-siguiente:disabled')){
+        this.botonSiguienteOpcion.disabled = true;
+      } else {
+        this.botonSiguienteOpcion.disabled = false;
+      }
+    }
+
     crearElementosSeleccionLocal() {}
 
     actualizarElementosSeleccionLocal() {}
@@ -565,6 +594,8 @@
       this.inicializarMapaRecogerLocal();
       // Crear elementos de seleccion de local
       this.crearElementosSeleccionLocal();
+      // Verificar si cumple con los requisitos para activar el boton siguiente
+      this.activarBotonSiguientePrincipal();
     }
 
     accionBotonEnvioDomicilio() {
@@ -595,6 +626,9 @@
         this.contenedorOpcionesRecogerLocal.style.display = 'none';
         this.desactivarBotonRecogerLocal();
       }
+
+      // Verificar si cumple con los requisitos para activar el boton siguiente
+      this.activarBotonSiguientePrincipal();
     }
 
     desactivarBotonEnvioDomicilio() {
