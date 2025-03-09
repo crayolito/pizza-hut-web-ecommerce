@@ -325,7 +325,7 @@
       this.contenedorOpcionesRecogerLocal.style.display = 'none';
       this.contenedorOpcionesEnvioDomicilio.style.display = 'none';
       this.contenedorTotalModal.style.visibility = 'hidden';
-      this.desactivarBotonSiguientePrincipal();
+      this.verificarActivacionBotonSiguientePrincipal();
     }
 
     {% comment %} mostrarModal() {
@@ -532,8 +532,8 @@
       console.log('Se presiono el boton siguiente procede ir a la siguiente pagina');
     }
 
-    desactivarBotonSiguientePrincipal(){
-      console.log('Entra a desactivar boton siguiente principal');
+    verificarActivacionBotonSiguientePrincipal(){
+      console.log('Entra a verificar activacion boton siguiente principal');
       if(this.botonOpcionEnvioDomicilio.classList.contains('psme-opcion-seleccionado') || 
       this.botonOpcionRecogerLocal.classList.contains('psme-opcion-seleccionado')) {
         // Al menos uno está seleccionado, ACTIVAR el botón
@@ -599,7 +599,7 @@
       // Crear elementos de seleccion de local
       this.crearElementosSeleccionLocal();
       // Verificar si cumple con los requisitos para activar el boton siguiente
-      this.activarBotonSiguientePrincipal();
+      this.verificarActivacionBotonSiguientePrincipal();
     }
 
     accionBotonEnvioDomicilio() {
@@ -632,7 +632,7 @@
       }
 
       // Verificar si cumple con los requisitos para activar el boton siguiente
-      this.activarBotonSiguientePrincipal();
+      this.verificarActivacionBotonSiguientePrincipal();
     }
 
     desactivarBotonEnvioDomicilio() {
