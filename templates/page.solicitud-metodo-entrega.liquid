@@ -529,6 +529,7 @@
       this.botonOpcionEnvioDomicilio.classList.remove('psme-opcion-seleccionado');
       const iconoEstado = this.botonOpcionEnvioDomicilio.querySelector('.psme-icono-select');
       iconoEstado.innerHTML = `{% render 'icon-estado-off' %}`;
+    }
 
     desactivarBotonRecogerLocal() {
       this.botonOpcionRecogerLocal.classList.remove('psme-opcion-seleccionado');
