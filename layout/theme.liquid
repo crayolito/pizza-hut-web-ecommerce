@@ -11,7 +11,7 @@
     <script>
       // Verificar redirección antes de cargar el resto de la página
       if (
-        !localStorage.getItem('metodo-entrega') && 
+        !localStorage.getItem('metodo-entrega') &&
         !localStorage.getItem('ubicacion-cliente') &&
         !localStorage.getIten('sucursal-informacion')
       ) {
@@ -194,6 +194,11 @@
         border: none;
         padding: 0;
         margin: 0;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
       }
 
       img {
