@@ -271,15 +271,16 @@
     </main>
 
     {% sections 'footer-group' %}
+
+    <!-- MODAL CLIENTE : ESTADO LOGUEADO -->
+    {% comment %}
+      <div class="m-modal-cliente-logueado">
+        <div class="m-modal-cliente-logueado-contenido">
+          <h3>¡Bienvenido de nuevo!</h3>
+        </div>
+      </div>
+    {% endcomment %}
   </body>
 </html>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    // Verificar si existe la variable metodo-entrega en localStorage
-    if (!localStorage.getItem('metodo-entrega')) {
-      // Si no existe, redirigir a la página de prueba
-      window.location.href = '/pages/test-prueba';
-    }
-  });
-</script>
+<script></script>
