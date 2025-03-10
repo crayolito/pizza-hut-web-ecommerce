@@ -78,10 +78,10 @@
               <hr>
             </div>
             <div class="psme-input-direccion">
+              <div id="psme-sugerencias-direccion" class="psme-sugerencias-container"></div>
               {% render 'icon-location-on-negro' %}
               <input type="text" id="psme-input-direccion" placeholder="Ingresar dirección o punto de referencia">
             </div>
-            <div id="psme-sugerencias-direccion" class="psme-sugerencias-container"></div>
           </section>
         </section>
 
@@ -548,6 +548,7 @@
         }
       });
     }
+
     seleccionarDireccion(sugerencia) {
       // Actualizar el valor del input
       this.inputDireccion.value = sugerencia.description;
@@ -560,13 +561,14 @@
       geocoder.geocode({ placeId: sugerencia.place_id }, (results, status) => {
         if (status === google.maps.GeocoderStatus.OK && results[0]) {
           const ubicacion = results[0].geometry.location;
+
+          // Actualizar la variable de coordenadas usada de forma general
           this.coordenadas = { 
             lat: ubicacion.lat(), 
             lng: ubicacion.lng() 
           };
           
           console.log('Coordenadas de dirección seleccionada:', this.coordenadas);
-          
           // Aquí puedes hacer lo que necesites con las coordenadas
           // Por ejemplo, mostrar el modal con el mapa centrado en estas coordenadas
         }
