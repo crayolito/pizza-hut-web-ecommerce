@@ -982,6 +982,7 @@ d{% layout 'none' %}
 
       // 4. Pedir la ubicacion del usuario y actualizar el marcador a esa posicion
       if(this.controlSeleccionInput == false && this.inputDireccion.value === '') return;
+      console.log('Continua con la ejecucion del codigo de inicializarMapaEnvioDomicilio');
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
           (position) => {
