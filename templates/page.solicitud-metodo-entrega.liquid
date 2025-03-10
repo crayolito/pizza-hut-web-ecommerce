@@ -513,7 +513,13 @@ d{% layout 'none' %}
         // Verificar si el local está abierto
         const estaAbierto = horaActual >= local.horario.split('a')[0] && horaActual <= local.horario.split('a')[1];
         // Quitar espacios en blanco y convertir a minúsculas para el nombre del local
-        const nombreIdentificador = local.name.replace(/\s+/g, '-').trim().toLowerCase();
+        const nombreIdentificador = local.name
+            .normalize("NFD")   
+            .replace(/[\u0300-\u036f]/g, '')  
+            .replace(/[^a-zA-Z0-9]/g, '-')  
+            .replace(/-+/g, '-')  
+            .replace(/^-+|-+$/g, '')  
+            .toLowerCase();
         console.log('Nombre identificador: ', nombreIdentificador);
         
         contenidoHTML += `

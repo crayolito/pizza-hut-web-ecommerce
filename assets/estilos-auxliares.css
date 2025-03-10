@@ -627,7 +627,7 @@
     justify-content: start;
     flex: 1 1 calc(50% - 1rem);
     order: 1;
-    /* padding: var(--espaciado-xl); */
+    padding: var(--espaciado-xxl);
   }
 
   .psme-rl-locales {
