@@ -924,11 +924,11 @@ d{% layout 'none' %}
       console.log('Valor del input direccion: ', this.inputDireccion.value);
       if(this.inputDireccion.value === ''){
         console.log('Entra a if de controlActivacionSiguienteEnvioDomicilio');
-        this.botonSiguienteOpcion.disabled = false;
+        this.botonSiguienteOpcion.disabled = true;
         this.controlSeleccionInput = false;
       }else{
         console.log('Entra a else de controlActivacionSiguienteEnvioDomicilio');
-        this.botonSiguienteOpcion.disabled = true;
+        this.botonSiguienteOpcion.disabled = false;
         this.controlSeleccionInput = true;
       }
     }
