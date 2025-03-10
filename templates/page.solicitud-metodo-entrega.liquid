@@ -924,6 +924,7 @@ d{% layout 'none' %}
     controlActivacionSiguienteEnvioDomicilio(){
       if(this.inputDireccion.value === ''){
         this.botonSiguienteOpcion.disabled = true;
+        this.controlSeleccionInput = false;
       }else{
         this.botonSiguienteOpcion.disabled = false;
         this.controlSeleccionInput = true;
@@ -979,10 +980,7 @@ d{% layout 'none' %}
       });
 
       // 4. Pedir la ubicacion del usuario y actualizar el marcador a esa posicion
-      console.log('this.controlSeleccionInput: ', this.controlSeleccionInput);
-      console.log('this.inputDireccion.value: ', this.inputDireccion.value);
       if(this.controlSeleccionInput == true) return;
-      console.log('Continua con la ejecucion del codigo de inicializarMapaEnvioDomicilio');
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
           (position) => {
@@ -1034,6 +1032,7 @@ d{% layout 'none' %}
     }
 
     botonOmitirPrincipal(){
+      window.location.href = '/';
       // Navegar a la siguiente pagina que corresponde
       console.log('Se presiono el boton omitir procede ir a la siguiente pagina');
     }
