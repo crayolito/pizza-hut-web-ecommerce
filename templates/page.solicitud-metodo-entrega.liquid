@@ -461,12 +461,11 @@ d{% layout 'none' %}
     
         // Añadir evento para mostrar la información en la consola al hacer clic
         google.maps.event.addListener(marcadorLocal, 'click', function() {
-          {% comment %} console.log('Información del local:', this.get('infoLocal')); {% endcomment %}
           console.log('Nombre del local:', this.get('nombreLocal'));
 
-          // CAMBIO IMPORTANTE: Acceder al contexto de la clase mediante una variable
-          const nombreLocal = JSON.parse(this.get('infoLocal')).name;
-          self.localSeleccionado(nombreLocal);
+          // Enfocar el local mediante el click del marcador
+          // Sera enfocado en la lista de locales
+          self.enfocarLocalmedianteelClickMarcador(this.get('nombreLocal'));
         });
       });
     
@@ -777,6 +776,22 @@ d{% layout 'none' %}
       if (localSeleccionadoElement) {
         const nombreLocal = localSeleccionadoElement.dataset.local;
         this.localSeleccionado(nombreLocal);
+      }
+    }
+
+    enfocarLocalmedianteelClickMarcador(nombreLocal){
+      // 1. Seleccionar el local en la lista
+      this.localSeleccionado(nombreLocal);
+      
+      // 2. Obtener el elemento del local 
+      const elementoLocal = this.querySelector(`#psme-rl-local-${nombreLocal}`);
+      
+      if (elementoLocal) {
+        // 3. Hacer scroll con animación suave hacia el elemento
+        elementoLocal.scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'center' 
+        });
       }
     }
 
