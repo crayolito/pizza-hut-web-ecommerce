@@ -62,4 +62,19 @@
   align-items: center;
 }
 
+.h-boton-buscar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--espaciado-xs);
+}
+
+.h-boton-buscar,
+.h-boton-cambio-metodo-entrega {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--espaciado-xs);
+}
+
 /* asdas */
