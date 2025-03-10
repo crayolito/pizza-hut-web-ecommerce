@@ -7,6 +7,18 @@
     <meta name="theme-color" content="">
     <link rel="canonical" href="{{ canonical_url }}">
 
+    <!-- Script para verificacion antes del renderizado de la pagina -->
+    <script>
+      // Verificar redirección antes de cargar el resto de la página
+      if (
+        !localStorage.getItem('metodo-entrega') && 
+        !localStorage.getItem('ubicacion-cliente') &&
+        !localStorage.getIten('sucursal-informacion')
+      ) {
+        window.location.href = '/pages/test-prueba';
+      }
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -245,12 +257,6 @@
   </head>
 
   <body>
-    {% comment %}
-      {%- if settings.cart_type == 'drawer' -%}
-        {%- render 'cart-drawer' -%}
-      {%- endif -%}
-    {% endcomment %}
-
     {% sections 'header-group' %}
 
     <main style="position: relative;">
@@ -261,125 +267,12 @@
   </body>
 </html>
 
-{% comment %}
-  <body style="font-family: var(--fuente-principal);">
-    <div class="p-sme-contenedor-base">
-      <div class="p-sme-pizza-background">
-        <img src="{{ 'img-aux-background-solicitud-entrega.png' | asset_url }}" alt="Logo Pizza Hut">
-      </div>
-      <div class="p-sme-pizza-logo">
-        <img src="{{ 'logo-pizza-hut.png' | asset_url }}" alt="Logo Pizza Hut">
-      </div>
-      <div class="p-sme-informacion-seleccion-cliente">
-        <div class="p-sme-menesajes-informacion-cliente">
-          <span class="p-sme-titulo-principal">¿cómo quieres recibir tu pizza?</span>
-          <p class="p-sme-texto-descripcion">
-            Elige si la llevamos hasta la puerta de tu casa o si prefieres recogerla tú mismo desde nuestro local más
-            cercano.
-          </p>
-        </div>
-
-        <div class="p-sme-seccion-seleccion-cliente">
-          <button class="p-sme-boton-recoger-local">
-            <div class="p-sme-icono-recogo-local">
-              {% render 'icon-recogo-local' %}
-            </div>
-            <div class="p-sme-texto-boton-recoger-local">
-              <p class="p-sme-texto-boton-titulo">Recoger en local</p>
-              <p class="p-sme-texto-boton-subtitulo">Sin costo alguno</p>
-            </div>
-            <div class="p-sme-icono-selecionado">
-              {% render 'icon-estado-off' %}
-            </div>
-          </button>
-
-          <button class="p-sme-boton-envio-domicilio">
-            <div class="p-sme-icono-envio-domicilio">
-              {% render 'icon-recogo-delivery' %}
-            </div>
-            <div class="p-sme-texto-boton-recoger-local">
-              <p class="p-sme-texto-boton-titulo">Envío a domicilio</p>
-              <p class="p-sme-texto-boton-subtitulo">Envio a solo Bs 2</p>
-            </div>
-            <div class="p-sme-icono-selecionado">
-              {% render 'icon-estado-off' %}
-            </div>
-          </button>
-        </div>
-      </div>
-      <div class="p-sme-opciones-cliente">
-        <div class="p-sme-opciones-cliente-contenido">
-          <button class="p-sme-boton-omitir">
-            <p class="p-sme-texto-omitir">OMITIR</p>
-            {% render 'icon-close-rojo' %}
-          </button>
-          <button class="p-sme-boton-siguiente">
-            <p class="p-sme-texto-siguiente">Siguiente</p>
-          </button>
-        </div>
-      </div>
-      <div
-        style="
-          width: 300px;
-          height: 405px;
-          background-color: red;
-          display: flex;
-          position: absolute;
-          top: 28.99rem;
-          left: 50%;
-          transform: translateX(-50%);
-        "
-        class="p-sme-contenido-recogida-local"
-      ></div>
-      <div id="p-sme-boton-abrir-modal-mapa" class="p-sme-contenido-envio-domicilio">
-        <p>Ingresa una dirección o usa tu ubicación actual</p>
-        <button id="p-sme-boton-ubicacion-actual">
-          {% render 'icon-gps-rojo' %}
-          <p>Usar mi ubicación actual</p>
-        </button>
-        <div class="p-sme-decoracion-contenedor">
-          <hr>
-          <p>O</p>
-          <hr>
-        </div>
-        <div class="p-sme-contenedor-input-direccion">
-          {% render 'icon-location-on-negro' %}
-          <input type="text" placeholder="Ingresa dirección o punto de referencia">
-        </div>
-      </div>
-    </div>
-
-    <!-- Modal para selección de ubicación -->
-    <div class="p-sme-modal-mapa-envio-domicilio">
-      <div class="p-sme-modal">
-        <div class="p-sme-modal-header">
-          <div class="p-sme-modal-pizza-logo">
-            <img src="{{ 'logo-pizza-hut.png' | asset_url }}" alt="Logo Pizza Hut">
-          </div>
-          <div class="p-sme-informacion-seleccion-cliente-modal">
-            <div class="p-sme-menesajes-informacion-cliente-modal">
-              <span class="p-sme-titulo-principal-modal">¿cómo quieres recibir tu pizza?</span>
-              <p class="p-sme-texto-descripcion-modal">
-                Elige si la llevamos hasta la puerta de tu casa o si prefieres recogerla tú mismo desde nuestro local
-                más cercano.
-              </p>
-            </div>
-            <div class="p-sme-seccion-mensaje-modal">
-              {% render 'icon-info' %}
-              <p class="p-sme-texto-descripcion-modal">Seleccionar dirección en el mapa o en la lista</p>
-            </div>
-          </div>
-        </div>
-        <div class="p-sme-mapa"></div>
-        <div class="p-sme-modal-footer">
-          <button id="p-sme-boton-cerrar-modal" class="p-sme-boton-cerrar">
-            <p>Cerrar</p>
-          </button>
-          <button id="p-sme-boton-confirmar-modal" class="p-sme-boton-confirmar">
-            <p>Confirmar Dirección</p>
-          </button>
-        </div>
-      </div>
-    </div>
-  </body>
-{% endcomment %}
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Verificar si existe la variable metodo-entrega en localStorage
+    if (!localStorage.getItem('metodo-entrega')) {
+      // Si no existe, redirigir a la página de prueba
+      window.location.href = '/pages/test-prueba';
+    }
+  });
+</script>
