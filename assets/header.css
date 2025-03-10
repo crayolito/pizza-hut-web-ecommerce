@@ -121,6 +121,12 @@
   gap: var(--espaciado-xs);
 }
 
+.h-sector-opciones-cliente {
+  display: flex;
+  align-items: center;
+  gap: var(--espaciado-xxl);
+}
+
 .h-input-buscar {
   display: flex;
   align-items: center;
