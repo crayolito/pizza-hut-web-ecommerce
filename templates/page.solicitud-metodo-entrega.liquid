@@ -294,13 +294,15 @@
       this.botonSiguienteOpcion = this.querySelector('#psme-boton-siguiente');
       this.botonOmitirOpcion = this.querySelector('#p-sme-boton-omitir');
       // SECTOR ELEMENTO OPCIONES ENVIO A DOMICILIO
+      
       this.contenedorOpcionesEnvioDomicilio = this.querySelector('.psme-opciones-envio-domicilio');
       this.botonUsarMiUbicacionActual = this.querySelector('#psme-boton-ubicacion-actual');
       // SECTOR ELEMENTO OPCIONES RECIBIR EN LOCAL
+      this.contenedorMapaRecogerLocal = this.querySelector('.psme-recoger-local-mapa');
       this.contenedorOpcionesRecogerLocal = this.querySelector('.psme-opciones-recoger-local');
       // SELECTORES DE ELEMENTOS SOBRE EL MODAL
-      this.contenidoModal = this.querySelector('.psme-modal-mapa-envio-domicilio');
       // ELEMENTOS DEL MODAL DE ENVIO A DOMICILIO
+      this.contenidoModal = this.querySelector('.psme-modal-mapa-envio-domicilio');
       this.contenedorMapaModal = this.querySelector('.psme-modal-body');
       this.contenedorTotalModal = this.querySelector('.psme-modal-mapa-envio-domicilio');
       this.botonCerrarModal = this.querySelector('#p-sme-boton-cancelar-modal');
@@ -348,120 +350,108 @@
       }
     }
 
-    {% comment %} mostrarModal() {
-      this.contenidoModal.style.visibility = 'visible';
-      this.inicializarMapa();
-    }
+    // FUNCIONES RELACIONADAS A LA SELECCION => RECOGER EN LOCAL
 
-    inicializarMapa() {
-      try {
-        // 1. Configurar mapa con marcador base primero
-        this.contenedorMapa = this.querySelector('.p-sme-mapa');
-        if (!this.contenedorMapa) {
-          alert('Error: No se pudo cargar el mapa. Por favor recarga la página');
-          return;
-        }
+    inicializarMapaRecogerLocal() {
+     // Verificar si existe el contenedor del mapa y crear configuracion de mapa
+      if (!this.contenedorMapaRecogerLocal) {
+        alert('Error: No se pudo cargar el mapa. Por favor recarga la página');
+        return;
+      }
 
-        // Opciones del mapa simplificadas con solo control de zoom
-        const opcionesMapa = {
-          center: this.coordenadasBase,
-          zoom: 15,
-          mapTypeId: google.maps.MapTypeId.ROADMAP,
-          mapTypeControl: false, // Oculta los botones de Mapa/Satélite
-          streetViewControl: false, // Oculta el control de Street View
-          fullscreenControl: false, // Oculta el botón de pantalla completa
-          zoomControl: true, // Mantiene solo los controles de zoom
-          scaleControl: false,
-          rotateControl: false,
-          panControl: false,
-          disableDefaultUI: false,
+      const configuracionMapa =  {
+        center: this.coordenadasBase,
+        zoom: 16,
+        mapTypeControl: false,  
+        streetViewControl: false, 
+        fullscreenControl: false,   
+        zoomControl: true,  
+        scaleControl: false,
+        rotateControl: false,
+        panControl: false,
+        disableDefaultUI: false,
+      };
+      
+      const mapa = new google.maps.Map(this.contenedorMapaRecogerLocal, configuracionMapa);
+
+      // Crear elemento que indique la ubicacion actual
+      const marcadorUbicacionActual = new google.maps.Marker({
+        position: this.coordenadasBase,
+        map: mapa,
+        draggable: false,
+        animation: google.maps.Animation.DROP,
+      });
+
+      // Crear marcadores personalizados para cada local
+      this.pizzaLocations.forEach(local => {
+        // Crear icono personalizado
+        const iconoPersonalizado = {
+          url: '{{ "logo-primario.png" | asset_url }}',
+          scaledSize: new google.maps.Size(40, 40),
+          origin: new google.maps.Point(0, 0),
+          anchor: new google.maps.Point(20, 40) 
         };
 
-        const mapa = new google.maps.Map(this.contenedorMapa, opcionesMapa);
-
-        // 2. Crear marcador en posición base
-        this.marcadorMovible = new google.maps.Marker({
-          position: this.coordenadasBase,
+        // Crear el marcador con el icono personalizado
+        const marcadorLocal = new google.maps.Marker({
+          position: { lat: local.lat, lng: local.lng },
           map: mapa,
-          draggable: true,
-          animation: google.maps.Animation.DROP,
+          draggable: false,
+          icon: iconoPersonalizado
         });
 
-        // 3. Configurar eventos del marcador
-        this.configurarEventosMarcador(mapa);
+        // Almacenar información personalizada en el marcador
+        marcadorLocal.set('infoLocal', JSON.stringify(local));
 
-        // 5. Pedir ubicación solo después de tener todo configurad
-        this.solicitarUbicacionUsuario(mapa);
-      } catch (error) {
-        alert('Error al cargar el mapa. Por favor, recarga la página');
-        console.log('Error al cargar el mapa: ', error);
-      }
-    }
-
-    solicitarUbicacionUsuario(mapa) {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-          (posicion) => {
-            try {
-              const miUbicacion = {
-                lat: posicion.coords.latitude,
-                lng: posicion.coords.longitude,
-              };
-
-              // Mover marcador solo si se obtiene la ubicación
-              this.marcadorMovible.setPosition(miUbicacion);
-              mapa.panTo(miUbicacion);
-              this.coordenadas = miUbicacion;
-            } catch (error) {
-              alert('Error al procesar tu ubicación');
-            }
-          },
-          (error) => {
-            // No hacer nada si hay error, mantener marcador en posición base
-            console.log('Ubicación no obtenida, usando posición default');
-          }
-        );
-      }
-    }
-
-    // Métodos auxiliares
-    configurarEventosMarcador(mapa) {
-      this.marcadorMovible.addListener('dragend', (evento) => {
-        try {
-          const posicion = this.marcadorMovible.getPosition();
-          this.coordenadas = { lat: posicion.lat(), lng: posicion.lng() };
-
-          console.log('Coordenadas: ', this.coordenadas);
-          mapa.panTo(posicion);
-        } catch (error) {
-          alert('Error al actualizar la posición');
-        }
+        // Añadir evento para mostrar la información en la consola al hacer clic
+        google.maps.event.addListener(marcadorLocal, 'click', function() {
+          console.log('Información del local:', this.get('infoLocal'));
+        });
       });
-    }
 
-    verificarLocalStorage() {
-      if (localStorage.getItem('ubicacion-cliente')) {
-        let ubicacionCliente = JSON.parse(localStorage.getItem('ubicacion-cliente'));
-        this.coordenadasBase = ubicacionCliente;
-      } else {
-        this.obtenerUbicacion();
-      }
-    }
-    {% comment %} asdasd {% endcomment %}
-    obtenerUbicacion() {
+      // Pedir la ubicacion del usuario y actualizar el marcador a esa posicion
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
           (position) => {
-            this.coordenadasBase = { lat: position.coords.latitude, lng: position.coords.longitude };
-            console.log('Coordenadas de Browser: ', coordenadasBase);
+             try{
+              const miUbicacion = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude,
+              };
+
+              // Actualizar el marcador de la ubicación actual
+              marcadorUbicacionActual.setPosition(miUbicacion);
+
+              // Mover el mapa a la nueva ubicación
+              mapa.panTo(miUbicacion);
+
+              // Actualizar la variable de coordenadas usada de forma general
+              this.coordenadas = miUbicacion;
+            }catch{
+              alert('Error al obtener la ubicación: Por favor, verifique la ubicación de su dispositivo');
+              console.log('Error al obtener la ubicación 1: ', error);
+            }
           },
           (error) => {
             alert('Error al obtener la ubicación: Por favor, verifique la ubicación de su dispositivo');
-            console.log('Error al obtener la ubicación: ', error);
+            console.log('Error al obtener la ubicación 2: ', error);
           }
         );
       }
-    } {% endcomment %}
+    }
+
+    crearElementosSeleccionLocal() {}
+
+    actualizarElementosSeleccionLocal() {}
+
+    // FUNCIONES RELACIONADAS A LA SELECCION => ENVIO A DOMICILIO
+
+    accionUbicacionActualEnvioDomicilio() {
+      this.contenedorOpcionesUsuario.style.display = 'none';
+      this.contenedorTotalModal.style.visibility = 'visible';
+      // Activar el mapa dentro del modal
+      this.inicializarMapaEnvioDomicilio();
+    }
 
     configurarAutocompletadoDirecciones() {
       // Verificar que el input existe
@@ -575,7 +565,7 @@
       });
     }
 
-    inicializarMapaRecogerLocal() {}
+    // FUNCIONES SOBRE EL MODAL DEL ENVIO A DOMICILIO
 
     inicializarMapaEnvioDomicilio() {
       // 1. Crear el mapa
@@ -654,15 +644,12 @@
       // Navegar a la siguiente pagina que correspondee
     }
 
-    botonOmitirPrincipal(){
-      // Navegar a la siguiente pagina que corresponde
-      console.log('Se presiono el boton omitir procede ir a la siguiente pagina');
+    cerrarModal() {
+      this.contenedorOpcionesUsuario.style.removeProperty('display');
+      this.contenedorTotalModal.style.visibility = 'hidden';
     }
 
-    botonSiguientePrincipal(){
-      // Navegar a la siguiente pagina que corresponde
-      console.log('Se presiono el boton siguiente procede ir a la siguiente pagina');
-    }
+    // FUNCIONES SOBRE LA OPCIONES PRINCIPALES
 
     verificarActivacionBotonSiguientePrincipal(){
       console.log('Entra a verificar activacion boton siguiente principal');
@@ -676,21 +663,17 @@
       }
     }
 
-    crearElementosSeleccionLocal() {}
-
-    actualizarElementosSeleccionLocal() {}
-
-    cerrarModal() {
-      this.contenedorOpcionesUsuario.style.removeProperty('display');
-      this.contenedorTotalModal.style.visibility = 'hidden';
+    botonOmitirPrincipal(){
+      // Navegar a la siguiente pagina que corresponde
+      console.log('Se presiono el boton omitir procede ir a la siguiente pagina');
     }
 
-    accionUbicacionActualEnvioDomicilio() {
-      this.contenedorOpcionesUsuario.style.display = 'none';
-      this.contenedorTotalModal.style.visibility = 'visible';
-      // Activar el mapa dentro del modal
-      this.inicializarMapaEnvioDomicilio();
+    botonSiguientePrincipal(){
+      // Navegar a la siguiente pagina que corresponde
+      console.log('Se presiono el boton siguiente procede ir a la siguiente pagina');
     }
+
+    // FUNCIONES RELACIONADAS A LAS OPCIONES DE RESIBIR LA PIZZA
 
     accionBotonRecogerLocal() {
       // 1. Cambiar estado visual del botón y obtener elementos clave
