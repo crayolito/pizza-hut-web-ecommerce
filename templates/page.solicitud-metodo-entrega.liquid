@@ -276,7 +276,7 @@ d{% layout 'none' %}
       super();
       this.mapaRecogerLocal = null;
       this.mapaModalEnvioDomicilio = null;
-      this.coordenadasBase = { lat: -17.783315017953004, lng: -63.18214577296119 };
+      this.coordenadas = { lat: -17.783315017953004, lng: -63.18214577296119 };
       this.pizzaLocations = [
         { 
           lat: -17.757619, 
@@ -414,7 +414,7 @@ d{% layout 'none' %}
       }
     
       const configuracionMapa = {
-        center: this.coordenadasBase,
+        center: this.coordenadas,
         zoom: 14,
         mapTypeControl: false,  
         streetViewControl: false, 
@@ -431,7 +431,7 @@ d{% layout 'none' %}
     
       // Crear elemento que indique la ubicacion actual
       const marcadorUbicacionActual = new google.maps.Marker({
-        position: this.coordenadasBase,
+        position: this.coordenadas,
         map: this.mapaRecogerLocal,
         draggable: false,
         animation: google.maps.Animation.DROP,
@@ -905,7 +905,7 @@ d{% layout 'none' %}
       }
 
       const configuracionMapa =  {
-        center: this.coordenadasBase,
+        center: this.coordenadas,
         zoom: 16,
         mapTypeControl: false,  
         streetViewControl: false, 
@@ -921,7 +921,7 @@ d{% layout 'none' %}
       
       // 2. Crear el marcador movible 
       const marcadorMovible = new google.maps.Marker({
-        position: this.coordenadasBase,
+        position: this.coordenadas,
         map: mapa,
         draggable: true,
         animation: google.maps.Animation.DROP,
