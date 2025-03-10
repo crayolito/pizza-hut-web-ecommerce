@@ -920,6 +920,8 @@ d{% layout 'none' %}
     }
 
     controlActivacionSiguienteEnvioDomicilio(){
+      console.log('Entra a controlActivacionSiguienteEnvioDomicilio');
+      console.log('Valor del input direccion: ', this.inputDireccion.value);
       if(this.inputDireccion.value === ''){
         this.botonSiguienteOpcion.disabled = false;
         this.controlSeleccionInput = false;
@@ -1016,7 +1018,6 @@ d{% layout 'none' %}
     // FUNCIONES SOBRE LA OPCIONES PRINCIPALES
 
     verificarActivacionBotonSiguientePrincipal(){
-      console.log('Entra a verificar activacion boton siguiente principal');
       if(this.botonOpcionEnvioDomicilio.classList.contains('psme-opcion-seleccionado') || 
       this.botonOpcionRecogerLocal.classList.contains('psme-opcion-seleccionado')) {
         // Al menos uno está seleccionado, ACTIVAR el botón
