@@ -405,13 +405,13 @@ d{% layout 'none' %}
     // FUNCIONES RELACIONADAS A LA SELECCION => RECOGER EN LOCAL
 
     inicializarMapaRecogerLocal() {
-     // Verificar si existe el contenedor del mapa y crear configuracion de mapa
+      // Verificar si existe el contenedor del mapa y crear configuracion de mapa
       if (!this.contenedorMapaRecogerLocal) {
         alert('Error: No se pudo cargar el mapa. Por favor recarga la página');
         return;
       }
-
-      const configuracionMapa =  {
+    
+      const configuracionMapa = {
         center: this.coordenadasBase,
         zoom: 14,
         mapTypeControl: false,  
@@ -424,9 +424,9 @@ d{% layout 'none' %}
         disableDefaultUI: false,
       };
       
-      {% comment %} const mapa = new google.maps.Map(this.contenedorMapaRecogerLocal, configuracionMapa); {% endcomment %}
+      // Guardar referencia al mapa en this.mapaRecogerLocal
       this.mapaRecogerLocal = new google.maps.Map(this.contenedorMapaRecogerLocal, configuracionMapa);
-
+    
       // Crear elemento que indique la ubicacion actual
       const marcadorUbicacionActual = new google.maps.Marker({
         position: this.coordenadasBase,
@@ -434,7 +434,7 @@ d{% layout 'none' %}
         draggable: false,
         animation: google.maps.Animation.DROP,
       });
-
+    
       // Crear marcadores personalizados para cada local
       this.pizzaLocations.forEach(local => {
         // Crear icono personalizado
@@ -444,7 +444,7 @@ d{% layout 'none' %}
           origin: new google.maps.Point(0, 0),
           anchor: new google.maps.Point(20, 40) 
         };
-
+    
         // Crear el marcador con el icono personalizado
         const marcadorLocal = new google.maps.Marker({
           position: { lat: local.lat, lng: local.lng },
@@ -452,42 +452,45 @@ d{% layout 'none' %}
           draggable: false,
           icon: iconoPersonalizado
         });
-
+    
         // Almacenar información personalizada en el marcador
         marcadorLocal.set('infoLocal', JSON.stringify(local));
-
+    
         // Añadir evento para mostrar la información en la consola al hacer clic
         google.maps.event.addListener(marcadorLocal, 'click', function() {
           console.log('Información del local:', this.get('infoLocal'));
-
-          // Cuando la persona haga click en el marcador debe enfocarlo en la lista de locales
-          // Como son varios locales en un scroll tons debe enfocar al marcador que fue clickeado
-          // <div class="psme-rl-local></div>
+          
+          // CAMBIO IMPORTANTE: Acceder al contexto de la clase mediante una variable
+          const nombreLocal = JSON.parse(this.get('infoLocal')).name;
+          self.localSeleccionado(nombreLocal);
         });
       });
-
+    
+      // Guardar una referencia a "this" para usar dentro de callbacks
+      const self = this;
+    
       // Pedir la ubicacion del usuario y actualizar el marcador a esa posicion
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
           (position) => {
-             try{
+            try {
               const miUbicacion = {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude,
               };
-
+    
               // Actualizar el marcador de la ubicación actual
               marcadorUbicacionActual.setPosition(miUbicacion);
-
+    
               // Mover el mapa a la nueva ubicación
-              mapa.panTo(miUbicacion);
-
+              this.mapaRecogerLocal.panTo(miUbicacion);  // USAR this.mapaRecogerLocal en vez de mapa
+    
               // Actualizar la variable de coordenadas usada de forma general
               this.coordenadas = miUbicacion;
-
+    
               // Actualizar la lista de locales
               this.crearElementosSeleccionLocal();
-            }catch{
+            } catch (error) {  
               alert('Error al obtener la ubicación: Por favor, verifique la ubicación de su dispositivo');
               console.log('Error al obtener la ubicación 1: ', error);
             }
