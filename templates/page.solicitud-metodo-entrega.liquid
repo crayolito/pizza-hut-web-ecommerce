@@ -981,6 +981,7 @@ d{% layout 'none' %}
       });
 
       // 4. Pedir la ubicacion del usuario y actualizar el marcador a esa posicion
+      if(this.controlSeleccionInput == false) return;
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
           (position) => {
