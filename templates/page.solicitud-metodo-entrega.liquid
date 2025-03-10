@@ -276,6 +276,7 @@ d{% layout 'none' %}
       super();
       this.mapaRecogerLocal = null;
       this.mapaModalEnvioDomicilio = null;
+      this.controlSeleccionInput = false;
       this.coordenadas = { lat: -17.783315017953004, lng: -63.18214577296119 };
       this.pizzaLocations = [
         { 
@@ -343,7 +344,6 @@ d{% layout 'none' %}
       this.botonSiguienteOpcion = this.querySelector('#psme-boton-siguiente');
       this.botonOmitirOpcion = this.querySelector('#p-sme-boton-omitir');
       // SECTOR ELEMENTO OPCIONES ENVIO A DOMICILIO
-      
       this.contenedorOpcionesEnvioDomicilio = this.querySelector('.psme-opciones-envio-domicilio');
       this.botonUsarMiUbicacionActual = this.querySelector('#psme-boton-ubicacion-actual');
       // SECTOR ELEMENTO OPCIONES RECIBIR EN LOCAL
@@ -825,6 +825,7 @@ d{% layout 'none' %}
         
         // Si el input está vacío, ocultar sugerencias
         if (!query) {
+          this.controlActivacionSiguienteEnvioDomicilio();
           this.contenedorSugerencias.style.display = 'none';
           return;
         }
@@ -910,10 +911,22 @@ d{% layout 'none' %}
           };
           
           console.log('Coordenadas de dirección seleccionada:', this.coordenadas);
+          this.botonSiguienteOpcion.disabled = true;
+
           // Aquí puedes hacer lo que necesites con las coordenadas
           // Por ejemplo, mostrar el modal con el mapa centrado en estas coordenadas
         }
       });
+    }
+
+    controlActivacionSiguienteEnvioDomicilio(){
+      if(this.controlSeleccionInput == false && this.inputDireccion.value === ''){
+        this.botonSiguienteOpcion.disabled = false;
+        this.controlSeleccionInput = false;
+      }else{
+        this.botonSiguienteOpcion.disabled = true;
+        this.controlSeleccionInput = true;
+      }
     }
 
     // FUNCIONES SOBRE EL MODAL DEL ENVIO A DOMICILIO
@@ -1101,6 +1114,9 @@ d{% layout 'none' %}
 
       // Verificar si cumple con los requisitos para activar el boton siguiente
       this.verificarActivacionBotonSiguientePrincipal();
+
+      // Verificar si el input esta vacio o fue preseleccionado
+      this.controlActivacionSiguienteEnvioDomicilio();
     }
 
     desactivarBotonEnvioDomicilio() {
