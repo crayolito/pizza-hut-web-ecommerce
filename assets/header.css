@@ -25,6 +25,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  display: none;
 }
 
 .h-metodo-entrega-no-seleccionado svg {
@@ -54,5 +55,9 @@
 }
 
 .h-metodo-entrega-seleccionado {
-  display: none;
+  width: 100%;
+  height: calc(100% - 2.5rem);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

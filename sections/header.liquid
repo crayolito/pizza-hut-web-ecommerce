@@ -19,10 +19,8 @@
       </button>
     </div>
     <div class="h-metodo-entrega-seleccionado">
-      <p>Selecciona tu</p>
-      <div class="h-texto-metodo-entrega">
-        <h4>Método de entrega</h4>
-        {% render 'icon-pizza-metodo-entrega' %}
+      <div class="h-logo-principal">
+        <img src="{{ 'logo-sauce-only-1.png' | asset_url }}" alt="Logo Sauce Only" width="100" height="100">
       </div>
       <button class="h-boton-buscar">
         {% render 'icon-search' %}
@@ -41,7 +39,7 @@
         {% render 'icon-carrito' %}
       </button>
       <button class="h-boton-menu">
-        {% render 'icon-menu-hamburguesa' %}
+        {% render 'icon-hamburguesa' %}
       </button>
     </div>
   </header>
