@@ -522,7 +522,10 @@ d{% layout 'none' %}
     
       listaLocalesOrdenados.forEach(local => {
         // Verificar si el local está abierto
-        const estaAbierto = horaActual >= local.horario.split('a')[0] && horaActual <= local.horario.split('a')[1];
+        // Extraer las horas de inicio y fin del formato "8:00 a 23:00"
+        const horaInicio = parseInt(local.horario.split('a')[0]);
+        const horaFin = parseInt(local.horario.split('a')[1]);
+        const estaAbierto = horaActual >= horaInicio && horaActual <= horaFin;
         // Quitar espacios en blanco y convertir a minúsculas para el nombre del local
         const nombreIdentificador = this.obtenerNombreIdentificadorLocal(local.name);
         
