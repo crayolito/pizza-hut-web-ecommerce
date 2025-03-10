@@ -1,7 +1,7 @@
 .h-header-principal {
   width: 100%;
   height: 5.5rem;
-  padding: var(--espaciado-xxxl) var(--espaciado-xxl);
+  padding: var(--espaciado-xxxl) var(--espaciado-xl);
   display: flex;
   justify-content: space-between;
   align-items: center;
