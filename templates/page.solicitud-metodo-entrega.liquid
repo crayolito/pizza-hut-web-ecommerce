@@ -385,6 +385,7 @@ d{% layout 'none' %}
       // Actualizar la variable this.coordenadas si es que hay en el localstorage
       if (localStorage.getItem('ubicacion-cliente')) {
         this.coordenadas = JSON.parse(localStorage.getItem('ubicacion-cliente'));
+        console.log('Coordenadas actualizadas: ', this.coordenadas);
       }
       if (typeof google === 'undefined') {
         console.log('Google Maps aún no está cargado, esperando...');
@@ -518,6 +519,7 @@ d{% layout 'none' %}
       let contenidoHTML = ``;
 
       // Lista nueva de locales ordenados deacuerdo a this.coordenadas
+      console.log('Ver this.coordenadas: ', this.coordenadas);
       const listaLocalesOrdenados = this.ordenarLocalesPorDistancia();
     
       listaLocalesOrdenados.forEach(local => {
