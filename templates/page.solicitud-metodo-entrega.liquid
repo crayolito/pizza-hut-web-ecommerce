@@ -661,13 +661,27 @@ d{% layout 'none' %}
         localSeleccionado.classList.add('psme-rl-local-seleccionado');
       }
 
-      // Enfocar el local seleccionado en el mapa
-      const localSeleccionadoDatos = this.pizzaLocations.find(local => this.obtenerNombreIdentificadorLocal(local.name) === nombreLocal);
-      this.mapaRecogerLocal.setZoom(17);
-      this.mapaRecogerLocal.panTo({
-        lat: localSeleccionadoDatos.lat,
-        lng: localSeleccionadoDatos.lng
-      });
+      // Enfocar el local seleccionado en el mapa con animación
+      const localSeleccionadoDatos = this.pizzaLocations.find(local => 
+        this.obtenerNombreIdentificadorLocal(local.name) === nombreLocal
+      );
+
+      if (localSeleccionadoDatos) {
+        // Crear opciones de animación
+        const opciones = {
+          duration: 750,  // duración en milisegundos
+          easing: 'easeInOut'  // tipo de animación
+        };
+
+        // Animar el movimiento del mapa
+        this.mapaRecogerLocal.panTo({
+          lat: localSeleccionadoDatos.lat,
+          lng: localSeleccionadoDatos.lng
+        }, opciones);
+        
+        // Cambiar el zoom con animación también
+        this.mapaRecogerLocal.setZoom(17);
+      }
     }
 
     localBotonEmpezarPedido(nombreLocal){
