@@ -594,7 +594,7 @@ d{% layout 'none' %}
               data-accion="empezar" 
               data-local="${nombreIdentificador}"  
               id="psme-rl-boton-empezar-${nombreIdentificador}">
-              <p>EMPEZAR MI PEDIDO</p>
+              <p>PRE - PEDIDO</p>
             </button>
             <button 
               class="psme-rl-boton psme-rl-ubicacion"
@@ -629,7 +629,7 @@ d{% layout 'none' %}
 
           // Ejecutar la acción según el tipo de botón
           if (accion === 'empezar') {
-            this.localBotonEmpezarPedido(nombreLocal);
+            this.localBotonPrePedido(nombreLocal);
             // Evita que el clic llegue al contenedor local
             event.stopPropagation(); 
             return;
@@ -692,11 +692,32 @@ d{% layout 'none' %}
       }
     }
 
-    localBotonEmpezarPedido(nombreLocal){
+    localBotonPrePedido(nombreLocal){
+      // Primero se encuentra al nombreLocal
+      const localSeleccionado = this.pizzaLocations.find(local => 
+        this.obtenerNombreIdentificadorLocal(local.name) === nombreLocal
+      );
+
+      // Se guarda en el localStorage las coordendas del local
+      localStorage.setItem('ubicacion-cliente', JSON.stringify({
+        lat: localSeleccionado.lat,
+        lng: localSeleccionado.lng
+      }));
+
+      // Despues se redirecciona al index
+      window.location.href = '/';
       console.log('Boton empezar pedido presionado: ', nombreLocal);
+      console.log('Local Boton Pre Pedido: ', localSeleccionado);
     }
 
     localBotonUbicacionEnMapa(nombreLocal){
+      // Primero se encuentra al nombreLocal
+      const localSeleccionado = this.pizzaLocations.find(local => 
+        this.obtenerNombreIdentificadorLocal(local.name) === nombreLocal
+      );
+
+      // Se habre otra venta google maps con las coordenadas del local
+      window.open(`https://www.google.com/maps/search/?api=1&query=${localSeleccionado.lat},${localSeleccionado.lng}`, '_blank');
       console.log('Boton ubicacion en mapa presionado: ', nombreLocal);
     }
 
@@ -1007,9 +1028,11 @@ d{% layout 'none' %}
     }
 
     accionConfirmarModal() {
-      localStorage.setItem('ubicacion-cliente', JSON.stringify(this.coordenadas));
       console.log('Ubicacion guardada en localStorage: ', localStorage.getItem('ubicacion-cliente'));
       this.cerrarModal();
+      localStorage.setItem('ubicacion-cliente', JSON.stringify(this.coordenadas));
+      window.location.href = '/';
+
       // Navegar a la siguiente pagina que correspondee
     }
 
@@ -1032,12 +1055,15 @@ d{% layout 'none' %}
     }
 
     botonOmitirPrincipal(){
+      localStorage.setItem('ubicacion-cliente', JSON.stringify(this.coordenadas));
       window.location.href = '/';
       // Navegar a la siguiente pagina que corresponde
       console.log('Se presiono el boton omitir procede ir a la siguiente pagina');
     }
 
     botonSiguientePrincipal(){
+      localStorage.setItem('ubicacion-cliente', JSON.stringify(this.coordenadas));
+      window.location.href = '/';
       // Navegar a la siguiente pagina que corresponde
       console.log('Se presiono el boton siguiente procede ir a la siguiente pagina');
     }
