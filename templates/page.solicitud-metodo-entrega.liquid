@@ -1,4 +1,4 @@
-{% layout 'none' %}
+d{% layout 'none' %}
 
 <!doctype html>
 <html lang="es">
@@ -274,11 +274,56 @@
       super();
       this.coordenadasBase = { lat: -17.783315017953004, lng: -63.18214577296119 };
       this.pizzaLocations = [
-        { lat: -17.757619, lng: -63.178738, name: 'BANZER 3ER ANILLO' },
-        { lat: -17.70001, lng: -63.160219, name: 'BANZER KM 8.5' },
-        { lat: -17.807739, lng: -63.204363, name: 'LAS PALMAS' },
-        { lat: -17.758879, lng: -63.19948, name: 'SAN MARTIN' },
-        { lat: -17.820341, lng: -63.184337, name: 'SANTOS DUMONT' },
+        { 
+          lat: -17.757619, 
+          lng: -63.178738, 
+          name: 'BANZER 3ER ANILLO', 
+          localizacion: 'Tercer Anillo Externo', 
+          telefono: '78452415', 
+          dias : 'Lunes a Viernes', 
+          horario: '8:00 a 23:00',
+          servicios: ['Envío a domicilio', 'Recoger en local']
+        },
+        { 
+          lat: -17.70001, 
+          lng: -63.160219, 
+          name: 'BANZER KM 8.5', 
+          localizacion: '8R2Q+2XH', 
+          telefono: '78452415', 
+          dias : 'Lunes a Viernes', 
+          horario: '8:00 a 23:00',
+          servicios: ['Envío a domicilio', 'Recoger en local']
+        },
+        { 
+          lat: -17.807739, 
+          lng: -63.204363, 
+          name: 'LAS PALMAS', 
+          localizacion: 'Doble vía La Guardia', 
+          telefono: '78452415', 
+          dias : 'Lunes a Viernes', 
+          horario: '8:00 a 23:00',
+          servicios: ['Envío a domicilio', 'Recoger en local']
+        },
+        { 
+          lat: -17.758879, 
+          lng: -63.19948, 
+          name: 'SAN MARTIN', 
+          localizacion: 'Av. San Martin 2200', 
+          telefono: '78452415', 
+          dias : 'Lunes a Viernes', 
+          horario: '8:00 a 23:00',
+          servicios: ['Envío a domicilio', 'Recoger en local']
+        },
+        { 
+          lat: -17.820341, 
+          lng: -63.184337, 
+          name: 'SANTOS DUMONT', 
+          localizacion: 'Av Santos Dumont 3228', 
+          telefono: '78452415', 
+          dias : 'Lunes a Viernes', 
+          horario: '8:00 a 23:00',
+          servicios: ['Envío a domicilio', 'Recoger en local']
+        }
       ];
     }
 
@@ -298,6 +343,7 @@
       this.contenedorOpcionesEnvioDomicilio = this.querySelector('.psme-opciones-envio-domicilio');
       this.botonUsarMiUbicacionActual = this.querySelector('#psme-boton-ubicacion-actual');
       // SECTOR ELEMENTO OPCIONES RECIBIR EN LOCAL
+      this.contenedorListaLocales = this.querySelector('.psme-rl-locales');
       this.contenedorMapaRecogerLocal = this.querySelector('.psme-recoger-local-mapa');
       this.contenedorOpcionesRecogerLocal = this.querySelector('.psme-opciones-recoger-local');
       // SELECTORES DE ELEMENTOS SOBRE EL MODAL
@@ -406,6 +452,10 @@
         // Añadir evento para mostrar la información en la consola al hacer clic
         google.maps.event.addListener(marcadorLocal, 'click', function() {
           console.log('Información del local:', this.get('infoLocal'));
+
+          // Cuando la persona haga click en el marcador debe enfocarlo en la lista de locales
+          // Como son varios locales en un scroll tons debe enfocar al marcador que fue clickeado
+          // <div class="psme-rl-local></div>
         });
       });
 
@@ -427,6 +477,9 @@
 
               // Actualizar la variable de coordenadas usada de forma general
               this.coordenadas = miUbicacion;
+
+              // Actualizar la lista de locales
+              this.crearElementosSeleccionLocal();
             }catch{
               alert('Error al obtener la ubicación: Por favor, verifique la ubicación de su dispositivo');
               console.log('Error al obtener la ubicación 1: ', error);
@@ -440,7 +493,102 @@
       }
     }
 
-    crearElementosSeleccionLocal() {}
+    crearElementosSeleccionLocal() {
+      // Pre-renderizar íconos Liquid como variables JavaScript
+      const iconoDisponibilidad = `{% render 'icon-disponibilidad' %}`;
+      const iconoLocationOn = `{% render 'icon-location-on' %}`;
+      const iconoHeadserMic = `{% render 'icon-headser-mic' %}`;
+      const iconoClock = `{% render 'icon-clock' %}`;
+      const iconoCheck = `{% render 'icon-check' %}`;
+      const iconoMap = `{% render 'icon-map' %}`;
+      
+      // Obtener la hora actual y almacenar en una variable
+      const horaActual = new Date().getHours();
+    
+      let contenidoHTML = ``;
+    
+      this.pizzaLocations.forEach(local => {
+        // Verificar si el local está abierto
+        const estaAbierto = horaActual >= local.horario.split('a')[0] && horaActual <= local.horario.split('a')[1];
+        
+        contenidoHTML += `
+          <div class="psme-rl-local psme-rl-local-seleccionado" onclick="localSeleccionado('${local.name}')">
+            <div class="psme-rl-titulos">
+              <h3>SANTA CRUZ</h3>
+              <h3 style="color: #C8102E;">${local.localizacion}</h3>
+            </div>
+        `;
+    
+        if(estaAbierto){
+          contenidoHTML += `
+            <div class="psme-rl-disponibilidad">
+              <div class="psme-rl-disponibilidad-info psme-rl-abierto ">
+                ${iconoDisponibilidad}
+                <p>ABIERTO</p>
+              </div>
+            </div>
+          `;
+        } else {
+          contenidoHTML += `
+          <div class="psme-rl-disponibilidad">
+            <div class="psme-rl-disponibilidad-info psme-rl-cerrado ">
+              ${iconoDisponibilidad}
+              <p>CERRADO</p>
+            </div>
+          </div>
+        `;
+        }
+    
+        contenidoHTML += `
+            <div class="psme-rl-info-local ">
+              <div class="psme-rl-info-local-item">
+                ${iconoLocationOn}
+                <p>${local.localizacion}</p>
+              </div>
+              <div class="psme-rl-info-local-item">
+                ${iconoHeadserMic}
+                <p>${local.telefono}</p>
+              </div>
+              <div class="psme-rl-info-local-item">
+                ${iconoClock}
+                <p>De ${local.dias} ${local.horario}</p>
+              </div>
+              <div class="psme-rl-info-servicios">
+          `;
+    
+          local.servicios.forEach(servicio => {
+            contenidoHTML += `
+              <div class="psme-rl-info-servicio">
+                ${iconoCheck}
+                <p>${servicio}</p>
+              </div>
+            `;
+          });
+            
+          contenidoHTML += `
+              </div>
+            </div>
+            <button class="psme-rl-boton psme-rl-empezar" onclick="localBotonEmpezarPedido('${local.name}')">
+              <p>EMPEZAR MI PEDIDO</p>
+            </button>
+            <button class="psme-rl-boton psme-rl-ubicacion" onclick="localBotonUbicacionEnMapa('${local.name}')">
+              <p>Abrir ubicación en mapa</p>
+              ${iconoMap}
+            </button>
+          </div>
+        `;
+      });
+    
+      this.contenedorListaLocales.innerHTML = contenidoHTML;
+    }
+
+    localSeleccionado(nombreLocal){
+      console.log('Entra a localSeleccionado : ', nombreLocal);
+    }
+
+    localBotonEmpezarPedido(nombreLocal){}
+
+    localBotonUbicacionEnMapa(nombreLocal){}
 
     actualizarElementosSeleccionLocal() {}
 
