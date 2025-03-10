@@ -514,7 +514,7 @@ d{% layout 'none' %}
         const estaAbierto = horaActual >= local.horario.split('a')[0] && horaActual <= local.horario.split('a')[1];
         
         contenidoHTML += `
-          <div class="psme-rl-local psme-rl-local-no-seleccionado" onclick="localSeleccionado('${local.name}')" id="psme-rl-local-${local.name}">
+          <div class="psme-rl-local psme-rl-local-no-seleccionado" onclick="this.localSeleccionado('${local.name}')" id="psme-rl-local-${local.name}">
             <div class="psme-rl-titulos">
               <h3>SANTA CRUZ</h3>
               <h3 style="color: #C8102E;">${local.localizacion}</h3>
@@ -570,10 +570,10 @@ d{% layout 'none' %}
           contenidoHTML += `
               </div>
             </div>
-            <button class="psme-rl-boton psme-rl-empezar" onclick="localBotonEmpezarPedido('${local.name}')" id="psme-rl-boton-empezar-${local.name}">
+            <button class="psme-rl-boton psme-rl-empezar" onclick="this.localBotonEmpezarPedido('${local.name}')" id="psme-rl-boton-empezar-${local.name}">
               <p>EMPEZAR MI PEDIDO</p>
             </button>
-            <button class="psme-rl-boton psme-rl-ubicacion" onclick="localBotonUbicacionEnMapa('${local.name}')" id="psme-rl-boton-ubicacion-${local.name}">
+            <button class="psme-rl-boton psme-rl-ubicacion" onclick="this.localBotonUbicacionEnMapa('${local.name}')" id="psme-rl-boton-ubicacion-${local.name}">
               <p>Abrir ubicación en mapa</p>
               ${iconoMap}
             </button>
