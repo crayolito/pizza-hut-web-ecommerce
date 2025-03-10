@@ -274,6 +274,8 @@ d{% layout 'none' %}
   class ClienteLocalizacion extends HTMLElement {
     constructor() {
       super();
+      this.mapaRecogerLocal = null;
+      this.mapaModalEnvioDomicilio = null;
       this.coordenadasBase = { lat: -17.783315017953004, lng: -63.18214577296119 };
       this.pizzaLocations = [
         { 
@@ -376,7 +378,7 @@ d{% layout 'none' %}
         }
       });
 
-      // Inicializar contenidos ocultoss
+      // Inicializar contenidos ocultos
       this.contenedorOpcionesRecogerLocal.style.display = 'none';
       this.contenedorOpcionesEnvioDomicilio.style.display = 'none';
       this.contenedorTotalModal.style.visibility = 'hidden';
@@ -396,6 +398,8 @@ d{% layout 'none' %}
         // Google Maps ya está disponible
         this.configurarAutocompletadoDirecciones();
       }
+
+    
     }
 
     // FUNCIONES RELACIONADAS A LA SELECCION => RECOGER EN LOCAL
@@ -420,12 +424,13 @@ d{% layout 'none' %}
         disableDefaultUI: false,
       };
       
-      const mapa = new google.maps.Map(this.contenedorMapaRecogerLocal, configuracionMapa);
+      {% comment %} const mapa = new google.maps.Map(this.contenedorMapaRecogerLocal, configuracionMapa); {% endcomment %}
+      this.mapaRecogerLocal = new google.maps.Map(this.contenedorMapaRecogerLocal, configuracionMapa);
 
       // Crear elemento que indique la ubicacion actual
       const marcadorUbicacionActual = new google.maps.Marker({
         position: this.coordenadasBase,
-        map: mapa,
+        map: this.mapaRecogerLocal,
         draggable: false,
         animation: google.maps.Animation.DROP,
       });
@@ -443,7 +448,7 @@ d{% layout 'none' %}
         // Crear el marcador con el icono personalizado
         const marcadorLocal = new google.maps.Marker({
           position: { lat: local.lat, lng: local.lng },
-          map: mapa,
+          map: this.mapaRecogerLocal,
           draggable: false,
           icon: iconoPersonalizado
         });
@@ -513,14 +518,7 @@ d{% layout 'none' %}
         // Verificar si el local está abierto
         const estaAbierto = horaActual >= local.horario.split('a')[0] && horaActual <= local.horario.split('a')[1];
         // Quitar espacios en blanco y convertir a minúsculas para el nombre del local
-        const nombreIdentificador = local.name
-            .normalize("NFD")   
-            .replace(/[\u0300-\u036f]/g, '')  
-            .replace(/[^a-zA-Z0-9]/g, '-')  
-            .replace(/-+/g, '-')  
-            .replace(/^-+|-+$/g, '')  
-            .toLowerCase();
-        console.log('Nombre identificador: ', nombreIdentificador);
+        const nombreIdentificador = this.obtenerNombreIdentificadorLocal(local.name);
         
         contenidoHTML += `
           <div class="psme-rl-local psme-rl-local-no-seleccionado" data-local="${nombreIdentificador}" id="psme-rl-local-${nombreIdentificador}">
@@ -660,7 +658,12 @@ d{% layout 'none' %}
         localSeleccionado.classList.add('psme-rl-local-seleccionado');
       }
 
-      // Actualizar en el mapa el marcador del local seleccionado
+      // Enfocar el local seleccionado en el mapa
+      const localSeleccionadoDatos = this.pizzaLocations.find(local => this.obtenerNombreIdentificadorLocal(local.name) === nombreLocal);
+      this.mapaRecogerLocal.panTo({
+        lat: localSeleccionadoDatos.lat,
+        lng: localSeleccionadoDatos.lng
+      });
     }
 
     localBotonEmpezarPedido(nombreLocal){
@@ -989,6 +992,17 @@ d{% layout 'none' %}
       this.botonOpcionRecogerLocal.classList.remove('psme-opcion-seleccionado');
       const iconoEstado = this.botonOpcionRecogerLocal.querySelector('.psme-icono-select');
       iconoEstado.innerHTML = `{% render 'icon-estado-off' %}`;
+    }
+
+    // Helpers para todo el componente
+    obtenerNombreIdentificadorLocal(nombreLocal){
+      return nombreLocal
+        .normalize("NFD")   
+        .replace(/[\u0300-\u036f]/g, '')  
+        .replace(/[^a-zA-Z0-9]/g, '-')  
+        .replace(/-+/g, '-')  
+        .replace(/^-+|-+$/g, '')  
+        .toLowerCase();   
     }
   }
 
