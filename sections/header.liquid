@@ -26,21 +26,61 @@
         {% render 'icon-search' %}
         <h3>Buscar</h3>
       </button>
-      <button class="h-boton-cambio-metodo-entrega">
+      <div class="h-boton-cambio-metodo-entrega">
         <div class="h-icono-metodo-entrega">
           {% render 'icon-pizza-metodo-entrega' %}
         </div>
         <h3>Local</h3>
-        <div class="h-icono-solocitud-metodo-entrega">
+        <button class="h-icono-solocitud-metodo-entrega">
           {% render 'icon-flecha-abajo' %}
-        </div>
-      </button>
+        </button>
+      </div>
       <button class="h-boton-carrito">
         {% render 'icon-carrito' %}
       </button>
       <button class="h-boton-menu">
         {% render 'icon-hamburguesa' %}
       </button>
+    </div>
+    <div class="h-enfocado-tablet-desktop">
+      <div class="h-logo-principal">
+        <img src="{{ 'logo-secondary-2.png' | asset_url }}" alt="Logo Secundario" width="100" height="100">
+      </div>
+      <nav class="h-nav-principal">
+        <a href="">
+          <h3>MENÚ</h3>
+        </a>
+        <a href="" class="h-nav-hutcoins">
+          <h3>PROMOCIONES</h3>
+          {% render 'icon-flecha-hutcoins' %}
+        </a>
+        <a href="">
+          <h3>SOBRE NOSOTROS</h3>
+        </a>
+      </nav>
+      <div class="h-sector-opciones-cliente">
+        <div class="h-input-buscar">
+          <input type="text" placeholder="Buscar">
+          {% render 'icon-search' %}
+        </div>
+        <hr>
+        <button class="h-icono-carrito">
+          {% render 'icon-carrito' %}
+        </button>
+        <hr>
+        <div class="h-sector-seleccion-metodo-entrega">
+          <p>Selecciona tu</p>
+          <div class="h-texto-metodo-entrega">
+            <h4>Método de entrega</h4>
+            {% render 'icon-pizza-metodo-entrega' %}
+          </div>
+        </div>
+        <hr>
+        <button class="h-boton-usuario">
+          <h3>INICIAR SESIÓN</h3>
+          {% render 'icon-perfil-usuario' %}
+        </button>
+      </div>
     </div>
   </header>
 </sticky-header>
