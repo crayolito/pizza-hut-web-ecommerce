@@ -848,16 +848,16 @@ d{% layout 'none' %}
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
           (position) => {
-             try{
+            try {
               const miUbicacion = {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude,
               };
-
+      
               marcadorMovible.setPosition(miUbicacion);
               mapa.panTo(miUbicacion);
               this.coordenadas = miUbicacion;
-            }catch{
+            } catch (error) {  // Añadir el parámetro 'error' aquí
               alert('Error al obtener la ubicación: Por favor, verifique la ubicación de su dispositivo');
               console.log('Error al obtener la ubicación 1: ', error);
             }
