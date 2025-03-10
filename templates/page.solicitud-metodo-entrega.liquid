@@ -514,7 +514,7 @@ d{% layout 'none' %}
         const estaAbierto = horaActual >= local.horario.split('a')[0] && horaActual <= local.horario.split('a')[1];
         
         contenidoHTML += `
-          <div class="psme-rl-local psme-rl-local-no-seleccionado" onclick="this.localSeleccionado('${local.name}')" id="psme-rl-local-${local.name}">
+          <div class="psme-rl-local psme-rl-local-no-seleccionado" data-local="${local.name}" id="psme-rl-local-${local.name}">
             <div class="psme-rl-titulos">
               <h3>SANTA CRUZ</h3>
               <h3 style="color: #C8102E;">${local.localizacion}</h3>
@@ -570,10 +570,18 @@ d{% layout 'none' %}
           contenidoHTML += `
               </div>
             </div>
-            <button class="psme-rl-boton psme-rl-empezar" onclick="this.localBotonEmpezarPedido('${local.name}')" id="psme-rl-boton-empezar-${local.name}">
+            <button 
+              class="psme-rl-boton psme-rl-empezar" 
+              data-accion="empezar" 
+              data-local="${local.name}"  
+              id="psme-rl-boton-empezar-${local.name}">
               <p>EMPEZAR MI PEDIDO</p>
             </button>
-            <button class="psme-rl-boton psme-rl-ubicacion" onclick="this.localBotonUbicacionEnMapa('${local.name}')" id="psme-rl-boton-ubicacion-${local.name}">
+            <button 
+              class="psme-rl-boton psme-rl-ubicacion"
+              data-accion="ubicacion" 
+              data-local="${local.name}"  
+              id="psme-rl-boton-ubicacion-${local.name}">
               <p>Abrir ubicación en mapa</p>
               ${iconoMap}
             </button>
@@ -582,15 +590,75 @@ d{% layout 'none' %}
       });
     
       this.contenedorListaLocales.innerHTML = contenidoHTML;
+
+      // Configurar el evento delegado después de crear el HTML  => METODO DELEGACION DE EVENTOS
+      this.configurarEventosLocales();
+    }
+
+    configurarEventosLocales(){
+      // Eliminar el evento click del contenedor de locales
+      this.contenedorListaLocales.removeEventListener('click', this._manejarEventoLocales);
+
+      // Creamos una función de manejo de eventos y la guardamos como propiedad de la clase
+      // para poder eliminarla más tarde si es necesario
+      this._manejarEventoLocales = (event) => {
+        // 1. Verificar si se hizo clic en un botón específico
+        const boton = event.target.closest('.psme-rl-boton');
+        if (boton) {
+          const nombreLocal = boton.dataset.local;
+          const accion = boton.dataset.accion;
+
+          // Ejecutar la acción según el tipo de botón
+          if (accion === 'empezar') {
+            this.localBotonEmpezarPedido(nombreLocal);
+            // Evita que el clic llegue al contenedor local
+            event.stopPropagation(); 
+            return;
+          } else if (accion === 'ubicacion') {
+            this.localBotonUbicacionEnMapa(nombreLocal);
+            // Evita que el clic llegue al contenedor local
+            event.stopPropagation(); 
+            return;
+          }
+        }
+
+        // 2. Si no fue un botón, verificar si se hizo click en el área del local
+        const localElement = event.target.closest('.psme-rl-local');
+        if (localElement) {
+          const nombreLocal = localElement.dataset.local;
+          this.localSeleccionado(nombreLocal);
+        }
+      };
+
+      // Agregamos el event listener al contenedor
+      this.contenedorListaLocales.addEventListener('click', this._manejarEventoLocales);
     }
 
     localSeleccionado(nombreLocal){
-      console.log('Entra a localSeleccionado : ', nombreLocal);
+      console.log('Entra a localSeleccionado: ', nombreLocal);
+
+      // Quitar la clase seleccionado a todos los locales
+      const locales = this.contenedorListaLocales.querySelectorAll('.psme-rl-local');
+      locales.forEach(local => {
+        local.classList.remove('psme-rl-local-seleccionado');
+        local.classList.add('psme-rl-local-no-seleccionado');
+      });
+
+      // Marcar el local seleccionado
+      const localSeleccionado = this.querySelector(`#psme-rl-local-${nombreLocal}`);
+      if (localSeleccionado) {
+        localSeleccionado.classList.remove('psme-rl-local-no-seleccionado');
+        localSeleccionado.classList.add('psme-rl-local-seleccionado');
+      }
     }
 
-    localBotonEmpezarPedido(nombreLocal){}
+    localBotonEmpezarPedido(nombreLocal){
+      console.log('Boton empezar pedido presionado: ', nombreLocal);
+    }
 
-    localBotonUbicacionEnMapa(nombreLocal){}
+    localBotonUbicacionEnMapa(nombreLocal){
+      console.log('Boton ubicacion en mapa presionado: ', nombreLocal);
+    }
 
     actualizarElementosSeleccionLocal() {}
 
