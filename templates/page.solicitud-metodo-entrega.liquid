@@ -1036,10 +1036,12 @@ d{% layout 'none' %}
         this.desactivarBotonEnvioDomicilio();
       }
 
+
+      // Crear elementos de seleccion de local
+      console.log('Se ejecuto el metodo crearElementosSeleccionLocal');
+      this.crearElementosSeleccionLocal();
       // Inicializar mapa para el modo de recogida en local
       this.inicializarMapaRecogerLocal();
-      // Crear elementos de seleccion de local
-      this.crearElementosSeleccionLocal();
       // Verificar si cumple con los requisitos para activar el boton siguiente
       this.verificarActivacionBotonSiguientePrincipal();
     }
