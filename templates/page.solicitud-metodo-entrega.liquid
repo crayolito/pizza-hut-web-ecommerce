@@ -514,6 +514,7 @@ d{% layout 'none' %}
         const estaAbierto = horaActual >= local.horario.split('a')[0] && horaActual <= local.horario.split('a')[1];
         // Quitar espacios en blanco y convertir a minúsculas para el nombre del local
         const nombreIdentificador = local.name.trim().toLowerCase();
+        console.log('Nombre identificador: ', nombreIdentificador);
         
         contenidoHTML += `
           <div class="psme-rl-local psme-rl-local-no-seleccionado" data-local="${nombreIdentificador}" id="psme-rl-local-${nombreIdentificador}">
