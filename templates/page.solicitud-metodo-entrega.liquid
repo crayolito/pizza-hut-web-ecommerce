@@ -454,12 +454,16 @@ d{% layout 'none' %}
         });
     
         // Almacenar información personalizada en el marcador
-        marcadorLocal.set('infoLocal', JSON.stringify(local));
+        {% comment %} marcadorLocal.set('infoLocal', JSON.stringify(local)); {% endcomment %}
+
+        // Sacar el nombre del local y guardarlo en el marcador en formato
+        marcadorLocal.set('nombreLocal', this.obtenerNombreIdentificadorLocal(local.name));
     
         // Añadir evento para mostrar la información en la consola al hacer clic
         google.maps.event.addListener(marcadorLocal, 'click', function() {
-          console.log('Información del local:', this.get('infoLocal'));
-          
+          {% comment %} console.log('Información del local:', this.get('infoLocal')); {% endcomment %}
+          console.log('Nombre del local:', this.get('nombreLocal'));
+
           // CAMBIO IMPORTANTE: Acceder al contexto de la clase mediante una variable
           const nombreLocal = JSON.parse(this.get('infoLocal')).name;
           self.localSeleccionado(nombreLocal);
