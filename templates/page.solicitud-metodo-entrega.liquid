@@ -892,6 +892,8 @@ d{% layout 'none' %}
     }
 
     seleccionarDireccion(sugerencia) {
+      this.controlSeleccionInput = true;
+
       // Actualizar el valor del input
       this.inputDireccion.value = sugerencia.description;
       
@@ -919,14 +921,9 @@ d{% layout 'none' %}
     }
 
     controlActivacionSiguienteEnvioDomicilio(){
-      console.log('Entra a controlActivacionSiguienteEnvioDomicilio');
-      console.log('Valor del input direccion: ', this.inputDireccion.value);
       if(this.inputDireccion.value === ''){
-        console.log('Entra a if de controlActivacionSiguienteEnvioDomicilio');
         this.botonSiguienteOpcion.disabled = true;
-        this.controlSeleccionInput = false;
       }else{
-        console.log('Entra a else de controlActivacionSiguienteEnvioDomicilio');
         this.botonSiguienteOpcion.disabled = false;
         this.controlSeleccionInput = true;
       }
@@ -983,7 +980,7 @@ d{% layout 'none' %}
       // 4. Pedir la ubicacion del usuario y actualizar el marcador a esa posicionn
       console.log('this.controlSeleccionInput: ', this.controlSeleccionInput);
       console.log('this.inputDireccion.value: ', this.inputDireccion.value);
-      if(this.controlSeleccionInput == false && this.inputDireccion.value === '') return;
+      if(this.controlSeleccionInput != false && this.inputDireccion.value === '') return;
       console.log('Continua con la ejecucion del codigo de inicializarMapaEnvioDomicilio');
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
