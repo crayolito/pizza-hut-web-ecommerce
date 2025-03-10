@@ -130,13 +130,13 @@
 .h-input-buscar {
   display: flex;
   align-items: center;
-  gap: var(--espaciado-xxl);
-}
-
-.h-input-buscar {
-  display: flex;
-  width: 12.5rem;
   gap: var(--espaciado-xs);
+  height: 3rem;
+  width: 12.5rem;
+  padding: var(--espaciado-xl);
+  border-radius: var(--espaciado-xs);
+  border: 1.5px solid #6e6e6e;
+  background: var(--colorp-secondary);
 }
 
 .h-boton-usuario {
@@ -156,8 +156,7 @@
 }
 
 hr {
-  width: 2.625rem;
-  height: 0rem;
+  height: 2.625rem;
   background: #dedede;
 }
 
