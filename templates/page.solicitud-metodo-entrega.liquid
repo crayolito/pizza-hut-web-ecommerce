@@ -941,6 +941,8 @@ d{% layout 'none' %}
         return;
       }
 
+      console.log('Entra a inicializarMapaEnvioDomicilio : ', this.coordenadas);
+
       const configuracionMapa =  {
         center: this.coordenadas,
         zoom: 16,
