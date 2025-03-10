@@ -362,7 +362,6 @@ d{% layout 'none' %}
       this.inputDireccion = this.querySelector('#psme-input-direccion');
       this.contenedorSugerencias = this.querySelector('#psme-sugerencias-direccion');
 
-
       // Asignar event listeners
       this.botonOpcionRecogerLocal.addEventListener('click', this.accionBotonRecogerLocal.bind(this));
       this.botonOpcionEnvioDomicilio.addEventListener('click', this.accionBotonEnvioDomicilio.bind(this));
@@ -383,7 +382,10 @@ d{% layout 'none' %}
       this.contenedorOpcionesEnvioDomicilio.style.display = 'none';
       this.contenedorTotalModal.style.visibility = 'hidden';
       this.verificarActivacionBotonSiguientePrincipal();
-      {% comment %} this.configurarAutocompletadoDirecciones(); {% endcomment %}
+      // Actualizar la variable this.coordenadas si es que hay en el localstorage
+      if (localStorage.getItem('ubicacion-cliente')) {
+        this.coordenadas = JSON.parse(localStorage.getItem('ubicacion-cliente'));
+      }
       if (typeof google === 'undefined') {
         console.log('Google Maps aún no está cargado, esperando...');
         // Esperar a que Google Maps se cargue
@@ -398,8 +400,6 @@ d{% layout 'none' %}
         // Google Maps ya está disponible
         this.configurarAutocompletadoDirecciones();
       }
-
-    
     }
 
     // FUNCIONES RELACIONADAS A LA SELECCION => RECOGER EN LOCAL
@@ -489,7 +489,7 @@ d{% layout 'none' %}
               this.coordenadas = miUbicacion;
     
               // Actualizar la lista de locales
-              this.crearElementosSeleccionLocal();
+              this.actualizarElementosSeleccionLocal();
             } catch (error) {  
               alert('Error al obtener la ubicación: Por favor, verifique la ubicación de su dispositivo');
               console.log('Error al obtener la ubicación 1: ', error);
@@ -516,8 +516,11 @@ d{% layout 'none' %}
       const horaActual = new Date().getHours();
     
       let contenidoHTML = ``;
+
+      // Lista nueva de locales ordenados deacuerdo a this.coordenadas
+      const listaLocalesOrdenados = this.ordenarLocalesPorDistancia();
     
-      this.pizzaLocations.forEach(local => {
+      listaLocalesOrdenados.forEach(local => {
         // Verificar si el local está abierto
         const estaAbierto = horaActual >= local.horario.split('a')[0] && horaActual <= local.horario.split('a')[1];
         // Quitar espacios en blanco y convertir a minúsculas para el nombre del local
@@ -691,7 +694,82 @@ d{% layout 'none' %}
       console.log('Boton ubicacion en mapa presionado: ', nombreLocal);
     }
 
-    actualizarElementosSeleccionLocal() {}
+    actualizarElementosSeleccionLocal() {
+      // Obtener los locales ordenados por distancia
+      const listaLocalesOrdenados = this.ordenarLocalesPorDistancia();
+
+      // Obtener referncias a todos los elementos de local existentes
+      const elementosLocales = Array.from(this.contenedorListaLocales.querySelectorAll('.psme-rl-local'));
+
+      // No hay elementos para reordenar, posiblemente sea la primera carga 
+      if (elementosLocales.length === 0) {
+        this.crearElementosSeleccionLocal();
+        return;
+      }
+
+      // Crear un mapa para asociar el  nombre del local con su elemento DOM 
+      const mapaNombreAElemento = {};
+      elementosLocales.forEach(elemento => {
+        const nombreLocal = elemento.dataset.local;
+
+        // Desconectar el elemento del DOM para manipularlo sin causar reflows
+        const elementoClonado = elemento.cloneNode(true);
+        mapaNombreAElemento[nombreLocal] = elementoClonado;
+        // No eliminamos el original todavia
+      });
+
+      // Crear un fragmento para minimizar reflows
+      // Este es un objeto DOM ligero que sirve como contenedor
+      // temporal para añadir elementos sin causar reflows
+      const fragmento = document.createDocumentFragment();
+      
+      // Reconstruir la lista en el orden correcto
+      listaLocalesOrdenados.forEach(local => {
+        const nombreIdentificador = this.obtenerNombreIdentificadorLocal(local.name);
+        const elementoLocal = mapaNombreAElemento[nombreIdentificador];
+
+        if (elementoLocal) {
+          // Vericicar si el estao de apertura ha cambiado y actualizar si es necesario 
+          const horaActual = new Date().getHours();
+          const estaAbierto = horaActual >= parseInt(local.horario.split('a')[0]) && 
+          horaActual <= parseInt(local.horario.split('a')[1]);
+
+          const divDisponibilidad = elementoLocal.querySelector('.psme-rl-disponibilidad-info');
+          if (divDisponibilidad) {
+            if (estaAbierto && divDisponibilidad.classList.contains('psme-rl-cerrado')) {
+              divDisponibilidad.classList.remove('psme-rl-cerrado');
+              divDisponibilidad.classList.add('psme-rl-abierto');
+              divDisponibilidad.querySelector('p').textContent = 'ABIERTO';
+            } else if (!estaAbierto && divDisponibilidad.classList.contains('psme-rl-abierto')) {
+              divDisponibilidad.classList.remove('psme-rl-abierto');
+              divDisponibilidad.classList.add('psme-rl-cerrado');
+              divDisponibilidad.querySelector('p').textContent = 'CERRADO';
+            }
+          }
+
+          // Esta linea agrega el elemenot clonado al fragmento (no al DOM todavia).
+          fragmento.appendChild(elementoLocal);
+        }
+
+        // Calcular la distancia actual y mostrarla si deseas (opcional)
+        {% comment %} const distancia = this.calcularDistancia(this.coordenadas, { lat: local.lat, lng: local.lng }); {% endcomment %}
+        // Podrías añadir un elemento para mostrar esta distancia si lo deseas
+      });
+
+      // Vaciar el contenedor y añadir el fragmento de una sola vez
+      this.contenedorListaLocales.innerHTML = '';
+      this.contenedorListaLocales.appendChild(fragmento);
+      
+      // Reconfigurar eventos
+      this.configurarEventosLocales();
+
+      // Si hay algún local seleccionado previamente, mantener su selección
+      const localSeleccionadoElement = this.contenedorListaLocales.querySelector('.psme-rl-local-seleccionado');
+      if (localSeleccionadoElement) {
+        const nombreLocal = localSeleccionadoElement.dataset.local;
+        this.localSeleccionado(nombreLocal);
+      }
+    }
 
     // FUNCIONES RELACIONADAS A LA SELECCION => ENVIO A DOMICILIO
 
@@ -1021,6 +1099,26 @@ d{% layout 'none' %}
         .replace(/^-+|-+$/g, '')  
         .toLowerCase();   
     }
+
+    ordenarLocalesPorDistancia(){
+      return this.pizzaLocations.sort((a, b) => {
+        const distanciaA = this.calcularDistancia(this.coordenadas, { lat: a.lat, lng: a.lng });
+        const distanciaB = this.calcularDistancia(this.coordenadas, { lat: b.lat, lng: b.lng });
+        return distanciaA - distanciaB;
+      });
+    }
+
+    calcularDistancia(coordenadas1, coordenadas2) {
+      const radioTierra = 6371; // Radio de la Tierra en kilómetros
+      const dLat = (coordenadas2.lat - coordenadas1.lat) * (Math.PI / 180);
+      const dLng = (coordenadas2.lng - coordenadas1.lng) * (Math.PI / 180);
+
+      const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(coordenadas1.lat * (Math.PI / 180)) * Math.cos(coordenadas2.lat * (Math.PI / 180)) *
+      Math.sin(dLng / 2) * Math.sin(dLng / 2);
+      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+      return radioTierra * c; // Distancia en kilómetros
+    }
   }
 
   customElements.define('cliente-localizacion', ClienteLocalizacion);
@@ -1028,13 +1126,7 @@ d{% layout 'none' %}
 
 {% comment %}
   TAREAS PARA TERMINAR
-  - Activar el modal en el envio a domicilio
-    - Hacer mapa del modal con el Usar mi ubicacion actual
-    - Hacer el input se direccion dinamica
   - Activar el mapa en el recoger local
-    - Hacer la creacion dinamica elementos de seleccion de local
-    - Ordenar locales por distancia (coordenadas) default - cliente
-    - Hacer marcadores dinamicos que click recoordenen la lista de locales
-    - Hacer que la lista que la lista haga el mapa dinamico
-    - Seleccion de local y peticion de datos del local (todos los locales - o uno en especifico)
+    - Reordenar los locales por la distancia default - cliente
+    - Hacer click al marcador del local y que se enfoque en la lista de locales y se seleccione el local
 {% endcomment %}
