@@ -20,7 +20,7 @@
     {{ 'variables.css' | asset_url | stylesheet_tag }}
 
     {%- if settings.favicon != blank -%}
-      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+      <link rel="icon" type="logo-sauce-only-1.png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
     {%- endif -%}
 
     {%- unless settings.type_header_font.system? and settings.type_body_font.system? -%}
@@ -38,8 +38,48 @@
 
     {% style %}
       :root {
-        --fuente-principal: 'League Gothic', sans-serif;
-        --fuente-letra-secundaria: 'Montserrat', sans-serif;
+        --fuente-primary: 'League Gothic', sans-serif;
+        --fuente-secondary: 'Montserrat', sans-serif;
+        /* Colores Primarios */
+        --colorp-primary: #c8102e;
+        --colorp-secondary: #ffffff;
+        --colorp-tertiary: #231f20;
+        /* Colores Acento */
+        --colora-primary: #e6b991;
+        --colora-secondary: #a50a23;
+        --colora-tertiary: #231f20;
+
+        /* Colores de bordes */
+        --colorb-primary: #969696;
+
+        /* Tamaños de fuente responsivos con clamp() */
+        --font-size-h1: clamp(2.5rem, 5vw, 3rem);
+        --font-size-h2: clamp(2rem, 4vw, 2.25rem);
+        --font-size-h3: clamp(1.5rem, 3.5vw, 2rem);
+        --font-size-h4: clamp(1.25rem, 3vw, 1.5rem);
+        --font-size-p: clamp(0.875rem, 2vw, 1rem);
+
+        /* Letter spacing responsivo asasd*/
+        --letter-spacing-h1: clamp(-0.05rem, -0.1vw, -0.06rem);
+        --letter-spacing-h2: clamp(-0.04rem, -0.09vw, -0.045rem);
+        --letter-spacing-h3: clamp(-0.03rem, -0.08vw, -0.04rem);
+        --letter-spacing-h4: clamp(-0.025rem, -0.07vw, -0.03rem);
+
+        /* Sistema de espaciado */
+        --espaciado-xs: 0.25rem;
+        --espaciado-s: 0.5rem;
+        --espaciado-m: 0.75rem;
+        --espaciado-l: 1rem;
+        --espaciado-xl: 1.25rem;
+        --espaciado-xxl: 1.5rem;
+        --espaciado-xxxl: 3rem;
+        --espaciado-big: 4rem;
+
+        /* Bordes Radius */
+        --border-radius-1: 0.25rem;
+        --border-radius-2: 0.5rem;
+        --border-radius-3: 0.625rem;
+        --border-radius-4: 6.25rem;
       }
 
       *,
@@ -49,26 +89,76 @@
       }
 
       html {
-        box-sizing: border-box;
-        font-size: 16px;
+        width: 100%;
         height: 100%;
+        box-sizing: border-box;
+        font-family: var(--fuente-primary);
+        font-size: 16px;
+        scroll-behavior: smooth;
       }
 
-      body,
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6,
-      p,
-      figure,
-      blockquote,
-      dl,
-      dd {
+      body {
+        width: 100%;
+        height: 100%;
         margin: 0;
+        overflow-x: hidden;
+        color: var(--text-color);
       }
 
+      h1 {
+        margin: 0;
+        font-family: var(--fuente-primary);
+        font-size: var(--font-size-h1);
+        font-style: normal;
+        font-weight: 400;
+        line-height: 100%;
+        letter-spacing: var(--letter-spacing-h1);
+        text-transform: uppercase;
+      }
+
+      h2 {
+        margin: 0;
+        font-family: var(--fuente-primary);
+        font-size: var(--font-size-h2);
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        letter-spacing: var(--letter-spacing-h2);
+        text-transform: uppercase;
+      }
+
+      h3 {
+        margin: 0;
+        font-family: var(--fuente-primary);
+        font-size: var(--font-size-h3);
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        letter-spacing: var(--letter-spacing-h3);
+        text-transform: uppercase;
+      }
+
+      h4 {
+        margin: 0;
+        font-family: var(--fuente-primary);
+        font-size: var(--font-size-h4);
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        letter-spacing: var(--letter-spacing-h4);
+        text-transform: uppercase;
+      }
+
+      p {
+        margin: 0;
+        font-family: Montserrat, sans-serif;
+        font-size: var(--font-size-p);
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+      }
+
+      li,
       ul,
       ol {
         margin: 0;
@@ -76,155 +166,45 @@
         list-style: none;
       }
 
-      /* h4 {
-            font-family: var(--fuente-principal);
-            font-size: 1.5rem;
-            font-style: normal;
-            font-weight: 400;
-            line-height: 1.6875rem;
-            letter-spacing: -0.03rem;
-            text-transform: uppercase;
-          }
-
-          h3 {
-            font-family: var(--fuente-principal);
-            font-size: 2rem;
-            font-style: normal;
-            font-weight: 400;
-            line-height: normal;
-            letter-spacing: -0.04rem;
-            text-transform: uppercase;
-          }
-
-          h2 {
-            font-family: var(--fuente-principal);
-            font-size: 2.25rem;
-            font-style: normal;
-            line-height: normal;
-            text-transform: uppercase;
-          }
-
-          p {
-            font-family: var(--fuente-letra-secundaria);
-            font-size: 1rem;
-            font-style: normal;
-            font-weight: 400;
-            line-height: 1.6875rem;
-          }
-
-          a {
-            text-decoration: none;
-            color: inherit;
-            cursor: pointer;
-          }
-
-          input {
-            font-family: var(--fuente-letra-secundaria);  
-            font-size: clamp(0.88rem, 0.8rem + 0.2vw, 1.09rem);
-            line-height: 1.6875rem; 
-            margin: 0;
-            padding: 0; 
-            border: none; 
-            outline: none; 
-            background: transparent;
-            width: 100%;
-          } */
-
-      body {
-        display: grid;
-        grid-template-rows: auto auto 1fr auto;
-        grid-template-columns: 100%;
-        min-height: 100%;
-        margin: 0;
-        letter-spacing: 0.06rem;
-      }
-
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6,
-      p,
-      ul,
-      ol,
-      span {
-        margin: 0;
-        padding: 0;
-      }
-
-      /* svg {
-            width: 24px !important;
-            height: 24px !important;
-      } 
-      */
-
-      h4 {
-        font-family: var(--fuente-principal);
-        font-size: clamp(18px, 2vw + 16px, 24px);
-        font-style: normal;
-        font-weight: 400;
-        line-height: clamp(19px, 1.12vw + 11px, 35px);
-        letter-spacing: -0.48px;
-        text-transform: uppercase;
-      }
-
-      h3 {
-        font-family: var(--fuente-principal);
-        font-size: clamp(1rem, 1rem + 0.89vw, 2rem);
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-        letter-spacing: clamp(-0.02rem, -0.02rem - 0.018vw, -0.04rem);
-        text-transform: uppercase;
-      }
-
-      h2 {
-        font-family: var(--fuente-principal);
-        font-size: clamp(1.13rem, 1.13rem + 1vw, 2.25rem);
-        font-style: normal;
-        line-height: normal;
-        text-transform: uppercase;
-      }
-
-      p {
-        font-family: var(--fuente-secundaria);
-        font-size: clamp(14px, 1vw + 14px, 16px);
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-      }
-
-      a {
-        text-decoration: none;
-        line-height: normal;
-        color: inherit;
-        cursor: pointer;
-      }
-
       input {
-        font-family: var(--fuente-secundaria);
-        font-size: clamp(14px, 1vw + 14px, 16px);
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-        margin: 0;
-        padding: 0;
-        border: none;
-        outline: none;
-        background: transparent;
+        font-family: var(--fuente-secondary);
         width: 100%;
+        border: 0;
+      }
+
+      input:focus {
+        outline: none;
       }
 
       button {
-        border: none;
-        background: transparent;
         cursor: pointer;
+        background: transparent;
+        border: none;
+        padding: 0;
+        margin: 0;
       }
 
-      svg {
-        width: 24px;
-        height: 24px;
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+
+      @media screen and (min-width: 350px) and (max-width: 380px) {
+        html {
+          font-size: 13px;
+        }
+      }
+
+      @media screen and (min-width: 800px) and (max-width: 960px) {
+        html {
+          font-size: 14.5px;
+        }
+      }
+
+      @media screen and (min-width: 1440px) {
+        html {
+          font-size: 17.5px;
+        }
       }
 
       /* 
@@ -281,124 +261,125 @@
   </body>
 </html>
 
-{% comment %} 
-<body style="font-family: var(--fuente-principal);">
-  <div class="p-sme-contenedor-base">
-    <div class="p-sme-pizza-background">
-      <img src="{{ 'img-aux-background-solicitud-entrega.png' | asset_url }}" alt="Logo Pizza Hut">
-    </div>
-    <div class="p-sme-pizza-logo">
-      <img src="{{ 'logo-pizza-hut.png' | asset_url }}" alt="Logo Pizza Hut">
-    </div>
-    <div class="p-sme-informacion-seleccion-cliente">
-      <div class="p-sme-menesajes-informacion-cliente">
-        <span class="p-sme-titulo-principal">¿cómo quieres recibir tu pizza?</span>
-        <p class="p-sme-texto-descripcion">
-          Elige si la llevamos hasta la puerta de tu casa o si prefieres recogerla tú mismo desde nuestro local más
-          cercano.
-        </p>
+{% comment %}
+  <body style="font-family: var(--fuente-principal);">
+    <div class="p-sme-contenedor-base">
+      <div class="p-sme-pizza-background">
+        <img src="{{ 'img-aux-background-solicitud-entrega.png' | asset_url }}" alt="Logo Pizza Hut">
       </div>
-
-      <div class="p-sme-seccion-seleccion-cliente">
-        <button class="p-sme-boton-recoger-local">
-          <div class="p-sme-icono-recogo-local">
-            {% render 'icon-recogo-local' %}
-          </div>
-          <div class="p-sme-texto-boton-recoger-local">
-            <p class="p-sme-texto-boton-titulo">Recoger en local</p>
-            <p class="p-sme-texto-boton-subtitulo">Sin costo alguno</p>
-          </div>
-          <div class="p-sme-icono-selecionado">
-            {% render 'icon-estado-off' %}
-          </div>
-        </button>
-
-        <button class="p-sme-boton-envio-domicilio">
-          <div class="p-sme-icono-envio-domicilio">
-            {% render 'icon-recogo-delivery' %}
-          </div>
-          <div class="p-sme-texto-boton-recoger-local">
-            <p class="p-sme-texto-boton-titulo">Envío a domicilio</p>
-            <p class="p-sme-texto-boton-subtitulo">Envio a solo Bs 2</p>
-          </div>
-          <div class="p-sme-icono-selecionado">
-            {% render 'icon-estado-off' %}
-          </div>
-        </button>
+      <div class="p-sme-pizza-logo">
+        <img src="{{ 'logo-pizza-hut.png' | asset_url }}" alt="Logo Pizza Hut">
       </div>
-    </div>
-    <div class="p-sme-opciones-cliente">
-      <div class="p-sme-opciones-cliente-contenido">
-        <button class="p-sme-boton-omitir">
-          <p class="p-sme-texto-omitir">OMITIR</p>
-          {% render 'icon-close-rojo' %}
-        </button>
-        <button class="p-sme-boton-siguiente">
-          <p class="p-sme-texto-siguiente">Siguiente</p>
-        </button>
-      </div>
-    </div>
-    <div
-      style="
-        width: 300px;
-        height: 405px;
-        background-color: red;
-        display: flex;
-        position: absolute;
-        top: 28.99rem;
-        left: 50%;
-        transform: translateX(-50%);
-      "
-      class="p-sme-contenido-recogida-local"
-    ></div>
-    <div id="p-sme-boton-abrir-modal-mapa" class="p-sme-contenido-envio-domicilio">
-      <p>Ingresa una dirección o usa tu ubicación actual</p>
-      <button id="p-sme-boton-ubicacion-actual">
-        {% render 'icon-gps-rojo' %}
-        <p>Usar mi ubicación actual</p>
-      </button>
-      <div class="p-sme-decoracion-contenedor">
-        <hr>
-        <p>O</p>
-        <hr>
-      </div>
-      <div class="p-sme-contenedor-input-direccion">
-        {% render 'icon-location-on-negro' %}
-        <input type="text" placeholder="Ingresa dirección o punto de referencia">
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal para selección de ubicación -->
-  <div class="p-sme-modal-mapa-envio-domicilio">
-    <div class="p-sme-modal">
-      <div class="p-sme-modal-header">
-        <div class="p-sme-modal-pizza-logo">
-          <img src="{{ 'logo-pizza-hut.png' | asset_url }}" alt="Logo Pizza Hut">
+      <div class="p-sme-informacion-seleccion-cliente">
+        <div class="p-sme-menesajes-informacion-cliente">
+          <span class="p-sme-titulo-principal">¿cómo quieres recibir tu pizza?</span>
+          <p class="p-sme-texto-descripcion">
+            Elige si la llevamos hasta la puerta de tu casa o si prefieres recogerla tú mismo desde nuestro local más
+            cercano.
+          </p>
         </div>
-        <div class="p-sme-informacion-seleccion-cliente-modal">
-          <div class="p-sme-menesajes-informacion-cliente-modal">
-            <span class="p-sme-titulo-principal-modal">¿cómo quieres recibir tu pizza?</span>
-            <p class="p-sme-texto-descripcion-modal">
-              Elige si la llevamos hasta la puerta de tu casa o si prefieres recogerla tú mismo desde nuestro local
-              más cercano.
-            </p>
-          </div>
-          <div class="p-sme-seccion-mensaje-modal">
-            {% render 'icon-info' %}
-            <p class="p-sme-texto-descripcion-modal">Seleccionar dirección en el mapa o en la lista</p>
-          </div>
+
+        <div class="p-sme-seccion-seleccion-cliente">
+          <button class="p-sme-boton-recoger-local">
+            <div class="p-sme-icono-recogo-local">
+              {% render 'icon-recogo-local' %}
+            </div>
+            <div class="p-sme-texto-boton-recoger-local">
+              <p class="p-sme-texto-boton-titulo">Recoger en local</p>
+              <p class="p-sme-texto-boton-subtitulo">Sin costo alguno</p>
+            </div>
+            <div class="p-sme-icono-selecionado">
+              {% render 'icon-estado-off' %}
+            </div>
+          </button>
+
+          <button class="p-sme-boton-envio-domicilio">
+            <div class="p-sme-icono-envio-domicilio">
+              {% render 'icon-recogo-delivery' %}
+            </div>
+            <div class="p-sme-texto-boton-recoger-local">
+              <p class="p-sme-texto-boton-titulo">Envío a domicilio</p>
+              <p class="p-sme-texto-boton-subtitulo">Envio a solo Bs 2</p>
+            </div>
+            <div class="p-sme-icono-selecionado">
+              {% render 'icon-estado-off' %}
+            </div>
+          </button>
         </div>
       </div>
-      <div class="p-sme-mapa"></div>
-      <div class="p-sme-modal-footer">
-        <button id="p-sme-boton-cerrar-modal" class="p-sme-boton-cerrar">
-          <p>Cerrar</p>
+      <div class="p-sme-opciones-cliente">
+        <div class="p-sme-opciones-cliente-contenido">
+          <button class="p-sme-boton-omitir">
+            <p class="p-sme-texto-omitir">OMITIR</p>
+            {% render 'icon-close-rojo' %}
+          </button>
+          <button class="p-sme-boton-siguiente">
+            <p class="p-sme-texto-siguiente">Siguiente</p>
+          </button>
+        </div>
+      </div>
+      <div
+        style="
+          width: 300px;
+          height: 405px;
+          background-color: red;
+          display: flex;
+          position: absolute;
+          top: 28.99rem;
+          left: 50%;
+          transform: translateX(-50%);
+        "
+        class="p-sme-contenido-recogida-local"
+      ></div>
+      <div id="p-sme-boton-abrir-modal-mapa" class="p-sme-contenido-envio-domicilio">
+        <p>Ingresa una dirección o usa tu ubicación actual</p>
+        <button id="p-sme-boton-ubicacion-actual">
+          {% render 'icon-gps-rojo' %}
+          <p>Usar mi ubicación actual</p>
         </button>
-        <button id="p-sme-boton-confirmar-modal" class="p-sme-boton-confirmar">
-          <p>Confirmar Dirección</p>
-        </button>
+        <div class="p-sme-decoracion-contenedor">
+          <hr>
+          <p>O</p>
+          <hr>
+        </div>
+        <div class="p-sme-contenedor-input-direccion">
+          {% render 'icon-location-on-negro' %}
+          <input type="text" placeholder="Ingresa dirección o punto de referencia">
+        </div>
       </div>
     </div>
-  </div>
-</body> {% endcomment %}
+
+    <!-- Modal para selección de ubicación -->
+    <div class="p-sme-modal-mapa-envio-domicilio">
+      <div class="p-sme-modal">
+        <div class="p-sme-modal-header">
+          <div class="p-sme-modal-pizza-logo">
+            <img src="{{ 'logo-pizza-hut.png' | asset_url }}" alt="Logo Pizza Hut">
+          </div>
+          <div class="p-sme-informacion-seleccion-cliente-modal">
+            <div class="p-sme-menesajes-informacion-cliente-modal">
+              <span class="p-sme-titulo-principal-modal">¿cómo quieres recibir tu pizza?</span>
+              <p class="p-sme-texto-descripcion-modal">
+                Elige si la llevamos hasta la puerta de tu casa o si prefieres recogerla tú mismo desde nuestro local
+                más cercano.
+              </p>
+            </div>
+            <div class="p-sme-seccion-mensaje-modal">
+              {% render 'icon-info' %}
+              <p class="p-sme-texto-descripcion-modal">Seleccionar dirección en el mapa o en la lista</p>
+            </div>
+          </div>
+        </div>
+        <div class="p-sme-mapa"></div>
+        <div class="p-sme-modal-footer">
+          <button id="p-sme-boton-cerrar-modal" class="p-sme-boton-cerrar">
+            <p>Cerrar</p>
+          </button>
+          <button id="p-sme-boton-confirmar-modal" class="p-sme-boton-confirmar">
+            <p>Confirmar Dirección</p>
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+{% endcomment %}

@@ -20,6 +20,10 @@
       rel="stylesheet"
     >
 
+    {%- if settings.favicon != blank -%}
+      <link rel="icon" type="logo-sauce-only-1.png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+    {%- endif -%}
+
     {% style %}
       :root {
         --fuente-primary: 'League Gothic', sans-serif;
