@@ -512,12 +512,14 @@ d{% layout 'none' %}
       this.pizzaLocations.forEach(local => {
         // Verificar si el local está abierto
         const estaAbierto = horaActual >= local.horario.split('a')[0] && horaActual <= local.horario.split('a')[1];
+        // Quitar espacios en blanco y convertir a minúsculas para el nombre del local
+        const nombreIdentificador = local.name.trim().toLowerCase();
         
         contenidoHTML += `
-          <div class="psme-rl-local psme-rl-local-no-seleccionado" data-local="${local.name}" id="psme-rl-local-${local.name}">
+          <div class="psme-rl-local psme-rl-local-no-seleccionado" data-local="${nombreIdentificador}" id="psme-rl-local-${nombreIdentificador}">
             <div class="psme-rl-titulos">
               <h3>SANTA CRUZ</h3>
-              <h3 style="color: #C8102E;">${local.localizacion}</h3>
+              <h3 style="color: #C8102E;">${local.name}</h3>
             </div>
         `;
     
@@ -573,15 +575,15 @@ d{% layout 'none' %}
             <button 
               class="psme-rl-boton psme-rl-empezar" 
               data-accion="empezar" 
-              data-local="${local.name}"  
-              id="psme-rl-boton-empezar-${local.name}">
+              data-local="${nombreIdentificador}"  
+              id="psme-rl-boton-empezar-${nombreIdentificador}">
               <p>EMPEZAR MI PEDIDO</p>
             </button>
             <button 
               class="psme-rl-boton psme-rl-ubicacion"
               data-accion="ubicacion" 
-              data-local="${local.name}"  
-              id="psme-rl-boton-ubicacion-${local.name}">
+              data-local="${nombreIdentificador}"  
+              id="psme-rl-boton-ubicacion-${nombreIdentificador}">
               <p>Abrir ubicación en mapa</p>
               ${iconoMap}
             </button>
@@ -650,6 +652,8 @@ d{% layout 'none' %}
         localSeleccionado.classList.remove('psme-rl-local-no-seleccionado');
         localSeleccionado.classList.add('psme-rl-local-seleccionado');
       }
+
+      // Actualizar en el mapa el marcador del local seleccionado
     }
 
     localBotonEmpezarPedido(nombreLocal){
