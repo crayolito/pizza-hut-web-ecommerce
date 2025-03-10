@@ -8,16 +8,18 @@
     <link rel="canonical" href="{{ canonical_url }}">
 
     <!-- Script para verificacion antes del renderizado de la pagina -->
-    <script>
-      // Verificar redirección antes de cargar el resto de la página
-      if (
-        !localStorage.getItem('metodo-entrega') &&
-        !localStorage.getItem('ubicacion-cliente') &&
-        !localStorage.getIten('sucursal-informacion')
-      ) {
-        window.location.href = '/pages/test-prueba';
-      }
-    </script>
+    {% comment %}
+      <script>
+        // Verificar redirección antes de cargar el resto de la página
+        if (
+          !localStorage.getItem('metodo-entrega') &&
+          !localStorage.getItem('ubicacion-cliente') &&
+          !localStorage.getItem('sucursal-informacion')
+        ) {
+          window.location.href = '/pages/test-prueba';
+        }
+      </script>
+    {% endcomment %}
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
