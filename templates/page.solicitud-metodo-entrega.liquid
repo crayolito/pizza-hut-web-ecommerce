@@ -660,6 +660,7 @@ d{% layout 'none' %}
 
       // Enfocar el local seleccionado en el mapa
       const localSeleccionadoDatos = this.pizzaLocations.find(local => this.obtenerNombreIdentificadorLocal(local.name) === nombreLocal);
+      this.mapaRecogerLocal.setZoom(17);
       this.mapaRecogerLocal.panTo({
         lat: localSeleccionadoDatos.lat,
         lng: localSeleccionadoDatos.lng
