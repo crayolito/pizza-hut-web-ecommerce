@@ -30,9 +30,13 @@
   left: var(--espaciado-xl);
 }
 
+.bi-informacion-banner-texto {
+  width: 16rem;
+}
+
 .bi-informacion-banner small {
   color: var(--colorp-secondary);
-  font-family: var(--fuente-principal);
+  font-family: var(--fuente-primary);
   font-size: 3.3125rem;
   font-style: normal;
   font-weight: 400;
