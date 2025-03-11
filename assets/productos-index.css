@@ -4,7 +4,8 @@
   padding: var(--espaciado-xl);
   gap: var(--espaciado-l);
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: repeat(3, 29rem);
+  /* Cambiamos a auto-fill o definimos más filas */
+  grid-template-rows: repeat(3, auto);
 }
 
 .pi-base > :nth-child(3) {
@@ -13,6 +14,6 @@
 
 .pi-item-producto {
   width: 100%;
-  height: 100%;
+  height: 29rem; /* Altura fija en cada elemento en lugar de en la fila */
   background-color: var(--color-primary);
 }
