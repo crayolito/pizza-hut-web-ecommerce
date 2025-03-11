@@ -11,8 +11,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: 1.5px solid #969696;
   text-align: center;
+  padding: 3.5rem 0;
+}
+
+.smi-opciones:not(:last-child) {
+  border-bottom: 1.5px solid #969696;
 }
 
 .smi-opciones small {
