@@ -172,4 +172,15 @@ hr {
   .h-enfocado-tablet-desktop {
     display: flex;
   }
+
+  .h-input-buscar {
+    width: auto;
+    flex-grow: 1;
+    max-width: 25rem; /* Opcional: limita el ancho máximo */
+  }
+
+  /* Para que el input dentro también se expanda */
+  .h-input-buscar input {
+    width: 100%;
+  }
 }
