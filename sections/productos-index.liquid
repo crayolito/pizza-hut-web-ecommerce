@@ -2,13 +2,19 @@
 {{ 'productos-index.css' | asset_url | stylesheet_tag }}
 
 <productos-index>
-  <section class="pi-base">
-    <div class="pi-item-producto"></div>
-    <div class="pi-item-producto"></div>
-    <div class="pi-item-producto"></div>
-    <div class="pi-item-producto"></div>
-    <div class="pi-item-producto"></div>
-  </section>
+  <div class="pi-base">
+    <section class="pi-titulo">
+      <small class="pi-titulo-1">tu pizza favorita</small>
+      <small class="pi-titulo-2">¡Te espera!</small>
+    </section>
+    <section class="pi-items">
+      <div class="pi-item-producto"></div>
+      <div class="pi-item-producto"></div>
+      <div class="pi-item-producto"></div>
+      <div class="pi-item-producto"></div>
+      <div class="pi-item-producto"></div>
+    </section>
+  </div>
 </productos-index>
 
 <script>
