@@ -1,0 +1,17 @@
+.pi-base {
+  display: grid;
+  width: 100%;
+  padding: var(--espaciado-xl);
+  gap: var(--espaciado-l);
+  grid-template-columns: 1fr 1fr;
+}
+
+.pi-base > :nth-child(3) {
+  grid-column: 1 / -1;
+}
+
+.pi-item-producto {
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-primary);
+}

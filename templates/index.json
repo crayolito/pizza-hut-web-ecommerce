@@ -8,10 +8,10 @@
     },
     "sub-menu-index": {
       "type": "sub-menu-index"
+    },
+    "productos-index": {
+      "type": "productos-index"
     }
-    // "productos-index": {
-    //   "type": "productos-index"
-    // },
     // "oferta-index": {
     //   "type": "oferta-index"
     // },
@@ -27,8 +27,8 @@
   },
   "order": [
     "banner-index",
-    "sub-menu-index"
-    // "productos-index",
+    "sub-menu-index",
+    "productos-index"
     // "oferta-index",
     // "oferta-hut-coins-index-1",
     // "oferta-hut-coins-index-2",

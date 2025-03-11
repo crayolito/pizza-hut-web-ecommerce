@@ -2,7 +2,7 @@
   width: 100%;
   display: grid;
   grid-template-columns: 1fr;
-  padding: var(--espaciado-xxl) var(--espaciado-xxxl);
+  padding: var(--espaciado-xxl);
 }
 
 .smi-opciones {
