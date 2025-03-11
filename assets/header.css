@@ -177,9 +177,9 @@ hr {
   }
 
   .h-input-buscar {
+    flex-grow: 1 1 auto;
     width: auto;
-    flex-grow: 1;
-    max-width: 25rem;
+    min-width: 12.5rem;
   }
 
   .h-input-buscar input {
