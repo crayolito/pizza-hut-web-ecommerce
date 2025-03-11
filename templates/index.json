@@ -2,49 +2,9 @@
   "sections": {
     "banner-index": {
       "type": "banner-index",
-      "blocks": {
-        "diapositiva_eca8QR": {
-          "type": "diapositiva",
-          "settings": {
-            "imagen": "shopify://shop_images/banner-1.webp",
-            "titulo": "",
-            "texto_boton": "",
-            "enlace_boton": ""
-          }
-        },
-        "diapositiva_wkcgbL": {
-          "type": "diapositiva",
-          "settings": {
-            "imagen": "shopify://shop_images/banner-2.webp",
-            "titulo": "",
-            "texto_boton": "",
-            "enlace_boton": ""
-          }
-        },
-        "diapositiva_eWJc43": {
-          "type": "diapositiva",
-          "settings": {
-            "imagen": "shopify://shop_images/banner-3.jpg",
-            "titulo": "",
-            "texto_boton": "",
-            "enlace_boton": ""
-          }
-        }
-      },
-      "block_order": [
-        "diapositiva_eca8QR",
-        "diapositiva_wkcgbL",
-        "diapositiva_eWJc43"
-      ],
-      "settings": {
-        "altura_carrusel": 550,
-        "tiempo_transicion": 5,
-        "reproduccion_automatica": true,
-        "mostrar_indicadores": true,
-        "mostrar_botones": true,
-        "titulo": "LA MEJOR PIZZA DEL MUNDO",
-        "mostrar_info_banner": true
-      }
+      "blocks": {},
+      "block_order": [],
+      "settings": {}
     }
     // "sub-menu-index": {
     //   "type": "sub-menu-index"
