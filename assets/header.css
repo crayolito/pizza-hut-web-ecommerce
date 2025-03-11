@@ -147,6 +147,8 @@
   justify-content: center;
   align-items: center;
   gap: var(--espaciado-s);
+  border-radius: var(--espaciado-xs);
+  background: var(--colorp-secondary);
 }
 
 .h-boton-usuario h3 {
