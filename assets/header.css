@@ -162,11 +162,23 @@ hr {
 }
 
 @media screen and (min-width: 768px) {
+  .h-nav-principal {
+    display: none;
+  }
 }
 @media screen and (min-width: 1024px) {
+  .h-sector-seleccion-metodo-entrega {
+    min-width: fit-content;
+  }
+
+  .h-sector-opciones-cliente {
+    min-width: min-content;
+  }
+
   .h-header-principal {
     /* padding: var(--espaciado-big) var(--espaciado-xxxl);
      */
+    gap: var(--espaciado-l);
     padding: var(--espaciado-xxxl);
   }
 
