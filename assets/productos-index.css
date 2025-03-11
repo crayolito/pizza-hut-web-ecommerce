@@ -15,5 +15,5 @@
 .pi-item-producto {
   width: 100%;
   height: 29rem; /* Altura fija en cada elemento en lugar de en la fila */
-  background-color: var(--color-primary);
+  background-color: var(--colorp-primary);
 }
