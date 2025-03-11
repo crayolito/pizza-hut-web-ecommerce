@@ -267,10 +267,10 @@
   </head>
 
   <body>
-    {% sections 'header-group' %}
+    {% comment %} {% sections 'header-group' %} {% endcomment %}
 
     <main>
-      {% comment %} {{ content_for_layout }} {% endcomment %}
+      {{ content_for_layout }}
     </main>
 
     {% sections 'footer-group' %}
