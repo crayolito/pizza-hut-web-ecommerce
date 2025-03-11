@@ -5,10 +5,10 @@
       "blocks": {},
       "block_order": [],
       "settings": {}
+    },
+    "sub-menu-index": {
+      "type": "sub-menu-index"
     }
-    // "sub-menu-index": {
-    //   "type": "sub-menu-index"
-    // },
     // "productos-index": {
     //   "type": "productos-index"
     // },
@@ -26,8 +26,8 @@
     // }
   },
   "order": [
-    "banner-index"
-    // "sub-menu-index",
+    "banner-index",
+    "sub-menu-index"
     // "productos-index",
     // "oferta-index",
     // "oferta-hut-coins-index-1",

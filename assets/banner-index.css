@@ -53,7 +53,7 @@
   height: var(--espaciado-big);
   padding: 1.25rem;
   justify-content: center;
-  align-items: center;
+  align-items: start;
   gap: var(--espaciado-s);
   border-radius: var(--espaciado-xs);
   background: var(--colorp-primary);

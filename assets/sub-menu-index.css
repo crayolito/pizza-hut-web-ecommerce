@@ -1,0 +1,33 @@
+.smi-index {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: var(--espaciado-xxl) var(--espaciado-xxxl);
+}
+
+.smi-opciones {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1.5px solid #969696;
+  text-align: center;
+}
+
+.smi-opciones small {
+  color: var(--colorp-tertiary);
+  font-family: var(--fuente-primary);
+  font-size: 3.3125rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 3.4375rem;
+  letter-spacing: -0.06625rem;
+  text-transform: uppercase;
+}
+
+.smi-opciones img {
+  width: 10.875rem;
+  height: 4.36856rem;
+  object-fit: contain;
+}
