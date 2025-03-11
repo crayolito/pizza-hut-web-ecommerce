@@ -10,6 +10,7 @@
 .bi-contenedor-imagen {
   width: 100%;
   height: 100%;
+  overflow: hidden;
 }
 
 .bi-contenedor-imagen img {
@@ -20,6 +21,7 @@
 
 .bi-informacion-banner {
   height: fit-content;
+  width: calc(100% - var(--espaciado-xl) * 2);
   display: flex;
   flex-direction: column;
   justify-content: start;
