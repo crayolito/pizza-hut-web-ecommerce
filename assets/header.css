@@ -150,6 +150,7 @@
   border-radius: var(--espaciado-xs);
   background: var(--colorp-secondary);
 }
+/*  */
 
 .h-boton-usuario h3 {
   color: var(--colorp-secondary);
