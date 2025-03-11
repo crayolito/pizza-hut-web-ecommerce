@@ -267,13 +267,13 @@
   </head>
 
   <body>
-    {% comment %} {% sections 'header-group' %} {% endcomment %}
+    {% sections 'header-group' %}
 
     <main>
       {{ content_for_layout }}
     </main>
 
-    {% sections 'footer-group' %}
+    {% comment %} {% sections 'footer-group' %} {% endcomment %}
 
     <!-- MODAL CLIENTE : ESTADO LOGUEADO -->
     {% comment %}
