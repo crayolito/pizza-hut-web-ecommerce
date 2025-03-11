@@ -1,8 +1,28 @@
 <banner-index>
-  <div class="b-banner-index">
-    <div class="b-banner-index-contenido">
-      <h1>Banner Principal</h1>
-    </div>
+  <div class="bi-index">
+    <section class="bi-contenedor-imagen">
+      <img src="{{ 'banner-1.png' | asset_url }}" alt="Banner Principal" width="100%" height="100%">
+    </section>
+    <section class="bi-informacion-banner">
+      <small>LA MEJOR PIZZA DEL MUNDO</small>
+      <button class="bi-boton-banner">
+        <p>PEDIR AHORA</p>
+      </button>
+    </section>
+    <section class="bi-opciones-banner">
+      <button class="bi-boton-carrusel">
+        {% render 'icon-carrusel-seleccionado' %}
+      </button>
+      <button class="bi-boton-carrusel">
+        {% render 'icon-carrusel-no-seleccionado' %}
+      </button>
+      <button class="bi-boton-carrusel">
+        {% render 'icon-carrusel-no-seleccionado' %}
+      </button>
+      <button class="bi-boton-carrusel">
+        {% render 'icon-carrusel-no-seleccionado' %}
+      </button>
+    </section>
   </div>
 </banner-index>
 

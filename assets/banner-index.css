@@ -1,0 +1,70 @@
+.bi-index {
+  display: flex;
+  width: 100%;
+  height: 19.5rem;
+  gap: var(--espaciado-xl);
+  position: absolute;
+}
+
+.bi-contenedor-imagen {
+  width: 100%;
+  height: 100%;
+}
+
+.bi-contenedor-imagen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bi-informacion-banner {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  gap: var(--espaciado-xl);
+  position: relative;
+  top: var(--espaciado-big);
+  left: var(--espaciado-xl);
+  right: var(--espaciado-xl);
+}
+
+.bi-informacion-banner small {
+  font-family: var(--fuente-principal);
+  font-size: 3.3125rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 3.4375rem;
+  letter-spacing: -0.06625rem;
+  text-transform: uppercase;
+}
+
+.bi-boton-banner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  height: var(--espaciado-big);
+  padding: 1.25rem;
+  justify-content: center;
+  align-items: center;
+  gap: var(--espaciado-s);
+  border-radius: var(--espaciado-xs);
+  background: var(--colorp-primary);
+}
+
+.bi-boton-banner p {
+  color: var(--colorp-secondary);
+}
+
+.bi-opciones-banner {
+  display: flex;
+  gap: var(--espaciado-m);
+}
+
+.bi-boton-carrusel svg {
+  width: 0.875rem;
+  height: 0.875rem;
+  aspect-ratio: 1/1;
+}
