@@ -4,6 +4,7 @@
   padding: var(--espaciado-xl);
   gap: var(--espaciado-l);
   grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(3, 29rem);
 }
 
 .pi-base > :nth-child(3) {
