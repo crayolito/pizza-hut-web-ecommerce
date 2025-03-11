@@ -164,6 +164,7 @@ hr {
 @media screen and (min-width: 768px) {
   .h-nav-principal {
     display: none;
+    min-width: fit-content;
   }
 }
 @media screen and (min-width: 1024px) {
