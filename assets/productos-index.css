@@ -1,8 +1,10 @@
 .pi-base {
+  border-top: 1.5px solid #969696;
+  padding-top: var(--espaciado-xxl);
   display: flex;
+  flex-direction: column;
   align-items: center;
   gap: var(--espaciado-xxl);
-  padding: var(--espaciado-xl);
 }
 
 .pi-titulo {
@@ -11,6 +13,7 @@
   gap: var(--espaciado-s);
   width: 100%;
   text-align: center;
+  padding: 0 var(--espaciado-xl);
 }
 
 .pi-titulo small {
@@ -34,7 +37,7 @@
 .pi-items {
   display: grid;
   width: 100%;
-
+  padding: 0 var(--espaciado-xl);
   gap: var(--espaciado-l);
   grid-template-columns: 1fr 1fr;
   grid-template-rows: repeat(3, auto);
