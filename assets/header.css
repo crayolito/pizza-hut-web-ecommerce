@@ -176,10 +176,9 @@ hr {
   .h-input-buscar {
     width: auto;
     flex-grow: 1;
-    max-width: 25rem; /* Opcional: limita el ancho máximo */
+    max-width: 25rem;
   }
 
-  /* Para que el input dentro también se expanda */
   .h-input-buscar input {
     width: 100%;
   }
