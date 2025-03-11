@@ -49,6 +49,7 @@
 
 .h-sector-seleccion-metodo-entrega {
   display: flex;
+  min-width: fit-content;
   flex-direction: column;
   justify-content: center;
   align-items: start;
@@ -99,6 +100,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: var(--espaciado-xl);
   display: none;
 }
 
@@ -111,7 +113,8 @@
 .h-nav-principal {
   display: flex;
   align-items: center;
-  gap: var(--espaciado-xxl);
+  min-width: fit-content;
+  gap: var(--espaciado-xl);
 }
 
 .h-nav-principal a {
@@ -122,31 +125,41 @@
 
 .h-sector-opciones-cliente {
   display: flex;
+  min-width: min-content;
   align-items: center;
   gap: var(--espaciado-xxl);
 }
 
 .h-input-buscar {
   display: flex;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: auto;
+  width: auto;
+  min-width: 12.5rem;
   align-items: center;
   gap: var(--espaciado-xs);
   height: 3rem;
-  width: 12.5rem;
   padding: var(--espaciado-xl);
   border-radius: var(--espaciado-xs);
   border: 1.5px solid #6e6e6e;
   background: var(--colorp-secondary);
 }
 
+.h-input-buscar input {
+  width: 100%;
+}
+
 .h-boton-usuario {
   display: flex;
-  width: 10rem;
+  min-width: fit-content;
   height: 2.625rem;
   justify-content: center;
   align-items: center;
   gap: var(--espaciado-s);
   border-radius: var(--espaciado-xs);
   background: var(--colorp-primary);
+  padding: var(--espaciado-l);
 }
 /*  */
 
@@ -164,7 +177,6 @@ hr {
 @media screen and (min-width: 768px) {
   .h-nav-principal {
     display: none;
-    min-width: fit-content;
   }
 }
 @media screen and (min-width: 1024px) {
@@ -172,40 +184,17 @@ hr {
     display: flex;
   }
 
-  .h-sector-seleccion-metodo-entrega {
-    min-width: fit-content;
-  }
-
-  .h-sector-opciones-cliente {
-    min-width: min-content;
-  }
-
   .h-header-principal {
-    /* padding: var(--espaciado-big) var(--espaciado-xxxl);
-     */
     gap: var(--espaciado-l);
     padding: var(--espaciado-xxxl);
   }
-
+  .h-metodo-entrega-no-seleccionado,
   .h-metodo-entrega-seleccionado {
     display: none;
   }
 
   .h-enfocado-tablet-desktop {
     display: flex;
-    gap: var(--espaciado-xl);
-  }
-
-  .h-input-buscar {
-    flex-grow: 1;
-    flex-shrink: 1;
-    flex-basis: auto;
-    width: auto;
-    min-width: 12.5rem;
-  }
-
-  .h-input-buscar input {
-    width: 100%;
   }
 }
 
