@@ -45,33 +45,33 @@
         "titulo": "LA MEJOR PIZZA DEL MUNDO",
         "mostrar_info_banner": true
       }
-    },
-    "sub-menu-index": {
-      "type": "sub-menu-index"
-    },
-    "productos-index": {
-      "type": "productos-index"
-    },
-    "oferta-index": {
-      "type": "oferta-index"
-    },
-    "oferta-hut-coins-index-1": {
-      "type": "oferta-hut-coins-index-1"
-    },
-    "oferta-hut-coins-index-2": {
-      "type": "oferta-hut-coins-index-2"
-    },
-    "detalle-sucursales": {
-      "type": "detalle-sucursales"
     }
+    // "sub-menu-index": {
+    //   "type": "sub-menu-index"
+    // },
+    // "productos-index": {
+    //   "type": "productos-index"
+    // },
+    // "oferta-index": {
+    //   "type": "oferta-index"
+    // },
+    // "oferta-hut-coins-index-1": {
+    //   "type": "oferta-hut-coins-index-1"
+    // },
+    // "oferta-hut-coins-index-2": {
+    //   "type": "oferta-hut-coins-index-2"
+    // },
+    // "detalle-sucursales": {
+    //   "type": "detalle-sucursales"
+    // }
   },
   "order": [
-    "banner-index",
-    "sub-menu-index",
-    "productos-index",
-    "oferta-index",
-    "oferta-hut-coins-index-1",
-    "oferta-hut-coins-index-2",
-    "detalle-sucursales"
+    "banner-index"
+    // "sub-menu-index",
+    // "productos-index",
+    // "oferta-index",
+    // "oferta-hut-coins-index-1",
+    // "oferta-hut-coins-index-2",
+    // "detalle-sucursales"
   ]
 }
