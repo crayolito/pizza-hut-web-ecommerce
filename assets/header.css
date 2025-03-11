@@ -175,6 +175,11 @@ hr {
 }
 
 @media screen and (min-width: 768px) {
+  .h-metodo-entrega-no-seleccionado,
+  .h-metodo-entrega-seleccionado {
+    display: none;
+  }
+
   .h-nav-principal {
     display: none;
   }
@@ -187,10 +192,6 @@ hr {
   .h-header-principal {
     gap: var(--espaciado-l);
     padding: var(--espaciado-xxxl);
-  }
-  .h-metodo-entrega-no-seleccionado,
-  .h-metodo-entrega-seleccionado {
-    display: none;
   }
 
   .h-enfocado-tablet-desktop {
