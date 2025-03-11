@@ -4,6 +4,7 @@
   height: 19.5rem;
   gap: var(--espaciado-xl);
   position: relative;
+  justify-content: center;
 }
 
 .bi-contenedor-imagen {
@@ -27,7 +28,6 @@
   position: absolute;
   top: var(--espaciado-big);
   left: var(--espaciado-xl);
-  width: calc(100% - (var(--espaciado-xl) * 2));
 }
 
 .bi-informacion-banner small {
