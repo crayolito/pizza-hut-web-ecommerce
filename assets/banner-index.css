@@ -55,6 +55,11 @@
 
 .bi-boton-banner p {
   color: var(--colorp-secondary);
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.04rem;
+  text-transform: uppercase;
 }
 
 .bi-opciones-banner {
