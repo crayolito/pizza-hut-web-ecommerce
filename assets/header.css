@@ -165,7 +165,9 @@ hr {
 }
 @media screen and (min-width: 1024px) {
   .h-header-principal {
-    padding: var(--espaciado-big) var(--espaciado-xxxl);
+    /* padding: var(--espaciado-big) var(--espaciado-xxxl);
+     */
+    padding: var(--espaciado-xxxl);
   }
 
   .h-metodo-entrega-seleccionado {
@@ -174,6 +176,7 @@ hr {
 
   .h-enfocado-tablet-desktop {
     display: flex;
+    gap: var(--espaciado-xl);
   }
 
   .h-input-buscar {
