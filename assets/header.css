@@ -183,6 +183,10 @@ hr {
   .h-nav-principal {
     display: none;
   }
+
+  .h-enfocado-tablet-desktop {
+    display: flex;
+  }
 }
 @media screen and (min-width: 1024px) {
   .h-nav-principal {
@@ -192,10 +196,6 @@ hr {
   .h-header-principal {
     gap: var(--espaciado-l);
     padding: var(--espaciado-xxxl);
-  }
-
-  .h-enfocado-tablet-desktop {
-    display: flex;
   }
 }
 
