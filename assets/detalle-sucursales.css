@@ -1,6 +1,6 @@
 .ds-contenedor-base {
   width: 100%;
-  padding: var(--espaciado-xxl) var(--espaciado-xxxl);
+  padding: var(--espaciado-xxl);
   display: flex;
   flex-direction: column;
   gap: var(--espaciado-xxl);
