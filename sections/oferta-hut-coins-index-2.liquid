@@ -1,101 +1,84 @@
-<div
-  style="
-    width: 100%;
-    padding: 0px 3.125rem;
-    display: flex;
-    height: 30.3125rem;
-  "
-  class="ohci2-contenedor-base"
->
-  <div
-    style="
-      width: 50%;
-      height: 100%;
-    "
-    class="ohci2-imagen"
-  >
-    <img
-      src="{{ 'promocion-HutCoins.png' | asset_url }}"
-      style="
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-top-left-radius: 1.25rem;
-        border-bottom-left-radius: 1.25rem;
-      "
-    >
-  </div>
-  <div
-    style="
-      width: 50%;
-      height: 100%;
-      padding: 4.38rem 4.25rem 3rem 4.25rem;
-      background: #231F20;
-      border-top-right-radius: 1.25rem;
-      border-bottom-right-radius: 1.25rem;
-      display: flex;
-      flex-direction: column;
-      aling-items: start;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 2.625rem;
-    "
-    class="ohci2-informacion"
-  >
-    <img
-      src="{{ 'banner-2-Hut-Coins.png' | asset_url }}"
-      style="
-        width: 13.0625rem;
-        height: 5.24944rem;
-        flex-shrink: 0;
-        aspect-ratio: 209.00/83.99;
-      "
-    >
-    <p
-      style="
-        font-family: var(--fuente-principal);
-        color:  #FFF;
-        font-size: 4.375rem;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 100%;
-        letter-spacing: -0.0875rem;
-        text-transform: uppercase;
-      "
-    >
-      Tu amor por la pizza tiene recompensa
-    </p>
-    <div
-      style="
-        display: flex;
-        width: 18.75rem;
-        height: 4.375rem;
-        padding: 1.25rem;
-        justify-content: center;
-        align-items: center;
-        gap: 0.5rem;
-        border-radius: 0.25rem;
-        background:  #C8102E;
-      "
-    >
-      <p
-        style="
-          color: #FFF;
-          font-family: Montserrat;
-          font-size: 1rem;
-          font-style: normal;
-          font-weight: 600;
-          line-height: normal;
-          letter-spacing: -0.04rem;
-          text-transform: uppercase;
-        "
-      >
-        Regístrate
-      </p>
+<section class="ohci2-contenedor-base">
+  <div class="ohci2-base-interno">
+    <div class="ohci2-imagen">
+      <img src="{{ 'promocion-HutCoins.png' | asset_url }}" width="100%" height="100%">
+    </div>
+    <div class="ohci2-informacion">
+      <img src="{{ 'banner-2-Hut-Coins.png' | asset_url }}" width="100%" height="100%">
+      <small>Tu amor por la pizza tiene recompensa</small>
+      <button class="ohci2-boton">
+        <p>Regístrate</p>
+      </button>
     </div>
   </div>
-</div>
+</section>
+
+<style>
+  .ohci2-contenedor-base {
+    width: 100%;
+    padding: var(--espaciado-xl) var(--espaciado-xxl);
+  }
+
+  .ohci2-base-interno {
+    width: 100%;
+    height: 30rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ohci2-imagen {
+    width: 50%;
+    height: 100%;
+  }
+
+  .ohci2-imagen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ohci2-informacion {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--espaciado-big) var(--espaciado-xxxl);
+  }
+
+  .ohci2-informacion img {
+    width: 13.0625rem;
+    height: 5.24944rem;
+    aspect-ratio: 209/83.99;
+    object-fit: cover;
+  }
+
+  .ohci2-informacion small {
+    color: var(--colorp-secondary);
+    font-family: var(--fuente-primary);
+    font-size: 3.3125rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 3.4375rem;
+    letter-spacing: -0.06625rem;
+    text-transform: uppercase;
+  }
+
+  .ohci2-boton {
+    width: 100%;
+    height: var(--espaciado-xxxl);
+    background-color: var(--colorp-primary);
+    border-radius: var(--border-radius-1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .ohci2-boton p {
+    color: var(--colorp-secondary);
+    font-weight: 600;
+  }
+</style>
 
 {% schema %}
 {
