@@ -20,10 +20,10 @@
     },
     "oferta-hut-coins-index-2": {
       "type": "oferta-hut-coins-index-2"
+    },
+    "detalle-sucursales": {
+      "type": "detalle-sucursales"
     }
-    // "detalle-sucursales": {
-    //   "type": "detalle-sucursales"
-    // }
   },
   "order": [
     "banner-index",
@@ -31,7 +31,7 @@
     "productos-index",
     "oferta-index",
     "oferta-hut-coins-index-1",
-    "oferta-hut-coins-index-2"
-    // "detalle-sucursales"
+    "oferta-hut-coins-index-2",
+    "detalle-sucursales"
   ]
 }
