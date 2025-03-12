@@ -123,6 +123,7 @@
   border-radius: var(--espaciado-xs);
   background-color: var(--colorp-secondary);
   border: 1px solid #353535;
+  width: 100%;
 }
 
 .pi-producto-seleccion-input svg {
