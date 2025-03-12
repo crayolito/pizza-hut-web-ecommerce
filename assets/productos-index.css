@@ -91,8 +91,8 @@
 .pi-producto-informacion p {
   line-height: 1.5rem;
   display: -webkit-box;
-  line-clamp: 3;
-  box-orient: vertical;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
 }
