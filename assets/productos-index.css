@@ -41,7 +41,7 @@
   gap: var(--espaciado-l);
   grid-template-columns: 1fr 1fr;
   /* grid-template-rows: repeat(3, auto); */
-  grid-template-columns: 29.5rem 33rem 29.5rem;
+  grid-template-rows: 29.5rem 33rem 29.5rem;
 }
 
 .pi-items > :nth-child(3) {
