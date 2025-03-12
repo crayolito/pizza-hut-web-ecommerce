@@ -19,6 +19,27 @@
   object-fit: cover;
 }
 
+.bi-icono-flecha-atras svg,
+.bi-icono-flecha-adelante svg {
+  width: 2.625rem;
+  height: 2.625rem;
+  aspect-ratio: 1/1;
+}
+
+.bi-icono-flecha-atras {
+  position: absolute;
+  top: 50%;
+  left: 3rem;
+  transform: translateY(-50%);
+}
+
+.bi-icono-flecha-adelante {
+  position: absolute;
+  top: 50%;
+  right: 3rem;
+  transform: translateY(-50%);
+}
+
 .bi-informacion-banner {
   height: fit-content;
   width: calc(100% - var(--espaciado-xl) * 2);
@@ -79,6 +100,18 @@
   width: 0.875rem;
   height: 0.875rem;
   aspect-ratio: 1/1;
+}
+
+@media screen and (min-width: 768px) {
+  .bi-index {
+    height: 30rem;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .bi-index {
+    height: 26.5rem;
+  }
 }
 
 /* asdasd */

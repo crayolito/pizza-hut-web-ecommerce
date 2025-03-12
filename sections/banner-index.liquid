@@ -4,7 +4,13 @@
 <banner-index>
   <div class="bi-index">
     <section class="bi-contenedor-imagen">
+      <div class="bi-icono-flecha-atras">
+        {% render 'icon-flecha-atras-banner' %}
+      </div>
       <img src="{{ 'banner-1.png' | asset_url }}" alt="Banner Principal" width="100%" height="100%">
+      <div class="bi-icono-flecha-adelante">
+        {% render 'icon-flecha-adelante-banner' %}
+      </div>
     </section>
     <section class="bi-informacion-banner">
       <small class="bi-informacion-banner-texto">LA MEJOR PIZZA DEL MUNDO</small>
