@@ -11,7 +11,6 @@
   display: flex;
   flex-direction: column;
   gap: var(--espaciado-xxl);
-  border-radius: var(--border-radius-2);
   padding: var(--espaciado-xxxl);
   position: relative;
 }
@@ -26,6 +25,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: var(--border-radius-2);
 }
 
 .ds-image-sucursales-aux {
@@ -67,13 +67,16 @@
   color: var(--colorp-primary);
   width: 100%;
   display: flex;
-  align-items: start;
+  align-items: center;
+  justify-content: start;
 }
 
 .ds-select-info {
+  color: var(--colorp-secondary);
   display: flex;
+  justify-content: start;
+  align-items: center;
   gap: var(--espaciado-s);
-  padding-bottom: var(--espaciado-s);
   border-bottom: 1.5px solid var(--colorp-tertiary);
 }
 
