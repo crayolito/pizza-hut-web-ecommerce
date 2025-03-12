@@ -98,10 +98,20 @@
     justify-content: space-between;
   }
 
+  .f-opciones-navegacion {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
   .f-contenedor-opciones-2 {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+  }
+
+  .f-contenedor-redes-sociales {
+    flex: 0 0 30%;
   }
 
   .f-contenedor-opciones-3 {
