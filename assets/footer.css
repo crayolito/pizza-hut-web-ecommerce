@@ -89,9 +89,6 @@
 }
 
 @media screen and (min-width: 768px) {
-}
-
-@media screen and (min-width: 1024px) {
   .f-contenedor-opciones-1 {
     flex-direction: row;
     align-items: center;
@@ -117,11 +114,20 @@
     gap: var(--espaciado-xl);
   }
 
-  /* asdds */
-
   .f-contenedor-opciones-3 {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .f-opciones-navegacion {
+    gap: var(--espaciado-xl);
+  }
+
+  .f-contenedor-redes-sociales {
+    width: fit-content;
+    gap: var(--espaciado-l);
   }
 }
