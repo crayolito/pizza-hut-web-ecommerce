@@ -96,8 +96,8 @@
 
 .ds-rl-local {
   /* width: 23.25rem; */
+  width: 100%;
   padding: var(--espaciado-xxl);
-  border: 1.5px solid var(--colorp-primary);
   border-radius: var(--border-radius-2);
   background-color: #f5f5f5;
   display: flex;
