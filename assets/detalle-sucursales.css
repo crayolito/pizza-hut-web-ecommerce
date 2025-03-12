@@ -107,14 +107,6 @@
   cursor: pointer;
 }
 
-.ds-local-seleccionado {
-  border: 1.5px solid var(--colorp-primary);
-}
-
-.ds-local-no-seleccionado {
-  border: 1.5px solid #969696;
-}
-
 .ds-rl-disponibilidad,
 .ds-titulos {
   width: 100%;
