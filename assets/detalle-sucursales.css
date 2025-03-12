@@ -82,6 +82,10 @@
   border-bottom: 1.5px solid var(--colorp-tertiary);
 }
 
+.ds-select-info h3 {
+  color: var(--colorp-secondary);
+}
+
 .ds-contenedor-right {
   width: 100%;
   display: flex;
