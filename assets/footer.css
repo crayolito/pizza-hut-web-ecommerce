@@ -103,7 +103,7 @@
     align-items: center;
     justify-content: space-between;
     width: fit-content;
-    gap: var(--espaciado-xl);
+    gap: var(--espaciado-xxl);
   }
 
   .f-contenedor-opciones-2 {
@@ -113,7 +113,8 @@
   }
 
   .f-contenedor-redes-sociales {
-    flex: 0 0 30%;
+    width: fit-content;
+    gap: var(--espaciado-xl);
   }
 
   .f-contenedor-opciones-3 {
