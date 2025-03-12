@@ -10,8 +10,9 @@
 
 .f-contenedor-opciones-1 {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: space-between;
+  align-items: start;
   width: 100%;
   gap: var(--espaciado-big);
 }
@@ -24,7 +25,6 @@
 }
 
 .f-opciones-navegacion {
-  margin-top: var(--espaciado-big);
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -59,6 +59,7 @@
 }
 
 .f-contenedor-redes-sociales {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -72,4 +73,16 @@
   align-items: start;
   justify-content: center;
   gap: 2.5rem;
+}
+
+.f-contenedor-opciones-3-textos {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  gap: 2.5rem;
+}
+
+.f-contenedor-opciones-3-textos h3 {
+  color: var(--colorp-secondary);
 }
