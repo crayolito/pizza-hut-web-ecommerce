@@ -1,22 +1,35 @@
-<div
-  style="
-    width: 100%;
-    height: 20rem;
-    margin: 3.5rem 0rem;
-    padding: 0px 3.125rem;
-  "
-  class="ohci-contenedor-base"
->
-  <img
-    src="{{ 'banner-Hutcoins.png' | asset_url }}"
+<section class="ohci-contenedor-base">
+  <div
     style="
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 1.25rem;
+      height: 20rem;
+      margin: 3.5rem 0rem;
+      padding: 0px 3.125rem;
     "
+    class="ohci-contenedor-imagen"
   >
-</div>
+    <img src="{{ 'banner-Hutcoins.png' | asset_url }}">
+  </div>
+</section>
+
+<style>
+  .ohci-contenedor-base {
+    width: 100%;
+    padding: var(--espaciado-xl) var(--espaciado-xxl);
+  }
+
+  .ohci-contenedor-imagen {
+    width: 100%;
+    border-radius: var(--border-radius-1);
+  }
+
+  .ohci-contenedor-imagen img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: var(--border-radius-1);
+  }
+</style>
 
 {% schema %}
 {
