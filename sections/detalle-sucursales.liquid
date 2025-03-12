@@ -29,42 +29,84 @@
     </div>
   </div>
   <div class="ds-contenedor-right">
-    <div class="ds-item-detalle-sucursal">
-      <div class="ds-ids-titulos">
-        <h3>Santa Cruz</h3>
-        <h3>Banzer 3re Anillo</h3>
+    <div class="ds-local ds-local-seleccionado">
+      <div class="ds-titulos">
+        <h3>sANTA CRUZ</h3>
+        <h3 style="color: #C8102E;">las palmas</h3>
       </div>
-      <div class="ds-ids-informacion">
-        <div class="ds-ids-opcion-localizacion">
+      <div class="ds-rl-disponibilidad">
+        <div class="ds-disponibilidad-info ds-abierto ">
+          {% render 'icon-disponibilidad' %}
+          <p>ABIERTO</p>
+        </div>
+      </div>
+      <div class="ds-rl-info-local ">
+        <div class="ds-rl-info-local-item">
           {% render 'icon-location-on' %}
           <p>Doble vía a La Guardia</p>
         </div>
-        <div class="ds-ids-opcion-telefono">
+        <div class="ds-rl-info-local-item">
           {% render 'icon-headser-mic' %}
-          <p>+591 78452415</p>
+          <p>78452415</p>
         </div>
-        <div class="ds-ids-opcion-horario">
+        <div class="ds-rl-info-local-item">
           {% render 'icon-clock' %}
-          <p>Lunes a Viernes 8:00 a 23:00</p>
-          {% render 'icon-option-point' %}
-          <p>ABIERTO</p>
+          <p>Abre a las 11:00 AM</p>
         </div>
-        <div class="ds-ids-opcion-opciones">
-          <div class="ds-ids-opcion">
+        <div class="ds-rl-info-servicios">
+          <div class="ds-rl-info-servicio">
             {% render 'icon-check' %}
-            <p>Mesas disponibles</p>
+            <p>Envío a domicilio</p>
           </div>
-          <div class="ds-ids-opcion">
+          <div class="ds-rl-info-servicio">
             {% render 'icon-check' %}
-            <p>Autorservicio</p>
+            <p>Recoger en local</p>
           </div>
         </div>
       </div>
-      <div class="ds-ids-ver-boton">
+      <button class="ds-rl-boton ds-rl-ubicacion">
         <p>Abrir ubicación en mapa</p>
         {% render 'icon-map' %}
-      </div>
+      </button>
     </div>
+    {% comment %}
+      <div class="ds-item-detalle-sucursal">
+        <div class="ds-ids-titulos">
+          <h3>Santa Cruz</h3>
+          <h3>Banzer 3re Anillo</h3>
+        </div>
+        <div class="ds-ids-informacion">
+          <div class="ds-ids-opcion-localizacion">
+            {% render 'icon-location-on' %}
+            <p>Doble vía a La Guardia</p>
+          </div>
+          <div class="ds-ids-opcion-telefono">
+            {% render 'icon-headser-mic' %}
+            <p>+591 78452415</p>
+          </div>
+          <div class="ds-ids-opcion-horario">
+            {% render 'icon-clock' %}
+            <p>Lunes a Viernes 8:00 a 23:00</p>
+            {% render 'icon-option-point' %}
+            <p>ABIERTO</p>
+          </div>
+          <div class="ds-ids-opcion-opciones">
+            <div class="ds-ids-opcion">
+              {% render 'icon-check' %}
+              <p>Mesas disponibles</p>
+            </div>
+            <div class="ds-ids-opcion">
+              {% render 'icon-check' %}
+              <p>Autorservicio</p>
+            </div>
+          </div>
+        </div>
+        <div class="ds-ids-ver-boton">
+          <p>Abrir ubicación en mapa</p>
+          {% render 'icon-map' %}
+        </div>
+      </div>
+    {% endcomment %}
   </div>
 </div>
 

@@ -61,7 +61,6 @@
 .ds-info {
   display: flex;
   flex-direction: column;
-  gap: var(--espaciado-s);
 }
 
 .ds-info h3 {
@@ -83,12 +82,148 @@
 }
 
 .ds-select-info h3 {
-  color: var(--colorp-secondary);
+  color: var(--colorp-tertiary);
 }
 
 .ds-contenedor-right {
   width: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: var(--espaciado-xxl);
+}
+
+.ds-rl-local {
+  /* width: 23.25rem; */
+  padding: var(--espaciado-xxl);
+  border: 1.5px solid var(--colorp-primary);
+  border-radius: var(--border-radius-2);
+  background-color: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--espaciado-xxl);
+  cursor: pointer;
+}
+
+.ds-local-seleccionado {
+  border: 1.5px solid var(--colorp-primary);
+}
+
+.ds-local-no-seleccionado {
+  border: 1.5px solid #969696;
+}
+
+.ds-rl-disponibilidad,
+.ds-titulos {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.ds-rl-disponibilidad-info {
+  width: min-content;
+  display: flex;
+  align-items: center;
+  gap: var(--espaciado-xs);
+  border-radius: var(--border-radius-4);
+  padding: var(--espaciado-xs) var(--espaciado-s);
+}
+
+.ds-abierto {
+  background: #e3ffc9;
+}
+
+.ds-abierto p {
+  font-weight: 600;
+  color: #478c5c;
+}
+
+.ds-abierto svg {
+  filter: brightness(0) saturate(100%) invert(42%) sepia(29%) saturate(709%)
+    hue-rotate(105deg) brightness(87%) contrast(84%);
+}
+
+.ds-cerrado {
+  background: #ffebeb;
+}
+
+.ds-cerrado p {
+  font-weight: 600;
+  color: #c8102e;
+}
+
+.ds-rl-cerrado svg {
+  filter: brightness(0) saturate(100%) invert(13%) sepia(93%) saturate(5266%)
+    hue-rotate(350deg) brightness(87%) contrast(99%);
+}
+
+.ds-rl-disponibilidad-info svg {
+  width: 0.375rem;
+  height: 0.375rem;
+}
+
+.ds-rl-info-local {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaciado-m);
+}
+
+.ds-rl-info-local-item {
+  display: flex;
+  align-items: center;
+  gap: var(--espaciado-s);
+}
+
+.ds-rl-info-servicios {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaciado-xs);
+}
+
+.ds-rl-info-servicio {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--espaciado-s);
+}
+
+.ds-rl-boton {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--espaciado-s);
+  height: var(--espaciado-big);
+  padding: var(--espaciado-xl);
+  border-radius: var(--border-radius-1);
+}
+
+.ds-rl-boton p {
+  font-weight: 600;
+}
+
+.ds-rl-empezar {
+  background-color: var(--colorp-primary);
+}
+
+.ds-rl-empezar p {
+  color: var(--colorp-secondary);
+}
+
+.ds-rl-ubicacion {
+  border: 1.5px solid var(--colorp-primary);
+  background-color: var(--colorp-secondary);
+}
+
+.ds-rl-ubicacion p {
+  color: var(--colorp-primary);
+}
+
+.ds-rl-boton svg {
+  width: 1.5rem;
+  height: 1.5rem;
 }
