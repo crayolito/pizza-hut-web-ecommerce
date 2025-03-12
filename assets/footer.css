@@ -50,6 +50,12 @@
 
 .f-contenedor-opciones-2 span {
   color: #969696;
+  font-size: 3.3125rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 3.4375rem;
+  letter-spacing: -0.06625rem;
+  text-transform: uppercase;
 }
 
 .f-contenedor-redes-sociales {
