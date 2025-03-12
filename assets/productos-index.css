@@ -52,3 +52,73 @@
   height: 29rem;
   background-color: var(--colorp-primary);
 }
+
+/* 
+ ===========
+ PRODUCTO 
+ ===========
+*/
+
+.pi-item-producto {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--espaciado-m);
+}
+
+.pi-producto-imagen {
+  width: 100%;
+  height: 40%;
+}
+
+.pi-producto-informacion img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.pi-producto-informacion {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaciado-xs);
+}
+
+.pi-producto-precio {
+  color: var(--colorp-primary);
+}
+
+.pi-producto-seleccion {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: var(--espaciado-xs);
+}
+
+.pi-producto-seleccion p {
+  font-weight: 600;
+}
+
+.pi-producto-seleccion-input {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--espaciado-xl);
+  border-radius: var(--espaciado-xs);
+  background-color: var(--colorp-secondary);
+}
+
+.pi-producto-seleccion-input svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  aspect-ratio: 1/1;
+}
+
+.pi-producto-personalizar {
+  display: flex;
+  padding: var(--espaciado-xl);
+  height: var(--espaciado-xxxl);
+  border-radius: var(--espaciado-xs);
+  background: var(--colorp-primary);
+}
