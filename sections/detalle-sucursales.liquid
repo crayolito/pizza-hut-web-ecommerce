@@ -3,20 +3,25 @@
 
 <div class="ds-contenedor-base">
   <div class="ds-contenedor-left">
-    <img src="{{ 'fondo-detalle-sucursales.png' | asset_url }}" width="100%" height="100%">
-    <img src="{{ 'image-sucursales-aux.png' | asset_url }}" width="100%" height="100%">
+    <img
+      class="ds-fondo-detalle-sucursales"
+      src="{{ 'fondo-detalle-sucursales.png' | asset_url }}"
+      width="100%"
+      height="100%"
+    >
+    <img class="ds-image-sucursales-aux" src="{{ 'image-sucursales-aux.png' | asset_url }}" width="100%" height="100%">
     <div class="ds-informacion-seleccion">
-      <p>Encuentra tu sucursal más cercana</p>
-      <div class="ds-tipo-ciudad">
+      <small>Encuentra tu sucursal más cercana</small>
+      <div class="ds-info">
         <h3>Selecciona tu ciudad</h3>
-        <div class="ds-select-ciudad">
+        <div class="ds-select-info">
           <h3>Santa Cruz</h3>
           {% render 'icon-flecha-abajo' %}
         </div>
       </div>
-      <div class="ds-metodo-entrega">
+      <div class="ds-info">
         <h3>Selecciona tu ciudad</h3>
-        <div class="ds-select-ciudad">
+        <div class="ds-select-info">
           <h3>ENVÍO A DOMICILIO</h3>
           {% render 'icon-flecha-abajo' %}
         </div>
