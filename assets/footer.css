@@ -102,6 +102,8 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    width: fit-content;
+    gap: var(--espaciado-xl);
   }
 
   .f-contenedor-opciones-2 {
