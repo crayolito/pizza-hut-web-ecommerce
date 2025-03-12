@@ -66,6 +66,7 @@
 }
 
 .f-contenedor-opciones-3 {
+  width: 100%;
   border-top: 1px solid var(--colorp-secondary);
   padding-top: 3.12rem;
   display: flex;
@@ -83,6 +84,6 @@
   gap: 2.5rem;
 }
 
-.f-contenedor-opciones-3-textos h3 {
+.f-contenedor-opciones-3-textos h4 {
   color: var(--colorp-secondary);
 }
