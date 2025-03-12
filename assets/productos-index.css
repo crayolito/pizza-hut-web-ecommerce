@@ -1,6 +1,6 @@
 .pi-base {
   border-top: 1.5px solid #969696;
-  padding-top: var(--espaciado-xxl);
+  padding-top: var(--espaciado-xxl) 0;
   display: flex;
   flex-direction: column;
   align-items: center;
