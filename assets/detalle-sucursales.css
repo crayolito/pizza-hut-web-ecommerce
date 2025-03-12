@@ -146,7 +146,7 @@
   color: #c8102e;
 }
 
-.ds-rl-cerrado svg {
+.ds-cerrado svg {
   filter: brightness(0) saturate(100%) invert(13%) sepia(93%) saturate(5266%)
     hue-rotate(350deg) brightness(87%) contrast(99%);
 }
