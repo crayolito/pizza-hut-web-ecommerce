@@ -40,7 +40,8 @@
   padding: 0 var(--espaciado-xl);
   gap: var(--espaciado-l);
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: repeat(3, auto);
+  /* grid-template-rows: repeat(3, auto); */
+  grid-template-columns: 29.5rem 33rem 29.5rem;
 }
 
 .pi-items > :nth-child(3) {
@@ -103,6 +104,7 @@
 
 .pi-producto-seleccion {
   display: flex;
+  width: 100%;
   flex-direction: column;
   align-items: start;
   gap: var(--espaciado-xs);
