@@ -24,8 +24,8 @@
   width: calc(100% - var(--espaciado-xl) * 2);
   display: flex;
   flex-direction: column;
-  justify-content: start;
-  align-items: center;
+  justify-content: center;
+  align-items: start;
   gap: var(--espaciado-xl);
   position: absolute;
   top: var(--espaciado-big);
