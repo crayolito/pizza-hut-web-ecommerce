@@ -106,11 +106,27 @@
   .bi-index {
     height: 30rem;
   }
+
+  .bi-opciones-banner {
+    top: calc(100% - 2rem);
+  }
+
+  .bi-icono-flecha-atras {
+    left: 2rem;
+  }
+
+  .bi-icono-flecha-adelante {
+    right: 2rem;
+  }
 }
 
 @media screen and (min-width: 1024px) {
   .bi-index {
     height: 26.5rem;
+  }
+
+  .bi-opciones-banner {
+    top: calc(100% - 2.5rem);
   }
 }
 
