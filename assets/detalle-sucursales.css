@@ -43,6 +43,7 @@
   flex-direction: column;
   gap: var(--espaciado-xxxl);
   background: transparent;
+  z-index: 3;
 }
 
 .ds-informacion-seleccion small {
