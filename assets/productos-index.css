@@ -40,8 +40,8 @@
   padding: 0 var(--espaciado-xl);
   gap: var(--espaciado-l);
   grid-template-columns: 1fr 1fr;
-  /* grid-template-rows: repeat(3, auto); */
-  grid-template-rows: 29.5rem 33rem 29.5rem;
+  grid-template-rows: repeat(3, auto);
+  /* grid-template-rows: 29.5rem 33rem 29.5rem; */
 }
 
 .pi-items > :nth-child(3) {
@@ -50,7 +50,7 @@
 
 .pi-item-producto {
   width: 100%;
-  height: 29rem;
+  margin-bottom: var(--espaciado-l);
 }
 
 /* 
@@ -123,6 +123,7 @@
   border-radius: var(--espaciado-xs);
   background-color: var(--colorp-secondary);
   border: 1px solid #353535;
+  width: 100%;
 }
 
 .pi-producto-seleccion-input svg {
