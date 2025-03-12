@@ -1,94 +1,31 @@
+<!-- HOJA DE ESTILOS CSS -->
+{{ 'footer.css' | asset_url | stylesheet_tag }}
+
 <footer>
-  <div
-    style="
-      display: flex;
-      width: 100%;
-      padding: 3.4375rem 3.125rem 3.125rem 3.125rem;
-      flex-direction: column;
-      align-items: center;
-      gap: 3.125rem;
-      background: #231F20;
-      color: #ffffff;
-       font-family: var(--fuente-principal);
-    "
-    class="f-contenedor-base"
-  >
-    <div
-      style="
-        display: flex;
-        width: 100%;
-        height: 5.24281rem;
-        justify-content: space-between;
-      "
-      class="f-contenedor-opciones-1"
-    >
-      <img
-        src="{{ 'logo-pizza-hut-footer.png' | asset_url }}"
-        alt="Logo"
-        style="
-          width: 6.52069rem;
-          height: 100%;
-          object-fit: contain;
-        "
-      >
-      <div
-        style="
-          display: flex;
-          align-items: center;
-          gap: 2rem;
-          text-transform: uppercase;
-          color: #FFF;
-        "
-        class="f-opciones-navegacion"
-      >
+  <div class="f-contenedor-base">
+    <div class="f-contenedor-opciones-1">
+      <img src="{{ 'logo-pizza-hut-footer.png' | asset_url }}" alt="Logo" width="100%" height="100%">
+      <div class="f-opciones-navegacion">
         <a>
-          <h2 style="color: #FFF;">MENÚ</h2>
+          <h2>MENÚ</h2>
         </a>
         <a>
-          <h2 style="color: #FFF;">HuT COINS</h2>
+          <h2>HuT COINS</h2>
         </a>
         <a>
-          <h2 style="color: #FFF;">Nuestras sucursales</h2>
+          <h2>Nuestras sucursales</h2>
         </a>
         <a>
-          <h2 style="color: #FFF;">LEGAL</h2>
+          <h2>LEGAL</h2>
         </a>
         <a>
-          <h2 style="color: #FFF;">Ayuda</h2>
+          <h2>Ayuda</h2>
         </a>
       </div>
     </div>
-    <div
-      style="
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      "
-      class="f-contenedor-opciones-2"
-    >
-      <span
-        style="
-          width: 21rem;
-          color: #969696;
-          font-size: 4.375rem;
-          font-style: normal;
-          font-weight: 400;
-          line-height: 100%;
-          letter-spacing: -0.0875rem;
-          text-transform: uppercase;
-        "
-        >the best stuff in the word.</span
-      >
-      <div
-        style="
-          display: flex;
-          height: 4rem;
-          align-items: center;
-          gap: 1.5rem;
-        "
-        class="f-contenedor-redes-sociales"
-      >
+    <div class="f-contenedor-opciones-2">
+      <span>the best stuff in the word.</span>
+      <div class="f-contenedor-redes-sociales">
         <a href="">
           {% render 'icon-facebook' %}
         </a>
@@ -103,26 +40,9 @@
         </a>
       </div>
     </div>
-    <div
-      style="
-        width: 100%;display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 3.125rem;
-        align-self: stretch;
-      "
-      class=" f-contenedor-opciones-3"
-    >
-      <hr style="width: 100%; height: 0.0625rem; background: #FFF;">
-      <div
-        style="
-                  display: flex;
-          align-items: flex-start;
-          gap: 2.5rem;
-          color: #FFF;
-          align-self: stretch;
-        "
-      >
+    <div class="f-contenedor-opciones-3">
+      <hr>
+      <div>
         <h4>© 2025 PIZZA HUT. TODOS LOS DERECHOS RESERVADOS.</h4>
         <h4>Políticas de privacidad</h4>
       </div>
