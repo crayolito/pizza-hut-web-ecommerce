@@ -83,32 +83,32 @@
         {% endcomment %}
         <!-- ESTADO CON TIENE METODO ENTREGA -->
         <div class="h-sector-metodo-entrega">
+          <div class="h-metodo-domicilio">
+            {% render 'icon-recogo-delivery' %}
+            <h4>Domicilio</h4>
+            {% render 'icon-flecha-abajo' %}
+          </div>
           {% comment %}
-            <div class="h-metodo-domicilio">
-              {% render 'icon-recogo-delivery' %}
-              <h4>Domicilio</h4>
+            <div class="h-metodo-local">
+              {% render 'icon-recogo-local' %}
+              <h4>Local</h4>
               {% render 'icon-flecha-abajo' %}
             </div>
           {% endcomment %}
-          <div class="h-metodo-local">
-            {% render 'icon-recogo-local' %}
-            <h4>Local</h4>
-            {% render 'icon-flecha-abajo' %}
-          </div>
         </div>
         <hr>
         <!-- ESTADO USUARIO INICIADO SESION -->
         <button class="h-boton-usuario h-modo-cliente">
+          <div class="h-boton-modo-no-cliente">
+            <h4>INICIAR SESIÓN</h4>
+            {% render 'icon-cuenta-blanco' %}
+          </div>
           {% comment %}
-            <div class="h-boton-modo-no-cliente">
-              <h4>INICIAR SESIÓN</h4>
+            <div class="h-boton-modo-cliente">
               {% render 'icon-cuenta-blanco' %}
+              {% render 'icon-flecha-abajo' %}
             </div>
           {% endcomment %}
-          <div class="h-boton-modo-cliente">
-            {% render 'icon-cuenta-blanco' %}
-            {% render 'icon-flecha-abajo' %}
-          </div>
         </button>
         <!-- ESTADO USUARIO NO INICIADO SESION -->
       </div>
