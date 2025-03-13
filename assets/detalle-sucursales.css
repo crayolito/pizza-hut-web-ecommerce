@@ -223,6 +223,7 @@
 @media screen and (min-width: 768px) {
   .ds-contenedor-base {
     flex-direction: row;
+    gap: var(--espaciado-l);
   }
 
   .ds-contenedor-right {
@@ -230,5 +231,6 @@
     padding-top: 13rem;
     gap: var(--espaciado-l);
     overflow: auto;
+    padding: 12.5rem 0.5rem 0 0;
   }
 }

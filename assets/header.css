@@ -47,7 +47,8 @@
   height: 1.5rem;
 }
 
-.h-sector-seleccion-metodo-entrega {
+.h-sector-seleccion-metodo-entrega,
+.h-sector-metodo-entrega {
   display: flex;
   min-width: fit-content;
   flex-direction: column;
@@ -55,6 +56,16 @@
   align-items: start;
   padding: var(--espaciado-xs);
   gap: var(--espaciado-xs);
+  /* MODIFIQUE AQUI */
+  display: none;
+}
+
+.h-sector-seleccion-metodo-entrega svg,
+.h-sector-metodo-entrega svg,
+.h-boton-usuario svg {
+  fill: var(--colorp-tertiary);
+  filter: brightness(0) saturate(100%) invert(5%) sepia(8%) saturate(1122%)
+    hue-rotate(314deg) brightness(94%) contrast(93%);
 }
 
 .h-sector-seleccion-metodo-entrega p {
@@ -64,6 +75,13 @@
 }
 
 .h-texto-metodo-entrega {
+  display: flex;
+  align-items: center;
+  gap: var(--espaciado-xs);
+}
+
+.h-metodo-domicilio,
+.h-metodo-local {
   display: flex;
   align-items: center;
   gap: var(--espaciado-xs);
@@ -155,6 +173,27 @@
 }
 
 .h-boton-usuario {
+  display: flex;
+  min-width: fit-content;
+  height: 2.625rem;
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--espaciado-xs);
+  background: var(--colorp-primary);
+  padding: var(--espaciado-l);
+}
+
+.h-boton-modo-no-cliente,
+.h-boton-modo-cliente {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--espaciado-s);
+}
+
+.h-boton-modo-cliente {
   display: flex;
   min-width: fit-content;
   height: 2.625rem;

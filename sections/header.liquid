@@ -71,18 +71,46 @@
           {% render 'icon-carrito' %}
         </button>
         <hr>
-        <div class="h-sector-seleccion-metodo-entrega">
-          <p>Selecciona tu</p>
-          <div class="h-texto-metodo-entrega">
-            <h4>Método de entrega</h4>
-            {% render 'icon-pizza-metodo-entrega' %}
+        <!-- ESTADO SIN TIENE METODO ENTREGA -->
+        {% comment %}
+          <div class="h-sector-seleccion-metodo-entrega">
+            <p>Selecciona tu</p>
+            <div class="h-texto-metodo-entrega">
+              <h4>Método de entrega</h4>
+              {% render 'icon-pizza-metodo-entrega' %}
+            </div>
+          </div>
+        {% endcomment %}
+        <!-- ESTADO CON TIENE METODO ENTREGA -->
+        <div class="h-sector-metodo-entrega">
+          {% comment %}
+            <div class="h-metodo-domicilio">
+              {% render 'icon-recogo-delivery' %}
+              <h4>Domicilio</h4>
+              {% render 'icon-flecha-abajo' %}
+            </div>
+          {% endcomment %}
+          <div class="h-metodo-local">
+            {% render 'icon-recogo-local' %}
+            <h4>Local</h4>
+            {% render 'icon-flecha-abajo' %}
           </div>
         </div>
         <hr>
+        <!-- ESTADO USUARIO INICIADO SESION -->
         <button class="h-boton-usuario">
-          <h4>INICIAR SESIÓN</h4>
-          {% render 'icon-cuenta-blanco' %}
+          {% comment %}
+            <div class="h-boton-modo-no-cliente">
+              <h4>INICIAR SESIÓN</h4>
+              {% render 'icon-cuenta-blanco' %}
+            </div>
+          {% endcomment %}
+          <div class="h-boton-modo-cliente">
+            {% render 'icon-cuenta-blanco' %}
+            {% render 'icon-flecha-abajo' %}
+          </div>
         </button>
+        <!-- ESTADO USUARIO NO INICIADO SESION -->
       </div>
     </div>
   </header>
