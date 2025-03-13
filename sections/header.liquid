@@ -1,120 +1,124 @@
 <!-- Estilos traer de assets/header.css as -->
 {{ 'header.css' | asset_url | stylesheet_tag }}
 
-<sticky-header>
-  <header class="h-header-principal">
-    <!-- HEADER METODO NO SELECCIONADO -->
-    <div class="h-metodo-entrega-no-seleccionado">
-      <div class="h-logo-principal">
-        <img src="{{ 'logo-sauce-only-1.png' | asset_url }}" alt="Logo Sauce Only" width="100" height="100">
+{% comment %}
+  <sticky-header>
+
+  </sticky-header>
+{% endcomment %}
+
+<header class="h-header-principal">
+  <!-- HEADER METODO NO SELECCIONADO -->
+  <div class="h-metodo-entrega-no-seleccionado">
+    <div class="h-logo-principal">
+      <img src="{{ 'logo-sauce-only-1.png' | asset_url }}" alt="Logo Sauce Only" width="100" height="100">
+    </div>
+    <div class="h-sector-seleccion-metodo-entrega">
+      <p>Selecciona tu</p>
+      <div class="h-texto-metodo-entrega">
+        <h4>Método de entrega</h4>
+        {% render 'icon-pizza-metodo-entrega' %}
       </div>
-      <div class="h-sector-seleccion-metodo-entrega">
-        <p>Selecciona tu</p>
-        <div class="h-texto-metodo-entrega">
-          <h4>Método de entrega</h4>
-          {% render 'icon-pizza-metodo-entrega' %}
-        </div>
+    </div>
+    <button class="h-boton-menu">
+      {% render 'icon-hamburguesa' %}
+    </button>
+  </div>
+  <!-- HEADER METODO SELECCIONADO -->
+  <div class="h-metodo-entrega-seleccionado">
+    <div class="h-logo-principal">
+      <img src="{{ 'logo-sauce-only-1.png' | asset_url }}" alt="Logo Sauce Only" width="100" height="100">
+    </div>
+    <button class="h-boton-buscar">
+      {% render 'icon-search' %}
+      <h3>Buscar</h3>
+    </button>
+    <div class="h-boton-cambio-metodo-entrega">
+      <div class="h-icono-metodo-entrega">
+        {% render 'icon-pizza-metodo-entrega' %}
       </div>
-      <button class="h-boton-menu">
-        {% render 'icon-hamburguesa' %}
+      <h3>Local</h3>
+      <button class="h-icono-solocitud-metodo-entrega">
+        {% render 'icon-flecha-abajo' %}
       </button>
     </div>
-    <!-- HEADER METODO SELECCIONADO -->
-    <div class="h-metodo-entrega-seleccionado">
-      <div class="h-logo-principal">
-        <img src="{{ 'logo-sauce-only-1.png' | asset_url }}" alt="Logo Sauce Only" width="100" height="100">
-      </div>
-      <button class="h-boton-buscar">
+    <button class="h-boton-carrito">
+      {% render 'icon-carrito' %}
+    </button>
+    <button class="h-boton-menu">
+      {% render 'icon-hamburguesa' %}
+    </button>
+  </div>
+  <!-- HEADER ENFOCADO TABLET DESKTOP -->
+  <div class="h-enfocado-tablet-desktop">
+    <div class="h-logo-principal">
+      <img src="{{ 'logo-secondary-2.png' | asset_url }}" alt="Logo Secundario" width="100" height="100">
+    </div>
+    <nav class="h-nav-principal">
+      <a href="">
+        <h4>MENÚ</h4>
+      </a>
+      <a href="" class="h-nav-hutcoins">
+        <h4>HUT COINS</h4>
+        {% render 'icon-flecha-hutcoins' %}
+      </a>
+      <a href="">
+        <h4>SOBRE NOSOTROS</h4>
+      </a>
+    </nav>
+    <div class="h-sector-opciones-cliente">
+      <div class="h-input-buscar">
         {% render 'icon-search' %}
-        <h3>Buscar</h3>
-      </button>
-      <div class="h-boton-cambio-metodo-entrega">
-        <div class="h-icono-metodo-entrega">
-          {% render 'icon-pizza-metodo-entrega' %}
-        </div>
-        <h3>Local</h3>
-        <button class="h-icono-solocitud-metodo-entrega">
-          {% render 'icon-flecha-abajo' %}
-        </button>
+        <input type="text" placeholder="Buscar">
       </div>
-      <button class="h-boton-carrito">
+      <hr>
+      <button class="h-icono-carrito">
         {% render 'icon-carrito' %}
       </button>
-      <button class="h-boton-menu">
-        {% render 'icon-hamburguesa' %}
-      </button>
-    </div>
-    <!-- HEADER ENFOCADO TABLET DESKTOP -->
-    <div class="h-enfocado-tablet-desktop">
-      <div class="h-logo-principal">
-        <img src="{{ 'logo-secondary-2.png' | asset_url }}" alt="Logo Secundario" width="100" height="100">
-      </div>
-      <nav class="h-nav-principal">
-        <a href="">
-          <h4>MENÚ</h4>
-        </a>
-        <a href="" class="h-nav-hutcoins">
-          <h4>HUT COINS</h4>
-          {% render 'icon-flecha-hutcoins' %}
-        </a>
-        <a href="">
-          <h4>SOBRE NOSOTROS</h4>
-        </a>
-      </nav>
-      <div class="h-sector-opciones-cliente">
-        <div class="h-input-buscar">
-          {% render 'icon-search' %}
-          <input type="text" placeholder="Buscar">
-        </div>
-        <hr>
-        <button class="h-icono-carrito">
-          {% render 'icon-carrito' %}
-        </button>
-        <hr>
-        <!-- ESTADO SIN TIENE METODO ENTREGA -->
-        {% comment %}
-          <div class="h-sector-seleccion-metodo-entrega">
-            <p>Selecciona tu</p>
-            <div class="h-texto-metodo-entrega">
-              <h4>Método de entrega</h4>
-              {% render 'icon-pizza-metodo-entrega' %}
-            </div>
+      <hr>
+      <!-- ESTADO SIN TIENE METODO ENTREGA -->
+      {% comment %}
+        <div class="h-sector-seleccion-metodo-entrega">
+          <p>Selecciona tu</p>
+          <div class="h-texto-metodo-entrega">
+            <h4>Método de entrega</h4>
+            {% render 'icon-pizza-metodo-entrega' %}
           </div>
-        {% endcomment %}
-        <!-- ESTADO CON TIENE METODO ENTREGA -->
-        <div class="h-sector-metodo-entrega">
-          <div class="h-metodo-domicilio">
-            {% render 'icon-recogo-delivery' %}
-            <h4>Domicilio</h4>
+        </div>
+      {% endcomment %}
+      <!-- ESTADO CON TIENE METODO ENTREGA -->
+      <div class="h-sector-metodo-entrega">
+        <div class="h-metodo-domicilio">
+          {% render 'icon-recogo-delivery' %}
+          <h4>Domicilio</h4>
+          {% render 'icon-flecha-abajo' %}
+        </div>
+        {% comment %}
+          <div class="h-metodo-local">
+            {% render 'icon-recogo-local' %}
+            <h4>Local</h4>
             {% render 'icon-flecha-abajo' %}
           </div>
-          {% comment %}
-            <div class="h-metodo-local">
-              {% render 'icon-recogo-local' %}
-              <h4>Local</h4>
-              {% render 'icon-flecha-abajo' %}
-            </div>
-          {% endcomment %}
-        </div>
-        <hr>
-        <!-- ESTADO USUARIO INICIADO SESION -->
-        <button class="h-boton-usuario h-modo-cliente">
-          <div class="h-boton-modo-no-cliente">
-            <h4>INICIAR SESIÓN</h4>
-            {% render 'icon-cuenta-blanco' %}
-          </div>
-          {% comment %}
-            <div class="h-boton-modo-cliente">
-              {% render 'icon-cuenta-blanco' %}
-              {% render 'icon-flecha-abajo' %}
-            </div>
-          {% endcomment %}
-        </button>
-        <!-- ESTADO USUARIO NO INICIADO SESION -->
+        {% endcomment %}
       </div>
+      <hr>
+      <!-- ESTADO USUARIO INICIADO SESION -->
+      <button class="h-boton-usuario h-modo-cliente">
+        <div class="h-boton-modo-no-cliente">
+          <h4>INICIAR SESIÓN</h4>
+          {% render 'icon-cuenta-blanco' %}
+        </div>
+        {% comment %}
+          <div class="h-boton-modo-cliente">
+            {% render 'icon-cuenta-blanco' %}
+            {% render 'icon-flecha-abajo' %}
+          </div>
+        {% endcomment %}
+      </button>
+      <!-- ESTADO USUARIO NO INICIADO SESION -->
     </div>
-  </header>
-</sticky-header>
+  </div>
+</header>
 
 <script>
   class HeaderPrincipal extends HTMLElement {}
