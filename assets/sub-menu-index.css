@@ -40,6 +40,10 @@
   .smi-index {
     grid-template-columns: 1fr 1fr 1fr;
   }
+
+  .smi-opciones:not(:last-child) {
+    border-right: 1.5px solid #969696;
+  }
 }
 
 @media screen and (min-width: 1024px) {
