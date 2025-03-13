@@ -215,12 +215,13 @@ sticky-header {
   gap: var(--espaciado-s);
   border-radius: var(--espaciado-xs);
   background: var(--colorp-primary);
-  /* padding: var(--espaciado-l); */
+  padding: var(--espaciado-l);
 }
 
 .h-boton-modo-cliente {
   border-radius: 0;
   background: transparent;
+  padding: 0;
 }
 /*  */
 
