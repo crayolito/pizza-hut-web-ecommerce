@@ -120,6 +120,15 @@
     left: 7.9rem;
   }
 
+  .bi-informacion-banner small {
+    font-size: 6rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%;
+    letter-spacing: -0.12rem;
+    text-transform: uppercase;
+  }
+
   .bi-icono-flecha-atras,
   .bi-icono-flecha-adelante {
     display: block;
@@ -148,14 +157,5 @@
     gap: var(--espaciado-xl);
     top: 5rem;
     left: 10rem;
-  }
-
-  .bi-informacion-banner small {
-    font-size: 6rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 100%;
-    letter-spacing: -0.12rem;
-    text-transform: uppercase;
   }
 }
