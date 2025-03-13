@@ -99,16 +99,16 @@
         <hr>
         <!-- ESTADO USUARIO INICIADO SESION -->
         <button class="h-boton-usuario h-modo-cliente">
-          <div class="h-boton-modo-no-cliente">
-            <h4>INICIAR SESIÓN</h4>
-            {% render 'icon-cuenta-blanco' %}
-          </div>
           {% comment %}
-            <div class="h-boton-modo-cliente">
+            <div class="h-boton-modo-no-cliente">
+              <h4>INICIAR SESIÓN</h4>
               {% render 'icon-cuenta-blanco' %}
-              {% render 'icon-flecha-abajo' %}
             </div>
           {% endcomment %}
+          <div class="h-boton-modo-cliente">
+            {% render 'icon-cuenta-blanco' %}
+            {% render 'icon-flecha-abajo' %}
+          </div>
         </button>
         <!-- ESTADO USUARIO NO INICIADO SESION -->
       </div>
