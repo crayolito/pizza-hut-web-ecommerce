@@ -184,12 +184,6 @@
 }
 
 .h-modo-cliente {
-  display: flex;
-  min-width: fit-content;
-  height: 2.625rem;
-  justify-content: center;
-  align-items: center;
-  padding: var(--espaciado-l);
   border-radius: 0;
   background: transparent;
 }
