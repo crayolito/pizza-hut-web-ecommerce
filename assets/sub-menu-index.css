@@ -45,6 +45,14 @@
     border-bottom: none;
     border-right: 1.5px solid #969696;
   }
+
+  .smi-index {
+    padding: 2rem;
+  }
+
+  .smi-opciones {
+    padding: 1.4rem 0;
+  }
 }
 
 @media screen and (min-width: 1024px) {

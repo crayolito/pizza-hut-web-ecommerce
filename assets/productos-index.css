@@ -142,3 +142,21 @@
   border-radius: var(--espaciado-xs);
   background: var(--colorp-primary);
 }
+
+@media screen and (min-width: 768px) {
+  .pi-items {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+  }
+
+  .pi-items > :nth-child(3) {
+    grid-column: auto;
+  }
+
+  .pi-items > :nth-child(5) {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+}
