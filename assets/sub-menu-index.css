@@ -42,8 +42,8 @@
   }
 
   .smi-opciones:not(:last-child) {
+    border-bottom: none;
     border-right: 1.5px solid #969696;
-    /* sdfsdf */
   }
 }
 
