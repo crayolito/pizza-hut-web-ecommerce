@@ -222,16 +222,11 @@
 
 @media screen and (min-width: 768px) {
   .ds-contenedor-base {
+    height: 45.5625rem;
+    padding-top: 13rem;
     gap: var(--espaciado-l);
     flex-direction: row;
     overflow: auto;
     padding: 0 var(--espaciado-s);
   }
-
-  .ds-contenedor-right {
-    height: 45.5625rem;
-    padding-top: 13rem;
-  }
-
-  /* ASas */
 }
