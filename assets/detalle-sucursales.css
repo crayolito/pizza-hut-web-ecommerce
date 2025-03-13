@@ -227,6 +227,5 @@
     gap: var(--espaciado-l);
     flex-direction: row;
     overflow: auto;
-    padding: 0 var(--espaciado-s);
   }
 }
