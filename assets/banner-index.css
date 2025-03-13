@@ -113,6 +113,13 @@
     top: calc(100% - 2rem);
   }
 
+  .bi-informacion-banner {
+    width: 15.8rem;
+    gap: var(--espaciado-l);
+    top: 4rem;
+    left: 7.9rem;
+  }
+
   .bi-icono-flecha-atras,
   .bi-icono-flecha-adelante {
     display: block;
