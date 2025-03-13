@@ -57,7 +57,7 @@
   padding: var(--espaciado-xs);
   gap: var(--espaciado-xs);
   /* MODIFIQUE AQUI */
-  display: none;
+  /* display: none; */
 }
 
 .h-sector-seleccion-metodo-entrega svg,
@@ -180,6 +180,15 @@
   align-items: center;
   border-radius: var(--espaciado-xs);
   background: var(--colorp-primary);
+  padding: var(--espaciado-l);
+}
+
+.h-modo-cliente {
+  display: flex;
+  min-width: fit-content;
+  height: 2.625rem;
+  justify-content: center;
+  align-items: center;
   padding: var(--espaciado-l);
 }
 
