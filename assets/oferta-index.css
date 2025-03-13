@@ -10,7 +10,7 @@
 .oi_oferta {
   width: 100%;
   /* height: 15rem; asd*/
-  border-radius: var(--border-radius-1);
+  border-radius: var(--border-radius-2);
 }
 
 .oi_oferta img {
@@ -18,4 +18,11 @@
   height: 100%;
   border-radius: var(--border-radius-1);
   object-fit: contain;
+  border-radius: var(--border-radius-2);
+}
+
+@media screen and (min-width: 768px) {
+  .oi_contenedor-base {
+    flex-direction: row;
+  }
 }

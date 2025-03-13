@@ -144,6 +144,10 @@
 }
 
 @media screen and (min-width: 768px) {
+  .pi-item-producto {
+    gap: var(--espaciado-xs);
+  }
+
   .pi-items {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: auto;
@@ -165,17 +169,10 @@
   }
 
   .pi-items > :nth-child(4) {
-    display: block;
-    height: 100%;
+    display: flex;
   }
 
   .pi-items > :nth-child(5) {
     display: none;
-  }
-
-  .pi-item-producto {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
   }
 }
