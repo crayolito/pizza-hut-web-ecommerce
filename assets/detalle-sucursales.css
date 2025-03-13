@@ -229,7 +229,6 @@
     height: 45.5625rem;
     padding-top: 13rem;
     gap: var(--espaciado-l);
-    flex-direction: row;
     overflow: auto;
   }
 }
