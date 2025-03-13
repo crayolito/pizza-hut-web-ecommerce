@@ -221,6 +221,10 @@
 }
 
 @media screen and (min-width: 768px) {
+  .ds-contenedor-base {
+    flex-direction: row;
+  }
+
   .ds-contenedor-right {
     height: 45.5625rem;
     padding-top: 13rem;
