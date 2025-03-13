@@ -31,6 +31,7 @@
   top: 50%;
   left: 3rem;
   transform: translateY(-50%);
+  display: none;
 }
 
 .bi-icono-flecha-adelante {
@@ -38,6 +39,7 @@
   top: 50%;
   right: 3rem;
   transform: translateY(-50%);
+  display: none;
 }
 
 .bi-informacion-banner {
@@ -109,6 +111,11 @@
 
   .bi-opciones-banner {
     top: calc(100% - 2rem);
+  }
+
+  .bi-icono-flecha-atras,
+  .bi-icono-flecha-adelante {
+    display: block;
   }
 
   .bi-icono-flecha-atras {
