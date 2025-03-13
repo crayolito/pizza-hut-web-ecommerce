@@ -200,7 +200,6 @@ sticky-header {
 
 .h-opciones-usuario {
   width: 25.75rem;
-  height: fit-content;
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -210,8 +209,10 @@ sticky-header {
   background: var(--colorp-secondary);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   position: absolute;
+  top: 100%;
   left: 50%;
   transform: translateX(-50%);
+  z-index: 9999;
 }
 
 .h-modo-cliente {
