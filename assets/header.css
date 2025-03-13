@@ -188,7 +188,7 @@ sticky-header {
   align-items: center;
   border-radius: var(--espaciado-xs);
   background: var(--colorp-primary);
-  padding: var(--espaciado-l);
+  /* padding: var(--espaciado-l); */
 }
 
 .h-modo-cliente {
