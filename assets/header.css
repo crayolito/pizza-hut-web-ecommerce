@@ -119,6 +119,7 @@ sticky-header {
   display: flex;
   flex-direction: column;
   gap: var(--espaciado-xl);
+  padding: var(--espaciado-xl) 0;
 }
 
 .h-opciones-mobile-header {
@@ -130,11 +131,6 @@ sticky-header {
   border-radius: var(--espaciado-s);
   border: 1px solid #dedede;
   background: var(--colorp-secondary);
-}
-
-.h-opciones-mobile-header h1 {
-  font-size: 1.5rem;
-  font-weight: 600;
 }
 
 /* ===================
@@ -259,14 +255,10 @@ sticky-header {
 }
 
 .h-opciones-usuario hr {
-  width: 100%;
   height: 0.0625rem;
-  background: #dedede;
 }
 
 .h-opcion-usuario svg {
-  width: 1.5rem;
-  height: 1.5rem;
   filter: brightness(0) saturate(100%) invert(7%) sepia(9%) saturate(929%)
     hue-rotate(314deg) brightness(92%) contrast(88%);
 }
@@ -324,11 +316,6 @@ sticky-header {
   color: var(--colorp-secondary);
   font-weight: 400;
   text-transform: uppercase;
-}
-
-hr {
-  height: 2.625rem;
-  background: #dedede;
 }
 
 @media screen and (min-width: 768px) {
