@@ -315,6 +315,15 @@ hr {
   .h-enfocado-tablet-desktop {
     display: flex;
   }
+
+  .h-opciones-usuario {
+    padding: var(--espaciado-l);
+  }
+
+  .h-opcion-usuario {
+    padding: var(--espaciado-l);
+    gap: var(--espaciado-xs);
+  }
 }
 
 @media screen and (min-width: 1024px) {
