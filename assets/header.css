@@ -267,11 +267,6 @@ sticky-header {
   color: var(--colorp-primary);
 }
 
-.h-cerrar-sesion svg {
-  filter: brightness(0) saturate(100%) invert(12%) sepia(93%) saturate(6170%)
-    hue-rotate(351deg) brightness(93%) contrast(97%);
-}
-
 .h-modo-cliente {
   border-radius: 0;
   background: transparent;
