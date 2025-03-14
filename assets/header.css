@@ -116,7 +116,28 @@ sticky-header {
   height: 100%;
   background: var(--colorp-secondary);
   z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaciado-xl);
 }
+
+.h-opciones-mobile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 var(--espaciado-xl);
+  height: 5.75rem;
+  border-radius: var(--espaciado-s);
+  border: 1px solid #dedede;
+  background: var(--colorp-secondary);
+}
+
+.h-opciones-mobile-header h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+/* h-opciones-mobile-heade */
 
 /* ===================
      BOTONES 
