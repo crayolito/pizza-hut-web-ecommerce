@@ -317,6 +317,7 @@ hr {
   }
 
   .h-opciones-usuario {
+    width: 18.75rem;
     padding: var(--espaciado-l);
   }
 
