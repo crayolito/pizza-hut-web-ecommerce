@@ -211,6 +211,32 @@
         height: auto;
       }
 
+      /* ===================
+         ESTILOS GENERALES
+      =================== */
+
+      /* Contenedor base para componentes (sections) */
+      .container-base {
+        width: 100%;
+        max-width: 1660px;
+        padding-left: var(--espaciado-xl);
+        padding-right: var(--espaciado-xl);
+      }
+
+      @media screen and (min-width: 768px) {
+        .container-base {
+          padding-left: var(--espaciado-xxl);
+          padding-right: var(--espaciado-xxl);
+        }
+      }
+
+      @media screen and (min-width: 1024px) {
+        .container-base {
+          padding-left: var(--espaciado-xxxl);
+          padding-right: var(--espaciado-xxxl);
+        }
+      }
+
       @media screen and (min-width: 350px) and (max-width: 380px) {
         html {
           font-size: 13px;
@@ -229,40 +255,40 @@
         }
       }
 
-      /* 
-      Docuemntacion para el uso de clamps With Height Sections Divs(Header, Footer, Font-size, etc):
-      clamp(min, preferred, max)
-      clamp(valor minimo,(y+c),valor maximo)
-      x : unidad vh o vw
-      y : unidad px
+      /* ESTILOS GENERALES /*
+       Docuemntacion para el uso de clamps With Height Sections Divs(Header, Footer, Font-size, etc):
+       clamp(min, preferred, max)
+       clamp(valor minimo,(y+c),valor maximo)
+       x : unidad vh o vw
+       y : unidad px
 
-      min: valor mínimo para el tamaño de la pantalla
-      preferred: valor preferido para el tamaño de la pantalla
-      max: valor máximo para el tamaño de la pantalla
+       min: valor mínimo para el tamaño de la pantalla
+       preferred: valor preferido para el tamaño de la pantalla
+       max: valor máximo para el tamaño de la pantalla
 
-      Proceso
-      1. Primero se tiene el valor base 
-      2. Se calcula el valor mínimo : valor base * 0.7
-      3. Se calcula el valor máximo : valor base * 1.3
-      4. Sacar el valor (x) ,  x : (valor base  ÷ tamaño de la pantalla ) * 100
-      5. Sacar el valor (y) , y : 
+       Proceso
+       1. Primero se tiene el valor base
+       2. Se calcula el valor mínimo : valor base * 0.7
+       3. Se calcula el valor máximo : valor base * 1.3
+       4. Sacar el valor (x) ,  x : (valor base  ÷ tamaño de la pantalla ) * 100
+       5. Sacar el valor (y) , y :
 
-      Ejemplo : height: clamp(63px, 10vh + 35px, 117px)
-      valor base : 90px
-      tamaño de la pantalla en el alto : 551.33px
-      tamaño de la pantalla en el ancho : 551.33px
-      
-      valor minimo : 63px
-      valor maximo : 117px
-      valor x : (90 ÷ 551.33) * 100 = 16.33vh
-      valor y : x * 0.6 = 9.8vh = 10vh = 10% = 0.1
-      valor b : 551.33px * y = 55.13px 
-      valor c : 90px - b = 34.87px = 35px
+       Ejemplo : height: clamp(63px, 10vh + 35px, 117px)
+       valor base : 90px
+       tamaño de la pantalla en el alto : 551.33px
+       tamaño de la pantalla en el ancho : 551.33px
 
-      Docuemntacion para el uso de clamps Margin, Padding Gap Iconos:
-      clamp(min, x, max)
-      x : (valor base ÷ tamaño de la pantalla) * 100
-      */
+       valor minimo : 63px
+       valor maximo : 117px
+       valor x : (90 ÷ 551.33) * 100 = 16.33vh
+       valor y : x * 0.6 = 9.8vh = 10vh = 10% = 0.1
+       valor b : 551.33px * y = 55.13px
+       valor c : 90px - b = 34.87px = 35px
+
+       Docuemntacion para el uso de clamps Margin, Padding Gap Iconos:
+       clamp(min, x, max)
+       x : (valor base ÷ tamaño de la pantalla) * 100
+       */
     {% endstyle %}
   </head>
 

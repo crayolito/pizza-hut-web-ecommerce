@@ -316,6 +316,7 @@ hr {
     display: flex;
   }
 }
+
 @media screen and (min-width: 1024px) {
   .h-nav-principal {
     display: flex;
