@@ -38,24 +38,32 @@
       <button class="h-boton-menu">
         {% render 'icon-hamburguesa' %}
       </button>
-      <section class="h-opciones-usuario-mobile">
-        <button class="h-opcion-usuario">
-          {% render 'icon-cuenta-blanco' %}
-          <p>MI PERFIL</p>
-        </button>
-        <button class="h-opcion-usuario">
-          {% render 'icon-contrato' %}
-          <p>HISTORIAL DE PEDIDOS</p>
-        </button>
-        <button class="h-opcion-usuario">
-          {% render 'icon-cupon' %}
-          <p>CUPONES Y DESCUENTOS</p>
-        </button>
-        <hr>
-        <button class="h-opcion-usuario h-cerrar-sesion">
-          {% render 'icon-cuenta-blanco' %}
-          <p>CERRAR SESIÓN</p>
-        </button>
+      <section class="container-base h-opciones-usuario-mobile">
+        <div class="h-opciones-mobile-header">
+          <h1>Menú</h1>
+          <button class="h-boton-cerrar-menu">
+            {% render 'icon-close-rojo' %}
+          </button>
+        </div>
+        <div class="h-opciones-mobile-body">
+          <button class="h-opcion-usuario">
+            {% render 'icon-cuenta-blanco' %}
+            <p>MI PERFIL</p>
+          </button>
+          <button class="h-opcion-usuario">
+            {% render 'icon-contrato' %}
+            <p>HISTORIAL DE PEDIDOS</p>
+          </button>
+          <button class="h-opcion-usuario">
+            {% render 'icon-cupon' %}
+            <p>CUPONES Y DESCUENTOS</p>
+          </button>
+          <hr>
+          <button class="h-opcion-usuario h-cerrar-sesion">
+            {% render 'icon-cuenta-blanco' %}
+            <p>CERRAR SESIÓN</p>
+          </button>
+        </div>
       </section>
     </div>
     <!-- HEADER ENFOCADO TABLET DESKTOP -->
