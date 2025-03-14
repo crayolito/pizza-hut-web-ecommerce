@@ -3,45 +3,60 @@
 
 <sticky-header>
   <header class="container-secundario h-header-principal">
-    <!-- HEADER METODO NO SELECCIONADO -->
-    <div class="h-metodo-entrega-no-seleccionado">
-      <div class="h-logo-principal">
-        <img src="{{ 'logo-sauce-only-1.png' | asset_url }}" alt="Logo Sauce Only" width="100" height="100">
-      </div>
-      <div class="h-sector-seleccion-metodo-entrega">
-        <p>Selecciona tu</p>
-        <div class="h-texto-metodo-entrega">
-          <h4>Método de entrega</h4>
-          {% render 'icon-pizza-metodo-entrega' %}
-        </div>
-      </div>
-      <button class="h-boton-menu">
-        {% render 'icon-hamburguesa' %}
-      </button>
-    </div>
-    <!-- HEADER METODO SELECCIONADO -->
+    <!-- HEADER MOBILE -->
     <div class="h-metodo-entrega-seleccionado">
       <div class="h-logo-principal">
         <img src="{{ 'logo-sauce-only-1.png' | asset_url }}" alt="Logo Sauce Only" width="100" height="100">
       </div>
-      <button class="h-boton-buscar">
-        {% render 'icon-search' %}
-        <h3>Buscar</h3>
-      </button>
-      <div class="h-boton-cambio-metodo-entrega">
-        <div class="h-icono-metodo-entrega">
-          {% render 'icon-pizza-metodo-entrega' %}
+      {% comment %}
+        <div class="h-sector-seleccion-metodo-entrega h-metodo-no-seleccionado">
+          <p>Selecciona tu</p>
+          <div class="h-texto-metodo-entrega">
+            <h4>Método de entrega</h4>
+            {% render 'icon-pizza-metodo-entrega' %}
+          </div>
         </div>
-        <h3>Local</h3>
-        <button class="h-icono-solocitud-metodo-entrega">
-          {% render 'icon-flecha-abajo' %}
+      {% endcomment %}
+      <div class="h-sector-opciones-cliente h-metodo-seleccionado">
+        <button class="h-boton-buscar">
+          {% render 'icon-search' %}
+          <h3>Buscar</h3>
+        </button>
+        <div class="h-boton-cambio-metodo-entrega">
+          <div class="h-icono-metodo-entrega">
+            {% render 'icon-pizza-metodo-entrega' %}
+          </div>
+          <h3>Local</h3>
+          <button class="h-icono-solocitud-metodo-entrega">
+            {% render 'icon-flecha-abajo' %}
+          </button>
+        </div>
+        <button class="h-boton-carrito">
+          {% render 'icon-carrito' %}
         </button>
       </div>
-      <button class="h-boton-carrito">
-        {% render 'icon-carrito' %}
-      </button>
       <button class="h-boton-menu">
         {% render 'icon-hamburguesa' %}
+
+        <section class="h-opciones-usuario">
+          <button class="h-opcion-usuario">
+            {% render 'icon-cuenta-blanco' %}
+            <p>MI PERFIL</p>
+          </button>
+          <button class="h-opcion-usuario">
+            {% render 'icon-contrato' %}
+            <p>HISTORIAL DE PEDIDOS</p>
+          </button>
+          <button class="h-opcion-usuario">
+            {% render 'icon-cupon' %}
+            <p>CUPONES Y DESCUENTOS</p>
+          </button>
+          <hr>
+          <button class="h-opcion-usuario h-cerrar-sesion">
+            {% render 'icon-cuenta-blanco' %}
+            <p>CERRAR SESIÓN</p>
+          </button>
+        </section>
       </button>
     </div>
     <!-- HEADER ENFOCADO TABLET DESKTOP -->
