@@ -211,7 +211,7 @@ sticky-header {
   top: 100%;
   transform: translateX(-50%);
   z-index: 9999;
-  display: none;
+  /* display: none; */
 }
 
 .h-opcion-usuario {
