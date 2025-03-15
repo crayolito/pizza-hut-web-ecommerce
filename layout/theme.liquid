@@ -248,23 +248,16 @@
         margin: auto;
       }
 
-
-      /* [class*="icon-color-primary"] * svg */
-      [class*="icon-color-primary"] svg {
+      [class*='icon-color-primary'] svg {
         filter: invert(15%) sepia(95%) saturate(6932%) hue-rotate(350deg) brightness(91%) contrast(113%) !important;
       }
 
-      .icon-color-secondary svg {
+      [class*='icon-color-secondary'] svg {
         filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
       }
 
-      .icon-color-tertiary svg,
-      .icon-color-tertiary * svg,
-      button.icon-color-tertiary svg,
-      [class*="icon-color-tertiary"] svg,
-      [class*="icon-color-tertiary"] * svg {
-        filter: invert(8%) sepia(9%) saturate(555%) hue-rotate(314deg) brightness(94%) contrast(91%) !important;
-      } filter: invert(8%) sepia(9%) saturate(555%) hue-rotate(314deg) brightness(94%) contrast(91%);
+      [class*='icon-color-tertiary'] svg {
+        filter: invert(8%) sepia(9%) saturate(555%) hue-rotate(314deg) brightness(94%) contrast(91%);
       }
 
       @media screen and (min-width: 768px) {
