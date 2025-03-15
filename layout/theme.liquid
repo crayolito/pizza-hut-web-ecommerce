@@ -257,9 +257,12 @@
       }
 
       .icon-color-tertiary svg,
-      .icon-color-tertiary > svg,
-      *[class*='icon-color-tertiary'] svg {
-        filter: invert(8%) sepia(9%) saturate(555%) hue-rotate(314deg) brightness(94%) contrast(91%);
+      .icon-color-tertiary * svg,
+      button.icon-color-tertiary svg,
+      [class*="icon-color-tertiary"] svg,
+      [class*="icon-color-tertiary"] * svg {
+        filter: invert(8%) sepia(9%) saturate(555%) hue-rotate(314deg) brightness(94%) contrast(91%) !important;
+      } filter: invert(8%) sepia(9%) saturate(555%) hue-rotate(314deg) brightness(94%) contrast(91%);
       }
 
       @media screen and (min-width: 768px) {
