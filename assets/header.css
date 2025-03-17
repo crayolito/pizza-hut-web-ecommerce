@@ -371,14 +371,16 @@ sticky-header {
      =================== */
 
 .h-container-busqueda-mobile {
-  position: absolute;
   display: flex;
   flex-direction: column;
   align-items: start;
   gap: var(--espaciado-xs);
   z-index: 9999;
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background: var(--colorp-secondary);
 }
 
