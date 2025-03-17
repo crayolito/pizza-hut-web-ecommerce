@@ -120,6 +120,8 @@ sticky-header {
   flex-direction: column;
   gap: var(--espaciado-xl);
   padding: var(--espaciado-xl) 0;
+  /* READ : CAMBIOS PARA EL JS  */
+  display: none;
 }
 
 .h-opciones-mobile-body hr {
@@ -251,6 +253,8 @@ sticky-header {
   align-items: start;
   padding: var(--espaciado-m);
   gap: var(--espaciado-l);
+  /* READ : CAMBIOS PARA EL JS  */
+  display: none;
 }
 
 .h-busqueda-especifica-item {
