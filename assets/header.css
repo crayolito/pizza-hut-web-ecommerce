@@ -390,6 +390,7 @@ sticky-header {
   height: 3.5rem;
   background: var(--colorp-secondary);
   padding-left: var(--espaciado-xl);
+  border-bottom: 1px solid #dedede;
 }
 
 .h-busqueda-mobile-header input {
@@ -398,13 +399,13 @@ sticky-header {
   background: var(--colorp-secondary);
   border: none;
   outline: none;
-  padding-left: var(--espaciado-xl);
 }
 
 .h-busqueda-mobile-header button {
   width: 25%;
   height: 100%;
   background: var(--colorp-secondary);
+  padding-right: var(--espaciado-xl);
 }
 
 .h-busqueda-mobile-header button p {
@@ -420,6 +421,7 @@ sticky-header {
   gap: var(--espaciado-xs);
   width: 100%;
   height: 100%;
+  padding-top: var(--espaciado-xl);
 }
 
 /* ===================
