@@ -260,7 +260,7 @@ sticky-header {
   gap: var(--espaciado-xs);
 }
 
-.h-opcion-usuario hr {
+.h-opciones-usuario hr {
   height: 1px;
   width: 100%;
 }
