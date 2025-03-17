@@ -122,6 +122,11 @@ sticky-header {
   padding: var(--espaciado-xl) 0;
 }
 
+.h-opciones-usuario-mobile hr {
+  height: 1px;
+  width: 100%;
+}
+
 .h-opciones-mobile-header {
   display: flex;
   justify-content: space-between;
@@ -259,11 +264,6 @@ sticky-header {
   font-weight: 600;
   letter-spacing: -0.04rem;
   text-transform: uppercase;
-}
-
-.h-opciones-usuario hr {
-  height: 1px;
-  width: 100%;
 }
 
 .h-cerrar-sesion p {
