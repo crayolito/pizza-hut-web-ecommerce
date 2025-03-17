@@ -243,7 +243,7 @@ sticky-header {
 
 .h-busqueda-especifica {
   width: 100%;
-  height: 100%;
+  height: max-content;
   background: var(--colorp-secondary);
   border-radius: var(--border-radius-1);
   display: flex;
@@ -256,7 +256,7 @@ sticky-header {
 .h-busqueda-especifica-item {
   display: flex;
   align-items: center;
-  gap: var(--espaciado-xs);
+  gap: var(--espaciado-l);
   width: 100%;
   overflow: hidden;
 }
@@ -270,9 +270,11 @@ sticky-header {
 
 .h-busqueda-especifica-item-info {
   display: flex;
+  flex: 1;
+  min-width: 0;
   flex-direction: column;
   align-items: start;
-  gap: var(--espaciado-l);
+  gap: var(--espaciado-xs);
 }
 
 .h-busqueda-especifica-item-info p {
