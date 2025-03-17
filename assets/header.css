@@ -70,13 +70,13 @@ sticky-header {
   /* display: none; */
 }
 
-.h-sector-seleccion-metodo-entrega svg,
+/* .h-sector-seleccion-metodo-entrega svg,
 .h-sector-metodo-entrega svg,
 .h-boton-usuario svg {
   fill: var(--colorp-tertiary);
   filter: brightness(0) saturate(100%) invert(5%) sepia(8%) saturate(1122%)
     hue-rotate(314deg) brightness(94%) contrast(93%);
-}
+} */
 
 .h-sector-seleccion-metodo-entrega p {
   font-size: 0.875rem;
