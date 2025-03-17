@@ -185,6 +185,7 @@ sticky-header {
   flex-shrink: 1;
   flex-basis: auto;
   width: auto;
+  height: 100%;
 }
 
 .h-sector-opciones-cliente hr {
