@@ -420,7 +420,7 @@ sticky-header {
   display: flex;
   flex-direction: column;
   align-items: start;
-  gap: var(--espaciado-xs);
+  gap: var(--espaciado-s);
   width: 100%;
   height: 100%;
   padding-top: var(--espaciado-xl);
