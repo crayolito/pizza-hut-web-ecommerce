@@ -185,6 +185,7 @@ sticky-header {
   display: flex;
   min-width: min-content;
   align-items: center;
+  justify-content: center;
   gap: var(--espaciado-xxl);
   flex-grow: 1;
   flex-shrink: 1;
@@ -248,7 +249,7 @@ sticky-header {
   top: 100%;
   transform: translateX(-50%);
   z-index: 9999;
-  /* display: none; */
+  display: none;
 }
 
 .h-opcion-usuario {
