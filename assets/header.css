@@ -258,11 +258,6 @@ sticky-header {
   height: 0.0625rem;
 }
 
-.h-opcion-usuario svg {
-  filter: brightness(0) saturate(100%) invert(7%) sepia(9%) saturate(929%)
-    hue-rotate(314deg) brightness(92%) contrast(88%);
-}
-
 .h-cerrar-sesion p {
   color: var(--colorp-primary);
 }
