@@ -263,6 +263,7 @@ sticky-header {
 
 .h-opciones-usuario hr {
   height: 0.0625rem;
+  width: 100%;
 }
 
 .h-cerrar-sesion p {
