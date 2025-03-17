@@ -188,7 +188,7 @@ sticky-header {
 }
 
 .h-sector-opciones-cliente hr {
-  height: calc(100% - 1rem);
+  height: calc(100% - 3.5rem);
   width: 1.5px;
   background: #dedede;
 }
