@@ -260,6 +260,11 @@ sticky-header {
   gap: var(--espaciado-xs);
 }
 
+.h-opcion-usuario hr {
+  height: 1px;
+  width: 100%;
+}
+
 .h-opcion-usuario p {
   font-weight: 600;
   letter-spacing: -0.04rem;

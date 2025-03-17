@@ -37,7 +37,7 @@
 .pi-items {
   display: grid;
   width: 100%;
-  gap: var(--espaciado-l);
+  gap: var(--espaciado-xxxl);
   grid-template-columns: 1fr 1fr;
   grid-template-rows: repeat(3, auto);
   /* grid-template-rows: 29.5rem 33rem 29.5rem; */
