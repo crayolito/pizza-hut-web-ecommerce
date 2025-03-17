@@ -202,104 +202,6 @@ sticky-header {
   background: #dedede;
 }
 
-.h-sector-busqueda {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  flex-shrink: 1;
-  flex-basis: auto;
-  width: auto;
-  min-width: 5.5rem;
-  align-items: center;
-  height: 3rem;
-  background: var(--colorp-secondary);
-}
-
-.h-input-buscar {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  gap: var(--espaciado-xs);
-  align-items: center;
-  padding: var(--espaciado-xl);
-  border-radius: var(--espaciado-xs);
-  border: 1.5px solid #6e6e6e;
-  background: var(--colorp-secondary);
-  /* READ : CAMBIOS PARA EL JS 
-  border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0; */
-  /* display: flex;
-  flex-grow: 1;
-  flex-shrink: 1;
-  flex-basis: auto;
-  width: auto;
-  min-width: 5.5rem;
-  align-items: center;
-  gap: var(--espaciado-xs);
-  height: 3rem;
-  padding: var(--espaciado-xl);
-  border-radius: var(--espaciado-xs);
-  border: 1.5px solid #6e6e6e;
-  background: var(--colorp-secondary); */
-}
-
-.h-busqueda-especifica {
-  width: 100%;
-  height: max-content;
-  background: var(--colorp-secondary);
-  border-radius: var(--border-radius-1);
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  padding: var(--espaciado-m);
-  gap: var(--espaciado-l);
-  /* READ : CAMBIOS PARA EL JS  */
-  display: none;
-}
-
-.h-busqueda-especifica-item {
-  display: flex;
-  align-items: center;
-  gap: var(--espaciado-l);
-  width: 100%;
-  overflow: hidden;
-}
-
-.h-busqueda-especifica-item img {
-  width: 2.5rem;
-  height: 2.5rem;
-  /* border-radius: 50%; */
-  object-fit: cover;
-}
-
-.h-busqueda-especifica-item-info {
-  display: flex;
-  flex: 1;
-  min-width: 0;
-  flex-direction: column;
-  align-items: start;
-  gap: var(--espaciado-xs);
-}
-
-.h-busqueda-especifica-item-info p {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 100%;
-  width: 100%;
-  display: block;
-  margin: 0;
-}
-
-.h-busqueda-especifica-item-info p:first-child {
-  font-weight: 600;
-  text-transform: uppercase;
-}
-
-.h-input-buscar input {
-  width: 100%;
-}
-
 .h-boton-usuario {
   display: flex;
   min-width: fit-content;
@@ -384,12 +286,6 @@ sticky-header {
   padding: var(--espaciado-l);
 }
 
-/* .h-boton-modo-no-cliente svg {
-  fill: var(--colorp-secondary);
-  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7500%)
-    hue-rotate(119deg) brightness(117%) contrast(100%);
-} */
-
 .h-boton-modo-cliente {
   border-radius: 0;
   background: transparent;
@@ -400,6 +296,172 @@ sticky-header {
 .h-boton-usuario h4 {
   color: var(--colorp-secondary);
   font-weight: 400;
+  text-transform: uppercase;
+}
+
+/* ===================
+  SECTOR DE BUSQUEDA PARA EL USUARIO
+     =================== */
+
+/* ===================
+  DESKTOP
+     =================== */
+
+.h-sector-busqueda {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: auto;
+  width: auto;
+  min-width: 5.5rem;
+  align-items: center;
+  height: 3rem;
+  background: var(--colorp-secondary);
+}
+
+.h-input-buscar {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  gap: var(--espaciado-xs);
+  align-items: center;
+  padding: var(--espaciado-xl);
+  border-radius: var(--espaciado-xs);
+  border: 1.5px solid #6e6e6e;
+  background: var(--colorp-secondary);
+  /* READ : CAMBIOS PARA EL JS 
+          border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0; */
+  /* display: flex;
+          flex-grow: 1;
+          flex-shrink: 1;
+          flex-basis: auto;
+          width: auto;
+          min-width: 5.5rem;
+          align-items: center;
+          gap: var(--espaciado-xs);
+          height: 3rem;
+          padding: var(--espaciado-xl);
+          border-radius: var(--espaciado-xs);
+          border: 1.5px solid #6e6e6e;
+          background: var(--colorp-secondary); */
+}
+
+.h-busqueda-especifica {
+  width: 100%;
+  height: max-content;
+  background: var(--colorp-secondary);
+  border-radius: var(--border-radius-1);
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  padding: var(--espaciado-m);
+  gap: var(--espaciado-l);
+  /* READ : CAMBIOS PARA EL JS  */
+  display: none;
+}
+
+.h-input-buscar input {
+  width: 100%;
+}
+
+/* ===================
+  MOBILE
+     =================== */
+
+.h-container-busqueda-mobile {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: var(--espaciado-xs);
+  z-index: 9999;
+  width: 100%;
+  height: 100%;
+  background: var(--colorp-secondary);
+}
+
+.h-busqueda-mobile-header {
+  display: flex;
+  align-items: center;
+  gap: var(--espaciado-xs);
+  width: 100%;
+  height: 3.5rem;
+  background: var(--colorp-secondary);
+  padding-left: var(--espaciado-xl);
+}
+
+.h-busqueda-mobile-header input {
+  width: 75%;
+  height: 100%;
+  background: var(--colorp-secondary);
+  border: none;
+  outline: none;
+  padding-left: var(--espaciado-xl);
+}
+
+.h-busqueda-mobile-header button {
+  width: 25%;
+  height: 100%;
+  background: var(--colorp-secondary);
+}
+
+.h-busqueda-mobile-header button p {
+  color: var(--colorp-primary);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.h-busqueda-mobile-body {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: var(--espaciado-xs);
+  width: 100%;
+  height: 100%;
+}
+
+/* ===================
+  SECTOR GENERALES 
+     =================== */
+
+.h-busqueda-especifica-item {
+  display: flex;
+  align-items: center;
+  gap: var(--espaciado-l);
+  width: 100%;
+  overflow: hidden;
+}
+
+.h-busqueda-especifica-item img {
+  width: 2.5rem;
+  height: 2.5rem;
+  /* border-radius: 50%; */
+  object-fit: cover;
+}
+
+.h-busqueda-especifica-item-info {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  flex-direction: column;
+  align-items: start;
+  gap: var(--espaciado-xs);
+}
+
+.h-busqueda-especifica-item-info p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  width: 100%;
+  display: block;
+  margin: 0;
+}
+
+.h-busqueda-especifica-item-info p:first-child {
+  font-weight: 600;
   text-transform: uppercase;
 }
 
