@@ -257,6 +257,8 @@ sticky-header {
   display: flex;
   align-items: center;
   gap: var(--espaciado-xs);
+  width: 100%;
+  overflow: hidden;
 }
 
 .h-busqueda-especifica-item img {
@@ -270,7 +272,7 @@ sticky-header {
   display: flex;
   flex-direction: column;
   align-items: start;
-  gap: var(--espaciado-xs);
+  gap: var(--espaciado-l);
 }
 
 .h-busqueda-especifica-item-info p {
@@ -278,6 +280,9 @@ sticky-header {
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 100%;
+  width: 100%;
+  display: block;
+  margin: 0;
 }
 
 .h-busqueda-especifica-item-info p:first-child {
