@@ -482,7 +482,6 @@ sticky-header {
 #h-mostrar-menu-opciones-productos {
   position: relative;
   transition: color 0.3s ease;
-  /* Quitar padding y border que causan el salto */
 }
 
 #h-mostrar-menu-opciones-productos::after {

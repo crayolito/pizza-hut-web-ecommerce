@@ -1,0 +1,60 @@
+<section class="sh-container-header container-base">
+  <small>¡ENCUENTRA TU PIZZA FAVORITA!</small>
+  <div class="sh-container-input">
+    {% render 'icon-search' %}
+    <input type="text" placeholder="Buscar">
+    <button class="sh-button-search icon-close-terciary">
+      {% render 'icon-close-rojo' %}
+    </button>
+  </div>
+</section>
+
+{% style %}
+  .sh-container-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .sh-container-header small {
+    text-align: center;
+    font-size: 3.3125rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 3.4375rem;
+    letter-spacing: -0.06625rem;
+    text-transform: uppercase;
+  }
+
+  .sh-container-input {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    border-radius: 0.5rem;
+    border: 1px solid #231f20;
+    padding: var(--espaciado-xl);
+    background-color: var(--colorp-secondary);
+  }
+
+  .sh-container-input input {
+    background-color: transparent;
+    width: 100%;
+  }
+
+  .sh-button-search {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    aspect-ratio: 1/1;
+  }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "Header de búsqueda",
+  "tag": "section",
+  "class": "header-search",
+  "settings": [],
+  "blocks": []
+}
+{% endschema %}

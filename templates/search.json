@@ -10,32 +10,26 @@
 {
   "sections": {
     "banner-index": {
-      "type": "banner-index",
+      "type": "search-header",
       "settings": {}
     },
     "sub-menu-index": {
-      "type": "sub-menu-index",
+      "type": "search-products",
       "settings": {}
     },
     "productos-index": {
-      "type": "productos-index",
+      "type": "search-promociones-1",
       "settings": {}
     },
     "oferta-index": {
-      "type": "oferta-index",
-      "settings": {}
-    },
-
-    "detalle-sucursales": {
-      "type": "detalle-sucursales",
+      "type": "search-promociones-2",
       "settings": {}
     }
   },
   "order": [
-    "banner-index",
-    "sub-menu-index",
-    "productos-index",
-    "oferta-index",
-    "detalle-sucursales"
+    "search-header",
+    "search-products",
+    "search-promociones-1",
+    "search-promociones-2"
   ]
 }
