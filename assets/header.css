@@ -493,6 +493,36 @@ sticky-header {
   padding: var(--espaciado-xl) 0;
 }
 
+.h-menu-opciones-productos-item {
+  width: 18.5rem;
+  height: 8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--border-radius-2);
+  background: var(--colorp-secondary);
+  border: 1px solid #dedede;
+}
+
+.h-menu-producto-info-imagen {
+  width: 30%;
+  height: 100%;
+}
+
+.h-menu-producto-info-imagen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.h-menu-opciones-productos-item p {
+  width: 70%;
+  height: 100%;
+  text-align: center;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
 @media screen and (min-width: 768px) {
   .h-metodo-entrega-no-seleccionado,
   .h-metodo-entrega-seleccionado {
