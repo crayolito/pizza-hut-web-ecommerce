@@ -479,6 +479,17 @@ sticky-header {
   SECTOR DE MENU DE OPCIONES PARA LOS PRODUCTOS
      =================== */
 
+#h-mostrar-menu-opciones-productos {
+  transition: all 0.3s ease;
+  border-bottom: 2px solid transparent;
+  padding-bottom: 3px;
+}
+
+#h-mostrar-menu-opciones-productos:hover {
+  color: var(--colorp-primary); /* Cambia al color rojo */
+  border-bottom: 2px solid var(--colorp-primary); /* Subrayado rojo */
+}
+
 .h-menu-opciones-productos {
   max-width: 1660px;
   position: absolute;
