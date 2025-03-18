@@ -480,6 +480,7 @@ sticky-header {
      =================== */
 
 .h-menu-opciones-productos {
+  max-width: 1660px;
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -502,7 +503,8 @@ sticky-header {
   justify-content: center;
   border-radius: var(--border-radius-2);
   background: var(--colorp-secondary);
-  border: 1px solid #dedede;
+  border: 1.5px solid #dedede;
+  cursor: pointer;
 }
 
 .h-menu-producto-info-imagen {
@@ -510,7 +512,7 @@ sticky-header {
   height: 100%;
   border-top-left-radius: var(--border-radius-2);
   border-bottom-left-radius: var(--border-radius-2);
-  border-right: 1px solid #dedede;
+  border-right: 1.5px solid #dedede;
 }
 
 .h-menu-producto-info-imagen img {
@@ -518,7 +520,7 @@ sticky-header {
   height: 100%;
   border-top-left-radius: var(--border-radius-2);
   border-bottom-left-radius: var(--border-radius-2);
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .h-menu-producto-info-nombre {
