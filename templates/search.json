@@ -9,7 +9,7 @@
  */
 {
   "sections": {
-    "banner-index": {
+    "search-header": {
       "type": "search-header",
       "settings": {}
     }
