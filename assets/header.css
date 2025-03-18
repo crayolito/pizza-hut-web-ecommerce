@@ -476,7 +476,7 @@ sticky-header {
 }
 
 /* ===================
-  SECTOR DE MENU DE OPCIONES PARA LOS PRODUCTOS
+  SECTOR DE MENU DE OPCIONES PARA LOS PRODUCTOSS
      =================== */
 
 #h-mostrar-menu-opciones-productos {
@@ -503,7 +503,7 @@ sticky-header {
   z-index: 9999;
   border-top: 1px solid #dedede;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  padding: var(--espaciado-xl) 0;
+  padding: var(--espaciado-xl);
 }
 
 .h-menu-opciones-productos-item {
