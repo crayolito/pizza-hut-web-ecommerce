@@ -486,8 +486,8 @@ sticky-header {
 }
 
 #h-mostrar-menu-opciones-productos:hover {
-  color: var(--colorp-primary); /* Cambia al color rojo */
-  border-bottom: 2px solid var(--colorp-primary); /* Subrayado rojo */
+  color: var(--colorp-primary);
+  border-bottom: 2px solid var(--colorp-primary);
 }
 
 .h-menu-opciones-productos {
