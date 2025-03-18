@@ -3,7 +3,7 @@
   <div class="sh-container-input">
     {% render 'icon-search' %}
     <input type="text" placeholder="Buscar">
-    <button class="sh-button-search icon-close-terciary">
+    <button class="sh-button-search icon-color-terciary">
       {% render 'icon-close-rojo' %}
     </button>
   </div>
@@ -14,6 +14,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: var(--espaciado-xxl);
+    padding-top: 2.25rem;
   }
 
   .sh-container-header small {
@@ -30,8 +32,11 @@
     display: flex;
     align-items: center;
     gap: 0.35rem;
-    border-radius: 0.5rem;
-    border: 1px solid #231f20;
+    height: 3rem;
+    min-width: 100%;
+    max-width: 40rem;
+    border-radius: var(--espaciado-xs);
+    border: 1px solid #6e6e6e;
     padding: var(--espaciado-xl);
     background-color: var(--colorp-secondary);
   }
