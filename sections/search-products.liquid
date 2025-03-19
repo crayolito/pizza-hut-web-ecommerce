@@ -28,23 +28,65 @@
         <button class="boton-personalizar-producto">
           <p class="color-letras-secondary">Personalizar</p>
         </button>
+        <div class="variantes-producto">
+          <div class="variante-productpo">
+            <p>Familiar (12 porciones)</p>
+            <p class="color-letras-primary">12.56 BS</p>
+          </div>
+          <div class="variante-productpo">
+            <p>Mediana extra grande (16 porciones)</p>
+            <p class="color-letras-primary">12.56 BS</p>
+          </div>
+          <div class="variante-productpo">
+            <p>Basica grande (12 porciones)</p>
+            <p class="color-letras-primary">12.56 BS</p>
+          </div>
+          <div class="variante-productpo">
+            <p>Personalizada (4 porciones)</p>
+            <p class="color-letras-primary">12.56 BS</p>
+          </div>
+        </div>
       </div>
-      <div class="variantes-producto">
-        <div class="variante-productpo">
-          <p>Familiar (12 porciones)</p>
-          <p class="color-letras-primary">12.56 BS</p>
+      <div class="product-item">
+        <div class="product-item-imagen">
+          <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
         </div>
-        <div class="variante-productpo">
-          <p>Mediana extra grande (16 porciones)</p>
-          <p class="color-letras-primary">12.56 BS</p>
+        <div class="product-item-info">
+          <h3>CHESSY LOVERS</h3>
+          <p>
+            Salsa de tomate, queso mozarella, Pepperoni, Jamón, carnes mixtas (res y cerdo, salchicha italiana y tocino.
+          </p>
         </div>
-        <div class="variante-productpo">
-          <p>Basica grande (12 porciones)</p>
-          <p class="color-letras-primary">12.56 BS</p>
+        <h3 class="color-letras-primary">12.56 BS</h3>
+        <div class="seleccion-variante-producto-general">
+          <p>Tamaño</p>
+          <div class="container-info-variante">
+            <p>Pequeño</p>
+            <div class="icono-dropdown-variantes icon-color-terciari">
+              {% render 'icon-flecha-abajo' %}
+            </div>
+          </div>
         </div>
-        <div class="variante-productpo">
-          <p>Personalizada (4 porciones)</p>
-          <p class="color-letras-primary">12.56 BS</p>
+        <button class="boton-personalizar-producto">
+          <p class="color-letras-secondary">Personalizar</p>
+        </button>
+        <div class="variantes-producto">
+          <div class="variante-productpo">
+            <p>Familiar (12 porciones)</p>
+            <p class="color-letras-primary">12.56 BS</p>
+          </div>
+          <div class="variante-productpo">
+            <p>Mediana extra grande (16 porciones)</p>
+            <p class="color-letras-primary">12.56 BS</p>
+          </div>
+          <div class="variante-productpo">
+            <p>Basica grande (12 porciones)</p>
+            <p class="color-letras-primary">12.56 BS</p>
+          </div>
+          <div class="variante-productpo">
+            <p>Personalizada (4 porciones)</p>
+            <p class="color-letras-primary">12.56 BS</p>
+          </div>
         </div>
       </div>
     </div>
@@ -75,6 +117,15 @@
 </section>
 
 {% style %}
+  /* ==========================================================================
+   ÍNDICE - SECCION(SEARCH PRODUCTS)
+   1. CUANDO SE ENCUENTRAN PRODUCTOS
+      1.1 PRODUCTO VISTA GENERAL
+      1.2 PRODUCTO VARIANTES
+   2. CUANDO NO SE ENCUENTRAN PRODUCTOS
+   3. MEDIA QUERIES
+      
+   ========================================================================== */
   .sp-container-base {
     display: flex;
     flex-direction: column;
@@ -89,10 +140,20 @@
     gap: var(--espaciado-xl);
   }
 
+  /* ==========================================================================
+   1. CUANDO SE ENCUENTRAN PRODUCTOS
+   ========================================================================== */
+
+  /* ==========================================================================
+   1.1 PRODUCTO VISTA GENERAL
+   ========================================================================== */
+
   .container-productos-general {
+    width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--espaciado-l);
+    display: none;
   }
 
   .product-item {
@@ -196,15 +257,45 @@
     font-weight: 600;
   }
 
+  /* ==========================================================================
+   1.2 PRODUCTO VARIANTES
+   ========================================================================== */
+
   .variantes-producto {
     display: none;
+    /* flex-direction: column; */
   }
 
+  /* ==========================================================================
+   2. CUANDO NO SE ENCUENTRAN PRODUCTOS
+   ========================================================================== */
   .sp-container-base-body-no-products {
-    display: none;
+    /* display: none; */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaciado-xxl);
   }
 
-  /* asdasd */
+  .sp-mensaje-no-productos {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sp-boton-explorar-menu {
+    width: 100%;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--espaciado-xs);
+    background-color: var(--colorp-primary);
+    border-radius: var(--espaciado-xs);
+  }
+  /* ==========================================================================
+   3. MEDIA QUERIES
+   ========================================================================== */
 {% endstyle %}
 
 {% schema %}
