@@ -14,7 +14,6 @@
           <p>
             Salsa de tomate, queso mozarella, Pepperoni, Jamón, carnes mixtas (res y cerdo, salchicha italiana y tocino.
           </p>
-          <h3 class="color-letras-primary">12.56 BS</h3>
         </div>
         <h3 class="color-letras-primary">12.56 BS</h3>
         <div class="seleccion-variante-producto-general">
@@ -87,7 +86,7 @@
     align-items: center;
     justify-content: space-between;
     gap: var(--espaciado-xl);
-    padding-top: var(--espaciado-xxxl);
+    padding: var(--espaciado-xxxl) 0;
   }
 
   .container-productos-general {
@@ -131,7 +130,7 @@
     gap: var(--espaciado-xs);
   }
 
-  .seleccion-variante-producto-general p {
+  .seleccion-variante-producto-general p:first-child {
     font-weight: 600;
   }
 
@@ -141,6 +140,10 @@
     display: flex;
     align-items: start;
     justify-content: space-between;
+    padding: 0 var(--espaciado-xl);
+    border-radius: var(--espaciado-xs);
+    background-color: var(--colorp-secondary);
+    border: 1px solid #353535;
   }
 
   .container-info-variante p {
