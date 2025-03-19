@@ -12,11 +12,11 @@
     "search-header": {
       "type": "search-header",
       "settings": {}
+    },
+    "search-products": {
+      "type": "search-products",
+      "settings": {}
     }
-    // "sub-menu-index": {
-    //   "type": "search-products",
-    //   "settings": {}
-    // },
     // "productos-index": {
     //   "type": "search-promociones-1",
     //   "settings": {}
@@ -27,8 +27,8 @@
     // }
   },
   "order": [
-    "search-header"
-    // "search-products",
+    "search-header",
+    "search-products"
     // "search-promociones-1",
     // "search-promociones-2"
   ]

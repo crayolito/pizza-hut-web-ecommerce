@@ -1,0 +1,172 @@
+<section class="sp-container-base container-base">
+  <div class="sp-container-base-header">
+    <h1>SIN RESULTADOS(5)</h1>
+  </div>
+  <div class="sp-container-base-body">
+    <!-- CUANDO SE ENCUENTRAN PRODUCTOS -->
+    <div class="container-productos-general">
+      <div class="product-item">
+        <div class="product-item-imagen">
+          <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+        </div>
+        <div class="product-item-info">
+          <h3>CHESSY LOVERS</h3>
+          <p>
+            Salsa de tomate, queso mozarella, Pepperoni, Jamón, carnes mixtas (res y cerdo, salchicha italiana y tocino.
+          </p>
+          <h3 class="color-letras-primary">12.56 BS</h3>
+        </div>
+        <h3 class="color-letras-primary">12.56 BS</h3>
+        <div class="seleccion-variante-producto-general">
+          <p>Tamaño</p>
+          <div class="container-info-variante">
+            <p>Pequeño</p>
+            <div class="icono-dropdown-variantes icon-color-terciari">
+              {% render 'icon-flecha-abajo' %}
+            </div>
+          </div>
+        </div>
+        <button class="boton-personalizar-producto">
+          <p class="color-letras-secondary">Personalizar</p>
+        </button>
+      </div>
+      <div class="variantes-producto">
+        <div class="variante-productpo">
+          <p>Familiar (12 porciones)</p>
+          <p class="color-letras-primary">12.56 BS</p>
+        </div>
+        <div class="variante-productpo">
+          <p>Mediana extra grande (16 porciones)</p>
+          <p class="color-letras-primary">12.56 BS</p>
+        </div>
+        <div class="variante-productpo">
+          <p>Basica grande (12 porciones)</p>
+          <p class="color-letras-primary">12.56 BS</p>
+        </div>
+        <div class="variante-productpo">
+          <p>Personalizada (4 porciones)</p>
+          <p class="color-letras-primary">12.56 BS</p>
+        </div>
+      </div>
+    </div>
+    <!-- CUANDO NO SE ENCUENTRAN PRODUCTOS -->
+    <div class="sp-container-base-body-no-products">
+      <div class="sp-mensaje-no-productos">
+        <ul class="sp-lista-mensaje-no-productos">
+          <li class="sp-item-mensaje-no-productos">
+            <p>
+              Este producto no está en nuestro menú, pero ¡no te preocupes! Sigue explorando nuestras categorías y
+              descubre todas las delicias que tenemos para ti.
+            </p>
+          </li>
+          <li class="sp-item-mensaje-no-productos">
+            <p>
+              No encontramos este producto en nuestro menú actual. ¿Por qué no intentas usar otro término de búsqueda?
+              Estamos seguros que encontrarás algo delicioso.
+            </p>
+          </li>
+        </ul>
+      </div>
+      <button class="sp-boton-explorar-menu icon-color-primary">
+        <p class="color-letras-primary">Explorar menú</p>
+        {% render 'icon-flecha-izquierda' %}
+      </button>
+    </div>
+  </div>
+</section>
+
+{% style %}
+  .sp-container-base-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaciado-xxxl);
+  }
+
+  .sp-container-base-body {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .container-productos-general {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--espaciado-l);
+  }
+
+  .product-item {
+    height: 29.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: var(--espaciado-m);
+  }
+
+  .product-item-imagen {
+    width: 100%;
+    flex-grow: 1;
+  }
+
+  .product-item-imagen img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .product-item-info {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: var(--espaciado-xs);
+  }
+
+  .seleccion-variante-producto-general {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: var(--espaciado-xs);
+  }
+
+  .seleccion-variante-producto-general p {
+    font-weight: 600;
+  }
+
+  .container-info-variante {
+    width: 100%;
+    height: 3rem;
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+  }
+
+  .container-info-variante p {
+    font-weight: 600;
+  }
+
+  .boton-personalizar-producto {
+    width: 100%;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--espaciado-xs);
+    background-color: var(--colorp-primary);
+    border-radius: var(--espaciado-xs);
+  }
+
+  .variantes-producto {
+    display: none;
+  }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "Productos de búsqueda",
+  "tag": "section",
+  "class": "search-products",
+  "settings": [],
+  "blocks": []
+}
+{% endschema %}
