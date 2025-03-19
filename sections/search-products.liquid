@@ -34,7 +34,7 @@
             <p class="color-letras-primary">12.56 BS</p>
           </div>
           <div class="variante-producto-item">
-            <p>Mediana extra grande (16 porciones)</p>
+            <p>Mediana extra (16 porciones)</p>
             <p class="color-letras-primary">12.56 BS</p>
           </div>
           <div class="variante-producto-item">
@@ -76,7 +76,7 @@
             <p class="color-letras-primary">12.56 BS</p>
           </div>
           <div class="variante-producto-item">
-            <p>Mediana extra grande (16 porciones)</p>
+            <p>Mediana extra (16 porciones)</p>
             <p class="color-letras-primary">12.56 BS</p>
           </div>
           <div class="variante-producto-item">
@@ -118,7 +118,7 @@
             <p class="color-letras-primary">12.56 BS</p>
           </div>
           <div class="variante-producto-item">
-            <p>Mediana extra grande (16 porciones)</p>
+            <p>Mediana extra (16 porciones)</p>
             <p class="color-letras-primary">12.56 BS</p>
           </div>
           <div class="variante-producto-item">
@@ -160,7 +160,7 @@
             <p class="color-letras-primary">12.56 BS</p>
           </div>
           <div class="variante-producto-item">
-            <p>Mediana extra grande (16 porciones)</p>
+            <p>Mediana extra (16 porciones)</p>
             <p class="color-letras-primary">12.56 BS</p>
           </div>
           <div class="variante-producto-item">
@@ -202,14 +202,14 @@
 
 {% style %}
   /* ==========================================================================
-   ÍNDICE - SECCION(SEARCH PRODUCTS)
-   1. CUANDO SE ENCUENTRAN PRODUCTOS
-      1.1 PRODUCTO VISTA GENERAL
-      1.2 PRODUCTO VARIANTES
-   2. CUANDO NO SE ENCUENTRAN PRODUCTOS
-   3. MEDIA QUERIES
-      
-   ========================================================================== */
+     ÍNDICE - SECCION(SEARCH PRODUCTS)
+     1. CUANDO SE ENCUENTRAN PRODUCTOS
+        1.1 PRODUCTO VISTA GENERAL
+        1.2 PRODUCTO VARIANTES
+     2. CUANDO NO SE ENCUENTRAN PRODUCTOS
+     3. MEDIA QUERIES
+
+     ========================================================================== */
   .sp-container-base {
     display: flex;
     flex-direction: column;
@@ -225,12 +225,12 @@
   }
 
   /* ==========================================================================
-   1. CUANDO SE ENCUENTRAN PRODUCTOS
-   ========================================================================== */
+     1. CUANDO SE ENCUENTRAN PRODUCTOS
+     ========================================================================== */
 
   /* ==========================================================================
-   1.1 PRODUCTO VISTA GENERAL
-   ========================================================================== */
+     1.1 PRODUCTO VISTA GENERAL
+     ========================================================================== */
 
   .container-productos-general {
     width: 100%;
@@ -344,11 +344,10 @@
   }
 
   /* ==========================================================================
-   1.2 PRODUCTO VARIANTES
-   ========================================================================== */
+     1.2 PRODUCTO VARIANTES
+     ========================================================================== */
 
   .variantes-producto {
-    /* display: none; */
     display: flex;
     height: fit-content;
     position: absolute;
@@ -362,23 +361,23 @@
     transform: translateX(-50%);
     flex-direction: column;
     padding: var(--espaciado-m);
+    display: none;
   }
 
   .variante-producto-item {
-    width: fit-content;
     padding: var(--espaciado-s);
     display: flex;
     align-items: center;
     justify-content: center;
     gap: var(--espaciado-xs);
-    min-width: 100%;
     cursor: pointer;
     transition: all 0.3s ease;
+    min-width: 100%;
+    width: max-content;
   }
 
   .variante-producto-item:hover {
-    background-color: var(--colorp-primary);
-    filter: opacity(0.8);
+    background-color: #f7dce0;
   }
 
   .variante-producto-item p:last-child {
@@ -386,8 +385,8 @@
   }
 
   /* ==========================================================================
-   2. CUANDO NO SE ENCUENTRAN PRODUCTOSs
-   ========================================================================== */
+     2. CUANDO NO SE ENCUENTRAN PRODUCTOSs
+     ========================================================================== */
   .sp-container-base-body-no-products {
     width: 100%;
     display: flex;
@@ -428,11 +427,9 @@
     gap: var(--espaciado-xs);
   }
 
-  .sp-item-mensaje-no-productos {
-  }
   /* ==========================================================================
-   3. MEDIA QUERIES
-   ========================================================================== */
+     3. MEDIA QUERIES
+     ========================================================================== */
 
   @media screen and (min-width: 768px) {
     .container-productos-general {
