@@ -29,19 +29,19 @@
           <p class="color-letras-secondary">Personalizar</p>
         </button>
         <div class="variantes-producto">
-          <div class="variante-productpo">
+          <div class="variante-producto-item">
             <p>Familiar (12 porciones)</p>
             <p class="color-letras-primary">12.56 BS</p>
           </div>
-          <div class="variante-productpo">
+          <div class="variante-producto-item">
             <p>Mediana extra grande (16 porciones)</p>
             <p class="color-letras-primary">12.56 BS</p>
           </div>
-          <div class="variante-productpo">
+          <div class="variante-producto-item">
             <p>Basica grande (12 porciones)</p>
             <p class="color-letras-primary">12.56 BS</p>
           </div>
-          <div class="variante-productpo">
+          <div class="variante-producto-item">
             <p>Personalizada (4 porciones)</p>
             <p class="color-letras-primary">12.56 BS</p>
           </div>
@@ -71,19 +71,19 @@
           <p class="color-letras-secondary">Personalizar</p>
         </button>
         <div class="variantes-producto">
-          <div class="variante-productpo">
+          <div class="variante-producto-item">
             <p>Familiar (12 porciones)</p>
             <p class="color-letras-primary">12.56 BS</p>
           </div>
-          <div class="variante-productpo">
+          <div class="variante-producto-item">
             <p>Mediana extra grande (16 porciones)</p>
             <p class="color-letras-primary">12.56 BS</p>
           </div>
-          <div class="variante-productpo">
+          <div class="variante-producto-item">
             <p>Basica grande (12 porciones)</p>
             <p class="color-letras-primary">12.56 BS</p>
           </div>
-          <div class="variante-productpo">
+          <div class="variante-producto-item">
             <p>Personalizada (4 porciones)</p>
             <p class="color-letras-primary">12.56 BS</p>
           </div>
@@ -113,19 +113,19 @@
           <p class="color-letras-secondary">Personalizar</p>
         </button>
         <div class="variantes-producto">
-          <div class="variante-productpo">
+          <div class="variante-producto-item">
             <p>Familiar (12 porciones)</p>
             <p class="color-letras-primary">12.56 BS</p>
           </div>
-          <div class="variante-productpo">
+          <div class="variante-producto-item">
             <p>Mediana extra grande (16 porciones)</p>
             <p class="color-letras-primary">12.56 BS</p>
           </div>
-          <div class="variante-productpo">
+          <div class="variante-producto-item">
             <p>Basica grande (12 porciones)</p>
             <p class="color-letras-primary">12.56 BS</p>
           </div>
-          <div class="variante-productpo">
+          <div class="variante-producto-item">
             <p>Personalizada (4 porciones)</p>
             <p class="color-letras-primary">12.56 BS</p>
           </div>
@@ -155,19 +155,19 @@
           <p class="color-letras-secondary">Personalizar</p>
         </button>
         <div class="variantes-producto">
-          <div class="variante-productpo">
+          <div class="variante-producto-item">
             <p>Familiar (12 porciones)</p>
             <p class="color-letras-primary">12.56 BS</p>
           </div>
-          <div class="variante-productpo">
+          <div class="variante-producto-item">
             <p>Mediana extra grande (16 porciones)</p>
             <p class="color-letras-primary">12.56 BS</p>
           </div>
-          <div class="variante-productpo">
+          <div class="variante-producto-item">
             <p>Basica grande (12 porciones)</p>
             <p class="color-letras-primary">12.56 BS</p>
           </div>
-          <div class="variante-productpo">
+          <div class="variante-producto-item">
             <p>Personalizada (4 porciones)</p>
             <p class="color-letras-primary">12.56 BS</p>
           </div>
@@ -313,7 +313,7 @@
   }
 
   .container-info-variante:hover {
-    border: 1.5px solid var(--colorp-primary);
+    border: 2px solid var(--colorp-primary);
   }
 
   .container-info-variante p {
@@ -362,6 +362,19 @@
     transform: translateX(-50%);
     flex-direction: column;
     padding: var(--espaciado-l);
+  }
+
+  .variante-producto-item {
+    width: fit-content;
+    padding: var(--espaciado-xs);
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    flex-direction: column;
+  }
+
+  .variante-producto-item p:last-child {
+    font-weight: 600;
   }
 
   /* ==========================================================================
