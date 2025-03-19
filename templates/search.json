@@ -16,19 +16,16 @@
     "search-products": {
       "type": "search-products",
       "settings": {}
+    },
+    "search-promociones": {
+      "type": "search-promociones",
+      "settings": {}
     }
-    // "productos-index": {
-    //   "type": "search-promociones-1",
-    //   "settings": {}
-    // },
-    // "oferta-index": {
-    //   "type": "search-promociones-2",
-    //   "settings": {}
-    // }
   },
   "order": [
     "search-header",
-    "search-products"
+    "search-products",
+    "search-promociones"
     // "search-promociones-1",
     // "search-promociones-2"
   ]
