@@ -96,7 +96,7 @@
     contrast(103%);
 }
 
-.page-menu-container.boton-activado {
+.page-menu-opcion.boton-activado {
   background-color: var(--colorp-primary);
 }
 
