@@ -294,7 +294,7 @@
   }
 
   .page-menu-opcion {
-    height: 6.3375rem;
+    height: 5.125rem;
     width: 14.625rem;
   }
 
@@ -309,7 +309,7 @@
 
 @media (min-width: 1024px) {
   .page-menu-opcion {
-    height: 8.125rem;
+    height: 6.125rem;
     width: 18.75rem;
   }
 
