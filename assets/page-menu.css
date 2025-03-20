@@ -30,6 +30,7 @@
   flex-direction: column;
   align-items: center;
   gap: var(--espaciado-xl);
+  padding-top: 2.44rem;
 }
 
 .page-menu-opciones-seleccion {
@@ -48,6 +49,7 @@
   border-radius: var(--espaciado-xs);
   background-color: var(--color-secundario);
   border: 1px solid #969696;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
 .page-menu-opcion svg {
@@ -163,7 +165,7 @@
 
 .producto2-item-imagen {
   width: 8.12rem;
-  height: 100%;
+  height: auto;
   border-right: 1.5px solid #969696;
 }
 
