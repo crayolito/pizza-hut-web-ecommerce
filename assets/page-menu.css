@@ -39,7 +39,7 @@
 }
 
 .page-menu-opcion {
-  width: 10rem;
+  width: 10.31rem;
   height: 3.5rem;
   display: flex;
   align-items: center;
@@ -47,6 +47,9 @@
   border-radius: var(--espaciado-xs);
   background-color: var(--color-secundario);
   border: 1px solid #969696;
+}
+
+.page-menu-opcion p {
   text-transform: uppercase;
   font-weight: 600;
 }
@@ -64,7 +67,7 @@
 }
 
 .page-menu-opcion-nombre {
-  width: 6.5rem;
+  width: 6.81rem;
   height: 100%;
   background: transparent;
   display: flex;
