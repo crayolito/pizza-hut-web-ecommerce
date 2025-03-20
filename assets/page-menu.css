@@ -46,13 +46,15 @@
   justify-content: center;
   border-radius: var(--espaciado-xs);
   background-color: var(--color-secundario);
-  border: 1.5px solid #969696;
+  border: 1px solid #969696;
+  text-transform: uppercase;
+  font-weight: 600;
 }
 
 .page-menu-opcion-imagen {
   height: 100%;
   width: 3.5rem;
-  border-right: 1px solid #969696;
+  border-right: 1.5px solid #969696;
 }
 
 .page-menu-opcion-imagen img {
@@ -91,7 +93,7 @@
 }
 
 .page-menu-opcion-imagen.boton-activado {
-  border-right: 1.5px solid var(--color-primario);
+  border-right: 0;
 }
 
 .page-menu-opcion-nombre.boton-activado p {
