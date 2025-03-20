@@ -5,11 +5,11 @@
   <div class="sp-container-base-body">
     <!-- CUANDO SE ENCUENTRAN PRODUCTOS -->
     <div class="container-productos-general">
-      <div class="product-item">
-        <div class="product-item-imagen">
+      <div class="producto-item">
+        <div class="producto-item-imagen">
           <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
         </div>
-        <div class="product-item-info">
+        <div class="producto-item-info">
           <h3>CHESSY LOVERS</h3>
           <p>
             Salsa de tomate, queso mozarella, Pepperoni, Jamón, carnes mixtas (res y cerdo, salchicha italiana y tocino.
@@ -47,11 +47,11 @@
           </div>
         </div>
       </div>
-      <div class="product-item">
-        <div class="product-item-imagen">
+      <div class="producto-item">
+        <div class="producto-item-imagen">
           <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
         </div>
-        <div class="product-item-info">
+        <div class="producto-item-info">
           <h3>CHESSY LOVERS</h3>
           <p>
             Salsa de tomate, queso mozarella, Pepperoni, Jamón, carnes mixtas (res y cerdo, salchicha italiana y tocino.
@@ -89,11 +89,11 @@
           </div>
         </div>
       </div>
-      <div class="product-item">
-        <div class="product-item-imagen">
+      <div class="producto-item">
+        <div class="producto-item-imagen">
           <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
         </div>
-        <div class="product-item-info">
+        <div class="producto-item-info">
           <h3>CHESSY LOVERS</h3>
           <p>
             Salsa de tomate, queso mozarella, Pepperoni, Jamón, carnes mixtas (res y cerdo, salchicha italiana y tocino.
@@ -131,11 +131,11 @@
           </div>
         </div>
       </div>
-      <div class="product-item">
-        <div class="product-item-imagen">
+      <div class="producto-item">
+        <div class="producto-item-imagen">
           <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
         </div>
-        <div class="product-item-info">
+        <div class="producto-item-info">
           <h3>CHESSY LOVERS</h3>
           <p>
             Salsa de tomate, queso mozarella, Pepperoni, Jamón, carnes mixtas (res y cerdo, salchicha italiana y tocino.
@@ -240,7 +240,7 @@
     /* display: none; */
   }
 
-  .product-item {
+  .producto-item {
     height: 26rem;
     display: flex;
     flex-direction: column;
@@ -250,7 +250,7 @@
     position: relative;
   }
 
-  .product-item-imagen {
+  .producto-item-imagen {
     width: 100%;
     min-height: 0;
     flex-grow: 1;
@@ -259,14 +259,14 @@
     border: 1px solid #969696;
   }
 
-  .product-item-imagen img {
+  .producto-item-imagen img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: var(--espaciado-xs);
   }
 
-  .product-item-info {
+  .producto-item-info {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -274,13 +274,13 @@
     gap: var(--espaciado-xs);
   }
 
-  .product-item-info h3 {
+  .producto-item-info h3 {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
-  .product-item-info p {
+  .producto-item-info p {
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
@@ -437,7 +437,7 @@
       gap: var(--espaciado-xxl);
     }
 
-    .product-item {
+    .producto-item {
       height: 28rem;
       gap: var(--espaciado-s);
     }
