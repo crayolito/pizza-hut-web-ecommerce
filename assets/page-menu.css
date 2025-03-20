@@ -33,6 +33,21 @@
   padding-top: 2.44rem;
 }
 
+.page-menu-titulo-mobile {
+  display: block;
+}
+
+.page-menu-titulo-desktop {
+  display: none;
+  text-align: center;
+  font-size: 4.375rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%;
+  letter-spacing: -0.0875rem;
+  text-transform: uppercase;
+}
+
 .page-menu-opciones-seleccion {
   width: 100%;
   display: flex;
@@ -261,6 +276,14 @@
      3. MEDIA QUERIES
      ========================================================================== */
 @media (min-width: 768px) {
+  .page-menu-titulo-mobile {
+    display: none;
+  }
+
+  .page-menu-titulo-desktop {
+    display: block;
+  }
+
   .page-menu-tp-mobile {
     display: none;
   }
