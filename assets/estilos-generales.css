@@ -9,8 +9,44 @@
        2.2 PRODUCTO2 MOBILE
        2.3 PRODUCTO3 MOBILE
      3. MEDIA QUERIES
-
      ========================================================================== */
+
+/* ==========================================================================
+  1. DESKTOP
+     ========================================================================== */
+
+/* ==========================================================================
+  1.1 PRODUCTO DESKTOP
+     ========================================================================== */
+
+/* ==========================================================================
+  1.2 PRODUCTO2 DESKTOP
+     ========================================================================== */
+
+.producto2-item {
+  height: 26rem;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: var(--espaciado-m);
+  cursor: pointer;
+  position: relative;
+}
+
+/* ==========================================================================
+  1.3 PRODUCTO3 DESKTOP
+     ========================================================================== */
+
+.producto3-item {
+  height: 21rem;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: var(--espaciado-m);
+  cursor: pointer;
+  position: relative;
+}
+
 .sp-container-base {
   display: flex;
   flex-direction: column;
@@ -234,6 +270,14 @@
      ========================================================================== */
 
 @media screen and (min-width: 768px) {
+  .producto2-item {
+    height: 20.28rem;
+  }
+
+  .producto3-item {
+    height: 16.38rem;
+  }
+
   .container-productos-general {
     gap: var(--espaciado-xxl);
   }
@@ -253,6 +297,14 @@
 }
 
 @media screen and (min-width: 1024px) {
+  .producto2-item {
+    height: 26rem;
+  }
+
+  .producto3-item {
+    height: 21rem;
+  }
+
   .container-productos-general {
     gap: var(--espaciado-xxxl);
   }
