@@ -9,16 +9,6 @@
         {% render 'icon-todas-opciones' %}
         <p>Ver Todo</p>
       </div>
-      {% comment %}
-        <div class="page-menu-opcion">
-          <div class="page-menu-opcion-imagen">
-            <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Hamburguesa" width="100%" height="100%">
-          </div>
-          <div class="page-menu-opcion-nombre">
-            <p>Ofertas</p>
-          </div>
-        </div>
-      {% endcomment %}
       <div class="page-menu-opcion">
         <div class="page-menu-opcion-imagen">
           <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Hamburguesa" width="100%" height="100%">
@@ -36,22 +26,22 @@
         <div class="page-menu-tp-mobile-categoria">
           <h1>OFERTAS</h1>
           <div class="container-productos2-general-mobile">
-            <div class="container-productos2-mobile">
-              <div class="producto2-item">
-                <div class="producto2-item-imagen">
-                  <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
-                </div>
-                <div class="producto2-item-info">
-                  <h3>CHESSY LOVERS</h3>
-                  <p>
-                    Salsa de tomate, queso mozarella, Pepperoni, Jamón, carnes mixtas (res y cerdo, salchicha italiana y
-                    tocino.
-                  </p>
-                  <h3>12.56 BS</h3>
-                  <button class="boton-producto2-personalizar">
-                    <p>Personalizar</p>
-                  </button>
-                </div>
+            <!-- ITEM 1 -->
+            <div class="producto2-item">
+              <div class="producto2-item-imagen">
+                <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+              </div>
+              <div class="producto2-item-info">
+                <h3>CHESSY LOVERS</h3>
+                <p>
+                  Salsa de tomate, queso mozarella, Pepperoni, Jamón, carnes mixtas (res y cerdo, salchicha italiana y
+                  tocino.
+                </p>
+                <h3>12.56 BS</h3>
+                <button class="boton-producto-agregar icon-color-secondary">
+                  <p>Agregar</p>
+                  {% render 'icon-carrito' %}
+                </button>
               </div>
             </div>
           </div>

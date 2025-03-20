@@ -92,8 +92,7 @@
 }
 
 .page-menu-opcion.boton-activado svg {
-  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%)
-    contrast(103%);
+  fill: var(--colorp-secondary);
 }
 
 .page-menu-opcion.boton-activado {
@@ -113,20 +112,99 @@
      ========================================================================== */
 
 .page-menu-body {
-  display: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--espaciado-xxxl) 0;
+  width: 100%;
 }
 
 /* ==========================================================================
      2.1 TODOS LOS PRODUCTOS
      ========================================================================== */
 
+.page-menu-todos-productos {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-menu-tp-mobile {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4rem;
+}
+
 /* ==========================================================================
      2.1.1 CATEGORIA MOBILE
      ========================================================================== */
 
+.page-menu-tp-mobile-categoria {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-self: center;
+  gap: var(--espaciado-xxl);
+}
+
+.producto2-item {
+  height: 13.75rem;
+  width: 21.25rem;
+  display: flex;
+  border-radius: var(--espaciado-xs);
+  border: 1px solid #969696;
+}
+
+.producto2-item-imagen {
+  width: 8.12rem;
+  height: 100%;
+  border-right: 1.5px solid #969696;
+}
+
+.producto2-item-imagen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.producto2-item-info {
+  width: 13.12rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: var(--espaciado-xs);
+}
+
+.boton-producto-agregar {
+  width: 100%;
+  height: 3rem;
+  min-height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--espaciado-xs);
+  background-color: var(--colorp-primary);
+  border-radius: var(--espaciado-xs);
+}
+
 /* ==========================================================================
      2.1.2 CATEGORIA DESKTOP
      ========================================================================== */
+
+.page-menu-tp-desktop {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
 
 /* ==========================================================================
      2.2 PRODUCTOS SIMPLES
