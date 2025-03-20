@@ -171,13 +171,6 @@
   gap: var(--espaciado-xxl);
 }
 
-.page-menu-tp-mobile-categoria {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  gap: var(--espaciado-xxl);
-}
-
 /* .producto2-item {
   width: fit-content;
   display: flex;
