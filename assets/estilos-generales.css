@@ -47,6 +47,90 @@
   position: relative;
 }
 
+/* ==========================================================================
+  2. MOBILE
+     ========================================================================== */
+
+/* ==========================================================================
+  2.1 PRODUCTO MOBILE
+     ========================================================================== */
+
+.productom-item {
+  height: 26rem;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: var(--espaciado-m);
+  cursor: pointer;
+  position: relative;
+}
+
+/* ==========================================================================
+  2.2 PRODUCTO2 MOBILE
+     ========================================================================== */
+
+.producto2m-item {
+  width: fit-content;
+  display: flex;
+  border-radius: var(--espaciado-xs);
+  border: 1px solid #969696;
+}
+
+.producto2m-item -imagen {
+  width: 8.12rem;
+  height: auto;
+  border-right: 1.5px solid #969696;
+}
+
+.producto2m-item-imagen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.producto2m-item-info {
+  width: 13.12rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: var(--espaciado-xs);
+  padding: var(--espaciado-l);
+}
+
+.producto2m-item-info h3 {
+  display: -webkit-box;
+  line-clamp: 1;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.producto2m-item-info p {
+  display: -webkit-box;
+  line-clamp: 3;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ==========================================================================
+  2.3 PRODUCTO3 MOBILE
+     ========================================================================== */
+
+.producto3m-item {
+  height: 26rem;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: var(--espaciado-m);
+  cursor: pointer;
+  position: relative;
+}
+
 .sp-container-base {
   display: flex;
   flex-direction: column;

@@ -282,7 +282,7 @@
   }
 
   .page-menu-titulo-desktop {
-    display: block;
+    display: flex;
   }
 
   .page-menu-tp-mobile {
