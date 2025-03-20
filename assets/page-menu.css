@@ -146,6 +146,7 @@
 
 .page-menu-tp-mobile-categoria {
   display: flex;
+  flex-direction: column;
   width: 100%;
   justify-content: center;
   align-self: center;
