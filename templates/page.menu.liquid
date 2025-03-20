@@ -393,6 +393,28 @@
               {% render 'icon-carrito' %}
             </button>
           </div>
+          <div class="producto-item">
+            <div class="producto-item-imagen">
+              <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+            </div>
+            <div class="producto-item-info">
+              <h3>CHESSY LOVERS</h3>
+            </div>
+            <h3 class="color-letras-primary">12.56 BS</h3>
+            <div class="product-selector-cantidad">
+              <button class="product-selector-cantidad-button icon-color-terciari">
+                {% render 'icon-menos' %}
+              </button>
+              <p>0</p>
+              <button class="product-selector-cantidad-button icon-color-terciari">
+                {% render 'icon-mas' %}
+              </button>
+            </div>
+            <button class="boton-personalizar-producto icon-color-secondary">
+              <p class="color-letras-secondary">Agregar</p>
+              {% render 'icon-carrito' %}
+            </button>
+          </div>
         </div>
       </div>
     </div>
