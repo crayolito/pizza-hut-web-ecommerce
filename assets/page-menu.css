@@ -171,14 +171,14 @@
   gap: var(--espaciado-xxl);
 }
 
-.producto2-item {
+/* .producto2-item {
   width: fit-content;
   display: flex;
   border-radius: var(--espaciado-xs);
   border: 1px solid #969696;
-}
+} */
 
-.producto2-item-imagen {
+/* .producto2-item-imagen {
   width: 8.12rem;
   height: auto;
   border-right: 1.5px solid #969696;
@@ -217,7 +217,7 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-}
+} */
 
 .boton-producto-agregar {
   width: 100%;
