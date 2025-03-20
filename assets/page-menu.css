@@ -273,11 +273,27 @@
     height: 6.3375rem;
     width: 14.625rem;
   }
+
+  .page-menu-opcion-imagen {
+    width: 6.3375rem;
+  }
+
+  .page-menu-opcion-nombre {
+    width: 8.2914rem;
+  }
 }
 
 @media (min-width: 1024px) {
   .page-menu-opcion {
     height: 8.125rem;
     width: 18.75rem;
+  }
+
+  .page-menu-opcion-imagen {
+    width: 8.125rem;
+  }
+
+  .page-menu-opcion-nombre {
+    width: 10.63rem;
   }
 }
