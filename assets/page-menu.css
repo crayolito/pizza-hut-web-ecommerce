@@ -194,6 +194,11 @@
   border-radius: var(--espaciado-xs);
 }
 
+.boton-producto-agregar p {
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
 /* ==========================================================================
      2.1.2 CATEGORIA DESKTOP
      ========================================================================== */
