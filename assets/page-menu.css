@@ -180,6 +180,23 @@
   align-items: flex-start;
   justify-content: center;
   gap: var(--espaciado-xs);
+  padding: var(--espaciado-l);
+}
+
+.producto2-item-info h3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.producto2-item-info p {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .boton-producto-agregar {
