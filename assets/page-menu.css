@@ -171,54 +171,6 @@
   gap: var(--espaciado-xxl);
 }
 
-/* .producto2-item {
-  width: fit-content;
-  display: flex;
-  border-radius: var(--espaciado-xs);
-  border: 1px solid #969696;
-} */
-
-/* .producto2-item-imagen {
-  width: 8.12rem;
-  height: auto;
-  border-right: 1.5px solid #969696;
-}
-
-.producto2-item-imagen img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.producto2-item-info {
-  width: 13.12rem;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  gap: var(--espaciado-xs);
-  padding: var(--espaciado-l);
-}
-
-.producto2-item-info h3 {
-  display: -webkit-box;
-  line-clamp: 1;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.producto2-item-info p {
-  display: -webkit-box;
-  line-clamp: 3;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-} */
-
 .boton-producto-agregar {
   width: 100%;
   height: 3rem;
