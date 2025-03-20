@@ -1,6 +1,469 @@
-<section class="menu-page">
-  <div class="menu-page-header">
+<!-- HOJA DE ESTILOS CSS -->
+{{ 'page-menu.css' | asset_url | stylesheet_tag }}
+
+<section class="page-menu-container">
+  <div class="page-menu-header">
     <h1>Menu</h1>
+    <div class="page-menu-opciones-seleccion">
+      <div class="page-menu-opcion">
+        {% render 'icon-todas-opciones' %}
+        <p>Ver Todo</p>
+      </div>
+      <div class="page-menu-opcion">
+        <div class="page-menu-opcion-imagen">
+          <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Hamburguesa" width="100%" height="100%">
+        </div>
+        <div class="page-menu-opcion-nombre">
+          <p>Ofertas</p>
+        </div>
+      </div>
+      <div class="page-menu-opcion">
+        <div class="page-menu-opcion-imagen">
+          <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Hamburguesa" width="100%" height="100%">
+        </div>
+        <div class="page-menu-opcion-nombre">
+          <p>GASEROSAS Y CERVERSAS</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="page-menu-body container-base">
+    <!-- MUESTRA TODOS LOS PRODUCTOS -->
+    <div class="page-menu-todos-productos">
+      <div class="page-menu-tp-mobile">
+        <div class="page-menu-tp-mobile-categoria">
+          <h1>OFERTAS</h1>
+          <div class="container-productos2-general-mobile">
+            <div class="container-productos2-mobile">
+              <div class="producto2-item">
+                <div class="producto2-item-imagen">
+                  <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+                </div>
+                <div class="producto2-item-info">
+                  <h3>CHESSY LOVERS</h3>
+                  <p>
+                    Salsa de tomate, queso mozarella, Pepperoni, Jamón, carnes mixtas (res y cerdo, salchicha italiana y
+                    tocino.
+                  </p>
+                  <h3>12.56 BS</h3>
+                  <button class="boton-producto2-personalizar">
+                    <p>Personalizar</p>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="page-menu-tp-mobile-categoria">
+          <h1>Gaseosas y Cervezas</h1>
+          <div class="container-productos2-general-mobile">
+            <div class="container-productos2-mobile">
+              <div class="producto2-item">
+                <div class="producto2-item-imagen">
+                  <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+                </div>
+                <div class="producto2-item-info">
+                  <h3>CHESSY LOVERS</h3>
+                  <h3>12.56 BS</h3>
+                  <button class="boton-agregar-producto2">
+                    <p>Agregar</p>
+                    {% render 'icon-carrito' %}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="page-menu-tp-desktop">
+        <div class="page-menu-tp-dektop-categoria">
+          <div class="container-productos-general">
+            <div class="product-item">
+              <div class="product-item-imagen">
+                <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+              </div>
+              <div class="product-item-info">
+                <h3>CHESSY LOVERS</h3>
+                <p>
+                  Salsa de tomate, queso mozarella, Pepperoni, Jamón, carnes mixtas (res y cerdo, salchicha italiana y
+                  tocino.
+                </p>
+              </div>
+              <h3 class="color-letras-primary">12.56 BS</h3>
+              <div class="seleccion-variante-producto-general">
+                <p>Tamaño</p>
+                <div class="container-info-variante">
+                  <p>Pequeño</p>
+                  <div class="icono-dropdown-variantes icon-color-terciari">
+                    {% render 'icon-flecha-abajo' %}
+                  </div>
+                </div>
+              </div>
+              <button class="boton-personalizar-producto">
+                <p class="color-letras-secondary">Personalizar</p>
+              </button>
+              <div class="variantes-producto">
+                <div class="variante-producto-item">
+                  <p>Familiar (12 porciones)</p>
+                  <p class="color-letras-primary">12.56 BS</p>
+                </div>
+                <div class="variante-producto-item">
+                  <p>Mediana extra (16 porciones)</p>
+                  <p class="color-letras-primary">12.56 BS</p>
+                </div>
+                <div class="variante-producto-item">
+                  <p>Basica grande (12 porciones)</p>
+                  <p class="color-letras-primary">12.56 BS</p>
+                </div>
+                <div class="variante-producto-item">
+                  <p>Personalizada (4 porciones)</p>
+                  <p class="color-letras-primary">12.56 BS</p>
+                </div>
+              </div>
+            </div>
+            <div class="product-item">
+              <div class="product-item-imagen">
+                <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+              </div>
+              <div class="product-item-info">
+                <h3>CHESSY LOVERS</h3>
+                <p>
+                  Salsa de tomate, queso mozarella, Pepperoni, Jamón, carnes mixtas (res y cerdo, salchicha italiana y
+                  tocino.
+                </p>
+              </div>
+              <h3 class="color-letras-primary">12.56 BS</h3>
+              <div class="seleccion-variante-producto-general">
+                <p>Tamaño</p>
+                <div class="container-info-variante">
+                  <p>Pequeño</p>
+                  <div class="icono-dropdown-variantes icon-color-terciari">
+                    {% render 'icon-flecha-abajo' %}
+                  </div>
+                </div>
+              </div>
+              <button class="boton-personalizar-producto">
+                <p class="color-letras-secondary">Personalizar</p>
+              </button>
+              <div class="variantes-producto">
+                <div class="variante-producto-item">
+                  <p>Familiar (12 porciones)</p>
+                  <p class="color-letras-primary">12.56 BS</p>
+                </div>
+                <div class="variante-producto-item">
+                  <p>Mediana extra (16 porciones)</p>
+                  <p class="color-letras-primary">12.56 BS</p>
+                </div>
+                <div class="variante-producto-item">
+                  <p>Basica grande (12 porciones)</p>
+                  <p class="color-letras-primary">12.56 BS</p>
+                </div>
+                <div class="variante-producto-item">
+                  <p>Personalizada (4 porciones)</p>
+                  <p class="color-letras-primary">12.56 BS</p>
+                </div>
+              </div>
+            </div>
+            <div class="product-item">
+              <div class="product-item-imagen">
+                <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+              </div>
+              <div class="product-item-info">
+                <h3>CHESSY LOVERS</h3>
+                <p>
+                  Salsa de tomate, queso mozarella, Pepperoni, Jamón, carnes mixtas (res y cerdo, salchicha italiana y
+                  tocino.
+                </p>
+              </div>
+              <h3 class="color-letras-primary">12.56 BS</h3>
+              <div class="seleccion-variante-producto-general">
+                <p>Tamaño</p>
+                <div class="container-info-variante">
+                  <p>Pequeño</p>
+                  <div class="icono-dropdown-variantes icon-color-terciari">
+                    {% render 'icon-flecha-abajo' %}
+                  </div>
+                </div>
+              </div>
+              <button class="boton-personalizar-producto">
+                <p class="color-letras-secondary">Personalizar</p>
+              </button>
+              <div class="variantes-producto">
+                <div class="variante-producto-item">
+                  <p>Familiar (12 porciones)</p>
+                  <p class="color-letras-primary">12.56 BS</p>
+                </div>
+                <div class="variante-producto-item">
+                  <p>Mediana extra (16 porciones)</p>
+                  <p class="color-letras-primary">12.56 BS</p>
+                </div>
+                <div class="variante-producto-item">
+                  <p>Basica grande (12 porciones)</p>
+                  <p class="color-letras-primary">12.56 BS</p>
+                </div>
+                <div class="variante-producto-item">
+                  <p>Personalizada (4 porciones)</p>
+                  <p class="color-letras-primary">12.56 BS</p>
+                </div>
+              </div>
+            </div>
+            <div class="product-item">
+              <div class="product-item-imagen">
+                <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+              </div>
+              <div class="product-item-info">
+                <h3>CHESSY LOVERS</h3>
+                <p>
+                  Salsa de tomate, queso mozarella, Pepperoni, Jamón, carnes mixtas (res y cerdo, salchicha italiana y
+                  tocino.
+                </p>
+              </div>
+              <h3 class="color-letras-primary">12.56 BS</h3>
+              <div class="seleccion-variante-producto-general">
+                <p>Tamaño</p>
+                <div class="container-info-variante">
+                  <p>Pequeño</p>
+                  <div class="icono-dropdown-variantes icon-color-terciari">
+                    {% render 'icon-flecha-abajo' %}
+                  </div>
+                </div>
+              </div>
+              <button class="boton-personalizar-producto">
+                <p class="color-letras-secondary">Personalizar</p>
+              </button>
+              <div class="variantes-producto">
+                <div class="variante-producto-item">
+                  <p>Familiar (12 porciones)</p>
+                  <p class="color-letras-primary">12.56 BS</p>
+                </div>
+                <div class="variante-producto-item">
+                  <p>Mediana extra (16 porciones)</p>
+                  <p class="color-letras-primary">12.56 BS</p>
+                </div>
+                <div class="variante-producto-item">
+                  <p>Basica grande (12 porciones)</p>
+                  <p class="color-letras-primary">12.56 BS</p>
+                </div>
+                <div class="variante-producto-item">
+                  <p>Personalizada (4 porciones)</p>
+                  <p class="color-letras-primary">12.56 BS</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- MUESTRA TODOS LOS PRODUCTOS SIMPLES -->
+    <div class="page-menu-productos-simples">
+      <div class="page-menu-ps-categoria">
+        <h1>Postres</h1>
+        <div class="container-productos-general">
+          <div class="product-item-categoria-simple">
+            <div class="product-item-imagen">
+              <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+            </div>
+            <div class="product-item-info">
+              <h3>CHESSY LOVERS</h3>
+            </div>
+            <h3 class="color-letras-primary">12.56 BS</h3>
+            <div class="product-selector-cantidad">
+              <button class="product-selector-cantidad-button">
+                {% render 'icon-menos' %}
+              </button>
+              <p>0</p>
+              <button class="product-selector-cantidad-button">
+                {% render 'icon-mas' %}
+              </button>
+            </div>
+            <button class="boton-personalizar-producto">
+              <p class="color-letras-secondary">Agregar</p>
+              {% render 'icon-carrito' %}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- MUESTRA TODOS LOS PRODUCTOS COMPLEJOS -->
+    <div class="page-menu-productos-complejos">
+      <div class="page-menu-pc-categoria">
+        <h1>ClÁsicas</h1>
+        <div class="container-productos-general">
+          <div class="product-item">
+            <div class="product-item-imagen">
+              <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+            </div>
+            <div class="product-item-info">
+              <h3>CHESSY LOVERS</h3>
+              <p>
+                Salsa de tomate, queso mozarella, Pepperoni, Jamón, carnes mixtas (res y cerdo, salchicha italiana y
+                tocino.
+              </p>
+            </div>
+            <h3 class="color-letras-primary">12.56 BS</h3>
+            <div class="seleccion-variante-producto-general">
+              <p>Tamaño</p>
+              <div class="container-info-variante">
+                <p>Pequeño</p>
+                <div class="icono-dropdown-variantes icon-color-terciari">
+                  {% render 'icon-flecha-abajo' %}
+                </div>
+              </div>
+            </div>
+            <button class="boton-personalizar-producto">
+              <p class="color-letras-secondary">Personalizar</p>
+            </button>
+            <div class="variantes-producto">
+              <div class="variante-producto-item">
+                <p>Familiar (12 porciones)</p>
+                <p class="color-letras-primary">12.56 BS</p>
+              </div>
+              <div class="variante-producto-item">
+                <p>Mediana extra (16 porciones)</p>
+                <p class="color-letras-primary">12.56 BS</p>
+              </div>
+              <div class="variante-producto-item">
+                <p>Basica grande (12 porciones)</p>
+                <p class="color-letras-primary">12.56 BS</p>
+              </div>
+              <div class="variante-producto-item">
+                <p>Personalizada (4 porciones)</p>
+                <p class="color-letras-primary">12.56 BS</p>
+              </div>
+            </div>
+          </div>
+          <div class="product-item">
+            <div class="product-item-imagen">
+              <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+            </div>
+            <div class="product-item-info">
+              <h3>CHESSY LOVERS</h3>
+              <p>
+                Salsa de tomate, queso mozarella, Pepperoni, Jamón, carnes mixtas (res y cerdo, salchicha italiana y
+                tocino.
+              </p>
+            </div>
+            <h3 class="color-letras-primary">12.56 BS</h3>
+            <div class="seleccion-variante-producto-general">
+              <p>Tamaño</p>
+              <div class="container-info-variante">
+                <p>Pequeño</p>
+                <div class="icono-dropdown-variantes icon-color-terciari">
+                  {% render 'icon-flecha-abajo' %}
+                </div>
+              </div>
+            </div>
+            <button class="boton-personalizar-producto">
+              <p class="color-letras-secondary">Personalizar</p>
+            </button>
+            <div class="variantes-producto">
+              <div class="variante-producto-item">
+                <p>Familiar (12 porciones)</p>
+                <p class="color-letras-primary">12.56 BS</p>
+              </div>
+              <div class="variante-producto-item">
+                <p>Mediana extra (16 porciones)</p>
+                <p class="color-letras-primary">12.56 BS</p>
+              </div>
+              <div class="variante-producto-item">
+                <p>Basica grande (12 porciones)</p>
+                <p class="color-letras-primary">12.56 BS</p>
+              </div>
+              <div class="variante-producto-item">
+                <p>Personalizada (4 porciones)</p>
+                <p class="color-letras-primary">12.56 BS</p>
+              </div>
+            </div>
+          </div>
+          <div class="product-item">
+            <div class="product-item-imagen">
+              <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+            </div>
+            <div class="product-item-info">
+              <h3>CHESSY LOVERS</h3>
+              <p>
+                Salsa de tomate, queso mozarella, Pepperoni, Jamón, carnes mixtas (res y cerdo, salchicha italiana y
+                tocino.
+              </p>
+            </div>
+            <h3 class="color-letras-primary">12.56 BS</h3>
+            <div class="seleccion-variante-producto-general">
+              <p>Tamaño</p>
+              <div class="container-info-variante">
+                <p>Pequeño</p>
+                <div class="icono-dropdown-variantes icon-color-terciari">
+                  {% render 'icon-flecha-abajo' %}
+                </div>
+              </div>
+            </div>
+            <button class="boton-personalizar-producto">
+              <p class="color-letras-secondary">Personalizar</p>
+            </button>
+            <div class="variantes-producto">
+              <div class="variante-producto-item">
+                <p>Familiar (12 porciones)</p>
+                <p class="color-letras-primary">12.56 BS</p>
+              </div>
+              <div class="variante-producto-item">
+                <p>Mediana extra (16 porciones)</p>
+                <p class="color-letras-primary">12.56 BS</p>
+              </div>
+              <div class="variante-producto-item">
+                <p>Basica grande (12 porciones)</p>
+                <p class="color-letras-primary">12.56 BS</p>
+              </div>
+              <div class="variante-producto-item">
+                <p>Personalizada (4 porciones)</p>
+                <p class="color-letras-primary">12.56 BS</p>
+              </div>
+            </div>
+          </div>
+          <div class="product-item">
+            <div class="product-item-imagen">
+              <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+            </div>
+            <div class="product-item-info">
+              <h3>CHESSY LOVERS</h3>
+              <p>
+                Salsa de tomate, queso mozarella, Pepperoni, Jamón, carnes mixtas (res y cerdo, salchicha italiana y
+                tocino.
+              </p>
+            </div>
+            <h3 class="color-letras-primary">12.56 BS</h3>
+            <div class="seleccion-variante-producto-general">
+              <p>Tamaño</p>
+              <div class="container-info-variante">
+                <p>Pequeño</p>
+                <div class="icono-dropdown-variantes icon-color-terciari">
+                  {% render 'icon-flecha-abajo' %}
+                </div>
+              </div>
+            </div>
+            <button class="boton-personalizar-producto">
+              <p class="color-letras-secondary">Personalizar</p>
+            </button>
+            <div class="variantes-producto">
+              <div class="variante-producto-item">
+                <p>Familiar (12 porciones)</p>
+                <p class="color-letras-primary">12.56 BS</p>
+              </div>
+              <div class="variante-producto-item">
+                <p>Mediana extra (16 porciones)</p>
+                <p class="color-letras-primary">12.56 BS</p>
+              </div>
+              <div class="variante-producto-item">
+                <p>Basica grande (12 porciones)</p>
+                <p class="color-letras-primary">12.56 BS</p>
+              </div>
+              <div class="variante-producto-item">
+                <p>Personalizada (4 porciones)</p>
+                <p class="color-letras-primary">12.56 BS</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 

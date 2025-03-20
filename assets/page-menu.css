@@ -1,0 +1,127 @@
+/* ==========================================================================
+     ÍNDICE - SECCION(SEARCH PRODUCTS)
+     1. HEADER
+     2. BODY
+        2.1 TODOS LOS PRODUCTOS
+            2.1.1 CATEGORIA MOBILE
+            2.1.2 CATEGORIA DESKTOP
+        2.2 PRODUCTOS SIMPLES
+        2.3 PRODUCTOS COMPLEJOS
+     3. MEDIA QUERIES
+
+     ========================================================================== */
+
+.page-menu-container {
+  width: 100%;
+  max-width: 1660px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ==========================================================================
+     1. HEADER
+     ========================================================================== */
+
+.page-menu-header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--espaciado-xl);
+}
+
+.page-menu-opciones-seleccion {
+  width: 100%;
+  display: flex;
+  gap: var(--espaciado-m);
+}
+
+.page-menu-opcion {
+  width: 10rem;
+  height: 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--espaciado-xs);
+  background-color: var(--color-secundario);
+  border: 1.5px solid #969696;
+}
+
+.page-menu-opcion-imagen {
+  height: 100%;
+  width: 3.5rem;
+  border-right: 1.5px solid #969696;
+}
+
+.page-menu-opcion-imagen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.page-menu-opcion-nombre {
+  width: 6.5rem;
+  height: 100%;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.page-menu-opcion-nombre p {
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.page-menu-opcion.boton-activado {
+  border: 1.5px solid var(--color-primario);
+  color: var(--colorp-secondary);
+}
+
+.page-menu-opcion.boton-activado svg {
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%)
+    contrast(103%);
+}
+
+.page-menu-container.boton-activado {
+  background-color: var(--color-primario);
+}
+
+.page-menu-opcion-imagen.boton-activado {
+  border-right: 1.5px solid var(--color-primario);
+}
+
+.page-menu-opcion-nombre.boton-activado p {
+  color: var(--color-secundario);
+}
+
+/* ==========================================================================
+     2. BODY
+     ========================================================================== */
+
+/* ==========================================================================
+     2.1 TODOS LOS PRODUCTOS
+     ========================================================================== */
+
+/* ==========================================================================
+     2.1.1 CATEGORIA MOBILE
+     ========================================================================== */
+
+/* ==========================================================================
+     2.1.2 CATEGORIA DESKTOP
+     ========================================================================== */
+
+/* ==========================================================================
+     2.2 PRODUCTOS SIMPLES
+     ========================================================================== */
+
+/* ==========================================================================
+     2.3 PRODUCTOS COMPLEJOS
+     ========================================================================== */
+
+/* ==========================================================================
+     3. MEDIA QUERIES
+     ========================================================================== */
