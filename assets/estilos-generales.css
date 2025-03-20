@@ -299,22 +299,10 @@
 @media screen and (min-width: 1024px) {
   .producto2-item {
     height: 26rem;
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    gap: var(--espaciado-m);
-    cursor: pointer;
-    position: relative;
   }
 
   .producto3-item {
     height: 21rem;
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    gap: var(--espaciado-m);
-    cursor: pointer;
-    position: relative;
   }
 
   .container-productos-general {
