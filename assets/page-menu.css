@@ -269,3 +269,10 @@
     display: flex;
   }
 }
+
+@media (min-width: 1024px) {
+  .page-menu-opcion {
+    height: 8.125rem;
+    width: 18.75rem;
+  }
+}
