@@ -49,6 +49,11 @@
   border: 1px solid #969696;
 }
 
+.page-menu-opcion svg {
+  filter: brightness(0) saturate(100%) invert(8%) sepia(9%) saturate(535%)
+    hue-rotate(314deg) brightness(94%) contrast(91%);
+}
+
 .page-menu-opcion p {
   text-transform: uppercase;
   font-weight: 600;
@@ -82,7 +87,7 @@
 }
 
 .page-menu-opcion.boton-activado {
-  border: 1px solid var(--color-primario);
+  border: 1px solid var(--colorp-primary);
   color: var(--colorp-secondary);
 }
 
@@ -92,7 +97,7 @@
 }
 
 .page-menu-container.boton-activado {
-  background-color: var(--color-primario);
+  background-color: var(--colorp-primary);
 }
 
 .page-menu-opcion-imagen.boton-activado {
@@ -100,7 +105,7 @@
 }
 
 .page-menu-opcion-nombre.boton-activado p {
-  color: var(--color-secundario);
+  color: var(--colorp-secondary);
 }
 
 /* ==========================================================================
