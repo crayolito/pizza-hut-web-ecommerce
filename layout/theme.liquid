@@ -607,9 +607,15 @@
 {% endstyle %}
 
 <script>
+  const modalGeneral = document.querySelector('.modal-general-sme');
+  if (localStorage.getItem('modal-ver')) {
+    if (localStorage.getItem('modal-ver') === 'true') {
+      modalGeneral.style.display = 'flex';
+    }
+  }
+
   const botonContinuar = document.querySelector('.mpsme-opcion-continuar');
   const botonOmitir = document.querySelector('.mpsme-opcion-omitir');
-  const modalGeneral = document.querySelector('.modal-general-sme');
 
   botonContinuar.addEventListener('click', () => {
     window.location.href = '/pages/test-prueba';
@@ -618,5 +624,6 @@
 
   botonOmitir.addEventListener('click', () => {
     modalGeneral.style.display = 'none';
+    localStorage.setItem('modal-ver', 'false');
   });
 </script>
