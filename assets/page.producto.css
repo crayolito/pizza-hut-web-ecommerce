@@ -215,6 +215,18 @@
   font-weight: 600;
 }
 
+.pmp-item-container-n2-info.seleccionado {
+  border: 2px solid var(--colorp-primary);
+}
+
+.pmp-item-container-n2-imagen.seleccionado {
+  border-right: 2px solid var(--colorp-primary);
+}
+
+.pmp-item-container-n2-info.seleccionado p {
+  color: var(--colorp-primary);
+}
+
 /* ==========================================================================
      3. MODAL INFORMACION EXTRA
      ========================================================================== */
