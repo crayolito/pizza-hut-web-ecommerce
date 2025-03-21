@@ -174,12 +174,14 @@
 
 .pmp-item-seleccion-n2 {
   width: 100%;
+  flex-grow: 1;
   height: 4.375rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   background-color: var(--colorp-secondary);
   border-radius: var(--espaciado-s);
+  border: 1px solid #969696;
 }
 
 .pmp-item-container-n2-imagen {
