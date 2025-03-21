@@ -558,7 +558,7 @@
   .page-producto-modal-informacion-extras {
     width: 35rem;
     height: 33rem;
-    padding: 1.75rem 0 0.5rem 0;
+    padding: 0.5rem 0;
     border-radius: var(--espaciado-s);
     border: 1px solid #969696;
     mask-image: -webkit-radial-gradient(white, black);
