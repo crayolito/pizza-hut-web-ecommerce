@@ -552,6 +552,11 @@
      ========================================================================== */
 
 @media (min-width: 768px) {
+  .page-producto-modal-informacion-extras {
+    width: 35rem;
+    height: 33rem;
+  }
+
   .page-producto-container {
     flex-direction: row;
     align-items: start;
@@ -588,6 +593,11 @@
 }
 
 @media (min-width: 1024px) {
+  .psme-modal-contenedor-base {
+    width: 40rem;
+    height: 34rem;
+  }
+
   .page-producto-container {
     flex-direction: row;
     align-items: start;
