@@ -621,7 +621,8 @@
   }
 
   .page-producto-imagen {
-    height: 27.875rem;
+    /* height: 27.875rem; */
+    height: 33rem;
   }
 
   .ppl-seleccion-especial {
