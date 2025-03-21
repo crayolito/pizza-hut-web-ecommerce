@@ -451,7 +451,7 @@
 .ppme-modal-item-extra {
   width: 100%;
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   justify-content: center;
   border-radius: var(--espaciado-s);
   border: 1px solid #969696;
