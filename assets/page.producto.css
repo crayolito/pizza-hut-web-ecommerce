@@ -246,6 +246,12 @@
 .pmp-item-container-n2-info P {
   text-transform: uppercase;
   font-weight: 600;
+  display: -webkit-box;
+  line-clamp: 2;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .pmp-item-seleccion-n2.seleccionado {
