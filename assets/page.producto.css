@@ -1,0 +1,151 @@
+/* ==========================================================================
+     ÍNDICE - PAGE PRODUCTO
+     1. IMAGEN
+     2. DETALLE DEL PRODUCTO
+     3. MODAL INFORMACION EXTRA
+     4. MEDIA QUERIES
+
+     ========================================================================== */
+
+.page-producto-container {
+  padding: 3rem 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* ==========================================================================
+     1. IMAGEN
+     ========================================================================== */
+
+.page-producto-imagen {
+  width: 100%;
+  height: 13;
+  display: flex;
+  flex-direction: center;
+  align-items: center;
+  border-radius: var(--espaciado-xl);
+  border: 1px solid #969696;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.page-producto-imagen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--espaciado-xs);
+}
+
+/* ==========================================================================
+     2. DETALLE DEL PRODUCTO
+     ========================================================================== */
+.page-producto-header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: var(--espaciado-xs);
+}
+
+.page-producto-volver-atras {
+  display: flex;
+  height: 3rem;
+  padding: var(--espaciado-xl);
+  justify-content: center;
+  align-items: center;
+  gap: var(--espaciado-s);
+}
+
+.page-producto-header small {
+  font-size: 3.3125rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 3.4375rem;
+  letter-spacing: -0.06625rem;
+  text-transform: uppercase;
+}
+
+.page-producto-seleccion {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: var(--espaciado-big);
+}
+
+.page-producto-cantidad {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: var(--espaciado-xxl);
+}
+
+.page-producto-cantidad-selector {
+  width: 100%;
+  height: 4.38rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.page-producto-cantidad-selector-button {
+  flex-basis: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.page-producto-seleccion-n1 {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: var(--espaciado-xxl);
+}
+
+.pmp-item-seleccion-n1 {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--colorp-secondary);
+  border-radius: var(--espaciado-xs);
+  border: 1px solid 969696;
+  padding: var(--espaciado-xxl);
+}
+
+.pmp-item-container-n1-info {
+  height: 100%;
+  width: max-content;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+.pmp-item-container-n1-escoger {
+  width: max-content;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pmp-item-seleccion-n1.seleccionado {
+  border: 2px solid var(--colorp-primary);
+}
+
+.pmp-item-container-n1-info.seleccionado h3 {
+  color: var(--colorp-primary);
+}
+
+/* ==========================================================================
+     3. MODAL INFORMACION EXTRA
+     ========================================================================== */
+
+/* ==========================================================================
+     4. MEDIA QUERIES
+     ========================================================================== */

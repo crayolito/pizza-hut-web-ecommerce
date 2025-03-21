@@ -53,6 +53,7 @@
   display: flex;
   gap: var(--espaciado-m);
   padding-left: 1.25rem;
+  overflow: hidden;
 }
 
 .page-menu-opcion {
@@ -222,6 +223,15 @@
 /* ==========================================================================
      2.2 PRODUCTOS SIMPLES
      ========================================================================== */
+
+.page-menu-productos-simples {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: var(--espaciado-xl);
+  display: none;
+}
 
 .page-menu-ps-categoria {
   width: 100%;

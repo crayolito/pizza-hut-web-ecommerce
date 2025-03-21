@@ -1,0 +1,174 @@
+<!-- Hoja de estilos css -->
+{{ 'page.producto.css' | asset_url | stylesheet_tag }}
+
+<section class="page-producto-cotainer contianer-base">
+  <div class="page-producto-imagen">
+    <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+  </div>
+  <div class="page-producto-detalle-producto">
+    <div class="page-producto-header">
+      <button class="page-producto-volver-atras icon-color-primary ">
+        {% render 'icon-volver-atras' %}
+        <p class="color-letras-primary">Volver</p>
+      </button>
+      <small>Choclo y Tocino</small>
+      <p>Salsa de tomate, queso mozarella, Choclo y tocino</p>
+    </div>
+    <div class="page-producto-seleccion">
+      <div class="page-producto-cantidad">
+        <h3>Cantidad</h3>
+        <div class="page-producto-cantidad-selector">
+          <button class="page-producto-cantidad-selector-button icon-color-primary">
+            {% render 'icon-menos' %}
+          </button>
+          <p>0</p>
+          <button class="page-producto-cantidad-selector-button icon-color-primary">
+            {% render 'icon-mas' %}
+          </button>
+        </div>
+      </div>
+      <div class="page-producto-seleccion-n1">
+        <h3>Tamaño</h3>
+        <div class="pmp-item-seleccion-n1">
+          <div class="pmp-item-container-n1-info">
+            <h3>Personal</h3>
+            <p>para 1 persona</p>
+          </div>
+          <div class="pmp-item-container-n1-escoger">
+            {% render 'icon-estado-off' %}
+          </div>
+        </div>
+        <div class="pmp-item-seleccion-n1 seleccionado">
+          <div class="pmp-item-container-n1-info seleccionado">
+            <h3>Mediana</h3>
+            <p>para 3 personas + Bs. 18</p>
+          </div>
+          <div class="pmp-item-container-n1-escoger">
+            {% render 'icon-estado-on' %}
+          </div>
+        </div>
+        <div class="pmp-item-seleccion-n1">
+          <div class="pmp-item-container-n1-info">
+            <h3>Grande</h3>
+            <p>para 4 personas + Bs. 61</p>
+          </div>
+          <div class="pmp-item-container-n1-escoger">
+            {% render 'icon-estado-off' %}
+          </div>
+        </div>
+        <div class="pmp-item-seleccion-n1 seleccionado">
+          <div class="pmp-item-container-n1-info seleccionado">
+            <h3>Familiar</h3>
+            <p>para 5 personas + Bs. 87</p>
+          </div>
+          <div class="pmp-item-container-n1-escoger">
+            {% render 'icon-estado-on' %}
+          </div>
+        </div>
+      </div>
+      <div class="page-producto-seleccion-n2">
+        <h3>Tamaño</h3>
+        <div class="pmp-item-seleccion-n2">
+          <div class="pmp-item-container-n2-imagen">
+            <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+          </div>
+          <div class="pmp-item-container-n2-info">
+            <p>Salsa de tomate, queso mozarella, Choclo y tocino</p>
+            <div class="pmp-item-container-n2-escoger">
+              <input type="text" class="radio">
+            </div>
+          </div>
+        </div>
+        <div class="pmp-item-container-n1-escoger"></div>
+      </div>
+      <div class="page-producto-seleccion-n3">
+        <h3>Extras</h3>
+        <div class="pmp-item-seleccion-n3">
+          <div class="pmp-item-container-n3-imagen">
+            <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+          </div>
+          <div class="pmp-item-container-n3-info">
+            <p>Salsa de tomate, queso mozarella, Choclo y tocino</p>
+            <div class="pmp-item-container-n3-escoger">
+              <input type="text" class="checkbox">
+            </div>
+          </div>
+        </div>
+        <div class="pmp-item-container-n1-escoger"></div>
+      </div>
+      <div class="page-producto-seleccion-extras-n1">
+        <div class="page-producto-container-extras-base-header">
+          <h3>Extras</h3>
+          <button class="page-producto-container-extras-button icon-color-primary">
+            {% render 'icon-mas' %}
+            <p>Añadir</p>
+          </button>
+        </div>
+        <!-- CUANDO NO HAY SELECCIONADO UN EXTRA -->
+        <div class="page-producto-container-extras-base">
+          <p>Salsa de tomate, queso mozarella, Choclo y tocino</p>
+          <button class="page-producto-container-extras-base-button icon-color-primary">
+            {% render 'icon-flecha-izquierda' %}
+          </button>
+        </div>
+        <!-- CUANDO HAY SELECCIONADO UN EXTRA -->
+        <div class="pmp-items-extras-seleccionados-n1">
+          <div class="pmp-item-extra-seleccionado-n1">
+            <div class="pmp-item-extra-n1-imagen">
+              <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+            </div>
+            <div class="pmp-item-extra-n1-info">
+              <div class="pmp-item-extra-n1-detalle">
+                <p>x1</p>
+                <p>Choco hut oreo</p>
+                <p>22 Bs</p>
+              </div>
+              <button class="pmp-item-extra-n1-delete">
+                {% render 'icon-basura' %}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="page-producto-seleccion-extras-n2">
+        <div class="page-producto-container-extras-base-header">
+          <h3>Extras</h3>
+          <button class="page-producto-container-extras-button icon-color-primary">
+            {% render 'icon-mas' %}
+            <p>Añadir</p>
+          </button>
+        </div>
+        <!-- CUANDO NO HAY SELECCIONADO UN EXTRA -->
+        <div class="page-producto-container-extras-base">
+          <p>Salsa de tomate, queso mozarella, Choclo y tocino</p>
+          <button class="page-producto-container-extras-base-button icon-color-primary">
+            {% render 'icon-flecha-izquierda' %}
+          </button>
+        </div>
+        <!-- CUANDO HAY SELECCIONADO UN EXTRA -->
+        <div class="pmp-items-extras-seleccionados-n2">
+          <div class="pmp-item-extra-seleccionado-n2">
+            <div class="pmp-item-extra-n2-imagen">
+              <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+            </div>
+            <div class="pmp-item-extra-n2-info">
+              <div class="pmp-item-extra-n2-detalle">
+                <p>x1</p>
+                <p>Choco hut oreo</p>
+                <p>22 Bs</p>
+              </div>
+              <button class="pmp-item-extra-n2-delete">
+                {% render 'icon-basura' %}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="page-producto-pagar">
+        <p>49BS PAGAR</p>
+        {% render 'icon-tarjeta-credito' %}
+      </button>
+    </div>
+  </div>
+  <div class="page-producto-modal-informacion-extras"></div>
+</section>
