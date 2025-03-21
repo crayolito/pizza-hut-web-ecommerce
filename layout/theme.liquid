@@ -419,12 +419,13 @@
 
   .modal-principal-solicitud-metodo-entrega {
     width: 23.75rem;
-    padding: 3rem 1.25rem;
+    height: max-content;
+    padding: 2rem 1.25rem;
     background-color: var(--colorp-secondary);
     border-radius: var(--espaciado-xs);
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    gap: 2rem;
   }
 
   .mpsme-icono-base {
@@ -468,7 +469,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: var(--espaciado-xs);
+    gap: var(--espaciado-l);
     padding: 1.25rem 0;
     border-radius: var(--espaciado-xs);
     border: 1px solid #969696;
@@ -495,6 +496,9 @@
     position: absolute;
     top: 0.45rem;
     right: 0.45rem;
+  }
+
+  .mpsme-icono-seleccion svg {
     width: 1.25rem;
     height: 1.25rem;
     aspect-ratio: 1/1;
