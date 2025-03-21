@@ -127,7 +127,7 @@
   height: 1.875rem;
 }
 
-.ppl-seleccion {
+.ppl-seleccion-normal {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -373,9 +373,10 @@
   .page-producto-container {
     flex-direction: row;
     align-items: start;
+    gap: var(--espaciado-big);
   }
 
-  .ppl-seleccion {
+  .ppl-seleccion-especial {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--espaciado-xxl);
@@ -383,7 +384,7 @@
   }
 
   /* Hacer que el h3 ocupe toda la fila */
-  .ppl-seleccion > h3:first-child {
+  .ppl-seleccion-especial > h3:first-child {
     grid-column: 1 / span 2; /* Ocupa desde columna 1 hasta abarcar 2 columnas */
     margin-bottom: var(
       --espaciado-xxl
@@ -391,7 +392,7 @@
   }
 
   /* Asegurarse de que los items empiezan después del título */
-  .ppl-seleccion > .pmp-item-seleccion-n1 {
+  .ppl-seleccion-especial > .pmp-item-seleccion-n1 {
     grid-column: auto; /* Permite que fluyan automáticamente */
   }
 }
