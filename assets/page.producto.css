@@ -374,6 +374,16 @@
     flex-direction: row;
     align-items: start;
   }
+
+  .ppl-seleccion {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--espaciado-xxl);
+  }
+
+  .ppl-seleccion > h3:first-child {
+    grid-column: 1 / 2;
+  }
 }
 
 @media (min-width: 1024px) {
