@@ -614,17 +614,23 @@
 
     connectedCallback() {
       console.log('page-menu-productos');
-      const botonPersonalizar = document.querySelector('.boton-producto-personalizar');
-      const botonAgregar = document.querySelector('.boton-producto-agregar');
+      const botonesPersonalizar = document.querySelectorAll('.boton-producto-personalizar');
+      const botonesAgregar = document.querySelectorAll('.boton-producto-agregar');
 
-      botonPersonalizar.addEventListener('click', () => {
-        console.log('click');
-        window.location.href = '/pages/producto';
+      // Agregar event listener a cada botón personalizar
+      botonesPersonalizar.forEach((boton) => {
+        boton.addEventListener('click', () => {
+          console.log('click personalizar');
+          window.location.href = '/pages/producto';
+        });
       });
 
-      botonAgregar.addEventListener('click', () => {
-        console.log('clickk');
-        window.location.href = '/pages/producto';
+      // Agregar event listener a cada botón agregar
+      botonesAgregar.forEach((boton) => {
+        boton.addEventListener('click', () => {
+          console.log('click agregar');
+          window.location.href = '/pages/producto';
+        });
       });
     }
   }
