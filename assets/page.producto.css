@@ -402,6 +402,7 @@
   z-index: 9999;
   display: flex;
   justify-content: center;
+  align-items: center;
   /* overflow-y: auto; */
   /* MODIFIQUE AQUI */
   display: none;
@@ -605,6 +606,11 @@
 }
 
 @media (min-width: 1024px) {
+  .ppme-modal-boton-guardar,
+  .ppme-modal-boton-salir {
+    height: 3.5rem;
+  }
+
   .ppme-modal-informacion-extras-body {
     overflow: hidden;
   }
