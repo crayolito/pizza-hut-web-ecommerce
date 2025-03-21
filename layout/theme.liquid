@@ -608,7 +608,8 @@
 
 <script>
   const modalGeneral = document.querySelector('.modal-general-sme');
-  if (localStorage.getItem('modal-ver')) {
+  modalGeneral.style.display = 'none';
+
     if (localStorage.getItem('modal-ver') === 'true') {
       modalGeneral.style.display = 'flex';
     }
