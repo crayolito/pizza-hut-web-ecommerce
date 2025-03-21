@@ -261,6 +261,11 @@
   padding: 0 var(--espaciado-xl);
 }
 
+.page-producto-container-extras-button p {
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
 .page-producto-container-extras-base {
   width: 100%;
   height: 4.38rem;
