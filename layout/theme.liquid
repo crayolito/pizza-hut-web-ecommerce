@@ -371,8 +371,10 @@
               <div class="mpsme-icono-metodo icon-color-primary">
                 {% render 'icon-recogo-local' %}
               </div>
-              <p style="font-weight: 600;">Recoger en local</p>
-              <p>Sin costo alguno</p>
+              <div class="mpsme-informacion-metodo-texto">
+                <p style="font-weight: 600;">Recoger en local</p>
+                <p>Sin costo alguno</p>
+              </div>
             </div>
           </div>
           <div class="mpsme-metodo-entrega mpsme-metodo-envio-domicilio seleccionado">
@@ -383,8 +385,11 @@
               <div class="mpsme-icono-metodo seleccionado ">
                 {% render 'icon-recogo-delivery' %}
               </div>
-              <p style="font-weight: 600;">Envío a domicilio</p>
-              <p>Envío a solo Bs 2</p>
+              <div class="mpsme-informacion-metodo-texto">
+                <p style="font-weight: 600;">Envío a domicilio</p>
+                <p>Envío a solo Bs 2</p>
+              </div>
+
               {% comment %} asd {% endcomment %}
             </div>
           </div>
@@ -503,8 +508,11 @@
     gap: var(--espaciado-s);
   }
 
-  .mpsme-informacion-metodo p:first-child {
-    font-weight: 600;
+  .mpsme-informacion-metodo-texto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--espaciado-s);
   }
 
   .mpsme-metodo-entrega.seleccionado {
@@ -584,6 +592,10 @@
     .mpsme-icono-base svg {
       width: 6.25rem;
       height: 6.25rem;
+    }
+
+    .mpsme-informacion-metodo {
+      flex-direction: row;
     }
   }
 {% endstyle %}
