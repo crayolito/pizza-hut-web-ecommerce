@@ -230,6 +230,7 @@
   const botonMetodoEntregaMobil = document.querySelector('.h-boton-cambio-metodo-entrega');
   const botonMenuMobil = document.querySelector('.h-boton-menu');
   const menuOpcionesClienteMobile = document.querySelector('.h-opciones-usuario-mobile');
+  const botonCerrarMenuMobile = document.querySelector('.h-boton-cerrar-menu ');
   menuOpcionesClienteMobile.style.display = 'none';
 
   botonCambioEntrega.addEventListener('click', () => {
@@ -253,6 +254,10 @@
 
   botonMenuMobil.addEventListener('click', () => {
     menuOpcionesClienteMobile.style.display = 'flex';
+  });
+
+  botonCerrarMenuMobile.addEventListener('click', () => {
+    menuOpcionesClienteMobile.style.display = 'none';
   });
 
   customElements.define('sticky-header', HeaderPrincipal);
