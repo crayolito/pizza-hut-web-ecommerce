@@ -264,6 +264,7 @@
 .page-producto-container-extras-button p {
   text-transform: uppercase;
   font-weight: 600;
+  color: var(--colorp-primary);
 }
 
 .page-producto-container-extras-base {
