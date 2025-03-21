@@ -388,6 +388,10 @@
     gap: var(--espaciado-big);
   }
 
+  .pmp-item-seleccion-n2 {
+    width: 7.02rem;
+  }
+
   .ppl-seleccion-especial {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -414,6 +418,10 @@
 }
 
 @media (min-width: 1024px) {
+  .pmp-item-seleccion-n2 {
+    width: 19rem;
+  }
+
   .page-producto-imagen {
     height: 27.875rem;
   }
