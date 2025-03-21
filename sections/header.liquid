@@ -226,6 +226,10 @@
   class HeaderPrincipal extends HTMLElement {}
   const botonCambioEntrega = document.querySelector('.h-sector-metodo-entrega');
   const inputBuscar = document.querySelector('#h-input-buscar');
+  const botonMobilBuscar = document.querySelector('.h-boton-buscar');
+  const botonMetodoEntregaMobil = document.querySelector('.h-boton-cambio-metodo-entrega');
+  const botonMenuMobil = document.querySelector('.h-boton-menu');
+  const menuOpcionesClienteMobile = document.querySelector('.h-opciones-usuario-mobile');
 
   botonCambioEntrega.addEventListener('click', () => {
     console.log('click');
@@ -236,6 +240,18 @@
     if (e.key === 'Enter') {
       window.location.href = '/search';
     }
+  });
+
+  botonMobilBuscar.addEventListener('click', () => {
+    window.location.href = '/search';
+  });
+
+  botonMetodoEntregaMobil.addEventListener('click', () => {
+    window.location.href = '/pages/test-prueba';
+  });
+
+  botonMenuMobil.addEventListener('click', () => {
+    menuOpcionesClienteMobile.style.display = 'flex';
   });
 
   customElements.define('sticky-header', HeaderPrincipal);
