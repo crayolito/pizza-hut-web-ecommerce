@@ -332,6 +332,11 @@
   justify-content: center;
 }
 
+.pmp-item-extra-n2-detalle p:nth-of-type(-n + 2) {
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
 /* ==========================================================================
      3. MODAL INFORMACION EXTRA
      ========================================================================== */
