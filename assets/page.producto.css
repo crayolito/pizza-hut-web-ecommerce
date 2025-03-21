@@ -379,10 +379,20 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--espaciado-xxl);
+    grid-auto-flow: row;
   }
 
+  /* Hacer que el h3 ocupe toda la fila */
   .ppl-seleccion > h3:first-child {
-    grid-column: 1 / 2;
+    grid-column: 1 / span 2; /* Ocupa desde columna 1 hasta abarcar 2 columnas */
+    margin-bottom: var(
+      --espaciado-xxl
+    ); /* Espacio entre el título y los items */
+  }
+
+  /* Asegurarse de que los items empiezan después del título */
+  .ppl-seleccion > .pmp-item-seleccion-n1 {
+    grid-column: auto; /* Permite que fluyan automáticamente */
   }
 }
 
