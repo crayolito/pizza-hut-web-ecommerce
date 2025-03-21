@@ -210,6 +210,20 @@
   justify-content: space-between;
 }
 
+.pmp-item-container-n2-info-detalle {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  width: max-content;
+  height: 100%;
+}
+
+.pmp-item-container-n2-info-detalle p:first-child {
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
 .pmp-item-container-n2-info P {
   text-transform: uppercase;
   font-weight: 600;
@@ -223,7 +237,7 @@
   border-right: 2px solid var(--colorp-primary);
 }
 
-.pmp-item-container-n2-info.seleccionado p {
+.pmp-item-container-n2-info-detalle.seleccionado p {
   color: var(--colorp-primary);
 }
 
