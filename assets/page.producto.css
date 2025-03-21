@@ -22,7 +22,7 @@
 
 .page-producto-imagen {
   width: 100%;
-  height: 13;
+  height: 13rem;
   display: flex;
   flex-direction: center;
   align-items: center;
@@ -52,7 +52,7 @@
 .page-producto-volver-atras {
   display: flex;
   height: 3rem;
-  padding: var(--espaciado-xl);
+  padding: var(--espaciado-xl) 0;
   justify-content: center;
   align-items: center;
   gap: var(--espaciado-s);
