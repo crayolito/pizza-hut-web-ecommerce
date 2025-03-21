@@ -237,7 +237,7 @@
   border-right: 2px solid var(--colorp-primary);
 }
 
-.pmp-item-container-n2-info-detalle.seleccionado p {
+.pmp-item-container-n2-info-detalle.seleccionado p:first-child {
   color: var(--colorp-primary);
 }
 
