@@ -187,6 +187,7 @@
 .pmp-item-container-n2-imagen {
   height: 100%;
   width: 3.56rem;
+  min-width: 3.56rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -208,6 +209,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: var(--espaciado-s);
 }
 
 .pmp-item-container-n2-info-detalle {
@@ -381,6 +383,10 @@
     grid-template-columns: 1fr 1fr;
     gap: var(--espaciado-xxl);
     grid-auto-flow: row;
+  }
+
+  .pmp-item-container-n2-info {
+    padding: 0 var(--espaciado-l);
   }
 
   /* Hacer que el h3 ocupe toda la fila */
