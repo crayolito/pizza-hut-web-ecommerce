@@ -574,6 +574,14 @@
     /* width: 14.02rem; */
   }
 
+  .page-producto-imagen {
+    flex-basis: 50%;
+  }
+
+  .page-producto-detalle-producto {
+    flex-basis: 50%;
+  }
+
   /* .ppl-seleccion-especial {
     display: grid;
     grid-template-columns: 1fr 1fr;
