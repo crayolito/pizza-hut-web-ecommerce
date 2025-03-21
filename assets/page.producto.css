@@ -14,6 +14,7 @@
   flex-direction: column;
   align-items: center;
   gap: 2rem;
+  position: relative;
 }
 
 .page-producto-container svg {
@@ -390,6 +391,124 @@
      3. MODAL INFORMACION EXTRA
      ========================================================================== */
 
+.page-producto-modal-general {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  overflow-y: auto;
+  padding: 5rem 0;
+  /* MODIFIQUE AQUI */
+  /* display: none; */
+}
+
+.page-producto-modal-informacion-extras {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--espaciado-xxl);
+  padding: 2.75rem 0 1rem 0;
+}
+
+.ppme-modal-informacion-extras-body small {
+  font-size: 3.3125rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 3.4375rem;
+  letter-spacing: -0.06625rem;
+  text-transform: uppercase;
+}
+
+.ppme-modal-items-extras {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--espaciado-xxl);
+}
+
+.ppme-modal-item-extra {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--espaciado-s);
+  border: 1px solid #969696;
+  background-color: var(--colorp-secondary);
+}
+
+.ppme-modal-item-extra-imagen {
+  width: 8.13rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid #969696;
+}
+
+.ppme-modal-item-extra-imagen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-bottom-left-radius: var(--espaciado-s);
+  border-top-left-radius: var(--espaciado-s);
+}
+
+.ppme-modal-item-extra-info {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  gap: var(--espaciado-xs);
+  padding: var(--espaciado-l);
+}
+
+.ppme-modal-item-extra-info-detalle {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  gap: var(--espaciado-xs);
+}
+
+.ppme-modal-item-extra-info-detalle p:first-child {
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.ppme-modal-item-extra-info-detalle p {
+  display: -webkit-box;
+  line-clamp: 2;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ppme-modal-item-extra-cantidad {
+  width: 100%;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ppme-modal-item-extra-cantidad-button {
+  flex-basis: 45%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* ==========================================================================
      4. MEDIA QUERIES
      ========================================================================== */
@@ -438,7 +557,8 @@
   }
 
   .pmp-item-seleccion-n2 {
-    width: 19rem;
+    /* width: 19rem; */
+    width: 100%;
   }
 
   .page-producto-imagen {
