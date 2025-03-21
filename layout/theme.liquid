@@ -611,7 +611,7 @@
   modalGeneral.style.display = 'none';
 
   // Verificar si debe mostrarse el modal
-  if (localStorage.getItem('modal-ver') === 'true') {
+  if (localStorage.getItem('modal-ver') === 'true' && localStorage.getItem('modal-ver') === null) {
     modalGeneral.style.display = 'flex';
   }
 
