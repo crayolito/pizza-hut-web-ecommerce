@@ -416,7 +416,7 @@
   flex-direction: column;
   justify-content: space-between;
   gap: var(--espaciado-xxl);
-  padding: 2.75rem 0 1rem 0;
+  padding: 1rem 0;
   overflow-y: auto;
 }
 
@@ -434,7 +434,7 @@
   line-height: 3.4375rem;
   letter-spacing: -0.06625rem;
   text-transform: uppercase;
-  padding: 0rem 0.5rem;
+  padding: 0rem 1.5rem;
 }
 
 .ppme-modal-items-extras {
@@ -443,7 +443,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 0rem 0.5rem;
+  padding: 0 1.5rem;
   padding-top: 5rem;
   gap: var(--espaciado-xxl);
 }
