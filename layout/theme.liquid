@@ -608,10 +608,15 @@
 
 <script>
   const modalGeneral = document.querySelector('.modal-general-sme');
+
+  // Inicialmente ocultamos el modal
   modalGeneral.style.display = 'none';
 
-  // Verificar si debe mostrarse el modal
-  if (localStorage.getItem('modal-ver') === 'true' && localStorage.getItem('modal-ver') === null) {
+  // Obtener el valor actual de localStorage
+  const modalVer = localStorage.getItem('modal-ver');
+
+  // Mostrar el modal si es la primera visita (null) o si está explícitamente en 'true'
+  if (modalVer === null || modalVer === 'true') {
     modalGeneral.style.display = 'flex';
   }
 
