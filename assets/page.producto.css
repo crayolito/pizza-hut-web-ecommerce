@@ -41,6 +41,14 @@
 /* ==========================================================================
      2. DETALLE DEL PRODUCTO
      ========================================================================== */
+.page-producto-detalle-producto {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 2rem;
+}
+
 .page-producto-header {
   width: 100%;
   display: flex;
