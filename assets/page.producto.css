@@ -320,7 +320,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: var(--espaciado-l) var(--espaciado-xxl);
+  padding: var(--espaciado-xxl);
 }
 
 .pmp-item-extra-n2-info-detalle {
@@ -335,6 +335,7 @@
 .pmp-item-extra-n2-detalle p:nth-of-type(-n + 2) {
   font-weight: 600;
   text-transform: uppercase;
+  color: var(--colorp-primary);
 }
 
 /* ==========================================================================
