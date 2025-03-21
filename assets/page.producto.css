@@ -107,8 +107,8 @@
 
 .page-producto-cantidad-selector {
   width: 100%;
-  max-width: 19rem;
   height: 4.38rem;
+  max-width: 19rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -585,17 +585,13 @@
     padding: 0 var(--espaciado-l);
   }
 
-  /* Hacer que el h3 ocupe toda la fila */
   .ppl-seleccion-especial > h3:first-child {
-    grid-column: 1 / span 2; /* Ocupa desde columna 1 hasta abarcar 2 columnas */
-    margin-bottom: var(
-      --espaciado-xxl
-    ); /* Espacio entre el título y los items */
+    grid-column: 1 / span 2;
+    margin-bottom: var(--espaciado-xxl);
   }
 
-  /* Asegurarse de que los items empiezan después del título */
   .ppl-seleccion-especial > .pmp-item-seleccion-n1 {
-    grid-column: auto; /* Permite que fluyan automáticamente */
+    grid-column: auto;
   } */
 }
 
