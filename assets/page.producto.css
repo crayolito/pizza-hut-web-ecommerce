@@ -288,6 +288,7 @@
 .pmp-items-extras-seleccionados-n2 {
   width: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: var(--espaciado-xxl);
@@ -341,6 +342,21 @@
   font-weight: 600;
   text-transform: uppercase;
   color: var(--colorp-primary);
+}
+
+.page-producto-pagar {
+  width: 100%;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--colorp-primary);
+}
+
+.page-producto-pagar p {
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--colorp-secondary);
 }
 
 /* ==========================================================================
