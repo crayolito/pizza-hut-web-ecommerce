@@ -417,7 +417,7 @@
   justify-content: space-between;
   gap: var(--espaciado-xxl);
   padding: 1rem 0;
-  overflow-y: auto;
+  overflow: hidden;
 }
 
 .ppme-modal-informacion-extras-body {
@@ -425,6 +425,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--espaciado-l);
+  overflow: hidden;
 }
 
 .ppme-modal-informacion-extras-body small {
@@ -445,6 +446,7 @@
   justify-content: center;
   padding: 0 1.5rem;
   gap: var(--espaciado-xxl);
+  overflow: auto;
 }
 
 .ppme-modal-item-extra {
@@ -518,6 +520,9 @@
 }
 
 .ppme-modal-informacion-extras-footer {
+  position: absolute;
+  bottom: 0;
+  background-color: var(--colorp-secondary);
   width: 100%;
   display: flex;
   flex-direction: column;
