@@ -401,7 +401,7 @@
   z-index: 9999;
   display: flex;
   justify-content: center;
-  overflow-y: auto;
+  /* overflow-y: auto; */
   /* MODIFIQUE AQUI */
   display: none;
 }
@@ -415,6 +415,7 @@
   justify-content: space-between;
   gap: var(--espaciado-xxl);
   padding: 2.75rem 0 1rem 0;
+  overflow-y: auto;
 }
 
 .ppme-modal-informacion-extras-body {
@@ -555,6 +556,9 @@
   .page-producto-modal-informacion-extras {
     width: 35rem;
     height: 33rem;
+    padding: 1.75rem 0 0.5rem 0;
+    border-radius: var(--espaciado-s);
+    border: 1px solid #969696;
   }
 
   .page-producto-container {
