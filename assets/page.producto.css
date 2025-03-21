@@ -410,6 +410,7 @@
 .page-producto-modal-informacion-extras {
   width: 100%;
   height: 100vh;
+  background-color: var(--colorp-secondary);
   display: flex;
   flex-direction: column;
   align-items: center;
