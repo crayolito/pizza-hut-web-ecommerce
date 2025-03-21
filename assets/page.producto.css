@@ -434,6 +434,7 @@
   line-height: 3.4375rem;
   letter-spacing: -0.06625rem;
   text-transform: uppercase;
+  padding: 0rem 0.5rem;
 }
 
 .ppme-modal-items-extras {
@@ -595,7 +596,7 @@
   }
 
   .ppme-modal-item-extra {
-    width: 16rem;
+    /* width: 16rem; */
   }
 
   .ppme-modal-items-extras {
