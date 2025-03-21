@@ -230,7 +230,11 @@
   const botonMetodoEntregaMobil = document.querySelector('.h-boton-cambio-metodo-entrega');
   const botonMenuMobil = document.querySelector('.h-boton-menu');
   const menuOpcionesClienteMobile = document.querySelector('.h-opciones-usuario-mobile');
+  const menuOpcionesClienteDesktop = document.querySelector('.h-opciones-usuario');
+  menuOpcionesClienteDesktop.style.display = 'none';
   const botonCerrarMenuMobile = document.querySelector('.h-boton-cerrar-menu ');
+  const botonMenuOpcionesDesktop = document.querySelector('.h-boton-modo-cliente');
+
   menuOpcionesClienteMobile.style.display = 'none';
 
   botonCambioEntrega.addEventListener('click', () => {
@@ -258,6 +262,14 @@
 
   botonCerrarMenuMobile.addEventListener('click', () => {
     menuOpcionesClienteMobile.style.display = 'none';
+  });
+
+  botonMenuOpcionesDesktop.addEventListener('click', () => {
+    if (menuOpcionesClienteDesktop.style.display === 'none') {
+      menuOpcionesClienteDesktop.style.display = 'flex';
+    } else {
+      menuOpcionesClienteDesktop.style.display = 'none';
+    }
   });
 
   customElements.define('sticky-header', HeaderPrincipal);
