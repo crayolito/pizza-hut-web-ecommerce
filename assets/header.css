@@ -123,7 +123,6 @@ sticky-header {
   gap: var(--espaciado-xl);
   padding: var(--espaciado-xl) 0;
   /* READ : CAMBIOS PARA EL JS  */
-  display: none;
 }
 
 .h-opciones-mobile-body hr {
