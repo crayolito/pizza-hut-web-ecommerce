@@ -215,7 +215,7 @@
   font-weight: 600;
 }
 
-.pmp-item-container-n2.seleccionado {
+.pmp-item-seleccion-n2.seleccionado {
   border: 2px solid var(--colorp-primary);
 }
 
