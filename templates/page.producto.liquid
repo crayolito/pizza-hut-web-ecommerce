@@ -327,3 +327,23 @@
     </div>
   </div>
 </div>
+
+<script>
+  const modalInformacionExtras = document.querySelector('.page-producto-modal-general');
+  const botonSalir = document.querySelector('.ppme-modal-boton-salir');
+  const botonGuardar = document.querySelector('.ppme-modal-boton-guardar');
+  const anadirExtra = document.querySelector('.page-producto-container-extras-base-button');
+
+  anadirExtra.addEventListener('click', () => {
+    modalInformacionExtras.style.display = 'flex';
+  });
+
+  modalInformacionExtras.addEventListener('click', (e) => {
+  botonSalir.addEventListener('click', () => {
+    modalInformacionExtras.style.display = 'none';
+  });
+
+  botonGuardar.addEventListener('click', () => {
+    modalInformacionExtras.style.display = 'none';
+  });
+</script>
