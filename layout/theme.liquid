@@ -610,9 +610,9 @@
   const modalGeneral = document.querySelector('.modal-general-sme');
   modalGeneral.style.display = 'none';
 
-    if (localStorage.getItem('modal-ver') === 'true') {
-      modalGeneral.style.display = 'flex';
-    }
+  // Verificar si debe mostrarse el modal
+  if (localStorage.getItem('modal-ver') === 'true') {
+    modalGeneral.style.display = 'flex';
   }
 
   const botonContinuar = document.querySelector('.mpsme-opcion-continuar');
