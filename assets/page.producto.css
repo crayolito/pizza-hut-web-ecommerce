@@ -576,6 +576,7 @@
 
   .page-producto-imagen {
     flex-basis: 50%;
+    height: 25.74rem;
   }
 
   .page-producto-detalle-producto {
