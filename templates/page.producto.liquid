@@ -333,6 +333,7 @@
   const botonSalir = document.querySelector('.ppme-modal-boton-salir');
   const botonGuardar = document.querySelector('.ppme-modal-boton-guardar');
   const anadirExtra = document.querySelector('.page-producto-container-extras-button');
+  const volverAtras = document.querySelector('.page-producto-volver-atras');
 
   anadirExtra.addEventListener('click', () => {
     modalInformacionExtras.style.display = 'flex';
@@ -346,5 +347,9 @@
   botonSalir.addEventListener('click', () => {
     modalInformacionExtras.style.display = 'none';
     console.log('click');
+  });
+
+  volverAtras.addEventListener('click', () => {
+    window.history.back();
   });
 </script>
