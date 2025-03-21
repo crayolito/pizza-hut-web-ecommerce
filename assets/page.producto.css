@@ -447,6 +447,7 @@
   padding: 0 1.5rem;
   gap: var(--espaciado-xxl);
   overflow: auto;
+  padding-top: 10.5rem;
 }
 
 .ppme-modal-item-extra {
@@ -559,7 +560,7 @@
 
 @media (min-width: 768px) {
   .page-producto-modal-informacion-extras {
-    width: 35rem;
+    width: max-content;
     height: 33rem;
     padding: 0.5rem 0;
     border-radius: var(--espaciado-s);
@@ -631,6 +632,7 @@
   }
 
   .ppme-modal-informacion-extras-footer {
+    position: relative;
     flex-direction: row;
     gap: var(--espaciado-l);
     padding: 0.5rem 0.5rem 0 0.5rem;
@@ -679,5 +681,9 @@
   /* Asegurarse de que los items empiezan después del título */
   .ppl-seleccion-especial > .pmp-item-seleccion-n1 {
     grid-column: auto; /* Permite que fluyan automáticamente */
+  }
+
+  .ppme-modal-informacion-extras-body small {
+    padding: 0 0.5rem;
   }
 }
