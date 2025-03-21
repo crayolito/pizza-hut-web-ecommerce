@@ -220,6 +220,7 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--espaciado-s);
+  overflow: hidden;
 }
 
 .pmp-item-container-n2-info-detalle {
@@ -234,6 +235,12 @@
 .pmp-item-container-n2-info-detalle p:first-child {
   text-transform: uppercase;
   font-weight: 600;
+  display: -webkit-box;
+  line-clamp: 2;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .pmp-item-container-n2-info P {
@@ -385,11 +392,11 @@
   .page-producto-container {
     flex-direction: row;
     align-items: start;
-    gap: var(--espaciado-big);
+    gap: var(--espaciado-xxl);
   }
 
   .pmp-item-seleccion-n2 {
-    width: 7.02rem;
+    width: 14.02rem;
   }
 
   .ppl-seleccion-especial {
@@ -418,6 +425,12 @@
 }
 
 @media (min-width: 1024px) {
+  .page-producto-container {
+    flex-direction: row;
+    align-items: start;
+    gap: var(--espaciado-xxxl);
+  }
+
   .pmp-item-seleccion-n2 {
     width: 19rem;
   }
