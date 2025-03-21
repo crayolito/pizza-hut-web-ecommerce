@@ -628,7 +628,8 @@
   }
 
   .ppme-modal-items-extras {
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
   }
 
   .ppme-modal-informacion-extras-footer {
