@@ -207,7 +207,7 @@
   flex-grow: 1;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 }
 
 .pmp-item-container-n2-info P {
