@@ -357,7 +357,6 @@
 .page-producto-pagar p {
   text-transform: uppercase;
   font-weight: 600;
-  color: var(--colorp-primary);
 }
 
 /* ==========================================================================
