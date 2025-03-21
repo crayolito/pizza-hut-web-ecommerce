@@ -63,10 +63,6 @@
   gap: var(--espaciado-xl);
 }
 
-.page-producto-header p {
-  text-transform: uppercase;
-  font-weight: 600;
-}
 .page-producto-volver-atras {
   display: flex;
   height: 3rem;
@@ -74,6 +70,11 @@
   justify-content: center;
   align-items: center;
   gap: var(--espaciado-s);
+}
+
+.page-producto-volver-atras p {
+  text-transform: uppercase;
+  font-weight: 600;
 }
 
 .page-producto-header small {
