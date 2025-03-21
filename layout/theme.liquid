@@ -599,10 +599,23 @@
     }
 
     .mpsme-metodo-entrega {
-      justify-content: start;
+      align-items: start;
       padding: 1rem 1.25rem;
     }
   }
 {% endstyle %}
 
-<script></script>
+<script>
+  const botonContinuar = document.querySelector('.mpsme-opcion-continuar');
+  const botonOmitir = document.querySelector('.mpsme-opcion-omitir');
+  const modalGeneral = document.querySelector('.modal-general-sme');
+
+  botonContinuar.addEventListener('click', () => {
+    window.location.href = '/pages/test-prueba';
+    modalGeneral.style.display = 'none';
+  });
+
+  botonOmitir.addEventListener('click', () => {
+    modalGeneral.style.display = 'none';
+  });
+</script>
