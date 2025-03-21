@@ -67,6 +67,7 @@ sticky-header {
   align-items: start;
   padding: var(--espaciado-xs);
   gap: var(--espaciado-xs);
+  cursor: pointer;
   /* MODIFIQUE AQUI */
   /* display: none; */
 }
