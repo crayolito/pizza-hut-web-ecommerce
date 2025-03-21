@@ -375,9 +375,9 @@
               <p>Sin costo alguno</p>
             </div>
           </div>
-          <div class="mpsme-metodo-entrega mpsme-metodo-envio-domicilio">
+          <div class="mpsme-metodo-entrega mpsme-metodo-envio-domicilio seleccionado">
             <div class="mpsme-icono-seleccion">
-              {% render 'icon-estado-off' %}
+              {% render 'icon-estado-on' %}
             </div>
             <div class="mpsme-informacion-metodo">
               <div class="mpsme-icono-metodo icon-color-primary">
@@ -482,6 +482,11 @@
     justify-content: center;
   }
 
+  .mpsme-icono-metodo.seleccionado svg {
+    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
+    fill: var(--colorp-secondary);
+  }
+
   .mpsme-metodo-entrega svg {
     width: 2.67631rem;
     height: 2.67631rem;
@@ -491,11 +496,20 @@
   .mpsme-informacion-metodo {
     display: flex;
     flex-direction: column;
-    gap: var(--espaciado-l);
+    gap: var(--espaciado-s);
   }
 
   .mpsme-informacion-metodo p:first-child {
     font-weight: 600;
+  }
+
+  .mpsme-metodo-entrega.seleccionado {
+    border: none;
+    background-color: var(--colorp-primary);
+  }
+
+  .mpsme-metodo-entrega.seleccionado p {
+    color: var(--colorp-secondary);
   }
 
   .mpsme-icono-seleccion {
@@ -519,7 +533,7 @@
 
   .mpsme-opcion-continuar {
     width: 100%;
-    height: 4rem;
+    height: 3rem;
     border-radius: var(--espaciado-xs);
     background-color: var(--colorp-primary);
     display: flex;
@@ -535,7 +549,7 @@
 
   .mpsme-opcion-omitir {
     width: 100%;
-    height: 4rem;
+    height: 3rem;
     border-radius: var(--espaciado-xs);
     border: 1px solid var(--colorp-primary);
     background-color: transparent;
