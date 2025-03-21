@@ -605,6 +605,23 @@
 }
 
 @media (min-width: 1024px) {
+  .ppme-modal-informacion-extras-body {
+    overflow: hidden;
+  }
+
+  .page-producto-modal-informacion-extras {
+    padding: 1rem;
+  }
+
+  .ppme-modal-items-extras {
+    overflow: auto;
+  }
+
+  .ppme-modal-informacion-extras-footer {
+    flex-direction: row;
+    gap: var(--espaciado-l);
+  }
+
   .psme-modal-contenedor-base {
     width: 40rem;
     height: 34rem;
