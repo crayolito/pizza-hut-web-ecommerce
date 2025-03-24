@@ -392,13 +392,14 @@
   align-items: center;
   justify-content: center;
   gap: var(--espaciado-xs);
+  border-radius: var(--espaciado-xs);
   background-color: #efefef;
 }
 
 .pmph-pagar p {
   text-transform: uppercase;
   font-weight: 600;
-  color: var(--colorp-secondary);
+  color: var(--colorp-extra);
 }
 
 .pmph-pagar svg {
