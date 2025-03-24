@@ -65,8 +65,8 @@
 }
 
 .pmph-imagen.compleja {
-  width: 21.25rem;
-  height: 21.25rem;
+  /* width: 21.25rem; */
+  /* height: 21.25rem; */
   flex-shrink: 0;
   position: relative;
 }
