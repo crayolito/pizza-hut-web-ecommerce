@@ -760,4 +760,9 @@
   .ppme-modal-informacion-extras-body small {
     padding: 0 0.5rem;
   }
+
+  .pmph-imagen.compleja {
+    width: 27rem;
+    height: 27rem;
+  }
 }
