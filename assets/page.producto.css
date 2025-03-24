@@ -111,9 +111,7 @@
 .phmp-pizza-seleccion-mitad {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: var(--espaciado-s);
-  padding: var(--espaciado-l) var(--espaciado-xl);
+  padding: var(--espaciado-xs) var(--espaciado-l);
   border-radius: var(--espaciado-xs);
   border: 1px solid #969696;
   background-color: var(--colorp-secondary);
