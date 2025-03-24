@@ -84,7 +84,8 @@
 .phmp-separador-pizza-img {
   position: absolute;
   top: 0;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   width: 0.07931rem;
   height: 16.55025rem;
   object-fit: cover;
