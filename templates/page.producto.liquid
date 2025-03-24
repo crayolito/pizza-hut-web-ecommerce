@@ -176,75 +176,75 @@
         <div class="pmp-item-simple-escoger"></div>
       </div>
       <div id="pmph-seleccion-extras-n1" class="pmph-seleccion-normal">
-        <div class="pmph-container-extras-base-header">
+        <div class="pmph-extras-header">
           <h3>Extras</h3>
         </div>
         <!-- CUANDO NO HAY SELECCIONADO UN EXTRA -->
-        <div class="pmph-container-extras-base">
+        <div class="pmph-extras">
           <p>SELECcIONAR POSTRE</p>
-          <button class="pmph-container-extras-base-button icon-color-primary">
+          <button class="pmph-extras-button icon-color-primary">
             {% render 'icon-flecha-izquierda' %}
           </button>
         </div>
       </div>
       <div id="pmph-seleccion-extras-n2" class="pmph-seleccion-normal">
-        <div class="pmph-container-extras-base-header">
+        <div class="pmph-extras-header">
           <h3>Gaseosas y cervezas</h3>
-          <button class="pmph-container-extras-button icon-color-primary">
+          <button class="pmph-extras-button icon-color-primary">
             {% render 'icon-mas' %}
             <p>Añadir</p>
           </button>
         </div>
         <!-- CUANDO HAY SELECCIONADO UN EXTRA -->
-        <div class="pmp-items-extras-seleccionados-n2">
-          <div class="pmp-item-extra-seleccionado-n2">
-            <div class="pmp-item-extra-n2-imagen">
+        <div class="pmp-items-extras-seleccionados">
+          <div class="pmp-item-extra-seleccionado">
+            <div class="pmp-item-extra-imagen">
               <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
             </div>
-            <div class="pmp-item-extra-n2-info">
-              <div class="pmp-item-extra-n2-detalle">
+            <div class="pmp-item-extra-info">
+              <div class="pmp-item-extra-detalle">
                 <p>x1</p>
                 <p>Sprite 2lt</p>
                 <p>22 Bs</p>
               </div>
-              <button class="pmp-item-extra-n2-delete icon-color-primary">
+              <button class="pmp-item-extra-delete icon-color-primary">
                 {% render 'icon-basura' %}
               </button>
             </div>
           </div>
-          <div class="pmp-item-extra-seleccionado-n2">
-            <div class="pmp-item-extra-n2-imagen">
+          <div class="pmp-item-extra-seleccionado">
+            <div class="pmp-item-extra-imagen">
               <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
             </div>
-            <div class="pmp-item-extra-n2-info">
-              <div class="pmp-item-extra-n2-detalle">
+            <div class="pmp-item-extra-info">
+              <div class="pmp-item-extra-detalle">
                 <p>x1</p>
                 <p>Sprite 2lt</p>
                 <p>22 Bs</p>
               </div>
-              <button class="pmp-item-extra-n2-delete icon-color-primary">
+              <button class="pmp-item-extra-delete icon-color-primary">
                 {% render 'icon-basura' %}
               </button>
             </div>
           </div>
-          <div class="pmp-item-extra-seleccionado-n2">
-            <div class="pmp-item-extra-n2-imagen">
+          <div class="pmp-item-extra-seleccionado">
+            <div class="pmp-item-extra-imagen">
               <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
             </div>
-            <div class="pmp-item-extra-n2-info">
-              <div class="pmp-item-extra-n2-detalle">
+            <div class="pmp-item-extra-info">
+              <div class="pmp-item-extra-detalle">
                 <p>x1</p>
                 <p>Sprite 2lt</p>
                 <p>22 Bs</p>
               </div>
-              <button class="pmp-item-extra-n2-delete icon-color-primary">
+              <button class="pmp-item-extra-delete icon-color-primary">
                 {% render 'icon-basura' %}
               </button>
             </div>
           </div>
         </div>
       </div>
-      <button class="pmph-pagar icon-color-secondary">
+      <button class="pmph-pagar activado">
         <p>49BS PAGAR</p>
         {% render 'icon-tarjeta-credito' %}
       </button>
@@ -394,7 +394,7 @@
   const modalInformacionExtras = document.querySelector('.pmph-modal-general');
   const botonSalir = document.querySelector('.ppme-modal-boton-salir');
   const botonGuardar = document.querySelector('.ppme-modal-boton-guardar');
-  const anadirExtra = document.querySelector('.pmph-container-extras-button');
+  const anadirExtra = document.querySelector('.pmph-extras-button');
   const volverAtras = document.querySelector('.pmph-volver-atras');
 
   anadirExtra.addEventListener('click', () => {

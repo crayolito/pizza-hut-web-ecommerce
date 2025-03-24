@@ -57,6 +57,7 @@
         --colorp-primary: #c8102e;
         --colorp-secondary: #ffffff;
         --colorp-tertiary: #231f20;
+        --colorp-extra: #717171;
         /* Colores Acento */
         --colora-primary: #e6b991;
         --colora-secondary: #a50a23;
@@ -263,6 +264,12 @@
         fill: var(--colorp-tertiary);
       }
 
+      [class*='icon-color-extra'] svg,
+      [class*='icon-color-extra'] svg path {
+        filter: brightness(1.2);
+        fill: var(--colorp-extra);
+      }
+
       .color-letras-primary {
         color: var(--colorp-primary);
       }
@@ -273,6 +280,10 @@
 
       .color-letras-tertiary {
         color: var(--colorp-tertiary);
+      }
+
+      .color-letras-extra {
+        color: var(--colorp-extra);
       }
 
       @media screen and (min-width: 768px) {
