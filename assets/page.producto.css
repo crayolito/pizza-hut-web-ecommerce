@@ -56,6 +56,14 @@
 
 /* ===== IMAGEN PRODUCTO COMPLEJO===== */
 
+.phmp-img-compleja {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .pmph-imagen.compleja {
   width: 21.25rem;
   height: 21.25rem;
