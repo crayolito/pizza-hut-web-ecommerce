@@ -34,7 +34,7 @@
 
 /* ===== IMAGEN PRODUCTO SIMPLE ===== */
 
-.pmph-imagen {
+.pmph-imagen.simple {
   flex-basis: 40%;
   width: 100%;
   height: 13rem;
@@ -46,11 +46,40 @@
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
-.pmph-imagen img {
+.pmph-imagen.simple img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: var(--espaciado-s);
+}
+
+/* ===== IMAGEN PRODUCTO COMPLEJO ===== */
+
+.pmph-imagen.complejo {
+  width: 21.25rem;
+  height: 21.25rem;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.phmp-borde-pizza-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.phmp-separador-pizza-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0.07931rem;
+  height: 16.55025rem;
+  object-fit: cover;
+  z-index: 1;
 }
 
 /* ==========================
@@ -613,7 +642,7 @@
     /* width: 14.02rem; */
   }
 
-  .pmph-imagen {
+  .pmph-imagen.simple {
     flex-basis: 50%;
     height: 25.74rem;
   }
@@ -689,7 +718,7 @@
     /* width: 100%; */
   }
 
-  .pmph-imagen {
+  .pmph-imagen.simple {
     /* height: 27.875rem; */
     height: 33rem;
   }

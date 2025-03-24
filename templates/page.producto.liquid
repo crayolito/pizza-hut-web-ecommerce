@@ -1,11 +1,43 @@
 <!-- Hoja de estilos css -->
 {{ 'page.producto.css' | asset_url | stylesheet_tag }}
 
-<div class="container-base pmph-container ">
+<div class="container-base pmph-container simple ">
   <div class="pmph-imagen">
     <!-- IMAGE PRODUCTO SIMPLE -->
     <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
     <!-- IMAGE PRODUCTO COMPLEJO -->
+    <div class="phmp-detalle-imagen-compleja">
+      <!-- BORDE DE PIZZA -->
+      <img
+        class="phmp-borde-pizza-img"
+        src="{{ 'pizza-borde.png' | asset_url }}"
+        alt="Pizza 1"
+        width="100%"
+        height="100%"
+      >
+      <!-- SEPARADOS DE MITAD DE PIZZA -->
+      <img
+        class="phmp-separador-pizza-img"
+        src="{{ 'separador-mitad-pizza.png' | asset_url }}"
+        alt="Pizza 1"
+        width="100%"
+        height="100%"
+      >
+      <!-- SECCION BOTONES PARA TIPO DE MITAD -->
+      <div class="phmp-detalle-imagen-compleja-botones">
+        <button class="phmp-pizza-lado-izquierdo">
+          {% render 'icon-pizza-izquierda' %}
+        </button>
+        <button class="phmp-pizza-lado-derecho">
+          {% render 'icon-pizza-derecha' %}
+        </button>
+      </div>
+      <!-- SECCION MITADES DE PIZZA -->
+      <div class="phmp-imagenes-mitades">
+        <div class="phmp-mitad-izquierda"></div>
+        <div class="phmp-mitad-derecha"></div>
+      </div>
+    </div>
   </div>
   <div class="pmph-detalle-producto">
     <div class="pmph-header">
