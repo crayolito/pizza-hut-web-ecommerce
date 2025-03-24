@@ -407,11 +407,11 @@
 }
 
 .pmph-pagar.activado {
-  background-color: var(--colorp-secondary);
+  background-color: var(--colorp-primary);
 }
 
 .pmph-pagar.activado p {
-  color: var(--colorp-secondary);
+  color: var(--colorp-extra);
 }
 
 .pmph-pagar.activado svg {
