@@ -25,8 +25,14 @@
       >
       <!-- SECCION BOTONES PARA TIPO DE MITADD -->
       <div class="phmp-detalle-imagen-compleja-botones">
-        <button class="phmp-pizza-lado-izquierdo"></button>
-        <button class="phmp-pizza-lado-derecho"></button>
+        <button class="phmp-pizza-seleccion-mitad seleccionado">
+          <p>LADO IZQUIERDO</p>
+          {% render 'icon-estado-on' %}
+        </button>
+        <button class="phmp-pizza-lado-derecho">
+          <p>LADO DERECHO</p>
+          {% render 'icon-flecha-derecha' %}
+        </button>
       </div>
       <!-- SECCION MITADES DE PIZZA -->
       <div class="phmp-imagenes-mitades">
