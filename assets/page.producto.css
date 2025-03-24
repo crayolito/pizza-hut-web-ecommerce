@@ -193,7 +193,7 @@
   border: 2px solid var(--colorp-primary);
 }
 
-.pmp-item-container-n1-info.seleccionado h3 {
+.pmp-item-seleccion-n1.seleccionado .pmp-item-container-n1-info h3 {
   color: var(--colorp-primary);
 }
 
@@ -273,11 +273,13 @@
   border: 2px solid var(--colorp-primary);
 }
 
-.pmp-item-container-n2-imagen.seleccionado {
+.pmp-item-seleccion-n2.seleccionado .pmp-item-container-n2-imagen {
   border-right: 2px solid var(--colorp-primary);
 }
 
-.pmp-item-container-n2-info-detalle.seleccionado p:first-child {
+.pmp-item-seleccion-n2.seleccionado
+  .pmp-item-container-n2-info-detalle
+  p:first-child {
   color: var(--colorp-primary);
 }
 
