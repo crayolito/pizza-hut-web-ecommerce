@@ -193,7 +193,7 @@
   border: 2px solid var(--colorp-primary);
 }
 
-.pmp-item-seleccion-n1.seleccionado .pmp-item-container-n1-info h3 {
+.pmp-item-container-n1-info.seleccionado h3 {
   color: var(--colorp-primary);
 }
 
@@ -273,13 +273,11 @@
   border: 2px solid var(--colorp-primary);
 }
 
-.pmp-item-seleccion-n2.seleccionado .pmp-item-container-n2-imagen {
+.pmp-item-container-n2-imagen.seleccionado {
   border-right: 2px solid var(--colorp-primary);
 }
 
-.pmp-item-seleccion-n2.seleccionado
-  .pmp-item-container-n2-info-detalle
-  p:first-child {
+.pmp-item-container-n2-info-detalle.seleccionado p:first-child {
   color: var(--colorp-primary);
 }
 
