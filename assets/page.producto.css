@@ -411,7 +411,7 @@
 }
 
 .pmph-pagar.activado p {
-  color: var(--colorp-extra);
+  color: var(--colorp-secondary);
 }
 
 .pmph-pagar.activado svg {
