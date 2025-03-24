@@ -1,13 +1,18 @@
-/* ==========================================================================
-     ÍNDICE - PAGE PRODUCTO
-     1. IMAGEN
-     2. DETALLE DEL PRODUCTO
-     3. MODAL INFORMACION EXTRA
-     4. MEDIA QUERIES
+/* ==========================================================================      
+  ÍNDICE - PAGE PRODUCTO      
+  1. IMAGEN      
+  2. DETALLE DEL PRODUCTO         
+     2.1. TITULO         
+     2.2. CANTIDAD         
+     2.3. SELECCION NORMAL         
+     2.4. SELECCION ESPECIAL         
+     2.5  SELECCION POSTRES         
+     2.6  SELECCION GASEOSAS      
+  3. MODAL INFORMACION EXTRA      
+  4. MEDIA QUERIES      
+========================================================================== */
 
-     ========================================================================== */
-
-.page-producto-container {
+.pmph-container {
   padding: 3rem 0;
   width: 100%;
   display: flex;
@@ -17,17 +22,19 @@
   position: relative;
 }
 
-.page-producto-container svg {
+.pmph-container svg {
   aspect-ratio: 1/1;
   width: 1.875rem;
   height: 1.875rem;
 }
 
-/* ==========================================================================
-     1. IMAGEN
-     ========================================================================== */
+/* =================================
+  1. IMAGEN
+================================= */
 
-.page-producto-imagen {
+/* ===== IMAGEN PRODUCTO SIMPLE ===== */
+
+.pmph-imagen {
   flex-basis: 40%;
   width: 100%;
   height: 13rem;
@@ -39,17 +46,18 @@
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
-.page-producto-imagen img {
+.pmph-imagen img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: var(--espaciado-s);
 }
 
-/* ==========================================================================
-     2. DETALLE DEL PRODUCTO
-     ========================================================================== */
-.page-producto-detalle-producto {
+/* ==========================
+  2. DETALLE DEL PRODUCTO
+================================= */
+
+.pmph-detalle-producto {
   flex-basis: 60%;
   width: 100%;
   display: flex;
@@ -58,7 +66,9 @@
   gap: 2rem;
 }
 
-.page-producto-header {
+/* =====  HEADER PRODUCTO ===== */
+
+.pmph-header {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -66,7 +76,7 @@
   gap: var(--espaciado-xl);
 }
 
-.page-producto-volver-atras {
+.pmph-volver-atras {
   display: flex;
   height: 3rem;
   padding: var(--espaciado-xl) 0;
@@ -75,12 +85,12 @@
   gap: var(--espaciado-s);
 }
 
-.page-producto-volver-atras p {
+.pmph-volver-atras p {
   text-transform: uppercase;
   font-weight: 600;
 }
 
-.page-producto-header small {
+.pmph-header small {
   font-size: 3.3125rem;
   font-style: normal;
   font-weight: 400;
@@ -89,7 +99,7 @@
   text-transform: uppercase;
 }
 
-.page-producto-seleccion {
+.pmph-seleccion {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -97,7 +107,9 @@
   gap: var(--espaciado-big);
 }
 
-.page-producto-cantidad {
+/* ===== SELECCION CANTIDAD DEL PRODUCTO ===== */
+
+.pmph-cantidad {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -105,7 +117,7 @@
   gap: var(--espaciado-xxl);
 }
 
-.page-producto-cantidad-selector {
+.pmph-cantidad-selector {
   width: 100%;
   height: 4.38rem;
   max-width: 19rem;
@@ -117,7 +129,7 @@
   border: 1px solid #717171;
 }
 
-.page-producto-cantidad-selector-button {
+.pmph-cantidad-selector-button {
   flex-basis: 40%;
   display: flex;
   align-items: center;
@@ -268,19 +280,19 @@
   color: var(--colorp-primary);
 }
 
-.page-producto-container-extras-base-header {
+.pmph-container-extras-base-header {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.page-producto-container-extras-base p {
+.pmph-container-extras-base p {
   text-transform: uppercase;
   font-weight: 600;
 }
 
-.page-producto-container-extras-button {
+.pmph-container-extras-button {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -288,13 +300,13 @@
   padding: 0 var(--espaciado-xl);
 }
 
-.page-producto-container-extras-button p {
+.pmph-container-extras-button p {
   text-transform: uppercase;
   font-weight: 600;
   color: var(--colorp-primary);
 }
 
-.page-producto-container-extras-base {
+.pmph-container-extras-base {
   width: 100%;
   height: 4.38rem;
   display: flex;
@@ -306,7 +318,7 @@
   padding: 0 var(--espaciado-xxl);
 }
 
-.page-producto-container-extras-base-button {
+.pmph-container-extras-base-button {
   display: flex;
   height: 100%;
   align-items: center;
@@ -372,7 +384,7 @@
   color: var(--colorp-primary);
 }
 
-.page-producto-pagar {
+.pmph-pagar {
   width: 100%;
   height: 4rem;
   display: flex;
@@ -382,7 +394,7 @@
   background-color: var(--colorp-primary);
 }
 
-.page-producto-pagar p {
+.pmph-pagar p {
   text-transform: uppercase;
   font-weight: 600;
   color: var(--colorp-secondary);
@@ -392,7 +404,7 @@
      3. MODAL INFORMACION EXTRA
      ========================================================================== */
 
-.page-producto-modal-general {
+.pmph-modal-general {
   position: fixed;
   top: 0;
   left: 0;
@@ -408,7 +420,7 @@
   display: none;
 }
 
-.page-producto-modal-informacion-extras {
+.pmph-modal-informacion-extras {
   width: 100%;
   height: 100vh;
   background-color: var(--colorp-secondary);
@@ -559,7 +571,7 @@
      ========================================================================== */
 
 @media (min-width: 768px) {
-  .page-producto-modal-informacion-extras {
+  .pmph-modal-informacion-extras {
     width: max-content;
     height: 33rem;
     padding: 0.5rem 0;
@@ -569,7 +581,7 @@
     -webkit-mask-image: -webkit-radial-gradient(white, black);
   }
 
-  .page-producto-container {
+  .pmph-container {
     flex-direction: row;
     align-items: start;
     gap: var(--espaciado-xxl);
@@ -579,16 +591,16 @@
     /* width: 14.02rem; */
   }
 
-  .page-producto-imagen {
+  .pmph-imagen {
     flex-basis: 50%;
     height: 25.74rem;
   }
 
-  .page-producto-detalle-producto {
+  .pmph-detalle-producto {
     flex-basis: 50%;
   }
 
-  .page-producto-modal-informacion-extras {
+  .pmph-modal-informacion-extras {
     gap: var(--espaciado-l);
   }
 
@@ -644,7 +656,7 @@
     height: 34rem;
   }
 
-  .page-producto-container {
+  .pmph-container {
     flex-direction: row;
     align-items: start;
     gap: var(--espaciado-xxxl);
@@ -655,7 +667,7 @@
     /* width: 100%; */
   }
 
-  .page-producto-imagen {
+  .pmph-imagen {
     /* height: 27.875rem; */
     height: 33rem;
   }

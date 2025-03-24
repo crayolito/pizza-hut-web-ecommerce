@@ -1,33 +1,35 @@
 <!-- Hoja de estilos css -->
 {{ 'page.producto.css' | asset_url | stylesheet_tag }}
 
-<div class="container-base page-producto-container ">
-  <div class="page-producto-imagen">
+<div class="container-base pmph-container ">
+  <div class="pmph-imagen">
+    <!-- IMAGE PRODUCTO SIMPLE -->
     <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+    <!-- IMAGE PRODUCTO COMPLEJO -->
   </div>
-  <div class="page-producto-detalle-producto">
-    <div class="page-producto-header">
-      <button class="page-producto-volver-atras icon-color-primary ">
+  <div class="pmph-detalle-producto">
+    <div class="pmph-header">
+      <button class="pmph-volver-atras icon-color-primary ">
         {% render 'icon-volver-atras' %}
         <p class="color-letras-primary">Volver</p>
       </button>
       <small>Choclo y Tocino</small>
       <p>Salsa de tomate, queso mozarella, Choclo y tocino</p>
     </div>
-    <div class="page-producto-seleccion">
-      <div class="ppl-seleccion-normal page-producto-cantidad">
+    <div class="pmph-seleccion">
+      <div class="ppl-seleccion-normal pmph-cantidad">
         <h3>Cantidad</h3>
-        <div class="page-producto-cantidad-selector">
-          <button class="page-producto-cantidad-selector-button icon-color-tertiary">
+        <div class="pmph-cantidad-selector">
+          <button class="pmph-cantidad-selector-button icon-color-tertiary">
             {% render 'icon-menos' %}
           </button>
           <p>0</p>
-          <button class="page-producto-cantidad-selector-button icon-color-tertiary">
+          <button class="pmph-cantidad-selector-button icon-color-tertiary">
             {% render 'icon-mas' %}
           </button>
         </div>
       </div>
-      <div class="ppl-seleccion-normal page-producto-seleccion-n1">
+      <div class="ppl-seleccion-normal pmph-seleccion-n1">
         <h3>Tamaño</h3>
         <div class="pmp-item-seleccion-n1">
           <div class="pmp-item-container-n1-info">
@@ -66,7 +68,7 @@
           </div>
         </div>
       </div>
-      <div class="ppl-seleccion-especial  page-producto-seleccion-n2">
+      <div class="ppl-seleccion-especial  pmph-seleccion-n2">
         <h3>Masa y Borde</h3>
         <div class="pmp-item-seleccion-n2">
           <div class="pmp-item-container-n2-imagen">
@@ -113,7 +115,7 @@
           </div>
         </div>
       </div>
-      <div class="ppl-seleccion-especial  page-producto-seleccion-n3">
+      <div class="ppl-seleccion-especial  pmph-seleccion-n3">
         <h3>Extras</h3>
         <div class="pmp-item-seleccion-n2 ">
           <div class="pmp-item-container-n2-imagen ">
@@ -173,22 +175,22 @@
         </div>
         <div class="pmp-item-container-n1-escoger"></div>
       </div>
-      <div class="ppl-seleccion-normal page-producto-seleccion-extras-n1">
-        <div class="page-producto-container-extras-base-header">
+      <div class="ppl-seleccion-normal pmph-seleccion-extras-n1">
+        <div class="pmph-container-extras-base-header">
           <h3>Extras</h3>
         </div>
         <!-- CUANDO NO HAY SELECCIONADO UN EXTRA -->
-        <div class="page-producto-container-extras-base">
+        <div class="pmph-container-extras-base">
           <p>SELECcIONAR POSTRE</p>
-          <button class="page-producto-container-extras-base-button icon-color-primary">
+          <button class="pmph-container-extras-base-button icon-color-primary">
             {% render 'icon-flecha-izquierda' %}
           </button>
         </div>
       </div>
-      <div class="ppl-seleccion-normal page-producto-seleccion-extras-n2">
-        <div class="page-producto-container-extras-base-header">
+      <div class="ppl-seleccion-normal pmph-seleccion-extras-n2">
+        <div class="pmph-container-extras-base-header">
           <h3>Gaseosas y cervezas</h3>
-          <button class="page-producto-container-extras-button icon-color-primary">
+          <button class="pmph-container-extras-button icon-color-primary">
             {% render 'icon-mas' %}
             <p>Añadir</p>
           </button>
@@ -242,15 +244,15 @@
           </div>
         </div>
       </div>
-      <button class="page-producto-pagar icon-color-secondary">
+      <button class="pmph-pagar icon-color-secondary">
         <p>49BS PAGAR</p>
         {% render 'icon-tarjeta-credito' %}
       </button>
     </div>
   </div>
   <!-- MODAL INFORMACION EXTRA -->
-  <div class="page-producto-modal-general">
-    <div class="page-producto-modal-informacion-extras">
+  <div class="pmph-modal-general">
+    <div class="pmph-modal-informacion-extras">
       <div class="ppme-modal-informacion-extras-body">
         <small>POSTRES</small>
         <div class="ppme-modal-items-extras">
@@ -389,11 +391,11 @@
 </div>
 
 <script>
-  const modalInformacionExtras = document.querySelector('.page-producto-modal-general');
+  const modalInformacionExtras = document.querySelector('.pmph-modal-general');
   const botonSalir = document.querySelector('.ppme-modal-boton-salir');
   const botonGuardar = document.querySelector('.ppme-modal-boton-guardar');
-  const anadirExtra = document.querySelector('.page-producto-container-extras-button');
-  const volverAtras = document.querySelector('.page-producto-volver-atras');
+  const anadirExtra = document.querySelector('.pmph-container-extras-button');
+  const volverAtras = document.querySelector('.pmph-volver-atras');
 
   anadirExtra.addEventListener('click', () => {
     modalInformacionExtras.style.display = 'flex';
