@@ -673,7 +673,7 @@
     height: 33rem;
   }
 
-  .ppl-seleccion-especial {
+  .pmph-seleccion-especial {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--espaciado-xxl);
@@ -685,7 +685,7 @@
   }
 
   /* Hacer que el h3 ocupe toda la fila */
-  .ppl-seleccion-especial > h3:first-child {
+  .pmph-seleccion-especial > h3:first-child {
     grid-column: 1 / span 2; /* Ocupa desde columna 1 hasta abarcar 2 columnas */
     margin-bottom: var(
       --espaciado-xxl
@@ -693,7 +693,7 @@
   }
 
   /* Asegurarse de que los items empiezan después del título */
-  .ppl-seleccion-especial > .pmp-item-seleccion-n1 {
+  .pmph-seleccion-especial > .pmp-item-seleccion-n1 {
     grid-column: auto; /* Permite que fluyan automáticamente */
   }
 
