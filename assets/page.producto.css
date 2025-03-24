@@ -113,9 +113,10 @@
   align-items: center;
   justify-content: center;
   gap: var(--espaciado-s);
-  padding: 0 var(--espaciado-xxl);
+  padding: var(--espaciado-l) var(--espaciado-xl);
   border-radius: var(--espaciado-xs);
   border: 1px solid #969696;
+  background-color: var(--colorp-secondary);
 }
 
 .phmp-pizza-seleccion-mitad p {
