@@ -197,7 +197,7 @@
   color: var(--colorp-primary);
 }
 
-.pmp-item-seleccion-n2 {
+.pmp-item-complejo {
   width: 100%;
   flex-grow: 1;
   height: 4.375rem;
@@ -209,7 +209,7 @@
   border: 1px solid #969696;
 }
 
-.pmp-item-container-n2-imagen {
+.pmp-item-complejo-imagen {
   height: 100%;
   width: 3.56rem;
   min-width: 3.56rem;
@@ -219,7 +219,7 @@
   border-right: 1px solid #969696;
 }
 
-.pmp-item-container-n2-imagen img {
+.pmp-item-complejo-imagen img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -227,7 +227,7 @@
   border-top-left-radius: var(--espaciado-s);
 }
 
-.pmp-item-container-n2-info {
+.pmp-item-complejo-info {
   padding: 0 var(--espaciado-xxl);
   height: 100%;
   flex-grow: 1;
@@ -238,7 +238,7 @@
   overflow: hidden;
 }
 
-.pmp-item-container-n2-info-detalle {
+.pmp-item-complejo-info-detalle {
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -247,7 +247,7 @@
   height: 100%;
 }
 
-.pmp-item-container-n2-info-detalle p:first-child {
+.pmp-item-complejo-info-detalle p:first-child {
   text-transform: uppercase;
   font-weight: 600;
   display: -webkit-box;
@@ -258,7 +258,7 @@
   text-overflow: ellipsis;
 }
 
-.pmp-item-container-n2-info P {
+.pmp-item-complejo-info P {
   text-transform: uppercase;
   font-weight: 600;
   display: -webkit-box;
@@ -269,15 +269,15 @@
   text-overflow: ellipsis;
 }
 
-.pmp-item-seleccion-n2.seleccionado {
+.pmp-item-complejo.seleccionado {
   border: 2px solid var(--colorp-primary);
 }
 
-.pmp-item-container-n2-imagen.seleccionado {
+.pmp-item-complejo-imagen.seleccionado {
   border-right: 2px solid var(--colorp-primary);
 }
 
-.pmp-item-container-n2-info-detalle.seleccionado p:first-child {
+.pmp-item-complejo-info-detalle.seleccionado p:first-child {
   color: var(--colorp-primary);
 }
 
@@ -588,7 +588,7 @@
     gap: var(--espaciado-xxl);
   }
 
-  .pmp-item-seleccion-n2 {
+  .pmp-item-complejo {
     /* width: 14.02rem; */
   }
 
@@ -663,7 +663,7 @@
     gap: var(--espaciado-xxxl);
   }
 
-  .pmp-item-seleccion-n2 {
+  .pmp-item-complejo {
     width: 19rem;
     /* width: 100%; */
   }
@@ -680,7 +680,7 @@
     grid-auto-flow: row;
   }
 
-  .pmp-item-container-n2-info {
+  .pmp-item-complejo-info {
     padding: 0 var(--espaciado-l);
   }
 
