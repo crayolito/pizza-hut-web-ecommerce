@@ -206,11 +206,10 @@
 
 .pcph-banner-informacion-total {
   width: 100%;
-  height: max-content;
+  height: 6.41rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--colorp-primary);
   border-radius: var(--espaciado-xs);
 }
 
