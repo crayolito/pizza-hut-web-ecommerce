@@ -182,6 +182,10 @@
   font-weight: 600;
 }
 
+.pcph-item-info-total p {
+  font-weight: 600;
+}
+
 .pcph-btn-pagar {
   width: 100%;
   height: 4rem;
