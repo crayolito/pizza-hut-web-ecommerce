@@ -189,8 +189,15 @@
   align-items: center;
   justify-content: center;
   gap: var(--espaciado-xs);
+  border-radius: var(--espaciado-xs);
   padding: var(--espaciado-xl) var(--espaciado-l);
   background-color: var(--colorp-primary);
+}
+
+.pcph-btn-pagar p {
+  color: var(--colorp-secondary);
+  font-weight: 600;
+  text-transform: uppercase;
 }
 
 .pcph-banner-informacion-total {
@@ -227,8 +234,8 @@
   width: 100%;
   height: max-content;
   display: flex;
-  flex-direction: column;
   gap: var(--espaciado-m);
+  overflow-x: hidden;
 }
 
 .pcph-productos-adicionales small {
