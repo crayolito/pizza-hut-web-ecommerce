@@ -45,7 +45,7 @@
 .pcph-items-carrito {
   display: flex;
   flex-direction: column;
-  gap: var(--espaciado-l);
+  gap: 2rem;
 }
 
 .pcph-item-carrito {
@@ -153,7 +153,7 @@
 }
 
 .pcph-itemc_cantidad-btn {
-  flex-basis: 45%;
+  flex-basis: 35%;
   display: flex;
   align-items: center;
   justify-content: center;
