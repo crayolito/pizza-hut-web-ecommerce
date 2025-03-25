@@ -48,6 +48,14 @@
   gap: 2rem;
 }
 
+.pcph-items-carrito > * {
+  border-bottom: 1px solid #969696;
+}
+
+.pcph-items-carrito > *:only-child {
+  border-bottom: 1px solid #969696;
+}
+
 .pcph-item-carrito {
   display: flex;
   flex-direction: column;
@@ -55,14 +63,11 @@
   padding-bottom: 2rem;
 }
 
-.pcph-item-carrito > *:first-child:not(:only-child) {
-  border-bottom: 1px solid #969696;
-}
-
 .pcph-itemc-detalle {
   display: flex;
   width: 100%;
   height: max-content;
+  flex-direction: column;
 }
 
 .pcph-itemc-imagen {
