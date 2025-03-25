@@ -55,7 +55,7 @@
   padding-bottom: 2rem;
 }
 
-.pcph-item-carrito:nth-child(n + 2) {
+.pcph-item-carrito > *:first-child:not(:only-child) {
   border-bottom: 1px solid #969696;
 }
 
