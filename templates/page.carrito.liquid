@@ -1,0 +1,306 @@
+<!-- Hoja de estilos css -->
+{{ 'page.carrito.css' | asset_url | stylesheet_tag }}
+
+<div class="pcph-container container-base">
+  <section class="pcph-informacion-carrito">
+    <div class="pcph-carrito-izquierdo">
+      <small>CARRITO</small>
+      <div class="pcph-items-carrito">
+        <div class="pcph-item-carrito">
+          <div class="pcph-itemc-imagen">
+            <img src="{{ 'producto-1.png' | asset_url }}" alt="producto" width="100" height="100">
+          </div>
+          <div class="pcph-itemc-info">
+            <div class="pcph-itemc_opcion1">
+              <h2 class="color-letras-extra">Bs. 80</h2>
+              <div class="pcph-itemc_editar">
+                {% render 'icon-editar' %}
+                <p class="color-letras-primary">Editar</p>
+              </div>
+            </div>
+            <div class="pcph-itemc_opcion2">
+              <div class="pcph-itemc-detalles-primarios">
+                <h1>Choclo y tocino</h1>
+                <ul class="color-letras-extra">
+                  <li>
+                    <p>Extra: queso, tocino, cebolla</p>
+                  </li>
+                  <li>
+                    <p>Borde Criollo</p>
+                  </li>
+                  <li>
+                    <p>Mediana</p>
+                  </li>
+                </ul>
+              </div>
+              <div class="pcph-itemc-detalles-secundarios">
+                <p>Adicionales</p>
+                <ul>
+                  <li>
+                    <p>2x: Soda 350ml</p>
+                  </li>
+                  <li>
+                    <p>2x: Sprite 350ml</p>
+                  </li>
+                  <li>
+                    <p>2x: Dulce de leche</p>
+                  </li>
+                  <li>
+                    <p>1x: Sprite 350ml</p>
+                  </li>
+                  <li>
+                    <p>5x: Postres Maracuya</p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="pcph-itemc_cantidad">
+              <button class="pcph-itemc_cantidad-btn-menos">
+                {% render 'icon-menos' %}
+              </button>
+              <p>1</p>
+              <button class="pcph-itemc_cantidad-btn-mas">
+                {% render 'icon-mas' %}
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="pcph-item-carrito">
+          <div class="pcph-itemc-imagen">
+            <img src="{{ 'producto-1.png' | asset_url }}" alt="producto" width="100" height="100">
+          </div>
+          <div class="pcph-itemc-info">
+            <div class="pcph-itemc_opcion1">
+              <h2>Bs. 80</h2>
+              <div class="pcph-itemc_editar">
+                {% render 'icon-editar' %}
+                <p>Editar</p>
+              </div>
+            </div>
+            <div class="pcph-itemc_opcion2">
+              <div class="pcph-itemc-detalles-primarios">
+                <h1>Choclo y tocino</h1>
+                <ul>
+                  <li>
+                    <p>Extra: queso, tocino, cebolla</p>
+                  </li>
+                  <li>
+                    <p>Borde Criollo</p>
+                  </li>
+                  <li>
+                    <p>Mediana</p>
+                  </li>
+                </ul>
+              </div>
+              <div class="pcph-itemc-detalles-secundarios">
+                <p>Adicionales</p>
+                <ul>
+                  <li>
+                    <p>2x: Soda 350ml</p>
+                  </li>
+                  <li>
+                    <p>2x: Sprite 350ml</p>
+                  </li>
+                  <li>
+                    <p>2x: Dulce de leche</p>
+                  </li>
+                  <li>
+                    <p>1x: Sprite 350ml</p>
+                  </li>
+                  <li>
+                    <p>5x: Postres Maracuya</p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="pcph-itemc_cantidad">
+              <button class="pcph-itemc_cantidad-btn-menos">
+                {% render 'icon-menos' %}
+              </button>
+              <p>1</p>
+              <button class="pcph-itemc_cantidad-btn-mas">
+                {% render 'icon-mas' %}
+              </button>
+            </div>
+          </div>
+          <div class="pcph-item-carrito">
+            <div class="pcph-itemc-imagen">
+              <img src="{{ 'producto-1.png' | asset_url }}" alt="producto" width="100" height="100">
+            </div>
+            <div class="pcph-itemc-info">
+              <div class="pcph-itemc_opcion1">
+                <h2>Bs. 80</h2>
+                <div class="pcph-itemc_editar">
+                  {% render 'icon-editar' %}
+                  <p>Editar</p>
+                </div>
+              </div>
+              <div class="pcph-itemc_opcion2">
+                <div class="pcph-itemc-detalles-primarios">
+                  <h1>Choclo y tocino</h1>
+                  <ul>
+                    <li>
+                      <p>Extra: queso, tocino, cebolla</p>
+                    </li>
+                    <li>
+                      <p>Borde Criollo</p>
+                    </li>
+                    <li>
+                      <p>Mediana</p>
+                    </li>
+                  </ul>
+                </div>
+                <div class="pcph-itemc-detalles-secundarios">
+                  <p>Adicionales</p>
+                  <ul>
+                    <li>
+                      <p>2x: Soda 350ml</p>
+                    </li>
+                    <li>
+                      <p>2x: Sprite 350ml</p>
+                    </li>
+                    <li>
+                      <p>2x: Dulce de leche</p>
+                    </li>
+                    <li>
+                      <p>1x: Sprite 350ml</p>
+                    </li>
+                    <li>
+                      <p>5x: Postres Maracuya</p>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="pcph-itemc_cantidad">
+                <button class="pcph-itemc_cantidad-btn-menos">
+                  {% render 'icon-menos' %}
+                </button>
+                <p>1</p>
+                <button class="pcph-itemc_cantidad-btn-mas">
+                  {% render 'icon-mas' %}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="pcph-item-carrito">
+          <div class="pcph-itemc-imagen">
+            <img src="{{ 'producto-1.png' | asset_url }}" alt="producto" width="100" height="100">
+          </div>
+          <div class="pcph-itemc-info">
+            <div class="pcph-itemc_opcion1">
+              <h2>Bs. 80</h2>
+              <div class="pcph-itemc_editar">
+                {% render 'icon-editar' %}
+                <p>Editar</p>
+              </div>
+            </div>
+            <div class="pcph-itemc_opcion2">
+              <div class="pcph-itemc-detalles-primarios">
+                <h1>Choclo y tocino</h1>
+                <ul>
+                  <li>
+                    <p>Extra: queso, tocino, cebolla</p>
+                  </li>
+                  <li>
+                    <p>Borde Criollo</p>
+                  </li>
+                  <li>
+                    <p>Mediana</p>
+                  </li>
+                </ul>
+              </div>
+              <div class="pcph-itemc-detalles-secundarios">
+                <p>Adicionales</p>
+                <ul>
+                  <li>
+                    <p>2x: Soda 350ml</p>
+                  </li>
+                  <li>
+                    <p>2x: Sprite 350ml</p>
+                  </li>
+                  <li>
+                    <p>2x: Dulce de leche</p>
+                  </li>
+                  <li>
+                    <p>1x: Sprite 350ml</p>
+                  </li>
+                  <li>
+                    <p>5x: Postres Maracuya</p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="pcph-itemc_cantidad">
+              <button class="pcph-itemc_cantidad-btn-menos">
+                {% render 'icon-menos' %}
+              </button>
+              <p>1</p>
+              <button class="pcph-itemc_cantidad-btn-mas">
+                {% render 'icon-mas' %}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pcph-carrito-derecho">
+      <h1>TOTAL</h1>
+      <div class="pcph-item-info-pago">
+        <p>Subtotal</p>
+        <p>Bs. 136.05</p>
+      </div>
+      <div class="pcph-item-info-pago">
+        <p>Descuento</p>
+        <p>Bs. 00.000</p>
+      </div>
+      <div class="pcph-item-info-pago">
+        <p>Recojo en local</p>
+        <p>Bs. 00.000</p>
+      </div>
+      <hr>
+      <div class="pcph-item-info-total">
+        <p>Total</p>
+        <p>Bs. 136.05</p>
+      </div>
+      <button class="pcph-btn-pagar">
+        <p>PAGAR</p>
+        {% render 'icon-dolar' %}
+      </button>
+      <div class="pcph-banner-informacion-total">
+        <img src="{{ 'icon-banner-hutcoins.png' | asset_url }}" alt="icono banner" width="100" height="100">
+      </div>
+    </div>
+  </section>
+  <section class="pcph-productos-adicionales">
+    <small>OFERTAS</small>
+    <div class="pcph-productos-items">
+      <div class="cardph-item-producto">
+        <div class="cardph-itemp-imagen">
+          <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="producto" width="100" height="100">
+        </div>
+        <div class="cardph-itemp-info">
+          <h3>ALMUERZO ENSALADA</h3>
+          <h3>Bs. 80.23</h3>
+        </div>
+        <button class="boton-producto-agregar icon-color-secondary ">
+          <p class="color-letras-secondary">Agregar</p>
+          {% render 'icon-carrito' %}
+        </button>
+      </div>
+      <div class="cardph-item-producto">
+        <div class="cardph-itemp-imagen">
+          <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="producto" width="100" height="100">
+        </div>
+        <div class="cardph-itemp-info">
+          <h3>ALMUERZO ENSALADA</h3>
+          <h3>Bs. 80.23</h3>
+        </div>
+        <button class="boton-producto-agregar icon-color-secondary ">
+          <p class="color-letras-secondary">Agregar</p>
+          {% render 'icon-carrito' %}
+        </button>
+      </div>
+    </div>
+  </section>
+</div>

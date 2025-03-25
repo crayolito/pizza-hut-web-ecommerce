@@ -1,0 +1,159 @@
+/* ==========================================================================      
+  ÍNDICE - PAGE CARRITO
+  1. CONTAINER IZQUIERDO
+  2. CONTAINER DERECHO
+  3. SECTOR DE PRODUCTOS DE PROMOCION
+  4. MEDIA QUERIES  
+========================================================================== */
+
+.pcph-container {
+  width: 100%;
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  padding: 3rem 0;
+  gap: var(--espaciado-xxl);
+}
+
+.pcph-informacion-carrito {
+  width: 100%;
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaciado-l);
+}
+
+/* =================================
+  1. CONTAINER IZQUIERDO
+================================= */
+
+.pcph-carrito-izquierdo {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.pcph-carrito-izquierdo small {
+  font-size: 3.3125rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 3.4375rem;
+  letter-spacing: -0.06625rem;
+  text-transform: uppercase;
+}
+
+.pcph-items-carrito {
+  display: flex;
+  flex-direction: column;
+}
+
+.pcph-item-carrito {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaciado-xxl);
+  padding-bottom: 2rem;
+}
+
+.pcph-item-carrito:nth-child(n + 2) {
+  border-top: 1px solid #969696;
+}
+
+.pcph-itemc-imagen {
+  width: 100%;
+  height: 8.13rem;
+  border-radius: var(--espaciado-xs);
+  border: 1px solid #969696;
+}
+
+.pcph-itemc-imagen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--espaciado-xs);
+}
+
+.pcph-itemc-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaciado-m);
+}
+
+.pcph-itemc_opcion1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pcph-itemc_editar {
+  display: flex;
+  align-items: center;
+  gap: var(--espaciado-s);
+  padding: var(--espaciado-xl) var(--espaciado-l);
+}
+
+.pcph-itemc_editar p {
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.pcph-itemc_opcion2 {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaciado-m);
+}
+
+.pcph-itemc_cantidad {
+  width: 100%;
+  height: 4.37rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--colorp-secondary);
+  border-radius: var(--espaciado-xs);
+  border: 1px solid #969696;
+  padding: 0 var(--espaciado-xl);
+}
+
+.pcph-itemc_cantidad-btn-menos {
+  flex-basis: 45%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* =================================
+  2. CONTAINER DERECHO
+================================= */
+
+.pcph-carrito-derecho {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaciado-m);
+}
+
+.pcph-item-info-pago {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pcph-item-info-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+}
+
+/* =================================
+  3. SECTOR DE PRODUCTOS DE PROMOCION
+================================= */
+
+/* =================================
+  4. MEDIA QUERIES
+================================= */
+
+@media screen and (min-width: 768px) {
+}
+
+@media screen and (min-width: 1024px) {
+}
