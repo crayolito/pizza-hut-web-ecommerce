@@ -1,4 +1,6 @@
 <!-- Hoja de estilos css -->
+{{ 'estilos-generales.css' | asset_url | stylesheet_tag }}
+
 {{ 'page-carrito.css' | asset_url | stylesheet_tag }}
 
 <div class="pcph-container container-base">
@@ -74,13 +76,13 @@
               <h2>Bs. 80</h2>
               <div class="pcph-itemc_editar">
                 {% render 'icon-editar' %}
-                <p>Editar</p>
+                <p class="color-letras-primary">Editar</p>
               </div>
             </div>
             <div class="pcph-itemc_opcion2">
               <div class="pcph-itemc-detalles-primarios">
                 <h1>Choclo y tocino</h1>
-                <ul>
+                <ul class="color-letras-extra">
                   <li>
                     <p>Extra: queso, tocino, cebolla</p>
                   </li>
@@ -94,7 +96,7 @@
               </div>
               <div class="pcph-itemc-detalles-secundarios">
                 <p>Adicionales</p>
-                <ul>
+                <ul class="color-letras-extra">
                   <li>
                     <p>2x: Soda 350ml</p>
                   </li>
@@ -114,11 +116,11 @@
               </div>
             </div>
             <div class="pcph-itemc_cantidad">
-              <button class="pcph-itemc_cantidad-btn-menos">
+              <button class="pcph-itemc_cantidad-btn">
                 {% render 'icon-menos' %}
               </button>
               <p>1</p>
-              <button class="pcph-itemc_cantidad-btn-mas">
+              <button class="pcph-itemc_cantidad-btn">
                 {% render 'icon-mas' %}
               </button>
             </div>
@@ -132,7 +134,7 @@
                 <h2>Bs. 80</h2>
                 <div class="pcph-itemc_editar">
                   {% render 'icon-editar' %}
-                  <p>Editar</p>
+                  <p class="color-letras-primary">Editar</p>
                 </div>
               </div>
               <div class="pcph-itemc_opcion2">
@@ -172,11 +174,11 @@
                 </div>
               </div>
               <div class="pcph-itemc_cantidad">
-                <button class="pcph-itemc_cantidad-btn-menos">
+                <button class="pcph-itemc_cantidad-btn">
                   {% render 'icon-menos' %}
                 </button>
                 <p>1</p>
-                <button class="pcph-itemc_cantidad-btn-mas">
+                <button class="pcph-itemc_cantidad-btn">
                   {% render 'icon-mas' %}
                 </button>
               </div>
@@ -192,7 +194,7 @@
               <h2>Bs. 80</h2>
               <div class="pcph-itemc_editar">
                 {% render 'icon-editar' %}
-                <p>Editar</p>
+                <p class="color-letras-primary">Editar</p>
               </div>
             </div>
             <div class="pcph-itemc_opcion2">
@@ -232,11 +234,11 @@
               </div>
             </div>
             <div class="pcph-itemc_cantidad">
-              <button class="pcph-itemc_cantidad-btn-menos">
+              <button class="pcph-itemc_cantidad-btn">
                 {% render 'icon-menos' %}
               </button>
               <p>1</p>
-              <button class="pcph-itemc_cantidad-btn-mas">
+              <button class="pcph-itemc_cantidad-btn">
                 {% render 'icon-mas' %}
               </button>
             </div>
