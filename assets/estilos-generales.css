@@ -72,6 +72,38 @@
 }
 
 /* ===== TARJETA VERTICAL(DESKTOP)===== */
+
+.cardph-item-producto {
+  width: 28.37rem;
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--colorp-secondary);
+  gap: var(--espaciado-xxl);
+}
+
+.cardph-itemp-imagen {
+  width: 100%;
+  height: 16.87rem;
+  border: 1.5px solid #969696;
+  border-radius: var(--espaciado-xs);
+}
+
+.cardph-itemp-imagen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--espaciado-xs);
+}
+
+.cardph-itemp-info {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: var(--espaciado-s);
+}
+
 /* =================================
   4. BOTONES DE PRODUCTOS
 ================================= */
@@ -465,6 +497,39 @@
   .sp-boton-explorar-menu {
     width: 30.2rem;
   }
+
+  /* ===== TARJETA VERTICAL(TABLET)===== */
+
+  .cardph-item-producto {
+    width: 22.128rem;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--colorp-secondary);
+    gap: var(--espaciado-l);
+  }
+
+  .cardph-itemp-imagen {
+    width: 100%;
+    height: 13.158rem;
+    border: 1.5px solid #969696;
+    border-radius: var(--espaciado-xs);
+  }
+
+  .cardph-itemp-imagen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--espaciado-xs);
+  }
+
+  .cardph-itemp-info {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: var(--espaciado-s);
+  }
 }
 
 @media screen and (min-width: 1024px) {
@@ -486,5 +551,16 @@
 
   .sp-boton-explorar-menu {
     width: 40rem;
+  }
+
+  /* ===== TARJETA VERTICAL(DESKTOP)===== */
+
+  .cardph-item-producto {
+    width: 28.37rem;
+    gap: var(--espaciado-xxl);
+  }
+
+  .cardph-itemp-imagen {
+    height: 16.87rem;
   }
 }
