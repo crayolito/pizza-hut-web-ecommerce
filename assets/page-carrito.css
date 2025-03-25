@@ -129,6 +129,11 @@
   text-overflow: ellipsis;
 }
 
+.pcph-itemc-detalles-secundarios p:first-child {
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
 .pcph-itemc_cantidad {
   width: 100%;
   height: 4.37rem;
