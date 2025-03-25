@@ -61,7 +61,7 @@
 
 .pcph-itemc-detalle {
   display: flex;
-  width: max-content;
+  width: 100%;
   height: max-content;
 }
 
@@ -80,6 +80,7 @@
 }
 
 .pcph-itemc-info {
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: var(--espaciado-m);
@@ -274,6 +275,11 @@
     height: max-content;
   }
 
+  .pcph-itemc-detalle {
+    flex-direction: row;
+    gap: var(--espaciado-xxl);
+  }
+
   .pcph-items-carrito {
     height: 55rem;
     overflow-y: auto;
@@ -292,7 +298,7 @@
   }
 
   .pcph-item-carrito {
-    flex-direction: row;
+    flex-direction: column;
     align-items: start;
     justify-content: start;
     gap: var(--espaciado-xxl);
