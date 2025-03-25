@@ -265,7 +265,24 @@
 
   .pcph-carrito-izquierdo {
     width: 40.25rem;
+    height: max-content;
+  }
+
+  .pcph-items-carrito {
     height: 55rem;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--colorp-primary) var(--colorp-secondary);
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    scroll-snap-align: center;
+    scroll-snap-align: end;
+    scroll-snap-align: none;
+    scroll-snap-align: unset;
+    scroll-snap-align: initial;
+    scroll-snap-align: inherit;
   }
 
   .pcph-item-carrito {
