@@ -103,6 +103,10 @@
   gap: var(--espaciado-m);
 }
 
+.pcph-itemc_opcion2 ul {
+  gap: 2px;
+}
+
 .pcph-itemc-detalles-primarios,
 .pcph-itemc-detalles-secundarios {
   display: flex;
