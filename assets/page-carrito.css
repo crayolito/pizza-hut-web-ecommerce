@@ -56,7 +56,7 @@
 }
 
 .pcph-item-carrito:nth-child(n + 2) {
-  border-top: 1px solid #969696;
+  border-bottom: 1px solid #969696;
 }
 
 .pcph-itemc-imagen {
