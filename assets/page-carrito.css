@@ -129,7 +129,7 @@
   text-overflow: ellipsis;
 }
 
-.pcph-itemc-detalles-secundarios p:first-child {
+.pcph-itemc-detalles-secundarios > p:first-child {
   font-weight: 600;
   text-transform: uppercase;
 }
