@@ -56,6 +56,10 @@
   border-bottom: 1px solid #969696;
 }
 
+.pcph-items-carrito > *:last-child {
+  border-bottom: none;
+}
+
 .pcph-item-carrito {
   display: flex;
   flex-direction: column;
@@ -250,7 +254,7 @@
   height: max-content;
   display: flex;
   gap: var(--espaciado-m);
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 .pcph-productos-adicionales small {
@@ -315,6 +319,7 @@
 
   .pcph-carrito-derecho {
     width: 26.31rem;
+    gap: var(--espaciado-xl);
   }
 
   .pcph-productos-adicionales {
