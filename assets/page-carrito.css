@@ -214,6 +214,21 @@
   3. SECTOR DE PRODUCTOS DE PROMOCION
 ================================= */
 
+.pcph-productos-adicionales {
+  display: flex;
+  overflow: hidden;
+  gap: var(--espaciado-xxl);
+}
+
+.pcph-productos-adicionales small {
+  font-size: 3.3125rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 3.4375rem;
+  letter-spacing: -0.06625rem;
+  text-transform: uppercase;
+}
+
 /* =================================
   4. MEDIA QUERIES
 ================================= */
