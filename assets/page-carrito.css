@@ -258,4 +258,37 @@
 }
 
 @media screen and (min-width: 1024px) {
+  .pcph-informacion-carrito {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .pcph-carrito-izquierdo {
+    width: 40.25rem;
+    height: 55rem;
+  }
+
+  .pcph-item-carrito {
+    flex-direction: row;
+    align-items: start;
+    justify-content: start;
+    gap: var(--espaciado-xxl);
+  }
+
+  .pcph-itemc-imagen {
+    width: 7.1875rem;
+    height: 6.25rem;
+    aspect-ratio: 23/20;
+  }
+
+  .pcph-itemc_cantidad {
+    max-width: 19.375rem;
+  }
+
+  .pcph-carrito-derecho {
+    width: 26.31rem;
+  }
+
+  .pcph-productos-adicionales {
+  }
 }
