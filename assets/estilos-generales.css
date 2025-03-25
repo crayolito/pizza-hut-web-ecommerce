@@ -506,7 +506,8 @@
     display: flex;
     flex-direction: column;
     background-color: var(--colorp-secondary);
-    gap: var(--espaciado-l);
+    gap: var(--espaciado-m);
+    border: none;
   }
 
   .cardph-itemp-imagen {
@@ -529,6 +530,7 @@
     flex-direction: column;
     align-items: start;
     gap: var(--espaciado-s);
+    padding: 0;
   }
 }
 
@@ -557,9 +559,7 @@
 
   .cardph-item-producto {
     width: 19rem;
-    gap: var(--espaciado-xxl);
-    border: none;
-    padding: 0;
+    gap: var(--espaciado-xl);
   }
 
   .cardph-itemp-imagen {
