@@ -59,6 +59,12 @@
   border-bottom: 1px solid #969696;
 }
 
+.pcph-itemc-detalle {
+  display: flex;
+  width: max-content;
+  height: max-content;
+}
+
 .pcph-itemc-imagen {
   width: 100%;
   height: 8.13rem;
