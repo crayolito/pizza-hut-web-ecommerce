@@ -268,6 +268,13 @@
   font-weight: 600;
 }
 
+.smecph-pc-dch_btn_dc {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--espaciado-xs);
+}
+
 /* =================================
   7. NOTA PARA EL PEDIDO
 ================================= */
