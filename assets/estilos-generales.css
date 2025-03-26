@@ -16,6 +16,7 @@
      5. METODO DE ENTREGA Y CHECKOUT
         5.1. SOLICITUD METODO DE ENTREGA
         5.2. CHECKOUT
+     6. INPUT DE BUSQUEDA
      6. MEDIA QUERIES
      ========================================================================== */
 
@@ -121,6 +122,100 @@
 /* =================================
   5. SOLICITUD METODO DE ENTREGA Y CHECKOUT
 ================================= */
+
+.container-main-smecph {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: var(--espaciado-xxxl);
+  padding: var(--espaciado-xxxl) var(--espaciado-xl) 0 var(--espaciado-xl);
+}
+
+.container-sub-smecph {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: var(--espaciado-xs);
+  background-color: var(--colorp-secondary);
+  border: 1px solid #969696;
+  padding: var(--espaciado-xxl);
+  gap: var(--espaciado-l);
+}
+
+.smecph-opciones-metodos {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.smecph-opcion-metodo {
+  position: relative;
+  width: 100%;
+  flex-basis: 48%;
+  display: flex;
+  align-items: center;
+  padding: var(--espaciado-xl);
+  border-radius: var(--espaciado-xs);
+  background-color: var(--colorp-secondary);
+  border: 1px solid #969696;
+}
+
+.smecph-opcion-info {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: var(--espaciado-xs);
+}
+
+.smecph-opcion-info > p:first-child {
+  font-weight: 600;
+}
+
+.smecph-opcion-info > svg {
+  filter: invert(15%) sepia(95%) saturate(6932%) hue-rotate(343deg)
+    brightness(91%) contrast(97%);
+  fill: var(--colorp-primary);
+}
+
+.smecph-opcion-icono {
+  position: absolute;
+  top: var(--espaciado-s);
+  right: var(--espaciado-s);
+  height: max-content;
+  width: max-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.smecph-opcion-metodo.seleccionado {
+  border: 0;
+  background-color: var(--colorp-primary);
+}
+
+.smecph-opcion-metodo.seleccionado .smecph-opcion-info p {
+  color: var(--colorp-secondary);
+}
+
+.smecph-opcion-metodo.seleccionado > svg {
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%)
+    contrast(103%);
+  fill: var(--colorp-secondary);
+}
+
+.smecph-opcion-metodo.seleccionado .smecph-opcion-icon svg {
+  filter: invert(15%) sepia(95%) saturate(6932%) hue-rotate(343deg)
+    brightness(91%) contrast(97%);
+  fill: var(--colorp-primary);
+}
 
 /* ===== SOLICITUD METODO DE ENTREGA===== */
 

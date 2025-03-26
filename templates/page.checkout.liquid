@@ -1,3 +1,467 @@
 <!-- Hoja de estilos css -->
 {{ 'estilos-generales.css' | asset_url | stylesheet_tag }}
 {{ 'page-checkout.css' | asset_url | stylesheet_tag }}
+
+<div class="container-main-smecph container-base">
+  <h1>¿Cómo deseas recibir tu pedido?</h1>
+  <section class="smecph-opciones-metodos" id="pcktph-seleccion-metodo">
+    <div class="smecph-opcion-metodo seleccionado">
+      <div class="smecph-opcion-info">
+        {% render 'icon-recogo-local' %}
+        <p>Recoger en local</p>
+        <p>Sin costo alguno</p>
+      </div>
+      <div class="smecph-opcion-icono">
+        {% render 'icon-estado-on' %}
+      </div>
+    </div>
+    <div class="smecph-opcion-metodo ">
+      <div class="smecph-opcion-info">
+        {% render 'icon-recogo-delivery' %}
+        <p>Envío a domicilio</p>
+        <p>Envío a solo Bs 2</p>
+      </div>
+      <div class="smecph-opcion-icono">
+        {% render 'icon-estado-off' %}
+      </div>
+    </div>
+  </section>
+  <section class="container-sub-smecph" id="pcktph-seleccion-local">
+    <h4>SELECCIONAR LOCAL</h4>
+    <div class="smecph-pc-info-input">
+      <p>Sucursal</p>
+      <div class="ph-container-input">
+        {% render 'icon-search' %}
+        <input type="text" placeholder="Buscar sucursal">
+        <div class="smecph-pc-input-icono">
+          {% render 'icon-flecha-abajo' %}
+        </div>
+      </div>
+      <div class="smecph-pc-resultados-input">
+        <div class="smecph-pc-resultado-item">
+          <p>Pirai 2do Anillo</p>
+          <p>Avenida Pirai Nro 456</p>
+          <p>Listo para retirar en 30 minutos</p>
+        </div>
+        <div class="smecph-pc-resultado-item">
+          <p>Pirai 2do Anillo</p>
+          <p>Avenida Pirai Nro 456</p>
+          <p>Listo para retirar en 30 minutos</p>
+        </div>
+        <div class="smecph-pc-resultado-item">
+          <p>Pirai 2do Anillo</p>
+          <p>Avenida Pirai Nro 456</p>
+          <p>Listo para retirar en 30 minutos</p>
+        </div>
+        <div class="smecph-pc-resultado-item">
+          <p>Pirai 2do Anillo</p>
+          <p>Avenida Pirai Nro 456</p>
+          <p>Listo para retirar en 30 minutos</p>
+        </div>
+        <div class="smecph-pc-resultado-item">
+          <p>Pirai 2do Anillo</p>
+          <p>Avenida Pirai Nro 456</p>
+          <p>Listo para retirar en 30 minutos</p>
+        </div>
+      </div>
+    </div>
+    <button class="pcktpch-btn-ver-direccion">
+      <p>VER DIRECCION EN MAPA</p>
+    </button>
+  </section>
+  <section class="container-sub-smecph" id="pcktph-datos-contacto">
+    <div class="smecph-pc-header-especial">
+      <div class="smecph-pc-dch_info">
+        <h4>Datos de contacto</h4>
+        <p>Ingrese tus datos para disfrutar tu pizza favorita.</p>
+      </div>
+      <button class="smecph-pc-dch_btn">
+        {% render 'icon-guardar' %}
+        <p class="color-letras-primary">GUARDAR</p>
+      </button>
+    </div>
+    <div class="smecph-pc-info-input">
+      <p>Nombres</p>
+      <div class="ph-container-input">
+        <input type="text" placeholder="Nombres">
+      </div>
+    </div>
+    <div class="smecph-pc-info-input">
+      <p>Apellidos</p>
+      <div class="ph-container-input">
+        <input type="text" placeholder="Apellidos">
+      </div>
+    </div>
+    <div class="smecph-pc-info-input">
+      <p>Correo Electrónico</p>
+      <div class="ph-container-input">
+        <input type="email" placeholder="Correo Electrónico">
+      </div>
+    </div>
+    <div class="smecph-pc-info-input">
+      <p>Celular</p>
+      <div class="ph-container-input">
+        <input type="number" placeholder="Teléfono">
+      </div>
+      <div class="smecph-pc-mensaje-input">
+        {% render 'icon-info' %}
+        <p>Nos contactaremos a este número para entregar tu pedido.</p>
+      </div>
+    </div>
+    <div class="smecph-pc-info-input error">
+      <p>Número de Carnet de identidad (C.I.)</p>
+      <div class="ph-container-input">
+        <input type="number" placeholder="Carnet de identidad">
+      </div>
+      <div class="smecph-pc-mensaje-input">
+        {% render 'icon-info' %}
+        <p>Este campo es obligatorio.</p>
+      </div>
+    </div>
+  </section>
+  <section class="container-sub-smecph" id="pcktph-datos-pago">
+    <div class="smecph-pc-dp-header">
+      <h4>Datos de facturación</h4>
+      <p>Ingrese tus datos para facturar tu pedido.</p>
+    </div>
+    <div class="smecph-pc-dp-mensaje">
+      {% render 'icon-info' %}
+      <p>Es obligatorio seleccionar un método de pago</p>
+    </div>
+    <div class="smecph-pc-dp-items">
+      <div class="smecph-pc-dp-item">
+        <div class="smecph-pc-dp-item-info">
+          <div class="smecph-pcdp-item-extra">
+            {% render 'icon-qr' %}
+            <p>Código QR</p>
+          </div>
+          <p>Paga ahora usando un QR desde la app de tu banco.</p>
+        </div>
+        <div class="smecph-pc-dp-item-icono">
+          {% render 'icon-estado-off' %}
+        </div>
+      </div>
+      <div class="smecph-pc-dp-item">
+        <div class="smecph-pc-dp-item-info">
+          <div class="smecph-pcdp-item-extra">
+            {% render 'icon-tarjeta' %}
+            <p>Tarjeta (en físico)</p>
+          </div>
+          <p>Paga con tarjeta al momento de recibir tu pedido.</p>
+        </div>
+        <div class="smecph-pc-dp-item-icono">
+          {% render 'icon-estado-off' %}
+        </div>
+      </div>
+      <div class="smecph-pc-dp-item seleccionado">
+        <div class="smecph-pc-dp-item-info">
+          <div class="smecph-pcdp-item-extra">
+            {% render 'icon-efectivo' %}
+            <p>Efectivo</p>
+          </div>
+          <p>Paga en efectivo al momento de recibir tu pedido.</p>
+        </div>
+        <div class="smecph-pc-dp-item-icono">
+          {% render 'icon-estado-off' %}
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="container-sub-smecph" id="pcktph-datos-facturacion">
+    <div class="smecph-pc-header-especial">
+      <div class="smecph-pc-dch_info">
+        <h4>Datos de facturación</h4>
+        <p>Información de facturación.</p>
+      </div>
+      <button class="smecph-pc-dch_btn">
+        {% render 'icon-guardar' %}
+        <p class="color-letras-primary">GUARDAR</p>
+      </button>
+    </div>
+    <div class="smecph-pc-info-input">
+      <p>Nombre o Razón Social</p>
+      <div class="ph-container-input">
+        <input type="text" placeholder="Nombre o Razón Social">
+      </div>
+    </div>
+    <div class="smecph-pc-info-input">
+      <p>Número de C.I. o N.I.T.</p>
+      <div class="ph-container-input">
+        <input type="text" placeholder="Número de C.I. o N.I.T.">
+      </div>
+    </div>
+  </section>
+  <section class="container-sub-smecph" id="pcktph-detalle-carrito">
+    <div class="smecph-pc-header-simple">
+      <h4>Resumen</h4>
+      <button class="smecph-pc-dch_btn">
+        {% render 'icon-carrito' %}
+        <p class="color-letras-primary">EDITAR CARRITO</p>
+      </button>
+    </div>
+    <div class="smecph-pc-items-carrito">
+      <div class="smecph-pc-item-carrito">
+        <div class="smecph-pc-item-carrito-info">
+          <div class="smecph-pc-item-ci-img">
+            <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+          </div>
+          <div class="smecph-pc-item-ci-detalle">
+            <div class="smecph-pc-item-cid1">
+              <p>Cheesy Lovers</p>
+            </div>
+            <div class="smecph-pc-item-cid2">
+              <p>x2</p>
+            </div>
+            <div class="smecph-pc-item-cid3">
+              <div class="smecph-pc-item-cid3_precio">
+                <small>Bs</small>
+                <p>126.00</p>
+              </div>
+              <div class="smecph-pc-item-cid3_descuento">
+                <small>Bs</small>
+                <p>20.05</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="smecph-pc-item-carrito-extra">
+          <p>COMPLEMENTOS</p>
+          <ul class="color-letras-extra">
+            <li>
+              <p>2x: Soda 350ml</p>
+            </li>
+            <li>
+              <p>2x: Sprite 350ml</p>
+            </li>
+            <li>
+              <p>2x: Dulce de leche</p>
+            </li>
+            <li>
+              <p>1x: Sprite 350ml</p>
+            </li>
+            <li>
+              <p>5x: Postres Maracuya</p>
+            </li>
+          </ul>
+          <p>ADICIONALES</p>
+          <ul class="color-letras-extra">
+            <li>
+              <p>2x: Soda 350ml</p>
+            </li>
+            <li>
+              <p>2x: Sprite 350ml</p>
+            </li>
+            <li>
+              <p>2x: Dulce de leche</p>
+            </li>
+            <li>
+              <p>1x: Sprite 350ml</p>
+            </li>
+            <li>
+              <p>5x: Postres Maracuya</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="smecph-pc-item-carrito">
+        <div class="smecph-pc-item-carrito-info">
+          <div class="smecph-pc-item-ci-img">
+            <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+          </div>
+          <div class="smecph-pc-item-ci-detalle">
+            <div class="smecph-pc-item-cid1">
+              <p>Cheesy Lovers</p>
+            </div>
+            <div class="smecph-pc-item-cid2">
+              <p>x2</p>
+            </div>
+            <div class="smecph-pc-item-cid3">
+              <div class="smecph-pc-item-cid3_precio">
+                <small>Bs</small>
+                <p>126.00</p>
+              </div>
+              <div class="smecph-pc-item-cid3_descuento">
+                <small>Bs</small>
+                <p>20.05</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="smecph-pc-item-carrito-extra">
+          <p>COMPLEMENTOS</p>
+          <ul class="color-letras-extra">
+            <li>
+              <p>2x: Soda 350ml</p>
+            </li>
+            <li>
+              <p>2x: Sprite 350ml</p>
+            </li>
+            <li>
+              <p>2x: Dulce de leche</p>
+            </li>
+            <li>
+              <p>1x: Sprite 350ml</p>
+            </li>
+            <li>
+              <p>5x: Postres Maracuya</p>
+            </li>
+          </ul>
+          <p>ADICIONALES</p>
+          <ul class="color-letras-extra">
+            <li>
+              <p>2x: Soda 350ml</p>
+            </li>
+            <li>
+              <p>2x: Sprite 350ml</p>
+            </li>
+            <li>
+              <p>2x: Dulce de leche</p>
+            </li>
+            <li>
+              <p>1x: Sprite 350ml</p>
+            </li>
+            <li>
+              <p>5x: Postres Maracuya</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="smecph-pc-item-carrito">
+        <div class="smecph-pc-item-carrito-info">
+          <div class="smecph-pc-item-ci-img">
+            <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+          </div>
+          <div class="smecph-pc-item-ci-detalle">
+            <div class="smecph-pc-item-cid1">
+              <p>Cheesy Lovers</p>
+            </div>
+            <div class="smecph-pc-item-cid2">
+              <p>x2</p>
+            </div>
+            <div class="smecph-pc-item-cid3">
+              <div class="smecph-pc-item-cid3_precio">
+                <small>Bs</small>
+                <p>126.00</p>
+              </div>
+              <div class="smecph-pc-item-cid3_descuento">
+                <small>Bs</small>
+                <p>20.05</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="smecph-pc-item-carrito-extra">
+          <p>COMPLEMENTOS</p>
+          <ul class="color-letras-extra">
+            <li>
+              <p>2x: Soda 350ml</p>
+            </li>
+            <li>
+              <p>2x: Sprite 350ml</p>
+            </li>
+            <li>
+              <p>2x: Dulce de leche</p>
+            </li>
+            <li>
+              <p>1x: Sprite 350ml</p>
+            </li>
+            <li>
+              <p>5x: Postres Maracuya</p>
+            </li>
+          </ul>
+          <p>ADICIONALES</p>
+          <ul class="color-letras-extra">
+            <li>
+              <p>2x: Soda 350ml</p>
+            </li>
+            <li>
+              <p>2x: Sprite 350ml</p>
+            </li>
+            <li>
+              <p>2x: Dulce de leche</p>
+            </li>
+            <li>
+              <p>1x: Sprite 350ml</p>
+            </li>
+            <li>
+              <p>5x: Postres Maracuya</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="smecph-pc-header-simple">
+      <h4>Cupon de descuento</h4>
+      <button class="smecph-pc-dch_btn">
+        {% render 'icon-carrito' %}
+        <p class="color-letras-primary">VER CUPONES</p>
+      </button>
+    </div>
+    <div class="ph-container-input">
+      <input type="text" placeholder="Código de descuento">
+    </div>
+    <button class="smecph-pc-btn-aplicar-cupon">
+      <p>Aplicar cupón</p>
+    </button>
+    <hr>
+    <div class="smecph-pcdc-precio-info">
+      <p>Subtotal</p>
+      <p>Bs 126.05</p>
+    </div>
+    <div class="smecph-pcdc-precio-info">
+      <p>Descuento</p>
+      <p>Bs 000.00</p>
+    </div>
+    <div class="smecph-pcdc-precio-info">
+      <p>Recojo en local</p>
+      <p>Bs 000.00</p>
+    </div>
+    <hr>
+    <div class="smecph-pcdc-precio-total">
+      <p>Total</p>
+      <p>Bs 175.05</p>
+    </div>
+  </section>
+  <section class="container-sub-smecph" id="pcktph-nota-pedido">
+    <h4>NOTA PARA EL PEDIDO</h4>
+    <div class="smecph-pc-info-input">
+      <p>Información adicional</p>
+      <div class="ph-container-input">
+        <textarea name="" id="" placeholder="Información adicional"></textarea>
+      </div>
+    </div>
+  </section>
+  <section class="container-sub-smecph" id="pcktph-hutcoins">
+    <div class="smecph-pc-hutcoins-banner">
+      <img src="{{ 'banner-hutcoints-carrito.png' | asset_url }}" alt="Hutcoins Banner" width="100%" height="100%">
+    </div>
+    <div class="smecph-pc-hutcoins-mensaje">
+      <div class="ph-container-icono">
+        {% render 'icon-checkbox-off' %}
+      </div>
+      <p>Usar mi información para registrarme a Hut Coins y ganar puntos por esta compra.</p>
+    </div>
+    <div class="smecph-pc-info-input">
+      <p>Fecha de nacimiento</p>
+      <div class="ph-container-input">
+        <input type="date" placeholder="Fecha de nacimiento">
+      </div>
+    </div>
+  </section>
+  <section class="pcktph-flujo-continuar">
+    <button class="pcktph-btn-continuar">
+      <p>Continuar</p>
+    </button>
+  </section>
+  <section class="pcktpch-container-modal">
+    <div class="pcktpch-main-modal">
+      <div class="pcktpch-modal-header"></div>
+      <div class="pcktpch-modal-body">
+        <div class="pcktpch-modal-nueva-direccion"></div>
+        <div class="pcktpch-main-modal-mapa"></div>
+        <div class="pcktpch-main-modal-detallar-direccion"></div>
+      </div>
+      <div class="pcktpch-modal-footer"></div>
+    </div>
+  </section>
+</div>
