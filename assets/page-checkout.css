@@ -176,6 +176,59 @@
   5. DATOS DE FACTURACION
 ================================= */
 
+.smecph-pc-dp-mensaje {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--espaciado-xs);
+  padding: 0 var(--espaciado-xl);
+  border-radius: var(--espaciado-xs);
+  background-color: #fff4f2;
+  border-left: 4px solid #ef9f8e;
+}
+
+.smecph-pc-dp-item {
+  width: 100%;
+  display: flex;
+  gap: var(--espaciado-m);
+  border: 1px solid #969696;
+  border-radius: var(--espaciado-xs);
+  padding: var(--espaciado-m) var(--espaciado-xl);
+}
+
+.smecph-pc-dp-item-info {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  gap: var(--espaciado-xs);
+}
+
+.smecph-pc-dp-item-info > p:first-of-type {
+  font-weight: 600;
+  color: #5a5a5a;
+}
+
+.smecph-pcdp-item-extra {
+  display: flex;
+  gap: var(--espaciado-xs);
+}
+
+.smecph-pcdp-item-extra svg,
+.smecph-pcdp-item-extra svg path {
+  fill: var(--colorp-tertiary);
+}
+
+.smecph-pcdp-item-extra p {
+  font-weight: 600;
+}
+
+.smecph-pcdp-item-extra svg {
+  width: 20px;
+  height: 20px;
+}
+
 /* =================================
   6. DETALLA DEL CARRITO
 ================================= */
