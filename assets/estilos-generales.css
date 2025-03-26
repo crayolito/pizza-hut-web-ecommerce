@@ -151,19 +151,18 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-direction: column;
 }
 
 .smecph-opcion-metodo {
   position: relative;
   width: 100%;
-  flex-basis: 48%;
+  flex-basis: 46%;
   display: flex;
   align-items: center;
   padding: var(--espaciado-xl);
-  border-radius: var(--espaciado-xs);
+  border-radius: var(--espaciado-s);
   background-color: var(--colorp-secondary);
-  border: 1px solid #969696;
+  border: 1.5px solid #969696;
 }
 
 .smecph-opcion-info {
@@ -175,7 +174,7 @@
   gap: var(--espaciado-xs);
 }
 
-.smecph-opcion-info > p:first-child {
+.smecph-opcion-info p:first-of-type {
   font-weight: 600;
 }
 
@@ -205,16 +204,10 @@
   color: var(--colorp-secondary);
 }
 
-.smecph-opcion-metodo.seleccionado > svg {
+.smecph-opcion-info.seleccionado > svg {
   filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%)
     contrast(103%);
   fill: var(--colorp-secondary);
-}
-
-.smecph-opcion-metodo.seleccionado .smecph-opcion-icon svg {
-  filter: invert(15%) sepia(95%) saturate(6932%) hue-rotate(343deg)
-    brightness(91%) contrast(97%);
-  fill: var(--colorp-primary);
 }
 
 /* ===== SOLICITUD METODO DE ENTREGA===== */
