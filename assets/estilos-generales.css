@@ -156,7 +156,7 @@
 .smecph-opcion-metodo {
   position: relative;
   width: 100%;
-  flex-basis: 46%;
+  flex-basis: 48%;
   display: flex;
   align-items: center;
   padding: var(--espaciado-xl);
@@ -178,7 +178,8 @@
   font-weight: 600;
 }
 
-.smecph-opcion-info > svg {
+.smecph-opcion-info > svg,
+.smecph-opcion-info > svg path {
   filter: invert(15%) sepia(95%) saturate(6932%) hue-rotate(343deg)
     brightness(91%) contrast(97%);
   fill: var(--colorp-primary);
