@@ -36,7 +36,7 @@
   font-weight: 600;
 }
 
-.smecph-pc-info-input.error .ph-container-input input {
+.smecph-pc-info-input.error .ph-container-input {
   border: 1.5px solid var(--colorp-primary);
 }
 
