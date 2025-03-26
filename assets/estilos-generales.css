@@ -204,7 +204,8 @@
   color: var(--colorp-secondary);
 }
 
-.smecph-opcion-metodo.seleccionado .smecph-opcion-info > svg {
+.smecph-opcion-metodo.seleccionado .smecph-opcion-info > svg,
+.smecph-opcion-metodo.seleccionado .smecph-opcion-info > svg path {
   filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%)
     contrast(103%);
   fill: var(--colorp-secondary);
