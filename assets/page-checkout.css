@@ -124,6 +124,7 @@
   width: 100%;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .smecph-pc-dch_info {
@@ -149,6 +150,10 @@
   justify-content: center;
   gap: var(--espaciado-xs);
   padding: var(--espaciado-xl) 0;
+}
+
+.smecph-pc-dch_btn p {
+  font-weight: 600;
 }
 
 .smecph-pc-mensaje-input {
@@ -234,6 +239,12 @@
 
 .smecph-pcdp-item-extra p {
   font-weight: 600;
+  display: -webkit-box;
+  line-clamp: 1;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .smecph-pc-dp-item-icono {
@@ -245,6 +256,17 @@
 /* =================================
   6. DETALLA DEL CARRITO
 ================================= */
+
+.smecph-pc-header-simple {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.smecph-pc-header-simple p {
+  font-weight: 600;
+}
 
 /* =================================
   7. NOTA PARA EL PEDIDO
