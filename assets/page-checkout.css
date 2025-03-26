@@ -81,10 +81,10 @@
   padding: var(--espaciado-xl);
   border-radius: var(--espaciado-xs);
   background-color: var(--colorp-primary);
-  color: var(--colorp-secondary);
 }
 
 .pcktpch-btn-general p {
+  color: var(--colorp-secondary);
   font-weight: 600;
 }
 
