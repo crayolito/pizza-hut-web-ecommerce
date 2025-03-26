@@ -84,6 +84,10 @@
   color: var(--colorp-secondary);
 }
 
+.pcktpch-btn-general p {
+  font-weight: 600;
+}
+
 /* =================================
   1. SELECCION METODO DE ENTREGA
 ================================= */
