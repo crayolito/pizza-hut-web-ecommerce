@@ -36,6 +36,21 @@
   font-weight: 600;
 }
 
+.smecph-pc-info-input.error > p:first-of-type {
+  color: var(--colorb-primary);
+}
+
+.smecph-pc-info-input.error .smecph-pc-mensaje-input p {
+  color: var(--colorb-primary);
+}
+
+.smecph-pc-info-input.error .smecph-pc-mensaje-input svg,
+.smecph-pc-info-input.error .smecph-pc-mensaje-input svg path {
+  filter: invert(15%) sepia(95%) saturate(6932%) hue-rotate(343deg)
+    brightness(91%) contrast(97%);
+  fill: var(--colorp-primary);
+}
+
 .ph-container-input {
   position: relative;
   width: 100%;
