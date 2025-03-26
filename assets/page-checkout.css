@@ -36,12 +36,17 @@
   font-weight: 600;
 }
 
+.smecph-pc-info-input.error .ph-container-input input {
+  border: 1.5px solid var(--colorp-primary);
+}
+
 .smecph-pc-info-input.error > p:first-of-type {
   color: var(--colorp-primary);
 }
 
 .smecph-pc-info-input.error .smecph-pc-mensaje-input p {
   color: var(--colorp-primary);
+  font-weight: 600;
 }
 
 .smecph-pc-info-input.error .smecph-pc-mensaje-input svg,
