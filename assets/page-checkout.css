@@ -37,11 +37,11 @@
 }
 
 .smecph-pc-info-input.error > p:first-of-type {
-  color: var(--colorb-primary);
+  color: var(--colorp-primary);
 }
 
 .smecph-pc-info-input.error .smecph-pc-mensaje-input p {
-  color: var(--colorb-primary);
+  color: var(--colorp-primary);
 }
 
 .smecph-pc-info-input.error .smecph-pc-mensaje-input svg,
@@ -150,7 +150,7 @@
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   gap: var(--espaciado-xs);
 }
 
