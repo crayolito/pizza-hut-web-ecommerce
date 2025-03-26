@@ -1,28 +1,151 @@
 /* ==========================================================================
-     ÍNDICE - 
-     1. DESKTOP
-       1.1 PRODUCTO DESKTOP
-       1.2 PRODUCTO2 DESKTOP
-       1.3 PRODUCTO3 DESKTOP
-     2. MOBILE
-       2.1 PRODUCTO MOBILE
-       2.2 PRODUCTO2 MOBILE
-       2.3 PRODUCTO3 MOBILE
-     3. PRODUCTO PROMOCION CARRITO
-        3.1. PRODUCTO DE TARJETA VERTICAL(DESKTOP) A HORIZONTAL(MOBILE)
-     4. BOTONES DE PRODUCTOS
-        4.1. BOTON DE PERSONALIZAR
-        4.2. BOTON DE AGREGAR AL CARRITO
-     5. METODO DE ENTREGA Y CHECKOUT
-        5.1. SOLICITUD METODO DE ENTREGA
-        5.2. CHECKOUT
-     6. INPUT DE BUSQUEDA
-     7. MODAL GENERAL
-     6. MEDIA QUERIES
+     ÍNDICE - PAGE CHECKOUT 
+     1. SELECCION METODO DE ENTREGA
+     2. SELECCION LOCAL
+     3. DATOS DE CONTACTO
+     4. DATOS DE PAGO
+     5. DATOS DE FACTURACION
+     6. DETALLA DEL CARRITO
+     7. NOTA PARA EL PEDIDO
+     8. HUTCOINS
+     9. MODAL
+       9.1. MODAL (SELECCIONAR LOCAL)
+       9.2. MODAL (DIRECCION DE ENVIO)
+     10. MEDIA QUERIES
      ========================================================================== */
 
+.container-sub-smecph {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  gap: var(--espaciado-l);
+  padding: var(--espaciado-xxl);
+}
+
+.smecph-pc-info-input {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  gap: var(--espaciado-xs);
+}
+
+.ph-container-input {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  gap: var(--espaciado-xs);
+  padding: var(--espaciado-xl);
+  border-radius: var(--espaciado-xs);
+  background-color: var(--colorp-secondary);
+  border: 1px solid var(--colorb-primary);
+}
+
+.smecph-pc-resultados-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--colorp-secondary);
+  border-radius: var(--espaciado-xs);
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  gap: var(--espaciado-m);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--espaciado-l);
+  display: none;
+}
+
+.pcktpch-btn-general {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--espaciado-xl);
+  border-radius: var(--espaciado-xs);
+  background-color: var(--colorp-primary);
+  color: var(--colorp-secondary);
+}
+
 /* =================================
-  3. PRODUCTO PROMOCION CARRITO
+  1. SELECCION METODO DE ENTREGA
 ================================= */
 
-/* ===== TARJETA HORIZONTAL(MOBILE)===== */
+/* =================================
+  2. SELECCION LOCAL Y DIRECCION DE ENVIO
+================================= */
+
+/* =================================
+  3. DATOS DE CONTACTO
+================================= */
+
+.smecph-pc-header-especial {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.smecph-pc-dch_info {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  gap: var(--espaciado-xs);
+}
+
+.smecph-pc-dch_info p {
+  display: -webkit-box;
+  line-clamp: 2;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.smecph-pc-dch_btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--espaciado-xs);
+  padding: 0 var(--espaciado-xl);
+}
+
+/* =================================
+  4. DATOS DE PAGO
+================================= */
+
+/* =================================
+  5. DATOS DE FACTURACION
+================================= */
+
+/* =================================
+  6. DETALLA DEL CARRITO
+================================= */
+
+/* =================================
+  7. NOTA PARA EL PEDIDO
+================================= */
+
+/* =================================
+  8. HUTCOINS
+================================= */
+
+/* =================================
+  9. MODAL
+================================= */
+
+/* ===== MODAL CONTENIDO (SELECCIONAR LOCAL) ===== */
+
+/* ===== MODAL CONTENIDO (DIRECCION DE ENVIO) ===== */
+
+/* =================================
+  10. MEDIA QUERIES
+================================= */
