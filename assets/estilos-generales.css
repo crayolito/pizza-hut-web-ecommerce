@@ -180,6 +180,8 @@
 
 .smecph-opcion-info > svg,
 .smecph-opcion-info > svg path {
+  width: 3rem;
+  height: 3rem;
   filter: invert(15%) sepia(95%) saturate(6932%) hue-rotate(343deg)
     brightness(91%) contrast(97%);
   fill: var(--colorp-primary);
