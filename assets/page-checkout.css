@@ -259,6 +259,31 @@
   justify-content: center;
 }
 
+.smecph-pc-dp-item.seleccionado {
+  border: 0;
+  background: var(--colorp-primary);
+}
+
+.smecph-pc-dp-item.seleccionado .smecph-pc-dp-item-info p,
+.smecph-pc-dp-item.seleccionado
+  .smecph-pc-dp-item-info
+  .smecph-pcdp-item-extra
+  p {
+  color: var(--colorp-secondary);
+}
+
+.smecph-pc-dp-item.seleccionado
+  .smecph-pc-dp-item-info
+  .smecph-pcdp-item-extra
+  svg,
+.smecph-pc-dp-item.seleccionado
+  .smecph-pc-dp-item-info
+  .smecph-pcdp-item-extra
+  svg
+  path {
+  fill: var(--colorp-secondary);
+}
+
 /* =================================
   6. DETALLA DEL CARRITO
 ================================= */
