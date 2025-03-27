@@ -24,7 +24,7 @@
   padding: var(--espaciado-xxl);
 }
 
-.container-sub-smecph .smecph-pcdc-precio-info p:last-of-type {
+.container-sub-smecph .smecph-pcdc-precio-info:last-of-type p {
   font-weight: 600;
 }
 
