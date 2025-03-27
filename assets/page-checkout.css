@@ -305,6 +305,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: var(--espaciado-xs);
 }
 
 .smecph-pc-item-ci-detalle {
@@ -360,19 +361,31 @@
 .smecph-pc-item-carrito-extra {
   width: 100%;
   display: flex;
+  flex-direction: column;
   align-items: start;
   gap: var(--espaciado-m);
   padding: 0 var(--espaciado-xs);
-  background-color: #969696;
+  background-color: #f3f3f3;
 }
 
 .smecph-pc-item-carrito-extra > p {
   font-weight: 600;
+  width: 100%;
+  margin-bottom: 8px;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 4px;
 }
 
 .smecph-pc-item-carrito-extra ul {
   display: flex;
+  width: 100%;
+  flex-direction: column;
   align-items: start;
+  background: #ffffff;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  padding: 8px;
+  list-style-type: none;
 }
 
 /* =================================
