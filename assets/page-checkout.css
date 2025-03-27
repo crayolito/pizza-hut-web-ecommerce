@@ -190,7 +190,7 @@
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   gap: var(--espaciado-xs);
   padding: var(--espaciado-l) var(--espaciado-xl);
   border-radius: var(--espaciado-xs);
@@ -212,6 +212,7 @@
 .smecph-pc-dp-item {
   width: 100%;
   display: flex;
+  justify-content: space-between;
   gap: var(--espaciado-m);
   border: 1px solid #969696;
   border-radius: var(--espaciado-xs);
@@ -454,6 +455,18 @@
   8. HUTCOINS
 ================================= */
 
+.smecph-pc-hutcoins-banner {
+  width: 100%;
+  display: flex;
+  border-radius: var(--espaciado-xs);
+}
+
+.smecph-pc-hutcoins-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--espaciado-xs);
+}
 .smecph-pc-hutcoins-mensaje {
   width: 100%;
   display: flex;
