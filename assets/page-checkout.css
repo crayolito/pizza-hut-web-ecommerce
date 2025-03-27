@@ -100,6 +100,7 @@
 
 .pcktpch-btn-general {
   width: 100%;
+  height: 3rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -110,6 +111,38 @@
 
 .pcktpch-btn-general p {
   color: var(--colorp-secondary);
+  font-weight: 600;
+}
+
+.pcktpch-btn-primario {
+  width: 100%;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--espaciado-xl);
+  border-radius: var(--espaciado-xs);
+}
+
+.pcktpch-btn-primario p {
+  color: var(--colorp-secondary);
+  font-weight: 600;
+}
+
+.pcktpch-btn-secundario {
+  width: 100%;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--espaciado-xl);
+  border-radius: var(--espaciado-xs);
+  background-color: var(--colorp-secondary);
+  border: 1px solid var(--colorp-primary);
+}
+
+.pcktpch-btn-secundario p {
+  color: var(--colorp-primary);
   font-weight: 600;
 }
 
