@@ -400,6 +400,38 @@
   list-style-type: none;
 }
 
+.smecph-pc-btn-aplicar-cupon {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--espaciado-xl);
+  border-radius: var(--espaciado-xs);
+  background-color: #efefef;
+}
+
+.smecph-pc-btn-aplicar-cupon p {
+  font-weight: 600;
+  color: #717171;
+}
+
+.smecph-pc-btn-aplicar-cupon.activado {
+  background-color: var(--colorp-primary);
+}
+
+.smecph-pc-btn-aplicar-cupon p {
+  color: var(--colorp-secondary);
+}
+
+.container-sub-smecph hr {
+  display: flex;
+  padding: 1.25rem 0rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.625rem;
+  align-self: stretch;
+}
+
 /* =================================
   7. NOTA PARA EL PEDIDO
 ================================= */
