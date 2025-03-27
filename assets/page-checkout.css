@@ -275,6 +275,98 @@
   gap: var(--espaciado-xs);
 }
 
+.smecph-pc-items-carrito {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaciado-xl);
+}
+
+.smecph-pc-item-carrito {
+  width: 100%;
+  display: flex;
+  gap: var(--espaciado-m);
+}
+
+.smecph-pc-item-ci-img {
+  width: 3.12rem;
+  height: 3.12rem;
+  border-radius: var(--espaciado-xs);
+}
+
+.smecph-pc-item-ci-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.smecph-pc-item-ci-detalle {
+  width: 100%;
+  display: flex;
+  gap: var(--espaciado-xs);
+}
+
+.smecph-pc-item-cid1 {
+  flex-basis: 60%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  text-align: center;
+}
+
+.smecph-pc-item-cid2 {
+  flex-basis: 10%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.smecph-pc-item-cid3 {
+  flex-basis: 30%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--espaciado-xs);
+}
+
+.smecph-pc-item-cid3_precio {
+  width: 100%;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  gap: var(--espaciado-xs);
+}
+
+.smecph-pc-item-cid3_precio small {
+  font-feature-settings: "sups" on;
+  font-family: "Noto Sans";
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 0.875rem;
+}
+
+.smecph-pc-item-cid3_descuento {
+  width: 100%;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  gap: var(--espaciado-xs);
+}
+
+.smecph-pc-item-cid3_descuento small {
+  font-feature-settings: "sups" on;
+  font-family: "Noto Sans";
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 0.875rem;
+}
+
 /* =================================
   7. NOTA PARA EL PEDIDO
 ================================= */
