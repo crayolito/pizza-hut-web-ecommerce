@@ -377,6 +377,10 @@
   border-radius: var(--espaciado-xs);
 }
 
+.smecph-pc-item-carrito-extra > ul:first-of-type {
+  margin-bottom: 8px;
+}
+
 .smecph-pc-item-carrito-extra > p {
   font-weight: 600;
   width: 100%;
@@ -392,7 +396,6 @@
   align-items: start;
   background: #ffffff;
   border-radius: 4px;
-  margin-bottom: 8px;
   padding: 8px;
   list-style-type: none;
 }
