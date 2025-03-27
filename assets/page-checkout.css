@@ -292,7 +292,7 @@
 .smecph-pc-item-carrito-info {
   width: 100%;
   display: flex;
-  gap: var(--espaciado-xs);
+  gap: var(--espaciado-l);
 }
 
 .smecph-pc-item-ci-img {
