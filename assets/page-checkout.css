@@ -282,6 +282,15 @@
   gap: var(--espaciado-xl);
 }
 
+.smecph-pc-items-carrito > .smecph-pc-item-carrito {
+  border-bottom: none;
+}
+
+.smecph-pc-items-carrito
+  > .smecph-pc-item-carrito:not(:only-child):not(:last-child) {
+  border-bottom: 1px solid #969696;
+}
+
 .smecph-pc-item-carrito {
   width: 100%;
   display: flex;
@@ -363,7 +372,6 @@
   display: flex;
   flex-direction: column;
   align-items: start;
-  gap: var(--espaciado-m);
   padding: var(--espaciado-xl);
   background-color: #f3f3f3;
   border-radius: var(--espaciado-xs);
