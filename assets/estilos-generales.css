@@ -555,9 +555,9 @@
 
 @media screen and (min-width: 768px) {
   .smecph-opcion-info {
-    align-items: start;
     justify-content: start;
     flex-direction: row;
+    gap: var(--espaciado-m);
   }
 
   .producto2-item {

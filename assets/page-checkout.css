@@ -405,6 +405,7 @@
   border-radius: 4px;
   padding: 8px;
   list-style-type: none;
+  gap: 0.35rem;
 }
 
 .smecph-pc-btn-aplicar-cupon {
