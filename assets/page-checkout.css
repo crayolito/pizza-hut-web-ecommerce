@@ -364,8 +364,9 @@
   flex-direction: column;
   align-items: start;
   gap: var(--espaciado-m);
-  padding: 0 var(--espaciado-xs);
+  padding: var(--espaciado-xl);
   background-color: #f3f3f3;
+  border-radius: var(--espaciado-xs);
 }
 
 .smecph-pc-item-carrito-extra > p {
