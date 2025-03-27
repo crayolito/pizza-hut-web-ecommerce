@@ -186,7 +186,7 @@
   5. DATOS DE FACTURACION
 ================================= */
 
-.smecph-pc-dp-mensaje {
+.smecph-mensaje-alerta {
   width: 100%;
   display: flex;
   align-items: center;
@@ -198,8 +198,29 @@
   border-left: 4px solid #ef9f8e;
 }
 
-.smecph-pc-dp-mensaje p {
+.smecph-mensaje-alerta p {
   color: var(--colorp-primary);
+}
+
+.smecph-mensaje-informacion {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: var(--espaciado-xs);
+  padding: var(--espaciado-l) var(--espaciado-xl);
+  border-radius: var(--espaciado-xs);
+  background-color: #f4f7ff;
+  border-left: 4px solid #a9b5f3;
+}
+
+.smecph-formulario-metodo-tarjeta {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  gap: var(--espaciado-l);
 }
 
 .smecph-pc-dp-items {

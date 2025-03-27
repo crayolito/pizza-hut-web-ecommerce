@@ -171,7 +171,7 @@
       <h4>Datos de facturación</h4>
       <p>Ingrese tus datos para facturar tu pedido.</p>
     </div>
-    <div class="smecph-pc-dp-mensaje icon-color-primary">
+    <div class="smecph-mensaje-alerta icon-color-primary">
       {% render 'icon-info' %}
       <p>Es obligatorio seleccionar un método de pago</p>
     </div>
@@ -198,6 +198,24 @@
         </div>
         <div class="smecph-pc-dp-item-icono">
           {% render 'icon-estado-on' %}
+        </div>
+      </div>
+      <div class="smecph-formulario-metodo-tarjeta">
+        <div class="smecph-mensaje-informacion">
+          {% render 'icon-info' %}
+          <p>Tu tarjeta debe estar habilitada para pagos por internet.</p>
+        </div>
+        <div class="smecph-pc-info-input">
+          <p>Primeros 4 dígitos de la tarjeta</p>
+          <div class="ph-container-input">
+            <input type="number" placeholder="Primeros 4 dígitos">
+          </div>
+        </div>
+        <div class="smecph-pc-info-input">
+          <p>Últimos 4 dígitos de la tarjeta</p>
+          <div class="ph-container-input">
+            <input type="number" placeholder="Últimos 4 dígitos">
+          </div>
         </div>
       </div>
       <div class="smecph-pc-dp-item ">
