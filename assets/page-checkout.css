@@ -357,6 +357,27 @@
   line-height: 0.875rem;
 }
 
+.smecph-pc-item-carrito-extra {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: var(--espaciado-m);
+  padding: 0 var(--espaciado-xs);
+  background-color: #969696;
+}
+
+.smecph-pc-item-carrito-extra p {
+  font-weight: 600;
+}
+
+.smecph-pc-item-carrito-extra ul {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: var(--espaciado-m);
+}
+
 /* =================================
   7. NOTA PARA EL PEDIDO
 ================================= */
