@@ -285,7 +285,14 @@
 .smecph-pc-item-carrito {
   width: 100%;
   display: flex;
+  flex-direction: column;
   gap: var(--espaciado-m);
+}
+
+.smecph-pc-item-carrito-info {
+  width: 100%;
+  display: flex;
+  gap: var(--espaciado-xs);
 }
 
 .smecph-pc-item-ci-img {
@@ -307,7 +314,7 @@
 }
 
 .smecph-pc-item-cid1 {
-  flex-basis: 60%;
+  flex-basis: 63%;
   height: 100%;
   display: flex;
   align-items: center;
@@ -316,7 +323,7 @@
 }
 
 .smecph-pc-item-cid2 {
-  flex-basis: 10%;
+  flex-basis: 12%;
   height: 100%;
   display: flex;
   align-items: center;
@@ -324,7 +331,7 @@
 }
 
 .smecph-pc-item-cid3 {
-  flex-basis: 30%;
+  flex-basis: 25%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -333,32 +340,15 @@
   gap: var(--espaciado-xs);
 }
 
-.smecph-pc-item-cid3_precio {
+.smecph-pc-item-cid3_total {
   width: 100%;
   display: flex;
   align-items: start;
-  justify-content: center;
+  justify-content: end;
   gap: var(--espaciado-xs);
 }
 
-.smecph-pc-item-cid3_precio small {
-  font-feature-settings: "sups" on;
-  font-family: "Noto Sans";
-  font-size: 0.875rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 0.875rem;
-}
-
-.smecph-pc-item-cid3_descuento {
-  width: 100%;
-  display: flex;
-  align-items: start;
-  justify-content: center;
-  gap: var(--espaciado-xs);
-}
-
-.smecph-pc-item-cid3_descuento small {
+.smecph-pc-item-cid3_total small {
   font-feature-settings: "sups" on;
   font-family: "Noto Sans";
   font-size: 0.875rem;
