@@ -288,7 +288,8 @@
 
 .smecph-pc-items-carrito
   > .smecph-pc-item-carrito:not(:only-child):not(:last-child) {
-  border-bottom: 1px solid #969696;
+  border-bottom: 1px solid #dedede;
+  padding-bottom: var(--espaciado-s);
 }
 
 .smecph-pc-item-carrito {
@@ -402,6 +403,7 @@
 
 .smecph-pc-btn-aplicar-cupon {
   width: 100%;
+  height: 3rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -419,17 +421,17 @@
   background-color: var(--colorp-primary);
 }
 
-.smecph-pc-btn-aplicar-cupon p {
+.smecph-pc-btn-aplicar-cupo.activado p {
   color: var(--colorp-secondary);
 }
 
 .container-sub-smecph hr {
-  display: flex;
-  padding: 1.25rem 0rem;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.625rem;
-  align-self: stretch;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1.25rem auto;
+  width: 80%;
+  height: 0;
+  overflow: visible;
 }
 
 /* =================================
