@@ -742,7 +742,13 @@
   width: 9.4375rem;
   height: 9.375rem;
   flex-shrink: 0;
-  animation: rotate 1.5s linear infinite;
+  animation: rotate 1s linear infinite;
+}
+
+.snipper-background img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .snipper-logo {
@@ -751,6 +757,12 @@
   height: 6.125rem;
   flex-shrink: 0;
   z-index: 1;
+}
+
+.snipper-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 @keyframes rotate {
