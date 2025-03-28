@@ -455,6 +455,7 @@
     </button>
   </section>
   <section class="ph-background-container-modal">
+    <!-- 1re MODAL : NUEVA DIRECCION -->
     <div class="ph-mmdi-modal-main">
       <div class="pcktpch-modal-header">
         <h4>NUEVA DIRECCIÓN</h4>
@@ -462,7 +463,7 @@
           {% render 'icon-close-custom' %}
         </button>
       </div>
-      <div class="pcktpch-modal-body">
+      <div class="pcktpch-modal-body-fase1">
         <p>Ingresa tu dirección o usa tu ubicación actual.</p>
         <button class="pcktpch-btn-secundario">
           {% render 'icon-gps-rojo' %}
@@ -477,6 +478,13 @@
           {% render 'icon-location-on' %}
           <input type="text" placeholder="Ingresar dirección o punto de referencia">
         </div>
+      </div>
+      <div class="pcktpch-modal-body-fase2">
+        <div class="smecph-mensaje-informacion">
+          {% render 'icon-info' %}
+          <p>Si es necesario, cambia la ubicación del pin en el mapa.</p>
+        </div>
+        <div class="pcktpch-modal-mapa"></div>
       </div>
       <div class="pcktpch-modal-footer">
         <button class="pcktpch-btn-general">

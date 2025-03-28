@@ -646,13 +646,14 @@
   justify-content: space-between;
 }
 
-.pcktpch-modal-body {
+.pcktpch-modal-body-fase1 {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: start;
   justify-content: start;
   gap: var(--espaciado-l);
+  display: none;
 }
 
 .pcktpch-modal-separador {
@@ -667,6 +668,15 @@
   width: 100%;
   height: 1px;
   background-color: #dedede;
+}
+
+.pcktpch-modal-body-fase2 {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  gap: var(--espaciado-l);
 }
 
 .pcktpch-modal-footer {
@@ -688,7 +698,7 @@
   10. MEDIA QUERIES
 ================================= */
 @media (min-width: 768px) {
-  .pcktpch-modal-body {
+  .pcktpch-modal-body-fase1 {
     width: 38.13rem;
   }
 
