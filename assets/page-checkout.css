@@ -729,6 +729,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: visible;
 }
 
 .snipper-container {
@@ -736,13 +737,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 9.4375rem;
+  height: 9.375rem;
 }
 
 .snipper-background {
+  position: absolute;
   width: 9.4375rem;
   height: 9.375rem;
-  animation: rotate 1.3s linear infinite;
-  object-fit: cover;
+  animation: rotate 1.5s linear infinite;
+  overflow: visible;
 }
 
 .snipper-logo {
@@ -750,7 +754,16 @@
   width: 6.625rem;
   height: 6.125rem;
   z-index: 1;
-  object-fit: cover;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  overflow: visible;
+}
+
+.snipper-background img,
+.snipper-logo img {
+  display: block;
+  object-fit: contain;
 }
 
 @keyframes rotate {
