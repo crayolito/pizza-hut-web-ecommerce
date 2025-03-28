@@ -666,7 +666,10 @@
   align-items: center;
   justify-content: center;
   gap: var(--espaciado-l);
+  height: max-content;
   padding: var(--espaciado-xl);
+  background-color: var(--colorp-secondary);
+  border-top: 1px solid #dedede;
 }
 
 /* =================================
