@@ -733,7 +733,7 @@
 }
 
 .pcktpch-modal-mapa {
-  width: 43rem;
+  width: 100%;
   height: 19rem;
   border-radius: var(--espaciado-xs);
   overflow: hidden;
@@ -768,13 +768,15 @@
 /* ===== MODAL CONTENIDO (SNIPPER) ===== */
 
 .ph-modal-main-snipper {
-  width: max-content;
-  height: max-content;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: var(--espaciado-l);
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
   display: none;
 }
 
@@ -912,7 +914,7 @@
 ================================= */
 @media (min-width: 768px) {
   .ph-modal-main-mensajes {
-    width: 100%;
+    width: max-content;
   }
 
   .ph-opciones-mobile-footer {
