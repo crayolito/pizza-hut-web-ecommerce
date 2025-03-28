@@ -611,7 +611,7 @@
 ================================= */
 
 #pcktph-hutcoins {
-  margin-bottom: 5rem;
+  margin-bottom: 8rem;
 }
 
 .smecph-pc-hutcoins-banner {
@@ -835,9 +835,20 @@
   10. MEDIA QUERIES
 ================================= */
 @media (min-width: 768px) {
-  .f-contenedor-base {
-    display: flex;
+  .ph-opciones-mobile-footer {
+    position: relative;
+    background-color: transparent;
+    border-top: 0;
   }
+
+  #pcktph-hutcoins {
+    margin-bottom: 0;
+  }
+
+  .f-contenedor-base {
+    display: flex !important;
+  }
+
   .pcktpch-modal-body-fase1 {
     width: 38.13rem;
   }
