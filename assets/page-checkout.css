@@ -725,6 +725,38 @@
   display: none;
 }
 
+.pcktpch-modal-footer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--espaciado-l);
+  padding-top: var(--espaciado-l);
+  border-top: 1px solid #dedede;
+}
+
+/* ===== MODAL CONTENIDO (SELECCIONAR LOCALL) ===== */
+
+/* ===== MODAL CONTENIDO (DIRECCION DE ENVIO) ===== */
+
+/* ===== MODAL CONTENIDO (SNIPPER) ===== */
+
+.ph-modal-main-snipper {
+  width: max-content;
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--espaciado-l);
+}
+
+.ph-modal-main-snipper p {
+  font-weight: 600;
+  color: var(--colorp-secondary);
+}
+
 .pcktpch-modal-body-snipper {
   display: flex;
   justify-content: center;
@@ -774,21 +806,6 @@
     transform: rotate(360deg);
   }
 }
-
-.pcktpch-modal-footer {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: var(--espaciado-l);
-  padding-top: var(--espaciado-l);
-  border-top: 1px solid #dedede;
-}
-
-/* ===== MODAL CONTENIDO (SELECCIONAR LOCALL) ===== */
-
-/* ===== MODAL CONTENIDO (DIRECCION DE ENVIO) ===== */
 
 /* =================================
   10. MEDIA QUERIES

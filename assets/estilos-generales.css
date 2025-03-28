@@ -263,6 +263,7 @@
   gap: var(--espaciado-l);
   padding: var(--espaciado-xl);
   overflow: hidden;
+  display: none;
 }
 
 /* ===== MODAL PARA MOBILE Y DEKTOP RESPONSIVOO ===== */
