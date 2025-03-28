@@ -654,6 +654,12 @@
   gap: var(--espaciado-m);
 }
 
+.pcktpch-modal-volver-atras {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .pcktpch-modal-body-fase1 {
   width: 100%;
   display: flex;
