@@ -456,13 +456,36 @@
   </section>
   <section class="ph-background-container-modal">
     <div class="ph-mmdi-modal-main">
-      <div class="pcktpch-modal-header"></div>
-      <div class="pcktpch-modal-body">
-        <div class="pcktpch-modal-nueva-direccion"></div>
-        <div class="pcktpch-main-modal-mapa"></div>
-        <div class="pcktpch-main-modal-detallar-direccion"></div>
+      <div class="pcktpch-modal-header">
+        <h4>NUEVA DIRECCIÓN</h4>
+        <button class="pcktpch-modal-btn-cerrar">
+          {% render 'icon-close-custom' %}
+        </button>
       </div>
-      <div class="pcktpch-modal-footer"></div>
+      <div class="pcktpch-modal-body">
+        <p>Ingresa tu dirección o usa tu ubicación actual.</p>
+        <button class="pcktpch-btn-primario">
+          {% render 'icon-gps-rojo' %}
+          <p>USAR MI UBICACIÓN ACTUAL</p>
+        </button>
+        <div class="pcktpch-modal-separador">
+          <div class="pcktpch-modal-separador-linea"></div>
+          <p>O</p>
+          <div class="pcktpch-modal-separador-linea"></div>
+        </div>
+        <div class="smecph-pc-info-input">
+          {% render 'icon-location-on' %}
+          <input type="text" placeholder="Ingresar dirección o punto de referencia">
+        </div>
+      </div>
+      <div class="pcktpch-modal-footer">
+        <button class="pcktpch-btn-primario">
+          <p>CANCELAR</p>
+        </button>
+        <button class="pcktpch-btn-secundario">
+          <p>GUARDAR DIRECCIÓN</p>
+        </button>
+      </div>
     </div>
   </section>
 </div>
