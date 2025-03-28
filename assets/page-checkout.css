@@ -650,6 +650,7 @@
   .pcktph-seleccion-local-detalle {
     flex-direction: column;
     height: 3rem;
+    border-right: 1px solid #dedede;
   }
 
   .pcktph-seleccion-local-detalle-info {
