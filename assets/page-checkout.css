@@ -747,6 +747,10 @@
     width: 38.13rem;
   }
 
+  .pcktpch-modal-header-opciones {
+    width: 38.7rem;
+  }
+
   .pcktpch-modal-footer {
     flex-direction: row;
     justify-content: space-between;
