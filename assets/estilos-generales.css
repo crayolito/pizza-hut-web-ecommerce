@@ -263,6 +263,7 @@
   flex-direction: column;
   gap: var(--espaciado-l);
   padding: var(--espaciado-xl);
+  overflow: hidden;
 }
 
 /* ===== MODAL PARA MOBILE Y DEKTOP RESPONSIVOO ===== */

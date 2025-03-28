@@ -679,6 +679,14 @@
   gap: var(--espaciado-l);
 }
 
+.pcktpch-modal-mapa {
+  width: 25rem;
+  height: 19rem;
+  border-radius: var(--espaciado-xs);
+  overflow: hidden;
+  background-color: #717171;
+}
+
 .pcktpch-modal-footer {
   width: 100%;
   display: flex;
