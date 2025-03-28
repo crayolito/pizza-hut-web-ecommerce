@@ -253,8 +253,7 @@
 
 .ph-mmdi-modal-main {
   height: max-content;
-  width: 100%;
-  min-width: max-content;
+  min-width: 23.75rem;
   max-width: 42rem;
   max-height: 34rem;
   background-color: var(--colorp-secondary);
