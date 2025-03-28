@@ -844,6 +844,29 @@
   gap: var(--espaciado-l);
 }
 
+.ph-modal-body-exito {
+  width: 20rem;
+  height: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--espaciado-l);
+}
+
+.ph-modal-body-exito img {
+  width: 3rem;
+  height: 3rem;
+}
+
+.ph-modal-body-exito small {
+  font-size: 3.3125rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 3.4375rem;
+  letter-spacing: -0.06625rem;
+  text-transform: uppercase;
+}
+
 /* =================================
   10. MEDIA QUERIES
 ================================= */
