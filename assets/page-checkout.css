@@ -161,7 +161,6 @@
   height: 3rem;
   /* height: max-content; */
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: space-between;
   gap: var(--espaciado-l);
@@ -754,7 +753,7 @@
   }
 
   .pcktph-seleccion-local-detalle {
-    flex-direction: column;
+    flex-direction: row;
     height: max-content;
     border-right: 1px solid #dedede;
   }
