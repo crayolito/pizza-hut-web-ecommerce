@@ -610,6 +610,10 @@
      ========================================================================== */
 
 @media screen and (min-width: 768px) {
+  .container-main-smecph {
+    gap: var(--espaciado-xxl);
+  }
+
   .smecph-opcion-info {
     justify-content: start;
     flex-direction: row;

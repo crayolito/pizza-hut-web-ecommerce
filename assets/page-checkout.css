@@ -611,7 +611,7 @@
 ================================= */
 
 #pcktph-hutcoins {
-  margin-bottom: 8rem;
+  margin-bottom: 5rem;
 }
 
 .smecph-pc-hutcoins-banner {
@@ -775,6 +775,7 @@
   align-items: center;
   justify-content: center;
   gap: var(--espaciado-l);
+  display: none;
 }
 
 .ph-modal-main-snipper p {
@@ -830,6 +831,17 @@
   100% {
     transform: rotate(360deg);
   }
+}
+
+/* ===== MODAL CONTENIDO (MENSAJES) ===== */
+.ph-modal-main-mensajes {
+  width: max-content;
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--espaciado-l);
 }
 
 /* =================================
