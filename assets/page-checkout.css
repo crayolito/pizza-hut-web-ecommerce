@@ -677,6 +677,7 @@
   align-items: start;
   justify-content: start;
   gap: var(--espaciado-l);
+  display: none;
 }
 
 .pcktpch-modal-mapa {
