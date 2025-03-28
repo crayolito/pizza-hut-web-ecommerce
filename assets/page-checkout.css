@@ -836,9 +836,8 @@
 /* ===== MODAL CONTENIDO (MENSAJES) ===== */
 .ph-modal-main-mensajes {
   width: max-content;
+  width: 27rem;
   min-width: 23.75rem;
-  max-width: 42rem;
-  max-height: 34rem;
   height: max-content;
   display: flex;
   flex-direction: column;
@@ -912,6 +911,10 @@
   10. MEDIA QUERIES
 ================================= */
 @media (min-width: 768px) {
+  .ph-modal-main-mensajes {
+    width: 100%;
+  }
+
   .ph-opciones-mobile-footer {
     position: relative;
     background-color: transparent;
