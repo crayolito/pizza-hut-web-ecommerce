@@ -15,7 +15,7 @@
      ========================================================================== */
 
 .f-contenedor-base {
-  display: none;
+  display: none !important;
 }
 
 .container-sub-smecph {
@@ -608,6 +608,10 @@
 /* =================================
   8. HUTCOINS
 ================================= */
+
+#pcktph-hutcoin {
+  margin-bottom: 5rem;
+}
 
 .smecph-pc-hutcoins-banner {
   width: 100%;
