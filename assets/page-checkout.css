@@ -842,6 +842,18 @@
   align-items: center;
   justify-content: center;
   gap: var(--espaciado-l);
+  height: max-content;
+  min-width: 23.75rem;
+  max-width: 42rem;
+  max-height: 34rem;
+  background-color: var(--colorp-secondary);
+  border-radius: var(--espaciado-xs);
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaciado-l);
+  padding: var(--espaciado-xl);
+  overflow: hidden;
+  display: none;
 }
 
 .ph-modal-body-exito {
