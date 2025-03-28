@@ -646,6 +646,14 @@
   justify-content: space-between;
 }
 
+.pcktpch-modal-header-opciones {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: var(--espaciado-m);
+}
+
 .pcktpch-modal-body-fase1 {
   width: 100%;
   display: flex;
