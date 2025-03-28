@@ -29,10 +29,6 @@
 
 /* ===== TARJETA HORIZONTAL(MOBILE)===== */
 
-.f-contenedor-base {
-  display: none;
-}
-
 .cardph-item-producto {
   width: 21.25rem;
   height: max-content;
