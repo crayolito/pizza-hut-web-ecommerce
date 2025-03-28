@@ -255,7 +255,7 @@
   height: max-content;
   width: 100%;
   min-width: max-content;
-  max-width: 25rem;
+  max-width: 42rem;
   max-height: 34rem;
   background-color: var(--colorp-secondary);
   border-radius: var(--espaciado-xs);

@@ -458,7 +458,14 @@
     <!-- 1re MODAL : NUEVA DIRECCION -->
     <div class="ph-mmdi-modal-main">
       <div class="pcktpch-modal-header">
-        <h4>NUEVA DIRECCIÓN</h4>
+        <div class="pcktpch-modal-header-opciones">
+          <button id="pcktpch-modal-volver-atras">
+            {% render 'icon-flecha-izquierda' %}
+          </button>
+          <button class="pcktpch-modal-btn-opciones">
+            <p>NUEVA DIRECCIÓN</p>
+          </button>
+        </div>
         <button class="pcktpch-modal-btn-cerrar">
           {% render 'icon-close-custom' %}
         </button>
@@ -485,6 +492,21 @@
           <p>Si es necesario, cambia la ubicación del pin en el mapa.</p>
         </div>
         <div class="pcktpch-modal-mapa"></div>
+      </div>
+      <div class="pcktpch-modal-body-fase3">
+        <div class="smecph-pc-info-input">
+          <p>Indicaciones acerca de tu dirección</p>
+          <div class="ph-container-input">
+            <input type="text" placeholder="Ingresar indicaciones para tu dirección">
+          </div>
+        </div>
+        <div class="smecph-pc-info-input">
+          <p>Alias</p>
+          <div class="ph-container-input icon-color-tertiary">
+            {% render 'icon-location-on' %}
+            <input type="text" placeholder="Alias">
+          </div>
+        </div>
       </div>
       <div class="pcktpch-modal-footer">
         <button class="pcktpch-btn-general">
