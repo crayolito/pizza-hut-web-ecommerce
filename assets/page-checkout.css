@@ -836,24 +836,19 @@
 /* ===== MODAL CONTENIDO (MENSAJES) ===== */
 .ph-modal-main-mensajes {
   width: max-content;
+  min-width: 23.75rem;
+  max-width: 42rem;
+  max-height: 34rem;
   height: max-content;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: var(--espaciado-l);
-  height: max-content;
-  min-width: 23.75rem;
-  max-width: 42rem;
-  max-height: 34rem;
   background-color: var(--colorp-secondary);
   border-radius: var(--espaciado-xs);
-  display: flex;
-  flex-direction: column;
-  gap: var(--espaciado-l);
   padding: var(--espaciado-xl);
   overflow: hidden;
-  display: none;
 }
 
 .ph-modal-body-exito {
@@ -866,8 +861,8 @@
 }
 
 .ph-modal-body-exito img {
-  width: 3rem;
-  height: 3rem;
+  width: 5rem;
+  height: 5rem;
 }
 
 .ph-modal-body-exito small {
