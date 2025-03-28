@@ -534,12 +534,10 @@
   border-radius: var(--espaciado-xs);
   left: 50%;
   bottom: 0;
-  transformx: translate(-50%, -50%);
-  left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
   flex-direction: column;
   padding: var(--espaciado-m);
-  display: none;
+  /* display: none; */
 }
 
 .variante-producto-item {
