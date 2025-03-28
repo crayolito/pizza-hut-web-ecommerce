@@ -639,15 +639,6 @@
   9. MODAL
 ================================= */
 
-.ph-mmdi-modal-main {
-  width: 100%;
-  height: max-content;
-  display: flex;
-  flex-direction: column;
-  gap: var(--espaciado-l);
-  padding: var(--espaciado-xl);
-}
-
 .pcktpch-modal-header {
   width: 100%;
   display: flex;

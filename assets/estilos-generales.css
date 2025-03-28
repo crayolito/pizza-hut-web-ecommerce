@@ -261,7 +261,8 @@
   border-radius: var(--espaciado-xs);
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: var(--espaciado-l);
+  padding: var(--espaciado-xl);
 }
 
 /* ===== MODAL PARA MOBILE Y DEKTOP RESPONSIVO ===== */
