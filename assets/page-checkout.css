@@ -250,7 +250,7 @@
 }
 
 .smecph-formulario-datos-contacto,
-.smecph-datos-contacto-consolidado {
+.smecph-datos-contacto-consolidados {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -259,7 +259,7 @@
   gap: var(--espaciado-l);
 }
 
-.smecph-datos-contacto-consolidado p:first-of-type {
+.smecph-datos-contacto-consolidados p:first-of-type {
   color: #717171;
 }
 
