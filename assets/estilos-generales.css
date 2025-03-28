@@ -256,7 +256,6 @@
   width: max-content;
   max-width: 25rem;
   max-height: 34rem;
-  padding: 2rem 1.25rem;
   background-color: var(--colorp-secondary);
   border-radius: var(--espaciado-xs);
   display: flex;
@@ -265,7 +264,7 @@
   padding: var(--espaciado-xl);
 }
 
-/* ===== MODAL PARA MOBILE Y DEKTOP RESPONSIVO ===== */
+/* ===== MODAL PARA MOBILE Y DEKTOP RESPONSIVOO ===== */
 
 .ph-mmdr-modal-main {
   height: max-content;

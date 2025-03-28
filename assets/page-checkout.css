@@ -688,6 +688,15 @@
   10. MEDIA QUERIES
 ================================= */
 @media (min-width: 768px) {
+  .pcktpch-modal-body {
+    width: 38.13rem;
+  }
+
+  .pcktpch-modal-footer {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
   .pcktph-seleccion-local-detalle {
     flex-direction: column;
     height: max-content;
