@@ -1,7 +1,7 @@
 /* ==========================================================================
      ÍNDICE - PAGE CHECKOUT 
      1. SELECCION METODO DE ENTREGA
-     2. SELECCION LOCAL
+     2. SELECCION LOCAL Y DIRECCION DE ENVIO
      3. DATOS DE CONTACTO
      4. DATOS DE PAGO
      5. DATOS DE FACTURACION
@@ -154,6 +154,40 @@
   2. SELECCION LOCAL Y DIRECCION DE ENVIO
 ================================= */
 
+/* ===== SELECCION LOCAL ===== */
+
+.pcktph-seleccion-local-detalle {
+  width: 100%;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pcktph-seleccion-local-detalle-info {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  gap: var(--espaciado-xs);
+  padding-right: var(--espaciado-m);
+  border-right: 1px solid #dedede;
+}
+
+.pcktph-seleccion-local-detalle-info p:first-of-type {
+  font-weight: 600;
+}
+
+.pcktph-seleccion-local-detalle-info p {
+  line-clamp: 1;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ===== DIRECCION DE ENVIO ===== */
+
 /* =================================
   3. DATOS DE CONTACTO
 ================================= */
@@ -221,6 +255,7 @@
 
 .smecph-mensaje-alerta {
   width: 100%;
+  height: 3.5rem;
   display: flex;
   align-items: center;
   justify-content: start;
@@ -237,6 +272,7 @@
 
 .smecph-mensaje-informacion {
   width: 100%;
+  height: 3.5rem;
   display: flex;
   align-items: center;
   justify-content: start;
@@ -245,6 +281,23 @@
   border-radius: var(--espaciado-xs);
   background-color: #f4f7ff;
   border-left: 4px solid #a9b5f3;
+}
+
+.smecph-mensaje-exito {
+  width: 100%;
+  height: 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: var(--espaciado-xs);
+  padding: var(--espaciado-l) var(--espaciado-xl);
+  border-radius: var(--espaciado-xs);
+  background-color: rgba(17, 174, 0, 0.1);
+}
+
+.smecph-mensaje-exito svg,
+.smecph-mensaje-exito svg path {
+  fill: #11ae00;
 }
 
 .smecph-formulario-metodo-tarjeta {

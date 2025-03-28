@@ -69,10 +69,16 @@
         </div>
       </div>
     </div>
-    <button class="pcktpch-btn-primario icon-color-primary">
-      {% render 'icon-flecha-hutcoins' %}
-      <p class="color-letras-primary">VER DIRECCION EN MAPA</p>
-    </button>
+    <div class="pcktph-seleccion-local-detalle">
+      <div class="pcktph-seleccion-local-detalle-info">
+        <p>Pirai 2do Anillo</p>
+        <p>Listo para retirar en 30 minutos</p>
+      </div>
+      <button class="pcktpch-btn-primario icon-color-primary">
+        {% render 'icon-flecha-hutcoins' %}
+        <p class="color-letras-primary">VER DIRECCION EN MAPA</p>
+      </button>
+    </div>
   </section>
   <section class="container-sub-smecph" id="pcktph-direccion-envio">
     <h4>Dirección de envio</h4>
@@ -387,6 +393,9 @@
         {% render 'icon-search' %}
         <p class="color-letras-primary">VER CUPONES</p>
       </button>
+      <div class="smecph-mensaje-exito">
+        {% render 'icon-check' %}
+      </div>
     </div>
     <div class="ph-container-input">
       <input type="text" placeholder="Código de descuento">
