@@ -647,5 +647,11 @@
 @media (min-width: 768px) {
   .pcktph-seleccion-local-detalle {
     flex-direction: row;
+    height: max-content;
+    gap: var(--espaciado-l);
+  }
+
+  .pcktph-seleccion-local-detalle-info {
+    border: 0;
   }
 }
