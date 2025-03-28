@@ -875,6 +875,39 @@
   text-transform: uppercase;
 }
 
+.ph-modal-body-qr {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--espaciado-l);
+}
+
+.ph-modal-qr-detalles {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  gap: var(--espaciado-xs);
+}
+
+.ph-modal-imgen-qr {
+  width: 36rem;
+  height: 36rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ph-modal-imgen-qr img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
 /* =================================
   10. MEDIA QUERIES
 ================================= */
