@@ -87,7 +87,12 @@
   gap: var(--espaciado-s);
 }
 
-.pdpph-etapa2-mensaje > p:nth-child(2) {
+.pdpph-etapa2-mensaje > p:first-child {
+  font-weight: 700;
+  text-align: start;
+}
+
+.pdpph-etapa2-mensaje2 > p:nth-child(2) {
   font-weight: 700;
   text-align: start;
 }
