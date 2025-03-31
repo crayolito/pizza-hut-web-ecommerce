@@ -3,7 +3,7 @@
 {{ 'page-detalle-pedido.css' | asset_url | stylesheet_tag }}
 
 <div class="container-main-smecph">
-  <section class="container-sub-simple-smecph" id="etapa-1-detalle-pedido">
+  <section style="display: none;" class="container-sub-simple-smecph" id="etapa-1-detalle-pedido">
     <div class="pdpph-imagen-etapa1">
       <img src="{{ 'imagen-check-verde.png' | asset_url }}" alt="Icono de exito" width="100%" height="100%">
     </div>
@@ -21,11 +21,24 @@
     </div>
     <hr>
   </section>
-  {% comment %} <section class="container-sub-simple-smecph" id="etapa-2-detalle-pedido"></section> {% endcomment %}
+  <section class="container-sub-simple-smecph" id="etapa-2-detalle-pedido">
+    <small>¡pedido confirmado! en breve estarás disfrutando</small>
+    <div class="pdpph-etapa2-info">
+      <div class="pdpph-etapa2-mensaje">
+        <p>#235246</p>
+        <div class="pdpph-etapa2-mensaje2">
+          <p>1 COMBO</p>
+          <p>•</p>
+          <p>Pedido realizado: 13 de febrero de 2025 Hora: 13:00 P.M.</p>
+        </div>
+      </div>
+      <h3 class="color-letras-primary">55.00 Bs</h3>
+    </div>
+  </section>
   <section class="container-sub-simple-smecph pdpph-general" id="detalle-general-pedido">
     <div class="pdpph-general-pedido"></div>
   </section>
-  <section class="ph-opciones-mobile-footer" id="etapa-1-detalle-pedido">
+  <section style="display: none;" class="ph-opciones-mobile-footer" id="etapa-1-detalle-pedido">
     <button class="ph-btn-secundario">
       <p>VER MAS DETALLES</p>
     </button>
@@ -34,5 +47,68 @@
       <p>VOLVER AL INICIO</p>
     </button>
   </section>
-  {% comment %} <section class="container-sub-simple-smecph" id="etapa-2-detalle-pedido"></section> {% endcomment %}
+  <section class="container-sub-simple-smecph" id="etapa-2-detalle-pedido">
+    <h4>PEDIDO EN LOCAL</h4>
+    <div class="container-sub-smecph" id="pdpph-etapa2-info-local">
+      <h3 class="color-letras-primary">BANZER 3RE ANILLO</h3>
+      <div class="pdpph-etapa2-info-local">
+        {% render 'icon-location-on' %}
+        <p>Av. 6 de Agosto 1234, La Paz, Bolivia</p>
+      </div>
+      <div class="pdpph-etapa2-info-local">
+        {% render 'icon-headser-mic' %}
+        <p>+591 7 222 222 22</p>
+      </div>
+      <button class="ph-btn-secundario icon-color-primary">
+        <p>ABRIR UBICACION EN MAPA</p>
+        {% render 'icon-map' %}
+      </button>
+    </div>
+    <h4>METODO DE PAGO</h4>
+    <div class="pdpph-etapa2-metodo-pago" id="pdpph-etapa2-metodo-pago">
+      {% render 'icon-dolar' %}
+      <p>Efectivo contra entrega</p>
+    </div>
+    <h4>TU PEDIDO(1)</h4>
+    <div class="container-sub-smecph">
+      <div class="pdpph-etapa2-info-pedido">
+        <p>COMBO LA CONDICIONAL</p>
+        <p>Cantidad: 1</p>
+      </div>
+      <p>55.00 Bs</p>
+    </div>
+    <div class="container-sub-smecph">
+      <div class="pdpph-etapa2-info-pedido">
+        <p>ENTREGA</p>
+        <p>Envio con costo</p>
+      </div>
+      <p>10.00 Bs</p>
+    </div>
+    <div class="pdpph-detalle-precios">
+      <div class="pdpph-detalle-precios-item">
+        <p>Subtotal</p>
+        <p>55.00 Bs</p>
+      </div>
+      <div class="pdpph-detalle-precios-item">
+        <p>Entrega</p>
+        <p>10.00 Bs</p>
+      </div>
+      <div class="pdpph-detalle-precios-item">
+        <p>Descuento</p>
+        <p>0.00 Bs</p>
+      </div>
+      <hr>
+      <div class="pdpph-detalle-precios-item">
+        <p>Total</p>
+        <p>65.00 Bs</p>
+      </div>
+    </div>
+    <div class="container-sub-smecph">
+      <h4>NOTA DE ENVIO</h4>
+      <p>
+        Por favor, agregar extra queso en la pizza y asegurarse de que la masa sea pan pizza. Entregar sin tocar el
+        timbre, solo llamar al celular al llegar. Gracias.
+      </p>
+    </div>
+  </section>
 </div>

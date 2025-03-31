@@ -437,6 +437,7 @@
   justify-content: center;
   padding: var(--espaciado-xl);
   border-radius: var(--espaciado-xs);
+  gap: var(--espaciado-xs);
 }
 
 .ph-btn-primario p {
