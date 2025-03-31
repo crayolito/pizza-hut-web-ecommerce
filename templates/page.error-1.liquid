@@ -15,7 +15,9 @@
       </button>
     </div>
   </div>
-  <div class="pe1ph-background-error"></div>
+  <div class="pe1ph-background-error">
+    <img src="{{ 'fondo-error-1.png' | asset_url }}" alt="Error 1" width="100%" height="100%">
+  </div>
 </div>
 
 {% style %}
@@ -37,6 +39,7 @@
     justify-content: center;
     gap: var(--espaciado-xxl);
     text-align: center;
+    width: 100%;
   }
 
   .pe1ph-mensaje-header {
