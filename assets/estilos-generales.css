@@ -16,6 +16,7 @@
      5. METODO DE ENTREGA Y CHECKOUT
         5.1. SOLICITUD METODO DE ENTREGA
         5.2. CHECKOUT
+        5.3. CONTENEDOR ROW Y COLUMN
      6. INPUT DE BUSQUEDA
      7. MODAL 
         7.1. MODAL PARA MOBILE Y DEKTOP IGUAL
@@ -163,7 +164,7 @@
   max-width: 40.25rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: start;
   justify-content: center;
   gap: var(--espaciado-l);
   /* padding: var(--espaciado-xxl); */
@@ -259,6 +260,29 @@
 /* ===== SOLICITUD METODO DE ENTREGA===== */
 
 /* ===== SOLICITUD CHECKOUT===== */
+
+/* ===== CONTENEDOR ROW Y COLUMN===== */
+
+.container-sub-simple-smecph-column {
+  width: 100%;
+  max-width: 40.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  gap: var(--espaciado-l);
+  /* padding: var(--espaciado-xxl); */
+  background-color: var(--colorp-secondary);
+}
+
+.container-sub-simple-smecph-row {
+  width: 100%;
+  max-width: 40.25rem;
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  justify-content: center;
+}
 
 /* =================================
   7. MODAL

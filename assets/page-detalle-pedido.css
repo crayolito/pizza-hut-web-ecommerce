@@ -19,10 +19,6 @@
   display: none !important;
 }
 
-.container-main-smecph {
-  gap: var(--espaciado-xxl) !important;
-}
-
 .container-sub-simple-smecph {
   font-size: 3.3125rem;
   font-style: normal;
@@ -84,7 +80,7 @@
 .pdpph-etapa2-mensaje {
   display: flex;
   flex-direction: column;
-  gap: var(--espaciado-s);
+  gap: var(--espaciado-xws);
 }
 
 .pdpph-etapa2-mensaje > p:first-child {
@@ -132,10 +128,6 @@
 @media screen and (min-width: 768px) {
   .f-contenedor-base {
     display: flex !important;
-  }
-
-  .container-main-smecph {
-    gap: var(--espaciado-xxxl) !important;
   }
 
   .pdpph-general-pedido {
