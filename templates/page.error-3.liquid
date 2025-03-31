@@ -1,0 +1,129 @@
+<!-- Hojas de estilos css -->
+{{ 'estilos-generales.css' | asset_url | stylesheet_tag }}
+
+<div class="pe1ph-error">
+  <div class="pe1ph-mensaje-error">
+    <div class="pe1ph-mensaje-header">
+      {% render 'icon-error-amarillo' %}
+    </div>
+    <div class="pe1ph-mensaje-body">
+      <small>No pudimos completar tu pago. Revisa tu información e inténtalo nuevamente.</small>
+      <button class="ph-btn-general">
+        {% render 'icon-volver-atras' %}
+        <p>REINTENTAR</p>
+      </button>
+      <button class="ph-btn-secundario">
+        {% render 'icon-volver-atras' %}
+        <p>VOLVER AL INICIO</p>
+      </button>
+    </div>
+  </div>
+</div>
+
+{% style %}
+  .pe1ph-error {
+    width: 100%;
+    height: 40rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pe1ph-mensaje-error {
+    position: absolute;
+    top: 4%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    padding: var(--espaciado-xl);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--espaciado-xxl);
+    text-align: center;
+    width: 100%;
+  }
+
+  .pe1ph-mensaje-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--espaciado-m);
+  }
+
+  .pe1ph-mensaje-header svg {
+    width: 6.25rem;
+    height: 6.25rem;
+    aspect-ratio: 1/1;
+  }
+
+  .pe1ph-mensaje-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--espaciado-xxl);
+    width: 100%;
+  }
+
+  .pe1ph-mensaje-body small {
+    font-size: 3.3125rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 3.4375rem;
+    letter-spacing: -0.06625rem;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  .pe1ph-background-error {
+    width: 38.4375rem;
+    height: 32.25rem;
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+
+  .pe1ph-background-error img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  @media screen and (min-width: 768px) {
+    .pe1ph-mensaje-error {
+      align-items: start;
+      max-width: 29.125rem;
+      left: 1.5rem;
+      top: 15%;
+      transform: translate(0, 0);
+    }
+
+    .pe1ph-background-error {
+      width: 50.625rem;
+      height: 39.625rem;
+      top: 35%;
+      right: 0;
+      left: 61%;
+      transform: translate(0, 0);
+    }
+
+    .pe1ph-mensaje-body small {
+      text-align: start;
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    .pe1ph-mensaje-error {
+      max-width: 44rem;
+      align-items: start;
+    }
+
+    .pe1ph-background-error {
+      width: 63.625rem;
+      height: 71.625rem;
+      top: 0;
+      left: 64%;
+    }
+  }
+{% endstyle %}
