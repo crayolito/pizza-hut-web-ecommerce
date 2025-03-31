@@ -23,8 +23,9 @@
 {% style %}
   .pe1ph-error {
     width: 100%;
-    height: 72.75rem;
+    height: 56.75rem;
     position: relative;
+    overflow: hidden;
   }
 
   .pe1ph-mensaje-error {
@@ -87,5 +88,30 @@
     width: 100%;
     height: 100%;
     object-fit: contain;
+  }
+
+  @media screen and (min-width: 768px) {
+    .pe1ph-mensaje-error {
+      max-width: 38.125rem;
+    }
+
+    .pe1ph-background-error {
+      width: 50.625rem;
+      height: 42.625rem;
+      top: 5%;
+      right: 10%;
+      transform: translate(0, -50%);
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    .pe1ph-mensaje-error {
+      max-width: 44rem;
+    }
+
+    .pe1ph-background-error {
+      width: 80.625rem;
+      height: 67.625rem;
+    }
   }
 {% endstyle %}
