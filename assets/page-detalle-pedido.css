@@ -142,6 +142,7 @@
 }
 
 .pdpph-detalle-precios {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -149,6 +150,13 @@
   gap: var(--espaciado-m);
   padding: var(--espaciado-m);
   background-color: #f5f5f5;
+}
+
+.pdpph-detalle-precios-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .pdpph-detalle-precios > .pdpph-detalle-precios-item:last-child p {
