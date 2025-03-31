@@ -33,6 +33,10 @@
   text-align: center;
 }
 
+.container-sub-smecph {
+  flex-direction: row !important;
+}
+
 /* =================================
   1. ETAPA 1
 ================================= */
@@ -85,15 +89,19 @@
 
 .pdpph-etapa2-mensaje > p:first-child {
   font-weight: 700;
+  text-align: start;
 }
 
 .pdpph-etapa2-mensaje2 {
   display: flex;
+  align-items: start;
+  justify-content: center;
   gap: var(--espaciado-m);
 }
 
-.pdpph-etapa2-mensaje2 > p:last-child {
+.pdpph-etapa2-mensaje2 > p:first-child {
   font-weight: 700;
+  white-space: nowrap;
 }
 
 /* =================================
