@@ -110,6 +110,14 @@
   white-space: nowrap;
 }
 
+.pdpph-etapa2-info-local {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: var(--espaciado-m);
+  width: 100%;
+}
+
 /* =================================
   3. ETAPA GENERAL
 ================================= */
