@@ -268,8 +268,8 @@
   max-width: 40.25rem;
   display: flex;
   flex-direction: column;
-  align-items: start;
-  justify-content: center;
+  align-items: center;
+  justify-content: start;
   gap: var(--espaciado-l);
   /* padding: var(--espaciado-xxl); */
   gap: var(--espaciado-l);
@@ -284,8 +284,8 @@
   max-width: 40.25rem;
   display: flex;
   flex-direction: row;
-  align-items: start;
-  justify-content: center;
+  align-items: center;
+  justify-content: start;
   gap: var(--espaciado-l);
   /* padding: var(--espaciado-xxl); */
   gap: var(--espaciado-l);
