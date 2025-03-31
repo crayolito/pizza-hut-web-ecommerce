@@ -81,6 +81,7 @@
   width: 100%;
   height: 43.11rem;
   background-color: var(--colorp-primary);
+  margin-bottom: 8rem;
 }
 
 /* =================================
@@ -90,6 +91,10 @@
 @media screen and (min-width: 768px) {
   .f-contenedor-base {
     display: flex !important;
+  }
+
+  .pdpph-general-pedido {
+    margin-bottom: 0;
   }
 }
 
