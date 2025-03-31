@@ -77,6 +77,25 @@
   2. ETAPA 2
 ================================= */
 
+.pdpph-etapa2-mensaje {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaciado-s);
+}
+
+.pdpph-etapa2-mensaje > p:first-child {
+  font-weight: 700;
+}
+
+.pdpph-etapa2-mensaje2 {
+  display: flex;
+  gap: var(--espaciado-m);
+}
+
+.pdpph-etapa2-mensaje2 > p:last-child {
+  font-weight: 5700;
+}
+
 /* =================================
   3. ETAPA GENERAL
 ================================= */
