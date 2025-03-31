@@ -19,6 +19,10 @@
   display: none !important;
 }
 
+.container-main-smecph {
+  gap: var(--espaciado-xxl);
+}
+
 .container-sub-simple-smecph {
   font-size: 3.3125rem;
   font-style: normal;
@@ -91,6 +95,10 @@
 @media screen and (min-width: 768px) {
   .f-contenedor-base {
     display: flex !important;
+  }
+
+  .container-main-smecph {
+    gap: var(--espaciado-xxxl);
   }
 
   .pdpph-general-pedido {
