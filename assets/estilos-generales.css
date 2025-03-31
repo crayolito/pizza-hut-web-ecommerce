@@ -286,6 +286,13 @@
   flex-direction: row;
   align-items: start;
   justify-content: center;
+  gap: var(--espaciado-l);
+  /* padding: var(--espaciado-xxl); */
+  gap: var(--espaciado-l);
+  padding: var(--espaciado-xxl);
+  border-radius: var(--espaciado-s);
+  background-color: var(--colorp-secondary);
+  border: 1px solid #969696;
 }
 
 /* =================================
