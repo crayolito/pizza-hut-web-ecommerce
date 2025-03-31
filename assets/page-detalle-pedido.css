@@ -172,6 +172,10 @@
   margin-bottom: 5rem;
 }
 
+.pdpph-extra-general {
+  margin-bottom: 8rem;
+}
+
 /* =================================
   3. ETAPA GENERAL
 ================================= */
@@ -195,6 +199,14 @@
   .pdpph-general-pedido {
     margin-bottom: 0;
     height: 56.98rem;
+  }
+
+  .pdpph-extra-general {
+    margin-bottom: 0;
+  }
+
+  .pdpph-extra-mobile {
+    margin-bottom: 0;
   }
 }
 
