@@ -21,7 +21,12 @@
         7.1. MODAL PARA MOBILE Y DEKTOP IGUAL
         7.2. MODAL PARA MOBILE Y DEKTOP RESPONSIVO
         7.3. MODAL CONTENIDO (SNIPPER)
-     6. MEDIA QUERIES
+     8. FOOTER PARA MOBILE 
+     9. BOTONES ESTILOS
+        9.1. BOTON GENERAL
+        9.2. BOTON PRIMARIO
+        9.3. BOTON SECUNDARIO
+     10. MEDIA QUERIES
      ========================================================================== */
 
 /* =================================
@@ -141,19 +146,31 @@
 
 .container-sub-smecph {
   width: 100%;
+  max-width: 40.25rem;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
+  gap: var(--espaciado-l);
+  padding: var(--espaciado-xxl);
   border-radius: var(--espaciado-s);
   background-color: var(--colorp-secondary);
   border: 1px solid #969696;
-  padding: var(--espaciado-xxl);
+}
+
+.container-sub-simple-smecph {
+  width: 100%;
+  max-width: 40.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   gap: var(--espaciado-l);
+  padding: var(--espaciado-xxl);
+  background-color: var(--colorp-secondary);
 }
 
 .smecph-opciones-metodos {
-  /* asda */
   width: 100%;
   max-width: 40.25rem;
   display: flex;
@@ -355,6 +372,85 @@
   100% {
     transform: rotate(360deg);
   }
+}
+
+/* =================================
+  8. FOOTER PARA MOBILE
+================================= */
+
+.ph-opciones-mobile-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  max-width: 40.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--espaciado-l);
+  height: max-content;
+  padding: var(--espaciado-xl);
+  background-color: var(--colorp-secondary);
+  border-top: 1px solid #dedede;
+}
+
+/* =================================
+  9. BOTONES ESTILOS
+================================= */
+
+/* ===== BOTON GENERAL ===== */
+
+.ph-btn-general {
+  width: 100%;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--espaciado-xl);
+  border-radius: var(--espaciado-xs);
+  background-color: var(--colorp-primary);
+}
+
+.ph-btn-general p {
+  color: var(--colorp-secondary);
+  font-weight: 600;
+}
+
+/* ===== BOTON PRIMARIO ===== */
+
+.ph-btn-primario {
+  width: 100%;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--espaciado-xl);
+  border-radius: var(--espaciado-xs);
+}
+
+.ph-btn-primario p {
+  color: var(--colorp-primary);
+  font-weight: 600;
+}
+
+/* ===== BOTON SECUNDARIO ===== */
+
+.ph-btn-secundario {
+  width: 100%;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--espaciado-xl);
+  border-radius: var(--espaciado-xs);
+  background-color: var(--colorp-secondary);
+  border: 1px solid var(--colorp-primary);
+}
+
+.ph-btn-secundario p {
+  color: var(--colorp-primary);
+  font-weight: 600;
 }
 
 /* ==========================================================================
@@ -682,6 +778,13 @@
      ========================================================================== */
 
 @media screen and (min-width: 768px) {
+  .ph-opciones-mobile-footer {
+    position: relative;
+    background-color: transparent;
+    border-top: 0;
+    padding: 0;
+  }
+
   .container-main-smecph {
     gap: var(--espaciado-xxl);
   }

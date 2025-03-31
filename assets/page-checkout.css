@@ -657,22 +657,6 @@
   color: var(--colorp-secondary);
 }
 
-.ph-opciones-mobile-footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  max-width: 40.25rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--espaciado-l);
-  height: max-content;
-  padding: var(--espaciado-xl);
-  background-color: var(--colorp-secondary);
-  border-top: 1px solid #dedede;
-}
-
 /* =================================
   9. MODAL
 ================================= */
@@ -851,13 +835,6 @@
 @media (min-width: 768px) {
   .ph-modal-main-mensajes {
     width: max-content;
-  }
-
-  .ph-opciones-mobile-footer {
-    position: relative;
-    background-color: transparent;
-    border-top: 0;
-    padding: 0;
   }
 
   #pcktph-hutcoins {

@@ -1,0 +1,36 @@
+<!-- Hoja de estiloss css -->
+{{ 'estilos-generales.css' | asset_url | stylesheet_tag }}
+{{ 'page-detalle-pedido.css' | asset_url | stylesheet_tag }}
+
+<div class="container-main-smecph">
+  <section class="container-sub-simple-smecph" id="etapa-1-detalle-pedido">
+    <div class="pdpph-imagen-etapa1">
+      <img src="{{ 'imagen-check-verde.png' | asset_url }}" alt="Icono de exito" width="100%" height="100%">
+    </div>
+    <small>¡pedido confirmado! en breve estarás disfrutando</small>
+    <div class="pdpph-mensaje-etapa1">
+      <div class="pdpph-mensaje-etapa1-icono icon-color-secondary">
+        {% render 'icon-recogo-local' %}
+      </div>
+      <h1 class="color-letras-primary">EN LOCAL</h1>
+    </div>
+    <div class="pdpph-info-etapa1 color-letras-extra">
+      <h3>Nº de pedido 235246</h3>
+      <h3>ESTARA LISTO A las 13:30</h3>
+      <h3>fecha 23 de feb. 2025</h3>
+    </div>
+    <hr>
+  </section>
+  {% comment %} <section class="container-sub-simple-smecph" id="etapa-2-detalle-pedido"></section> {% endcomment %}
+  <section class="container-sub-simple-smecph" id="detalle-general-pedido"></section>
+  <section class="ph-opciones-mobile-footer" id="etapa-1-detalle-pedido">
+    <button class="ph-btn-primario">
+      <p>VER MAS DETALLES</p>
+    </button>
+    <button class="ph-btn-secundario icon-color-primary">
+      {% render 'icon-volver-atras' %}
+      <p>VOLVER AL INICIO</p>
+    </button>
+  </section>
+  {% comment %} <section class="container-sub-simple-smecph" id="etapa-2-detalle-pedido"></section> {% endcomment %}
+</div>
