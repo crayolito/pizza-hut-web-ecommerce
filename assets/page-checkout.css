@@ -765,80 +765,12 @@
 
 /* ===== MODAL CONTENIDO (DIRECCION DE ENVIO) ===== */
 
-/* ===== MODAL CONTENIDO (SNIPPER) ===== */
-
-.ph-modal-main-snipper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: var(--espaciado-l);
-  position: absolute;
-  transform: translate(-50%, -50%);
-  top: 50%;
-  left: 50%;
-  display: none;
-}
-
-.ph-modal-main-snipper p {
-  font-weight: 600;
-  color: var(--colorp-secondary);
-}
-
-.pcktpch-modal-body-snipper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: visible;
-}
-
-.snipper-container {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 9.4375rem;
-  height: 9.375rem;
-}
-
-.snipper-background {
-  position: absolute;
-  width: 9.4375rem;
-  height: 9.375rem;
-  animation: rotate 1.5s linear infinite;
-  overflow: visible;
-}
-
-.snipper-logo {
-  position: absolute;
-  width: 6.625rem;
-  height: 6.125rem;
-  z-index: 1;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  overflow: visible;
-}
-
-.snipper-background img,
-.snipper-logo img {
-  display: block;
-  object-fit: contain;
-}
-
-@keyframes rotate {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
 /* ===== MODAL CONTENIDO (MENSAJES) ===== */
+
 .ph-modal-main-mensajes {
-  width: max-content;
-  width: 27rem;
+  /* width: max-content; */
+  /* width: 27rem; */
+  width: 25.5rem;
   min-width: 23.75rem;
   height: max-content;
   display: flex;
