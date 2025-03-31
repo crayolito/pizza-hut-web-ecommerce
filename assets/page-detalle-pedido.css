@@ -99,6 +99,7 @@
 
 .pdpph-etapa2-mensaje2 > p:last-child {
   text-align: start;
+  /* font-weight: 400; */
 }
 
 .pdpph-etapa2-mensaje2 {
@@ -121,7 +122,7 @@
   width: 100%;
   height: 43.11rem;
   background-color: var(--colorp-primary);
-  margin-bottom: 8rem;
+  /* margin-bottom: 8rem; */
 }
 
 /* =================================
