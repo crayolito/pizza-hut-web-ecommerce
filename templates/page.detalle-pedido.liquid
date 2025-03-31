@@ -38,15 +38,6 @@
   <section class="container-sub-simple-smecph pdpph-general" id="detalle-general-pedido">
     <div class="pdpph-general-pedido"></div>
   </section>
-  <section style="display: none;" class="ph-opciones-mobile-footer" id="etapa-1-detalle-pedido">
-    <button class="ph-btn-secundario">
-      <p>VER MAS DETALLES</p>
-    </button>
-    <button class="ph-btn-primario icon-color-primary">
-      {% render 'icon-volver-atras' %}
-      <p>VOLVER AL INICIO</p>
-    </button>
-  </section>
   <section class="container-sub-simple-smecph" id="etapa-2-detalle-pedido">
     <h4>PEDIDO EN LOCAL</h4>
     <div class="container-sub-smecph" id="pdpph-etapa2-info-local">
@@ -110,5 +101,16 @@
         timbre, solo llamar al celular al llegar. Gracias.
       </p>
     </div>
+  </section>
+  <section style="display: none;" class="ph-opciones-mobile-footer" id="etapa-1-detalle-pedido">
+    {% comment %}
+      <button class="ph-btn-secundario">
+        <p>VER MAS DETALLES</p>
+      </button>
+    {% endcomment %}
+    <button class="ph-btn-primario icon-color-primary">
+      {% render 'icon-volver-atras' %}
+      <p>VOLVER AL INICIO</p>
+    </button>
   </section>
 </div>
