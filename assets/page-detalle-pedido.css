@@ -118,6 +118,29 @@
   width: 100%;
 }
 
+.pdpph-etapa2-metodo-pago {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: var(--espaciado-m);
+  width: 100%;
+  background-color: #f5f5f5;
+  border-radius: var(--espaciado-s);
+  padding: var(--espaciado-xxl);
+}
+
+.pdpph-etapa2-info-pedido {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  gap: var(--espaciado-xs);
+}
+
+.pdpph-etapa2-info-pedido > p:first-child {
+  font-weight: 700;
+}
+
 /* =================================
   3. ETAPA GENERAL
 ================================= */
