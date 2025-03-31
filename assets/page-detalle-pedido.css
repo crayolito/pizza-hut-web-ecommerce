@@ -141,6 +141,20 @@
   font-weight: 700;
 }
 
+.pdpph-detalle-precios {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: space-between;
+  gap: var(--espaciado-m);
+  padding: var(--espaciado-m);
+  background-color: #f5f5f5;
+}
+
+.pdpph-detalle-precios > .pdpph-detalle-precios-item:last-child p {
+  font-weight: 700;
+}
+
 /* =================================
   3. ETAPA GENERAL
 ================================= */
