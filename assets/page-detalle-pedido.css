@@ -215,6 +215,6 @@
     width: 100%;
     height: 73.06rem;
     background-color: var(--colorp-primary);
-    margin-bottom: 8rem;
+    /* margin-bottom: 8rem; */
   }
 }
