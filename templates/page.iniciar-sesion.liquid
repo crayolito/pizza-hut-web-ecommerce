@@ -4,35 +4,39 @@
 {{ 'page-checkout.css' | asset_url | stylesheet_tag }}
 
 <div class="container-main-smecph container-base">
-  <small>INICIAR SESION</small>
-  <div class="ph-mcci-input">
-    <p>Numero de celular</p>
-    <div class="ph-container-input">
-      <input type="email" placeholder="Numero de celular">
+  <div class="container-sub-simple-smecph">
+    <small>INICIAR SESION</small>
+    <div class="ph-mcci-input">
+      <p>Numero de celular</p>
+      <div class="ph-container-input">
+        <input type="email" placeholder="Numero de celular">
+      </div>
     </div>
-  </div>
-  <p class="color-letras-extra">Al iniciar sesión, aceptas nuestras Políticas de privacidad y Términos y condiciones</p>
-  <button class="ph-btn-desactivado">
-    <p>Iniciar sesión con teléfono</p>
-  </button>
-  <button class="ph-btn-secundario">
-    {% render 'icon-google' %}
-    <p>Botón Secundario</p>
-  </button>
-  <button class="ph-btn-secundario">
-    {% render 'icon-facebook-custom' %}
-    <p>Botón Secundario</p>
-  </button>
-  <div class="pccph-modal-separador">
-    <div class="pccph-modal-separador-linea"></div>
-    <p>¿No puedes iniciar sesión?</p>
-    <div class="pccph-modal-separador-linea"></div>
-  </div>
-  <section class="ph-opciones-mobile-footer">
-    <button class="ph-btn-primario">
-      <p>CREAR CUENTA</p>
+    <p class="color-letras-extra">
+      Al iniciar sesión, aceptas nuestras Políticas de privacidad y Términos y condiciones
+    </p>
+    <button class="ph-btn-desactivado">
+      <p>Iniciar sesión con teléfono</p>
     </button>
-  </section>
+    <button class="ph-btn-secundario">
+      {% render 'icon-google' %}
+      <p>Botón Secundario</p>
+    </button>
+    <button class="ph-btn-secundario">
+      {% render 'icon-facebook-custom' %}
+      <p>Botón Secundario</p>
+    </button>
+    <div class="pccph-modal-separador">
+      <div class="pccph-modal-separador-linea"></div>
+      <p>¿No puedes iniciar sesión?</p>
+      <div class="pccph-modal-separador-linea"></div>
+    </div>
+    <section class="ph-opciones-mobile-footer">
+      <button class="ph-btn-primario">
+        <p>CREAR CUENTA</p>
+      </button>
+    </section>
+  </div>
 
   <section class="ph-background-container-modal">
     <!-- 1re MODAL : NUEVA DIRECCION -->

@@ -834,7 +834,8 @@
 ================================= */
 @media (min-width: 768px) {
   .ph-modal-main-mensajes {
-    width: max-content;
+    /* width: max-content; */
+    width: min-content;
   }
 
   #pcktph-hutcoins {
