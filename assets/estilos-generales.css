@@ -345,13 +345,13 @@
   color: var(--colorp-primary);
 }
 
-.ph-mcci-input.error .smecph-pc-mensaje-input p {
+.ph-mcci-input.error .ph-mcci-mensaje-input p {
   color: var(--colorp-primary);
   font-weight: 600;
 }
 
-.ph-mcci-input.error .smecph-pc-mensaje-input svg,
-.ph-mcci-input.error .smecph-pc-mensaje-input svg path {
+.ph-mcci-input.error .ph-mcci-mensaje-input svg,
+.ph-mcci-input.error .ph-mcci-mensaje-input svg path {
   filter: invert(15%) sepia(95%) saturate(6932%) hue-rotate(343deg)
     brightness(91%) contrast(97%);
   fill: var(--colorp-primary);
