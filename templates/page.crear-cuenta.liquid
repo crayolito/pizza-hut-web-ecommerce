@@ -1,6 +1,7 @@
 <!-- Hojas de estilos css -->
 {{ 'estilos-generales.css' | asset_url | stylesheet_tag }}
 {{ 'page-crear-cuenta.css' | asset_url | stylesheet_tag }}
+{{ 'page-checkout.css' | asset_url | stylesheet_tag }}
 
 <div class="container-main-smecph container-base">
   <small>CREAR CUENTA</small>
@@ -74,7 +75,7 @@
       <img src="{{ 'banner-hutcoints-carrito.png' | asset_url }}" alt="Hutcoins Banner" width="100%" height="100%">
     </div>
     <div class="smecph-pc-hutcoins-mensaje">
-      <div class="ph-container-icono">
+      <div class="ph-mcci-mensaje-input">
         {% render 'icon-checkbox-off' %}
       </div>
       <p>Usar mi información para registrarme a Hut Coins y ganar puntos por esta compra.</p>
@@ -88,7 +89,7 @@
   </section>
   <section class="container-sub-smecph" id="pccph-termino-condiciones">
     <div class="smecph-pc-hutcoins-mensaje pccph-extra-ultimo">
-      <div class="ph-container-icono">
+      <div class="ph-mcci-mensaje-input">
         {% render 'icon-checkbox-off' %}
       </div>
       <p>Usar mi información para registrarme a Hut Coins y ganar puntos por esta compra.</p>
