@@ -1,3 +1,204 @@
 <!-- Hojas de estilos css -->
-{{ 'page-crear-cuenta.css' | asset_url | stylesheet_tag }}
+{{ 'page-iniciar-sesion.css' | asset_url | stylesheet_tag }}
 {{ 'estilos-generales.css' | asset_url | stylesheet_tag }}
+{{ 'page-checkout.css' | asset_url | stylesheet_tag }}
+
+<div class="container-main-smecph container-base">
+  <small>INICIAR SESION</small>
+  <div class="ph-mcci-input">
+    <p>Numero de celular</p>
+    <div class="ph-container-input">
+      <input type="email" placeholder="Numero de celular">
+    </div>
+  </div>
+  <p class="color-letras-extra">Al iniciar sesión, aceptas nuestras Políticas de privacidad y Términos y condiciones</p>
+  <button class="ph-btn-desactivado">
+    <p>Iniciar sesión con teléfono</p>
+  </button>
+  <button class="ph-btn-secundario">
+    {% render 'icon-google' %}
+    <p>Botón Secundario</p>
+  </button>
+  <button class="ph-btn-secundario">
+    {% render 'icon-facebook-custom' %}
+    <p>Botón Secundario</p>
+  </button>
+  <div class="pccph-modal-separador">
+    <div class="pccph-modal-separador-linea"></div>
+    <p>¿No puedes iniciar sesión?</p>
+    <div class="pccph-modal-separador-linea"></div>
+  </div>
+  <section class="ph-opciones-mobile-footer">
+    <button class="ph-btn-primario">
+      <p>CREAR CUENTA</p>
+    </button>
+  </section>
+
+  <section class="ph-background-container-modal">
+    <!-- 1re MODAL : NUEVA DIRECCION -->
+    <div class="ph-mmdi-modal-main" style="display: none;">
+      <div class="pcktpch-modal-header">
+        <div class="pcktpch-modal-header-opciones">
+          <button class="pcktpch-modal-volver-atras icon-color-tertiary">
+            {% render 'icon-volver-atras' %}
+          </button>
+          <h4>NUEVA DIRECCIÓN</h4>
+        </div>
+        <button class="pcktpch-modal-btn-cerrar">
+          {% render 'icon-close-custom' %}
+        </button>
+      </div>
+      <div class="pcktpch-modal-body-fase1">
+        <p>Ingresa tu dirección o usa tu ubicación actual.</p>
+        <button class="pcktpch-btn-secundario">
+          {% render 'icon-gps-rojo' %}
+          <p>USAR MI UBICACIÓN ACTUAL</p>
+        </button>
+        <div class="pcktpch-modal-separador">
+          <div class="pcktpch-modal-separador-linea"></div>
+          <p>O</p>
+          <div class="pcktpch-modal-separador-linea"></div>
+        </div>
+        <div class="ph-container-input icon-color-tertiary">
+          {% render 'icon-location-on' %}
+          <input type="text" placeholder="Ingresar dirección o punto de referencia">
+        </div>
+      </div>
+      <div class="pcktpch-modal-body-fase2">
+        <div class="smecph-mensaje-informacion">
+          {% render 'icon-info' %}
+          <p>Si es necesario, cambia la ubicación del pin en el mapa.</p>
+        </div>
+        <div class="pcktpch-modal-mapa"></div>
+      </div>
+      <div class="pcktpch-modal-body-fase3">
+        <div class="smecph-pc-info-input">
+          <p>Indicaciones acerca de tu dirección</p>
+          <div class="ph-container-input">
+            <input type="text" placeholder="Ingresar indicaciones para tu dirección">
+          </div>
+        </div>
+        <div class="smecph-pc-info-input">
+          <p>Alias</p>
+          <div class="ph-container-input icon-color-tertiary">
+            {% render 'icon-location-on' %}
+            <input type="text" placeholder="Ingresar o seleccionar">
+          </div>
+        </div>
+      </div>
+      <div class="pcktpch-modal-footer">
+        <button class="pcktpch-btn-general">
+          <p>GUARDAR DIRECCIÓN</p>
+        </button>
+        <button class="pcktpch-btn-secundario">
+          <p>CANCELAR</p>
+        </button>
+      </div>
+    </div>
+    <!-- 2do MODAL : SNIPPER DE CARGANDO -->
+    <div class="ph-modal-main-snipper" style="display: none;">
+      <div class="ph-modal-body-snipper">
+        <div class="snipper-container">
+          <div class="snipper-background">
+            <img
+              src="{{ 'fondoSnipper.png' | asset_url }}"
+              alt="Fondo de Snipper"
+              width="100%"
+              height="100%"
+            >
+          </div>
+          <div class="snipper-logo">
+            <img
+              src="{{ 'logoSnipper.png' | asset_url }}"
+              alt="Logo de Snipper"
+              width="100%"
+              height="100%"
+            >
+          </div>
+        </div>
+      </div>
+      <p>Procesando informacion ...</p>
+    </div>
+    <!-- 3re MODAL : MENSAJES DE RESPUESTA -->
+    <div class="ph-modal-main-mensajes">
+      <!-- 3er MODAL : EXITO -->
+      <div class="ph-modal-body-exito" style="display: none;">
+        <img src="{{ 'imagen-check-verde.png' | asset_url }}" alt="Icono de exito" width="100%" height="100%">
+        <small>Tu cuenta está activa. ¡ya puedes pedir tu pizza favorita!</small>
+        <button class="ph-btn-general icon-color-primary">
+          {% render 'icon-cerrar-sesion' %}
+          <p>INICIAR SESION</p>
+        </button>
+      </div>
+      <!-- 4to MODAL : QR -->
+      <div class="ph-modal-body-qr" style="display: none;">
+        <h1>PAGO POR QR</h1>
+        <div class="ph-modal-qr-detalles">
+          <h4>ESCANEA EL CÓDIGO QR</h4>
+          <p>1. Abre la aplicación de tu banco.</p>
+          <p>2. Selecciona la forma de pago QR Simple.</p>
+          <p>3. Captura el Código QR con la cámara o descarga la imagen.</p>
+          <p>4. Mantén esta página abierta para que puedas ver la confirmación de tu pago.</p>
+        </div>
+        <div class="smecph-mensaje-informacion">
+          {% render 'icon-info' %}
+          <p>Aguardando tu pago...</p>
+        </div>
+        <div class="ph-modal-imgen-qr">
+          <img src="{{ 'qr-prueba.png' | asset_url }}" alt="QR" width="100%" height="100%">
+        </div>
+        <button class="pcktpch-btn-secundario">
+          {% render 'icon-descargar' %}
+          <p>DESCARGAR QR</p>
+        </button>
+      </div>
+      <!-- 5to MODAL : VERIFICAR TU NUMERO -->
+      <div class="ph-modal-body-qr">
+        <h1>VERIFICA TU NUMERO</h1>
+        <p>
+          Enviamos un código de verificación de 4 dígitos al número 77845572, que expira en 5 minutos. Copia ese código
+          y pégalo a continuación:
+        </p>
+        <div class="pccph-container-inputs">
+          <input class="pcch-item-input" type="number">
+          <input class="pcch-item-input" type="number">
+          <input class="pcch-item-input" type="number">
+          <input class="pcch-item-input" type="number">
+        </div>
+        <button class="ph-btn-secundario">
+          <p>Reenviar código</p>
+        </button>
+        <div class="pccph-modal-separador">
+          <div class="pccph-modal-separador-linea"></div>
+          <p>¿No puedes iniciar sesión?</p>
+          <div class="pccph-modal-separador-linea"></div>
+        </div>
+        <button class="ph-btn-primario">
+          <p>CREAR CUENTA</p>
+        </button>
+      </div>
+    </div>
+  </section>
+</div>
+
+{% style %}
+  .pccph-container-inputs {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 0.25rem;
+  }
+
+  .pcch-item-input {
+    flex-basis: 20%;
+    height: 5.88rem;
+    border-radius: var(--espaciado-s);
+    padding: 0.62rem 1.25rem;
+    font-size: 4.375rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%;
+    letter-spacing: -0.0875rem;
+    text-transform: uppercase;
+  }
+{% endstyle %}
