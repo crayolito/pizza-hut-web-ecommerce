@@ -13,7 +13,7 @@
      4. BOTONES DE PRODUCTOS
         4.1. BOTON DE PERSONALIZAR
         4.2. BOTON DE AGREGAR AL CARRITO
-     5. METODO DE ENTREGA Y CHECKOUT
+     5. (BASE) => METODO DE ENTREGA - CHECKOUT - CREAR CUENTA - INICIO SESION 
         5.1. SOLICITUD METODO DE ENTREGA
         5.2. CHECKOUT
         5.3. CONTENEDOR ROW Y COLUMN
@@ -134,7 +134,7 @@
 }
 
 /* =================================
-  5. SOLICITUD METODO DE ENTREGA Y CHECKOUT
+  5.  (BASE) => METODO DE ENTREGA - CHECKOUT - CREAR CUENTA - INICIO SESION
 ================================= */
 
 .container-main-smecph {
@@ -447,6 +447,24 @@
 /* =================================
   9. BOTONES ESTILOS
 ================================= */
+
+/* ===== BOTON DESACTIVADO ===== */
+
+.ph-btn-desactivado {
+  width: 100%;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--espaciado-xl);
+  border-radius: var(--espaciado-xs);
+  background-color: var(--colorp-desactivado);
+}
+
+.ph-btn-general p {
+  color: var(--colorp-secondary);
+  font-weight: 600;
+}
 
 /* ===== BOTON GENERAL ===== */
 

@@ -1,0 +1,12 @@
+.pccph-extra-ultimo {
+  margin-bottom: 5rem;
+}
+
+@media screen and (min-width: 768px) {
+  .pccph-extra-ultimo {
+    margin-bottom: 0;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+}

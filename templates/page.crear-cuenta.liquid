@@ -1,0 +1,102 @@
+<!-- Hojas de estilos css -->
+{{ 'page-crear-cuenta.css' | asset_url | stylesheet_tag }}
+{{ 'estilos-generales.css' | asset_url | stylesheet_tag }}
+
+<div class="container-main-smecph container-base">
+  <small>CREAR CUENTA</small>
+  <section class="container-sub-smecph" id="pccph-frm-datos-contacto">
+    <div class="smecph-pc-header-especial">
+      <h4>Datos de contacto</h4>
+      <p>Ingrese tus datos para disfrutar tu pizza favorita.</p>
+    </div>
+    <div class="smecph-formulario-datos-contacto">
+      <div class="smecph-pc-info-input">
+        <p>Nombres</p>
+        <div class="ph-container-input">
+          <input type="text" placeholder="Nombres">
+        </div>
+      </div>
+      <div class="smecph-pc-info-input">
+        <p>Apellidos</p>
+        <div class="ph-container-input">
+          <input type="text" placeholder="Apellidos">
+        </div>
+      </div>
+      <div class="smecph-pc-info-input">
+        <p>Correo Electrónico</p>
+        <div class="ph-container-input">
+          <input type="email" placeholder="Correo Electrónico">
+        </div>
+      </div>
+      <div class="smecph-pc-info-input">
+        <p>Celular</p>
+        <div class="ph-container-input">
+          <input type="number" placeholder="Teléfono">
+        </div>
+        <div class="smecph-pc-mensaje-input">
+          {% render 'icon-info' %}
+          <p>Nos contactaremos a este número para entregar tu pedido.</p>
+        </div>
+      </div>
+      <div class="smecph-pc-info-input error">
+        <p>Número de Carnet de identidad (C.I.)</p>
+        <div class="ph-container-input">
+          <input type="number" placeholder="Carnet de identidad">
+        </div>
+        <div class="smecph-pc-mensaje-input">
+          {% render 'icon-info' %}
+          <p>Este campo es obligatorio.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="container-sub-smecph" id="pccph-frm-direccion">
+    <div class="smecph-pc-header-especial">
+      <h4>Dirección</h4>
+      <p>Ingresa una dirección o usa tu ubicación actual.</p>
+    </div>
+    <button class="pcktpch-btn-secundario">
+      {% render 'icon-gps-rojo' %}
+      <p>USAR MI UBICACIÓN ACTUAL</p>
+    </button>
+    <div class="pcktpch-modal-separador">
+      <div class="pcktpch-modal-separador-linea"></div>
+      <p>O</p>
+      <div class="pcktpch-modal-separador-linea"></div>
+    </div>
+    <div class="ph-container-input icon-color-tertiary">
+      {% render 'icon-location-on' %}
+      <input type="text" placeholder="Ingresar dirección o punto de referencia">
+    </div>
+  </section>
+  <section class="container-sub-smecph" id="pcktph-hutcoins">
+    <div class="smecph-pc-hutcoins-banner">
+      <img src="{{ 'banner-hutcoints-carrito.png' | asset_url }}" alt="Hutcoins Banner" width="100%" height="100%">
+    </div>
+    <div class="smecph-pc-hutcoins-mensaje">
+      <div class="ph-container-icono">
+        {% render 'icon-checkbox-off' %}
+      </div>
+      <p>Usar mi información para registrarme a Hut Coins y ganar puntos por esta compra.</p>
+    </div>
+    <div class="smecph-pc-info-input">
+      <p>Fecha de nacimiento</p>
+      <div class="ph-container-input">
+        <input type="date" placeholder="Fecha de nacimiento">
+      </div>
+    </div>
+  </section>
+  <section class="container-sub-smecph" id="pccph-termino-condiciones">
+    <div class="smecph-pc-hutcoins-mensaje">
+      <div class="ph-container-icono">
+        {% render 'icon-checkbox-off' %}
+      </div>
+      <p>Usar mi información para registrarme a Hut Coins y ganar puntos por esta compra.</p>
+    </div>
+  </section>
+  <section class="ph-opciones-mobile-footer">
+    <button class="pcktph-btn-desactivado">
+      <p>Continuar</p>
+    </button>
+  </section>
+</div>
