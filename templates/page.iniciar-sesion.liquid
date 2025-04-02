@@ -164,10 +164,46 @@
           y pégalo a continuación:
         </p>
         <div class="pccph-container-inputs">
-          <input class="pcch-item-input" type="number">
-          <input class="pcch-item-input" type="number">
-          <input class="pcch-item-input" type="number">
-          <input class="pcch-item-input" type="number">
+          <input
+            class="pcch-item-input"
+            type="number"
+            id="single-digit"
+            class="single-digit-input"
+            min="0"
+            max="9"
+            maxlength="1"
+            onInput="if(this.value.length > 1) this.value = this.value.slice(0,1);"
+          >
+          <input
+            class="pcch-item-input"
+            type="number"
+            id="single-digit"
+            class="single-digit-input"
+            min="0"
+            max="9"
+            maxlength="1"
+            onInput="if(this.value.length > 1) this.value = this.value.slice(0,1);"
+          >
+          <input
+            class="pcch-item-input"
+            type="number"
+            id="single-digit"
+            class="single-digit-input"
+            min="0"
+            max="9"
+            maxlength="1"
+            onInput="if(this.value.length > 1) this.value = this.value.slice(0,1);"
+          >
+          <input
+            class="pcch-item-input"
+            type="number"
+            id="single-digit"
+            class="single-digit-input"
+            min="0"
+            max="9"
+            maxlength="1"
+            onInput="if(this.value.length > 1) this.value = this.value.slice(0,1);"
+          >
         </div>
         <button class="ph-btn-secundario">
           <p>Reenviar código</p>
