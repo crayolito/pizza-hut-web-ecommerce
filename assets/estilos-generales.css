@@ -13,10 +13,12 @@
      4. BOTONES DE PRODUCTOS
         4.1. BOTON DE PERSONALIZAR
         4.2. BOTON DE AGREGAR AL CARRITO
-     5. (BASE) => METODO DE ENTREGA - CHECKOUT - CREAR CUENTA - INICIO SESION 
+     5. (BASE) => METODO DE ENTREGA - CHECKOUT - CREAR CUENTA - INICIO SESION
         5.1. SOLICITUD METODO DE ENTREGA
         5.2. CHECKOUT
-        5.3. CONTENEDOR ROW Y COLUMN
+        5.3. CONTENEDOR ROW Y COLUMN 
+        5.4. INPUTS
+        5.5  HEADER DE SECCIONES
      6. INPUT DE BUSQUEDA
      7. MODAL 
         7.1. MODAL PARA MOBILE Y DEKTOP IGUAL
@@ -149,6 +151,15 @@
   position: relative;
 }
 
+.container-main-smecph small {
+  font-size: 3.3125rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 3.4375rem;
+  letter-spacing: -0.06625rem;
+  text-transform: uppercase;
+}
+
 .container-sub-smecph {
   width: 100%;
   max-width: 40.25rem;
@@ -265,7 +276,7 @@
 
 /* ===== SOLICITUD CHECKOUT===== */
 
-/* ===== CONTENEDOR ROW Y COLUMN===== */
+/* ===== CONTENEDOR ROW Y COLUMN ===== */
 
 .container-sub-simple-smecph-column {
   width: 100%;
@@ -297,6 +308,89 @@
   border-radius: var(--espaciado-s);
   background-color: var(--colorp-secondary);
   border: 1px solid #969696;
+}
+
+/* ===== INPUTS ===== */
+
+.ph-container-input {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--espaciado-xs);
+  padding: var(--espaciado-m) var(--espaciado-xl);
+  border-radius: var(--espaciado-xs);
+  background-color: var(--colorp-secondary);
+  border: 1px solid var(--colorb-primary);
+}
+
+.ph-mcci-input {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: var(--espaciado-xs);
+}
+
+.ph-mcci-input > p:first-of-type {
+  font-weight: 600;
+}
+
+.ph-mcci-input.error .ph-container-input {
+  border: 1.5px solid var(--colorp-primary);
+}
+
+.ph-mcci-input.error > p:first-of-type {
+  color: var(--colorp-primary);
+}
+
+.ph-mcci-input.error .smecph-pc-mensaje-input p {
+  color: var(--colorp-primary);
+  font-weight: 600;
+}
+
+.ph-mcci-input.error .smecph-pc-mensaje-input svg,
+.ph-mcci-input.error .smecph-pc-mensaje-input svg path {
+  filter: invert(15%) sepia(95%) saturate(6932%) hue-rotate(343deg)
+    brightness(91%) contrast(97%);
+  fill: var(--colorp-primary);
+}
+
+/* ===== FORMULARIO ===== */
+
+.ph-mcci-frm {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  gap: var(--espaciado-l);
+}
+
+/* ===== HEADERS ===== */
+
+.ph-mcci-header-simpler {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  justify-content: space-between;
+  gap: var(--espaciado-s);
+}
+
+.ph-mcci-header-simplec {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: space-between;
+  gap: var(--espaciado-s);
+}
+
+.ph-mcci-header-simpler p,
+.ph-mcci-header-simplec p {
+  color: var(--colorp-extra);
 }
 
 /* =================================
@@ -461,8 +555,8 @@
   background-color: var(--colorp-desactivado);
 }
 
-.ph-btn-general p {
-  color: var(--colorp-secondary);
+.ph-btn-desactivado p {
+  color: var(--colorp-extra);
   font-weight: 600;
 }
 
