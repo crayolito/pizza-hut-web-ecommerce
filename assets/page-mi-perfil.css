@@ -85,6 +85,7 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--espaciado-m);
+  margin-top: var(--espaciado-xl);
 }
 /* ===== HISTORIAL DE PEDIDOS ===== */
 /* ===== CONFIGURACIONES ===== */
@@ -108,4 +109,13 @@
 }
 
 @media screen and (min-width: 1024px) {
+  .phpp-container-izquierda {
+    width: 26.31rem;
+    height: 51.37rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--espaciado-m);
+  }
 }
