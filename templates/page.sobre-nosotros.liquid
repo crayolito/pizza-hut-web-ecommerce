@@ -1,0 +1,99 @@
+<div class="container-main-smecph container-base">
+  <div class="ph-especial-header-mobile icon-color-tertiary"></div>
+  <div class="container-sub-smecph phpsn-body">
+    <div class="phpsn-imagen-explicativa">
+      <div class="phpsn-imgen">
+        <img src="{{ 'imagen-1-sobre-nosotros.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+      </div>
+      <p class="color-letras-extra">Frank and Dan Carney</p>
+    </div>
+    <p class="color-letras-extra">
+      La historia de Pizza Hut comienza en 1958, cuando los hermanos Dan y Frank Carney pidieron prestados $us 600 a su
+      madre para abrir una pequeña pizzería en Wichita, Kansas. Eligieron el nombre Pizza Hut porque el letrero del
+      local solo tenía espacio para ocho letras.
+      <br>
+      Lo que comenzó como un modesto emprendimiento se transformó en la cadena de pizzerías más grande del mundo, con
+      más de 18,000 restaurantes en más de 100 países.
+      <br>
+      A lo largo de los años, hemos sido pioneros en crear experiencias únicas para los amantes de la pizza. Fuimos los
+      primeros en introducir el borde relleno de queso, una innovación que se convirtió en un clásico en todo el mundo.
+      Además, seguimos sorprendiéndote con ideas como la pizza en molde original, las pizzas con ingredientes premium y
+      otras creaciones que llevan el sabor al siguiente nivel.
+      <br>
+      En Bolivia, llegamos gracias a Nexocorp, con el compromiso de ofrecerte pizzas deliciosas, siempre calientes, con
+      ingredientes de calidad y un servicio rápido y confiable. Nuestra pasión es innovar y brindar experiencias
+      inolvidables, ya sea que disfrutes tu pizza en casa o en alguno de nuestros restaurantes.
+      <br>
+      En Pizza Hut Bolivia, no solo servimos pizza, creamos momentos que se disfrutan en cada rebanada. ¡Porque no es
+      solo pizza, es Pizza Hut!
+    </p>
+    <small>TRabaja con nosotros</small>
+    <div class="phpsn-imagen-explicativa">
+      <div class="phpsn-imgen">
+        <img src="{{ 'imagen-2-sobre-nosotros.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+      </div>
+    </div>
+    <p class="color-letras-extra">
+      ¿Buscas un lugar donde crecer, disfrutar y ser parte de un equipo increíble? En Pizza Hut Bolivia estamos en busca
+      de personas apasionadas, dinámicas y con ganas de hacer que cada experiencia sea inolvidable. Si te encanta
+      trabajar en equipo, ofrecer el mejor servicio y quieres formar parte de una marca reconocida a nivel mundial,
+      ¡esta es tu oportunidad!
+    </p>
+  </div>
+</div>
+
+{% style %}
+  .ph-especial-header-mobile {
+    display: flex;
+    margin: 0 var(--espaciado-xl);
+    padding: 0 var(--espaciado-xxxl);
+    justify-content: space-between;
+    align-items: center;
+    border-radius: var(--espaciado-s);
+    border: 1px solid #dedede;
+    background: #fff;
+  }
+
+  .phpsn-imagen-explicativa {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    gap: var(--espaciado-s);
+    border-radius: var(--espaciado-s);
+  }
+
+  .phpsn-imgen {
+    width: 100%;
+    height: 19.46rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: var(--espaciado-s);
+    overflow: hidden;
+  }
+
+  .phpsn-imgen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .phpsn-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaciado-xxl);
+  }
+
+  .container-sub-smecph small {
+    font-size: 3.3125rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 3.4375rem;
+    letter-spacing: -0.06625rem;
+    text-transform: uppercase;
+  }
+{% endstyle %}
