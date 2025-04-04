@@ -31,6 +31,7 @@
 ================================= */
 
 .phpp-container {
+  margin-top: 1.5rem;
 }
 
 /* ===== SECCION IZQUIERDA ===== */
@@ -70,7 +71,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: start;
-  gap: var(--espaciado-s);
+  gap: var(--espaciado-xs);
 }
 
 .phpp-info p:first-child {
@@ -78,6 +79,13 @@
 }
 
 /* ===== MI PERFIL ===== */
+
+.phpp-container-informaicon-usuario {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--espaciado-m);
+}
 /* ===== HISTORIAL DE PEDIDOS ===== */
 /* ===== CONFIGURACIONES ===== */
 
