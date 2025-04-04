@@ -66,21 +66,37 @@
       <p>Maria Lopez | mlopez@email.com 77453368 | 2233400</p>
     </div>
   </section>
-  <section class="container-sub-smecph" id="pcktph-nota-pedido">
-    <h4>NOTA PARA EL PEDIDO</h4>
-    <div class="smecph-pc-info-input">
-      <p>Información adicional</p>
-      <div class="ph-container-input">
-        <input type="text" placeholder="Información adicional">
+  <section class="container-sub-smecph" id="pcktph-datos-contacto">
+    <div class="smecph-pc-header-especial">
+      <div class="smecph-pc-dch_info">
+        <h4>Direccion</h4>
+        <p>Ingrese una direccion o usa tu ubicacion actual</p>
+      </div>
+      <div class="pcktpch-modal-body-fase1">
+        <p>Ingresa tu dirección o usa tu ubicación actual.</p>
+        <button class="pcktpch-btn-secundario">
+          {% render 'icon-gps-rojo' %}
+          <p>USAR MI UBICACIÓN ACTUAL</p>
+        </button>
+        <div class="pcktpch-modal-separador">
+          <div class="pcktpch-modal-separador-linea"></div>
+          <p>O</p>
+          <div class="pcktpch-modal-separador-linea"></div>
+        </div>
+        <div class="ph-container-input icon-color-tertiary">
+          {% render 'icon-location-on' %}
+          <input type="text" placeholder="Ingresar dirección o punto de referencia">
+        </div>
       </div>
     </div>
   </section>
+
   <section class="ph-opciones-mobile-footer">
     <button class="pcktph-btn-continuar">
       <p>Continuar</p>
     </button>
   </section>
-  <section class="ph-background-container-modal">
+  <section class="ph-background-container-modal" style="display: none;">
     <!-- 1re MODAL : NUEVA DIRECCION -->
     <div class="ph-mmdi-modal-main">
       <div class="pcktpch-modal-header">
