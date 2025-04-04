@@ -41,7 +41,9 @@
 }
 
 .phpp-border-especial {
+  padding: 2rem !important;
   border-top: 0.0625rem solid #969696;
+  border-radius: 0 !important;
 }
 
 .phpp-border-especial p {
