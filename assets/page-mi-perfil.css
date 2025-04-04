@@ -41,8 +41,10 @@
 }
 
 .phpp-border-especial {
-  /* padding: 2rem; */
   border-top: 0.0625rem solid #969696;
+}
+
+.phpp-border-especial p {
   color: var(--colorp-primary) !important;
 }
 
