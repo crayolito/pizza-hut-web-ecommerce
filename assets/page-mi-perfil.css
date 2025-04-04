@@ -110,6 +110,17 @@
 }
 
 @media screen and (min-width: 1024px) {
+  .phpp-container-informaicon-usuario {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--espaciado-m);
+    column-gap: 4rem;
+  }
+
+  .phpp-container-informaicon-usuario hr,
+  .phpp-container-informaicon-usuario button {
+    grid-column: 1 / -1;
+  }
+
   .phpp-titulo-base {
     display: flex;
     width: 100%;
