@@ -30,6 +30,9 @@
   2. SECTOR DESKTOP
 ================================= */
 
+.phpp-container {
+}
+
 /* ===== SECCION IZQUIERDA ===== */
 
 .phpp-container-izquierda {
@@ -70,7 +73,7 @@
   gap: var(--espaciado-s);
 }
 
-.phpp-info > p:first-child {
+.phpp-info p:first-child {
   font-weight: 700;
 }
 
