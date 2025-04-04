@@ -38,6 +38,10 @@
 
 /* ===== SECCION DERECHA ===== */
 
+.phpp-titulo-base {
+  display: none;
+}
+
 .phpp-container-derecha {
   width: 100%;
 }
