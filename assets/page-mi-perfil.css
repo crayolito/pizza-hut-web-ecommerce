@@ -47,6 +47,7 @@
 }
 
 .phpp-container-derecha {
+  flex-basis: 60%;
   width: 100%;
 }
 
@@ -111,7 +112,7 @@
 @media screen and (min-width: 1024px) {
   .phpp-container {
     display: flex;
-    gap: var(--espaciado-xxxl);
+    gap: var(--espaciado-xl);
   }
 
   .phpp-container-izquierda {
@@ -122,6 +123,7 @@
     align-items: center;
     justify-content: space-between;
     padding: var(--espaciado-m);
+    flex-basis: 40%;
   }
 
   .phpp-containerd {
@@ -137,11 +139,19 @@
   .ph-btn-primario.seleccionado {
     background-color: #f5f5f5;
     border-radius: var(--espaciado-xs);
-    border-right: 4px solid var(--color-primario);
+    border-right: 4px solid var(--colorp-primary);
   }
 
   .ph-btn-primario.seleccionado svg,
   .ph-btn-primario.seleccionado path {
-    fill: var(--color-primario);
+    fill: var(--colorp-primary);
+  }
+
+  .ph-btn-primario {
+    justify-content: start !important;
+  }
+
+  .ph-btn-primario p {
+    color: var(--colorp-extra);
   }
 }
