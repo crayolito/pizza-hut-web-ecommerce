@@ -194,4 +194,8 @@
   .ph-btn-primario p {
     color: var(--colorp-extra);
   }
+
+  .ph-btn-general {
+    width: 18.75rem !important;
+  }
 }
