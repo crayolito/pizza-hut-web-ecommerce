@@ -109,6 +109,11 @@
 }
 
 @media screen and (min-width: 1024px) {
+  .phpp-container {
+    display: flex;
+    gap: var(--espaciado-xxxl);
+  }
+
   .phpp-container-izquierda {
     width: 26.31rem;
     height: 51.37rem;
