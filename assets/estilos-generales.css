@@ -33,6 +33,7 @@
         10.1. ERROR 1
         10.2. ERROR 2
         10.3. ERROR 3
+     11. HEADER ESPECIAL MOBIL
      11. MEDIA QUERIES
      ========================================================================== */
 
@@ -645,8 +646,33 @@
 /* ===== ERROR 3 ===== */
 
 /* =================================
-  11. MEDIA QUERIES
+  11. HEADER ESPECIAL MOBIL
 ================================= */
+
+.ph-especial-header-mobile {
+  height: 5.25rem;
+  position: absolute;
+  top: 0;
+  left: 1.25rem;
+  right: 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: var(--espaciado-s);
+  border: 1px solid #dedede;
+  background: #fff;
+  margin-top: 1.25rem;
+  padding: 0 var(--espaciado-xl);
+}
+
+.ph-especial-header-mobile small {
+  font-size: 2.5rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 2.1875rem;
+  letter-spacing: -0.05rem;
+  text-transform: uppercase;
+}
 
 /* ==========================================================================
   1.1 PRODUCTO DESKTOP
@@ -969,6 +995,10 @@
      ========================================================================== */
 
 @media screen and (min-width: 768px) {
+  .ph-especial-header-mobile {
+    display: none;
+  }
+
   .ph-opciones-mobile-footer {
     position: relative;
     background-color: transparent;

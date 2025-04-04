@@ -1,0 +1,96 @@
+/* ==========================================================================
+     ÍNDICE - PAGE MI PERFIL 
+     1. SECTOR MOBIL
+     2. SECTOR DESKTOP
+        2.1. SECCION IZQUIERDA
+        2.2. SECCION DERECHA
+          2.2.1. MI PERFIL
+          2.2.2. HISTORIAL DE PEDIDOS 
+          2.2.3. CONFIGURACIONES
+     3. MEDIA QUERIESS
+     ========================================================================== */
+
+.h-header-principal {
+  display: none !important;
+}
+
+.f-contenedor-base {
+  display: none !important;
+}
+
+.ph-especial-header-mobile {
+  display: flex !important;
+}
+
+/* =================================
+  1. SECTOR MOBIL
+================================= */
+
+/* =================================
+  2. SECTOR DESKTOP
+================================= */
+
+/* ===== SECCION IZQUIERDA ===== */
+
+.phpp-container-izquierda {
+  display: none;
+}
+
+/* ===== SECCION DERECHA ===== */
+
+.phpp-container-derecha {
+  width: 100%;
+}
+
+.phpp-containerd {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--espaciado-m);
+}
+
+.phpp-containerd hr {
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1.25rem auto;
+  width: 100%;
+  height: 0;
+  overflow: visible;
+}
+
+.phpp-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  gap: var(--espaciado-s);
+}
+
+.phpp-info > p::first-letter {
+  font-weight: 700;
+}
+
+/* ===== MI PERFIL ===== */
+/* ===== HISTORIAL DE PEDIDOS ===== */
+/* ===== CONFIGURACIONES ===== */
+
+/* =================================
+  3. MEDIA QUERIES
+================================= */
+
+@media (min-width: 768px) {
+  .h-header-principal {
+    display: flex !important;
+  }
+
+  .f-contenedor-base {
+    display: flex !important;
+  }
+
+  .ph-especial-header-mobile {
+    display: none !important;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+}
