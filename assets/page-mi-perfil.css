@@ -193,6 +193,7 @@
   }
 
   .phpp-container-izquierda {
+    position: relative;
     width: 26.31rem;
     height: 51.37rem;
     display: flex;
