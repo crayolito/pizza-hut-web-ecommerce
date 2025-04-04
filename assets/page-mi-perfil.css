@@ -118,4 +118,15 @@
     justify-content: space-between;
     padding: var(--espaciado-m);
   }
+
+  .ph-btn-primario.seleccionado {
+    background-color: #f5f5f5;
+    border-radius: var(--espaciado-xs);
+    border-right: 4px solid var(--color-primario);
+  }
+
+  .ph-btn-primario.seleccionado svg,
+  .ph-btn-primario.seleccionado path {
+    fill: var(--color-primario);
+  }
 }
