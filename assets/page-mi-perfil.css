@@ -86,7 +86,8 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--espaciado-m);
-  margin-top: var(--espaciado-xl);
+  /* margin-top: var(--espaciado-xl); */
+  margin-top: 8rem;
 }
 /* ===== HISTORIAL DE PEDIDOS ===== */
 /* ===== CONFIGURACIONES ===== */
@@ -114,6 +115,7 @@
     grid-template-columns: 1fr 1fr;
     gap: var(--espaciado-m);
     column-gap: 4rem;
+    margin-top: var(--espaciado-xl);
   }
 
   .phpp-container-informaicon-usuario hr,
