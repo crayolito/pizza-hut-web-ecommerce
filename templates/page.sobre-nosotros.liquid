@@ -1,12 +1,12 @@
 <!-- Hoja de estiloss css -->
 {{ 'estilos-generales.css' | asset_url | stylesheet_tag }}
 
+<div class="ph-especial-header-mobile icon-color-tertiary">
+  {% render 'icon-volver-atras' %}
+  <small>SOBRE NOSOTROS</small>
+  {% render 'icon-close-custom' %}
+</div>
 <div class="container-main-smecph container-base">
-  <div class="ph-especial-header-mobile icon-color-tertiary">
-    {% render 'icon-volver-atras' %}
-    <small>SOBRE NOSOTROS</small>
-    {% render 'icon-close-custom' %}
-  </div>
   <div class="container-sub-simple-smecph">
     <div class="phpsn-titulo-principal" style="display: none;">
       <small>SOBRE NOSOTROS</small>
