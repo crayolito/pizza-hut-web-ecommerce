@@ -202,6 +202,7 @@
     justify-content: space-between;
     padding: var(--espaciado-m);
     flex-basis: 40%;
+    background-color: transparent;
   }
 
   .phpp-containerd {
