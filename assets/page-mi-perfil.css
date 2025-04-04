@@ -203,12 +203,12 @@
     fill: var(--colorp-primary);
   }
 
-  .phpp-border-especial {
-    justify-content: center !important;
-  }
-
   .ph-btn-primario {
     justify-content: start !important;
+  }
+
+  .phpp-border-especial {
+    justify-content: center !important;
   }
 
   .ph-btn-primario p {
