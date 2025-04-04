@@ -2,9 +2,13 @@
 {{ 'estilos-generales.css' | asset_url | stylesheet_tag }}
 
 <div class="container-main-smecph container-base">
-  {% comment %} <div class="ph-especial-header-mobile icon-color-tertiary"></div> {% endcomment %}
+  <div ass="ph-especial-header-mobile icon-color-tertiary">
+    {% render 'icon-volver-atras' %}
+    <small>SOBRE NOSOTROS</small>
+    {% render 'icon-close-custom' %}
+  </div>
   <div class="container-sub-simple-smecph">
-    <div class="phpsn-titulo-principal">
+    <div class="phpsn-titulo-principal" style="display: none;">
       <small>SOBRE NOSOTROS</small>
     </div>
     <div class="phpsn-imagen-explicativa">
@@ -67,6 +71,9 @@
   }
 
   .ph-especial-header-mobile {
+    width: 100%;
+    position: absolute;
+    top: 0;
     display: flex;
     margin: 0 var(--espaciado-xl);
     padding: 0 var(--espaciado-xxxl);
@@ -75,6 +82,15 @@
     border-radius: var(--espaciado-s);
     border: 1px solid #dedede;
     background: #fff;
+  }
+
+  .ph-especial-header-mobile small {
+    font-size: 2.5rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 2.1875rem;
+    letter-spacing: -0.05rem;
+    text-transform: uppercase;
   }
 
   .phpsn-imagen-explicativa {
