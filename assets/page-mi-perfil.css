@@ -154,6 +154,7 @@
 
 .phpp-ph-opcion p {
   color: var(--colorp-primary);
+  font-weight: 700;
 }
 
 .phpp-ph-opcion.seleccionado {
@@ -163,8 +164,9 @@
   background-color: var(--colorp-primary);
 }
 
-.phpp-ph-opcion p {
+.phpp-ph-opcion.seleccionado p {
   color: var(--colorp-secondary);
+  font-weight: 700;
 }
 
 /* ===== CONFIGURACIONES ===== */
