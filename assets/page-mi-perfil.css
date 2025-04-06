@@ -252,7 +252,7 @@
 }
 
 .phpp-ph-item-estado.entregado svg,
-.phpp-ph-item-estado.entregado path {
+.phpp-ph-item-estado.entregado circle {
   fill: #14c900;
 }
 
@@ -266,7 +266,7 @@
 }
 
 .phpp-ph-item-estado.encamino svg,
-.phpp-ph-item-estado.encamino path {
+.phpp-ph-item-estado.encamino circle {
   fill: #714200;
 }
 
@@ -280,7 +280,7 @@
 }
 
 .phpp-ph-item-estado.cancelado svg,
-.phpp-ph-item-estado.cancelado path {
+.phpp-ph-item-estado.cancelado circle {
   fill: #8c0f0b;
 }
 
