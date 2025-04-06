@@ -12,8 +12,8 @@
 <!-- SECTOR DESKTOP -->
 <div class="phpp-container container-base">
   <div class="phpp-container-izquierda">
-    <div class="phpp-containerd">
-      <div class="phpp-containerd-opciones">
+    <div class="phpp-containeri">
+      <div class="phpp-containeri-opciones">
         <div class="ph-btn-primario seleccionado ">
           {% render 'icon-cuenta-blanco' %}
           <p>MI PERFIL</p>
@@ -47,7 +47,7 @@
   </div>
   <div class="phpp-container-derecha">
     {% comment %} MI PERFILL {% endcomment %}
-    <div class="phpp-containeri">
+    <div class="phpp-containerd" style="display: none;">
       <small class="phpp-titulo-base"> MI PERFIL </small>
       <div class="phpp-container-informaicon-usuario">
         <div class="phpp-info color-letras-extra">
@@ -82,7 +82,82 @@
       </div>
     </div>
     {% comment %} HISTORIAL DE PEDIDOS {% endcomment %}
-    <div class="phpp-containerd" style="display: none;"></div>
+    <div class="phpp-containerd">
+      <small class="phpp-titulo-base"> HISTORIAL DE PEDIDOS </small>
+      <div class="phpp-chp-simple">
+        <div class="phpp-hp-opciones-cliente">
+          <div class="phpp-ph-opcion">
+            <button class="ph-btn-general">
+              <p>TODO</p>
+            </button>
+          </div>
+          <div class="phpp-ph-opcion">
+            <button class="ph-btn-general">
+              <p>EN CAMINO</p>
+            </button>
+          </div>
+          <div class="phpp-ph-opcion">
+            <button class="ph-btn-primario">
+              <p>ENTREGRADO</p>
+            </button>
+          </div>
+          <div class="phpp-ph-opcion">
+            <button class="ph-btn-general">
+              <p>CANCELADO</p>
+            </button>
+          </div>
+        </div>
+        <div class="phpp-hp-detalle-producto-cliente">
+          <div class="phpp-hp-item-dp-cliente">
+            <div class="phpp-ihpdp-contexto">
+              <div class="phpp-hp-item-imgen">
+                <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+              </div>
+              <div class="phpp-hp-item-info">
+                <p>PIZZA SUPREME</p>
+                <p>ID DE ORDEN #96459761</p>
+                <div class="phpp-ph-item-estado activado">
+                  {% render 'icon-disponibilidad' %}
+                  <p>ENTREGADO</p>
+                </div>
+                <p>26/10/2023 - 12:00</p>
+              </div>
+            </div>
+            <div class="phpp-ihpdp-  opciones">
+              <button class="ph-btn-primario-desactivado">
+                <p>REPETIR PEDIDO</p>
+              </button>
+              <button class="ph-btn-secundario">
+                <p>VER DETALLE</p>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="phpp-hp-navegacion-items">
+          <button class="phpp-ni-maximo">
+            {%- render 'icon-volver-atras-ios' -%}
+          </button>
+          <button class="phpp-ni-normal">
+            <p>1</p>
+          </button>
+          <button class="phpp-ni-normal">
+            <p>2</p>
+          </button>
+          <button class="phpp-ni-normal">
+            <p>3</p>
+          </button>
+          <button class="phpp-ni-intemedio">
+            <p>...</p>
+          </button>
+          <button class="phpp-ni-normal">
+            <p>23</p>
+          </button>
+          <button class="phpp-ni-min">
+            {% render 'icon-ir-adelante-ios' %}
+          </button>
+        </div>
+      </div>
+    </div>
     {% comment %} CONFIGURACIONES {% endcomment %}
     <div class="phpp-containerd" style="display: none;"></div>
   </div>

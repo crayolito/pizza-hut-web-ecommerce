@@ -50,7 +50,8 @@
   background-color: #000000b3;
 }
 
-.phpp-containerd {
+/* CAMBIAR A ESTO */
+.phpp-containeri {
   width: max-content;
   display: grid;
   grid-template-columns: 1fr;
@@ -81,7 +82,7 @@
   width: 100%;
 }
 
-.phpp-containeri hr {
+.phpp-containerd hr {
   border: 0;
   border-top: 1px solid #ccc;
   margin: 1.25rem auto;
@@ -150,7 +151,8 @@
 }
 
 @media screen and (min-width: 1024px) {
-  .phpp-containerd {
+  /* CAMBIAR A ESTO */
+  .phpp-containeri {
     width: 100%;
     display: grid;
     grid-template-columns: 1fr;
@@ -204,7 +206,9 @@
     flex-basis: 40%;
     background-color: transparent;
   }
-  .phpp-containerd {
+
+  /* CAMBIAR A ESTO */
+  .phpp-containeri {
     width: 100%;
     height: 100%;
     display: flex;
@@ -215,7 +219,7 @@
     gap: var(--espaciado-xxxl);
   }
 
-  .phpp-containeri {
+  .phpp-containerd {
     width: 100%;
     height: 100%;
     display: flex;
