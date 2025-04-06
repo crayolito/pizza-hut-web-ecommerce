@@ -147,10 +147,24 @@
 }
 
 .phpp-ph-opcion {
-  width: 8.12rem;
+  min-width: 8.12rem;
   height: 3rem;
   border-radius: 4rem;
-  padding: var(--espaciado-xl);
+}
+
+.phpp-ph-opcion p {
+  color: var(--colorp-primary);
+}
+
+.phpp-ph-opcion.seleccionado {
+  min-width: 8.12rem;
+  height: 3rem;
+  border-radius: 4rem;
+  background-color: var(--colorp-primary);
+}
+
+.phpp-ph-opcion p {
+  color: var(--colorp-secondary);
 }
 
 /* ===== CONFIGURACIONES ===== */
