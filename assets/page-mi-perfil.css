@@ -494,6 +494,10 @@ input:checked + .slider:before {
 ================================= */
 
 @media (min-width: 768px) {
+  .phpp-container-configuraciones {
+    margin-top: 0;
+  }
+
   .phpp-cc-estado3 {
     display: flex;
     flex-direction: row;
