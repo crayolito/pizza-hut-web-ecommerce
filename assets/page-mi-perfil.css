@@ -369,6 +369,7 @@
 .phpp-cc-notifi {
     width: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     align-items: start;
     gap: var(--espaciado-xl);
@@ -389,8 +390,9 @@
 .phpp-cc-estado{
     width: 100%;
     display: flex;
-    justify-content: space-between;
-    align-items: start;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: var(--espaciado-l);
 }
 
@@ -472,7 +474,7 @@ input:checked + .slider {
 
 input:checked + .slider:before {
   transform: translateX(30px);
-  background-color: #2196f3; 
+  background-color: var(--colorp-primary); 
 
 /* =================================
   3. MEDIA QUERIES
