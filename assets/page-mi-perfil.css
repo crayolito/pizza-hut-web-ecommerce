@@ -395,11 +395,6 @@
     display: none !important;
   }
 
-  .phpp-hp-detalle-producto-cliente {
-    height: 41.5rem;
-  }
-
-  /* CAMBIAR A ESTO */
   .phpp-containeri {
     width: 100%;
     display: grid;
