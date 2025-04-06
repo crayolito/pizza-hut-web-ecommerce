@@ -313,12 +313,12 @@
 
 .phpp-ni p {
   color: var(--colorp-extra);
+  font-weight: 700;
 }
 
 .phpp-ni svg rect,
 .phpp-ni rect {
   fill: var(--colorp-extra);
-  font-weight: 700;
 }
 
 .phpp-ni.seleccionado {
@@ -332,11 +332,11 @@
 .phpp-ni.activo svg rect,
 .phpp-ni.activo rect {
   fill: var(--colorp-secondary);
-  font-weight: 700;
 }
 
 .phpp-ni.activo p {
   color: var(--colorp-secondary);
+  font-weight: 700;
 }
 
 .phpp-hpni-especial {
