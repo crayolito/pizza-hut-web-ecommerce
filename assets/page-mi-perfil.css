@@ -401,9 +401,7 @@
   .ph-especial-header-mobile {
     display: none !important;
   }
-}
 
-@media screen and (min-width: 1024px) {
   .phpp-hp-detalle-producto-cliente {
     height: 41.5rem;
   }
@@ -488,4 +486,7 @@
   .ph-btn-general {
     width: 18.75rem !important;
   }
+}
+
+@media screen and (min-width: 1024px) {
 }
