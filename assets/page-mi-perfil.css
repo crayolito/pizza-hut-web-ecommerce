@@ -291,6 +291,13 @@
   gap: var(--espaciado-m);
 }
 
+.phpp-hp-navegacion-items {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .phpp-ni {
   height: 2.87rem;
   width: 2.88rem;
