@@ -315,8 +315,8 @@
   color: var(--colorp-extra);
 }
 
-.phpp-ni.activo svg,
-.phpp-ni.activo rect {
+.phpp-ni svg,
+.phpp-ni rect {
   fill: var(--colorp-extra);
 }
 
