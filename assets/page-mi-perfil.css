@@ -170,7 +170,7 @@
 }
 
 .phpp-hp-detalle-producto-cliente {
-  height: 73.5rem;
+  height: 71.5rem;
   display: flex;
   flex-direction: column;
   gap: var(--espaciado-xxl);
@@ -296,6 +296,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 2rem;
 }
 
 .phpp-ni {
@@ -307,6 +308,11 @@
   align-items: center;
   justify-content: center;
   text-align: center;
+  gap: var(--espaciado-s);
+}
+
+.phpp-ni p {
+  color: var(--colorp-extra);
 }
 
 .phpp-ni svg {
@@ -325,6 +331,14 @@
   fill: var(--colorp-secondary);
 }
 
+.phpp-ni.activo p {
+  color: var(--colorp-secondary);
+}
+
+.phpp-hpni-especial {
+  display: none;
+}
+
 /* ===== CONFIGURACIONES ===== */
 
 /* =================================
@@ -332,6 +346,10 @@
 ================================= */
 
 @media (min-width: 768px) {
+  .phpp-hpni-especial {
+    display: flex;
+  }
+
   .phpp-container-historialde-pedidos {
     margin-top: 0;
   }
