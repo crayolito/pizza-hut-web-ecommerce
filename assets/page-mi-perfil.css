@@ -379,15 +379,8 @@
     width: max-content;
   }
 
-  /* asdas */
-
   .phpp-container-historialde-pedidos {
     margin-top: 0;
-  }
-
-  .phpp-hp-item-dp-cliente {
-    flex-direction: row;
-    justify-content: space-between;
   }
 
   .h-header-principal {
@@ -495,5 +488,10 @@
 
   .phpp-hp-detalle-producto-cliente {
     height: 41.5rem;
+  }
+
+  .phpp-hp-item-dp-cliente {
+    flex-direction: row;
+    justify-content: space-between;
   }
 }
