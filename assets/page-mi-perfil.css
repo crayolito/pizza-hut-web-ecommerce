@@ -55,6 +55,8 @@
   right: 0;
   bottom: 0;
   background-color: #000000b3;
+  z-index: 2;
+
 }
 
 /* CAMBIAR A ESTO */
@@ -501,8 +503,9 @@ input:checked + .slider:before {
     padding: var(--espaciado-m);
     width: 40%;
     background-color: transparent;
-    z-index: 2;
   }
+
+
 
   .phpp-container-derecha {
     width: 60%;
