@@ -224,6 +224,7 @@
   border-radius: 6.25rem;
   align-items: center;
   gap: 0.25rem;
+  background: #e3ffc9;
 }
 
 .phpp-ph-item-estado p {
