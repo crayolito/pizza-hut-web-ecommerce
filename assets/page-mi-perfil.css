@@ -256,18 +256,32 @@
   fill: #14c900;
 }
 
-.phpp-ph-item-estado.entregado {
-  background: #e3ffc9;
+.phpp-ph-item-estado.encamino {
+  background: #fffbda;
 }
 
-.phpp-ph-item-estado.entregado p {
+.phpp-ph-item-estado.encamino p {
   font-weight: 700;
-  color: #478c5c;
+  color: #714200;
 }
 
-.phpp-ph-item-estado.entregado svg,
-.phpp-ph-item-estado.entregado path {
-  fill: #14c900;
+.phpp-ph-item-estado.encamino svg,
+.phpp-ph-item-estado.encamino path {
+  fill: #714200;
+}
+
+.phpp-ph-item-estado.cancelado {
+  background: #ffebeb;
+}
+
+.phpp-ph-item-estado.cancelado p {
+  font-weight: 700;
+  color: #8c0f0b;
+}
+
+.phpp-ph-item-estado.cancelado svg,
+.phpp-ph-item-estado.cancelado path {
+  fill: #8c0f0b;
 }
 
 .phpp-ihpdp-opciones {
