@@ -169,6 +169,83 @@
   font-weight: 700;
 }
 
+.phpp-hp-detalle-producto-cliente {
+  width: 73.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaciado-xxl);
+  gap: var(--espaciado-xxl);
+}
+
+.phpp-hp-item-dp-cliente {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaciado-m);
+  border: 1px solid #969696;
+  padding: var(--espaciado-m);
+}
+
+.phpp-ihpdp-contexto {
+  width: 100%;
+  display: flex;
+}
+
+.phpp-hp-item-imgen {
+  width: 7.5rem;
+  height: 7.5rem;
+  border-radius: var(--espaciado-xs);
+}
+
+.phpp-hp-item-imgen img {
+  width: 100%;
+  height: 100%;
+  border-radius: var(--espaciado-xs);
+}
+
+.phpp-hp-item-info {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: var(--espaciado-xs);
+}
+
+.phpp-hp-item-info p:first-child {
+  font-weight: 700;
+}
+
+.phpp-ph-item-estado {
+  width: max-content;
+  display: flex;
+  height: 1.60194rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6.25rem;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.phpp-ph-item-estado p {
+  line-clamp: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  white-space: nowrap;
+  font-size: 0.875rem;
+}
+
+.phpp-ph-item-estado.entregado p {
+  font-weight: 700;
+  color: #478c5c;
+}
+
+.phpp-ph-item-estado.entregado svg,
+.phpp-ph-item-estado.entregado path {
+  width: 0.375rem;
+  height: 0.375rem;
+  fill: #14c900;
+}
+
 /* ===== CONFIGURACIONES ===== */
 
 /* =================================
