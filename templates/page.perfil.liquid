@@ -82,7 +82,7 @@
       </div>
     </div>
     {% comment %} HISTORIAL DE PEDIDOS {% endcomment %}
-    <div class="phpp-containerd">
+    <div class="phpp-containerd" style="display: none;">
       <small class="phpp-titulo-base"> HISTORIAL DE PEDIDOS </small>
       <div class="phpp-container-historialde-pedidos">
         <div class="phpp-hp-opciones-cliente">
@@ -225,6 +225,57 @@
       </div>
     </div>
     {% comment %} CONFIGURACIONES {% endcomment %}
-    <div class="phpp-containerd" style="display: none;"></div>
+    <div class="phpp-containerd">
+      <small class="phpp-titulo-base"> HISTORIAL DE PEDIDOS </small>
+      <div class="phpp-container-configuraciones">
+        <div class="phpp-cc-opciones1">
+          <div class="phpp-cc-notifi">
+            <h3>NOTIFICACIONES</h3>
+            <p>RECIBIR NOTIFICACIONE</p>
+          </div>
+          <div class="phpp-cc-estado">
+            <h3>ESTADO</h3>
+            <label class="toggle">
+              <input type="checkbox">
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+        <div class="phpp-cc-opciones2">
+          <h3>INFORMACION LEGAL</h3>
+          <div class="phpp-cc-estado">
+            <button class="phpp-cc-estado-item icon-color-primary">
+              <p class="color-letras-primary">TERMINOS Y CONDICIONES</p>
+              {% render 'icon-flecha-derecha' %}
+            </button>
+            <button class="phpp-cc-estado-item icon-color-primary">
+              <p class="color-letras-primary">POLITICAS DE PRIVACIDAD</p>
+              {% render 'icon-flecha-derecha' %}
+            </button>
+            <button class="phpp-cc-estado-item icon-color-primary">
+              <p class="color-letras-primary">POLITICAS DE HUT COINS</p>
+              {% render 'icon-flecha-derecha' %}
+            </button>
+          </div>
+        </div>
+        <div class="phpp-cc-opciones3">
+          <h3>CONTACTO CON SOPORTE</h3>
+          <div class="phpp-cc-estado3">
+            <button class="phpp-cc-estado-item3 icon-color-primary ">
+              {% render 'icon-headser-mic' %}
+              <p class="color-letras-primary">CONTACTANOS POR WHATSSAP</p>
+            </button>
+            <button class="phpp-cc-estado-item3 icon-color-primary">
+              {% render 'icon-correo' %}
+              <p class="color-letras-primary">ESCRIBENOS POR CORREO</p>
+            </button>
+          </div>
+        </div>
+        <button class="ph-btn-secundario">
+          {% render 'icon-basura' %}
+          <p>ELIMINAR CUENTA</p>
+        </button>
+      </div>
+    </div>
   </div>
 </div>
