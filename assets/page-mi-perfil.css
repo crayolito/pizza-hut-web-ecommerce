@@ -178,6 +178,7 @@
 }
 
 .phpp-hp-item-dp-cliente {
+  border-radius: var(--espaciado-xs);
   width: 100%;
   display: flex;
   flex-direction: column;
