@@ -316,7 +316,7 @@
 }
 
 .phpp-ni svg {
-  fill: var(--colorp-tertiary);
+  fill: var(--colorp-extra);
 }
 
 .phpp-ni.seleccionado {
@@ -348,6 +348,11 @@
 @media (min-width: 768px) {
   .phpp-hpni-especial {
     display: flex;
+  }
+
+  .phpp-ni {
+    padding: var(--espaciado-xl);
+    width: max-content;
   }
 
   .phpp-container-historialde-pedidos {
