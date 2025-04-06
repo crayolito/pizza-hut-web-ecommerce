@@ -239,10 +239,13 @@
   color: #478c5c;
 }
 
-.phpp-ph-item-estado.entregado svg,
-.phpp-ph-item-estado.entregado path {
+.phpp-ph-item-estado.entregado svg {
   width: 0.375rem;
   height: 0.375rem;
+}
+
+.phpp-ph-item-estado.entregado svg,
+.phpp-ph-item-estado.entregado path {
   fill: #14c900;
 }
 
