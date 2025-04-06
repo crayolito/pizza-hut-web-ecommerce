@@ -426,9 +426,9 @@
 .phpp-cc-estado3{
     width: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: var(--espaciado-xxl);
     
 }
 
@@ -436,9 +436,14 @@
     width: 100%;
     display: flex;
     align-items: center;
-    justify-self: center;
+    justify-content: center;
     gap: var(--espaciado-s);
     padding: var(--espaciado-xl);
+}
+
+.phpp-cc-estado-item3 p 
+{
+    font-weight: 700;
 }
 
 .toggle {
