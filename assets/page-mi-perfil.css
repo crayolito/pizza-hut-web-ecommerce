@@ -291,6 +291,33 @@
   gap: var(--espaciado-m);
 }
 
+.phpp-ni {
+  height: 2.87rem;
+  width: 2.88rem;
+  border-radius: var(--espaciado-xs);
+  background-color: #efefef;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.phpp-ni svg {
+  fill: var(--colorp-tertiary);
+}
+
+.phpp-ni.seleccionado {
+  border: 2px solid var(--colorp-primary);
+}
+
+.phpp-ni.activo {
+  background-color: var(--colorp-primary);
+}
+
+.phpp-ni.activo svg {
+  fill: var(--colorp-secondary);
+}
+
 /* ===== CONFIGURACIONES ===== */
 
 /* =================================
