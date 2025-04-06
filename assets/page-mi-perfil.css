@@ -446,7 +446,7 @@
 
   .phpp-container {
     display: flex;
-    gap: var(--espaciado-xl);
+    /* gap: var(--espaciado-xl); */
   }
 
   /* CAMBIAR A ESTO */
@@ -489,4 +489,11 @@
 }
 
 @media screen and (min-width: 1024px) {
+  .phpp-container {
+    gap: 0;
+  }
+
+  .phpp-hp-detalle-producto-cliente {
+    height: 41.5rem;
+  }
 }
