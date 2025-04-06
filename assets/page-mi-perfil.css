@@ -85,8 +85,7 @@
 }
 
 .phpp-container-derecha {
-  flex-basis: 60%;
-  width: 100%;
+  width: 60%;
 }
 
 .phpp-containerd hr {
@@ -357,10 +356,6 @@
 ================================= */
 
 @media (min-width: 768px) {
-  .phpp-hpni-especial {
-    display: flex;
-  }
-
   .phpp-container-izquierda {
     position: relative;
     width: 26.31rem;
@@ -370,7 +365,7 @@
     align-items: center;
     justify-content: space-between;
     padding: var(--espaciado-m);
-    flex-basis: 40%;
+    width: 40%;
     background-color: transparent;
   }
 
@@ -488,5 +483,16 @@
   .phpp-hp-item-dp-cliente {
     flex-direction: row;
     justify-content: space-between;
+  }
+  .phpp-hpni-especial {
+    display: flex;
+  }
+
+  .phpp-container-derecha {
+    width: 70%;
+  }
+
+  .phpp-container-izquierda {
+    width: 30%;
   }
 }
