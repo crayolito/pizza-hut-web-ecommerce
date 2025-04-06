@@ -315,7 +315,8 @@
   color: var(--colorp-extra);
 }
 
-.phpp-ni svg {
+.phpp-ni.activo svg,
+.phpp-ni.activo rect {
   fill: var(--colorp-extra);
 }
 
@@ -327,7 +328,8 @@
   background-color: var(--colorp-primary);
 }
 
-.phpp-ni.activo svg {
+.phpp-ni.activo svg,
+.phpp-ni.activo rect {
   fill: var(--colorp-secondary);
 }
 
