@@ -737,36 +737,13 @@
       const fueSeleccionadoBtnRecogerLocal = this.btnRecogerLocal.classList.contains('seleccionado');
       const fueSeleccionadoBtnEnvioDomicilio = this.btnEnvioDomicilio.classList.contains('seleccionado');
 
-      if (fueSeleccionadoBtnRecogerLocal && fueSeleccionadoBtnEnvioDomicilio) {
+      if (fueSeleccionadoBtnRecogerLocal || fueSeleccionadoBtnEnvioDomicilio) {
+        this.btnContinuar.classList.remove('desactivado');
+      } else {
         this.btnContinuar.classList.add('desactivado');
       }
     }
   }
 
   customElements.define('modal-inicial', ModalInicial);
-
-  {% comment %} const modalGeneral = document.querySelector('.modal-general-sme');
-
-  // Inicialmente ocultamos el modal
-  modalGeneral.style.display = 'none';
-
-  // Obtener el valor actual de localStorage
-  const modalVer = localStorage.getItem('modal-ver');
-
-  if (modalVer === null || modalVer === 'true') {
-    modalGeneral.style.display = 'flex';
-  }
-
-  const botonContinuar = document.querySelector('.mpsme-opcion-continuar');
-  const botonOmitir = document.querySelector('.mpsme-opcion-omitir');
-
-  botonContinuar.addEventListener('click', () => {
-    window.location.href = '/pages/test-prueba';
-    modalGeneral.style.display = 'none';
-  });
-
-  botonOmitir.addEventListener('click', () => {
-    modalGeneral.style.display = 'none';
-    localStorage.setItem('modal-ver', 'false');
-  }); {% endcomment %}
 </script>
