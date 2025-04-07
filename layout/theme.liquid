@@ -708,6 +708,8 @@
     }
 
     procesoBtnEnvioDomicilio() {
+      const iconoEstadoOn = `{% render 'icon-estado-on' %}`;
+      const iconoEstadoOff = `{% render 'icon-estado-off' %}`;
       // seleccion-me-mi = seleccion metodo mi entrega modal inicial
       localStorage.setItem('seleccion-me-mi', 'envio-domicilio');
 
