@@ -480,12 +480,12 @@ header-principal {
   SECTOR DE MENU DE OPCIONES PARA LOS PRODUCTOSS
      =================== */
 
-#h-mostrar-menu-opciones-productos {
+.h-mostrar-menu-opciones-productos {
   position: relative;
   transition: color 0.3s ease;
 }
 
-#h-mostrar-menu-opciones-productos::after {
+.h-mostrar-menu-opciones-productos::after {
   content: "";
   position: absolute;
   bottom: -3px;
@@ -496,11 +496,11 @@ header-principal {
   transition: background-color 0.3s ease;
 }
 
-#h-mostrar-menu-opciones-productos.seleccionado {
+.h-mostrar-menu-opciones-productos.seleccionado {
   color: var(--colorp-primary);
 }
 
-#h-mostrar-menu-opciones-productos.seleccionado {
+.h-mostrar-menu-opciones-productos.seleccionado {
   background-color: var(--colorp-primary);
 }
 
