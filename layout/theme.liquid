@@ -351,7 +351,7 @@
     {% endstyle %}
 
     <!-- Hojas de estilos css -->
-    {% comment %} {{ 'estilos-generales.css' | asset_url | stylesheet_tag }} {% endcomment %}
+    {{ 'estilos-generales.css' | asset_url | stylesheet_tag }}
   </head>
 
   <body>
@@ -665,7 +665,7 @@
       // mp-ver = modal principal ver,
       const modalVer = localStorage.getItem('mp-ver');
 
-      if (modalVer === null || modalVer === 'true') {
+      if (modalVer == null || modalVer == 'true') {
         this.modalGeneral.style.display = 'flex';
       }
     }
