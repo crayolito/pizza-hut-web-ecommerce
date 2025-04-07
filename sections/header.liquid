@@ -146,22 +146,22 @@
         </a>
         <hr>
         <!-- ESTADO SIN TIENE METODO ENTREGA -->
-        {% comment %}
-          <div class="h-sector-seleccion-metodo-entrega">
-            <p>Selecciona tu</p>
-            <div class="h-texto-metodo-entrega">
-              <h4>Método de entrega</h4>
-              {% render 'icon-pizza-metodo-entrega' %}
-            </div>
+        <div class="h-sector-seleccion-metodo-entrega">
+          <p>Selecciona tu</p>
+          <div class="h-texto-metodo-entrega">
+            <h4>Método de entrega</h4>
+            {% render 'icon-pizza-metodo-entrega' %}
           </div>
-        {% endcomment %}
+        </div>
         <!-- ESTADO CON TIENE METODO ENTREGA -->
         <div class="h-sector-metodo-entrega icon-color-tertiary">
-          <div class="h-metodo-domicilio">
-            {% render 'icon-recogo-delivery' %}
-            <h4>Domicilio</h4>
-            {% render 'icon-flecha-abajo' %}
-          </div>
+          {% comment %}
+            <div class="h-metodo-domicilio">
+              {% render 'icon-recogo-delivery' %}
+              <h4>Domicilio</h4>
+              {% render 'icon-flecha-abajo' %}
+            </div>
+          {% endcomment %}
           {% comment %}
             <div class="h-metodo-local">
               {% render 'icon-recogo-local' %}
