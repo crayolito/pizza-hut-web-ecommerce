@@ -356,15 +356,18 @@
       }
     }
 
-    accionEnterInput() {
-      const inputVacio = this.inputBusqueda.value.trim() === '';
-      const estaVisible = this.contenedorResultadoBusqueda.style.display == 'flex';
+    accionEnterInput(event) {
+      // Verificar si la tecla presionada es Enter
+      if (event.key === 'Enter') {
+        const inputVacio = this.inputBusqueda.value.trim() === '';
+        const estaVisible = this.contenedorResultadoBusqueda.style.display == 'flex';
 
-      if (!inputVacio && estaVisible) {
-        window.location.href = '/search';
-        this.contenedorResultadoBusqueda.style.display = 'none';
-      } else if (inputVacio && estaVisible) {
-        this.contenedorResultadoBusqueda.style.display = 'none';
+        if (!inputVacio && estaVisible) {
+          window.location.href = '/search';
+          this.contenedorResultadoBusqueda.style.display = 'none';
+        } else if (inputVacio && estaVisible) {
+          this.contenedorResultadoBusqueda.style.display = 'none';
+        }
       }
     }
 
