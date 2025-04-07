@@ -104,7 +104,7 @@
         <img src="{{ 'logo-secondary-2.png' | asset_url }}" alt="Logo Secundario" width="100" height="100">
       </div>
       <nav class="h-nav-principal">
-        <a href="/pages/menu" id="h-mostrar-menu-opciones-productos">
+        <a id="h-mostrar-menu-opciones-productos">
           <h4>MENÚ</h4>
         </a>
         <a href="https://microsites.spnty.co/pizzahutbolivia/login" class="h-nav-hutcoins">
@@ -176,12 +176,13 @@
             <h4>INICIAR SESIÓN</h4>
             {% render 'icon-cuenta-blanco' %}
           </a>
-          {% comment %}
-            <div class="h-boton-modo-cliente icon-color-tertiary">
-              {% render 'icon-cuenta-blanco' %}
-              {% render 'icon-flecha-abajo' %}
-            </div>
-          {% endcomment %}
+          <button
+            id="h-boton-modo-cliente"
+            class="h-boton-modo-cliente icon-color-tertiary"
+          >
+            {% render 'icon-cuenta-blanco' %}
+            {% render 'icon-flecha-abajo' %}
+          </button>
           <!-- DROPDOWN PARA OPCIONES DEL USUARIO -->
           <section class="h-opciones-usuario">
             <button class="h-opcion-usuario icon-color-tertiary">
@@ -226,7 +227,18 @@
     constructor() {
       super();
     }
-    connectedCallback() {}
+    connectedCallback() {
+      // HEADER MOBILE
+      this.logoPrincipal = document.querySelectorAll('.h-logo-principal');
+      // HEADER DESKTOP
+
+      // EVENTOS LISTENER
+      this.logoPrincipal.forEach((logo) => {
+        logo.addEventListener('click', () => {
+          window.location.href = '/';
+        });
+      });
+    }
   }
 
   const botonCambioEntrega = document.querySelector('.h-sector-metodo-entrega');
