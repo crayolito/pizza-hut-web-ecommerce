@@ -430,6 +430,12 @@ header-principal {
   padding-top: var(--espaciado-s);
 }
 
+.h-boton-carrito {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /* ===================
   SECTOR GENERALES S
      =================== */

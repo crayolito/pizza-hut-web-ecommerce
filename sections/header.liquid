@@ -9,6 +9,7 @@
         <img src="{{ 'logo-sauce-only-1.png' | asset_url }}" alt="Logo Sauce Only" width="100" height="100">
       </div>
       <div
+        id="h-seleccion-metodo-entrega-mobile"
         class="h-sector-seleccion-metodo-entrega h-metodo-no-seleccionado"
         style="display: none;"
       >
@@ -18,16 +19,35 @@
           {% render 'icon-pizza-metodo-entrega' %}
         </div>
       </div>
-      <div class="h-sector-opciones-cliente h-metodo-seleccionado">
+      <div
+        id="h-opciones-usuario-mobile"
+        class="h-sector-opciones-cliente h-metodo-seleccionado"
+      >
         <button class="h-boton-buscar">
           {% render 'icon-search' %}
           <h3>Buscar</h3>
         </button>
-        <div class="h-boton-cambio-metodo-entrega">
+        <div
+          id="h-btn-entrega-local-mobile"
+          class="h-boton-cambio-metodo-entrega"
+        >
           <div class="h-icono-metodo-entrega">
             {% render 'icon-pizza-metodo-entrega' %}
           </div>
           <h3>Local</h3>
+          <button class="h-icono-solocitud-metodo-entrega">
+            {% render 'icon-flecha-abajo' %}
+          </button>
+        </div>
+
+        <div
+          id="h-btn-entrega-domicilio-mobile"
+          class="h-boton-cambio-metodo-entrega"
+        >
+          <div class="h-icono-metodo-entrega">
+            {% render 'icon-recogo-delivery' %}
+          </div>
+          <h3>Domicilio</h3>
           <button class="h-icono-solocitud-metodo-entrega">
             {% render 'icon-flecha-abajo' %}
           </button>
@@ -282,6 +302,10 @@
     connectedCallback() {
       this.logoPrincipal = document.querySelectorAll('.h-logo-principal');
       // HEADER MOBILE
+      this.btnSeleccionEntregaMobile = document.querySelector('#h-seleccion-metodo-entrega-mobile');
+      this.btnOpcionUsuarioMobile = document.querySelector('#h-opciones-usuario-mobile');
+      this.btnEntregaLocalMobile = document.querySelector('#h-btn-entrega-local-mobile');
+      this.btnEntregaDomicilioMobile = document.querySelector('#h-btn-entrega-domicilio-mobile');
       // HEADER DESKTOP
       this.btnMenu = document.querySelector('.h-mostrar-menu-opciones-productos');
       this.contenedorEstadosEntrega = document.querySelector('.h-sector-metodo-entrega');
@@ -345,17 +369,25 @@
       if (metodoEntrega == null) {
         this.contenedorEstadosEntrega.style.display = 'none';
         this.btnSeleccionMetodoEntrega.style.display = 'flex';
+        this.btnSeleccionEntregaMobile.style.display = 'flex';
+        this.btnOpcionUsuarioMobile.style.display = 'none';
       } else {
         this.btnSeleccionMetodoEntrega.style.display = 'none';
         this.contenedorEstadosEntrega.style.display = 'flex';
+        this.btnSeleccionEntregaMobile.style.display = 'none';
+        this.btnOpcionUsuarioMobile.style.display = 'flex';
         if (metodoEntrega == 'local') {
           this.btnLocal.style.display = 'flex';
           this.btnDominicilio.style.display = 'none';
+          this.btnEntregaLocalMobile.style.display = 'flex';
+          this.btnEntregaDomicilioMobile.style.display = 'none';
         }
 
         if (metodoEntrega == 'dominicilio') {
           this.btnDominicilio.style.display = 'flex';
           this.btnLocal.style.display = 'none';
+          this.btnEntregaLocalMobile.style.display = 'none';
+          this.btnEntregaDomicilioMobile.style.display = 'flex';
         }
       }
     }
