@@ -434,11 +434,11 @@
         justify-content: center;
       }
 
-      .mpsme-icono-metodo.seleccionado svg,
-      .mpsme-icono-metodo.seleccionado svg path,
-      .mpsme-icono-metodo.seleccionado svg g,
-      .mpsme-icono-metodo.seleccionado path,
-      .mpsme-icono-metodo.seleccionado g {
+      .mpsme-metodo-entrega.seleccionado.seleccionado .mpsme-icono-metodo svg,
+      .mpsme-metodo-entrega.seleccionado.seleccionado .mpsme-icono-metodo svg path,
+      .mpsme-metodo-entrega.seleccionado.seleccionado .mpsme-icono-metodo svg g,
+      .mpsme-metodo-entrega.seleccionado.seleccionado .mpsme-icono-metodo path,
+      .mpsme-metodo-entrega.seleccionado.seleccionado .mpsme-icono-metodo g {
         fill: var(--colorp-secondary);
       }
 
@@ -583,8 +583,8 @@
             id="mpsme-recoger-local"
             class="mpsme-seleccion-entrega"
           >
-            <div class="mpsme-metodo-entrega mpsme-metodo-recoger-local">
-              <div class="mpsme-icono-seleccion">
+            <div class="mpsme-metodo-entrega">
+              <div id="mpsme-icono-recoger-local" class="mpsme-icono-seleccion">
                 {% render 'icon-estado-off' %}
               </div>
               <div class="mpsme-informacion-metodo">
@@ -597,20 +597,18 @@
                 </div>
               </div>
             </div>
-            <div class="mpsme-metodo-entrega mpsme-metodo-envio-domicilio seleccionado">
-              <div class="mpsme-icono-seleccion">
+            <div class="mpsme-metodo-entrega">
+              <div id="mpsme-icono-envio-domicilio" class="mpsme-icono-seleccion">
                 {% render 'icon-estado-on' %}
               </div>
               <div class="mpsme-informacion-metodo">
-                <div class="mpsme-icono-metodo seleccionado ">
+                <div class="mpsme-icono-metodo">
                   {% render 'icon-recogo-delivery' %}
                 </div>
                 <div class="mpsme-informacion-metodo-texto">
                   <p style="font-weight: 600;">Envío a domicilio</p>
                   <p>Envío a solo Bs 2</p>
                 </div>
-
-                {% comment %} asd {% endcomment %}
               </div>
             </div>
           </div>
@@ -625,7 +623,7 @@
               <p class="color-letras-secondary">CONTINUAR</p>
             </button>
             <button
-              class="ph-btn-secundario icon-color-secundario"
+              class="ph-btn-secundario icon-color-primary"
               id="mpsme-opcion-omitir"
             >
               <p class="color-letras-primary">OMITIR</p>
@@ -650,6 +648,8 @@
       // BOTONES DE SELECCION METODO ENTREGA
       const btnRecogerLocal = document.querySelector('#mpsme-recoger-local');
       const btnEnvioDomicilio = document.querySelector('#mpsme-envio-domicilio');
+      const iconoSeleccionRecogerLocal = document.querySelector('#mpsme-icono-recoger-local');
+      const iconoSeleccionEnvioDomicilio = document.querySelector('#mpsme-icono-envio-domicilio');
       // OPCIONES DEL MODAL
       const btnContinuar = document.querySelector('#mpsme-opcion-continuar');
       const btnOmitir = document.querySelector('#mpsme-opcion-omitir');
@@ -689,6 +689,8 @@
     }
 
     procesoBtnRecogerLocal() {
+      const iconoEstadoOn = `{% render 'icon-estado-on' %}`;
+      const iconoEstadoOff = `{% render 'icon-estado-off' %}`;
       // seleccion-me-mi = seleccion metodo mi entrega modal inicial
       localStorage.setItem('seleccion-me-mi', 'recoger-local');
       this.seleccionMetodoEntrega();
@@ -697,12 +699,16 @@
       const estaSeleccionadoBtnRecogerLocal = this.btnRecogerLocal.classList.contains('seleccionado');
       if (estaSeleccionadoBtnRecogerLocal) {
         this.btnRecogerLocal.classList.remove('seleccionado');
+        this.iconoSeleccionRecogerLocal.innerHTML = iconoEstadoOff;
         this.verificarBtnContinuar();
       } else {
         // Si no esta el boton seleccionado, proceder
         // Y dejar solo marcado este boton
         this.btnRecogerLocal.classList.add('seleccionado');
         this.btnEnvioDomicilio.classList.remove('seleccionado');
+
+        this.iconoSeleccionRecogerLocal.innerHTML = iconoEstadoOn;
+        this.iconoSeleccionEnvioDomicilio.innerHTML = iconoEstadoOff;
       }
     }
 
@@ -714,12 +720,16 @@
       const estaSeleccionadoBtnEnvioDomicilio = this.btnEnvioDomicilio.classList.contains('seleccionado');
       if (estaSeleccionadoBtnEnvioDomicilio) {
         this.btnEnvioDomicilio.classList.remove('seleccionado');
+        this.iconoSeleccionEnvioDomicilio.innerHTML = iconoEstadoOff;
         this.verificarBtnContinuar();
       } else {
         // Si no esta el boton seleccionado, proceder
         // Y dejar solo marcado este boton
         this.btnEnvioDomicilio.classList.add('seleccionado');
         this.btnRecogerLocal.classList.remove('seleccionado');
+
+        this.iconoSeleccionEnvioDomicilio.innerHTML = iconoEstadoOn;
+        this.iconoSeleccionRecogerLocal.innerHTML = iconoEstadoOff;
       }
     }
 
