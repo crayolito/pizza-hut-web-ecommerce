@@ -397,7 +397,7 @@
             </div>
             <div class="mpsme-metodo-entrega">
               <div id="mpsme-icono-envio-domicilio" class="mpsme-icono-seleccion">
-                {% render 'icon-estado-on' %}
+                {% render 'icon-estado-off' %}
               </div>
               <div class="mpsme-informacion-metodo">
                 <div class="mpsme-icono-metodo">
@@ -670,20 +670,20 @@
       const modalVer = localStorage.getItem('mp-ver');
 
       if (modalVer === null || modalVer === 'true') {
-        modalGeneral.style.display = 'flex';
+        this.modalGeneral.style.display = 'flex';
       }
     }
 
     omitirBtnModal() {
       // Ocultar el modal
-      modalGeneral.style.display = 'none';
+      this.modalGeneral.style.display = 'none';
       // Cambiar el valor de localStorage a false
       localStorage.setItem('mp-ver', 'false');
     }
 
     continuarBtnModal() {
       // Ocultar el modal
-      modalGeneral.style.display = 'none';
+      this.modalGeneral.style.display = 'none';
       // Cambiar el valor de localStorage a false
       localStorage.setItem('mp-ver', 'false');
     }
