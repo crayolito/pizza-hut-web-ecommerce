@@ -666,7 +666,7 @@
       const modalVer = localStorage.getItem('mp-ver');
       console.log('modalVer', modalVer);
 
-      if (modalVer == null || modalVer == 'false') {
+      if (modalVer != null || modalVer == 'false') {
         this.modalGeneral.style.display = 'none';
       }
     }
