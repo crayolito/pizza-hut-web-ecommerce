@@ -23,7 +23,10 @@
         id="h-opciones-usuario-mobile"
         class="h-sector-opciones-cliente h-metodo-seleccionado"
       >
-        <button class="h-boton-buscar">
+        <button
+          id="h-btn-buscar-mobile"
+          class="h-boton-buscar"
+        >
           {% render 'icon-search' %}
           <h3>Buscar</h3>
         </button>
@@ -52,7 +55,10 @@
             {% render 'icon-flecha-abajo' %}
           </button>
         </div>
-        <button class="h-boton-carrito">
+        <button
+          id="h-btn-carrito-mobile"
+          class="h-boton-carrito"
+        >
           {% render 'icon-carrito' %}
         </button>
       </div>
@@ -302,6 +308,8 @@
     connectedCallback() {
       this.logoPrincipal = document.querySelectorAll('.h-logo-principal');
       // HEADER MOBILE
+      this.btnBuscarMobile = document.querySelector('#h-btn-buscar-mobile');
+      this.btnCarritoMobile = document.querySelector('.h-icono-carrito');
       this.btnSeleccionEntregaMobile = document.querySelector('#h-seleccion-metodo-entrega-mobile');
       this.btnOpcionUsuarioMobile = document.querySelector('#h-opciones-usuario-mobile');
       this.btnEntregaLocalMobile = document.querySelector('#h-btn-entrega-local-mobile');
@@ -324,6 +332,8 @@
       this.btnMenu.addEventListener('click', this.mostrarMenuDesplegable.bind(this));
       this.inputBusqueda.addEventListener('keyup', this.accionEnterInput.bind(this));
       this.inputBusqueda.addEventListener('input', this.accionEscribeInput.bind(this));
+      this.btnCarritoMobile.addEventListener('click', this.redireccionarCarrito.bind(this));
+      this.btnBuscarMobile.addEventListener('click', this.redireccionarBusqueda.bind(this));
       document.addEventListener('click', this.detectarClickFueraDelInputBusqueda.bind(this));
       this.logoPrincipal.forEach((logo) => {
         logo.addEventListener('click', () => {
@@ -445,6 +455,14 @@
         this.contenedorResultadoBusqueda.style.display = 'none';
         console.log('click fuera del input');
       }
+    }
+
+    redireccionarCarrito() {
+      window.location.href = '/pages/carrito';
+    }
+
+    redireccionarBusqueda() {
+      window.location.href = '/search';
     }
   }
 
