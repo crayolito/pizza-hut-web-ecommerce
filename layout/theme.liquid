@@ -695,16 +695,15 @@
       if (estaSeleccionadoBtnRecogerLocal) {
         this.btnRecogerLocal.classList.remove('seleccionado');
         this.iconoSeleccionRecogerLocal.innerHTML = iconoEstadoOff;
-        this.verificarBtnContinuar();
       } else {
         // Si no esta el boton seleccionado, proceder
         // Y dejar solo marcado este boton
         this.btnRecogerLocal.classList.add('seleccionado');
         this.btnEnvioDomicilio.classList.remove('seleccionado');
-
         this.iconoSeleccionRecogerLocal.innerHTML = iconoEstadoOn;
         this.iconoSeleccionEnvioDomicilio.innerHTML = iconoEstadoOff;
       }
+      this.verificarBtnContinuar();
     }
 
     procesoBtnEnvioDomicilio() {
@@ -718,16 +717,15 @@
       if (estaSeleccionadoBtnEnvioDomicilio) {
         this.btnEnvioDomicilio.classList.remove('seleccionado');
         this.iconoSeleccionEnvioDomicilio.innerHTML = iconoEstadoOff;
-        this.verificarBtnContinuar();
       } else {
         // Si no esta el boton seleccionado, proceder
         // Y dejar solo marcado este boton
         this.btnEnvioDomicilio.classList.add('seleccionado');
         this.btnRecogerLocal.classList.remove('seleccionado');
-
         this.iconoSeleccionEnvioDomicilio.innerHTML = iconoEstadoOn;
         this.iconoSeleccionRecogerLocal.innerHTML = iconoEstadoOff;
       }
+      this.verificarBtnContinuar();
     }
 
     verificarBtnContinuar() {
