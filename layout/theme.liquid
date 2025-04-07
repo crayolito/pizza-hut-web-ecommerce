@@ -7,20 +7,6 @@
     <meta name="theme-color" content="">
     <link rel="canonical" href="{{ canonical_url }}">
 
-    <!-- Script para verificacion antes del renderizado de la pagina -->
-    {% comment %}
-      <script>
-        // Verificar redirección antes de cargar el resto de la página
-        if (
-          !localStorage.getItem('metodo-entrega') &&
-          !localStorage.getItem('ubicacion-cliente') &&
-          !localStorage.getItem('sucursal-informacion')
-        ) {
-          window.location.href = '/pages/test-prueba';
-        }
-      </script>
-    {% endcomment %}
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -441,7 +427,6 @@
     display: flex;
     justify-content: center;
     overflow-y: auto;
-    padding: 5rem 0;
   }
 
   .modal-principal-solicitud-metodo-entrega {
@@ -449,10 +434,14 @@
     height: max-content;
     padding: 2rem 1.25rem;
     background-color: var(--colorp-secondary);
-    border-radius: var(--espaciado-xs);
-    display: flex;
+    border-radius: var(--espaciado-s);
+    display: flex;.mpsme-metodo-entrega
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.25rem;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
   }
 
   .mpsme-icono-base {
@@ -603,11 +592,11 @@
 
   @media screen and (min-width: 1024px) {
     .modal-principal-solicitud-metodo-entrega {
-      width: 50rem;
+      width: 46rem;
     }
 
     .modal-principal-solicitud-metodo-entrega {
-      padding: 3rem 5rem;
+      padding: 2rem 3rem;
     }
 
     .mpsme-icono-base svg {
