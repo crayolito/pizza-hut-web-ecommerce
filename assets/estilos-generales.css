@@ -597,8 +597,25 @@
   font-weight: 600;
 }
 
+.ph-btn-general.desactivado {
+  width: 100%;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--espaciado-xl);
+  border-radius: var(--espaciado-xs);
+  background-color: #efefef;
+  gap: var(--espaciado-xs);
+}
+
+.ph-btn-general.desactivado p {
+  color: #717171;
+  font-weight: 600;
+}
+
 /* ===== BOTON PRIMARIO ===== */
-.ph-btn-primario-desactivado,
+.ph-btn-primario.desactivado,
 .ph-btn-primario {
   width: 100%;
   height: 3rem;
@@ -620,7 +637,7 @@
   font-weight: 600;
 }
 
-.ph-btn-primario-desactivado p {
+.ph-btn-primario.desactivado p {
   color: #969696;
   font-weight: 600;
 }

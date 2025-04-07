@@ -619,16 +619,16 @@
             class="mpsme-opciones-entrega"
           >
             <button
-              class="mpsme-opcion-continuar"
+              class="ph-btn-general"
               id="mpsme-opcion-continuar"
             >
-              <p class="color-letras-secondary">Continuar</p>
+              <p class="color-letras-secondary">CONTINUAR</p>
             </button>
             <button
-              class="mpsme-opcion-omitir icon-color-primary"
+              class=" icon-color-secundario"
               id="mpsme-opcion-omitir"
             >
-              <p class="color-letras-primary">Omitir</p>
+              <p class="color-letras-primary">OMITIR</p>
               {% render 'icon-close-custom' %}
             </button>
           </div>
@@ -661,6 +661,7 @@
 
       // METODOS INICIALES DEL ELEMENTO
       this.verificarLanzamientoModal();
+      this.verificarBtnContinuar();
     }
 
     verificarLanzamientoModal() {
@@ -691,31 +692,50 @@
       // seleccion-me-mi = seleccion metodo mi entrega modal inicial
       localStorage.setItem('seleccion-me-mi', 'recoger-local');
       this.seleccionMetodoEntrega();
+
+      // Se verifica si el boton precionado esta seleccionado
+      const estaSeleccionadoBtnRecogerLocal = this.btnRecogerLocal.classList.contains('seleccionado');
+      if (estaSeleccionadoBtnRecogerLocal) {
+        this.btnRecogerLocal.classList.remove('seleccionado');
+        this.verificarBtnContinuar();
+      } else {
+        // Si no esta el boton seleccionado, proceder
+        // Y dejar solo marcado este boton
+        this.btnRecogerLocal.classList.add('seleccionado');
+        this.btnEnvioDomicilio.classList.remove('seleccionado');
+      }
     }
 
     procesoBtnEnvioDomicilio() {
       // seleccion-me-mi = seleccion metodo mi entrega modal inicial
       localStorage.setItem('seleccion-me-mi', 'envio-domicilio');
-      this.seleccionMetodoEntrega();
+
+      // Se verifica si el boton precionado esta seleccionado
+      const estaSeleccionadoBtnEnvioDomicilio = this.btnEnvioDomicilio.classList.contains('seleccionado');
+      if (estaSeleccionadoBtnEnvioDomicilio) {
+        this.btnEnvioDomicilio.classList.remove('seleccionado');
+        this.verificarBtnContinuar();
+      } else {
+        // Si no esta el boton seleccionado, proceder
+        // Y dejar solo marcado este boton
+        this.btnEnvioDomicilio.classList.add('seleccionado');
+        this.btnRecogerLocal.classList.remove('seleccionado');
+      }
     }
 
-    seleccionMetodoEntrega() {
+    verificarBtnContinuar() {
       const fueSeleccionadoBtnRecogerLocal = this.btnRecogerLocal.classList.contains('seleccionado');
       const fueSeleccionadoBtnEnvioDomicilio = this.btnEnvioDomicilio.classList.contains('seleccionado');
 
-      if (fueSeleccionadoBtnRecogerLocal) {
-        this.btnRecogerLocal.classList.remove('seleccionado');
-        this.btnEnvioDomicilio.classList.add('seleccionado');
-      } else if (fueSeleccionadoBtnEnvioDomicilio) {
-        this.btnEnvioDomicilio.classList.remove('seleccionado');
-        this.btnRecogerLocal.classList.add('seleccionado');
+      if (fueSeleccionadoBtnRecogerLocal && fueSeleccionadoBtnEnvioDomicilio) {
+        this.btnContinuar.classList.add('desactivado');
       }
     }
   }
 
   customElements.define('modal-inicial', ModalInicial);
 
-  const modalGeneral = document.querySelector('.modal-general-sme');
+  {% comment %} const modalGeneral = document.querySelector('.modal-general-sme');
 
   // Inicialmente ocultamos el modal
   modalGeneral.style.display = 'none';
@@ -738,5 +758,5 @@
   botonOmitir.addEventListener('click', () => {
     modalGeneral.style.display = 'none';
     localStorage.setItem('modal-ver', 'false');
-  });
+  }); {% endcomment %}
 </script>
