@@ -486,6 +486,10 @@ header-principal {
   position: relative;
 }
 
+.h-mmop {
+  position: absolute;
+}
+
 .h-mostrar-menu-opciones-productos.seleccionado h4 {
   color: var(--colorp-primary);
   transition: color 0.3s ease;
@@ -495,7 +499,6 @@ header-principal {
   height: 2px;
   width: 100%;
   background: var(--colorp-primary);
-  position: absolute;
   bottom: -3px;
   left: 0;
   transition: background-color 0.3s ease;
