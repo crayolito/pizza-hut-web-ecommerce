@@ -678,10 +678,14 @@
     }
 
     continuarBtnModal() {
+      const estaHabilitadoContinuar = !this.btnContinuar.classList.contains('desactivado');
+      if (!estaHabilitadoContinuar) return;
+
       // Ocultar el modal
       this.modalGeneral.style.display = 'none';
       // Cambiar el valor de localStorage a false
       localStorage.setItem('mp-ver', 'false');
+      window.location.href = '/pages/metodo-entrega';
     }
 
     procesoBtnRecogerLocal() {
