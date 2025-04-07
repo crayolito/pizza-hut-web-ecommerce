@@ -504,7 +504,6 @@ header-principal {
   background-color: var(--colorp-primary);
 }
 
-/* Añadimos el estilo para cuando está seleccionado */
 .h-mostrar-menu-opciones-productos.seleccionado {
   color: var(--colorp-primary);
 }
