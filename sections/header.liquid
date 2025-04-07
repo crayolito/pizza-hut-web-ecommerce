@@ -371,23 +371,6 @@
     }
 
     accionEnterInput(event) {
-      // Verificar si la tecla presionada es Enter
-      if (event.key === 'Enter') {
-        const inputVacio = this.inputBusqueda.value.trim() === '';
-        const estaVisible = this.contenedorResultadoBusqueda.style.display == 'flex';
-
-        // Solo redirigir si hay texto en el input
-        if (!inputVacio) {
-          window.location.href = '/search';
-          this.contenedorResultadoBusqueda.style.display = 'none';
-        } else if (estaVisible) {
-          // Si está vacío pero el contenedor está visible, solo ocultar el contenedor
-          this.contenedorResultadoBusqueda.style.display = 'none';
-        }
-      }
-    }
-
-    accionEnterInput(event) {
       if (event.key === 'Enter') {
         const textoInput = this.inputBusqueda.value.trim();
         const estaVisible = this.contenedorResultadoBusqueda.style.display === 'flex';
