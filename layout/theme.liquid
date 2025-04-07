@@ -236,14 +236,18 @@
       }
 
       [class*='icon-color-primary'] svg,
-      [class*='icon-color-primary'] svg path {
-        /* filter: invert(15%) sepia(95%) saturate(6932%) hue-rotate(343deg) brightness(91%) contrast(97%); */
-        /* filter: invert(15%) sepia(95%) saturate(6932%) hue-rotate(350deg) brightness(91%) contrast(113%); */
+      [class*='icon-color-primary'] svg path,
+      [class*='icon-color-primary'] svg g,
+      [class*='icon-color-primary'] path,
+      [class*='icon-color-primary'] g {
         fill: var(--colorp-primary);
       }
 
       [class*='icon-color-secondary'] svg,
-      [class*='icon-color-secondary'] svg path {
+      [class*='icon-color-secondary'] svg path,
+      [class*='icon-color-secondary'] svg g,
+      [class*='icon-color-secondary'] path,
+      [class*='icon-color-secondary'] g {
         /* filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%); */
         fill: var(--colorp-secondary);
       }
