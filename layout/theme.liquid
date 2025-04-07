@@ -350,208 +350,6 @@
        */
     {% endstyle %}
 
-    {% style %}
-      .modal-general-sme {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: rgba(0, 0, 0, 0.7);
-        z-index: 9999;
-        display: flex;
-        justify-content: center;
-        overflow-y: auto;
-      }
-
-      .modal-principal-solicitud-metodo-entrega {
-        width: 23.75rem;
-        height: max-content;
-        padding: 2rem 1.25rem;
-        background-color: var(--colorp-secondary);
-        border-radius: var(--espaciado-s);
-        display: flex;
-        flex-direction: column;
-        gap: 1.25rem;
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-      }
-
-      .mpsme-icono-base {
-        width: 100%;
-        display: flex;
-        align-items: start;
-      }
-
-      .mpsme-icono-base svg {
-        width: 3.125rem;
-        height: 3.125rem;
-        aspect-ratio: 1/1;
-      }
-
-      .mpsme-mensaje-base {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: var(--espaciado-xl);
-        text-align: center;
-      }
-
-      .mpsme-mensaje-base small {
-        font-size: 3.3125rem;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 3.4375rem;
-        letter-spacing: -0.06625rem;
-        text-transform: uppercase;
-      }
-
-      .mpsme-seleccion-entrega {
-        width: 100%;
-        display: flex;
-        gap: var(--espaciado-l);
-        cursor: pointer;
-      }
-
-      .mpsme-metodo-entrega {
-        flex-basis: 50%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: var(--espaciado-l);
-        padding: 1.25rem 0;
-        border-radius: var(--espaciado-xs);
-        border: 1px solid #969696;
-        position: relative;
-      }
-
-      .mpsme-icono-metodo {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .mpsme-metodo-entrega.seleccionado.seleccionado .mpsme-icono-metodo svg,
-      .mpsme-metodo-entrega.seleccionado.seleccionado .mpsme-icono-metodo svg path,
-      .mpsme-metodo-entrega.seleccionado.seleccionado .mpsme-icono-metodo svg g,
-      .mpsme-metodo-entrega.seleccionado.seleccionado .mpsme-icono-metodo path,
-      .mpsme-metodo-entrega.seleccionado.seleccionado .mpsme-icono-metodo g {
-        fill: var(--colorp-secondary);
-      }
-
-      .mpsme-metodo-entrega svg {
-        width: 2.67631rem;
-        height: 2.67631rem;
-        aspect-ratio: 42.82/42.82;
-      }
-
-      .mpsme-informacion-metodo {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: var(--espaciado-s);
-      }
-
-      .mpsme-informacion-metodo-texto {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: var(--espaciado-s);
-      }
-
-      .mpsme-metodo-entrega.seleccionado {
-        border: none;
-        background-color: var(--colorp-primary);
-      }
-
-      .mpsme-metodo-entrega.seleccionado p {
-        color: var(--colorp-secondary);
-      }
-
-      .mpsme-icono-seleccion {
-        position: absolute;
-        top: 0.45rem;
-        right: 0.45rem;
-      }
-
-      .mpsme-icono-seleccion svg {
-        width: 1.25rem;
-        height: 1.25rem;
-        aspect-ratio: 1/1;
-      }
-
-      .mpsme-opciones-entrega {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: var(--espaciado-xl);
-      }
-
-      .mpsme-opcion-continuar {
-        width: 100%;
-        height: 3rem;
-        border-radius: var(--espaciado-xs);
-        background-color: var(--colorp-primary);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-      }
-
-      .mpsme-opcion-continuar p {
-        font-weight: 600;
-        text-transform: uppercase;
-      }
-
-      .mpsme-opcion-omitir {
-        width: 100%;
-        height: 3rem;
-        border-radius: var(--espaciado-xs);
-        border: 1px solid var(--colorp-primary);
-        background-color: transparent;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: var(--espaciado-xs);
-        cursor: pointer;
-      }
-
-      .mpsme-opcion-omitir p {
-        text-transform: uppercase;
-        font-weight: 600;
-      }
-
-      @media screen and (min-width: 768px) {
-      }
-
-      @media screen and (min-width: 1024px) {
-        .modal-principal-solicitud-metodo-entrega {
-          width: 46rem;
-        }
-
-        .modal-principal-solicitud-metodo-entrega {
-          padding: 2rem 3rem;
-        }
-
-        .mpsme-icono-base svg {
-          width: 6.25rem;
-          height: 6.25rem;
-        }
-
-        .mpsme-informacion-metodo {
-          flex-direction: row;
-        }
-
-        .mpsme-metodo-entrega {
-          align-items: start;
-          padding: 1rem 1.25rem;
-        }
-      }
-    {% endstyle %}
-
     <!-- Hojas de estilos css -->
     {{ 'estilos-generales.css' | asset_url | stylesheet_tag }}
   </head>
@@ -635,6 +433,208 @@
     </modal-inicial>
   </body>
 </html>
+
+{% style %}
+  .modal-general-sme {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    overflow-y: auto;
+  }
+
+  .modal-principal-solicitud-metodo-entrega {
+    width: 23.75rem;
+    height: max-content;
+    padding: 2rem 1.25rem;
+    background-color: var(--colorp-secondary);
+    border-radius: var(--espaciado-s);
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .mpsme-icono-base {
+    width: 100%;
+    display: flex;
+    align-items: start;
+  }
+
+  .mpsme-icono-base svg {
+    width: 3.125rem;
+    height: 3.125rem;
+    aspect-ratio: 1/1;
+  }
+
+  .mpsme-mensaje-base {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaciado-xl);
+    text-align: center;
+  }
+
+  .mpsme-mensaje-base small {
+    font-size: 3.3125rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 3.4375rem;
+    letter-spacing: -0.06625rem;
+    text-transform: uppercase;
+  }
+
+  .mpsme-seleccion-entrega {
+    width: 100%;
+    display: flex;
+    gap: var(--espaciado-l);
+    cursor: pointer;
+  }
+
+  .mpsme-metodo-entrega {
+    flex-basis: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: var(--espaciado-l);
+    padding: 1.25rem 0;
+    border-radius: var(--espaciado-xs);
+    border: 1px solid #969696;
+    position: relative;
+  }
+
+  .mpsme-icono-metodo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mpsme-metodo-entrega.seleccionado.seleccionado .mpsme-icono-metodo svg,
+  .mpsme-metodo-entrega.seleccionado.seleccionado .mpsme-icono-metodo svg path,
+  .mpsme-metodo-entrega.seleccionado.seleccionado .mpsme-icono-metodo svg g,
+  .mpsme-metodo-entrega.seleccionado.seleccionado .mpsme-icono-metodo path,
+  .mpsme-metodo-entrega.seleccionado.seleccionado .mpsme-icono-metodo g {
+    fill: var(--colorp-secondary);
+  }
+
+  .mpsme-metodo-entrega svg {
+    width: 2.67631rem;
+    height: 2.67631rem;
+    aspect-ratio: 42.82/42.82;
+  }
+
+  .mpsme-informacion-metodo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--espaciado-s);
+  }
+
+  .mpsme-informacion-metodo-texto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--espaciado-s);
+  }
+
+  .mpsme-metodo-entrega.seleccionado {
+    border: none;
+    background-color: var(--colorp-primary);
+  }
+
+  .mpsme-metodo-entrega.seleccionado p {
+    color: var(--colorp-secondary);
+  }
+
+  .mpsme-icono-seleccion {
+    position: absolute;
+    top: 0.45rem;
+    right: 0.45rem;
+  }
+
+  .mpsme-icono-seleccion svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    aspect-ratio: 1/1;
+  }
+
+  .mpsme-opciones-entrega {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaciado-xl);
+  }
+
+  .mpsme-opcion-continuar {
+    width: 100%;
+    height: 3rem;
+    border-radius: var(--espaciado-xs);
+    background-color: var(--colorp-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .mpsme-opcion-continuar p {
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .mpsme-opcion-omitir {
+    width: 100%;
+    height: 3rem;
+    border-radius: var(--espaciado-xs);
+    border: 1px solid var(--colorp-primary);
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--espaciado-xs);
+    cursor: pointer;
+  }
+
+  .mpsme-opcion-omitir p {
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1024px) {
+    .modal-principal-solicitud-metodo-entrega {
+      width: 46rem;
+    }
+
+    .modal-principal-solicitud-metodo-entrega {
+      padding: 2rem 3rem;
+    }
+
+    .mpsme-icono-base svg {
+      width: 6.25rem;
+      height: 6.25rem;
+    }
+
+    .mpsme-informacion-metodo {
+      flex-direction: row;
+    }
+
+    .mpsme-metodo-entrega {
+      align-items: start;
+      padding: 1rem 1.25rem;
+    }
+  }
+{% endstyle %}
 
 <script>
   class ModalInicial extends HTMLElement {
