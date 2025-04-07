@@ -211,7 +211,43 @@
 
     <!-- MENU DE OPCIONES PARA LOS PRODUCTOS -->
     <div class="h-menu-opciones-productos">
-      <div class="h-menu-opciones-productos-item">
+      <div
+        id="h-opcion-menu-gaseosas"
+        class="h-menu-opciones-productos-item"
+      >
+        <div class="h-menu-producto-info-imagen">
+          <img src="{{ 'menu-img-gaseosas.png' | asset_url }}" alt="Gaseosas y Cervezas" width="100" height="100">
+        </div>
+        <div class="h-menu-producto-info-nombre">
+          <p>Gaseosas y Cervezas</p>
+        </div>
+      </div>
+      <div
+        id="h-opcion-menu-gaseosas"
+        class="h-menu-opciones-productos-item"
+      >
+        <div class="h-menu-producto-info-imagen">
+          <img src="{{ 'menu-img-gaseosas.png' | asset_url }}" alt="Gaseosas y Cervezas" width="100" height="100">
+        </div>
+        <div class="h-menu-producto-info-nombre">
+          <p>Gaseosas y Cervezas</p>
+        </div>
+      </div>
+      <div
+        id="h-opcion-menu-gaseosas"
+        class="h-menu-opciones-productos-item"
+      >
+        <div class="h-menu-producto-info-imagen">
+          <img src="{{ 'menu-img-gaseosas.png' | asset_url }}" alt="Gaseosas y Cervezas" width="100" height="100">
+        </div>
+        <div class="h-menu-producto-info-nombre">
+          <p>Gaseosas y Cervezas</p>
+        </div>
+      </div>
+      <div
+        id="h-opcion-menu-gaseosas"
+        class="h-menu-opciones-productos-item"
+      >
         <div class="h-menu-producto-info-imagen">
           <img src="{{ 'menu-img-gaseosas.png' | asset_url }}" alt="Gaseosas y Cervezas" width="100" height="100">
         </div>
@@ -239,11 +275,20 @@
       this.btnSeleccionMetodoEntrega = document.querySelector('#h-boton-cambio-metodo-entrega');
       this.btnDominicilio = document.querySelector('.h-metodo-domicilio');
       this.btnLocal = document.querySelector('.h-metodo-local');
+      this.contenedorMenuDesplegable = document.querySelector('.h-menu-opciones-productos');
+      // TESTEO DE PRUEBA
+      this.itemMenuDesplegable = document.querySelectorAll('.h-menu-opciones-productos-item');
 
       // EVENTOS LISTENER
+      this.btnMenu.addEventListener('click', this.mostrarMenuDesplegable.bind(this));
       this.logoPrincipal.forEach((logo) => {
         logo.addEventListener('click', () => {
           window.location.href = '/';
+        });
+      });
+      this.itemMenuDesplegable.forEach((item) => {
+        item.addEventListener('click', () => {
+          window.location.href = '/menu';
         });
       });
 
@@ -289,6 +334,17 @@
           this.btnDominicilio.style.display = 'flex';
           this.btnLocal.style.display = 'none';
         }
+      }
+    }
+
+    mostrarMenuDesplegable() {
+      const estaSeleccionado = this.btnMenu.classList.contains('seleccionado');
+      if (estaSeleccionado) {
+        this.btnMenu.classList.remove('seleccionado');
+        this.contenedorMenuDesplegable.style.display = 'none';
+      } else {
+        this.btnMenu.classList.add('seleccionado');
+        this.contenedorMenuDesplegable.style.display = 'flex';
       }
     }
   }
