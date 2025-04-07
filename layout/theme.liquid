@@ -666,7 +666,7 @@
       const modalVer = localStorage.getItem('mp-ver');
       console.log('modalVer', modalVer);
 
-      if (modalVer == null || modalVer == 'true') {
+      if (modalVer == null || modalVer == 'false') {
         this.modalGeneral.style.display = 'flex';
       }
     }
@@ -709,6 +709,7 @@
         this.iconoSeleccionEnvioDomicilio.innerHTML = iconoEstadoOff;
       }
       this.verificarBtnContinuar();
+      localStorage.setItem('mp-ver', 'false');
     }
 
     procesoBtnEnvioDomicilio() {
@@ -731,6 +732,7 @@
         this.iconoSeleccionRecogerLocal.innerHTML = iconoEstadoOff;
       }
       this.verificarBtnContinuar();
+      localStorage.setItem('mp-ver', 'false');
     }
 
     verificarBtnContinuar() {
