@@ -142,7 +142,7 @@
           <!-- CONTENEDOR DE BUSQUEDA -->
           <div class="h-input-buscar icon-size-trabajo">
             {% render 'icon-search' %}
-            <input type="text" placeholder="Buscar" id="h-input-buscar">
+            <input type="text" placeholder="Buscar" id="h-input-buscar" autocomplete="off">
           </div>
           <!-- CONTENEDOR RESULTADOS DE BUSQUEDA -->
           <div class="h-busqueda-especifica">
@@ -385,6 +385,7 @@
 
         if (!inputVacio && estaVisible) {
           window.location.href = '/search';
+          this.inputBusqueda.value = '';
           this.contenedorResultadoBusqueda.style.display = 'none';
         } else if (inputVacio && estaVisible) {
           this.contenedorResultadoBusqueda.style.display = 'none';
