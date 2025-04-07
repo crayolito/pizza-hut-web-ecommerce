@@ -664,6 +664,7 @@
       // Obtener el valor actual de localStorage
       // mp-ver = modal principal ver,
       const modalVer = localStorage.getItem('mp-ver');
+      console.log('modalVer', modalVer);
 
       if (modalVer == null || modalVer == 'true') {
         this.modalGeneral.style.display = 'flex';
