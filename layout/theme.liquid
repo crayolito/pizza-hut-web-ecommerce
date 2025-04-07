@@ -644,20 +644,20 @@
 
     connectedCallback() {
       // CONTENEDOR GENERAL DEL MODAL
-      const modalGeneral = document.querySelector('.modal-general-sme');
+      this.modalGeneral = document.querySelector('.modal-general-sme');
       // BOTONES DE SELECCION METODO ENTREGA
-      const btnRecogerLocal = document.querySelector('#mpsme-recoger-local');
-      const btnEnvioDomicilio = document.querySelector('#mpsme-envio-domicilio');
-      const iconoSeleccionRecogerLocal = document.querySelector('#mpsme-icono-recoger-local');
-      const iconoSeleccionEnvioDomicilio = document.querySelector('#mpsme-icono-envio-domicilio');
+      this.btnRecogerLocal = document.querySelector('#mpsme-recoger-local');
+      this.btnEnvioDomicilio = document.querySelector('#mpsme-envio-domicilio');
+      this.iconoSeleccionRecogerLocal = document.querySelector('#mpsme-icono-recoger-local');
+      this.iconoSeleccionEnvioDomicilio = document.querySelector('#mpsme-icono-envio-domicilio');
       // OPCIONES DEL MODAL
-      const btnContinuar = document.querySelector('#mpsme-opcion-continuar');
-      const btnOmitir = document.querySelector('#mpsme-opcion-omitir');
+      this.btnContinuar = document.querySelector('#mpsme-opcion-continuar');
+      this.btnOmitir = document.querySelector('#mpsme-opcion-omitir');
       // LISTENER DE EVENTOS
-      btnOmitir.addEventListener('click', this.omitirBtnModal.bind(this));
-      btnContinuar.addEventListener('click', this.continuarBtnModal.bind(this));
-      btnRecogerLocal.addEventListener('click', this.procesoBtnRecogerLocal.bind(this));
-      btnEnvioDomicilio.addEventListener('click', this.procesoBtnEnvioDomicilio.bind(this));
+      this.btnOmitir.addEventListener('click', this.omitirBtnModal.bind(this));
+      this.btnContinuar.addEventListener('click', this.continuarBtnModal.bind(this));
+      this.btnRecogerLocal.addEventListener('click', this.procesoBtnRecogerLocal.bind(this));
+      this.btnEnvioDomicilio.addEventListener('click', this.procesoBtnEnvioDomicilio.bind(this));
 
       // METODOS INICIALES DEL ELEMENTO
       this.verificarLanzamientoModal();
