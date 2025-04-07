@@ -1,7 +1,7 @@
 <!-- Estilos traer de assets/header.css as -->
 {{ 'header.css' | asset_url | stylesheet_tag }}
 
-<sticky-header>
+<header-principal>
   <header class="container-secundario h-header-principal">
     <!-- HEADER MOBILE -->
     <div class="h-metodo-entrega-seleccionado">
@@ -111,7 +111,7 @@
           <h4>HUT COINS</h4>
           {% render 'icon-flecha-hutcoins' %}
         </a>
-        <a href="">
+        <a href="/pages/sobre-nosotros">
           <h4>SOBRE NOSOTROS</h4>
         </a>
       </nav>
@@ -141,9 +141,9 @@
           </div>
         </div>
         <hr>
-        <button class="h-icono-carrito">
+        <a href="/pages/carrito" class="h-icono-carrito">
           {% render 'icon-carrito' %}
-        </button>
+        </a>
         <hr>
         <!-- ESTADO SIN TIENE METODO ENTREGA -->
         {% comment %}
@@ -220,10 +220,14 @@
       </div>
     </div>
   </header>
-</sticky-header>
+</header-principal>
 
 <script>
-  class HeaderPrincipal extends HTMLElement {}
+  class HeaderPrincipal extends HTMLElement {
+    constructor() {}
+    connectedCallback() {}
+  }
+
   const botonCambioEntrega = document.querySelector('.h-sector-metodo-entrega');
   const inputBuscar = document.querySelector('#h-input-buscar');
   const botonMobilBuscar = document.querySelector('.h-boton-buscar');
@@ -272,5 +276,5 @@
     }
   });
 
-  customElements.define('sticky-header', HeaderPrincipal);
+  customElements.define('header-principal', HeaderPrincipal);
 </script>

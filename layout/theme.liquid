@@ -349,6 +349,211 @@
        x : (valor base ÷ tamaño de la pantalla) * 100
        */
     {% endstyle %}
+
+    {% style %}
+      .modal-general-sme {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.7);
+        z-index: 9999;
+        display: flex;
+        justify-content: center;
+        overflow-y: auto;
+      }
+
+      .modal-principal-solicitud-metodo-entrega {
+        width: 23.75rem;
+        height: max-content;
+        padding: 2rem 1.25rem;
+        background-color: var(--colorp-secondary);
+        border-radius: var(--espaciado-s);
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      .mpsme-icono-base {
+        width: 100%;
+        display: flex;
+        align-items: start;
+      }
+
+      .mpsme-icono-base svg {
+        width: 3.125rem;
+        height: 3.125rem;
+        aspect-ratio: 1/1;
+      }
+
+      .mpsme-mensaje-base {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: var(--espaciado-xl);
+        text-align: center;
+      }
+
+      .mpsme-mensaje-base small {
+        font-size: 3.3125rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 3.4375rem;
+        letter-spacing: -0.06625rem;
+        text-transform: uppercase;
+      }
+
+      .mpsme-seleccion-entrega {
+        width: 100%;
+        display: flex;
+        gap: var(--espaciado-l);
+        cursor: pointer;
+      }
+
+      .mpsme-metodo-entrega {
+        flex-basis: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: var(--espaciado-l);
+        padding: 1.25rem 0;
+        border-radius: var(--espaciado-xs);
+        border: 1px solid #969696;
+        position: relative;
+      }
+
+      .mpsme-icono-metodo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .mpsme-icono-metodo.seleccionado svg,
+      .mpsme-icono-metodo.seleccionado svg path,
+      .mpsme-icono-metodo.seleccionado svg g,
+      .mpsme-icono-metodo.seleccionado path,
+      .mpsme-icono-metodo.seleccionado g {
+        fill: var(--colorp-secondary);
+      }
+
+      .mpsme-metodo-entrega svg {
+        width: 2.67631rem;
+        height: 2.67631rem;
+        aspect-ratio: 42.82/42.82;
+      }
+
+      .mpsme-informacion-metodo {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--espaciado-s);
+      }
+
+      .mpsme-informacion-metodo-texto {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--espaciado-s);
+      }
+
+      .mpsme-metodo-entrega.seleccionado {
+        border: none;
+        background-color: var(--colorp-primary);
+      }
+
+      .mpsme-metodo-entrega.seleccionado p {
+        color: var(--colorp-secondary);
+      }
+
+      .mpsme-icono-seleccion {
+        position: absolute;
+        top: 0.45rem;
+        right: 0.45rem;
+      }
+
+      .mpsme-icono-seleccion svg {
+        width: 1.25rem;
+        height: 1.25rem;
+        aspect-ratio: 1/1;
+      }
+
+      .mpsme-opciones-entrega {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: var(--espaciado-xl);
+      }
+
+      .mpsme-opcion-continuar {
+        width: 100%;
+        height: 3rem;
+        border-radius: var(--espaciado-xs);
+        background-color: var(--colorp-primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+
+      .mpsme-opcion-continuar p {
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+
+      .mpsme-opcion-omitir {
+        width: 100%;
+        height: 3rem;
+        border-radius: var(--espaciado-xs);
+        border: 1px solid var(--colorp-primary);
+        background-color: transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: var(--espaciado-xs);
+        cursor: pointer;
+      }
+
+      .mpsme-opcion-omitir p {
+        text-transform: uppercase;
+        font-weight: 600;
+      }
+
+      @media screen and (min-width: 768px) {
+      }
+
+      @media screen and (min-width: 1024px) {
+        .modal-principal-solicitud-metodo-entrega {
+          width: 46rem;
+        }
+
+        .modal-principal-solicitud-metodo-entrega {
+          padding: 2rem 3rem;
+        }
+
+        .mpsme-icono-base svg {
+          width: 6.25rem;
+          height: 6.25rem;
+        }
+
+        .mpsme-informacion-metodo {
+          flex-direction: row;
+        }
+
+        .mpsme-metodo-entrega {
+          align-items: start;
+          padding: 1rem 1.25rem;
+        }
+      }
+    {% endstyle %}
+
+    <!-- Hojas de estilos css -->
+    {{ 'estilos-generales.css' | asset_url | stylesheet_tag }}
   </head>
 
   <body>
@@ -361,266 +566,155 @@
     {% sections 'footer-group' %}
 
     <!-- MODAL CLIENTE : ESTADO LOGUEADO -->
-    <div class="modal-general-sme">
-      <div class="modal-principal-solicitud-metodo-entrega">
-        <div class="mpsme-icono-base icon-color-primary">
-          {% render 'icon-localizacion-plus' %}
-        </div>
-        <div class="mpsme-mensaje-base">
-          <small>¿cómo quieres recibir tu pizza?</small>
-          <p>
-            Elige si la llevamos hasta la puerta de tu casa o si prefieres recogerla tú mismo desde nuestro local más
-            cercano.
-          </p>
-        </div>
-        <div class="mpsme-seleccion-entrega">
-          <div class="mpsme-metodo-entrega mpsme-metodo-recoger-local">
-            <div class="mpsme-icono-seleccion">
-              {% render 'icon-estado-off' %}
-            </div>
-            <div class="mpsme-informacion-metodo">
-              <div class="mpsme-icono-metodo icon-color-primary">
-                {% render 'icon-recogo-local' %}
-              </div>
-              <div class="mpsme-informacion-metodo-texto">
-                <p style="font-weight: 600;">Recoger en local</p>
-                <p>Sin costo alguno</p>
-              </div>
-            </div>
+    <modal-inicial>
+      <div class="modal-general-sme">
+        <div class="modal-principal-solicitud-metodo-entrega">
+          <div class="mpsme-icono-base icon-color-primary">
+            {% render 'icon-localizacion-plus' %}
           </div>
-          <div class="mpsme-metodo-entrega mpsme-metodo-envio-domicilio seleccionado">
-            <div class="mpsme-icono-seleccion">
-              {% render 'icon-estado-on' %}
+          <div class="mpsme-mensaje-base">
+            <small>¿cómo quieres recibir tu pizza?</small>
+            <p>
+              Elige si la llevamos hasta la puerta de tu casa o si prefieres recogerla tú mismo desde nuestro local más
+              cercano.
+            </p>
+          </div>
+          <div
+            id="mpsme-recoger-local"
+            class="mpsme-seleccion-entrega"
+          >
+            <div class="mpsme-metodo-entrega mpsme-metodo-recoger-local">
+              <div class="mpsme-icono-seleccion">
+                {% render 'icon-estado-off' %}
+              </div>
+              <div class="mpsme-informacion-metodo">
+                <div class="mpsme-icono-metodo icon-color-primary">
+                  {% render 'icon-recogo-local' %}
+                </div>
+                <div class="mpsme-informacion-metodo-texto">
+                  <p style="font-weight: 600;">Recoger en local</p>
+                  <p>Sin costo alguno</p>
+                </div>
+              </div>
             </div>
-            <div class="mpsme-informacion-metodo">
-              <div class="mpsme-icono-metodo seleccionado ">
-                {% render 'icon-recogo-delivery' %}
+            <div class="mpsme-metodo-entrega mpsme-metodo-envio-domicilio seleccionado">
+              <div class="mpsme-icono-seleccion">
+                {% render 'icon-estado-on' %}
               </div>
-              <div class="mpsme-informacion-metodo-texto">
-                <p style="font-weight: 600;">Envío a domicilio</p>
-                <p>Envío a solo Bs 2</p>
-              </div>
+              <div class="mpsme-informacion-metodo">
+                <div class="mpsme-icono-metodo seleccionado ">
+                  {% render 'icon-recogo-delivery' %}
+                </div>
+                <div class="mpsme-informacion-metodo-texto">
+                  <p style="font-weight: 600;">Envío a domicilio</p>
+                  <p>Envío a solo Bs 2</p>
+                </div>
 
-              {% comment %} asd {% endcomment %}
+                {% comment %} asd {% endcomment %}
+              </div>
             </div>
           </div>
-        </div>
-        <div class="mpsme-opciones-entrega">
-          <button class="mpsme-opcion-continuar">
-            <p class="color-letras-secondary">Continuar</p>
-          </button>
-          <button class="mpsme-opcion-omitir icon-color-primary">
-            <p class="color-letras-primary">Omitir</p>
-            {% render 'icon-close-custom' %}
-          </button>
+          <div
+            id="mpsme-envio-domicilio"
+            class="mpsme-opciones-entrega"
+          >
+            <button
+              class="mpsme-opcion-continuar"
+              id="mpsme-opcion-continuar"
+            >
+              <p class="color-letras-secondary">Continuar</p>
+            </button>
+            <button
+              class="mpsme-opcion-omitir icon-color-primary"
+              id="mpsme-opcion-omitir"
+            >
+              <p class="color-letras-primary">Omitir</p>
+              {% render 'icon-close-custom' %}
+            </button>
+          </div>
         </div>
       </div>
-    </div>
+    </modal-inicial>
   </body>
 </html>
 
-{% style %}
-  .modal-general-sme {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.7);
-    z-index: 9999;
-    display: flex;
-    justify-content: center;
-    overflow-y: auto;
-  }
-
-  .modal-principal-solicitud-metodo-entrega {
-    width: 23.75rem;
-    height: max-content;
-    padding: 2rem 1.25rem;
-    background-color: var(--colorp-secondary);
-    border-radius: var(--espaciado-s);
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-  }
-
-  .mpsme-icono-base {
-    width: 100%;
-    display: flex;
-    align-items: start;
-  }
-
-  .mpsme-icono-base svg {
-    width: 3.125rem;
-    height: 3.125rem;
-    aspect-ratio: 1/1;
-  }
-
-  .mpsme-mensaje-base {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: var(--espaciado-xl);
-    text-align: center;
-  }
-
-  .mpsme-mensaje-base small {
-    font-size: 3.3125rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 3.4375rem;
-    letter-spacing: -0.06625rem;
-    text-transform: uppercase;
-  }
-
-  .mpsme-seleccion-entrega {
-    width: 100%;
-    display: flex;
-    gap: var(--espaciado-l);
-  }
-
-  .mpsme-metodo-entrega {
-    flex-basis: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: var(--espaciado-l);
-    padding: 1.25rem 0;
-    border-radius: var(--espaciado-xs);
-    border: 1px solid #969696;
-    position: relative;
-  }
-
-  .mpsme-icono-metodo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .mpsme-icono-metodo.seleccionado svg,
-  .mpsme-icono-metodo.seleccionado svg path,
-  .mpsme-icono-metodo.seleccionado svg g,
-  .mpsme-icono-metodo.seleccionado path,
-  .mpsme-icono-metodo.seleccionado g {
-    fill: var(--colorp-secondary);
-  }
-
-  .mpsme-metodo-entrega svg {
-    width: 2.67631rem;
-    height: 2.67631rem;
-    aspect-ratio: 42.82/42.82;
-  }
-
-  .mpsme-informacion-metodo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--espaciado-s);
-  }
-
-  .mpsme-informacion-metodo-texto {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--espaciado-s);
-  }
-
-  .mpsme-metodo-entrega.seleccionado {
-    border: none;
-    background-color: var(--colorp-primary);
-  }
-
-  .mpsme-metodo-entrega.seleccionado p {
-    color: var(--colorp-secondary);
-  }
-
-  .mpsme-icono-seleccion {
-    position: absolute;
-    top: 0.45rem;
-    right: 0.45rem;
-  }
-
-  .mpsme-icono-seleccion svg {
-    width: 1.25rem;
-    height: 1.25rem;
-    aspect-ratio: 1/1;
-  }
-
-  .mpsme-opciones-entrega {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: var(--espaciado-xl);
-  }
-
-  .mpsme-opcion-continuar {
-    width: 100%;
-    height: 3rem;
-    border-radius: var(--espaciado-xs);
-    background-color: var(--colorp-primary);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-  }
-
-  .mpsme-opcion-continuar p {
-    font-weight: 600;
-    text-transform: uppercase;
-  }
-
-  .mpsme-opcion-omitir {
-    width: 100%;
-    height: 3rem;
-    border-radius: var(--espaciado-xs);
-    border: 1px solid var(--colorp-primary);
-    background-color: transparent;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--espaciado-xs);
-    cursor: pointer;
-  }
-
-  .mpsme-opcion-omitir p {
-    text-transform: uppercase;
-    font-weight: 600;
-  }
-
-  @media screen and (min-width: 768px) {
-  }
-
-  @media screen and (min-width: 1024px) {
-    .modal-principal-solicitud-metodo-entrega {
-      width: 46rem;
-    }
-
-    .modal-principal-solicitud-metodo-entrega {
-      padding: 2rem 3rem;
-    }
-
-    .mpsme-icono-base svg {
-      width: 6.25rem;
-      height: 6.25rem;
-    }
-
-    .mpsme-informacion-metodo {
-      flex-direction: row;
-    }
-
-    .mpsme-metodo-entrega {
-      align-items: start;
-      padding: 1rem 1.25rem;
-    }
-  }
-{% endstyle %}
-
 <script>
+  class ModalInicial extends HTMLElement {
+    constructor() {
+      super();
+    }
+
+    connectedCallback() {
+      // CONTENEDOR GENERAL DEL MODAL
+      const modalGeneral = document.querySelector('.modal-general-sme');
+      // BOTONES DE SELECCION METODO ENTREGA
+      const btnRecogerLocal = document.querySelector('#mpsme-recoger-local');
+      const btnEnvioDomicilio = document.querySelector('#mpsme-envio-domicilio');
+      // OPCIONES DEL MODAL
+      const btnContinuar = document.querySelector('#mpsme-opcion-continuar');
+      const btnOmitir = document.querySelector('#mpsme-opcion-omitir');
+      // LISTENER DE EVENTOS
+      btnOmitir.addEventListener('click', this.omitirBtnModal.bind(this));
+      btnContinuar.addEventListener('click', this.continuarBtnModal.bind(this));
+      btnRecogerLocal.addEventListener('click', this.procesoBtnRecogerLocal.bind(this));
+      btnEnvioDomicilio.addEventListener('click', this.procesoBtnEnvioDomicilio.bind(this));
+
+      // METODOS INICIALES DEL ELEMENTO
+      this.verificarLanzamientoModal();
+    }
+
+    verificarLanzamientoModal() {
+      // Obtener el valor actual de localStorage
+      // mp-ver = modal principal ver,
+      const modalVer = localStorage.getItem('mp-ver');
+
+      if (modalVer === null || modalVer === 'true') {
+        modalGeneral.style.display = 'flex';
+      }
+    }
+
+    omitirBtnModal() {
+      // Ocultar el modal
+      modalGeneral.style.display = 'none';
+      // Cambiar el valor de localStorage a false
+      localStorage.setItem('mp-ver', 'false');
+    }
+
+    continuarBtnModal() {
+      // Ocultar el modal
+      modalGeneral.style.display = 'none';
+      // Cambiar el valor de localStorage a false
+      localStorage.setItem('mp-ver', 'false');
+    }
+
+    procesoBtnRecogerLocal() {
+      // seleccion-me-mi = seleccion metodo mi entrega modal inicial
+      localStorage.setItem('seleccion-me-mi', 'recoger-local');
+      this.seleccionMetodoEntrega();
+    }
+
+    procesoBtnEnvioDomicilio() {
+      // seleccion-me-mi = seleccion metodo mi entrega modal inicial
+      localStorage.setItem('seleccion-me-mi', 'envio-domicilio');
+      this.seleccionMetodoEntrega();
+    }
+
+    seleccionMetodoEntrega() {
+      const fueSeleccionadoBtnRecogerLocal = this.btnRecogerLocal.classList.contains('seleccionado');
+      const fueSeleccionadoBtnEnvioDomicilio = this.btnEnvioDomicilio.classList.contains('seleccionado');
+
+      if (fueSeleccionadoBtnRecogerLocal) {
+        this.btnRecogerLocal.classList.remove('seleccionado');
+        this.btnEnvioDomicilio.classList.add('seleccionado');
+      } else if (fueSeleccionadoBtnEnvioDomicilio) {
+        this.btnEnvioDomicilio.classList.remove('seleccionado');
+        this.btnRecogerLocal.classList.add('seleccionado');
+      }
+    }
+  }
+
+  customElements.define('modal-inicial', ModalInicial);
+
   const modalGeneral = document.querySelector('.modal-general-sme');
 
   // Inicialmente ocultamos el modal
