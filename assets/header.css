@@ -496,11 +496,20 @@ header-principal {
   transition: background-color 0.3s ease;
 }
 
+.h-mostrar-menu-opciones-productos:hover {
+  color: var(--colorp-primary);
+}
+
+.h-mostrar-menu-opciones-productos:hover::after {
+  background-color: var(--colorp-primary);
+}
+
+/* Añadimos el estilo para cuando está seleccionado */
 .h-mostrar-menu-opciones-productos.seleccionado {
   color: var(--colorp-primary);
 }
 
-.h-mostrar-menu-opciones-productos.seleccionado {
+.h-mostrar-menu-opciones-productos.seleccionado::after {
   background-color: var(--colorp-primary);
 }
 
