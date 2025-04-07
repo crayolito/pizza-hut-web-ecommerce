@@ -158,7 +158,7 @@
           </div>
         </button>
         <!-- ESTADO CON TIENE METODO ENTREGA -->
-        <div class="h-sector-metodo-entrega icon-color-tertiary" style="display: none;">
+        <div class="h-sector-metodo-entrega icon-color-tertiary">
           <div class="h-metodo-domicilio">
             {% render 'icon-recogo-delivery' %}
             <h4>Domicilio</h4>
@@ -229,9 +229,10 @@
       super();
     }
     connectedCallback() {
-      // HEADER MOBILE
       this.logoPrincipal = document.querySelectorAll('.h-logo-principal');
+      // HEADER MOBILE
       // HEADER DESKTOP
+      this.btnMenu = document.querySelector('.h-mostrar-menu-opciones-productos');
 
       // EVENTOS LISTENER
       this.logoPrincipal.forEach((logo) => {
