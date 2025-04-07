@@ -276,11 +276,16 @@
       this.btnDominicilio = document.querySelector('.h-metodo-domicilio');
       this.btnLocal = document.querySelector('.h-metodo-local');
       this.contenedorMenuDesplegable = document.querySelector('.h-menu-opciones-productos');
+      this.contenedorResultadoBusqueda = document.querySelector('.h-busqueda-especifica');
+      this.inputBusqueda = document.querySelector('#h-input-buscar');
       // TESTEO DE PRUEBA
       this.itemMenuDesplegable = document.querySelectorAll('.h-menu-opciones-productos-item');
 
       // EVENTOS LISTENER
       this.btnMenu.addEventListener('click', this.mostrarMenuDesplegable.bind(this));
+      this.inputBusqueda.addEventListener('keyup', this.accionEnterInput.bind(this));
+      this.inputBusqueda.addEventListener('input', this.accionEscribeInput.bind(this));
+
       this.logoPrincipal.forEach((logo) => {
         logo.addEventListener('click', () => {
           window.location.href = '/';
@@ -297,6 +302,7 @@
       this.verificarEstadoSesion();
       this.verificarEstadoEntrega();
       this.contenedorMenuDesplegable.style.display = 'none';
+      this.contenedorResultadoBusqueda.style.display = 'none';
     }
 
     verificarEstadoSesion() {
@@ -349,6 +355,41 @@
         this.contenedorMenuDesplegable.style.display = 'flex';
       }
     }
+
+    accionEnterInput() {
+      const inputVacio = this.inputBusqueda.value.trim() === '';
+      const estaVisible = this.contenedorResultadoBusqueda.style.display == 'flex';
+
+      if (!inputVacio && estaVisible) {
+        window.location.href = '/search';
+        this.contenedorResultadoBusqueda.style.display = 'none';
+      } else if (inputVacio && estaVisible) {
+        this.contenedorResultadoBusqueda.style.display = 'none';
+      }
+    }
+
+    accionEscribeInput() {
+      const inputVacio = this.inputBusqueda.value.trim() === '';
+      const estaVisible = this.contenedorResultadoBusqueda.style.display === 'flex';
+
+      if (!inputVacio && !estaVisible) {
+        // Solo mostrar si no está vacío y no está visible
+        this.contenedorResultadoBusqueda.style.display = 'flex';
+      } else if (inputVacio && estaVisible) {
+        // Solo ocultar si está vacío y está visible
+        this.contenedorResultadoBusqueda.style.display = 'none';
+      }
+    }
+
+
+    document.addEventListener('click', (event) => {
+      // Verificar si el clic NO fue dnetor del input
+      if(event.target !== this.inputBusqueda && !inputBusqueda.contains(event.target)) {
+        // Si el clic fue fuera del input y del contenedor de resultados, ocultar el contenedor
+        this.contenedorResultadoBusqueda.style.display = 'none';
+        console.log('click fuera del input');
+      }
+    });
   }
 
   const botonCambioEntrega = document.querySelector('.h-sector-metodo-entrega');

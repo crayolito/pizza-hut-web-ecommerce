@@ -33,6 +33,7 @@ header-principal {
   width: 2rem;
   height: 1.8rem;
   aspect-ratio: 11/10;
+  cursor: pointer;
 }
 
 .h-logo-principal img {
@@ -361,8 +362,6 @@ header-principal {
   align-items: start;
   padding: var(--espaciado-m);
   gap: var(--espaciado-l);
-  /* READ : CAMBIOS PARA EL JS  */
-  display: none;
 }
 
 .h-input-buscar input {
