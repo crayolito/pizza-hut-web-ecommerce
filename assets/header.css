@@ -183,6 +183,7 @@ header-principal {
   display: flex;
   align-items: center;
   gap: var(--espaciado-xs);
+  cursor: pointer;
 }
 
 .h-sector-opciones-cliente {
@@ -495,11 +496,11 @@ header-principal {
   transition: background-color 0.3s ease;
 }
 
-#h-mostrar-menu-opciones-productos:hover {
+#h-mostrar-menu-opciones-productos.seleccionado {
   color: var(--colorp-primary);
 }
 
-#h-mostrar-menu-opciones-productos:hover::after {
+#h-mostrar-menu-opciones-productos.seleccionado {
   background-color: var(--colorp-primary);
 }
 
