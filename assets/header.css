@@ -481,11 +481,36 @@ header-principal {
      =================== */
 
 .h-mostrar-menu-opciones-productos {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.h-mostrar-menu-opciones-productos h4 {
+  color: var(--colorp-secondary);
+}
+
+.h-mostrar-menu-opciones-productos.seleccionado h4 {
+  color: var(--colorp-primary);
+  transition: color 0.3s ease;
+}
+
+.h-mostrar-menu-opciones-productos .h-mmop {
+  height: 2px;
+  width: 100%;
+  background: var(--colorp-primary);
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  transition: background-color 0.3s ease;
+}
+
+/* #h-mostrar-menu-opciones-productos {
   position: relative;
   transition: color 0.3s ease;
 }
 
-.h-mostrar-menu-opciones-productos::after {
+#h-mostrar-menu-opciones-productos::after {
   content: "";
   position: absolute;
   bottom: -3px;
@@ -496,21 +521,13 @@ header-principal {
   transition: background-color 0.3s ease;
 }
 
-.h-mostrar-menu-opciones-productos:hover {
+#h-mostrar-menu-opciones-productos:hover {
   color: var(--colorp-primary);
 }
 
-.h-mostrar-menu-opciones-productos:hover::after {
+#h-mostrar-menu-opciones-productos:hover::after {
   background-color: var(--colorp-primary);
-}
-
-.h-mostrar-menu-opciones-productos.seleccionado {
-  color: var(--colorp-primary);
-}
-
-.h-mostrar-menu-opciones-productos.seleccionado::after {
-  background-color: var(--colorp-primary);
-}
+} */
 
 .h-menu-opciones-productos {
   max-width: 1660px;
