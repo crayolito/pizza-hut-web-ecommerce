@@ -8,15 +8,16 @@
       <div class="h-logo-principal">
         <img src="{{ 'logo-sauce-only-1.png' | asset_url }}" alt="Logo Sauce Only" width="100" height="100">
       </div>
-      {% comment %}
-        <div class="h-sector-seleccion-metodo-entrega h-metodo-no-seleccionado">
-          <p>Selecciona tu</p>
-          <div class="h-texto-metodo-entrega">
-            <h4>Método de entrega</h4>
-            {% render 'icon-pizza-metodo-entrega' %}
-          </div>
+      <div
+        class="h-sector-seleccion-metodo-entrega h-metodo-no-seleccionado"
+        style="display: none;"
+      >
+        <p>Selecciona tu</p>
+        <div class="h-texto-metodo-entrega">
+          <h4>Método de entrega</h4>
+          {% render 'icon-pizza-metodo-entrega' %}
         </div>
-      {% endcomment %}
+      </div>
       <div class="h-sector-opciones-cliente h-metodo-seleccionado">
         <button class="h-boton-buscar">
           {% render 'icon-search' %}
