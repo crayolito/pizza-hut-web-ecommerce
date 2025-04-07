@@ -392,6 +392,19 @@
       }
     }
 
+    accionEscribeInput() {
+      const inputVacio = this.inputBusqueda.value.trim() === '';
+      const estaVisible = this.contenedorResultadoBusqueda.style.display === 'flex';
+
+      if (!inputVacio && !estaVisible) {
+        // Solo mostrar si no está vacío y no está visible
+        this.contenedorResultadoBusqueda.style.display = 'flex';
+      } else if (inputVacio && estaVisible) {
+        // Solo ocultar si está vacío y está visible
+        this.contenedorResultadoBusqueda.style.display = 'none';
+      }
+    }
+
     detectarClickFueraDelInputBusqueda(event) {
       // Verificar si el clic NO fue dentro del input
       if (event.target !== this.inputBusqueda && !this.inputBusqueda.contains(event.target)) {
