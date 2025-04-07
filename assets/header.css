@@ -486,16 +486,12 @@ header-principal {
   position: relative;
 }
 
-.h-mostrar-menu-opciones-productos h4 {
-  color: var(--colorp-secondary);
-}
-
 .h-mostrar-menu-opciones-productos.seleccionado h4 {
   color: var(--colorp-primary);
   transition: color 0.3s ease;
 }
 
-.h-mostrar-menu-opciones-productos .h-mmop {
+.h-mostrar-menu-opciones-productos.seleccionado .h-mmop {
   height: 2px;
   width: 100%;
   background: var(--colorp-primary);
