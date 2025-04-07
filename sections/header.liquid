@@ -387,16 +387,25 @@
       }
     }
 
-    accionEscribeInput() {
-      const inputVacio = this.inputBusqueda.value.trim() === '';
-      const estaVisible = this.contenedorResultadoBusqueda.style.display === 'flex';
+    accionEnterInput(event) {
+      if (event.key === 'Enter') {
+        const textoInput = this.inputBusqueda.value.trim();
+        const estaVisible = this.contenedorResultadoBusqueda.style.display === 'flex';
 
-      if (!inputVacio && !estaVisible) {
-        // Solo mostrar si no está vacío y no está visible
-        this.contenedorResultadoBusqueda.style.display = 'flex';
-      } else if (inputVacio && estaVisible) {
-        // Solo ocultar si está vacío y está visible
-        this.contenedorResultadoBusqueda.style.display = 'none';
+        // Caso 1: Si hay texto y el contenedor está visible, redirigir y ocultar
+        if (textoInput !== '' && estaVisible) {
+          window.location.href = '/search';
+          this.contenedorResultadoBusqueda.style.display = 'none';
+        }
+        // Caso 2: Si hay texto pero el contenedor NO está visible, solo redirigir
+        else if (textoInput !== '' && !estaVisible) {
+          window.location.href = '/search';
+        }
+        // Caso 3: Si NO hay texto pero el contenedor está visible, solo ocultar
+        else if (textoInput === '' && estaVisible) {
+          this.contenedorResultadoBusqueda.style.display = 'none';
+        }
+        // Caso 4: Si NO hay texto y el contenedor NO está visible, no hacer nada
       }
     }
 
