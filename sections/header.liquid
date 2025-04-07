@@ -233,6 +233,12 @@
       // HEADER MOBILE
       // HEADER DESKTOP
       this.btnMenu = document.querySelector('.h-mostrar-menu-opciones-productos');
+      this.contenedorEstadosEntrega = document.querySelector('.h-sector-metodo-entrega');
+      this.btnOpcionOnSesion = document.querySelector('#h-boton-modo-cliente');
+      this.btnOpcionOffSesion = document.querySelector('.h-boton-modo-no-cliente');
+      this.btnSeleccionMetodoEntrega = document.querySelector('#h-boton-cambio-metodo-entrega');
+      this.btnDominicilio = document.querySelector('.h-metodo-domicilio');
+      this.btnLocal = document.querySelector('.h-metodo-local');
 
       // EVENTOS LISTENER
       this.logoPrincipal.forEach((logo) => {
@@ -240,6 +246,50 @@
           window.location.href = '/';
         });
       });
+
+      // INICIALIZACION DE CONTENIDOS
+      this.verificarEstadoSesion();
+      this.verificarEstadoEntrega();
+    }
+
+    verificarEstadoSesion() {
+      // Obtener localStorage indentificador sesion
+      // telefono cliente - metodo entrega (Official)
+      const sesion = localStorage.getItem('telefono-cliente');
+      const metodoEntrega = localStorage.getItem('metodo-entrega');
+
+      if (sesion == null) {
+        this.btnOpcionOffSesion.style.display = 'flex';
+        this.btnOpcionOnSesion.style.display = 'none';
+      } else {
+        // Si tiene el dato en el localStorage, traer datos de este mismo
+        this.btnOpcionOffSesion.style.display = 'none';
+        this.btnOpcionOnSesion.style.display = 'flex';
+      }
+    }
+
+    verificarEstadoEntrega() {
+      // Obtener localStorage la seleccion metodo de entrega del usuario
+      const metodoEntrega = localStorage.getItem('metodo-entrega');
+
+      // Si el usuario no tiene un metodo de entrega seleccionado,
+      // mostrar el boton de (selecciona tu metodo de entrega)
+      if (metodoEntrega == null) {
+        this.contenedorEstadosEntrega.style.display = 'none';
+        this.btnSeleccionMetodoEntrega.style.display = 'flex';
+      } else {
+        this.btnSeleccionMetodoEntrega.style.display = 'none';
+        this.contenedorEstadosEntrega.style.display = 'flex';
+        if (metodoEntrega == 'local') {
+          this.btnLocal.style.display = 'flex';
+          this.btnDominicilio.style.display = 'none';
+        }
+
+        if (metodoEntrega == 'dominicilio') {
+          this.btnDominicilio.style.display = 'flex';
+          this.btnLocal.style.display = 'none';
+        }
+      }
     }
   }
 
