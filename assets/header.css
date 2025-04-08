@@ -135,7 +135,7 @@ header-principal {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 var(--espaciado-xl);
+  padding: var(--espaciado-xl);
   height: 5.75rem;
   border-radius: var(--espaciado-s);
   border: 1px solid #dedede;
