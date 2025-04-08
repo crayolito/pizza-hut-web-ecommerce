@@ -246,7 +246,10 @@
       <div class="h-sector-opciones-cliente">
         <div class="h-sector-busqueda">
           <!-- CONTENEDOR DE BUSQUEDA -->
-          <div class="h-input-buscar  icon-size-trabajo">
+          <div
+            id="h-container-input-search"
+            class="h-input-buscar  icon-size-trabajo"
+          >
             {% render 'icon-search' %}
             <input type="text" placeholder="Buscar" id="h-input-buscar" autocomplete="off">
           </div>
@@ -517,6 +520,8 @@
       this.btnLocal = document.querySelector('.h-metodo-local');
       this.contenedorMenuDesplegable = document.querySelector('.h-menu-opciones-productos');
       this.contenedorResultadoBusqueda = document.querySelector('.h-busqueda-especifica');
+      this.sectorGeneralBusqueda = document.querySelector('.h-sector-busqueda');
+      this.containerInputBusqueda = document.querySelector('#h-container-input-search');
       this.inputBusqueda = document.querySelector('#h-input-buscar');
       this.contenedorDisMenu = document.getElementById('h-dis-opciones-usuario');
       this.contenedorDnisMenu = document.getElementById('h-dnis-opciones-usuario');
@@ -663,12 +668,10 @@
 
       estaAbierto = this.contenedorResultadoBusqueda.style.display == 'flex';
       // Verificar si el clic NO fue dentro del input o dentro del contenedor resultados
-      if (
-        (event.target !== this.inputBusqueda && !this.inputBusqueda.contains(event.target)) ||
-        (event.target !== this.contenedorResultadoBusqueda && !this.contenedorResultadoBusqueda.contains(event.target))
-      ) {
-        // Si el clic fue fuera del input y del contenedor de resultados, ocultar el contenedor
+      if (event.target !== this.sectorGeneralBusqueda && !this.sectorGeneralBusqueda.contains(event.target)) {
+        // Si el clic fue fuera del sector general de busqueda
         if (estaAbierto) {
+          console.log('click fuera del input y contenedor de resultados');
           this.contenedorResultadoBusqueda.style.display = 'none';
         }
       }
