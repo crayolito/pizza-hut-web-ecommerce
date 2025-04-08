@@ -334,22 +334,56 @@
             id="h-dis-opciones-usuario"
             class="h-opciones-usuario"
           >
-            <button class="h-opcion-usuario icon-color-tertiary">
+            <button
+              id="h-ism-menu"
+              class="h-opcion-usuario icon-color-tertiary"
+            >
               {% render 'icon-cuenta-blanco' %}
               <p>MI PERFIL</p>
             </button>
-            <button class="h-opcion-usuario icon-color-tertiary">
-              {% render 'icon-contrato' %}
+            <button
+              id="h-ism-historial-pedidos"
+              class="h-opcion-usuario icon-color-tertiary"
+            >
+              {% render 'icon-historial' %}
               <p>HISTORIAL DE PEDIDOS</p>
             </button>
-            <button class="h-opcion-usuario">
+            <button
+              id="h-ism-cupones-descuentos"
+              class="h-opcion-usuario icon-color-tertiary"
+            >
               {% render 'icon-cupon' %}
               <p>CUPONES Y DESCUENTOS</p>
             </button>
+            <a
+              href="https://microsites.spnty.co/pizzahutbolivia/login"
+              target="_blank"
+              class="h-opcion-usuario icon-color-tertiary"
+            >
+              {% render 'icon-pizza-metodo-entrega' %}
+              <p>HUT COINTS</p>
+            </a>
+            <button
+              id="h-ism-mis-preferencias"
+              class="h-opcion-usuario icon-color-tertiary"
+            >
+              {% render 'icon-favorito' %}
+              <p>MIS PREFERENCIAS</p>
+            </button>
+            <button
+              id="h-ism-configuracion"
+              class="h-opcion-usuario icon-color-tertiary"
+            >
+              {% render 'icon-configuracion' %}
+              <p>CONFIGURACIONES</p>
+            </button>
             <hr>
-            <button class="h-opcion-usuario h-cerrar-sesion icon-color-primary">
+            <button
+              id="h-ism-cerrar-sesion"
+              class="h-opcion-usuario icon-color-primary"
+            >
               {% render 'icon-iniciar-cerrar' %}
-              <p>CERRAR SESIÓN</p>
+              <p class="color-letras-primary">CERRAR SESION</p>
             </button>
           </section>
           <!-- DESKTOP NO INICIADO SESION -->
@@ -357,23 +391,44 @@
             id="h-dnis-opciones-usuario"
             class="h-opciones-usuario"
           >
-            <button class="h-opcion-usuario icon-color-tertiary">
-              {% render 'icon-cuenta-blanco' %}
-              <p>MI PERFIL</p>
-            </button>
-            <button class="h-opcion-usuario icon-color-tertiary">
-              {% render 'icon-contrato' %}
-              <p>HISTORIAL DE PEDIDOS</p>
-            </button>
-            <button class="h-opcion-usuario">
-              {% render 'icon-cupon' %}
-              <p>CUPONES Y DESCUENTOS</p>
-            </button>
+            <a
+              href="/pages/carrito"
+              id="h-nism-historial-pedidos"
+              class="h-opcion-usuario icon-color-tertiary"
+            >
+              {% render 'icon-carrito' %}
+              <p>CARRITO (2)</p>
+            </a>
+            <a
+              href="/pages/menu"
+              target="_blank"
+              class="h-opcion-usuario icon-color-tertiary"
+            >
+              <p>MENU</p>
+            </a>
+            <a
+              href="https://microsites.spnty.co/pizzahutbolivia/login"
+              target="_blank"
+              class="h-opcion-usuario icon-color-tertiary"
+            >
+              <p>HUT COINTS</p>
+              {% render 'icon-flecha-hutcoins' %}
+            </a>
+            <a
+              href="/pages/sobre-nosotros"
+              class="h-opcion-usuario icon-color-tertiary"
+            >
+              <p>SOBRE NOSOTROS</p>
+            </a>
             <hr>
-            <button class="h-opcion-usuario h-cerrar-sesion icon-color-primary">
+            <a
+              href="/pages/iniciar-sesion"
+              id="h-nism-iniciar-sesion"
+              class="h-opcion-usuario icon-color-primary"
+            >
               {% render 'icon-iniciar-cerrar' %}
-              <p>CERRAR SESIÓN</p>
-            </button>
+              <p class="color-letras-primary">INICIAR SESION</p>
+            </a>
           </section>
         </section>
         <!-- ESTADO USUARIO NO INICIADO SESION -->
@@ -476,6 +531,7 @@
       this.btnBuscarMobile.addEventListener('click', this.redireccionarBusqueda.bind(this));
       this.btnCerrrarMenuMobile.addEventListener('click', this.cerrarMenuMobile.bind(this));
       this.btnVerMenuMobile.addEventListener('click', this.verMenuMobile.bind(this));
+      this.btnOpcionOnSesion.addEventListener('click');
       document.addEventListener('click', this.detectarClickFueraDelInputBusqueda.bind(this));
       this.logoPrincipal.forEach((logo) => {
         logo.addEventListener('click', () => {
@@ -641,6 +697,11 @@
     verMenuMobile() {
       console.log('ver menu mobile');
       this.contenedorMenuMobile.style.display = 'flex';
+    }
+
+    verMenuDesktop() {
+      console.log('ver menu desktop');
+      this.contenedorMenuDesplegable.style.display = 'flex';
     }
   }
 
