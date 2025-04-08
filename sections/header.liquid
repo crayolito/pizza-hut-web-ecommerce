@@ -531,7 +531,7 @@
       this.btnBuscarMobile.addEventListener('click', this.redireccionarBusqueda.bind(this));
       this.btnCerrrarMenuMobile.addEventListener('click', this.cerrarMenuMobile.bind(this));
       this.btnVerMenuMobile.addEventListener('click', this.verMenuMobile.bind(this));
-      this.btnOpcionOnSesion.addEventListener('click');
+      this.btnOpcionOnSesion.addEventListener('click', this.verMenuDesktop.bind(this));
       document.addEventListener('click', this.detectarClickFueraDelInputBusqueda.bind(this));
       this.logoPrincipal.forEach((logo) => {
         logo.addEventListener('click', () => {
