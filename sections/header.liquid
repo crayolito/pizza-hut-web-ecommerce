@@ -188,7 +188,8 @@
         </a>
         <hr>
         <!-- ESTADO SIN TIENE METODO ENTREGA -->
-        <button
+        <a
+          href="/pages/metodo-entrega"
           id="h-boton-cambio-metodo-entrega"
           class="h-sector-seleccion-metodo-entrega"
         >
@@ -197,7 +198,7 @@
             <h4>Método de entrega</h4>
             {% render 'icon-pizza-metodo-entrega' %}
           </div>
-        </button>
+        </a>
         <!-- ESTADO CON TIENE METODO ENTREGA -->
         <div class="h-sector-metodo-entrega icon-color-tertiary">
           <div class="h-metodo-domicilio">
@@ -334,6 +335,8 @@
       this.inputBusqueda.addEventListener('input', this.accionEscribeInput.bind(this));
       this.btnCarritoMobile.addEventListener('click', this.redireccionarCarrito.bind(this));
       this.btnBuscarMobile.addEventListener('click', this.redireccionarBusqueda.bind(this));
+      {% comment %} this.btnSeleccionMetodoEntrega.addEventListener('click', this.redireccionarSeleccionMetodoEntrega.bind(this));
+      this.btnSeleccionEntregaMobile.addEventListener('click', this.redireccionarSeleccionMetodoEntrega.bind(this)); {% endcomment %}
       document.addEventListener('click', this.detectarClickFueraDelInputBusqueda.bind(this));
       this.logoPrincipal.forEach((logo) => {
         logo.addEventListener('click', () => {
@@ -464,6 +467,10 @@
     redireccionarBusqueda() {
       window.location.href = '/search';
     }
+
+    {% comment %} redireccionarSeleccionMetodoEntrega() {
+      window.location.href = '/pages/metodo-entrega';
+    } {% endcomment %}
   }
 
   const botonCambioEntrega = document.querySelector('.h-sector-metodo-entrega');
