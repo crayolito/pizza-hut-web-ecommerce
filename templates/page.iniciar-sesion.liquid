@@ -183,8 +183,6 @@
     }
 
     connectedCallback() {
-      this.reiniciarProceso();
-
       // CAPTURAR ELEMENTOS
       this.input = this.querySelector('#phpis-input');
       this.btnIniciarSesion = this.querySelector('#phpis-btn-iniciar-sesion');
@@ -211,6 +209,7 @@
       this.btnFacebook.addEventListener('click', this.iniciarSesionFacebook.bind(this));
 
       // INICIALIZAR ELEMENTOS
+      this.reiniciarProceso();
       this.ocultarElementosBase();
     }
 
