@@ -697,21 +697,37 @@
 
     verMenuDesktop() {
       console.log('ver menu desktop');
-      // Verificar si los elementos existen
-      console.log('contenedorDisMenu:', this.contenedorDisMenu);
-      console.log('contenedorDnisMenu:', this.contenedorDnisMenu);
+
+      // Obtener referencias directas a los elementos en este momento
+      const disMenu = document.getElementById('h-dis-opciones-usuario');
+      const dnisMenu = document.getElementById('h-dnis-opciones-usuario');
+
+      console.log('disMenu directo:', disMenu);
+      console.log('dnisMenu directo:', dnisMenu);
 
       const datosCliente = localStorage.getItem('datos-usuario');
       console.log('datos cliente:', datosCliente);
 
       if (datosCliente == null) {
-        console.log('no hay datos de cliente');
-        if (this.contenedorDisMenu) this.contenedorDisMenu.style.display = 'none';
-        if (this.contenedorDnisMenu) this.contenedorDnisMenu.style.display = 'flex';
+        console.log('no hay datos de cliente, ocultando disMenu y mostrando dnisMenu');
+        if (disMenu) {
+          disMenu.style.display = 'none';
+          console.log('disMenu style después:', disMenu.style.display);
+        }
+        if (dnisMenu) {
+          dnisMenu.style.display = 'flex';
+          console.log('dnisMenu style después:', dnisMenu.style.display);
+        }
       } else {
-        console.log('hay datos de cliente');
-        if (this.contenedorDisMenu) this.contenedorDisMenu.style.display = 'flex';
-        if (this.contenedorDnisMenu) this.contenedorDnisMenu.style.display = 'none';
+        console.log('hay datos de cliente, mostrando disMenu y ocultando dnisMenu');
+        if (disMenu) {
+          disMenu.style.display = 'flex';
+          console.log('disMenu style después:', disMenu.style.display);
+        }
+        if (dnisMenu) {
+          dnisMenu.style.display = 'none';
+          console.log('dnisMenu style después:', dnisMenu.style.display);
+        }
       }
     }
   }
