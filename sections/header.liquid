@@ -659,21 +659,32 @@
     }
 
     detectarClickFueraDelInputBusqueda(event) {
+      let estaAbierto;
+
+      estaAbierto = this.inputBusqueda.style.display === 'flex';
       // Verificar si el clic NO fue dentro del input
       if (event.target !== this.inputBusqueda && !this.inputBusqueda.contains(event.target)) {
         // Si el clic fue fuera del input y del contenedor de resultados, ocultar el contenedor
-        this.contenedorResultadoBusqueda.style.display = 'none';
+        if (estaAbierto) {
+          this.contenedorResultadoBusqueda.style.display = 'none';
+        }
       }
 
+      estaAbierto = this.contenedorDisMenu.style.display === 'flex';
       // Verificar si el click NO fue dentro del MENU CONTENEDOR
       if (event.target !== this.contenedorDisMenu && !this.contenedorDisMenu.contains(event.target)) {
         // Si el clic fue fuera del input y del contenedor de resultados, ocultar el contenedor
-        this.contenedorDisMenu.style.display = 'none';
+        if (this.contenedorDnisMenu.style.display === 'flex') {
+          this.contenedorDnisMenu.style.display = 'none';
+        }
       }
 
+      estaAbierto = this.contenedorDnisMenu.style.display === 'flex';
       if (event.target !== this.contenedorDnisMenu && !this.contenedorDnisMenu.contains(event.target)) {
         // Si el clic fue fuera del input y del contenedorr de resultados, ocultar el contenedor
-        this.contenedorDnisMenu.style.display = 'none';
+        if (this.contenedorDnisMenu.style.display === 'flex') {
+          this.contenedorDnisMenu.style.display = 'none';
+        }
       }
     }
 
@@ -697,37 +708,15 @@
 
     verMenuDesktop() {
       console.log('ver menu desktop');
-
-      // Obtener referencias directas a los elementos en este momento
-      const disMenu = document.getElementById('h-dis-opciones-usuario');
-      const dnisMenu = document.getElementById('h-dnis-opciones-usuario');
-
-      console.log('disMenu directo:', disMenu);
-      console.log('dnisMenu directo:', dnisMenu);
-
       const datosCliente = localStorage.getItem('datos-usuario');
-      console.log('datos cliente:', datosCliente);
-
       if (datosCliente == null) {
-        console.log('no hay datos de cliente, ocultando disMenu y mostrando dnisMenu');
-        if (disMenu) {
-          disMenu.style.display = 'none';
-          console.log('disMenu style después:', disMenu.style.display);
-        }
-        if (dnisMenu) {
-          dnisMenu.style.display = 'flex';
-          console.log('dnisMenu style después:', dnisMenu.style.display);
-        }
+        console.log('no hay datos de cliente');
+        this.contenedorDisMenu.style.display = 'none';
+        this.contenedorDnisMenu.style.display = 'flex';
       } else {
-        console.log('hay datos de cliente, mostrando disMenu y ocultando dnisMenu');
-        if (disMenu) {
-          disMenu.style.display = 'flex';
-          console.log('disMenu style después:', disMenu.style.display);
-        }
-        if (dnisMenu) {
-          dnisMenu.style.display = 'none';
-          console.log('dnisMenu style después:', dnisMenu.style.display);
-        }
+        console.log('hay datos de cliente');
+        this.contenedorDisMenu.style.display = 'flex';
+        this.contenedorDnisMenu.style.display = 'none';
       }
     }
   }
