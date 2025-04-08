@@ -703,7 +703,7 @@
         lat: localSeleccionado.lat,
         lng: localSeleccionado.lng
       }));
-      localStorage.setItem('metodo-entrega', 'recoger-local');
+      localStorage.setItem('metodo-entrega', 'local');
       localStorage.setItem('sucursal-informacion', JSON.stringify(localSeleccionado));
 
       // Despues se redirecciona al indexx
@@ -1030,7 +1030,7 @@
     accionConfirmarModal() {
       console.log('Ubicacion guardada en localStorage: ', localStorage.getItem('ubicacion-cliente'));
       this.cerrarModal();
-      localStorage.setItem('metodo-entrega', 'envio-domicilio');
+      localStorage.setItem('metodo-entrega', 'domicilio');
       localStorage.setItem('ubicacion-cliente', JSON.stringify(this.coordenadas));
       window.location.href = '/';
 
@@ -1056,14 +1056,14 @@
 
     botonOmitirPrincipal(){
       localStorage.setItem('ubicacion-cliente', JSON.stringify(this.coordenadas));
-      localStorage.setItem('metodo-entrega', 'no-selecciono-metodo-entrega');
+      localStorage.setItem('metodo-entrega', 'no');
       window.location.href = '/';
       // Navegar a la siguiente pagina que corresponde
       console.log('Se presiono el boton omitir procede ir a la siguiente pagina');
     }
 
     botonSiguientePrincipal(){
-      localStorage.setItem('metodo-entrega', 'envio-domicilio');
+      localStorage.setItem('metodo-entrega', 'domicilio');
       localStorage.setItem('ubicacion-cliente', JSON.stringify(this.coordenadas));
       window.location.href = '/';
       // Navegar a la siguiente pagina que corresponde

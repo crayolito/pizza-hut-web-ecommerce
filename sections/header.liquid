@@ -381,7 +381,7 @@
 
       // Si el usuario no tiene un metodo de entrega seleccionado,
       // mostrar el boton de (selecciona tu metodo de entrega)
-      if (metodoEntrega == null) {
+      if (metodoEntrega == null || metodoEntrega == 'no') {
         this.contenedorEstadosEntrega.style.display = 'none';
         this.btnSeleccionMetodoEntrega.style.display = 'flex';
         this.btnSeleccionEntregaMobile.style.display = 'flex';
