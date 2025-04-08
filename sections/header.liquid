@@ -703,9 +703,11 @@
       console.log('ver menu desktop');
       const datosCliente = localStorage.getItem('datos-usuario');
       if (datosCliente == null) {
+        console.log('no hay datos de cliente');
         this.contenedorDisMenu.style.display = 'none';
         this.contenedorDnisMenu.style.display = 'flex';
       } else {
+        console.log('hay datos de cliente');
         this.contenedorDisMenu.style.display = 'flex';
         this.contenedorDnisMenu.style.display = 'none';
       }
