@@ -362,6 +362,14 @@ header-principal {
   align-items: start;
   padding: var(--espaciado-m);
   gap: var(--espaciado-l);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.h-input-buscar.proceso {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: var(--espaciado-xs);
+  border-top-right-radius: var(--espaciado-xs);
 }
 
 .h-input-buscar input {

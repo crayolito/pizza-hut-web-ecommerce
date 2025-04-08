@@ -2,12 +2,12 @@
 {{ 'oferta-index.css' | asset_url | stylesheet_tag }}
 
 <div class="container-base  oi_contenedor-base">
-  <div class="oi_oferta">
-    <img src="{{ 'oferta-index-1.png' | asset_url  }}" class="oferta-imagen">
-  </div>
-  <div class="oi_oferta">
-    <img src="{{ 'oferta-index-2.png' | asset_url }}" class="oferta-imagen">
-  </div>
+  <a href="/pages/menu" class="oi_oferta">
+    <img src="{{ 'oferta-index-1.png' | asset_url  }}" class="oferta-imagen" height="100%" width="100%">
+  </a>
+  <a href="/pages/menu" class="oi_oferta">
+    <img src="{{ 'oferta-index-2.png' | asset_url }}" class="oferta-imagen" height="100%" width="100%">
+  </a>
 </div>
 
 {% schema %}

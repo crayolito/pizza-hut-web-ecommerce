@@ -1,5 +1,6 @@
 <!-- Estilos traer de assets/header.css as -->
 {{ 'header.css' | asset_url | stylesheet_tag }}
+{{ 'estilos-generales.css' | asset_url | stylesheet_tag }}
 
 <header-principal>
   <header class="container-secundario h-header-principal">
@@ -75,6 +76,27 @@
             {% render 'icon-close-rojo' %}
           </button>
         </div>
+        <!-- INICIADO SESION MENU -->
+        <div class="h-opciones-mobile-body">
+          <button class="h-opcion-usuario icon-color-tertiary">
+            {% render 'icon-cuenta-blanco' %}
+            <p>MI PERFIL</p>
+          </button>
+          <button class="h-opcion-usuario icon-color-tertiary">
+            {% render 'icon-contrato' %}
+            <p>HISTORIAL DE PEDIDOS</p>
+          </button>
+          <button class="h-opcion-usuario icon-color-tertiary">
+            {% render 'icon-cupon' %}
+            <p>CUPONES Y DESCUENTOS</p>
+          </button>
+          <hr>
+          <button class="h-opcion-usuario icon-color-primary">
+            {% render 'icon-iniciar-cerrar' %}
+            <p class="color-letras-primary">INICIAR SESIÓN</p>
+          </button>
+        </div>
+        <!-- NO INICIO SESION - MENU -->
         <div class="h-opciones-mobile-body">
           <button class="h-opcion-usuario icon-color-tertiary">
             {% render 'icon-cuenta-blanco' %}
@@ -153,7 +175,7 @@
       <div class="h-sector-opciones-cliente">
         <div class="h-sector-busqueda">
           <!-- CONTENEDOR DE BUSQUEDA -->
-          <div class="h-input-buscar icon-size-trabajo">
+          <div class="h-input-buscar  icon-size-trabajo">
             {% render 'icon-search' %}
             <input type="text" placeholder="Buscar" id="h-input-buscar" autocomplete="off">
           </div>
@@ -187,6 +209,9 @@
                 <p>Bs 10.000</p>
               </div>
             </div>
+            <a href="/search" class="ph-btn-primario">
+              <p>Ver todos los resultados</p>
+            </a>
           </div>
         </div>
         <hr>
