@@ -661,16 +661,19 @@
     detectarClickFueraDelInputBusqueda(event) {
       let estaAbierto;
 
-      estaAbierto = this.inputBusqueda.style.display === 'flex';
-      // Verificar si el clic NO fue dentro del input
-      if (event.target !== this.inputBusqueda && !this.inputBusqueda.contains(event.target)) {
+      estaAbierto = this.contenedorResultadoBusqueda.style.display == 'flex';
+      // Verificar si el clic NO fue dentro del input o dentro del contenedor resultados
+      if (
+        (event.target !== this.inputBusqueda && !this.inputBusqueda.contains(event.target)) ||
+        (event.target !== this.contenedorResultadoBusqueda && !this.contenedorResultadoBusqueda.contains(event.target))
+      ) {
         // Si el clic fue fuera del input y del contenedor de resultados, ocultar el contenedor
         if (estaAbierto) {
           this.contenedorResultadoBusqueda.style.display = 'none';
         }
       }
 
-      estaAbierto = this.contenedorDisMenu.style.display === 'flex';
+      estaAbierto = this.contenedorDisMenu.style.display == 'flex';
       // Verificar si el click NO fue dentro del MENU CONTENEDOR
       if (event.target !== this.contenedorDisMenu && !this.contenedorDisMenu.contains(event.target)) {
         // Si el clic fue fuera del input y del contenedor de resultados, ocultar el contenedor
@@ -709,14 +712,26 @@
     verMenuDesktop() {
       console.log('ver menu desktop');
       const datosCliente = localStorage.getItem('datos-usuario');
-      if (datosCliente == null) {
-        console.log('no hay datos de cliente');
+
+      // Si alguno de los menús está visible, ocúltalo (toggle)
+      const estaAbiertoDisMenu = this.contenedorDisMenu.style.display === 'flex';
+      const estaAbiertoDnisMenu = this.contenedorDnisMenu.style.display === 'flex';
+
+      if (estaAbiertoDisMenu || estaAbiertoDnisMenu) {
+        // Si algún menú está abierto, ciérralo
         this.contenedorDisMenu.style.display = 'none';
-        this.contenedorDnisMenu.style.display = 'flex';
-      } else {
-        console.log('hay datos de cliente');
-        this.contenedorDisMenu.style.display = 'flex';
         this.contenedorDnisMenu.style.display = 'none';
+      } else {
+        // Si no hay menús abiertos, abre el que corresponda según los datos del cliente
+        if (datosCliente == null) {
+          console.log('no hay datos de cliente');
+          this.contenedorDisMenu.style.display = 'none';
+          this.contenedorDnisMenu.style.display = 'flex';
+        } else {
+          console.log('hay datos de cliente');
+          this.contenedorDisMenu.style.display = 'flex';
+          this.contenedorDnisMenu.style.display = 'none';
+        }
       }
     }
   }
