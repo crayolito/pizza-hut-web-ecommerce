@@ -60,12 +60,12 @@
     </div>
 
     <section
-      id="pgpis-container-modal"
+      id="phpis-container-modal"
       class="ph-background-container-modal"
     >
       <!-- 1re MODAL : SNIPPER DE CARGANDO -->
       <div
-        id="pgpis-snipper-modal"
+        id="phpis-snipper-modal"
         class="ph-modal-main-snipper"
       >
         <div class="ph-modal-body-snipper">
@@ -92,12 +92,12 @@
       </div>
       <!-- 2do MODAL : MENSAJES DE RESPUESTA -->
       <div
-        id="pgpis-mensaje-proceso"
+        id="phpis-mensaje-proceso"
         class="ph-modal-main-mensajes"
       >
         <!-- 3er MODAL : EXITO -->
         <div
-          id="pgpis-mp-exito"
+          id="phpis-mp-exito"
           class="ph-modal-body-exito"
         >
           <img src="{{ 'imagen-check-verde.png' | asset_url }}" alt="Icono de exito" width="100%" height="100%">
@@ -109,7 +109,7 @@
         </div>
         <!-- 4to MODAL : VERIFICAR TU NUMERO -->
         <div
-          id="pgpis-mp-verificar-numero"
+          id="phpis-mp-verificar-numero"
           class="ph-modal-body-verificar-numero"
         >
           <h1>VERIFICA TU NUMERO</h1>
@@ -188,11 +188,11 @@
       this.btnIniciarSesion = this.querySelector('#phpis-btn-iniciar-sesion');
       this.btnGoogle = this.querySelector('#phpis-btn-google');
       this.btnFacebook = this.querySelector('#phpis-btn-facebook');
-      this.containerGeneral = this.querySelector('#pgpis-container-modal');
-      this.containerSnipper = this.querySelector('#pgpis-snipper-modal');
-      this.containerMensaje = this.querySelector('#pgpis-mensaje-proceso');
-      this.containerExito = this.querySelector('#pgpis-mp-exito');
-      this.containerVerificarNumero = this.querySelector('#pgpis-mp-verificar-numero');
+      this.containerGeneral = this.querySelector('#phpis-container-modal');
+      this.containerSnipper = this.querySelector('#phpis-snipper-modal');
+      this.containerMensaje = this.querySelector('#phpis-mensaje-proceso');
+      this.containerExito = this.querySelector('#phpis-mp-exito');
+      this.containerVerificarNumero = this.querySelector('#phpis-mp-verificar-numero');
       this.input1Verificacion = this.querySelector('#single-digit1');
       this.input2Verificacion = this.querySelector('#single-digit2');
       this.input3Verificacion = this.querySelector('#single-digit3');
@@ -235,16 +235,28 @@
     iniciarSesionGoogle() {
       // Lógica para iniciar sesión con Google
       console.log('Iniciar sesión con Google');
+      this.containerGeneral.style.display = 'flex';
+      this.containerSnipper.style.display = 'flex';
+
+      setTimeout(() => {
+        this.containerMensaje.style.display = 'none';
+        this.containerSnipper.style.display = 'none';
+        window.location.href = '/pages/perfil';
+      }, 3000);
     }
 
     iniciarSesionFacebook() {
       // Lógica para iniciar sesión con Facebook
       console.log('Iniciar sesión con Facebook');
+      this.containerGeneral.style.display = 'flex';
+      this.containerSnipper.style.display = 'flex';
+
+      setTimeout(() => {
+        this.containerMensaje.style.display = 'none';
+        this.containerSnipper.style.display = 'none';
+        window.location.href = '/pages/perfil';
+      }, 3000);
     }
-
-    cerrarModal() {}
-
-    detectarParaCerrarModal() {}
 
     verificarNumero() {
       const inputs = [
