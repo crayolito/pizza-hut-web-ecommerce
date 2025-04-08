@@ -12,6 +12,7 @@
       src="https://maps.googleapis.com/maps/api/js?key={{settings.keyGoogleMap}}&libraries=places"
     ></script>
     {{ 'estilos-auxliares.css' | asset_url | stylesheet_tag }}
+    {{ 'estilos-generales.css' | asset_url | stylesheet_tag }}
   </head>
   <body>
     <cliente-localizacion>
@@ -266,6 +267,36 @@
           </div>
         </div>
       </section>
+
+      <!-- MODAL DE ESTADO CARGA -->
+      <section
+        id="ph-psme-modal-carga"
+        class="ph-background-container-modal"
+      >
+        <div class="ph-modal-main-snipper">
+          <div class="ph-modal-body-snipper">
+            <div class="snipper-container">
+              <div class="snipper-background">
+                <img
+                  src="{{ 'fondoSnipper.png' | asset_url }}"
+                  alt="Fondo de Snipper"
+                  width="100%"
+                  height="100%"
+                >
+              </div>
+              <div class="snipper-logo">
+                <img
+                  src="{{ 'logoSnipper.png' | asset_url }}"
+                  alt="Logo de Snipper"
+                  width="100%"
+                  height="100%"
+                >
+              </div>
+            </div>
+          </div>
+          <p>Procesando informacion ...</p>
+        </div>
+      </section>
     </cliente-localizacion>
   </body>
 </html>
@@ -334,6 +365,8 @@
 
     connectedCallback() {
       // CAPTURA DE ELEMENTOS
+      // MODAL DE CARGA
+      this.containerModalCarga = this.querySelector('#ph-psme-modal-carga');
       // IMAGEN BACKGROUND DEL CONTENEDOR PRINCIPAL
       this.imagenBackground = this.querySelector('.psme-pizza-logo-background');
       // SELECTORES DE OPCIONES DE OBTENER SU PRODUCTO
@@ -401,17 +434,37 @@
         // Google Maps ya está disponible
         this.configurarAutocompletadoDirecciones();
       }
-      this.inicializarPaginaLocalStorage();
+      this.inicializarPaginaLocalStorage(0);
     }
 
-    inicializarPaginaLocalStorage(){
+    inicializarPaginaLocalStorage(intentos = 0) {
       console.log('Inicia la pagina de localStorage');
       // Verificar si existe el localStorage y la clave 'ubicacion-cliente'
       if (localStorage.getItem('ubicacion-cliente')) {
         // Si existe, cargar la ubicación del cliente desde el localStorage
         this.coordenadas = JSON.parse(localStorage.getItem('ubicacion-cliente'));
       } 
-
+    
+      // Verificar si Google Maps esta cargado
+      if(typeof google == 'undefined'){
+        this.containerModalCarga.style.display = 'flex';
+        // Limitar a 10 intentos para evitar bucles infinitos
+        if(intentos < 10){
+          console.log("Google Maps no está cargado, esperando... Intento " + (intentos + 1));
+          setTimeout(() => {
+            this.inicializarPaginaLocalStorage(intentos + 1);
+          }, 500); // Esperar 0.5 segundos antes de volver a intentar
+        }else{
+          console.error("Google Maps no se cargó después de varios intentos");
+        }
+        return;
+      }
+    
+      // Si llegamos aquí, Google Maps está cargado, podemos ocultar el modal de carga
+      if (this.containerModalCarga.style.display === 'flex') {
+        this.containerModalCarga.style.display = 'none';
+      }
+    
       // Verificar si hay datos preseleccionados en el localStorage (INDEX)
       // Verificar si hay datos en el localStorage (PAGINA METODO DE ENTREGA)
       const localStorageIndex = localStorage.getItem('seleccion-me-mi');
