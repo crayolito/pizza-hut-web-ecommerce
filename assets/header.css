@@ -372,6 +372,13 @@ header-principal {
   border-top-right-radius: var(--espaciado-xs);
 }
 
+.h-busqueda-especifica.proceso {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: var(--espaciado-xs);
+  border-bottom-right-radius: var(--espaciado-xs);
+}
+
 .h-input-buscar input {
   width: 100%;
 }
