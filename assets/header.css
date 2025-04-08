@@ -131,7 +131,6 @@ header-principal {
   flex-direction: column;
   gap: var(--espaciado-xl);
   padding: var(--espaciado-xl) 0;
-  /* READ : CAMBIOS PARA EL JS  */
 }
 
 .h-opciones-mobile-body {
@@ -252,7 +251,6 @@ header-principal {
   top: 100%;
   transform: translateX(-50%);
   z-index: 9999;
-  /* display: none; */
 }
 
 .h-opcion-usuario {
