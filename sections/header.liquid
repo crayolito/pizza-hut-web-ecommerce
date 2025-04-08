@@ -665,6 +665,8 @@
 
     detectarClickFueraDelInputBusqueda(event) {
       let estaAbierto;
+      let btnMenuDesktopClicked =
+        event.target === this.btnOpcionOnSesion || this.btnOpcionOnSesion.contains(event.target);
 
       estaAbierto = this.contenedorResultadoBusqueda.style.display == 'flex';
       if (estaAbierto) {
@@ -675,14 +677,14 @@
       }
 
       estaAbierto = this.contenedorDisMenu.style.display == 'flex';
-      if (estaAbierto) {
+      if (!btnMenuDesktopClicked && estaAbierto) {
         if (event.target !== this.contenedorDisMenu && !this.contenedorDisMenu.contains(event.target)) {
           this.contenedorDisMenu.style.display = 'none';
         }
       }
 
       estaAbierto = this.contenedorDnisMenu.style.display == 'flex';
-      if (estaAbierto) {
+      if (!btnMenuDesktopClicked && estaAbierto) {
         if (event.target !== this.contenedorDnisMenu && !this.contenedorDnisMenu.contains(event.target)) {
           this.contenedorDnisMenu.style.display = 'none';
         }
