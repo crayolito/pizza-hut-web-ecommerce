@@ -453,6 +453,8 @@
       this.verificarEstadoEntrega();
       this.contenedorMenuDesplegable.style.display = 'none';
       this.contenedorResultadoBusqueda.style.display = 'none';
+      this.contenedorIsMenu.style.display = 'none'
+      this.contenedorNisMenu.style.display = 'none'
     }
 
     verificarEstadoSesion() {
@@ -464,10 +466,14 @@
       if (sesion == null) {
         this.btnOpcionOffSesion.style.display = 'flex';
         this.btnOpcionOnSesion.style.display = 'none';
+        this.contenedorIsMenu.style.display = 'none';
+        this.contenedorNisMenu.style.display = 'flex';
       } else {
         // Si tiene el dato en el localStorage, traer datos de este mismo
         this.btnOpcionOffSesion.style.display = 'none';
         this.btnOpcionOnSesion.style.display = 'flex';
+        this.contenedorIsMenu.style.display = 'flex';
+        this.contenedorNisMenu.style.display = 'none';
       }
     }
 
