@@ -149,26 +149,20 @@
           class="h-opciones-mobile-body"
         >
           <button
-            id="h-nism-menu"
-            class="h-opcion-usuario icon-color-tertiary"
-          >
-            {% render 'icon-cuenta-blanco' %}
-            <p>MI PERFIL</p>
-          </button>
-          <button
             id="h-nism-historial-pedidos"
             class="h-opcion-usuario icon-color-tertiary"
           >
-            {% render 'icon-historial' %}
-            <p>HISTORIAL DE PEDIDOS</p>
+            {% render 'icon-carrito' %}
+            <p>CARRITO (2)</p>
           </button>
-          <button
-            id="h-nism-cupones-descuentos"
+          <a
+            href="/pages/menu"
+            target="_blank"
             class="h-opcion-usuario icon-color-tertiary"
           >
             {% render 'icon-cupon' %}
-            <p>CUPONES Y DESCUENTOS</p>
-          </button>
+            <p>MENU</p>
+          </a>
           <a
             href="https://microsites.spnty.co/pizzahutbolivia/login"
             target="_blank"
