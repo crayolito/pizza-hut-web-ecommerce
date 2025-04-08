@@ -599,13 +599,13 @@
       }
 
       // Verificar si el click NO fue dentro del MENU CONTENEDOR
-      if(event.target !== this.contenedorDisMenu && !this.contenedorDisMenu.contains(event.target)) {
+      if (event.target !== this.contenedorDisMenu && !this.contenedorDisMenu.contains(event.target)) {
         // Si el clic fue fuera del input y del contenedor de resultados, ocultar el contenedor
         this.contenedorDisMenu.style.display = 'none';
-        console.log('click fuera del menu');{
+        console.log('click fuera del menu');
       }
 
-      if(event.target !== this.contenedorDnisMenu && !this.contenedorDnisMenu.contains(event.target)) {
+      if (event.target !== this.contenedorDnisMenu && !this.contenedorDnisMenu.contains(event.target)) {
         // Si el clic fue fuera del input y del contenedorr de resultados, ocultar el contenedor
         this.contenedorDnisMenu.style.display = 'none';
         console.log('click fuera del menu');
