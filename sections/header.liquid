@@ -324,8 +324,34 @@
             {% render 'icon-cuenta-blanco' %}
             {% render 'icon-flecha-abajo' %}
           </button>
-          <!-- DROPDOWN PARA OPCIONES DEL USUARIO -->
-          <section class="h-opciones-usuario">
+          <!-- DESKTOP INICIADO SESION -->
+          <section
+            id="h-dis-opciones-usuario"
+            class="h-opciones-usuario"
+          >
+            <button class="h-opcion-usuario icon-color-tertiary">
+              {% render 'icon-cuenta-blanco' %}
+              <p>MI PERFIL</p>
+            </button>
+            <button class="h-opcion-usuario icon-color-tertiary">
+              {% render 'icon-contrato' %}
+              <p>HISTORIAL DE PEDIDOS</p>
+            </button>
+            <button class="h-opcion-usuario">
+              {% render 'icon-cupon' %}
+              <p>CUPONES Y DESCUENTOS</p>
+            </button>
+            <hr>
+            <button class="h-opcion-usuario h-cerrar-sesion icon-color-primary">
+              {% render 'icon-iniciar-cerrar' %}
+              <p>CERRAR SESIÓN</p>
+            </button>
+          </section>
+          <!-- DESKTOP NO INICIADO SESION -->
+          <section
+            id="h-dnis-opciones-usuario"
+            class="h-opciones-usuario"
+          >
             <button class="h-opcion-usuario icon-color-tertiary">
               {% render 'icon-cuenta-blanco' %}
               <p>MI PERFIL</p>
@@ -426,6 +452,8 @@
       this.contenedorMenuDesplegable = document.querySelector('.h-menu-opciones-productos');
       this.contenedorResultadoBusqueda = document.querySelector('.h-busqueda-especifica');
       this.inputBusqueda = document.querySelector('#h-input-buscar');
+      this.contenedorDisMenu = document.querySelector('#h-dis-opciones-usuario');
+      this.contenedorNisMenu = document.querySelector('#h-dnis-opciones-usuario');
       // TESTEO DE PRUEBA
       this.itemMenuDesplegable = document.querySelectorAll('.h-menu-opciones-productos-item');
 
@@ -451,8 +479,10 @@
       // INICIALIZACION DE CONTENIDOS
       this.contenedorMenuDesplegable.style.display = 'none';
       this.contenedorResultadoBusqueda.style.display = 'none';
-      this.contenedorIsMenu.style.display = 'none'
-      this.contenedorNisMenu.style.display = 'none'
+      this.contenedorIsMenu.style.display = 'none';
+      this.contenedorNisMenu.style.display = 'none';
+      this.contenedorDisMenu.style.display = 'none';
+      this.contenedorNisMenu.style.display = 'none';
       this.verificarEstadoSesion();
       this.verificarEstadoEntrega();
     }
@@ -468,11 +498,15 @@
         this.btnOpcionOnSesion.style.display = 'none';
         this.contenedorIsMenu.style.display = 'none';
         this.contenedorNisMenu.style.display = 'flex';
+        this.contenedorDisMenu.style.display = 'none';
+        this.contenedorNisMenu.style.display = 'flex';
       } else {
         // Si tienee el dato en el localStorage, traer datos de este mismo
         this.btnOpcionOffSesion.style.display = 'none';
         this.btnOpcionOnSesion.style.display = 'flex';
         this.contenedorIsMenu.style.display = 'flex';
+        this.contenedorNisMenu.style.display = 'none';
+        this.contenedorDisMenu.style.display = 'flex';
         this.contenedorNisMenu.style.display = 'none';
       }
     }
