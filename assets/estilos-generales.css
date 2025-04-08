@@ -319,11 +319,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: var(--espaciado-xs);
+  gap: var(--espaciado-m);
   padding: var(--espaciado-m) var(--espaciado-xl);
   border-radius: var(--espaciado-xs);
   background-color: var(--colorp-secondary);
   border: 1px solid var(--colorb-primary);
+}
+
+.ph-container-mensaje {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--espaciado-xs);
+  border-right: 1px solid #231f20;
 }
 
 .ph-mcci-input {
@@ -477,7 +485,6 @@
   transform: translate(-50%, -50%);
   top: 50%;
   left: 50%;
-  display: none;
 }
 
 .ph-modal-main-snipper p {
@@ -595,6 +602,7 @@
 .ph-btn-general p {
   color: var(--colorp-secondary);
   font-weight: 600;
+  text-align: center;
 }
 
 .ph-btn-general.desactivado {
@@ -612,6 +620,7 @@
 .ph-btn-general.desactivado p {
   color: #717171;
   font-weight: 600;
+  text-align: center;
 }
 
 /* ===== BOTON PRIMARIO ===== */
@@ -630,16 +639,19 @@
 .ph-btn-primario p {
   color: var(--colorp-primary);
   font-weight: 600;
+  text-align: center;
 }
 
 .ph-btn-primario p {
   color: var(--colorp-primary);
   font-weight: 600;
+  text-align: center;
 }
 
 .ph-btn-primario.desactivado p {
   color: #969696;
   font-weight: 600;
+  text-align: center;
 }
 
 /* ===== BOTON SECUNDARIO ===== */
@@ -660,6 +672,7 @@
 .ph-btn-secundario p {
   color: var(--colorp-primary);
   font-weight: 600;
+  text-align: center;
 }
 
 /* =================================
