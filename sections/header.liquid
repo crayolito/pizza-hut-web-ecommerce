@@ -66,7 +66,11 @@
           {% render 'icon-carrito' %}
         </a>
       </div>
-      <button class="h-boton-menu">
+      <button
+        id="h-btn-menu-mobile"
+        class="h-boton-menu"
+      >
+        <h3 id="h-titulo-mobile-menu">MENU</h3>
         {% render 'icon-hamburguesa' %}
       </button>
       <section
@@ -449,7 +453,10 @@
       this.btnEntregaDomicilioMobile = document.querySelector('#h-btn-entrega-domicilio-mobile');
       this.contenedorIsMenu = document.querySelector('#h-ism-menu-principal');
       this.contenedorNisMenu = document.querySelector('#h-nism-menu-principal');
+      this.tituloMenuMobile = document.querySelector('#h-titulo-mobile-menu');
       this.btnCerrrarMenuMobile = document.querySelector('#h-boton-cerrar-menu-mobile');
+
+      this.btnVerMenuMobile = document.querySelector('#h-btn-menu-mobile');
       // HEADER DESKTOP
       this.btnMenu = document.querySelector('.h-mostrar-menu-opciones-productos');
       this.contenedorEstadosEntrega = document.querySelector('.h-sector-metodo-entrega');
@@ -473,6 +480,7 @@
       this.btnCarritoMobile.addEventListener('click', this.redireccionarCarrito.bind(this));
       this.btnBuscarMobile.addEventListener('click', this.redireccionarBusqueda.bind(this));
       this.btnCerrrarMenuMobile.addEventListener('click', this.cerrarMenuMobile.bind(this));
+      this.btnVerMenuMobile.addEventListener('click', this.verMenuMobile.bind(this));
       document.addEventListener('click', this.detectarClickFueraDelInputBusqueda.bind(this));
       this.logoPrincipal.forEach((logo) => {
         logo.addEventListener('click', () => {
@@ -487,6 +495,7 @@
       });
 
       // INICIALIZACION DE CONTENIDOS
+      this.tituloMenuMobile.style.display = 'none';
       this.contenedorMenuDesplegable.style.display = 'none';
       this.contenedorResultadoBusqueda.style.display = 'none';
       this.contenedorIsMenu.style.display = 'none';
@@ -504,6 +513,7 @@
       const metodoEntrega = localStorage.getItem('metodo-entrega');
 
       if (sesion == null) {
+        this.tituloMenuMobile.style.display = 'flex';
         this.btnOpcionOffSesion.style.display = 'flex';
         this.btnOpcionOnSesion.style.display = 'none';
         this.contenedorIsMenu.style.display = 'none';
@@ -512,6 +522,7 @@
         this.contenedorDnisMenu.style.display = 'flex';
       } else {
         // Si tienee el dato en el localStorage, traer datos de este mismo
+        this.tituloMenuMobile.style.display = 'none';
         this.btnOpcionOffSesion.style.display = 'none';
         this.btnOpcionOnSesion.style.display = 'flex';
         this.contenedorIsMenu.style.display = 'flex';
@@ -629,6 +640,11 @@
     cerrarMenuMobile() {
       console.log('cerrar menu mobile');
       this.contenedorMenuMobile.style.display = 'none';
+    }
+
+    verMenuMobile() {
+      console.log('ver menu mobile');
+      this.contenedorMenuMobile.style.display = 'flex';
     }
   }
 
