@@ -8,29 +8,31 @@
       <div class="h-logo-principal">
         <img src="{{ 'logo-sauce-only-1.png' | asset_url }}" alt="Logo Sauce Only" width="100" height="100">
       </div>
-      <div
+      <a
+        href="/pages/metodo-entrega"
         id="h-seleccion-metodo-entrega-mobile"
         class="h-sector-seleccion-metodo-entrega h-metodo-no-seleccionado"
-        style="display: none;"
       >
         <p>Selecciona tu</p>
         <div class="h-texto-metodo-entrega">
           <h4>Método de entrega</h4>
           {% render 'icon-pizza-metodo-entrega' %}
         </div>
-      </div>
+      </a>
       <div
         id="h-opciones-usuario-mobile"
         class="h-sector-opciones-cliente h-metodo-seleccionado"
       >
-        <button
+        <a
+          href="/pages/iniciar-sesion"
           id="h-btn-buscar-mobile"
           class="h-boton-buscar"
         >
           {% render 'icon-search' %}
           <h3>Buscar</h3>
-        </button>
-        <div
+        </a>
+        <a
+          href="/pages/metodo-entrega"
           id="h-btn-entrega-local-mobile"
           class="h-boton-cambio-metodo-entrega"
         >
@@ -41,9 +43,10 @@
           <button class="h-icono-solocitud-metodo-entrega">
             {% render 'icon-flecha-abajo' %}
           </button>
-        </div>
+        </a>
 
-        <div
+        <a
+          href="/pages/metodo-entrega"
           id="h-btn-entrega-domicilio-mobile"
           class="h-boton-cambio-metodo-entrega"
         >
@@ -54,13 +57,14 @@
           <button class="h-icono-solocitud-metodo-entrega">
             {% render 'icon-flecha-abajo' %}
           </button>
-        </div>
-        <button
+        </a>
+        <a
+          href="/pages/carrito"
           id="h-btn-carrito-mobile"
           class="h-boton-carrito"
         >
           {% render 'icon-carrito' %}
-        </button>
+        </a>
       </div>
       <button class="h-boton-menu">
         {% render 'icon-hamburguesa' %}
@@ -335,8 +339,6 @@
       this.inputBusqueda.addEventListener('input', this.accionEscribeInput.bind(this));
       this.btnCarritoMobile.addEventListener('click', this.redireccionarCarrito.bind(this));
       this.btnBuscarMobile.addEventListener('click', this.redireccionarBusqueda.bind(this));
-      {% comment %} this.btnSeleccionMetodoEntrega.addEventListener('click', this.redireccionarSeleccionMetodoEntrega.bind(this));
-      this.btnSeleccionEntregaMobile.addEventListener('click', this.redireccionarSeleccionMetodoEntrega.bind(this)); {% endcomment %}
       document.addEventListener('click', this.detectarClickFueraDelInputBusqueda.bind(this));
       this.logoPrincipal.forEach((logo) => {
         logo.addEventListener('click', () => {
