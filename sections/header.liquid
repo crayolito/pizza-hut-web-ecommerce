@@ -701,7 +701,14 @@
 
     verMenuDesktop() {
       console.log('ver menu desktop');
-      this.contenedorMenuDesplegable.style.display = 'flex';
+      const datosCliente = localStorage.getItem('datos-usuario');
+      if (datosCliente) {
+        this.contenedorDisMenu.style.display = 'flex';
+        this.contenedorDnisMenu.style.display = 'none';
+      } else {
+        this.contenedorDisMenu.style.display = 'none';
+        this.contenedorDnisMenu.style.display = 'flex';
+      }
     }
   }
 
