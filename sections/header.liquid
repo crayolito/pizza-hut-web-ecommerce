@@ -72,7 +72,10 @@
       <section class="container-base h-opciones-usuario-mobile">
         <div class="h-opciones-mobile-header">
           <h1>Menú</h1>
-          <button class="h-boton-cerrar-menu icon-color-tertiary">
+          <button
+            id="h-boton-cerrar-menu-mobile"
+            class="h-boton-cerrar-menu icon-color-tertiary"
+          >
             {% render 'icon-close-rojo' %}
           </button>
         </div>
@@ -442,6 +445,7 @@
       this.btnEntregaDomicilioMobile = document.querySelector('#h-btn-entrega-domicilio-mobile');
       this.contenedorIsMenu = document.querySelector('#h-ism-menu-principal');
       this.contenedorNisMenu = document.querySelector('#h-nism-menu-principal');
+      this.btnCerrrarMenuMobile = document.querySelector('#h-boton-cerrar-menu-mobile');
       // HEADER DESKTOP
       this.btnMenu = document.querySelector('.h-mostrar-menu-opciones-productos');
       this.contenedorEstadosEntrega = document.querySelector('.h-sector-metodo-entrega');
