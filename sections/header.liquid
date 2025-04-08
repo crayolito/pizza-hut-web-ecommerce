@@ -570,8 +570,6 @@
         this.btnOpcionOnSesion.style.display = 'none';
         this.contenedorIsMenu.style.display = 'none';
         this.contenedorNisMenu.style.display = 'flex';
-        {% comment %} this.contenedorDisMenu.style.display = 'none'; {% endcomment %}
-        {% comment %} this.contenedorDnisMenu.style.display = 'flex'; {% endcomment %}
       } else {
         // Si tienee el dato en el localStorage, traer datos de este mismo
         this.tituloMenuMobile.style.display = 'none';
@@ -579,8 +577,6 @@
         this.btnOpcionOnSesion.style.display = 'flex';
         this.contenedorIsMenu.style.display = 'flex';
         this.contenedorNisMenu.style.display = 'none';
-        {% comment %} this.contenedorDisMenu.style.display = 'flex'; {% endcomment %}
-        {% comment %} this.contenedorDnisMenu.style.display = 'none'; {% endcomment %}
       }
     }
 
@@ -701,15 +697,21 @@
 
     verMenuDesktop() {
       console.log('ver menu desktop');
+      // Verificar si los elementos existen
+      console.log('contenedorDisMenu:', this.contenedorDisMenu);
+      console.log('contenedorDnisMenu:', this.contenedorDnisMenu);
+
       const datosCliente = localStorage.getItem('datos-usuario');
+      console.log('datos cliente:', datosCliente);
+
       if (datosCliente == null) {
         console.log('no hay datos de cliente');
-        this.contenedorDisMenu.style.display = 'none';
-        this.contenedorDnisMenu.style.display = 'flex';
+        if (this.contenedorDisMenu) this.contenedorDisMenu.style.display = 'none';
+        if (this.contenedorDnisMenu) this.contenedorDnisMenu.style.display = 'flex';
       } else {
         console.log('hay datos de cliente');
-        this.contenedorDisMenu.style.display = 'flex';
-        this.contenedorDnisMenu.style.display = 'none';
+        if (this.contenedorDisMenu) this.contenedorDisMenu.style.display = 'flex';
+        if (this.contenedorDnisMenu) this.contenedorDnisMenu.style.display = 'none';
       }
     }
   }
