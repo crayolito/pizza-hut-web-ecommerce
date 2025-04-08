@@ -437,6 +437,7 @@
     connectedCallback() {
       this.logoPrincipal = document.querySelectorAll('.h-logo-principal');
       // HEADER MOBILE
+      this.contenedorMenuMobile = document.querySelector('.h-container-busqueda-mobile');
       this.btnBuscarMobile = document.querySelector('#h-btn-buscar-mobile');
       this.btnCarritoMobile = document.querySelector('.h-icono-carrito');
       this.btnSeleccionEntregaMobile = document.querySelector('#h-seleccion-metodo-entrega-mobile');
@@ -468,6 +469,7 @@
       this.inputBusqueda.addEventListener('input', this.accionEscribeInput.bind(this));
       this.btnCarritoMobile.addEventListener('click', this.redireccionarCarrito.bind(this));
       this.btnBuscarMobile.addEventListener('click', this.redireccionarBusqueda.bind(this));
+      this.btnCerrrarMenuMobile.addEventListener('click', this.cerrarMenuMobile.bind(this));
       document.addEventListener('click', this.detectarClickFueraDelInputBusqueda.bind(this));
       this.logoPrincipal.forEach((logo) => {
         logo.addEventListener('click', () => {
@@ -622,6 +624,10 @@
 
     redireccionarBusqueda() {
       window.location.href = '/search';
+    }
+
+    cerrarMenuMobile() {
+      this.contenedorMenuMobile.style.display = 'none';
     }
   }
 
