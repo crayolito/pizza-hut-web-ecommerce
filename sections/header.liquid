@@ -453,7 +453,7 @@
       this.contenedorResultadoBusqueda = document.querySelector('.h-busqueda-especifica');
       this.inputBusqueda = document.querySelector('#h-input-buscar');
       this.contenedorDisMenu = document.querySelector('#h-dis-opciones-usuario');
-      this.contenedorNisMenu = document.querySelector('#h-dnis-opciones-usuario');
+      this.contenedorDnisMenu = document.querySelector('#h-dnis-opciones-usuario');
       // TESTEO DE PRUEBA
       this.itemMenuDesplegable = document.querySelectorAll('.h-menu-opciones-productos-item');
 
@@ -482,7 +482,7 @@
       this.contenedorIsMenu.style.display = 'none';
       this.contenedorNisMenu.style.display = 'none';
       this.contenedorDisMenu.style.display = 'none';
-      this.contenedorNisMenu.style.display = 'none';
+      this.contenedorDnisMenu.style.display = 'none';
       this.verificarEstadoSesion();
       this.verificarEstadoEntrega();
     }
@@ -499,7 +499,7 @@
         this.contenedorIsMenu.style.display = 'none';
         this.contenedorNisMenu.style.display = 'flex';
         this.contenedorDisMenu.style.display = 'none';
-        this.contenedorNisMenu.style.display = 'flex';
+        this.contenedorDnisMenu.style.display = 'flex';
       } else {
         // Si tienee el dato en el localStorage, traer datos de este mismo
         this.btnOpcionOffSesion.style.display = 'none';
@@ -507,7 +507,7 @@
         this.contenedorIsMenu.style.display = 'flex';
         this.contenedorNisMenu.style.display = 'none';
         this.contenedorDisMenu.style.display = 'flex';
-        this.contenedorNisMenu.style.display = 'none';
+        this.contenedorDnisMenu.style.display = 'none';
       }
     }
 
@@ -596,6 +596,19 @@
         this.contenedorResultadoBusqueda.style.display = 'none';
         console.log('click fuera del input');
       }
+
+      // Verificar si el click NO fue dentro del MENU CONTENEDOR
+      if(event.target !== this.contenedorDisMenu && !this.contenedorDisMenu.contains(event.target)) {
+        // Si el clic fue fuera del input y del contenedor de resultados, ocultar el contenedor
+        this.contenedorDisMenu.style.display = 'none';
+        console.log('click fuera del menu');{
+      }
+
+      if(event.target !== this.contenedorDnisMenu && !this.contenedorDnisMenu.contains(event.target)) {
+        // Si el clic fue fuera del input y del contenedor de resultados, ocultar el contenedor
+        this.contenedorDnisMenu.style.display = 'none';
+        console.log('click fuera del menu');{
+      }
     }
 
     redireccionarCarrito() {
@@ -610,54 +623,6 @@
       window.location.href = '/pages/metodo-entrega';
     } {% endcomment %}
   }
-
-  const botonCambioEntrega = document.querySelector('.h-sector-metodo-entrega');
-  const inputBuscar = document.querySelector('#h-input-buscar');
-  const botonMobilBuscar = document.querySelector('.h-boton-buscar');
-  const botonMetodoEntregaMobil = document.querySelector('.h-boton-cambio-metodo-entrega');
-  const botonMenuMobil = document.querySelector('.h-boton-menu');
-  const menuOpcionesClienteMobile = document.querySelector('.h-opciones-usuario-mobile');
-  const menuOpcionesClienteDesktop = document.querySelector('.h-opciones-usuario');
-  menuOpcionesClienteDesktop.style.display = 'none';
-  const botonCerrarMenuMobile = document.querySelector('.h-boton-cerrar-menu ');
-  const botonMenuOpcionesDesktop = document.querySelector('.h-boton-modo-cliente');
-
-  menuOpcionesClienteMobile.style.display = 'none';
-
-  botonCambioEntrega.addEventListener('click', () => {
-    console.log('click');
-    window.location.href = '/pages/test-prueba';
-  });
-
-  inputBuscar.addEventListener('keyup', (e) => {
-    if (e.key === 'Enter') {
-      window.location.href = '/search';
-    }
-  });
-
-  botonMobilBuscar.addEventListener('click', () => {
-    window.location.href = '/search';
-  });
-
-  botonMetodoEntregaMobil.addEventListener('click', () => {
-    window.location.href = '/pages/test-prueba';
-  });
-
-  botonMenuMobil.addEventListener('click', () => {
-    menuOpcionesClienteMobile.style.display = 'flex';
-  });
-
-  botonCerrarMenuMobile.addEventListener('click', () => {
-    menuOpcionesClienteMobile.style.display = 'none';
-  });
-
-  botonMenuOpcionesDesktop.addEventListener('click', () => {
-    if (menuOpcionesClienteDesktop.style.display === 'none') {
-      menuOpcionesClienteDesktop.style.display = 'flex';
-    } else {
-      menuOpcionesClienteDesktop.style.display = 'none';
-    }
-  });
 
   customElements.define('header-principal', HeaderPrincipal);
 </script>

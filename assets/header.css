@@ -631,7 +631,8 @@ header-principal {
   }
 
   .h-opciones-usuario {
-    width: 18.75rem;
+    /* width: 18.75rem; */
+    width: max-content;
     padding: var(--espaciado-l);
   }
 
