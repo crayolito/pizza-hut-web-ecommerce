@@ -21,7 +21,6 @@
         </div>
       </a>
       <div
-        id="h-opciones-usuario-mobile"
         class="h-sector-opciones-cliente h-metodo-seleccionado"
       >
         <a
@@ -69,7 +68,10 @@
       <button class="h-boton-menu">
         {% render 'icon-hamburguesa' %}
       </button>
-      <section class="container-base h-opciones-usuario-mobile">
+      <section
+        id="h-menu-inicio-sesion-usuario-mobile"
+        class="container-base h-opciones-usuario-mobile"
+      >
         <div class="h-opciones-mobile-header">
           <h1>Menú</h1>
           <button
@@ -437,7 +439,7 @@
     connectedCallback() {
       this.logoPrincipal = document.querySelectorAll('.h-logo-principal');
       // HEADER MOBILE
-      this.contenedorMenuMobile = document.querySelector('.h-container-busqueda-mobile');
+      this.contenedorMenuMobile = document.querySelector('#h-menu-inicio-sesion-usuario-mobile');
       this.btnBuscarMobile = document.querySelector('#h-btn-buscar-mobile');
       this.btnCarritoMobile = document.querySelector('.h-icono-carrito');
       this.btnSeleccionEntregaMobile = document.querySelector('#h-seleccion-metodo-entrega-mobile');
