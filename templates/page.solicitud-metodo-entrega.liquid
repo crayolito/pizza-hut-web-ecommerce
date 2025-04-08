@@ -401,6 +401,36 @@
         // Google Maps ya está disponible
         this.configurarAutocompletadoDirecciones();
       }
+      this.inicializarPaginaLocalStorage();
+    }
+
+    inicializarPaginaLocalStorage(){
+      // Verificar si existe el localStorage y la clave 'ubicacion-cliente'
+      if (localStorage.getItem('ubicacion-cliente')) {
+        // Si existe, cargar la ubicación del cliente desde el localStorage
+        this.coordenadas = JSON.parse(localStorage.getItem('ubicacion-cliente'));
+      } 
+
+      // Verificar si hay datos preseleccionados en el localStorage (INDEX)
+      // Verificar si hay datos en el localStorage (PAGINA METODO DE ENTREGA)
+      const localStorageIndex = localStorage.getItem('seleccion-me-mi');
+      const localStorageMetodoEntrega = localStorage.getItem('metodo-entrega');
+      
+      if(localStorageMetodoEntrega == null || localStorageMetodoEntrega == 'no'){
+        if(localStorageIndex == 'domicilio'){
+          this.accionBotonEnvioDomicilio();
+        }
+        if(localStorageIndex == 'local'){
+          this.accionBotonRecogerLocal();
+        }
+      }else {
+        if(localStorageMetodoEntrega == 'domicilio'){
+          this.accionBotonEnvioDomicilio();
+        }
+        if(localStorageMetodoEntrega == 'local'){
+          this.accionBotonRecogerLocal();
+        }
+      }
     }
 
     // FUNCIONES RELACIONADAS A LA SELECCION => RECOGER EN LOCAL
@@ -1195,6 +1225,8 @@
       const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
       return radioTierra * c; // Distancia en kilómetros
     }
+
+
   }
 
   customElements.define('cliente-localizacion', ClienteLocalizacion);

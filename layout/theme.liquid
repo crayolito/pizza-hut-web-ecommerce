@@ -694,7 +694,7 @@
       const iconoEstadoOn = `{% render 'icon-estado-on' %}`;
       const iconoEstadoOff = `{% render 'icon-estado-off' %}`;
       // seleccion-me-mi = seleccion metodo mi entrega modal inicial
-      localStorage.setItem('seleccion-me-mi', 'recoger-local');
+      {% comment %} localStorage.setItem('seleccion-me-mi', 'local'); {% endcomment %}
 
       // Se verifica si el boton precionado esta seleccionado
       const estaSeleccionadoBtnRecogerLocal = this.btnRecogerLocal.classList.contains('seleccionado');
@@ -717,7 +717,7 @@
       const iconoEstadoOn = `{% render 'icon-estado-on' %}`;
       const iconoEstadoOff = `{% render 'icon-estado-off' %}`;
       // seleccion-me-mi = seleccion metodo mi entrega modal inicial
-      localStorage.setItem('seleccion-me-mi', 'envio-domicilio');
+      {% comment %} localStorage.setItem('seleccion-me-mi', 'domicilio'); {% endcomment %}
 
       // Se verifica si el boton precionado esta seleccionado
       const estaSeleccionadoBtnEnvioDomicilio = this.btnEnvioDomicilio.classList.contains('seleccionado');
@@ -745,6 +745,14 @@
         this.btnContinuar.classList.remove('desactivado');
       } else {
         this.btnContinuar.classList.add('desactivado');
+      }
+
+      if(fueSeleccionadoBtnRecogerLocal) {
+        localStorage.setItem('seleccion-me-mi', 'local');
+      } 
+
+      if(fueSeleccionadoBtnEnvioDomicilio) {
+        localStorage.setItem('seleccion-me-mi', 'domicilio');
       }
     }
   }
