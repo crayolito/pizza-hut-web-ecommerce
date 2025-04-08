@@ -430,6 +430,7 @@
     constructor() {
       super();
     }
+
     connectedCallback() {
       this.logoPrincipal = document.querySelectorAll('.h-logo-principal');
       // HEADER MOBILE
@@ -607,7 +608,7 @@
       if(event.target !== this.contenedorDnisMenu && !this.contenedorDnisMenu.contains(event.target)) {
         // Si el clic fue fuera del input y del contenedor de resultados, ocultar el contenedor
         this.contenedorDnisMenu.style.display = 'none';
-        console.log('click fuera del menu');{
+        console.log('click fuera del menu');
       }
     }
 
