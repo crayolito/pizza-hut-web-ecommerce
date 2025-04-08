@@ -126,6 +126,15 @@ header-principal {
   /* READ : CAMBIOS PARA EL JS  */
 }
 
+.h-opciones-mobile-body {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: var(--espaciado-xs);
+  width: 100%;
+}
+
 .h-opciones-mobile-body hr {
   height: 1px;
   width: 100%;
