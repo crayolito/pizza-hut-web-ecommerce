@@ -121,7 +121,7 @@
             <input
               class="pcch-item-input"
               type="number"
-              id="single-digit"
+              id="single-digit1"
               class="single-digit-input"
               min="0"
               max="9"
@@ -131,7 +131,7 @@
             <input
               class="pcch-item-input"
               type="number"
-              id="single-digit"
+              id="single-digit2"
               class="single-digit-input"
               min="0"
               max="9"
@@ -141,7 +141,7 @@
             <input
               class="pcch-item-input"
               type="number"
-              id="single-digit"
+              id="single-digit3"
               class="single-digit-input"
               min="0"
               max="9"
@@ -151,7 +151,7 @@
             <input
               class="pcch-item-input"
               type="number"
-              id="single-digit"
+              id="single-digit4"
               class="single-digit-input"
               min="0"
               max="9"
@@ -193,21 +193,23 @@
       this.containerMensaje = this.querySelector('#pgpis-mensaje-proceso');
       this.containerExito = this.querySelector('#pgpis-mp-exito');
       this.containerVerificarNumero = this.querySelector('#pgpis-mp-verificar-numero');
+      this.input1Verificacion = this.querySelector('#single-digit1');
+      this.input2Verificacion = this.querySelector('#single-digit2');
+      this.input3Verificacion = this.querySelector('#single-digit3');
+      this.input4Verificacion = this.querySelector('#single-digit4');
 
       // EVENTOS LISTENERS
       this.input.addEventListener('input', this.verificarInput.bind(this));
+      this.input1Verificacion.addEventListener('input', this.verificarNumero.bind(this));
+      this.input2Verificacion.addEventListener('input', this.verificarNumero.bind(this));
+      this.input3Verificacion.addEventListener('input', this.verificarNumero.bind(this));
+      this.input4Verificacion.addEventListener('input', this.verificarNumero.bind(this));
       this.btnIniciarSesion.addEventListener('click', this.iniciarSesion.bind(this));
       this.btnGoogle.addEventListener('click', this.iniciarSesionGoogle.bind(this));
       this.btnFacebook.addEventListener('click', this.iniciarSesionFacebook.bind(this));
-      this.containerGeneral.addEventListener('click', this.cerrarModal.bind(this));
-      document.addEventListener('click', this.detectarParaCerrarModal.bind(this));
 
       // INICIALIZAR ELEMENTOS
-      this.containerGeneral.style.display = 'none';
-      this.containerSnipper.style.display = 'none';
-      this.containerMensaje.style.display = 'none';
-      this.containerExito.style.display = 'none';
-      this.containerVerificarNumero.style.display = 'none';
+      this.ocultarElementosBase();
     }
 
     verificarInput() {
@@ -243,6 +245,38 @@
     cerrarModal() {}
 
     detectarParaCerrarModal() {}
+
+    verificarNumero() {
+      const inputs = [
+        this.input1Verificacion,
+        this.input2Verificacion,
+        this.input3Verificacion,
+        this.input4Verificacion,
+      ];
+
+      const allFilled = inputs.every((input) => input.value.length === 1);
+
+      if (allFilled) {
+        // Aquí puedes agregar la lógica para enviar el código de verificación
+        console.log('Código de verificación enviado');
+        this.containerVerificarNumero.style.display = 'none';
+        this.containerMensaje.style.display = 'none';
+        this.containerSnipper.style.display = 'flex';
+
+        setTimeout(() => {
+          this.ocultarElementosBase();
+          window.location.href = '/pages/perfil';
+        }, 3000);
+      }
+    }
+
+    ocultarElementosBase() {
+      this.containerGeneral.style.display = 'none';
+      this.containerSnipper.style.display = 'none';
+      this.containerMensaje.style.display = 'none';
+      this.containerExito.style.display = 'none';
+      this.containerVerificarNumero.style.display = 'none';
+    }
   }
 
   customElements.define('inicio-sesion', InicioSesion);
