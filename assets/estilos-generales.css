@@ -331,7 +331,7 @@
   justify-content: center;
   align-items: center;
   gap: var(--espaciado-xs);
-  border-right: 1px solid #231f20;
+  border-right: 1px solid #969696;
 }
 
 .ph-mcci-input {
