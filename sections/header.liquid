@@ -667,7 +667,7 @@
       let estaAbierto;
 
       estaAbierto = this.contenedorResultadoBusqueda.style.display == 'flex';
-      // Verificar si el clic NO fue dentro del input o dentro del contenedor resultados
+      // Verificar si el clic NO fue dentro del sector general busqueda
       if (event.target !== this.sectorGeneralBusqueda && !this.sectorGeneralBusqueda.contains(event.target)) {
         // Si el clic fue fuera del sector general de busqueda
         if (estaAbierto) {
@@ -680,15 +680,15 @@
       // Verificar si el click NO fue dentro del MENU CONTENEDOR
       if (event.target !== this.contenedorDisMenu && !this.contenedorDisMenu.contains(event.target)) {
         // Si el clic fue fuera del input y del contenedor de resultados, ocultar el contenedor
-        if (this.contenedorDnisMenu.style.display === 'flex') {
+        if (estaAbierto) {
           this.contenedorDnisMenu.style.display = 'none';
         }
       }
 
-      estaAbierto = this.contenedorDnisMenu.style.display === 'flex';
+      estaAbierto = this.contenedorDnisMenu.style.display == 'flex';
       if (event.target !== this.contenedorDnisMenu && !this.contenedorDnisMenu.contains(event.target)) {
         // Si el clic fue fuera del input y del contenedorr de resultados, ocultar el contenedor
-        if (this.contenedorDnisMenu.style.display === 'flex') {
+        if (estaAbierto) {
           this.contenedorDnisMenu.style.display = 'none';
         }
       }
