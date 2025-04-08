@@ -183,6 +183,8 @@
     }
 
     connectedCallback() {
+      this.reiniciarProceso();
+
       // CAPTURAR ELEMENTOS
       this.input = this.querySelector('#phpis-input');
       this.btnIniciarSesion = this.querySelector('#phpis-btn-iniciar-sesion');
@@ -210,6 +212,40 @@
 
       // INICIALIZAR ELEMENTOS
       this.ocultarElementosBase();
+    }
+
+    disconnectedCallback() {
+      // Eliminar todos los event listeners para evitar memory leaks
+      this.input.removeEventListener('input', this.verificarInput);
+      this.input1Verificacion.removeEventListener('input', this.verificarNumero);
+      this.input2Verificacion.removeEventListener('input', this.verificarNumero);
+      this.input3Verificacion.removeEventListener('input', this.verificarNumero);
+      this.input4Verificacion.removeEventListener('input', this.verificarNumero);
+      this.btnIniciarSesion.removeEventListener('click', this.iniciarSesion);
+      this.btnGoogle.removeEventListener('click', this.iniciarSesionGoogle);
+      this.btnFacebook.removeEventListener('click', this.iniciarSesionFacebook);
+
+      // Si añadiste los botones de cancelar o volver
+      if (this.btnVolver) {
+        this.btnVolver.removeEventListener('click', this.reiniciarProceso);
+      }
+
+      if (this.btnCancelarVerificacion) {
+        this.btnCancelarVerificacion.removeEventListener('click', this.reiniciarProceso);
+      }
+
+      // Eliminar listeners globales
+      document.removeEventListener('keydown', this.handleKeyDown);
+      this.containerGeneral.removeEventListener('click', this.cerrarModal);
+      document.removeEventListener('click', this.detectarParaCerrarModal);
+
+      // Limpiar cualquier timeout pendiente
+      if (this.timeoutSesion) {
+        clearTimeout(this.timeoutSesion);
+      }
+
+      // Limpiar otras referencias
+      console.log('Componente InicioSesion desmontado y limpiado');
     }
 
     verificarInput() {
@@ -288,6 +324,27 @@
       this.containerMensaje.style.display = 'none';
       this.containerExito.style.display = 'none';
       this.containerVerificarNumero.style.display = 'none';
+    }
+
+    reiniciarProceso() {
+      // Ocultar todos los contenedores activos
+      this.ocultarElementosBase();
+
+      // Limpiar los campos de entrada
+      this.input.value = '';
+      this.input1Verificacion.value = '';
+      this.input2Verificacion.value = '';
+      this.input3Verificacion.value = '';
+      this.input4Verificacion.value = '';
+
+      // Desactivar el botón de inicio de sesión
+      this.btnIniciarSesion.classList.add('desactivado');
+
+      // Mostrar solo la interfaz inicial (ajustar según tu diseño)
+      // Si tienes un contenedor principal que debe estar visible, actívalo aquí
+      // Por ejemplo: this.containerPrincipal.style.display = 'block';
+
+      console.log('Proceso reiniciado');
     }
   }
 
