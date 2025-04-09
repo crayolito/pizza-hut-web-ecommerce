@@ -129,6 +129,7 @@
     "cart_drawer_collection": "",
     "cart_color_scheme": "scheme-1",
     "keyGoogleMap": "AIzaSyAzBQg6Gbsg-bvZ3_jPAjoCbCj5Xva-Bls",
+    "ubicacion_base": "{ lat: -17.783315017953004, lng: -63.18214577296119 }",
     "sections": {
       "main-password-header": {
         "type": "main-password-header",

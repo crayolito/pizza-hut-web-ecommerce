@@ -3,229 +3,267 @@
 {{ 'page-crear-cuenta.css' | asset_url | stylesheet_tag }}
 {{ 'page-checkout.css' | asset_url | stylesheet_tag }}
 
-<div class="container-main-smecph container-base">
-  <small>CREAR CUENTA</small>
-  <section class="container-sub-smecph" id="pccph-frm-datos-contacto">
-    <div class="ph-mcci-header-simplec">
-      <h4>Datos de contacto</h4>
-      <p>Ingrese tus datos para disfrutar tu pizza favorita.</p>
-    </div>
-    <div class="ph-mcci-frm">
-      <div class="ph-mcci-input">
-        <p>Nombres</p>
-        <div class="ph-container-input">
-          <input type="text" placeholder="Nombres">
-        </div>
+<crear-cuenta>
+  <div class="container-main-smecph container-base">
+    <small>CREAR CUENTA</small>
+    <section class="container-sub-smecph" id="pccph-frm-datos-contacto">
+      <div class="ph-mcci-header-simplec">
+        <h4>Datos de contacto</h4>
+        <p>Ingrese tus datos para disfrutar tu pizza favorita.</p>
       </div>
-      <div class="ph-mcci-input">
-        <p>Apellidos</p>
-        <div class="ph-container-input">
-          <input type="text" placeholder="Apellidos">
-        </div>
-      </div>
-      <div class="ph-mcci-input">
-        <p>Correo Electrónico</p>
-        <div class="ph-container-input">
-          <input type="email" placeholder="Correo Electrónico">
-        </div>
-      </div>
-      <div class="ph-mcci-input">
-        <p>Celular</p>
-        <div class="ph-container-input">
-          <input type="number" placeholder="Teléfono">
-        </div>
-        <div class="ph-mcci-mensaje-input">
-          {% render 'icon-info' %}
-          <p>Nos contactaremos a este número para entregar tu pedido.</p>
-        </div>
-      </div>
-      <div class="ph-mcci-input error">
-        <p>Número de Carnet de identidad (C.I.)</p>
-        <div class="ph-container-input">
-          <input type="number" placeholder="Carnet de identidad">
-        </div>
-        <div class="ph-mcci-mensaje-input">
-          {% render 'icon-info' %}
-          <p>Este campo es obligatorio.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section class="container-sub-smecph" id="pccph-frm-direccion">
-    <div class="ph-mcci-header-simplec">
-      <h4>Dirección</h4>
-      <p>Ingresa una dirección o usa tu ubicación actual.</p>
-    </div>
-    <button class="ph-btn-secundario">
-      {% render 'icon-gps-rojo' %}
-      <p>USAR MI UBICACIÓN ACTUAL</p>
-    </button>
-    <div class="pccph-modal-separador">
-      <div class="pccph-modal-separador-linea"></div>
-      <p>O</p>
-      <div class="pccph-modal-separador-linea"></div>
-    </div>
-    <div class="ph-container-input icon-color-tertiary">
-      {% render 'icon-location-on' %}
-      <input type="text" placeholder="Ingresar dirección o punto de referencia">
-    </div>
-  </section>
-  <section class="container-sub-smecph" id="pccph-hutcoins">
-    <div class="smecph-pc-hutcoins-banner">
-      <img src="{{ 'banner-hutcoints-carrito.png' | asset_url }}" alt="Hutcoins Banner" width="100%" height="100%">
-    </div>
-    <div class="smecph-pc-hutcoins-mensaje">
-      <div class="ph-container-icono">
-        {% render 'icon-checkbox-off' %}
-      </div>
-      <p>Usar mi información para registrarme a Hut Coins y ganar puntos por esta compra.</p>
-    </div>
-    <div class="ph-mcci-input">
-      <p>Fecha de nacimiento</p>
-      <div class="ph-container-input">
-        <input type="date" placeholder="Fecha de nacimiento">
-      </div>
-    </div>
-  </section>
-  <section class="container-sub-smecph pccph-extra-ultimo" id="pccph-termino-condiciones">
-    <div class="smecph-pc-hutcoins-mensaje ">
-      <div class="ph-container-icono">
-        {% render 'icon-checkbox-off' %}
-      </div>
-      <p>Usar mi información para registrarme a Hut Coins y ganar puntos por esta compra.</p>
-    </div>
-  </section>
-  <section class="ph-opciones-mobile-footer">
-    {% comment %}
-      <button class="ph-btn-desactivado">
-        <p>Continuar</p>
-      </button>
-    {% endcomment %}
-    <button class="ph-btn-general">
-      <p>CONTINUAR</p>
-    </button>
-    <button class="ph-btn-primario">
-      <p>CANCELAR</p>
-    </button>
-  </section>
-
-  <section class="ph-background-container-modal">
-    <!-- 1re MODAL : NUEVA DIRECCION -->
-    <div class="ph-mmdi-modal-main">
-      <div class="pcktpch-modal-header">
-        <div class="pcktpch-modal-header-opciones">
-          <button class="pcktpch-modal-volver-atras icon-color-tertiary">
-            {% render 'icon-volver-atras' %}
-          </button>
-          <h4>NUEVA DIRECCIÓN</h4>
-        </div>
-        <button class="pcktpch-modal-btn-cerrar">
-          {% render 'icon-close-custom' %}
-        </button>
-      </div>
-      <div class="pcktpch-modal-body-fase1">
-        <p>Ingresa tu dirección o usa tu ubicación actual.</p>
-        <button class="pcktpch-btn-secundario">
-          {% render 'icon-gps-rojo' %}
-          <p>USAR MI UBICACIÓN ACTUAL</p>
-        </button>
-        <div class="pcktpch-modal-separador">
-          <div class="pcktpch-modal-separador-linea"></div>
-          <p>O</p>
-          <div class="pcktpch-modal-separador-linea"></div>
-        </div>
-        <div class="ph-container-input icon-color-tertiary">
-          {% render 'icon-location-on' %}
-          <input type="text" placeholder="Ingresar dirección o punto de referencia">
-        </div>
-      </div>
-      <div class="pcktpch-modal-body-fase2">
-        <div class="smecph-mensaje-informacion">
-          {% render 'icon-info' %}
-          <p>Si es necesario, cambia la ubicación del pin en el mapa.</p>
-        </div>
-        <div class="pcktpch-modal-mapa"></div>
-      </div>
-      <div class="pcktpch-modal-body-fase3">
-        <div class="smecph-pc-info-input">
-          <p>Indicaciones acerca de tu dirección</p>
+      <div class="ph-mcci-frm">
+        <div class="ph-mcci-input">
+          <p>Nombres</p>
           <div class="ph-container-input">
-            <input type="text" placeholder="Ingresar indicaciones para tu dirección">
+            <input
+              pattern="[A-Za-zÀ-ÖØ-öø-ÿ\s]+"
+              required
+              type="text"
+              placeholder="Nombres"
+            >
           </div>
         </div>
-        <div class="smecph-pc-info-input">
-          <p>Alias</p>
+        <div class="ph-mcci-input">
+          <p>Apellidos</p>
+          <div class="ph-container-input">
+            <input
+              required
+              pattern="[A-Za-zÀ-ÖØ-öø-ÿ\s]+"
+              type="text"
+              placeholder="Apellidos"
+            >
+          </div>
+        </div>
+        <div class="ph-mcci-input">
+          <p>Correo Electrónico</p>
+          <div class="ph-container-input">
+            <input
+              required
+              type="email"
+              placeholder="Correo Electrónico"
+            >
+          </div>
+        </div>
+        <div class="ph-mcci-input">
+          <p>Celular</p>
+          <div class="ph-container-input">
+            <input
+              type="tel"
+              placeholder="Numero de celular"
+              maxlength="8"
+              oninput="this.value=this.value.replace(/[^0-9]/g,'')"
+              pattern="[0-9]{1,8}"
+            >
+          </div>
+          <div class="ph-mcci-mensaje-input">
+            {% render 'icon-info' %}
+            <p>Nos contactaremos a este número para entregar tu pedido.</p>
+          </div>
+        </div>
+        <div class="ph-mcci-input error">
+          <p>Número de Carnet de identidad (C.I.)</p>
+          <div class="ph-container-input">
+            <input
+              type="tel"
+              placeholder="Carnet de identidadr"
+              oninput="this.value=this.value.replace(/[^0-9]/g,'')"
+              pattern="[0-9]{1,8}"
+            >
+          </div>
+          <div class="ph-mcci-mensaje-input">
+            {% render 'icon-info' %}
+            <p>Este campo es obligatorio.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="container-sub-smecph" id="pccph-frm-direccion">
+      <div class="ph-mcci-header-simplec">
+        <h4>Dirección</h4>
+        <p>Ingresa una dirección o usa tu ubicación actual.</p>
+      </div>
+      <button class="ph-btn-secundario">
+        {% render 'icon-gps-rojo' %}
+        <p>USAR MI UBICACIÓN ACTUAL</p>
+      </button>
+      <div class="pccph-modal-separador">
+        <div class="pccph-modal-separador-linea"></div>
+        <p>O</p>
+        <div class="pccph-modal-separador-linea"></div>
+      </div>
+      <div class="ph-container-input icon-color-tertiary">
+        {% render 'icon-location-on' %}
+        <input type="text" placeholder="Ingresar dirección o punto de referencia">
+      </div>
+    </section>
+    <section class="container-sub-smecph" id="pccph-hutcoins">
+      <div class="smecph-pc-hutcoins-banner">
+        <img src="{{ 'banner-hutcoints-carrito.png' | asset_url }}" alt="Hutcoins Banner" width="100%" height="100%">
+      </div>
+      <div class="smecph-pc-hutcoins-mensaje">
+        <div class="ph-container-icono">
+          {% render 'icon-checkbox-off' %}
+        </div>
+        <p>Usar mi información para registrarme a Hut Coins y ganar puntos por esta compra.</p>
+      </div>
+      <div class="ph-mcci-input">
+        <p>Fecha de nacimiento</p>
+        <div class="ph-container-input">
+          <input type="date" placeholder="Fecha de nacimiento">
+        </div>
+      </div>
+    </section>
+    <section class="container-sub-smecph pccph-extra-ultimo" id="pccph-termino-condiciones">
+      <div class="smecph-pc-hutcoins-mensaje ">
+        <div class="ph-container-icono">
+          {% render 'icon-checkbox-off' %}
+        </div>
+        <p>Usar mi información para registrarme a Hut Coins y ganar puntos en las futuras compras.</p>
+      </div>
+    </section>
+    <section class="ph-opciones-mobile-footer">
+      <button class="ph-btn-general desactivado">
+        <p>CONTINUAR</p>
+      </button>
+      <a
+        href="/"
+        class="ph-btn-primario"
+      >
+        <p>CANCELAR</p>
+      </a>
+    </section>
+
+    <section
+      id="phpcc-modal-background"
+      class="ph-background-container-modal"
+    >
+      <!-- 1re MODAL : NUEVA DIRECCION -->
+      <div
+        id="phpcc-modal-dar-direccion"
+        class="ph-mmdi-modal-main"
+      >
+        <div class="pcktpch-modal-header">
+          <div class="pcktpch-modal-header-opciones">
+            <button class="pcktpch-modal-volver-atras icon-color-tertiary">
+              {% render 'icon-volver-atras' %}
+            </button>
+            <h4>NUEVA DIRECCIÓN</h4>
+          </div>
+          <button class="pcktpch-modal-btn-cerrar">
+            {% render 'icon-close-custom' %}
+          </button>
+        </div>
+        <div
+          id="pcktpch-modal-body-fase1"
+          class="pcktpch-modal-body-fase1"
+        >
+          <p>Ingresa tu dirección o usa tu ubicación actual.</p>
+          <button class="pcktpch-btn-secundario">
+            {% render 'icon-gps-rojo' %}
+            <p>USAR MI UBICACIÓN ACTUAL</p>
+          </button>
+          <div class="pcktpch-modal-separador">
+            <div class="pcktpch-modal-separador-linea"></div>
+            <p>O</p>
+            <div class="pcktpch-modal-separador-linea"></div>
+          </div>
           <div class="ph-container-input icon-color-tertiary">
             {% render 'icon-location-on' %}
-            <input type="text" placeholder="Ingresar o seleccionar">
+            <input type="text" placeholder="Ingresar dirección o punto de referencia">
           </div>
         </div>
-      </div>
-      <div class="pcktpch-modal-footer">
-        <button class="pcktpch-btn-general">
-          <p>GUARDAR DIRECCIÓN</p>
-        </button>
-        <button class="pcktpch-btn-secundario">
-          <p>CANCELAR</p>
-        </button>
-      </div>
-    </div>
-    <!-- 2do MODAL : SNIPPER DE CARGANDO -->
-    <div class="ph-modal-main-snipper">
-      <div class="ph-modal-body-snipper">
-        <div class="snipper-container">
-          <div class="snipper-background">
-            <img
-              src="{{ 'fondoSnipper.png' | asset_url }}"
-              alt="Fondo de Snipper"
-              width="100%"
-              height="100%"
-            >
+        <div
+          id="pcktpch-modal-body-fase2"
+          class="pcktpch-modal-body-fase2"
+        >
+          <div class="smecph-mensaje-informacion">
+            {% render 'icon-info' %}
+            <p>Si es necesario, cambia la ubicación del pin en el mapa.</p>
           </div>
-          <div class="snipper-logo">
-            <img
-              src="{{ 'logoSnipper.png' | asset_url }}"
-              alt="Logo de Snipper"
-              width="100%"
-              height="100%"
-            >
+          <div class="pcktpch-modal-mapa"></div>
+        </div>
+        <div
+          id="pcktpch-modal-body-fase3"
+          class="pcktpch-modal-body-fase3"
+        >
+          <div class="smecph-pc-info-input">
+            <p>Indicaciones acerca de tu dirección</p>
+            <div class="ph-container-input">
+              <input type="text" placeholder="Ingresar indicaciones para tu dirección">
+            </div>
+          </div>
+          <div class="smecph-pc-info-input">
+            <p>Alias</p>
+            <div class="ph-container-input icon-color-tertiary">
+              {% render 'icon-location-on' %}
+              <input type="text" placeholder="Ingresar o seleccionar">
+            </div>
           </div>
         </div>
-      </div>
-      <p>Procesando informacion ...</p>
-    </div>
-    <div class="ph-modal-main-mensajes" style="display: none;">
-      <!-- 3er MODAL : EXITO -->
-      <div class="ph-modal-body-exito">
-        <img src="{{ 'imagen-check-verde.png' | asset_url }}" alt="Icono de exito" width="100%" height="100%">
-        <small>Tu cuenta está activa. ¡ya puedes pedir tu pizza favorita!</small>
-        <button class="ph-btn-general icon-color-primary">
-          {% render 'icon-cerrar-sesion' %}
-          <p>INICIAR SESION</p>
-        </button>
-      </div>
-      <!-- 4to MODAL : QR -->
-      <div class="ph-modal-body-qr">
-        <h1>PAGO POR QR</h1>
-        <div class="ph-modal-qr-detalles">
-          <h4>ESCANEA EL CÓDIGO QR</h4>
-          <p>1. Abre la aplicación de tu banco.</p>
-          <p>2. Selecciona la forma de pago QR Simple.</p>
-          <p>3. Captura el Código QR con la cámara o descarga la imagen.</p>
-          <p>4. Mantén esta página abierta para que puedas ver la confirmación de tu pago.</p>
+        <div class="pcktpch-modal-footer">
+          <button class="pcktpch-btn-general">
+            <p>GUARDAR DIRECCIÓN</p>
+          </button>
+          <button class="pcktpch-btn-secundario">
+            <p>CANCELAR</p>
+          </button>
         </div>
-        <div class="smecph-mensaje-informacion">
-          {% render 'icon-info' %}
-          <p>Aguardando tu pago...</p>
-        </div>
-        <div class="ph-modal-imgen-qr">
-          <img src="{{ 'qr-prueba.png' | asset_url }}" alt="QR" width="100%" height="100%">
-        </div>
-        <button class="pcktpch-btn-secundario">
-          {% render 'icon-descargar' %}
-          <p>DESCARGAR QR</p>
-        </button>
       </div>
-    </div>
-  </section>
-</div>
+      <!-- 2do MODAL : SNIPPER DE CARGANDO -->
+      <div
+        id="phpcc-modal-snipper"
+        class="ph-modal-main-snipper"
+      >
+        <div class="ph-modal-body-snipper">
+          <div class="snipper-container">
+            <div class="snipper-background">
+              <img
+                src="{{ 'fondoSnipper.png' | asset_url }}"
+                alt="Fondo de Snipper"
+                width="100%"
+                height="100%"
+              >
+            </div>
+            <div class="snipper-logo">
+              <img
+                src="{{ 'logoSnipper.png' | asset_url }}"
+                alt="Logo de Snipper"
+                width="100%"
+                height="100%"
+              >
+            </div>
+          </div>
+        </div>
+        <p>Procesando informacion ...</p>
+      </div>
+    </section>
+  </div>
+</crear-cuenta>
+
+<script>
+  class CrearCuenta extends HTLMElement {
+    constructor() {
+      super();
+    }
+
+    connectCallback() {
+      // CAPTURAR ELEMENTOS
+      this.modalBackground = this.querySelector('#phpcc-modal-background');
+      this.modalDarDireccion = this.querySelector('#phpcc-modal-dar-direccion');
+      this.modalSnipper = this.querySelector('#phpcc-modal-snipper');
+      this.fase1DarDireccion = this.querySelector('#pcktpch-modal-body-fase1');
+      this.fase2DarDireccion = this.querySelector('#pcktpch-modal-body-fase2');
+      this.fase3DarDireccion = this.querySelector('#pcktpch-modal-body-fase3');
+
+      // INICIALIZAR ELEMENTOS
+      this.modalBackground.style.display = 'none';
+      this.modalDarDireccion.style.display = 'none';
+      this.modalSnipper.style.display = 'none';
+      this.fase1DarDireccion.style.display = 'none';
+      this.fase2DarDireccion.style.display = 'none';
+      this.fase3DarDireccion.style.display = 'none';
+    }
+  }
+
+  customElements.define('crear-cuenta', CrearCuenta);
+</script>

@@ -537,6 +537,8 @@
       this.btnCerrrarMenuMobile.addEventListener('click', this.cerrarMenuMobile.bind(this));
       this.btnVerMenuMobile.addEventListener('click', this.verMenuMobile.bind(this));
       this.btnOpcionOnSesion.addEventListener('click', this.verMenuDesktop.bind(this));
+      this.btnDominicilio.addEventListener('click', this.redireccionMetodoEntrega.bind(this));
+      this.btnLocal.addEventListener('click', this.redireccionMetodoEntrega.bind(this));
       document.addEventListener('click', this.detectarClickFueraDelInputBusqueda.bind(this));
       this.logoPrincipal.forEach((logo) => {
         logo.addEventListener('click', () => {
@@ -722,6 +724,10 @@
         this.contenedorDisMenu.style.display = 'flex';
         this.contenedorDnisMenu.style.display = 'none';
       }
+    }
+
+    redireccionMetodoEntrega() {
+      window.location.href = '/pages/metodo-entrega';
     }
   }
 

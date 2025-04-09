@@ -352,7 +352,10 @@
 
     <!-- Hojas de estilos css -->
     {{ 'estilos-generales.css' | asset_url | stylesheet_tag }}
-    <script src="https://accounts.google.com/gsi/client"></script>
+    <script
+      defer
+      src="https://maps.googleapis.com/maps/api/js?key={{settings.keyGoogleMap}}&libraries=places"
+    ></script>
     <script>
       // Verificar si la URL actual contiene /pages/perfil
       if (window.location.pathname.includes('/pages/perfil')) {
@@ -438,6 +441,36 @@
             </button>
           </div>
         </div>
+
+        <!-- MODAL DE ESTADO CARGA -->
+        <section
+          id="ph-general-modal-carga"
+          class="ph-background-container-modal"
+        >
+          <div class="ph-modal-main-snipper">
+            <div class="ph-modal-body-snipper">
+              <div class="snipper-container">
+                <div class="snipper-background">
+                  <img
+                    src="{{ 'fondoSnipper.png' | asset_url }}"
+                    alt="Fondo de Snipper"
+                    width="100%"
+                    height="100%"
+                  >
+                </div>
+                <div class="snipper-logo">
+                  <img
+                    src="{{ 'logoSnipper.png' | asset_url }}"
+                    alt="Logo de Snipper"
+                    width="100%"
+                    height="100%"
+                  >
+                </div>
+              </div>
+            </div>
+            <p>Procesando informacion ...</p>
+          </div>
+        </section>
       </div>
     </modal-inicial>
   </body>
@@ -654,6 +687,7 @@
     connectedCallback() {
       // CONTENEDOR GENERAL DEL MODAL
       this.modalGeneral = document.querySelector('.modal-general-sme');
+      this.modalGeneralCarga = document.querySelector('#ph-general-modal-carga');
       // BOTONES DE SELECCION METODO ENTREGA
       this.btnRecogerLocal = document.querySelector('#mpsme-recoger-local');
       this.btnEnvioDomicilio = document.querySelector('#mpsme-envio-domicilio');
@@ -670,8 +704,10 @@
       this.btnEnvioDomicilio.addEventListener('click', this.procesoBtnEnvioDomicilio.bind(this));
 
       // METODOS INICIALES DEL ELEMENTO
+      this.modalGeneralCarga.style.display = 'none';
       this.verificarLanzamientoModal();
       this.verificarBtnContinuar();
+      this.inicializacionGoogleMaps(0);
     }
 
     verificarLanzamientoModal() {
@@ -766,6 +802,23 @@
 
       if(fueSeleccionadoBtnEnvioDomicilio) {
         localStorage.setItem('seleccion-me-mi', 'domicilio');
+      }
+    }
+
+    inicializacionGoogleMaps(intentos = 0){
+      // Verificar si Google Maps esta cargado
+      if(typeof google == 'undefined'){
+        this.modalGeneralCarga.style.display = 'flex';
+        // Limitar a 10 intentos para evitar bucles infinitos
+        if(intentos < 10){
+          console.log("Google Maps no está cargado, esperando... Intento " + (intentos + 1));
+          setTimeout(() => {
+            this.inicializarPaginaLocalStorage(intentos + 1);
+          }, 500); // Esperar 0.5 segundos antes de volver a intentar
+        }else{
+          console.error("Google Maps no se cargó después de varios intentos");
+        }
+        return;
       }
     }
   }
