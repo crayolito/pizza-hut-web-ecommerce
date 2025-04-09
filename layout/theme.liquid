@@ -820,6 +820,10 @@
         }
         return;
       }
+
+      // Si Google Maps está cargado, ocultar el modal de carga
+      this.modalGeneralCarga.style.display = 'none';
+      console.log("Google Maps cargado correctamente");
     }
   }
 
