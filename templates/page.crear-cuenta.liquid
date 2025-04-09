@@ -13,10 +13,14 @@
         <p>Ingrese tus datos para disfrutar tu pizza favorita.</p>
       </div>
       <div class="ph-mcci-frm">
-        <div class="ph-mcci-input">
+        <div
+          id="phpcc-frm-nombre"
+          class="ph-mcci-input"
+        >
           <p>Nombres</p>
           <div class="ph-container-input">
             <input
+              id="phpcc-frm-nombre-input"
               pattern="[A-Za-zÀ-ÖØ-öø-ÿ\s]+"
               required
               type="text"
@@ -24,31 +28,57 @@
             >
           </div>
         </div>
-        <div class="ph-mcci-input">
+        <div
+          id="phpcc-frm-apellido"
+          class="ph-mcci-input"
+        >
           <p>Apellidos</p>
           <div class="ph-container-input">
             <input
+              id="phpcc-frm-apellido-input"
               required
               pattern="[A-Za-zÀ-ÖØ-öø-ÿ\s]+"
               type="text"
               placeholder="Apellidos"
             >
           </div>
+          <div
+            id="phpcc-frm-apellido-error"
+            class="ph-mcci-mensaje-input"
+          >
+            {% render 'icon-info' %}
+            <p>Este campo es obligatorio.</p>
+          </div>
         </div>
-        <div class="ph-mcci-input">
+        <div
+          id="phpcc-frm-email"
+          class="ph-mcci-input"
+        >
           <p>Correo Electrónico</p>
           <div class="ph-container-input">
             <input
+              id="phpcc-frm-email-input"
               required
               type="email"
               placeholder="Correo Electrónico"
             >
           </div>
+          <div
+            id="phpcc-frm-email-error"
+            class="ph-mcci-mensaje-input"
+          >
+            {% render 'icon-info' %}
+            <p>Este campo es obligatorio.</p>
+          </div>
         </div>
-        <div class="ph-mcci-input">
+        <div
+          id="phpcc-frm-celular"
+          class="ph-mcci-input"
+        >
           <p>Celular</p>
           <div class="ph-container-input">
             <input
+              id="phpcc-frm-celular-input"
               type="tel"
               placeholder="Numero de celular"
               maxlength="8"
@@ -61,23 +91,39 @@
               pattern="[67][0-9]{7}"
             >
           </div>
-          <div class="ph-mcci-mensaje-input">
+          <div
+            id="phpcc-frm-email-error"
+            class="ph-mcci-mensaje-input"
+          >
+            {% render 'icon-info' %}
+            <p>Este campo es obligatorio.</p>
+          </div>
+          <div
+            id="phpcc-frm-celular-mensaje"
+            class="ph-mcci-mensaje-input"
+          >
             {% render 'icon-info' %}
             <p>Nos contactaremos a este número para entregar tu pedido.</p>
           </div>
         </div>
-        <div class="ph-mcci-input error">
+        <div
+          id="phpcc-frm-ci"
+          class="ph-mcci-input "
+        >
           <p>Número de Carnet de identidad (C.I.)</p>
           <div class="ph-container-input">
             <input
               type="tel"
-              placeholder="Carnet de identidadr"
+              placeholder="Carnet de identidad"
               maxlength="15"
               oninput="this.value=this.value.replace(/[^0-9]/g,'')"
               pattern="[0-9]{1,8}"
             >
           </div>
-          <div class="ph-mcci-mensaje-input">
+          <div
+            id="phpcc-frm-ci-error"
+            class="ph-mcci-mensaje-input"
+          >
             {% render 'icon-info' %}
             <p>Este campo es obligatorio.</p>
           </div>
@@ -118,7 +164,7 @@
         >
           {% render 'icon-checkbox-off' %}
         </button>
-        <p>Usar mi información para registrarme a Hut Coins y ganar puntos por esta compra.</p>
+        <p>Usar mi información para registrarme a Hut Coins y ganar puntos en futuras esta compra.</p>
       </div>
       <div class="ph-mcci-input">
         <p>Fecha de nacimiento</p>
@@ -135,7 +181,22 @@
         >
           {% render 'icon-checkbox-off' %}
         </button>
-        <p>Usar mi información para registrarme a Hut Coins y ganar puntos en las futuras compras.</p>
+        <p>
+          Acepto las
+          <a
+            href="https://farmacorp.com/policies/privacy-policy"
+            target="_blank"
+          >
+            Políticas de privacidad
+          </a>
+          y
+          <a
+            href="https://farmacorp.com/policies/terms-of-service"
+            target="_blank"
+          >
+            Términos y condiciones
+          </a>
+        </p>
       </div>
     </section>
     <section class="ph-opciones-mobile-footer">
@@ -229,8 +290,9 @@
         iconCheckBoxOff: `{% render 'icon-checkbox-off' %}`,
         iconCheckBoxOn: `{% render 'icon-checkbox-on' %}`,
       };
-      this.coordenadas = { lat: -17.783315017953004, lng: -63.18214577296119 };
+      this.coordenadas = { lat: -17.510420897741643, lng: -63.16459000457593 };
       this.direccionSeleccionada = false;
+      this.marcadorMovible = null;
     }
 
     connectedCallback() {
@@ -242,13 +304,30 @@
       this.btnMiUbicacionActual = this.querySelector('#phpcc-btn-mi-ubicacion-actual');
       this.btnCerrarModalMiUbicacion = this.querySelector('#phpcc-boton-cerrar-modal');
       this.contenedorMapaMiUbicacion = this.querySelector('#phpcc-modal-mapa');
-      this.btnHutCoins = this.querySelector('#phpcc-btn-hutcoins');
-      this.btnInfoHutCoins = this.querySelector('#phpcc-btn-info-hutcoins');
       this.btnContinuar = this.querySelector('#phpcc-btn-continuar');
       this.btnConfirmarModal = this.querySelector('#phpcc-btn-confirmar-modal');
       this.btnCancelarModal = this.querySelector('#phpcc-btn-cancelar-modal');
       this.inputDireccion = this.querySelector('#phpcc-input-direccion');
       this.contenedorSugerencias = this.querySelector('#phpcc-sugerencias-direccion');
+      this.btnHutCoins = this.querySelector('#phpcc-btn-hutcoins');
+      this.btnInfoHutCoins = this.querySelector('#phpcc-btn-info-hutcoins');
+      // FORMULARIO GENERAL
+      this.frmNombre = this.querySelector('#phpcc-frm-nombre');
+      this.frmNombreInput = this.querySelector('#phpcc-frm-nombre-input');
+      {% comment %} this.frmNombreError = this.querySelector('#phpcc-frm-nombre-error'); {% endcomment %}
+      this.frmApellido = this.querySelector('#phpcc-frm-apellido');
+      this.frmApellidoInput = this.querySelector('#phpcc-frm-apellido-input');
+      {% comment %} this.frmApellidoError = this.querySelector('#phpcc-frm-apellido-error'); {% endcomment %}
+      this.frmEmail = this.querySelector('#phpcc-frm-email');
+      this.frmEmailInput = this.querySelector('#phpcc-frm-email-input');
+      {% comment %} this.frmEmailError = this.querySelector('#phpcc-frm-email-error'); {% endcomment %}
+      this.frmCelular = this.querySelector('#phpcc-frm-celular');
+      this.frmCelularInput = this.querySelector('#phpcc-frm-celular-input');
+      {% comment %} this.frmCelularError = this.querySelector('#phpcc-frm-celular-error'); {% endcomment %}
+      this.frmCelularMensaje = this.querySelector('#phpcc-frm-celular-mensaje');
+      this.frmCi = this.querySelector('#phpcc-frm-ci');
+      this.frmCiInput = this.querySelector('#phpcc-frm-ci-input');
+      {% comment %} this.frmCiError = this.querySelector('#phpcc-frm-ci-error'); {% endcomment %}
 
       // INICIARLZAR EVENTOS
       this.btnMiUbicacionActual.addEventListener('click', this.accesoUbicacionActualModal.bind(this));
@@ -259,6 +338,12 @@
       this.btnConfirmarModal.addEventListener('click', this.procesoConfirmacionModal.bind(this));
       this.btnCancelarModal.addEventListener('click', this.cerrarModalMiUbicacion.bind(this));
       document.addEventListener('click', this.detectarClickFueraDeElementosEspeciales.bind(this));
+
+      this.frmNombreInput.addEventListener('input',this.habilitarBtnContinuar.bind(this));
+      this.frmApellidoInput.addEventListener('input',this.habilitarBtnContinuar.bind(this));
+      this.frmEmailInput.addEventListener('input',this.habilitarBtnContinuar.bind(this));
+      this.frmCelularInput.addEventListener('input',this.habilitarBtnContinuar.bind(this));
+      this.frmCiInput.addEventListener('input',this.habilitarBtnContinuar.bind(this));
 
       // INICIALIZAR ELEMENTOS
       this.modalBackground.style.display = 'none';
@@ -315,7 +400,8 @@
       const mapa = new google.maps.Map(this.contenedorMapaMiUbicacion, configuracionMapa);
 
       // 2. Crear el marcador movible
-      const marcadorMovible = new google.maps.Marker({
+      {% comment %} const marcadorMovible = new google.maps.Marker({ {% endcomment %}
+      this.marcadorMovible = new google.maps.Marker({
         position: this.coordenadas,
         map: mapa,
         draggable: true,
@@ -324,9 +410,9 @@
 
       // 3. Configurar el evento del marcador
       if(this.direccionSeleccionada == true) return;
-      marcadorMovible.addListener('dragend', (evento) => {
+      this.marcadorMovible.addListener('dragend', (evento) => {
         try {
-          const posicion = marcadorMovible.getPosition();
+          const posicion = this.marcadorMovible.getPosition();
           this.coordenadas = { lat: posicion.lat(), lng: posicion.lng() };
 
           console.log('Coordenadas: ', this.coordenadas);
@@ -347,7 +433,7 @@
                 lng: position.coords.longitude,
               };
 
-              marcadorMovible.setPosition(miUbicacion);
+              this.marcadorMovible.setPosition(miUbicacion);
               mapa.panTo(miUbicacion);
               this.coordenadas = miUbicacion;
             } catch (error) {
@@ -377,6 +463,28 @@
           this.modalBackground.style.display = 'none';
         }
       }
+
+      const inputsFormulario = [
+        this.frmNombreInput,
+        this.frmApellidoInput,
+        this.frmEmailInput,
+        this.frmCelularInput,
+        this.frmCiInput,
+      ];
+
+      inputsFormulario.forEach((input) => {
+        if (input.contains(event.target)) {
+          // Si el clic fue dentro de un input, no hacer nada
+          return; // El clic fue dentro del input, no cerramos
+        } else {
+          // Si el clic fue fuera de todos los inputs, cerrar los mensajes de error
+          this.frmNombreError.style.display = 'none';
+          this.frmApellidoError.style.display = 'none';
+          this.frmEmailError.style.display = 'none';
+          this.frmCelularError.style.display = 'none';
+          this.frmCiError.style.display = 'none';
+        }
+      });
     }
 
     cerrarModalMiUbicacion() {
@@ -405,9 +513,57 @@
       }
     }
 
-    procesoFormulario() {}
+    procesoFormulario() {
+      const estaHabilitado = this.btnContinuar.classList.contains('desactivado');
+      if (estaHabilitado) {
+        // Mostrar el mensaje de carga durante 3 segundo y despues redirijir
+        this.modalSnipper.style.display = 'flex';
+        setTimeout(() => {
+          this.modalSnipper.style.display = 'none';
+          window.location.href = '/';
+        }, 3000);
+      }
+    }
 
-    procesoConfirmacionModal() {}
+    mostrarErroresForm(){
+      this.frmCelularMensaje.style.display = 'none';
+      // Mostrar errores en el formulario
+      if (this.frmNombreInput.value === '') {
+        this.frmNombreError.style.display = 'flex';
+      }
+      this.frmNombreError.style.display = 'flex';
+      this.frmApellidoError.style.display = 'flex';
+      this.frmEmailError.style.display = 'flex';
+      this.frmCelularError.style.display = 'flex';
+      this.frmCiError.style.display = 'flex';
+
+      // Desactivar el botón de continuar
+      this.btnContinuar.classList.add('desactivado');
+    }
+
+    habilitarBtnContinuar(){
+      const inputsForm = [
+        this.frmNombreInput,
+        this.frmApellidoInput,
+        this.frmEmailInput,
+        this.frmCelularInput,
+        this.frmCiInput,
+      ];
+
+      const allFilled = inputsForm.every((input) => input.value.trim() !== '');
+      if (allFilled) {
+        this.btnContinuar.classList.remove('desactivado');
+      } else {
+        this.btnContinuar.classList.add('desactivado');
+      }
+    }
+
+    procesoConfirmacionModal() {
+      const posicion = this.marcadorMovible.getPosition();
+      this.coordenadas = { lat: posicion.lat(), lng: posicion.lng() };
+      console.log('Coordenadas de dirección seleccionada:', this.coordenadas);
+      this.cerrarModalMiUbicacion();
+    }
 
     configurarAutocompletadoDirecciones() {
       // Verificar que el input existe
