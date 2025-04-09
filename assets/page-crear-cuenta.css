@@ -24,6 +24,10 @@
   border: 1px solid var(--colorp-primary) !important;
 }
 
+.pccph-extra-ultimo.politicas-terminos .smecph-pc-hutcoins-mensaje p a {
+  color: var(--colorp-primary) !important;
+}
+
 @media screen and (min-width: 768px) {
   .f-contenedor-base {
     display: flex !important;
