@@ -184,7 +184,10 @@
       id="phpcc-modal-dar-direccion"
       class="psme-modal-mapa-envio-domicilio"
     >
-      <div class="psme-modal-contenedor-base">
+      <div
+        id="phpcc-contenido-modal-body"
+        class="psme-modal-contenedor-base"
+      >
         <div class="psme-modal-header">
           <div class="psme-modal-mensaje">
             {% render 'icon-info' %}
@@ -227,6 +230,7 @@
       this.modalBackground = this.querySelector('#phpcc-modal-background');
       this.modalSnipper = this.querySelector('#phpcc-modal-snipper');
       this.contenedorGeneralMiUbicacion = this.querySelector('#phpcc-modal-dar-direccion');
+      this.contenedorModalBody = this.querySelector('#phpcc-contenido-modal-body');
       this.btnMiUbicacionActual = this.querySelector('#phpcc-btn-mi-ubicacion-actual');
       this.btnCerrarModalMiUbicacion = this.querySelector('#phpcc-boton-cerrar-modal');
       this.contenedorMapaMiUbicacion = this.querySelector('#phpcc-modal-mapa');
@@ -250,9 +254,7 @@
     }
 
     accesoUbicacionActualModal() {
-      this.modalBackground.style.display = 'flex';
-      this.modalSnipper.style.display = 'flex';
-      {% comment %} this.contenedorGeneralMiUbicacion.style.display = 'flex'; {% endcomment %}
+      this.contenedorGeneralMiUbicacion.style.display = 'flex';
       // Activar el mapa dentro del modall
 
       // 1. Crear el mapa
@@ -327,11 +329,17 @@
     }
 
     detectarClickFueraDeElementosEspeciales(event) {
-      // Verificar si el clic fue fuera del modal de ubicación
-      if (this.contenedorGeneralMiUbicacion.style.display == 'flex') {
-        const esClicFuera = !this.contenedorGeneralMiUbicacion.contains(event.target);
-        if (esClicFuera) {
-          this.cerrarModalMiUbicacion();
+      // Verificar si el modal general está visible
+      if (this.contenedorGeneralMiUbicacion.style.display === 'flex') {
+        // Si el clic fue dentro del modal body, no hacer nada
+        if (this.contenedorModalBody.contains(event.target)) {
+          return; // El clic fue dentro del contenido del modal, no cerramos
+        }
+
+        // Si el clic fue en el contenedor general pero fuera del modal body, cerrar todo
+        if (this.contenedorGeneralMiUbicacion.contains(event.target)) {
+          this.contenedorGeneralMiUbicacion.style.display = 'none';
+          this.modalBackground.style.display = 'none';
         }
       }
     }
