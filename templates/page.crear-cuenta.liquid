@@ -266,6 +266,7 @@
       {% comment %} this.configurarAutocompletadoDirecciones(); {% endcomment %}
 
        // Usar el manejador global de Google Maps
+       console.log("ManejadorMaps existe:", !!window.ManejadorMaps);
        if (window.ManejadorMaps) {
         window.ManejadorMaps.cuandoEsteListoEjecutar(() => {
           // Google Maps está listo, configurar el autocompletado

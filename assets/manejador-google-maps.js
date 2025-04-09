@@ -105,4 +105,4 @@ window.ManejadorMaps = {
   };
   
   // Inicializar el manejador cuando se carga el script
-  window.ManejadorMaps.inicializar();
+window.ManejadorMaps.inicializar();
