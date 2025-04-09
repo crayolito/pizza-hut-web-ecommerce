@@ -353,6 +353,8 @@
 
       this.frmNombreInput.addEventListener('input',this.habilitarBtnContinuar.bind(this));
       this.frmApellidoInput.addEventListener('input',this.habilitarBtnContinuar.bind(this));
+      this.frmNombreInput.addEventListener('input',this.inicializarValidacionInputs.bind(this));
+      this.frmApellidoInput.addEventListener('input',this.inicializarValidacionInputs.bind(this));
       this.frmEmailInput.addEventListener('input',this.habilitarBtnContinuar.bind(this));
       this.frmCelularInput.addEventListener('input',this.habilitarBtnContinuar.bind(this));
       this.frmCiInput.addEventListener('input',this.habilitarBtnContinuar.bind(this));
@@ -671,6 +673,28 @@
         }
       });
     }
+
+    validarInputTexto(event) {
+      // El elemento que disparó el evento
+      const input = event.target;
+      
+      // Guarda la posición actual del cursor
+      const cursorPos = input.selectionStart;
+      
+      // Filtra cualquier carácter que no sea letra o espacio
+      const valorOriginal = input.value;
+      const valorFiltrado = valorOriginal.replace(/[^A-Za-zÀ-ÖØ-öø-ÿ\s]/g, '');
+      
+      // Solo actualiza si hay cambios
+      if (valorOriginal !== valorFiltrado) {
+        input.value = valorFiltrado;
+        
+        // Ajusta la posición del cursor
+        input.setSelectionRange(cursorPos - (valorOriginal.length - valorFiltrado.length), 
+                              cursorPos - (valorOriginal.length - valorFiltrado.length));
+      }
+    }
+    
   }
 
   customElements.define('crear-cuenta', CrearCuenta);
