@@ -230,6 +230,7 @@
         iconCheckBoxOn: `{% render 'icon-checkbox-on' %}`,
       };
       this.coordenadas = { lat: -17.783315017953004, lng: -63.18214577296119 };
+      this.direccionSeleccionada = false;
     }
 
     connectedCallback() {
@@ -322,6 +323,7 @@
       });
 
       // 3. Configurar el evento del marcador
+      if(this.direccionSeleccionada == true) return;
       marcadorMovible.addListener('dragend', (evento) => {
         try {
           const posicion = marcadorMovible.getPosition();
@@ -498,6 +500,9 @@
 
       // Actualizar el valor del input
       this.inputDireccion.value = sugerencia.description;
+
+      // Marcar que se ha seleccionado una dirección
+      this.direccionSeleccionada = true;
 
       // Ocultar sugerencias
       this.contenedorSugerencias.style.display = 'none';
