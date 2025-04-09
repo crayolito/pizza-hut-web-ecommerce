@@ -238,6 +238,10 @@
   display: flex;
   flex-direction: column;
   padding: var(--espaciado-l);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .psme-modal-header {
@@ -296,6 +300,10 @@
   align-items: center;
 }
 
+.psme-modal-boton-confirmar p {
+  font-weight: 700;
+}
+
 .psme-modal-boton-cancelar {
   flex: 0 0 49.5%;
   height: 100%;
@@ -306,6 +314,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.psme-modal-boton-cancelar p {
+  font-weight: 700;
 }
 
 .psme-boton-ubicacion-actual {

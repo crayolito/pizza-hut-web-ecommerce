@@ -1,5 +1,6 @@
 <!-- Hojas de estilos css -->
 {{ 'estilos-generales.css' | asset_url | stylesheet_tag }}
+{{ 'estilos-auxliares.css' | asset_url | stylesheet_tag }}
 {{ 'page-crear-cuenta.css' | asset_url | stylesheet_tag }}
 {{ 'page-checkout.css' | asset_url | stylesheet_tag }}
 
@@ -104,9 +105,12 @@
         <img src="{{ 'banner-hutcoints-carrito.png' | asset_url }}" alt="Hutcoins Banner" width="100%" height="100%">
       </div>
       <div class="smecph-pc-hutcoins-mensaje">
-        <div class="ph-container-icono">
+        <button
+          id="phpcc-btn-hutcoins"
+          class="ph-container-icono"
+        >
           {% render 'icon-checkbox-off' %}
-        </div>
+        </button>
         <p>Usar mi información para registrarme a Hut Coins y ganar puntos por esta compra.</p>
       </div>
       <div class="ph-mcci-input">
@@ -118,14 +122,20 @@
     </section>
     <section class="container-sub-smecph pccph-extra-ultimo" id="pccph-termino-condiciones">
       <div class="smecph-pc-hutcoins-mensaje ">
-        <div class="ph-container-icono">
+        <button
+          id="phpcc-btn-info-hutcoins"
+          class="ph-container-icono"
+        >
           {% render 'icon-checkbox-off' %}
-        </div>
+        </button>
         <p>Usar mi información para registrarme a Hut Coins y ganar puntos en las futuras compras.</p>
       </div>
     </section>
     <section class="ph-opciones-mobile-footer">
-      <button class="ph-btn-general desactivado">
+      <button
+        id="phpcc-btn-continuar"
+        class="ph-btn-general desactivado"
+      >
         <p>CONTINUAR</p>
       </button>
       <a
@@ -136,83 +146,11 @@
       </a>
     </section>
 
+    <!-- 1re MODAL : SNIPPER DE CARGANDO -->
     <section
       id="phpcc-modal-background"
       class="ph-background-container-modal"
     >
-      <!-- 1re MODAL : NUEVA DIRECCION -->
-      <div
-        id="phpcc-modal-dar-direccion"
-        class="ph-mmdi-modal-main"
-      >
-        <div class="pcktpch-modal-header">
-          <div class="pcktpch-modal-header-opciones">
-            <button class="pcktpch-modal-volver-atras icon-color-tertiary">
-              {% render 'icon-volver-atras' %}
-            </button>
-            <h4>NUEVA DIRECCIÓN</h4>
-          </div>
-          <button class="pcktpch-modal-btn-cerrar">
-            {% render 'icon-close-custom' %}
-          </button>
-        </div>
-        <div
-          id="pcktpch-modal-body-fase1"
-          class="pcktpch-modal-body-fase1"
-        >
-          <p>Ingresa tu dirección o usa tu ubicación actual.</p>
-          <button class="pcktpch-btn-secundario">
-            {% render 'icon-gps-rojo' %}
-            <p>USAR MI UBICACIÓN ACTUAL</p>
-          </button>
-          <div class="pcktpch-modal-separador">
-            <div class="pcktpch-modal-separador-linea"></div>
-            <p>O</p>
-            <div class="pcktpch-modal-separador-linea"></div>
-          </div>
-          <div class="ph-container-input icon-color-tertiary">
-            {% render 'icon-location-on' %}
-            <input type="text" placeholder="Ingresar dirección o punto de referencia">
-          </div>
-        </div>
-        <div
-          id="pcktpch-modal-body-fase2"
-          class="pcktpch-modal-body-fase2"
-        >
-          <div class="smecph-mensaje-informacion">
-            {% render 'icon-info' %}
-            <p>Si es necesario, cambia la ubicación del pin en el mapa.</p>
-          </div>
-          <div class="pcktpch-modal-mapa"></div>
-        </div>
-        <div
-          id="pcktpch-modal-body-fase3"
-          class="pcktpch-modal-body-fase3"
-        >
-          <div class="smecph-pc-info-input">
-            <p>Indicaciones acerca de tu dirección</p>
-            <div class="ph-container-input">
-              <input type="text" placeholder="Ingresar indicaciones para tu dirección">
-            </div>
-          </div>
-          <div class="smecph-pc-info-input">
-            <p>Alias</p>
-            <div class="ph-container-input icon-color-tertiary">
-              {% render 'icon-location-on' %}
-              <input type="text" placeholder="Ingresar o seleccionar">
-            </div>
-          </div>
-        </div>
-        <div class="pcktpch-modal-footer">
-          <button class="pcktpch-btn-general">
-            <p>GUARDAR DIRECCIÓN</p>
-          </button>
-          <button class="pcktpch-btn-secundario">
-            <p>CANCELAR</p>
-          </button>
-        </div>
-      </div>
-      <!-- 2do MODAL : SNIPPER DE CARGANDO -->
       <div
         id="phpcc-modal-snipper"
         class="ph-modal-main-snipper"
@@ -240,6 +178,36 @@
         <p>Procesando informacion ...</p>
       </div>
     </section>
+
+    <!-- MODAL DE DAR MI DIRECCION -->
+    <section
+      id="phpcc-modal-dar-direccion"
+      class="psme-modal-mapa-envio-domicilio"
+    >
+      <div class="psme-modal-contenedor-base">
+        <div class="psme-modal-header">
+          <div class="psme-modal-mensaje">
+            {% render 'icon-info' %}
+            <p>Si es necesario, cambia la ubicación del pin en el mapa.</p>
+          </div>
+          <button class="psme-modal-boton-cerrar icon-color-tertiary" id="phpcc-boton-cerrar-modal">
+            {% render 'icon-close-rojo' %}
+          </button>
+        </div>
+        <div
+          id="phpcc-modal-mapa"
+          class="psme-modal-body"
+        ></div>
+        <div class="psme-modal-footer">
+          <button class="psme-modal-boton-confirmar" id="p-sme-boton-confirmar-modal">
+            <p>Confirmar</p>
+          </button>
+          <button class="psme-modal-boton-cancelar" id="p-sme-boton-cancelar-modal">
+            <p>Cerrar</p>
+          </button>
+        </div>
+      </div>
+    </section>
   </div>
 </crear-cuenta>
 
@@ -247,27 +215,152 @@
   class CrearCuenta extends HTLMElement {
     constructor() {
       super();
+      this.iconos = {
+        iconCheckBoxOff: `{% render 'icon-checkbox-off' %}`,
+        iconCheckBoxOn: `{% render 'icon-checkbox-on' %}`,
+      };
       this.coordenadas = { lat: -17.783315017953004, lng: -63.18214577296119 };
     }
 
     connectCallback() {
       // CAPTURAR ELEMENTOS
       this.modalBackground = this.querySelector('#phpcc-modal-background');
-      this.modalDarDireccion = this.querySelector('#phpcc-modal-dar-direccion');
       this.modalSnipper = this.querySelector('#phpcc-modal-snipper');
-      this.fase1DarDireccion = this.querySelector('#pcktpch-modal-body-fase1');
-      this.fase2DarDireccion = this.querySelector('#pcktpch-modal-body-fase2');
-      this.fase3DarDireccion = this.querySelector('#pcktpch-modal-body-fase3');
+      this.contenedorGeneralMiUbicacion = this.querySelector('#phpcc-modal-dar-direccion');
       this.btnMiUbicacionActual = this.querySelector('#phpcc-btn-mi-ubicacion-actual');
+      this.btnCerrarModalMiUbicacion = this.querySelector('#phpcc-boton-cerrar-modal');
+      this.contenedorMapaMiUbicacion = this.querySelector('#phpcc-modal-mapa');
+      this.btnHutCoins = this.querySelector('#phpcc-btn-hutcoins');
+      this.btnInfoHutCoins = this.querySelector('#phpcc-btn-info-hutcoins');
+      this.btnContinuar = this.querySelector('#phpcc-btn-continuar');
+
+      // INICIARLZAR EVENTOS
+      this.btnMiUbicacionActual.addEventListener('click', this.accesoUbicacionActualModal.bind(this));
+      this.btnCerrarModalMiUbicacion.addEventListener('click', this.cerrarModalMiUbicacion.bind(this));
+      this.btnHutCoins.addEventListener('click', this.cambiarEstadoHutCoins.bind(this));
+      this.btnInfoHutCoins.addEventListener('click', this.cambiarEstadoInfoHutCoins.bind(this));
+      this.btnContinuar.addEventListener('click', this.procesoFormulario.bind(this));
+
+      document.addEventListener('click', this.detectarClickFueraDeElementosEspeciales.bind(this));
 
       // INICIALIZAR ELEMENTOS
       this.modalBackground.style.display = 'none';
-      this.modalDarDireccion.style.display = 'none';
+      this.contenedorGeneralMiUbicacion.style.display = 'none';
       this.modalSnipper.style.display = 'none';
-      this.fase1DarDireccion.style.display = 'none';
-      this.fase2DarDireccion.style.display = 'none';
-      this.fase3DarDireccion.style.display = 'none';
     }
+
+    accesoUbicacionActualModal() {
+      this.contenedorGeneralMiUbicacion.style.display = 'flex';
+      // Activar el mapa dentro del modal
+
+      // 1. Crear el mapa
+      if (!this.contenedorMapaMiUbicacion) {
+        alert('Error: No se pudo cargar el mapa. Por favor recarga la página');
+        return;
+      }
+
+      console.log('Entra a inicializarMapaEnvioDomicilio : ', this.coordenadas);
+
+      const configuracionMapa = {
+        center: this.coordenadas,
+        zoom: 16,
+        mapTypeControl: false,
+        streetViewControl: false,
+        fullscreenControl: false,
+        zoomControl: true,
+        scaleControl: false,
+        rotateControl: false,
+        panControl: false,
+        disableDefaultUI: false,
+      };
+
+      const mapa = new google.maps.Map(this.contenedorMapaMiUbicacion, configuracionMapa);
+
+      // 2. Crear el marcador movible
+      const marcadorMovible = new google.maps.Marker({
+        position: this.coordenadas,
+        map: mapa,
+        draggable: true,
+        animation: google.maps.Animation.DROP,
+      });
+
+      // 3. Configurar el evento del marcador
+      marcadorMovible.addListener('dragend', (evento) => {
+        try {
+          const posicion = marcadorMovible.getPosition();
+          this.coordenadas = { lat: posicion.lat(), lng: posicion.lng() };
+
+          console.log('Coordenadas: ', this.coordenadas);
+          mapa.panTo(posicion);
+        } catch {
+          alert('Error al actualizar la posición');
+          console.error(error);
+        }
+      });
+
+      // 4. Pedir la ubicacion del usuario y actualizar el marcador a esa posicion
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            try {
+              const miUbicacion = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude,
+              };
+
+              marcadorMovible.setPosition(miUbicacion);
+              mapa.panTo(miUbicacion);
+              this.coordenadas = miUbicacion;
+            } catch (error) {
+              alert('Error al obtener la ubicación: Por favor, verifique la ubicación de su dispositivo');
+              console.log('Error al obtener la ubicación 1: ', error);
+            }
+          },
+          (error) => {
+            alert('Error al obtener la ubicación: Por favor, verifique la ubicación de su dispositivo');
+            console.log('Error al obtener la ubicación 2: ', error);
+          }
+        );
+      }
+    }
+
+    detectarClickFueraDeElementosEspeciales(event) {
+      // Verificar si el clic fue fuera del modal de ubicación
+      if (this.contenedorGeneralMiUbicacion.style.display == 'flex') {
+        const esClicFuera = !this.contenedorGeneralMiUbicacion.contains(event.target);
+        if (esClicFuera) {
+          this.cerrarModalMiUbicacion();
+        }
+      }
+    }
+
+    cerrarModalMiUbicacion() {
+      this.contenedorGeneralMiUbicacion.style.display = 'none';
+    }
+
+    cambiarEstadoHutCoins() {
+      const estaActivado = this.btnHutCoins.classList.contains('activado');
+      if (estaActivado) {
+        this.btnHutCoins.classList.remove('activado');
+        this.btnHutCoins.innerHTML = this.iconos.iconCheckBoxOff;
+      } else {
+        this.btnHutCoins.classList.add('activado');
+        this.btnHutCoins.innerHTML = this.iconos.iconCheckBoxOn;
+      }
+    }
+
+    cambiarEstadoInfoHutCoins() {
+      const estaActivado = this.btnInfoHutCoins.classList.contains('activado');
+      if (estaActivado) {
+        this.btnInfoHutCoins.classList.remove('activado');
+        this.btnInfoHutCoins.innerHTML = this.iconos.iconCheckBoxOff;
+      } else {
+        this.btnInfoHutCoins.classList.add('activado');
+        this.btnInfoHutCoins.innerHTML = this.iconos.iconCheckBoxOn;
+      }
+    }
+
+    procesoFormulario() {}
   }
 
   customElements.define('crear-cuenta', CrearCuenta);
