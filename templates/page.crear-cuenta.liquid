@@ -265,14 +265,15 @@
       this.modalSnipper.style.display = 'none';
       {% comment %} this.configurarAutocompletadoDirecciones(); {% endcomment %}
 
-       // Usar el manejador global de Google Maps
-       console.log("ManejadorMaps existe:", !!window.ManejadorMaps);
-       if (window.ManejadorMaps) {
-        window.ManejadorMaps.cuandoEsteListoEjecutar(() => {
-          // Google Maps está listo, configurar el autocompletado
-          console.log('Google Maps está listo, se usara el configurarAutocompletadoDirecciones');
+       // Esperar a que Google Maps esté disponible y luego configurar autocompletado
+       if (window.esperarGoogleMaps) {
+        window.esperarGoogleMaps(() => {
+          console.log("ManejadorMaps existe:", !!window.ManejadorMaps);
           this.configurarAutocompletadoDirecciones();
         });
+      } else {
+        console.log("ManejadorMaps existe:", !!window.ManejadorMaps);
+        console.error("La función esperarGoogleMaps no está disponible");
       }
     }
 

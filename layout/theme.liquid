@@ -352,7 +352,27 @@
 
     <!-- Hojas de estilos css -->
     {{ 'estilos-generales.css' | asset_url | stylesheet_tag }}
-    <script defer src="{{ 'manejador-google-maps.js' | asset_url }}"></script>
+    <script>
+      // Agregar esto al inicio de tu archivo theme.liquid justo antes del script de Google Maps
+      // No necesitas crear un archivo adicional
+
+      // Crear un manejador simple para Google Maps
+      window.esperarGoogleMaps = function (callback, intentos = 0) {
+        const maxIntentos = 20;
+
+        if (typeof google !== 'undefined' && google.maps) {
+          // Google Maps ya está cargado, ejecutar callback inmediatamente
+          callback();
+        } else if (intentos < maxIntentos) {
+          // Google Maps aún no está cargado, esperar y reintentar
+          setTimeout(function () {
+            window.esperarGoogleMaps(callback, intentos + 1);
+          }, 500);
+        } else {
+          console.error('Google Maps no se cargó después de varios intentos');
+        }
+      };
+    </script>
     <script
       defer
       src="https://maps.googleapis.com/maps/api/js?key={{settings.keyGoogleMap}}&libraries=places"
