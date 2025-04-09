@@ -250,7 +250,9 @@
     }
 
     accesoUbicacionActualModal() {
-      this.contenedorGeneralMiUbicacion.style.display = 'flex';
+      this.modalBackground.style.display = 'flex';
+      this.modalSnipper.style.display = 'flex';
+      {% comment %} this.contenedorGeneralMiUbicacion.style.display = 'flex'; {% endcomment %}
       // Activar el mapa dentro del modall
 
       // 1. Crear el mapa
