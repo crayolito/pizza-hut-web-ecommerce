@@ -263,7 +263,15 @@
       this.modalBackground.style.display = 'none';
       this.contenedorGeneralMiUbicacion.style.display = 'none';
       this.modalSnipper.style.display = 'none';
-      this.configurarAutocompletadoDirecciones();
+      {% comment %} this.configurarAutocompletadoDirecciones(); {% endcomment %}
+
+       // Usar el manejador global de Google Maps
+       if (window.ManejadorMaps) {
+        window.ManejadorMaps.cuandoEsteListoEjecutar(() => {
+          // Google Maps está listo, configurar el autocompletado
+          this.configurarAutocompletadoDirecciones();
+        });
+      }
     }
 
     accesoUbicacionActualModal() {

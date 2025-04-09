@@ -352,10 +352,12 @@
 
     <!-- Hojas de estilos css -->
     {{ 'estilos-generales.css' | asset_url | stylesheet_tag }}
+    <script defer src="{{ 'manejador-google-maps.js' | asset_url }}"></script>
     <script
       defer
       src="https://maps.googleapis.com/maps/api/js?key={{settings.keyGoogleMap}}&libraries=places"
     ></script>
+
     <script>
       // Verificar si la URL actual contiene /pages/perfil
       if (window.location.pathname.includes('/pages/perfil')) {
@@ -707,7 +709,7 @@
       this.modalGeneralCarga.style.display = 'none';
       this.verificarLanzamientoModal();
       this.verificarBtnContinuar();
-      this.inicializacionGoogleMaps(0);
+      {% comment %} this.inicializacionGoogleMaps(0); {% endcomment %}
     }
 
     verificarLanzamientoModal() {
@@ -805,7 +807,7 @@
       }
     }
 
-    inicializacionGoogleMaps(intentos = 0){
+    {% comment %} inicializacionGoogleMaps(intentos = 0){
       // Verificar si Google Maps esta cargado
       if(typeof google == 'undefined'){
         this.modalGeneralCarga.style.display = 'flex';
@@ -824,7 +826,7 @@
       // Si Google Maps está cargado, ocultar el modal de carga
       this.modalGeneralCarga.style.display = 'none';
       console.log("Google Maps cargado correctamente");
-    }
+    } {% endcomment %}
   }
 
   customElements.define('modal-inicial', ModalInicial);
