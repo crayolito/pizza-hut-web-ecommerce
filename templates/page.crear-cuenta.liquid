@@ -82,7 +82,10 @@
         <h4>Dirección</h4>
         <p>Ingresa una dirección o usa tu ubicación actual.</p>
       </div>
-      <button class="ph-btn-secundario">
+      <button
+        id="phpcc-btn-mi-ubicacion-actual"
+        class="ph-btn-secundario"
+      >
         {% render 'icon-gps-rojo' %}
         <p>USAR MI UBICACIÓN ACTUAL</p>
       </button>
@@ -254,6 +257,7 @@
       this.fase1DarDireccion = this.querySelector('#pcktpch-modal-body-fase1');
       this.fase2DarDireccion = this.querySelector('#pcktpch-modal-body-fase2');
       this.fase3DarDireccion = this.querySelector('#pcktpch-modal-body-fase3');
+      this.btnMiUbicacionActual = this.querySelector('#phpcc-btn-mi-ubicacion-actual');
 
       // INICIALIZAR ELEMENTOS
       this.modalBackground.style.display = 'none';
