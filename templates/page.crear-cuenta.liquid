@@ -353,8 +353,8 @@
 
       this.frmNombreInput.addEventListener('input',this.habilitarBtnContinuar.bind(this));
       this.frmApellidoInput.addEventListener('input',this.habilitarBtnContinuar.bind(this));
-      this.frmNombreInput.addEventListener('input',this.inicializarValidacionInputs.bind(this));
-      this.frmApellidoInput.addEventListener('input',this.inicializarValidacionInputs.bind(this));
+      this.frmNombreInput.addEventListener('input',this.validarInputTexto.bind(this));
+      this.frmApellidoInput.addEventListener('input',this.validarInputTexto.bind(this));
       this.frmEmailInput.addEventListener('input',this.habilitarBtnContinuar.bind(this));
       this.frmCelularInput.addEventListener('input',this.habilitarBtnContinuar.bind(this));
       this.frmCiInput.addEventListener('input',this.habilitarBtnContinuar.bind(this));
