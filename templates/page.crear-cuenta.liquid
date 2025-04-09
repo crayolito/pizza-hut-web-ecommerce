@@ -237,7 +237,6 @@
 
     <!-- 1re MODAL : SNIPPER DE CARGANDO -->
     <section
-      id="phpcc-modal-snipper"
       id="phpcc-modal-background"
       class="ph-background-container-modal"
     >
@@ -319,7 +318,7 @@
     connectedCallback() {
       // CAPTURAR ELEMENTOS
       this.modalBackground = this.querySelector('#phpcc-modal-background');
-      this.modalSnipper = this.querySelector('#phpcc-modal-snipper');
+      {% comment %} this.modalSnipper = this.querySelector('#phpcc-modal-snipper'); {% endcomment %}
       this.contenedorTerminosCondiciones = this.querySelector('#phpcc-termino-condiciones');
       this.contenedorGeneralMiUbicacion = this.querySelector('#phpcc-modal-dar-direccion');
       this.contenedorModalBody = this.querySelector('#phpcc-contenido-modal-body');
@@ -367,7 +366,7 @@
       // INICIALIZAR ELEMENTOS
       this.modalBackground.style.display = 'none';
       this.contenedorGeneralMiUbicacion.style.display = 'none';
-      this.modalSnipper.style.display = 'none';
+      {% comment %} this.modalSnipper.style.display = 'none'; {% endcomment %}
       this.inicializarPaginaLocalStorage(0);
     }
 
