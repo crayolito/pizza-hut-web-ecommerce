@@ -52,8 +52,13 @@
               type="tel"
               placeholder="Numero de celular"
               maxlength="8"
-              oninput="this.value=this.value.replace(/[^0-9]/g,'')"
-              pattern="[0-9]{1,8}"
+              oninput="
+                this.value = this.value.replace(/[^0-9]/g, '');
+                if (this.value.length > 0 && this.value[0] !== '6' && this.value[0] !== '7') {
+                  this.value = '7' + this.value.substring(1);
+                }
+              "
+              pattern="[67][0-9]{7}"
             >
           </div>
           <div class="ph-mcci-mensaje-input">
@@ -67,6 +72,7 @@
             <input
               type="tel"
               placeholder="Carnet de identidadr"
+              maxlength="15"
               oninput="this.value=this.value.replace(/[^0-9]/g,'')"
               pattern="[0-9]{1,8}"
             >
@@ -257,6 +263,7 @@
       this.modalBackground.style.display = 'none';
       this.contenedorGeneralMiUbicacion.style.display = 'none';
       this.modalSnipper.style.display = 'none';
+      this.configurarAutocompletadoDirecciones();
     }
 
     accesoUbicacionActualModal() {
