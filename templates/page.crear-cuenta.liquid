@@ -269,6 +269,7 @@
        if (window.ManejadorMaps) {
         window.ManejadorMaps.cuandoEsteListoEjecutar(() => {
           // Google Maps está listo, configurar el autocompletado
+          console.log('Google Maps está listo, se usara el configurarAutocompletadoDirecciones');
           this.configurarAutocompletadoDirecciones();
         });
       }
