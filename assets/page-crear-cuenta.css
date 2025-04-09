@@ -20,6 +20,10 @@
   background-color: #dedede;
 }
 
+.politicas-terminos {
+  border: 1px solid var(--colorp-primary) !important;
+}
+
 @media screen and (min-width: 768px) {
   .f-contenedor-base {
     display: flex !important;

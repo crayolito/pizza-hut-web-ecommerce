@@ -182,7 +182,11 @@
         </div>
       </div>
     </section>
-    <section class="container-sub-smecph pccph-extra-ultimo" id="pccph-termino-condiciones">
+    <section
+      id="phpcc-termino-condiciones"
+      class="container-sub-smecph pccph-extra-ultimo"
+      id="pccph-termino-condiciones"
+    >
       <div class="smecph-pc-hutcoins-mensaje ">
         <button
           id="phpcc-btn-info-hutcoins"
@@ -316,6 +320,7 @@
       // CAPTURAR ELEMENTOS
       this.modalBackground = this.querySelector('#phpcc-modal-background');
       this.modalSnipper = this.querySelector('#phpcc-modal-snipper');
+      this.contenedorTerminosCondiciones = this.querySelector('#phpcc-termino-condiciones');
       this.contenedorGeneralMiUbicacion = this.querySelector('#phpcc-modal-dar-direccion');
       this.contenedorModalBody = this.querySelector('#phpcc-contenido-modal-body');
       this.btnMiUbicacionActual = this.querySelector('#phpcc-btn-mi-ubicacion-actual');
@@ -514,7 +519,9 @@
 
     cambiarEstadoInfoHutCoins() {
       const estaActivado = this.btnInfoHutCoins.classList.contains('activado');
+
       if (estaActivado) {
+        this.contenedorTerminosCondiciones.classList.remove('politicas-terminos');
         this.btnInfoHutCoins.classList.remove('activado');
         this.btnInfoHutCoins.innerHTML = this.iconos.iconCheckBoxOff;
       } else {
@@ -525,13 +532,18 @@
 
     procesoFormulario() {
       const estaHabilitado = this.btnContinuar.classList.contains('desactivado');
-      if (!estaHabilitado) {
+      const estaHabilitado2 = this.btnInfoHutCoins.classList.contains('activado');
+      if (!estaHabilitado && !estaHabilitado2) {
         // Mostrar el mensaje de carga durante 3 segundo y despues redirijir
         this.modalSnipper.style.display = 'flex';
         setTimeout(() => {
           this.modalSnipper.style.display = 'none';
           window.location.href = '/';
         }, 3000);
+      }else{
+        if (estaHabilitado2) {
+          this.contenedorTerminosCondiciones.classList.add('politicas-terminos');
+        } 
       }
     }
 
