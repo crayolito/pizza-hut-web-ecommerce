@@ -42,13 +42,15 @@
               placeholder="Apellidos"
             >
           </div>
-          <div
-            id="phpcc-frm-apellido-error"
-            class="ph-mcci-mensaje-input"
-          >
-            {% render 'icon-info' %}
-            <p>Este campo es obligatorio.</p>
-          </div>
+          {% comment %}
+            <div
+              id="phpcc-frm-apellido-error"
+              class="ph-mcci-mensaje-input"
+            >
+              {% render 'icon-info' %}
+              <p>Este campo es obligatorio.</p>
+            </div>
+          {% endcomment %}
         </div>
         <div
           id="phpcc-frm-email"
@@ -63,13 +65,15 @@
               placeholder="Correo Electrónico"
             >
           </div>
-          <div
-            id="phpcc-frm-email-error"
-            class="ph-mcci-mensaje-input"
-          >
-            {% render 'icon-info' %}
-            <p>Este campo es obligatorio.</p>
-          </div>
+          {% comment %}
+            <div
+              id="phpcc-frm-email-error"
+              class="ph-mcci-mensaje-input"
+            >
+              {% render 'icon-info' %}
+              <p>Este campo es obligatorio.</p>
+            </div>
+          {% endcomment %}
         </div>
         <div
           id="phpcc-frm-celular"
@@ -91,13 +95,15 @@
               pattern="[67][0-9]{7}"
             >
           </div>
-          <div
-            id="phpcc-frm-email-error"
-            class="ph-mcci-mensaje-input"
-          >
-            {% render 'icon-info' %}
-            <p>Este campo es obligatorio.</p>
-          </div>
+          {% comment %}
+            <div
+              id="phpcc-frm-email-error"
+              class="ph-mcci-mensaje-input"
+            >
+              {% render 'icon-info' %}
+              <p>Este campo es obligatorio.</p>
+            </div>
+          {% endcomment %}
           <div
             id="phpcc-frm-celular-mensaje"
             class="ph-mcci-mensaje-input"
@@ -113,6 +119,7 @@
           <p>Número de Carnet de identidad (C.I.)</p>
           <div class="ph-container-input">
             <input
+              id="phpcc-frm-ci-input"
               type="tel"
               placeholder="Carnet de identidad"
               maxlength="15"
@@ -120,13 +127,15 @@
               pattern="[0-9]{1,8}"
             >
           </div>
-          <div
-            id="phpcc-frm-ci-error"
-            class="ph-mcci-mensaje-input"
-          >
-            {% render 'icon-info' %}
-            <p>Este campo es obligatorio.</p>
-          </div>
+          {% comment %}
+            <div
+              id="phpcc-frm-ci-error"
+              class="ph-mcci-mensaje-input"
+            >
+              {% render 'icon-info' %}
+              <p>Este campo es obligatorio.</p>
+            </div>
+          {% endcomment %}
         </div>
       </div>
     </section>
