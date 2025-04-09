@@ -352,13 +352,13 @@
 
     <!-- Hojas de estilos css -->
     {{ 'estilos-generales.css' | asset_url | stylesheet_tag }}
-
+    <script src="https://accounts.google.com/gsi/client"></script>
     <script>
       // Verificar si la URL actual contiene /pages/perfil
       if (window.location.pathname.includes('/pages/perfil')) {
         // Verificar si existe el item 'datos-usuario' en localStorage
         const datosUsuario = localStorage.getItem('datos-usuario');
-        
+
         // Si no existe o está vacío, redirigir a la página de inicio de sesión
         if (!datosUsuario) {
           window.location.href = '/pages/inicio-sesion';

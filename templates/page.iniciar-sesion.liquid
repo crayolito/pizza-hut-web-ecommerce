@@ -16,9 +16,12 @@
           </div>
           <input
             id="phpis-input"
-            type="email"
+            type="tel"
             placeholder="Numero de celular"
             autocomplete="off"
+            maxlength="8"
+            oninput="this.value=this.value.replace(/[^0-9]/g,'')"
+            pattern="[0-9]{1,8}"
           >
         </div>
       </div>
@@ -36,14 +39,14 @@
         class="ph-btn-secundario"
       >
         {% render 'icon-google' %}
-        <p>Botón Secundario</p>
+        <p>Continuar con Google</p>
       </button>
       <button
         id="phpis-btn-facebook"
         class="ph-btn-secundario"
       >
         {% render 'icon-facebook-custom' %}
-        <p>Botón Secundario</p>
+        <p>Continuar con Facebook</p>
       </button>
       <div class="pccph-modal-separador">
         <div class="pccph-modal-separador-linea"></div>
@@ -124,44 +127,40 @@
               class="pcch-item-input"
               type="number"
               id="single-digit1"
-              class="single-digit-input"
               min="0"
               max="9"
               maxlength="1"
-              onInput="if(this.value.length > 1) this.value = this.value.slice(0,1);"
+              oninput="this.value=this.value.replace(/[^0-9]/g,''); if(this.value.length > 1) this.value = this.value.slice(0,1);"
             >
             <input
               autocomplete="off"
               class="pcch-item-input"
               type="number"
               id="single-digit2"
-              class="single-digit-input"
               min="0"
               max="9"
               maxlength="1"
-              onInput="if(this.value.length > 1) this.value = this.value.slice(0,1);"
+              oninput="this.value=this.value.replace(/[^0-9]/g,''); if(this.value.length > 1) this.value = this.value.slice(0,1);"
             >
             <input
               autocomplete="off"
               class="pcch-item-input"
               type="number"
               id="single-digit3"
-              class="single-digit-input"
               min="0"
               max="9"
               maxlength="1"
-              onInput="if(this.value.length > 1) this.value = this.value.slice(0,1);"
+              oninput="this.value=this.value.replace(/[^0-9]/g,''); if(this.value.length > 1) this.value = this.value.slice(0,1);"
             >
             <input
               autocomplete="off"
               class="pcch-item-input"
               type="number"
               id="single-digit4"
-              class="single-digit-input"
               min="0"
               max="9"
               maxlength="1"
-              onInput="if(this.value.length > 1) this.value = this.value.slice(0,1);"
+              oninput="this.value=this.value.replace(/[^0-9]/g,''); if(this.value.length > 1) this.value = this.value.slice(0,1);"
             >
           </div>
           <button class="ph-btn-secundario">
@@ -261,6 +260,10 @@
     }
 
     iniciarSesion() {
+      if (this.input.value.length !== 8) {
+        return;
+      }
+
       this.containerGeneral.style.display = 'flex';
       this.containerSnipper.style.display = 'flex';
 
@@ -287,7 +290,7 @@
             numero: '78452415',
           })
         );
-        window.location.href = '/pages/perfil';
+        window.location.href = '/';
       }, 3000);
     }
 
@@ -335,7 +338,7 @@
               numero: this.input.value,
             })
           );
-          window.location.href = '/pages/perfil';
+          window.location.href = '/';
         }, 3000);
       }
     }
