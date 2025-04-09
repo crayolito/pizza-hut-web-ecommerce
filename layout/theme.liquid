@@ -813,7 +813,7 @@
         if(intentos < 10){
           console.log("Google Maps no está cargado, esperando... Intento " + (intentos + 1));
           setTimeout(() => {
-            this.inicializarPaginaLocalStorage(intentos + 1);
+            this.inicializacionGoogleMaps(intentos + 1);
           }, 500); // Esperar 0.5 segundos antes de volver a intentar
         }else{
           console.error("Google Maps no se cargó después de varios intentos");
