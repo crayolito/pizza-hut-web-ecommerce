@@ -96,8 +96,9 @@
         <div class="pccph-modal-separador-linea"></div>
       </div>
       <div class="ph-container-input icon-color-tertiary">
+        <div id="phpcc-sugerencias-direccion" class="psme-sugerencias-container"></div>
         {% render 'icon-location-on' %}
-        <input type="text" placeholder="Ingresar dirección o punto de referencia">
+        <input id="phpcc-input-direccion" type="text" placeholder="Ingresar dirección o punto de referencia">
       </div>
     </section>
     <section class="container-sub-smecph" id="pccph-hutcoins">
@@ -202,10 +203,10 @@
           class="psme-modal-body"
         ></div>
         <div class="psme-modal-footer">
-          <button class="psme-modal-boton-confirmar" id="p-sme-boton-confirmar-modal">
+          <button class="psme-modal-boton-confirmar" id="phpcc-btn-confirmar-modal">
             <p>Confirmar</p>
           </button>
-          <button class="psme-modal-boton-cancelar" id="p-sme-boton-cancelar-modal">
+          <button class="psme-modal-boton-cancelar" id="phpcc-btn-cancelar-modal">
             <p>Cerrar</p>
           </button>
         </div>
@@ -237,6 +238,10 @@
       this.btnHutCoins = this.querySelector('#phpcc-btn-hutcoins');
       this.btnInfoHutCoins = this.querySelector('#phpcc-btn-info-hutcoins');
       this.btnContinuar = this.querySelector('#phpcc-btn-continuar');
+      this.btnConfirmarModal = this.querySelector('#phpcc-btn-confirmar-modal');
+      this.btnCancelarModal = this.querySelector('#phpcc-btn-cancelar-modal');
+      this.inputDireccion = this.querySelector('#phpcc-input-direccion');
+      this.contenedorSugerencias = this.querySelector('#phpcc-sugerencias-direccion');
 
       // INICIARLZAR EVENTOS
       this.btnMiUbicacionActual.addEventListener('click', this.accesoUbicacionActualModal.bind(this));
@@ -244,7 +249,8 @@
       this.btnHutCoins.addEventListener('click', this.cambiarEstadoHutCoins.bind(this));
       this.btnInfoHutCoins.addEventListener('click', this.cambiarEstadoInfoHutCoins.bind(this));
       this.btnContinuar.addEventListener('click', this.procesoFormulario.bind(this));
-
+      this.btnConfirmarModal.addEventListener('click', this.procesoConfirmacionModal.bind(this));
+      this.btnCancelarModal.addEventListener('click', this.cerrarModalMiUbicacion.bind(this));
       document.addEventListener('click', this.detectarClickFueraDeElementosEspeciales.bind(this));
 
       // INICIALIZAR ELEMENTOS
@@ -371,6 +377,120 @@
     }
 
     procesoFormulario() {}
+
+    procesoConfirmacionModal() {}
+
+    configurarAutocompletadoDirecciones() {
+      // Verificar que el input existe
+      if (!this.inputDireccion) return;
+
+      // Variable para almacenar el timer del debounce
+      let timeoutId = null;
+
+      // Variable para el servicio de Places
+      this.placesService = new google.maps.places.AutocompleteService();
+
+      // Escuchar el evento input
+      this.inputDireccion.addEventListener('input', (e) => {
+        // Limpiar el timer anterior si existe
+        if (timeoutId) {
+          clearTimeout(timeoutId);
+        }
+
+        const query = e.target.value.trim();
+
+        // Si el input está vacío, ocultar sugerencias
+        if (!query) {
+          this.contenedorSugerencias.style.display = 'none';
+          return;
+        }
+
+        // Configurar debounce (500ms)
+        timeoutId = setTimeout(() => {
+          this.buscarSugerenciasDirecciones(query);
+        }, 500);
+      });
+
+      // Cerrar sugerencias al hacer clic fuera
+      document.addEventListener('click', (e) => {
+        if (!this.inputDireccion.contains(e.target) && !this.contenedorSugerencias.contains(e.target)) {
+          this.contenedorSugerencias.style.display = 'none';
+        }
+      });
+    }
+
+    buscarSugerenciasDirecciones(query) {
+      // Opciones para la búsqueda
+      const opcionesBusqueda = {
+        input: query,
+        componentRestrictions: { country: 'bo' }, // Ajusta al país (Bolivia)
+      };
+
+      // Realizar la búsqueda
+      this.placesService.getPlacePredictions(opcionesBusqueda, (predictions, status) => {
+        // Limpiar contenedor de sugerencias
+        this.contenedorSugerencias.innerHTML = '';
+
+        if (status !== google.maps.places.PlacesServiceStatus.OK || !predictions) {
+          this.contenedorSugerencias.style.display = 'none';
+          return;
+        }
+
+        // Limitar a 3 sugerencias
+        const sugerencias = predictions.slice(0, 3);
+
+        // Mostrar sugerencias
+        sugerencias.forEach((sugerencia) => {
+          const elemento = document.createElement('div');
+          elemento.classList.add('psme-sugerencia-item');
+
+          // Crear elemento p para el texto
+          const textoElemento = document.createElement('p');
+          textoElemento.textContent = sugerencia.description;
+          elemento.appendChild(textoElemento);
+
+          // Agregar evento de clic
+          elemento.addEventListener('click', () => {
+            this.seleccionarDireccion(sugerencia);
+          });
+
+          this.contenedorSugerencias.appendChild(elemento);
+        });
+
+        // Mostrar el contenedor
+        if (sugerencias.length > 0) {
+          this.contenedorSugerencias.style.display = 'block';
+        } else {
+          this.contenedorSugerencias.style.display = 'none';
+        }
+      });
+    }
+
+    seleccionarDireccion(sugerencia) {
+      this.controlSeleccionInput = true;
+
+      // Actualizar el valor del input
+      this.inputDireccion.value = sugerencia.description;
+
+      // Ocultar sugerencias
+      this.contenedorSugerencias.style.display = 'none';
+
+      // Obtener las coordenadas del lugar seleccionado
+      const geocoder = new google.maps.Geocoder();
+      geocoder.geocode({ placeId: sugerencia.place_id }, (results, status) => {
+        if (status === google.maps.GeocoderStatus.OK && results[0]) {
+          const ubicacion = results[0].geometry.location;
+
+          // Actualizar la variable de coordenadas usada de forma general
+          this.coordenadas = {
+            lat: ubicacion.lat(),
+            lng: ubicacion.lng(),
+          };
+
+          console.log('Coordenadas de dirección seleccionada:', this.coordenadas);
+        }
+      });
+    }
   }
 
   customElements.define('crear-cuenta', CrearCuenta);
