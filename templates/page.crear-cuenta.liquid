@@ -329,7 +329,7 @@
       this.frmEmailInput = this.querySelector('#phpcc-frm-email-input');
       this.frmCelular = this.querySelector('#phpcc-frm-celular');
       this.frmCelularInput = this.querySelector('#phpcc-frm-celular-input');
-      this.frmCelularMensaje = this.querySelector('#phpcc-frm-celular-mensaje');
+      {% comment %} this.frmCelularMensaje = this.querySelector('#phpcc-frm-celular-mensaje'); {% endcomment %}
       this.frmCi = this.querySelector('#phpcc-frm-ci');
       this.frmCiInput = this.querySelector('#phpcc-frm-ci-input');
 
@@ -529,7 +529,7 @@
       }
     }
 
-    mostrarErroresForm(){
+    {% comment %} mostrarErroresForm(){
       this.frmCelularMensaje.style.display = 'none';
       // Mostrar errores en el formulario
       if (this.frmNombreInput.value === '') {
@@ -543,7 +543,7 @@
 
       // Desactivar el botón de continuar
       this.btnContinuar.classList.add('desactivado');
-    }
+    } {% endcomment %}
 
     habilitarBtnContinuar(){
       const inputsForm = [
