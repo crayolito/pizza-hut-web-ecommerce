@@ -523,7 +523,7 @@
 
     procesoFormulario() {
       const estaHabilitado = this.btnContinuar.classList.contains('desactivado');
-      if (estaHabilitado) {
+      if (!estaHabilitado) {
         // Mostrar el mensaje de carga durante 3 segundo y despues redirijir
         this.modalSnipper.style.display = 'flex';
         setTimeout(() => {
