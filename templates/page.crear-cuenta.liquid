@@ -520,11 +520,11 @@
       const estaActivado = this.btnInfoHutCoins.classList.contains('activado');
 
       if (estaActivado) {
-        this.contenedorTerminosCondiciones.classList.remove('politicas-terminos');
         this.btnInfoHutCoins.classList.remove('activado');
         this.btnInfoHutCoins.innerHTML = this.iconos.iconCheckBoxOff;
       } else {
         this.btnInfoHutCoins.classList.add('activado');
+        this.contenedorTerminosCondiciones.classList.remove('politicas-terminos');
         this.btnInfoHutCoins.innerHTML = this.iconos.iconCheckBoxOn;
       }
     }
