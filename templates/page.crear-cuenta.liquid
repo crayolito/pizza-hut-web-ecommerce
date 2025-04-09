@@ -263,18 +263,26 @@
       this.modalBackground.style.display = 'none';
       this.contenedorGeneralMiUbicacion.style.display = 'none';
       this.modalSnipper.style.display = 'none';
-      {% comment %} this.configurarAutocompletadoDirecciones(); {% endcomment %}
+      this.inicializarPaginaLocalStorage(0);
+    }
 
-       // Esperar a que Google Maps esté disponible y luego configurar autocompletado
-       if (window.esperarGoogleMaps) {
-        window.esperarGoogleMaps(() => {
-          console.log("ManejadorMaps existe:", !!window.ManejadorMaps);
-          this.configurarAutocompletadoDirecciones();
-        });
-      } else {
-        console.log("ManejadorMaps existe:", !!window.ManejadorMaps);
-        console.error("La función esperarGoogleMaps no está disponible");
+    inicializarPaginaLocalStorage(intentos = 0) {
+      // Verificar si Google Maps esta cargado
+      if (typeof google == 'undefined') {
+        {% comment %} this.containerModalCarga.style.display = 'flex'; {% endcomment %}
+        // Limitar a 10 intentos para evitar bucles infinitos
+        if (intentos < 10) {
+          console.log('Google Maps no está cargado, esperando... Intento ' + (intentos + 1));
+          setTimeout(() => {
+            this.inicializarPaginaLocalStorage(intentos + 1);
+          }, 500); // Esperar 0.5 segundos antes de volver a intentar
+        } else {
+          console.error('Google Maps no se cargó después de varios intentos');
+        }
+        return;
       }
+
+      console.log('Google Maps cargado correctamente');
     }
 
     accesoUbicacionActualModal() {
