@@ -193,18 +193,26 @@
         <p>
           Acepto las
           <a
+            style="
+              text-decoration: underline;
+              cursor: pointer;
+              text-underline-offset: 3px;
+            "
             href="https://farmacorp.com/policies/privacy-policy"
             target="_blank"
+            >Políticas de privacidad</a
           >
-            Políticas de privacidad
-          </a>
           y
           <a
+            style="
+              text-decoration: underline;
+              cursor: pointer;
+              text-underline-offset: 3px;
+            "
             href="https://farmacorp.com/policies/terms-of-service"
             target="_blank"
+            >Términos y condiciones</a
           >
-            Términos y condiciones
-          </a>
         </p>
       </div>
     </section>
@@ -482,11 +490,7 @@
           return; // El clic fue dentro del input, no cerramos
         } else {
           // Si el clic fue fuera de todos los inputs, cerrar los mensajes de error
-          this.frmNombreError.style.display = 'none';
-          this.frmApellidoError.style.display = 'none';
-          this.frmEmailError.style.display = 'none';
-          this.frmCelularError.style.display = 'none';
-          this.frmCiError.style.display = 'none';
+
         }
       });
     }
@@ -528,22 +532,6 @@
         }, 3000);
       }
     }
-
-    {% comment %} mostrarErroresForm(){
-      this.frmCelularMensaje.style.display = 'none';
-      // Mostrar errores en el formulario
-      if (this.frmNombreInput.value === '') {
-        this.frmNombreError.style.display = 'flex';
-      }
-      this.frmNombreError.style.display = 'flex';
-      this.frmApellidoError.style.display = 'flex';
-      this.frmEmailError.style.display = 'flex';
-      this.frmCelularError.style.display = 'flex';
-      this.frmCiError.style.display = 'flex';
-
-      // Desactivar el botón de continuar
-      this.btnContinuar.classList.add('desactivado');
-    } {% endcomment %}
 
     habilitarBtnContinuar(){
       const inputsForm = [
