@@ -359,15 +359,18 @@
       if (dataPerfil == 'perfil') {
         console.log('datos del local storage', dataPerfil);
         this.btnSectorIPerfil.classList.add('seleccionado');
+        this.seccionPerfil.style.display = 'flex';
         this.tituloHeaderMobil.innerText = 'MI PERFIL';
       } else if (dataPerfil == 'historial') {
         console.log('datos del local storage', dataPerfil);
         this.btnSectorIHistorial.classList.add('seleccionado');
         this.tituloHeaderMobil.innerText = 'HISTORIAL DE PEDIDOS';
+        this.seccionHistorial.style.display = 'flex';
       } else if (dataPerfil == 'configuraciones') {
         console.log('datos del local storage', dataPerfil);
         this.btnSectorIConfiguraciones.classList.add('seleccionado');
         this.tituloHeaderMobil.innerText = 'CONFIGURACIONES';
+        this.seccionConfiguraciones.style.display = 'flex';
       }
     }
 
