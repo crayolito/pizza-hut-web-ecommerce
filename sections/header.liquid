@@ -752,6 +752,8 @@
     }
 
     redireccionPerfilMenuDesktop() {
+      console.log('redireccionar a perfil');
+      this.contenedorDisMenu.style.display = 'none';
       localStorage.setItem('pg-perfil-opcion', 'perfil');
       window.location.href = '/pages/perfil';
     }
