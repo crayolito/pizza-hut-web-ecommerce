@@ -19,7 +19,10 @@
   </div>
   <!-- SECTOR DESKTOP -->
   <div class="phpp-container container-base">
-    <div class="phpp-container-izquierda">
+    <div
+      id="phppu-menu-general"
+      class="phpp-container-izquierda"
+    >
       <div class="phpp-containeri">
         <div class="phpp-containeri-opciones">
           <button
@@ -316,6 +319,7 @@
 
     connectedCallback() {
       // REFERENCIAS ELEMENTOS
+      this.menuGeneralSector = document.getElementById('phppu-menu-general');
       // MOBIL
       this.headerMobil = document.getElementById('phppu-header-movil');
       this.btnAtrasHeader = document.getElementById('phppu-headerm-atras');
@@ -332,7 +336,14 @@
       // EVENTOS INICIALIZAR
 
       // INICIALIZAR ELEMENTOS Y PROCESOS CLAVES
+      this.menuGeneralSector.style.display = 'none';
+      this.seccionPerfil.style.display = 'none';
+      this.seccionHistorial.style.display = 'none';
+      this.seccionConfiguraciones.style.display = 'none';
+      this.inicializarDatosAlmacenados();
     }
+
+    inicializarDatosAlmacenados() {}
   }
 
   customElements.define('perfil-usuario', PerfilUsuario);
