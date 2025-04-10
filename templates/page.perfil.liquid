@@ -346,7 +346,7 @@
       this.btnSectorIPerfil.addEventListener('click', this.seleccionOpcionMenu.bind(this));
       this.btnSectorIHistorial.addEventListener('click', this.seleccionOpcionMenu.bind(this));
       this.btnSectorIConfiguraciones.addEventListener('click', this.seleccionOpcionMenu.bind(this));
-
+      this.btnMenuHeader.addEventListener('click', this.manipulacionContenedorMenu.bind(this));
       // INICIALIZAR ELEMENTOS Y PROCESOS CLAVES
       this.menuGeneralSector.style.display = 'none';
       this.seccionPerfil.style.display = 'none';
@@ -405,6 +405,14 @@
       const seccionSeleccionada = elementos.find((elemento) => elemento.boton === botonClickeado)?.seccion;
       if (seccionSeleccionada) {
         seccionSeleccionada.style.display = 'block';
+      }
+    }
+
+    manipulacionContenedorMenu() {
+      if (this.menuGeneralSector.style.display == 'none') {
+        this.menuGeneralSector.style.display = 'flex';
+      } else {
+        this.menuGeneralSector.style.display = 'none';
       }
     }
   }
