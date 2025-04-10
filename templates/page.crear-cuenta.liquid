@@ -178,7 +178,11 @@
       <div class="ph-mcci-input">
         <p>Fecha de nacimiento</p>
         <div class="ph-container-input">
-          <input type="date" placeholder="Fecha de nacimiento">
+          <input
+            id="phpcc-frm-fecha-nacimiento-input"
+            type="date"
+            placeholder="Fecha de nacimiento"
+          >
         </div>
       </div>
     </section>
@@ -343,6 +347,7 @@
       {% comment %} this.frmCelularMensaje = this.querySelector('#phpcc-frm-celular-mensaje'); {% endcomment %}
       this.frmCi = this.querySelector('#phpcc-frm-ci');
       this.frmCiInput = this.querySelector('#phpcc-frm-ci-input');
+      this.frmFechaNacimientoInput = this.querySelector('#phpcc-frm-fecha-nacimiento-input');
 
       // INICIARLZAR EVENTOS
       this.btnMiUbicacionActual.addEventListener('click', this.accesoUbicacionActualModal.bind(this));
@@ -361,6 +366,7 @@
       this.frmEmailInput.addEventListener('input',this.habilitarBtnContinuar.bind(this));
       this.frmCelularInput.addEventListener('input',this.habilitarBtnContinuar.bind(this));
       this.frmCiInput.addEventListener('input',this.habilitarBtnContinuar.bind(this));
+
 
       // INICIALIZAR ELEMENTOS
       this.modalBackground.style.display = 'none';
@@ -530,12 +536,17 @@
     procesoFormulario() {
       const estaHabilitado = this.btnContinuar.classList.contains('desactivado');
       const estaHabilitado2 = this.btnInfoHutCoins.classList.contains('activado');
-      console.log('Estado del botón continuar:', !estaHabilitado);
-      console.log('Estado del botón de información:', estaHabilitado2);
       if (!estaHabilitado && estaHabilitado2) {
-        {% comment %} asdasd {% endcomment %}
         this.modalBackground.style.display = 'flex';
         setTimeout(() => {
+          localStorage.setItem('datos-usuario', JSON.stringify({
+            nombre: this.frmNombreInput.value,
+            apellido: this.frmApellidoInput.value,
+            email: this.frmEmailInput.value,
+            celular: this.frmCelularInput.value,
+            ci: this.frmCiInput.value,
+            fechaNacimiento: this.frmFechaNacimientoInput.value,
+          }));
           this.modalBackground.style.display = 'none';
           window.location.href = '/';
         }, 3000);

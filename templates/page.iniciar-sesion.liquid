@@ -324,7 +324,7 @@
       }, 3000);
     }
 
-    verificarNumero() {
+    verificarNumero(event) {
       const inputs = [
         this.input1Verificacion,
         this.input2Verificacion,
@@ -332,9 +332,21 @@
         this.input4Verificacion,
       ];
 
-      const allFilled = inputs.every((input) => input.value.length === 1);
+      // Obtener el elemento de entrada actual que desencadenó el evento
+      const inputActual = event.target;
 
-      if (allFilled) {
+      // Encontrar el índice del input actual en nuestro array
+      const indiceActual = inputs.indexOf(inputActual);
+
+      // Si el input actual tiene un valor y hay un siguiente input, enfócalo
+      if (inputActual.value.length === 1 && indiceActual < inputs.length - 1) {
+        inputs[indiceActual + 1].focus();
+      }
+
+      // Verificar si todos los inputs están llenos
+      const todosLlenos = inputs.every((input) => input.value.length === 1);
+
+      if (todosLlenos) {
         // Aquí puedes agregar la lógica para enviar el código de verificación
         console.log('Código de verificación enviado');
         this.containerVerificarNumero.style.display = 'none';
