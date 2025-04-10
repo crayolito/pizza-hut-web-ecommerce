@@ -27,7 +27,7 @@
         <div class="phpp-containeri-opciones">
           <button
             id="phppu-btn-menu-perfil"
-            class="ph-btn-primario  seleccionado "
+            class="ph-btn-primario icon-color-extra"
           >
             {% render 'icon-cuenta-blanco' %}
             <p>MI PERFIL</p>
@@ -334,6 +334,9 @@
       this.seccionConfiguraciones = document.getElementById('phpp-cd-configuraciones');
 
       // EVENTOS INICIALIZAR
+      this.btnSectorIPerfil.addEventListener('click', this.seleccionOpcionMenu.bind(this));
+      this.btnSectorIHistorial.addEventListener('click', this.seleccionOpcionMenu.bind(this));
+      this.btnSectorIConfiguraciones.addEventListener('click', this.seleccionOpcionMenu.bind(this));
 
       // INICIALIZAR ELEMENTOS Y PROCESOS CLAVES
       this.menuGeneralSector.style.display = 'none';
@@ -343,7 +346,51 @@
       this.inicializarDatosAlmacenados();
     }
 
-    inicializarDatosAlmacenados() {}
+    inicializarDatosAlmacenados() {
+      const dataPerfil = localStorage.getItem('pg-perfil-opcion');
+      if (dataPerfil == null) {
+        window.location.href = '/';
+      }
+
+      if (dataPerfil == 'perfil') {
+        this.btnSectorIPerfil.classList.add('seleccionado');
+      } else if (dataPerfil == 'historial') {
+        this.btnSectorIHistorial.classList.add('seleccionado');
+      } else if (dataPerfil == 'configuraciones') {
+        this.btnSectorIConfiguraciones.classList.add('seleccionado');
+      }
+    }
+
+    seleccionOpcionMenu(event) {
+      // Obtener el botón que fue clickeado
+      const botonClickeado = event.currentTarget;
+
+      // Si el botón ya está seleccionado, no hacer nada
+      if (botonClickeado.classList.contains('seleccionado')) {
+        return;
+      }
+
+      const elementos = [
+        { boton: this.btnSectorIPerfil, seccion: this.seccionPerfil },
+        { boton: this.btnSectorIHistorial, seccion: this.seccionHistorial },
+        { boton: this.btnSectorIConfiguraciones, seccion: this.seccionConfiguraciones },
+      ];
+
+      // Oculta todas las secciones y quita la clase 'seleccionado' de todos los botones
+      elementos.forEach((elemento) => {
+        elemento.boton.classList.remove('seleccionado');
+        elemento.seccion.style.display = 'none';
+      });
+
+      // Selecciona el botón clickeado y muestra su sección correspondiente
+      botonClickeado.classList.add('seleccionado');
+
+      // Encuentra y muestra la sección correspondiente al botón clickeado
+      const seccionSeleccionada = elementos.find((elemento) => elemento.boton === botonClickeado)?.seccion;
+      if (seccionSeleccionada) {
+        seccionSeleccionada.style.display = 'block';
+      }
+    }
   }
 
   customElements.define('perfil-usuario', PerfilUsuario);
