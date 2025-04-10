@@ -318,7 +318,6 @@
     connectedCallback() {
       // CAPTURAR ELEMENTOS
       this.modalBackground = this.querySelector('#phpcc-modal-background');
-      {% comment %} this.modalSnipper = this.querySelector('#phpcc-modal-snipper'); {% endcomment %}
       this.contenedorTerminosCondiciones = this.querySelector('#phpcc-termino-condiciones');
       this.contenedorGeneralMiUbicacion = this.querySelector('#phpcc-modal-dar-direccion');
       this.contenedorModalBody = this.querySelector('#phpcc-contenido-modal-body');
@@ -366,7 +365,6 @@
       // INICIALIZAR ELEMENTOS
       this.modalBackground.style.display = 'none';
       this.contenedorGeneralMiUbicacion.style.display = 'none';
-      {% comment %} this.modalSnipper.style.display = 'none'; {% endcomment %}
       this.inicializarPaginaLocalStorage(0);
     }
 
@@ -535,9 +533,9 @@
       console.log('Estado del botón continuar:', !estaHabilitado);
       console.log('Estado del botón de información:', estaHabilitado2);
       if (!estaHabilitado && estaHabilitado2) {
-        this.modalSnipper.style.display = 'flex';
+        this.modalBackground.style.display = 'flex';
         setTimeout(() => {
-          this.modalSnipper.style.display = 'none';
+          this.modalBackground.style.display = 'none';
           window.location.href = '/';
         }, 3000);
       }else{
