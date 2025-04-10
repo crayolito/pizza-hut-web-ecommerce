@@ -775,13 +775,15 @@
       }
     }
 
-    localBotonPrePedido(nombreLocal){
+    async  localBotonPrePedido(nombreLocal){
       // Primero se encuentra al nombreLocal
       const localSeleccionado = this.pizzaLocations.find(local => 
         this.obtenerNombreIdentificadorLocal(local.name) === nombreLocal
       );
 
       // Se guarda en el localStorage las coordendas del local
+      const direccion = await this.obtenerDireccionDesdeCordenadas(localSeleccionado.lat, localSeleccionado.lng);
+      localStorage.setItem('direccion-cliente', JSON.stringify(direccion));
       localStorage.setItem('ubicacion-cliente', JSON.stringify({
         lat: localSeleccionado.lat,
         lng: localSeleccionado.lng
@@ -1110,10 +1112,15 @@
       }
     }
 
-    accionConfirmarModal() {
+    async accionConfirmarModal() {
       console.log('Ubicacion guardada en localStorage: ', localStorage.getItem('ubicacion-cliente'));
       this.cerrarModal();
       localStorage.setItem('ph-metodo-entrega', 'domicilio');
+      const direccion = await this.obtenerDireccionDesdeCordenadas(
+        this.coordenadas.lat, 
+        this.coordenadas.lng
+      );
+      localStorage.setItem('direccion-cliente', JSON.stringify(direccion));
       localStorage.setItem('ubicacion-cliente', JSON.stringify(this.coordenadas));
       window.location.href = '/';
 
@@ -1137,7 +1144,12 @@
       }
     }
 
-    botonOmitirPrincipal(){
+    async botonOmitirPrincipal(){
+      const direccion = await this.obtenerDireccionDesdeCordenadas(
+        this.coordenadas.lat, 
+        this.coordenadas.lng
+      );
+      localStorage.setItem('direccion-cliente', JSON.stringify(direccion));
       localStorage.setItem('ubicacion-cliente', JSON.stringify(this.coordenadas));
       localStorage.setItem('ph-metodo-entrega', 'no');
       window.location.href = '/';
@@ -1145,7 +1157,12 @@
       console.log('Se presiono el boton omitir procede ir a la siguiente pagina');
     }
 
-    botonSiguientePrincipal(){
+    async botonSiguientePrincipal(){
+      const direccion = await this.obtenerDireccionDesdeCordenadas(
+        this.coordenadas.lat, 
+        this.coordenadas.lng
+      );
+      localStorage.setItem('direccion-cliente', JSON.stringify(direccion));
       localStorage.setItem('ph-metodo-entrega', 'domicilio');
       localStorage.setItem('ubicacion-cliente', JSON.stringify(this.coordenadas));
       window.location.href = '/';
@@ -1279,8 +1296,32 @@
       return radioTierra * c; // Distancia en kilómetros
     }
 
-
-  }
+    btenerDireccionDesdeCordenadas(lat, lng) {
+      return new Promise((resolve, reject) => {
+        // Crea una instancia del servicio de Geocoding
+        const geocoder = new google.maps.Geocoder();
+        
+        // Crea un objeto con las coordenadas
+        const latlng = {
+          lat: parseFloat(lat),
+          lng: parseFloat(lng)
+        };
+        
+        // Realiza la solicitud de geocodificación inversa
+        geocoder.geocode({ location: latlng }, (results, status) => {
+          if (status === "OK") {
+            if (results[0]) {
+              // results[0].formatted_address contiene la dirección completa como string
+              const direccion = results[0].formatted_address;
+              resolve(direccion);  // Retorna el string de la dirección
+            } else {
+              reject("No se encontraron resultados");
+            }
+          } else {
+            reject("Error en la geocodificación: " + status);
+          }
+        });
+      });
 
   customElements.define('cliente-localizacion', ClienteLocalizacion);
 </script>

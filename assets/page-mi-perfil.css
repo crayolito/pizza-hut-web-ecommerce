@@ -117,8 +117,8 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--espaciado-m);
-  /* margin-top: var(--espaciado-xl); */
-  margin-top: 8rem;
+  margin-top: var(--espaciado-xl);
+  /* margin-top: 8rem; */
 }
 
 .ph-ph-primario.phppu p {
