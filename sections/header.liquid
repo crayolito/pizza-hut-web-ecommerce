@@ -666,10 +666,6 @@
     }
 
     detectarClickFueraDelInputBusqueda(event) {
-      // Verificar si el clic fue en el botón del menú o dentro de él
-      let btnMenuDesktopClicked =
-        event.target === this.btnOpcionOnSesion || this.btnOpcionOnSesion.contains(event.target);
-
       // Verificar estado del contenedor de resultados de búsqueda
       let estaAbiertoBusqueda = this.contenedorResultadoBusqueda.style.display == 'flex';
       if (estaAbiertoBusqueda) {
@@ -678,15 +674,18 @@
         }
       }
 
-      // Verificar estado del menú
-      let estaAbiertoMenu = this.contenedorDisMenu.style.display == 'flex';
+      // Verificar si el clic fue en el botón del menú
+      let btnMenuDesktopClicked =
+        event.target === this.btnOpcionOnSesion || this.btnOpcionOnSesion.contains(event.target);
 
-      // Si se hizo clic en el botón del menú y el menú está abierto, cerrarlo
-      if (btnMenuDesktopClicked && estaAbiertoMenu) {
-        this.contenedorDisMenu.style.display = 'none';
+      // Si se hizo clic en el botón del menú, salir de la función
+      if (btnMenuDesktopClicked) {
+        return;
       }
-      // Si se hizo clic fuera del menú y el menú está abierto, cerrarlo
-      else if (!btnMenuDesktopClicked && estaAbiertoMenu) {
+
+      // Verificar si se hizo clic fuera del menú y el menú está abierto
+      let estaAbiertoMenu = this.contenedorDisMenu.style.display == 'flex';
+      if (estaAbiertoMenu) {
         if (event.target !== this.contenedorDisMenu && !this.contenedorDisMenu.contains(event.target)) {
           this.contenedorDisMenu.style.display = 'none';
         }
