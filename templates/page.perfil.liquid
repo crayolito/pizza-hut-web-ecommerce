@@ -350,16 +350,20 @@
     }
 
     inicializarDatosAlmacenados() {
+      console.log('inicializando datos almacenados');
       const dataPerfil = localStorage.getItem('pg-perfil-opcion');
       if (dataPerfil == null) {
         window.location.href = '/';
       }
 
       if (dataPerfil == 'perfil') {
+        console.log('datos del local storage', dataPerfil);
         this.btnSectorIPerfil.classList.add('seleccionado');
       } else if (dataPerfil == 'historial') {
+        console.log('datos del local storage', dataPerfil);
         this.btnSectorIHistorial.classList.add('seleccionado');
       } else if (dataPerfil == 'configuraciones') {
+        console.log('datos del local storage', dataPerfil);
         this.btnSectorIConfiguraciones.classList.add('seleccionado');
       }
     }
