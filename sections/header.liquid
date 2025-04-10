@@ -757,30 +757,30 @@
     }
 
     redireccionHistorialMenuDesktop() {
+      this.contenedorDisMenu.style.display = 'none';
       localStorage.setItem('pg-perfil-opcion', 'historial');
       window.location.href = '/pages/perfil';
-      this.contenedorDisMenu.style.display = 'none';
     }
 
     redireccionConfiguracionMenuDesktop() {
+      this.contenedorDisMenu.style.display = 'none';
       localStorage.setItem('pg-perfil-opcion', 'configuracion');
       window.location.href = '/pages/perfil';
-      this.contenedorDisMenu.style.display = 'none';
     }
 
     redireccionCuponesMenuDesktop() {
-      window.location.href = '/pages/error-1';
       this.contenedorDisMenu.style.display = 'none';
+      window.location.href = '/pages/error-1';
     }
 
     redireccionHutcoinsMenuDesktop() {
-      window.open('https://microsites.spnty.co/pizzahutbolivia/login', '_blank');
       this.contenedorDisMenu.style.display = 'none';
+      window.open('https://microsites.spnty.co/pizzahutbolivia/login', '_blank');
     }
 
     redireccionPreferenciasMenuDesktop() {
-      window.location.href = '/pages/error-1';
       this.contenedorDisMenu.style.display = 'none';
+      window.location.href = '/pages/error-1';
     }
   }
 
