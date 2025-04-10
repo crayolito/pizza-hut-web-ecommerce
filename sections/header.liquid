@@ -526,7 +526,6 @@
       this.containerInputBusqueda = document.querySelector('#h-container-input-search');
       this.inputBusqueda = document.querySelector('#h-input-buscar');
       this.contenedorDisMenu = document.getElementById('h-dis-opciones-usuario');
-      {% comment %} this.contenedorDnisMenu = document.getElementById('h-dnis-opciones-usuario'); {% endcomment %}
       // TESTEO DE PRUEBA
       this.itemMenuDesplegable = document.querySelectorAll('.h-menu-opciones-productos-item');
 
@@ -562,7 +561,6 @@
       this.contenedorIsMenu.style.display = 'none';
       this.contenedorNisMenu.style.display = 'none';
       this.contenedorDisMenu.style.display = 'none';
-      {% comment %} this.contenedorDnisMenu.style.display = 'none'; {% endcomment %}
       this.verificarEstadoSesion();
       this.verificarEstadoEntrega();
     }
@@ -668,31 +666,31 @@
     }
 
     detectarClickFueraDelInputBusqueda(event) {
-        // Verificar si el clic fue en el botón del menú o dentro de él
-        let btnMenuDesktopClicked =
-          event.target === this.btnOpcionOnSesion || this.btnOpcionOnSesion.contains(event.target);
+      // Verificar si el clic fue en el botón del menú o dentro de él
+      let btnMenuDesktopClicked =
+        event.target === this.btnOpcionOnSesion || this.btnOpcionOnSesion.contains(event.target);
 
-        // Verificar estado del contenedor de resultados de búsqueda
-        let estaAbiertoBusqueda = this.contenedorResultadoBusqueda.style.display == 'flex';
-        if (estaAbiertoBusqueda) {
-          if (event.target !== this.sectorGeneralBusqueda && !this.sectorGeneralBusqueda.contains(event.target)) {
-            this.contenedorResultadoBusqueda.style.display = 'none';
-          }
+      // Verificar estado del contenedor de resultados de búsqueda
+      let estaAbiertoBusqueda = this.contenedorResultadoBusqueda.style.display == 'flex';
+      if (estaAbiertoBusqueda) {
+        if (event.target !== this.sectorGeneralBusqueda && !this.sectorGeneralBusqueda.contains(event.target)) {
+          this.contenedorResultadoBusqueda.style.display = 'none';
         }
+      }
 
-        // Verificar estado del menú
-        let estaAbiertoMenu = this.contenedorDisMenu.style.display == 'flex';
+      // Verificar estado del menú
+      let estaAbiertoMenu = this.contenedorDisMenu.style.display == 'flex';
 
-        // Si se hizo clic en el botón del menú y el menú está abierto, cerrarlo
-        if (btnMenuDesktopClicked && estaAbiertoMenu) {
+      // Si se hizo clic en el botón del menú y el menú está abierto, cerrarlo
+      if (btnMenuDesktopClicked && estaAbiertoMenu) {
+        this.contenedorDisMenu.style.display = 'none';
+      }
+      // Si se hizo clic fuera del menú y el menú está abierto, cerrarlo
+      else if (!btnMenuDesktopClicked && estaAbiertoMenu) {
+        if (event.target !== this.contenedorDisMenu && !this.contenedorDisMenu.contains(event.target)) {
           this.contenedorDisMenu.style.display = 'none';
         }
-        // Si se hizo clic fuera del menú y el menú está abierto, cerrarlo
-        else if (!btnMenuDesktopClicked && estaAbiertoMenu) {
-          if (event.target !== this.contenedorDisMenu && !this.contenedorDisMenu.contains(event.target)) {
-            this.contenedorDisMenu.style.display = 'none';
-          }
-        }
+      }
     }
 
     redireccionarCarrito() {
@@ -720,11 +718,9 @@
       if (datosCliente == null) {
         console.log('no hay datos de cliente');
         this.contenedorDisMenu.style.display = 'none';
-        this.contenedorDnisMenu.style.display = 'flex';
       } else {
         console.log('hay datos de cliente');
         this.contenedorDisMenu.style.display = 'flex';
-        this.contenedorDnisMenu.style.display = 'none';
       }
     }
 
