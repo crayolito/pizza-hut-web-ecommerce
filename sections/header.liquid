@@ -92,7 +92,7 @@
           class="h-opciones-mobile-body"
         >
           <button
-            id="h-ism-menu"
+            id="h-ism-perfil"
             class="h-opcion-usuario icon-color-tertiary"
           >
             {% render 'icon-cuenta-blanco' %}
@@ -105,13 +105,14 @@
             {% render 'icon-historial' %}
             <p>HISTORIAL DE PEDIDOS</p>
           </button>
-          <button
+          <a
+            href="/pages/error-1"
             id="h-ism-cupones-descuentos"
             class="h-opcion-usuario icon-color-tertiary"
           >
             {% render 'icon-cupon' %}
             <p>CUPONES Y DESCUENTOS</p>
-          </button>
+          </a>
           <a
             href="https://microsites.spnty.co/pizzahutbolivia/login"
             target="_blank"
@@ -120,13 +121,14 @@
             {% render 'icon-pizza-metodo-entrega' %}
             <p>HUT COINTS</p>
           </a>
-          <button
+          <a
+            href="/pages/error-1"
             id="h-ism-mis-preferencias"
             class="h-opcion-usuario icon-color-tertiary"
           >
             {% render 'icon-favorito' %}
             <p>MIS PREFERENCIAS</p>
-          </button>
+          </a>
           <button
             id="h-ism-configuracion"
             class="h-opcion-usuario icon-color-tertiary"
@@ -526,6 +528,9 @@
       this.containerInputBusqueda = document.querySelector('#h-container-input-search');
       this.inputBusqueda = document.querySelector('#h-input-buscar');
       this.contenedorDisMenu = document.getElementById('h-dis-opciones-usuario');
+      this.btnMiPerfilOfMenu = document.querySelector('#h-ism-menu');
+      this.btnHistorialOfMenu = document.querySelector('#h-ism-historial-pedidos');
+      this.btnconfiguracionOfMenu = document.querySelector('#h-ism-configuracion');
       // TESTEO DE PRUEBA
       this.itemMenuDesplegable = document.querySelectorAll('.h-menu-opciones-productos-item');
 
@@ -540,6 +545,10 @@
       this.btnOpcionOnSesion.addEventListener('click', this.verMenuDesktop.bind(this));
       this.btnDominicilio.addEventListener('click', this.redireccionMetodoEntrega.bind(this));
       this.btnLocal.addEventListener('click', this.redireccionMetodoEntrega.bind(this));
+      this.btnSeleccionEntregaMobile.addEventListener('click', this.redireccionMetodoEntrega.bind(this));
+      this.btnMiPerfilOfMenu.addEventListener('click', this.redireccionPerfilMenuDesktop.bind(this));
+      this.btnHistorialOfMenu.addEventListener('click', this.redireccionHistorialMenuDesktop.bind(this));
+      this.btnconfiguracionOfMenu.addEventListener('click', this.redireccionConfiguracionMenuDesktop.bind(this));
       document.addEventListener('click', this.detectarClickFueraDelInputBusqueda.bind(this));
       this.logoPrincipal.forEach((logo) => {
         logo.addEventListener('click', () => {
@@ -734,6 +743,21 @@
 
     redireccionMetodoEntrega() {
       window.location.href = '/pages/metodo-entrega';
+    }
+
+    redireccionPerfilMenuDesktop() {
+      localStorage.setItem('pg-perfil-opcion', 'perfil');
+      window.location.href = '/pages/perfil';
+    }
+
+    redireccionHistorialMenuDesktop() {
+      localStorage.setItem('pg-perfil-opcion', 'historial');
+      window.location.href = '/pages/perfil';
+    }
+
+    redireccionConfiguracionMenuDesktop() {
+      localStorage.setItem('pg-perfil-opcion', 'configuracion');
+      window.location.href = '/pages/perfil';
     }
   }
 
