@@ -105,24 +105,21 @@
             {% render 'icon-historial' %}
             <p>HISTORIAL DE PEDIDOS</p>
           </button>
-          <a
-            href="/pages/error-1"
+          <button
             id="h-ism-cupones-descuentos"
             class="h-opcion-usuario icon-color-tertiary"
           >
             {% render 'icon-cupon' %}
             <p>CUPONES Y DESCUENTOS</p>
-          </a>
-          <a
-            href="https://microsites.spnty.co/pizzahutbolivia/login"
-            target="_blank"
+          </button>
+          <button
+            id="h-ism-hutcoins"
             class="h-opcion-usuario icon-color-tertiary"
           >
             {% render 'icon-pizza-metodo-entrega' %}
             <p>HUT COINTS</p>
-          </a>
+          </button>
           <a
-            href="/pages/error-1"
             id="h-ism-mis-preferencias"
             class="h-opcion-usuario icon-color-tertiary"
           >
@@ -511,6 +508,12 @@
       this.contenedorNisMenu = document.querySelector('#h-nism-menu-principal');
       this.tituloMenuMobile = document.querySelector('#h-titulo-mobile-menu');
       this.btnCerrrarMenuMobile = document.querySelector('#h-boton-cerrar-menu-mobile');
+      this.btnPerfilMenuMobile = document.querySelector('#h-ism-perfil');
+      this.btnHistorialMenuMobile = document.querySelector('#h-ism-historial-pedidos');
+      this.btnConfiguracionMenuMobile = document.querySelector('#h-ism-configuracion');
+      this.btnCuponesMenuMobile = document.querySelector('#h-ism-cupones-descuentos');
+      this.btnHutcoinsMenuMobile = document.querySelector('#h-ism-hutcoins');
+      this.btnMisPreferenciasMenuMobile = document.querySelector('#h-ism-mis-preferencias');
 
       this.btnVerMenuMobile = document.querySelector('#h-btn-menu-mobile');
       // HEADER DESKTOP
@@ -554,6 +557,12 @@
       this.btnHutcoinsOfMenu.addEventListener('click', this.redireccionHutcoinsMenuDesktop.bind(this));
       this.btnMisPreferenciasOfMenu.addEventListener('click', this.redireccionPreferenciasMenuDesktop.bind(this));
       this.btnconfiguracionOfMenu.addEventListener('click', this.redireccionConfiguracionMenuDesktop.bind(this));
+      this.btnPerfilMenuMobile.addEventListener('click', this.redireccionPerfilMenuDesktop.bind(this));
+      this.btnHistorialMenuMobile.addEventListener('click', this.redireccionHistorialMenuDesktop.bind(this));
+      this.btnConfiguracionMenuMobile.addEventListener('click', this.redireccionConfiguracionMenuDesktop.bind(this));
+      this.btnCuponesMenuMobile.addEventListener('click', this.redireccionCuponesMenuDesktop.bind(this));
+      this.btnHutcoinsMenuMobile.addEventListener('click', this.redireccionHutcoinsMenuDesktop.bind(this));
+      this.btnMisPreferenciasMenuMobile.addEventListener('click', this.redireccionPreferenciasMenuDesktop.bind(this));
 
       document.addEventListener('click', this.detectarClickFueraDelInputBusqueda.bind(this));
       this.logoPrincipal.forEach((logo) => {
@@ -753,34 +762,44 @@
 
     redireccionPerfilMenuDesktop() {
       console.log('redireccionar a perfil');
+      this.contenedorMenuMobile.style.display = 'none';
       this.contenedorDisMenu.style.display = 'none';
       localStorage.setItem('pg-perfil-opcion', 'perfil');
       window.location.href = '/pages/perfil';
     }
 
     redireccionHistorialMenuDesktop() {
+      this.contenedorMenuMobile.style.display = 'none';
       this.contenedorDisMenu.style.display = 'none';
       localStorage.setItem('pg-perfil-opcion', 'historial');
       window.location.href = '/pages/perfil';
     }
 
     redireccionConfiguracionMenuDesktop() {
+      this.contenedorMenuMobile.style.display = 'none';
+
       this.contenedorDisMenu.style.display = 'none';
       localStorage.setItem('pg-perfil-opcion', 'configuracion');
       window.location.href = '/pages/perfil';
     }
 
     redireccionCuponesMenuDesktop() {
+      this.contenedorMenuMobile.style.display = 'none';
+
       this.contenedorDisMenu.style.display = 'none';
       window.location.href = '/pages/error-1';
     }
 
     redireccionHutcoinsMenuDesktop() {
+      this.contenedorMenuMobile.style.display = 'none';
+
       this.contenedorDisMenu.style.display = 'none';
       window.open('https://microsites.spnty.co/pizzahutbolivia/login', '_blank');
     }
 
     redireccionPreferenciasMenuDesktop() {
+      this.contenedorMenuMobile.style.display = 'none';
+
       this.contenedorDisMenu.style.display = 'none';
       window.location.href = '/pages/error-1';
     }
