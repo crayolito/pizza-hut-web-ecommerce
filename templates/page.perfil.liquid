@@ -3,279 +3,337 @@
 {{ 'page-mi-perfil.css' | asset_url | stylesheet_tag }}
 {{ 'page-checkout.css' | asset_url | stylesheet_tag }}
 
-<!-- SECTOR MOBIL -->
-<div class="ph-especial-header-mobile icon-color-tertiary">
-  {% render 'icon-volver-atras' %}
-  <small>MI PERFIL</small>
-  {% render 'icon-hamburguesa' %}
-</div>
-<!-- SECTOR DESKTOP -->
-<div class="phpp-container container-base">
-  <div class="phpp-container-izquierda">
-    <div class="phpp-containeri">
-      <div class="phpp-containeri-opciones">
-        <div class="ph-btn-primario seleccionado ">
-          {% render 'icon-cuenta-blanco' %}
-          <p>MI PERFIL</p>
-        </div>
-        <div class="ph-btn-primario icon-color-extra ">
-          {% render 'icon-historial' %}
-          <p>HISTORIAL DE PEDIDOS</p>
-        </div>
-        <div class="ph-btn-primario icon-color-extra">
-          {% render 'icon-cupon' %}
-          <p>CUPONES Y DESCUENTOS</p>
-        </div>
-        <div class="ph-btn-primario icon-color-extra">
-          {% render 'icon-pizza-metodo-entrega' %}
-          <p>HUT COINS</p>
-        </div>
-        <div class="ph-btn-primario icon-color-extra">
-          {% render 'icon-favorito' %}
-          <p>MIS PERFERENCIAS</p>
-        </div>
-        <div class="ph-btn-primario icon-color-extra">
-          {% render 'icon-configuracion' %}
-          <p>CONFIGURACIONES</p>
-        </div>
-      </div>
-      <button class="phpp-border-especial ph-btn-primario  icon-color-primary color-letras-primary">
-        {% render 'icon-cerrar-sesion' %}
-        <p>CERRAR SESION</p>
-      </button>
-    </div>
+<perfil-usuario>
+  <!-- SECTOR MOBIL -->
+  <div
+    id="phppu-header-movil"
+    class="ph-especial-header-mobile icon-color-tertiary"
+  >
+    <button id="phppu-headerm-atras">
+      {% render 'icon-volver-atras' %}
+    </button>
+    <small id="phppu-headerm-titulo">MI PERFIL</small>
+    <button id="phppu-headerm-menu">
+      {% render 'icon-hamburguesa' %}
+    </button>
   </div>
-  <div class="phpp-container-derecha">
-    {% comment %} MI PERFILL {% endcomment %}
-    <div class="phpp-containerd" style="display: none;">
-      <small class="phpp-titulo-base"> MI PERFIL </small>
-      <div class="phpp-container-informaicon-usuario">
-        <div class="phpp-info color-letras-extra">
-          <p>Nombres</p>
-          <p>Maria Jose</p>
+  <!-- SECTOR DESKTOP -->
+  <div class="phpp-container container-base">
+    <div class="phpp-container-izquierda">
+      <div class="phpp-containeri">
+        <div class="phpp-containeri-opciones">
+          <button
+            id="phppu-btn-menu-perfil"
+            class="ph-btn-primario  seleccionado "
+          >
+            {% render 'icon-cuenta-blanco' %}
+            <p>MI PERFIL</p>
+          </button>
+          <button class="ph-btn-primario phppu icon-color-extra ">
+            {% render 'icon-historial' %}
+            <p>HISTORIAL DE PEDIDOS</p>
+          </button>
+          <a
+            href="/pages/error-1"
+            class="ph-btn-primario phppu icon-color-extra"
+          >
+            {% render 'icon-cupon' %}
+            <p>CUPONES Y DESCUENTOS</p>
+          </a>
+          <a
+            href="https://microsites.spnty.co/pizzahutbolivia/login"
+            target="_blank"
+            class="ph-btn-primario phppu icon-color-extra"
+          >
+            {% render 'icon-pizza-metodo-entrega' %}
+            <p>HUT COINS</p>
+          </a>
+          <a
+            href="/pages/error-1"
+            class="ph-btn-primario icon-color-extra"
+          >
+            {% render 'icon-favorito' %}
+            <p>MIS PERFERENCIAS</p>
+          </a>
+          <button
+            id="phppu-btn-configuraciones"
+            class="ph-btn-primario icon-color-extra"
+          >
+            {% render 'icon-configuracion' %}
+            <p>CONFIGURACIONES</p>
+          </button>
         </div>
-        <div class="phpp-info color-letras-extra">
-          <p>Apellidos</p>
-          <p>Lopez</p>
-        </div>
-        <div class="phpp-info color-letras-extra">
-          <p>Celular</p>
-          <p>77453368</p>
-        </div>
-        <div class="phpp-info color-letras-extra">
-          <p>Numeor de Carnte de identidad (C.I.)</p>
-          <p>8177545 - U</p>
-        </div>
-        <div class="phpp-info color-letras-extra">
-          <p>Correo electronico</p>
-          <p>mlopez@gmail.com</p>
-        </div>
-        <div class="phpp-info color-letras-extra">
-          <p>Direccion de entrega</p>
-          <p>Barrio Santa Ana 1, Doble via a La Guardia</p>
-        </div>
-        <hr>
-        <button class="ph-btn-general color-letras-primary icon-color-primary">
-          <p>EDITAR PERFIL</p>
-          {% render 'icon-editar' %}
+        <button
+          id="phppu-btn-cerrar-sesion"
+          class="phpp-border-especial ph-btn-primario  icon-color-primary color-letras-primary"
+        >
+          {% render 'icon-cerrar-sesion' %}
+          <p>CERRAR SESION</p>
         </button>
       </div>
     </div>
-    {% comment %} HISTORIAL DE PEDIDOS {% endcomment %}
-    <div class="phpp-containerd" style="display: none;">
-      <small class="phpp-titulo-base"> HISTORIAL DE PEDIDOS </small>
-      <div class="phpp-container-historialde-pedidos">
-        <div class="phpp-hp-opciones-cliente">
-          <button class="phpp-ph-opcion seleccionado">
-            <p>TODO</p>
-          </button>
-          <button class="phpp-ph-opcion ">
-            <p>EN CAMINO</p>
-          </button>
-          <button class="phpp-ph-opcion ">
-            <p>ENTREGADO</p>
-          </button>
-          <button class="phpp-ph-opcion ">
-            <p>CANCELADO</p>
-          </button>
-        </div>
-        <div class="phpp-hp-detalle-producto-cliente">
-          <div class="phpp-hp-item-dp-cliente">
-            <div class="phpp-ihpdp-contexto">
-              <div class="phpp-hp-item-imgen">
-                <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
-              </div>
-              <div class="phpp-hp-item-info ">
-                <p>PIZZA SUPREME</p>
-                <p class="color-letras-extra">ID DE ORDEN #96459761</p>
-                <div class="phpp-ph-item-estado entregado">
-                  {% render 'icon-disponibilidad' %}
-                  <p>ENTREGADO</p>
-                </div>
-                <p class="color-letras-extra">26/10/2023 - 12:00</p>
-              </div>
-            </div>
-            <div class="phpp-ihpdp-opciones">
-              <button class="ph-btn-primario-desactivado">
-                <p>REPETIR PEDIDO</p>
-              </button>
-              <button class="ph-btn-secundario">
-                <p>VER DETALLE</p>
-              </button>
-            </div>
+    <div class="phpp-container-derecha">
+      {% comment %} MI PERFILL {% endcomment %}
+      <div class="phpp-containerd" id="phpp-cd-perfil">
+        <small class="phpp-titulo-base"> MI PERFIL </small>
+        <div class="phpp-container-informaicon-usuario">
+          <div class="phpp-info color-letras-extra">
+            <p>Nombres</p>
+            <p>Maria Jose</p>
           </div>
-          <div class="phpp-hp-item-dp-cliente">
-            <div class="phpp-ihpdp-contexto">
-              <div class="phpp-hp-item-imgen">
-                <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
-              </div>
-              <div class="phpp-hp-item-info ">
-                <p>PIZZA SUPREME</p>
-                <p class="color-letras-extra">ID DE ORDEN #96459761</p>
-                <div class="phpp-ph-item-estado encamino">
-                  {% render 'icon-disponibilidad' %}
-                  <p>ENTREGADO</p>
-                </div>
-                <p class="color-letras-extra">26/10/2023 - 12:00</p>
-              </div>
-            </div>
-            <div class="phpp-ihpdp-opciones">
-              <button class="ph-btn-primario-desactivado">
-                <p>REPETIR PEDIDO</p>
-              </button>
-              <button class="ph-btn-secundario">
-                <p>VER DETALLE</p>
-              </button>
-            </div>
+          <div class="phpp-info color-letras-extra">
+            <p>Apellidos</p>
+            <p>Lopez</p>
           </div>
-          <div class="phpp-hp-item-dp-cliente">
-            <div class="phpp-ihpdp-contexto">
-              <div class="phpp-hp-item-imgen">
-                <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
-              </div>
-              <div class="phpp-hp-item-info ">
-                <p>PIZZA SUPREME</p>
-                <p class="color-letras-extra">ID DE ORDEN #96459761</p>
-                <div class="phpp-ph-item-estado cancelado">
-                  {% render 'icon-disponibilidad' %}
-                  <p>ENTREGADO</p>
-                </div>
-                <p class="color-letras-extra">26/10/2023 - 12:00</p>
-              </div>
-            </div>
-            <div class="phpp-ihpdp-opciones">
-              <button class="ph-btn-primario-desactivado">
-                <p>REPETIR PEDIDO</p>
-              </button>
-              <button class="ph-btn-secundario">
-                <p>VER DETALLE</p>
-              </button>
-            </div>
+          <div class="phpp-info color-letras-extra">
+            <p>Celular</p>
+            <p>77453368</p>
           </div>
-          <div class="phpp-hp-item-dp-cliente">
-            <div class="phpp-ihpdp-contexto">
-              <div class="phpp-hp-item-imgen">
-                <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
-              </div>
-              <div class="phpp-hp-item-info ">
-                <p>PIZZA SUPREME</p>
-                <p class="color-letras-extra">ID DE ORDEN #96459761</p>
-                <div class="phpp-ph-item-estado entregado">
-                  {% render 'icon-disponibilidad' %}
-                  <p>ENTREGADO</p>
-                </div>
-                <p class="color-letras-extra">26/10/2023 - 12:00</p>
-              </div>
-            </div>
-            <div class="phpp-ihpdp-opciones">
-              <button class="ph-btn-primario-desactivado">
-                <p>REPETIR PEDIDO</p>
-              </button>
-              <button class="ph-btn-secundario">
-                <p>VER DETALLE</p>
-              </button>
-            </div>
+          <div class="phpp-info color-letras-extra">
+            <p>Numeor de Carnte de identidad (C.I.)</p>
+            <p>8177545 - U</p>
           </div>
-        </div>
-        <div class="phpp-hp-navegacion-items">
-          <button class="phpp-ni">
-            {%- render 'icon-volver-atras-ios' -%}
-            <p class="phpp-hpni-especial">ANTERIOR</p>
-          </button>
-          <button class="phpp-ni seleccionado">
-            <p>1</p>
-          </button>
-          <button class="phpp-ni">
-            <p>2</p>
-          </button>
-          <button class="phpp-ni">
-            <p>3</p>
-          </button>
-          <button class="phpp-ni">
-            <p>...</p>
-          </button>
-          <button class="phpp-ni">
-            <p>23</p>
-          </button>
-          <button class="phpp-ni activo">
-            <p class="phpp-hpni-especial">SIGUIENTE</p>
-            {% render 'icon-ir-adelante-ios' %}
+          <div class="phpp-info color-letras-extra">
+            <p>Correo electronico</p>
+            <p>mlopez@gmail.com</p>
+          </div>
+          <div class="phpp-info color-letras-extra">
+            <p>Direccion de entrega</p>
+            <p>Barrio Santa Ana 1, Doble via a La Guardia</p>
+          </div>
+          <hr>
+          <button class="ph-btn-general color-letras-primary icon-color-primary">
+            <p>EDITAR PERFIL</p>
+            {% render 'icon-editar' %}
           </button>
         </div>
       </div>
-    </div>
-    {% comment %} CONFIGURACIONES {% endcomment %}
-    <div class="phpp-containerd">
-      <small class="phpp-titulo-base"> HISTORIAL DE PEDIDOS </small>
-      <div class="phpp-container-configuraciones">
-        <div class="phpp-cc-opciones1">
-          <div class="phpp-cc-notifi">
-            <h3>NOTIFICACIONES</h3>
-            <p>RECIBIR NOTIFICACIONES</p>
+      {% comment %} HISTORIAL DE PEDIDOS {% endcomment %}
+      <div class="phpp-containerd" id="phpp-cd-historial">
+        <small class="phpp-titulo-base"> HISTORIAL DE PEDIDOS </small>
+        <div class="phpp-container-historialde-pedidos">
+          <div class="phpp-hp-opciones-cliente">
+            <button class="phpp-ph-opcion seleccionado">
+              <p>TODO</p>
+            </button>
+            <button class="phpp-ph-opcion ">
+              <p>EN CAMINO</p>
+            </button>
+            <button class="phpp-ph-opcion ">
+              <p>ENTREGADO</p>
+            </button>
+            <button class="phpp-ph-opcion ">
+              <p>CANCELADO</p>
+            </button>
           </div>
-          <div class="phpp-cc-estado">
-            <h3>ESTADO</h3>
-            <label class="toggle">
-              <input type="checkbox">
-              <span class="slider"></span>
-            </label>
+          <div class="phpp-hp-detalle-producto-cliente">
+            <div class="phpp-hp-item-dp-cliente">
+              <div class="phpp-ihpdp-contexto">
+                <div class="phpp-hp-item-imgen">
+                  <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+                </div>
+                <div class="phpp-hp-item-info ">
+                  <p>PIZZA SUPREME</p>
+                  <p class="color-letras-extra">ID DE ORDEN #96459761</p>
+                  <div class="phpp-ph-item-estado entregado">
+                    {% render 'icon-disponibilidad' %}
+                    <p>ENTREGADO</p>
+                  </div>
+                  <p class="color-letras-extra">26/10/2023 - 12:00</p>
+                </div>
+              </div>
+              <div class="phpp-ihpdp-opciones">
+                <button class="ph-btn-primario-desactivado">
+                  <p>REPETIR PEDIDO</p>
+                </button>
+                <button class="ph-btn-secundario">
+                  <p>VER DETALLE</p>
+                </button>
+              </div>
+            </div>
+            <div class="phpp-hp-item-dp-cliente">
+              <div class="phpp-ihpdp-contexto">
+                <div class="phpp-hp-item-imgen">
+                  <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+                </div>
+                <div class="phpp-hp-item-info ">
+                  <p>PIZZA SUPREME</p>
+                  <p class="color-letras-extra">ID DE ORDEN #96459761</p>
+                  <div class="phpp-ph-item-estado encamino">
+                    {% render 'icon-disponibilidad' %}
+                    <p>ENTREGADO</p>
+                  </div>
+                  <p class="color-letras-extra">26/10/2023 - 12:00</p>
+                </div>
+              </div>
+              <div class="phpp-ihpdp-opciones">
+                <button class="ph-btn-primario-desactivado">
+                  <p>REPETIR PEDIDO</p>
+                </button>
+                <button class="ph-btn-secundario">
+                  <p>VER DETALLE</p>
+                </button>
+              </div>
+            </div>
+            <div class="phpp-hp-item-dp-cliente">
+              <div class="phpp-ihpdp-contexto">
+                <div class="phpp-hp-item-imgen">
+                  <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+                </div>
+                <div class="phpp-hp-item-info ">
+                  <p>PIZZA SUPREME</p>
+                  <p class="color-letras-extra">ID DE ORDEN #96459761</p>
+                  <div class="phpp-ph-item-estado cancelado">
+                    {% render 'icon-disponibilidad' %}
+                    <p>ENTREGADO</p>
+                  </div>
+                  <p class="color-letras-extra">26/10/2023 - 12:00</p>
+                </div>
+              </div>
+              <div class="phpp-ihpdp-opciones">
+                <button class="ph-btn-primario-desactivado">
+                  <p>REPETIR PEDIDO</p>
+                </button>
+                <button class="ph-btn-secundario">
+                  <p>VER DETALLE</p>
+                </button>
+              </div>
+            </div>
+            <div class="phpp-hp-item-dp-cliente">
+              <div class="phpp-ihpdp-contexto">
+                <div class="phpp-hp-item-imgen">
+                  <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+                </div>
+                <div class="phpp-hp-item-info ">
+                  <p>PIZZA SUPREME</p>
+                  <p class="color-letras-extra">ID DE ORDEN #96459761</p>
+                  <div class="phpp-ph-item-estado entregado">
+                    {% render 'icon-disponibilidad' %}
+                    <p>ENTREGADO</p>
+                  </div>
+                  <p class="color-letras-extra">26/10/2023 - 12:00</p>
+                </div>
+              </div>
+              <div class="phpp-ihpdp-opciones">
+                <button class="ph-btn-primario-desactivado">
+                  <p>REPETIR PEDIDO</p>
+                </button>
+                <button class="ph-btn-secundario">
+                  <p>VER DETALLE</p>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="phpp-hp-navegacion-items">
+            <button class="phpp-ni">
+              {%- render 'icon-volver-atras-ios' -%}
+              <p class="phpp-hpni-especial">ANTERIOR</p>
+            </button>
+            <button class="phpp-ni seleccionado">
+              <p>1</p>
+            </button>
+            <button class="phpp-ni">
+              <p>2</p>
+            </button>
+            <button class="phpp-ni">
+              <p>3</p>
+            </button>
+            <button class="phpp-ni">
+              <p>...</p>
+            </button>
+            <button class="phpp-ni">
+              <p>23</p>
+            </button>
+            <button class="phpp-ni activo">
+              <p class="phpp-hpni-especial">SIGUIENTE</p>
+              {% render 'icon-ir-adelante-ios' %}
+            </button>
           </div>
         </div>
-        <div class="phpp-cc-opciones2">
-          <h3>INFORMACION LEGAL</h3>
-          <div class="phpp-cc-estado">
-            <button class="phpp-cc-estado-item icon-color-primary">
-              <p class="color-letras-primary">TERMINOS Y CONDICIONES</p>
-              {% render 'icon-flecha-derecha' %}
-            </button>
-            <button class="phpp-cc-estado-item icon-color-primary">
-              <p class="color-letras-primary">POLITICAS DE PRIVACIDAD</p>
-              {% render 'icon-flecha-derecha' %}
-            </button>
-            <button class="phpp-cc-estado-item icon-color-primary">
-              <p class="color-letras-primary">POLITICAS DE HUT COINS</p>
-              {% render 'icon-flecha-derecha' %}
-            </button>
+      </div>
+      {% comment %} CONFIGURACIONES {% endcomment %}
+      <div class="phpp-containerd" id="phpp-cd-configuraciones">
+        <small class="phpp-titulo-base"> HISTORIAL DE PEDIDOS </small>
+        <div class="phpp-container-configuraciones">
+          <div class="phpp-cc-opciones1">
+            <div class="phpp-cc-notifi">
+              <h3>NOTIFICACIONES</h3>
+              <p>RECIBIR NOTIFICACIONES</p>
+            </div>
+            <div class="phpp-cc-estado">
+              <h3>ESTADO</h3>
+              <label class="toggle">
+                <input type="checkbox">
+                <span class="slider"></span>
+              </label>
+            </div>
           </div>
-        </div>
-        <div class="phpp-cc-opciones3">
-          <h3>CONTACTO CON SOPORTE</h3>
-          <div class="phpp-cc-estado3">
-            <button class="phpp-cc-estado-item3 icon-color-primary ">
-              {% render 'icon-headser-mic' %}
-              <p class="color-letras-primary">CONTACTANOS POR WHATSSAP</p>
-            </button>
-            <button class="phpp-cc-estado-item3 icon-color-primary">
-              {% render 'icon-correo' %}
-              <p class="color-letras-primary">ESCRIBENOS POR CORREO</p>
-            </button>
+          <div class="phpp-cc-opciones2">
+            <h3>INFORMACION LEGAL</h3>
+            <div class="phpp-cc-estado">
+              <button class="phpp-cc-estado-item icon-color-primary">
+                <p class="color-letras-primary">TERMINOS Y CONDICIONES</p>
+                {% render 'icon-flecha-derecha' %}
+              </button>
+              <button class="phpp-cc-estado-item icon-color-primary">
+                <p class="color-letras-primary">POLITICAS DE PRIVACIDAD</p>
+                {% render 'icon-flecha-derecha' %}
+              </button>
+              <button class="phpp-cc-estado-item icon-color-primary">
+                <p class="color-letras-primary">POLITICAS DE HUT COINS</p>
+                {% render 'icon-flecha-derecha' %}
+              </button>
+            </div>
           </div>
+          <div class="phpp-cc-opciones3">
+            <h3>CONTACTO CON SOPORTE</h3>
+            <div class="phpp-cc-estado3">
+              <button class="phpp-cc-estado-item3 icon-color-primary ">
+                {% render 'icon-headser-mic' %}
+                <p class="color-letras-primary">CONTACTANOS POR WHATSSAP</p>
+              </button>
+              <button class="phpp-cc-estado-item3 icon-color-primary">
+                {% render 'icon-correo' %}
+                <p class="color-letras-primary">ESCRIBENOS POR CORREO</p>
+              </button>
+            </div>
+          </div>
+          <button class="ph-btn-secundario">
+            {% render 'icon-basura' %}
+            <p>ELIMINAR CUENTA</p>
+          </button>
         </div>
-        <button class="ph-btn-secundario">
-          {% render 'icon-basura' %}
-          <p>ELIMINAR CUENTA</p>
-        </button>
       </div>
     </div>
   </div>
-</div>
+</perfil-usuario>
+
+<script>
+  class PerfilUsuario extends HTMLElement {
+    contructor() {
+      super();
+    }
+
+    connectedCallback() {
+      // REFERENCIAS ELEMENTOS
+      // MOBIL
+      this.headerMobil = document.getElementById('phppu-header-movil');
+      this.btnAtrasHeader = document.getElementById('phppu-headerm-atras');
+      this.btnMenuHeader = document.getElementById('phppu-headerm-menu');
+      this.tituloHeaderMobil = document.getElementById('phppu-headerm-titulo');
+      // DESKTOP
+      this.btnSectorIPerfil = document.getElementById('phppu-btn-menu-perfil');
+      this.btnSectorIHistorial = document.getElementById('phppu-btn-historial');
+      this.btnSectorIConfiguraciones = document.getElementById('phppu-btn-configuraciones');
+      this.seccionPerfil = document.getElementById('phpp-cd-perfil');
+      this.seccionHistorial = document.getElementById('phpp-cd-historial');
+      this.seccionConfiguraciones = document.getElementById('phpp-cd-configuraciones');
+
+      // EVENTOS INICIALIZAR
+
+      // INICIALIZAR ELEMENTOS Y PROCESOS CLAVES
+    }
+  }
+
+  customElements.define('perfil-usuario', PerfilUsuario);
+</script>
