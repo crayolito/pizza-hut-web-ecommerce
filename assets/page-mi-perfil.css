@@ -164,7 +164,7 @@
 }
 
 .phpp-ph-opcion p {
-  color: var(--colorp-primary);
+  color: var(--colorp-extra);
   font-weight: 700;
 }
 
@@ -617,10 +617,6 @@ input:checked + .slider:before {
 
   .phpp-border-especial {
     justify-content: center !important;
-  }
-
-  .ph-btn-primario p {
-    color: var(--colorp-extra);
   }
 
   .ph-btn-general {
