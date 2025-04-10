@@ -390,49 +390,51 @@
             </button>
           </div>
           <!-- DESKTOP NO INICIADO SESION -->
-          <div
-            id="h-dnis-opciones-usuario"
-            class="h-opciones-usuario"
-          >
-            <a
-              href="/pages/carrito"
-              id="h-nism-historial-pedidos"
-              class="h-opcion-usuario icon-color-tertiary"
+          {% comment %}
+            <div
+              id="h-dnis-opciones-usuario"
+              class="h-opciones-usuario"
             >
-              {% render 'icon-carrito' %}
-              <p>CARRITO (2)</p>
-            </a>
-            <a
-              href="/pages/menu"
-              target="_blank"
-              class="h-opcion-usuario icon-color-tertiary"
-            >
-              <p>MENU</p>
-            </a>
-            <a
-              href="https://microsites.spnty.co/pizzahutbolivia/login"
-              target="_blank"
-              class="h-opcion-usuario icon-color-tertiary"
-            >
-              <p>HUT COINTS</p>
-              {% render 'icon-flecha-hutcoins' %}
-            </a>
-            <a
-              href="/pages/sobre-nosotros"
-              class="h-opcion-usuario icon-color-tertiary"
-            >
-              <p>SOBRE NOSOTROS</p>
-            </a>
-            <hr>
-            <a
-              href="/pages/iniciar-sesion"
-              id="h-nism-iniciar-sesion"
-              class="h-opcion-usuario icon-color-primary"
-            >
-              {% render 'icon-iniciar-cerrar' %}
-              <p class="color-letras-primary">INICIAR SESION</p>
-            </a>
-          </div>
+              <a
+                href="/pages/carrito"
+                id="h-nism-historial-pedidos"
+                class="h-opcion-usuario icon-color-tertiary"
+              >
+                {% render 'icon-carrito' %}
+                <p>CARRITO (2)</p>
+              </a>
+              <a
+                href="/pages/menu"
+                target="_blank"
+                class="h-opcion-usuario icon-color-tertiary"
+              >
+                <p>MENU</p>
+              </a>
+              <a
+                href="https://microsites.spnty.co/pizzahutbolivia/login"
+                target="_blank"
+                class="h-opcion-usuario icon-color-tertiary"
+              >
+                <p>HUT COINTS</p>
+                {% render 'icon-flecha-hutcoins' %}
+              </a>
+              <a
+                href="/pages/sobre-nosotros"
+                class="h-opcion-usuario icon-color-tertiary"
+              >
+                <p>SOBRE NOSOTROS</p>
+              </a>
+              <hr>
+              <a
+                href="/pages/iniciar-sesion"
+                id="h-nism-iniciar-sesion"
+                class="h-opcion-usuario icon-color-primary"
+              >
+                {% render 'icon-iniciar-cerrar' %}
+                <p class="color-letras-primary">INICIAR SESION</p>
+              </a>
+            </div>
+          {% endcomment %}
         </section>
         <!-- ESTADO USUARIO NO INICIADO SESION -->
       </div>
@@ -524,7 +526,7 @@
       this.containerInputBusqueda = document.querySelector('#h-container-input-search');
       this.inputBusqueda = document.querySelector('#h-input-buscar');
       this.contenedorDisMenu = document.getElementById('h-dis-opciones-usuario');
-      this.contenedorDnisMenu = document.getElementById('h-dnis-opciones-usuario');
+      {% comment %} this.contenedorDnisMenu = document.getElementById('h-dnis-opciones-usuario'); {% endcomment %}
       // TESTEO DE PRUEBA
       this.itemMenuDesplegable = document.querySelectorAll('.h-menu-opciones-productos-item');
 
@@ -560,7 +562,7 @@
       this.contenedorIsMenu.style.display = 'none';
       this.contenedorNisMenu.style.display = 'none';
       this.contenedorDisMenu.style.display = 'none';
-      this.contenedorDnisMenu.style.display = 'none';
+      {% comment %} this.contenedorDnisMenu.style.display = 'none'; {% endcomment %}
       this.verificarEstadoSesion();
       this.verificarEstadoEntrega();
     }
@@ -666,31 +668,31 @@
     }
 
     detectarClickFueraDelInputBusqueda(event) {
-      let estaAbierto;
-      let btnMenuDesktopClicked =
-        event.target === this.btnOpcionOnSesion || this.btnOpcionOnSesion.contains(event.target);
+        // Verificar si el clic fue en el botón del menú o dentro de él
+        let btnMenuDesktopClicked =
+          event.target === this.btnOpcionOnSesion || this.btnOpcionOnSesion.contains(event.target);
 
-      estaAbierto = this.contenedorResultadoBusqueda.style.display == 'flex';
-      if (estaAbierto) {
-        if (event.target !== this.sectorGeneralBusqueda && !this.sectorGeneralBusqueda.contains(event.target)) {
-          console.log('click fuera del input y contenedor de resultados');
-          this.contenedorResultadoBusqueda.style.display = 'none';
+        // Verificar estado del contenedor de resultados de búsqueda
+        let estaAbiertoBusqueda = this.contenedorResultadoBusqueda.style.display == 'flex';
+        if (estaAbiertoBusqueda) {
+          if (event.target !== this.sectorGeneralBusqueda && !this.sectorGeneralBusqueda.contains(event.target)) {
+            this.contenedorResultadoBusqueda.style.display = 'none';
+          }
         }
-      }
 
-      estaAbierto = this.contenedorDisMenu.style.display == 'flex';
-      if (!btnMenuDesktopClicked && estaAbierto) {
-        if (event.target !== this.contenedorDisMenu && !this.contenedorDisMenu.contains(event.target)) {
+        // Verificar estado del menú
+        let estaAbiertoMenu = this.contenedorDisMenu.style.display == 'flex';
+
+        // Si se hizo clic en el botón del menú y el menú está abierto, cerrarlo
+        if (btnMenuDesktopClicked && estaAbiertoMenu) {
           this.contenedorDisMenu.style.display = 'none';
         }
-      }
-
-      estaAbierto = this.contenedorDnisMenu.style.display == 'flex';
-      if (!btnMenuDesktopClicked && estaAbierto) {
-        if (event.target !== this.contenedorDnisMenu && !this.contenedorDnisMenu.contains(event.target)) {
-          this.contenedorDnisMenu.style.display = 'none';
+        // Si se hizo clic fuera del menú y el menú está abierto, cerrarlo
+        else if (!btnMenuDesktopClicked && estaAbiertoMenu) {
+          if (event.target !== this.contenedorDisMenu && !this.contenedorDisMenu.contains(event.target)) {
+            this.contenedorDisMenu.style.display = 'none';
+          }
         }
-      }
     }
 
     redireccionarCarrito() {

@@ -640,7 +640,8 @@
     justify-content: start;
     flex: 1 1 calc(50% - 1rem);
     order: 1;
-    padding: var(--espaciado-xxl);
+    /* padding: var(--espaciado-xxl); */
+    padding: 0 var(--espaciado-xxl);
   }
 
   .psme-rl-locales {
