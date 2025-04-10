@@ -23,7 +23,10 @@
       id="phppu-menu-general"
       class="phpp-container-izquierda"
     >
-      <div class="phpp-containeri">
+      <div
+        id="phppu-menu-general-body"
+        class="phpp-containeri"
+      >
         <div class="phpp-containeri-opciones">
           <button
             id="phppu-btn-menu-perfil"
@@ -329,6 +332,7 @@
     connectedCallback() {
       // REFERENCIAS ELEMENTOS
       this.menuGeneralSector = document.getElementById('phppu-menu-general');
+      this.menuGeneralBody = document.getElementById('phppu-menu-general-body');
       // MOBIL
       this.headerMobil = document.getElementById('phppu-header-movil');
       this.btnAtrasHeader = document.getElementById('phppu-headerm-atras');
@@ -347,6 +351,8 @@
       this.btnSectorIHistorial.addEventListener('click', this.seleccionOpcionMenu.bind(this));
       this.btnSectorIConfiguraciones.addEventListener('click', this.seleccionOpcionMenu.bind(this));
       this.btnMenuHeader.addEventListener('click', this.manipulacionContenedorMenu.bind(this));
+      document.addEventListener('click', this.detectarClickEspeciales.bind(this)(event));
+
       // INICIALIZAR ELEMENTOS Y PROCESOS CLAVES
       this.menuGeneralSector.style.display = 'none';
       this.seccionPerfil.style.display = 'none';
@@ -411,9 +417,23 @@
     manipulacionContenedorMenu() {
       if (this.menuGeneralSector.style.display == 'none') {
         this.menuGeneralSector.style.display = 'flex';
-      } else {
-        this.menuGeneralSector.style.display = 'none';
       }
+    }
+
+    detectarClickEspeciales() {
+      // Elemento general que contiene el background
+      const menuGeneralSector = this.menuGeneralSector;
+      // Elemento contenido modal (el body)
+      const menuGeneralBody = this.menuGeneralBody;
+
+      // Detectar clic en el sector general (background)
+      menuGeneralSector.addEventListener('click', (event) => {
+        // Verificar si el clic fue directamente en el background y no en el body
+        if (event.target === menuGeneralSector && !menuGeneralBody.contains(event.target)) {
+          // Ocultar el modal cambiando display a none
+          menuGeneralSector.style.display = 'none';
+        }
+      });
     }
   }
 
