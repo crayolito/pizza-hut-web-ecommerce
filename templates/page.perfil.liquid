@@ -313,7 +313,10 @@
               </button>
             </div>
           </div>
-          <button class="ph-btn-secundario">
+          <button
+            id="phppu-btn-eliminar-cuenta"
+            class="ph-btn-secundario"
+          >
             {% render 'icon-basura' %}
             <p>ELIMINAR CUENTA</p>
           </button>
@@ -345,12 +348,16 @@
       this.seccionPerfil = document.getElementById('phpp-cd-perfil');
       this.seccionHistorial = document.getElementById('phpp-cd-historial');
       this.seccionConfiguraciones = document.getElementById('phpp-cd-configuraciones');
+      this.btnCerrarSesion = document.getElementById('phppu-btn-cerrar-sesion');
+      this.btnEliminarCuenta = document.getElementById('phppu-btn-eliminar-cuenta');
 
       // EVENTOS INICIALIZAR
       this.btnSectorIPerfil.addEventListener('click', this.seleccionOpcionMenu.bind(this));
       this.btnSectorIHistorial.addEventListener('click', this.seleccionOpcionMenu.bind(this));
       this.btnSectorIConfiguraciones.addEventListener('click', this.seleccionOpcionMenu.bind(this));
       this.btnMenuHeader.addEventListener('click', this.manipulacionContenedorMenu.bind(this));
+      this.btnCerrarSesion.addEventListener('click', this.cerrarSesion.bind(this));
+      this.btnEliminarCuenta.addEventListener('click', this.eliminarCuenta.bind(this));
       document.addEventListener('click', this.detectarClickEspeciales.bind(this)(event));
 
       // INICIALIZAR ELEMENTOS Y PROCESOS CLAVES
@@ -370,7 +377,7 @@
 
       if (dataPerfil == 'perfil') {
         this.btnSectorIPerfil.classList.add('seleccionado');
-        this.seccionPerfil.style.display = 'grid';
+        this.seccionPerfil.style.display = 'flex';
         this.tituloHeaderMobil.innerText = 'MI PERFIL';
       } else if (dataPerfil == 'historial') {
         this.btnSectorIHistorial.classList.add('seleccionado');
@@ -434,6 +441,20 @@
           menuGeneralSector.style.display = 'none';
         }
       });
+    }
+
+    cerrarSesion() {
+      localStorage.removeItem('datos-usuario');
+      localStorage.removeItem('pg-perfil-opcion');
+      localStorage.removeItem('direccion-cliente');
+      window.location.href = '/';
+    }
+
+    eliminarCuenta() {
+      localStorage.removeItem('datos-usuario');
+      localStorage.removeItem('pg-perfil-opcion');
+      localStorage.removeItem('direccion-cliente');
+      window.location.href = '/';
     }
   }
 
