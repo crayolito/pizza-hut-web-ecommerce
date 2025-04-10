@@ -532,7 +532,7 @@
     procesoFormulario() {
       const estaHabilitado = this.btnContinuar.classList.contains('desactivado');
       const estaHabilitado2 = this.btnInfoHutCoins.classList.contains('activado');
-      console.log('Estado del botón continuar:', estaHabilitado);
+      console.log('Estado del botón continuar:', !estaHabilitado);
       console.log('Estado del botón de información:', estaHabilitado2);
       if (!estaHabilitado && estaHabilitado2) {
         this.modalSnipper.style.display = 'flex';
