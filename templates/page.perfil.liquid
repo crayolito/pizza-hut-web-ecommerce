@@ -356,6 +356,7 @@
     }
 
     inicializarDatosAlmacenados() {
+      const dataPerfil = localStorage.getItem('pg-perfil-opcion');
       console.log('inicializando datos almacenados');
       if (dataPerfil == null) {
         window.location.href = '/';
