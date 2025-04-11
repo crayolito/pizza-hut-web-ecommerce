@@ -530,7 +530,7 @@
       // EVENTOS INICIALIZAR
       this.resultadosSeccionVariantes.forEach((elementoBase) => {
         elementoBase.addEventListener('click', (event) => {
-          this.alternarDropdown(elementoBase);
+          this.alternarContenedorViewVariantes(elementoBase);
         });
       });
       document.addEventListener('click', this.clickEspeciales.bind(this));
@@ -619,21 +619,22 @@
       } {% endcomment %}
     }
 
-    alternarDropdown(elementoBase) {
-      console.log('Elemento Base:', elementoBase);
-      {% comment %} asdasd {% endcomment %}
-      {% comment %} if (elementoBase.style.display == 'flex') {
-        elementoBase.style.display = 'none';
-      } else {
-        elementoBase.style.display = 'flex';
-      } {% endcomment %}
+    alternarContenedorViewVariantes(elementoBase) {
+      // El elementoBase es el id="phsp-view-variantes"
+      const padreContenedor = elementoBase.closest('#phsp-general-variantes');
+      const contenedorVariantes = padreContenedor.querySelector('#phsp-items-variantes');
 
-      {% comment %} this.dropdownsVariantes.forEach((elementoHermano) => {
-        if (elementoHermano != elementoBase) {
-          console.log('Elemento Hermanoo:', elementoHermano);
+       if (contenedorVariantes.style.display == 'flex') {
+        contenedorVariantes.style.display = 'none';
+      } else {
+        contenedorVariantes.style.display = 'flex';
+      }
+
+       this.resultadosSeccionVariantes.forEach((elementoTrabajo) => {
+        if (elementoTrabajo != elementoBase) {
           elementoHermano.style.display = 'none';
         }
-      }); {% endcomment %}
+      });
     }
   }
 
