@@ -6,7 +6,9 @@
     <div class="sp-container-base-body">
       <!-- CUANDO SE ENCUENTRAN PRODUCTOS -->
       <div class="container-productos-general">
-        <div class="producto-item">
+        <div
+          class="producto-item"
+        >
           <div class="producto-item-imagen">
             <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
           </div>
@@ -18,15 +20,25 @@
             </p>
           </div>
           <h3 class="color-letras-primary">12.56 BS</h3>
-          <div class="seleccion-variante-producto-general">
+          <div
+            id="phsp-general-variantes"
+            tipo-producto="simple"
+            class="seleccion-variante-producto-general"
+          >
             <p>Tamaño</p>
-            <div class="container-info-variante">
-              <p>Pequeño</p>
-              <div class="icono-dropdown-variantes icon-color-terciari">
+            <button
+              id="phsp-view-variantes"
+              class="container-info-variante"
+            >
+              <p id="phsp-variante-seleccionado">Pequeño</p>
+              <div class="icono-dropdown-variantes icon-color-tertiary">
                 {% render 'icon-flecha-abajo' %}
               </div>
-            </div>
-            <div class="variantes-producto">
+            </button>
+            <div
+              id="phsp-items-variantes"
+              class="variantes-producto"
+            >
               <div class="variante-producto-item">
                 <p>Familiar</p>
                 <p class="color-letras-primary">12.56 BS</p>
@@ -479,8 +491,57 @@
 
     connectedCallback() {
       // REFERENCIAS ELEMENTOS
+      this.resultadosSeccionVariantes = this.querySelectorAll('#phsp-items-variantes');
+
       // EVENTOS INICIALIZAR
+      this.resultadosSeccionVariantes.forEach((elementoInicial) => {
+        element.addEventListener('click', (event) => {
+          this.procesoVariantes(event, elementoInicial);
+        });
+      });
       // INICIALIZAR ELEMENTOS Y PROCESOS CLAVES
+    }
+
+    procesoVariantes(event, elementoInicial) {
+      // Del elemento inicial busco el padre para arriba optengo como elemento
+      const contenedorPadre = elementoInicial.closest('#phsp-general-variantes');
+
+      // Despues busco la etiqueta (p) donde se va a mostrar la variante seleccionada
+      const etiquetaEscogido = contenedorPadre
+        .querySelector('#phsp-view-variantes')
+        .querySelector('#phsp-variante-seleccionado');
+
+      // Busco al contenedor donde estan a la vista (variantes) para seleccionar
+      const dropdownVariantes = contenedorPadre.querySelector('#phsp-items-variantes');
+
+      // Verifico si el elemento clicado es el botón para abrir/cerrar el dropdown
+      const botonVerVariantes = contenedorPadre.querySelector('#phsp-view-variantes');
+
+      if (event.target == botonVerVariantes || botonVerVariantes.contains(event.target)) {
+        // Si se hizo click en el botón, toggle el dropdown (mostrar/ocultar)
+        if (dropdownVariantes.style.display == 'flex') {
+          dropdownVariantes.style.display = 'none';
+        } else {
+          dropdownVariantes.style.display = 'flex';
+        }
+        return; // Terminar la función aquí
+      }
+
+      // Verifico si el click fue en algun elemento con clase "variante-producto-item" o en algunos de sus hijos
+      const elementoClicado = event.target;
+      const itemVariante = elementoClicado.closest('.variante-producto-item');
+
+      if (itemVariante) {
+        // Si el elemento clicado es un hijo de variante-producto-item
+        // Obtengo el texto del primer hijo p
+        const primerEtiquetaP = itemVariante.querySelector('p');
+
+        // Si se encontro un elemento de variante
+        if (primerEtiquetaP) {
+          etiquetaEscogido.textContent = primerEtiquetaP.textContent;
+          dropdownVariantes.style.display = 'none';
+        }
+      }
     }
   }
 </script>
