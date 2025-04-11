@@ -263,6 +263,7 @@
       console.log('inicializando data local storage');
       const datosUsuario = JSON.parse(localStorage.getItem('datos-usuario'));
       const direccion = localStorage.getItem('direccion-cliente');
+      console.log('Direccion: ', direccion);
 
       if (datosUsuario.celular == null || direccion == null) {
         window.location.href = '/';
@@ -282,6 +283,8 @@
       inputs.celular.value = datosUsuario.celular;
       inputs.ci.value = datosUsuario.ci;
       this.inputDireccion.value = direccion;
+
+      this.verificiarValidacion();
     }
 
     configurarAutocompletadoDirecciones() {
