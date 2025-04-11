@@ -379,8 +379,10 @@
       this.btnCerrarSesion.addEventListener('click', this.cerrarSesion.bind(this));
       this.btnEliminarCuenta.addEventListener('click', this.eliminarCuenta.bind(this));
       this.btnCheckboxEstado.addEventListener('change', this.solicitarNotificaciones.bind(this));
-      this.btnsVerDetalle.addEventListener('click', () => {
-        window.location.href = '/pages/detalle-pedido';
+      this.btnsVerDetalle.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          window.location.href = '/pages/detalle-pedido';
+        });
       });
       document.addEventListener('click', this.detectarClickEspeciales.bind(this)(event));
 
