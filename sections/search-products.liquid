@@ -575,10 +575,10 @@
         item.addEventListener('click', (event) => {
           // Obtiene el texto del primer elemento <p> dentro del item
           const nombreVariante = item.querySelector('p:first-child').innerText;
-          console.log('Variante Seleccionada :', nombreVariante);
 
           etiquetaEscogido.innerText = nombreVariante;
           dropdownVariantes.style.display = 'none';
+          console.log('Variante Seleccionada :', nombreVariante);
         });
       });
     }
