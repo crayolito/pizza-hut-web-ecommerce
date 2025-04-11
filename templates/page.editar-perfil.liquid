@@ -260,9 +260,9 @@
 
     inicializarDataLocalStorage() {
       const datosUsuario = localStorage.getItem('datosUsuario');
-      cons direccion = localStorage.getItem('direccion-cliente');
+      const direccion = localStorage.getItem('direccion-cliente');
 
-      if(datosUsuario.celular == null || direccion == null) {
+      if (datosUsuario.celular == null || direccion == null) {
         window.location.href = '/';
       }
 
@@ -271,7 +271,7 @@
         apellido: this.inputApellido,
         email: this.inputEmail,
         celular: this.inputCelular,
-        ci: this.inputCi
+        ci: this.inputCi,
       };
 
       inputs.nombre.value = datosUsuario.nombre;
@@ -413,8 +413,10 @@
         input.value = valorFiltrado;
 
         // Ajusta la posición del cursor
-        input.setSelectionRange(cursorPos - (valorOriginal.length - valorFiltrado.length),
-                              cursorPos - (valorOriginal.length - valorFiltrado.length));
+        input.setSelectionRange(
+          cursorPos - (valorOriginal.length - valorFiltrado.length),
+          cursorPos - (valorOriginal.length - valorFiltrado.length)
+        );
       }
     }
 
@@ -422,7 +424,7 @@
       this.modalDarDireccion.style.display = 'none';
     }
 
-    clickEspeciales(event){
+    clickEspeciales(event) {
       const contenedorBackgroundSnipper = this.modalSnipper;
       const bodySnipper = this.modalSnipperBody;
 
@@ -433,17 +435,10 @@
       });
     }
 
-    verificiarValidacion(){
-      const inputsForm = [
-        this.inputNombre,
-        this.inputApellido,
-        this.inputEmail,
-        this.inputCelular,
-        this.inputCi
-      ];
+    verificiarValidacion() {
+      const inputsForm = [this.inputNombre, this.inputApellido, this.inputEmail, this.inputCelular, this.inputCi];
 
-
-      const todosValidos = inputsForm.every(input => input.value.trim() !== '');
+      const todosValidos = inputsForm.every((input) => input.value.trim() !== '');
 
       if (todosValidos) {
         this.btnContinuar.classList.remove('desactivado');
