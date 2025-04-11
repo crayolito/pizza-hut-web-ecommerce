@@ -641,11 +641,11 @@ input:checked + .slider:before {
 
 @media screen and (min-width: 1024px) {
   .phpp-container-configuraciones {
-    margin-top: 8rem;
+    /* margin-top: 8rem; */
   }
 
   .phpp-container-historialde-pedidos {
-    margin-top: 8rem;
+    /* margin-top: 8rem; */
   }
 
   .phpp-container {
