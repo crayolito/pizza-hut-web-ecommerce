@@ -381,6 +381,8 @@
       this.btnCheckboxEstado.addEventListener('change', this.solicitarNotificaciones.bind(this));
       this.btnsVerDetalle.forEach((btn) => {
         btn.addEventListener('click', () => {
+          localStorage.setItem('ph-estadoDP', 'etapa-2');
+          localStorage.setItem('ph-origenHistorial', 'true');
           window.location.href = '/pages/detalle-pedido';
         });
       });
