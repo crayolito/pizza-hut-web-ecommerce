@@ -395,7 +395,7 @@
     }
 
     inicializarDatosAlmacenados() {
-      const datosUsuario = JSON.parse(localStorage.getItem('direccion-cliente'));
+      const datosUsuario = JSON.parse(localStorage.getItem('datos-usuario'));
       const dataPerfil = localStorage.getItem('pg-perfil-opcion');
       console.log('inicializando datos almacenados');
       if (dataPerfil == null) {

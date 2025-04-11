@@ -380,59 +380,14 @@
             </button>
             <hr>
             <button
-              id="h-ism-cerrar-sesion"
+              id="h-dism-cerrar-sesion"
               class="h-opcion-usuario icon-color-primary"
             >
               {% render 'icon-iniciar-cerrar' %}
               <p class="color-letras-primary">CERRAR SESION</p>
             </button>
           </div>
-          <!-- DESKTOP NO INICIADO SESIONN -->
-          {% comment %}
-            <div
-              id="h-dnis-opciones-usuario"
-              class="h-opciones-usuario"
-            >
-              <a
-                href="/pages/carrito"
-                id="h-nism-historial-pedidos"
-                class="h-opcion-usuario icon-color-tertiary"
-              >
-                {% render 'icon-carrito' %}
-                <p>CARRITO (2)</p>
-              </a>
-              <a
-                href="/pages/menu"
-                target="_blank"
-                class="h-opcion-usuario icon-color-tertiary"
-              >
-                <p>MENU</p>
-              </a>
-              <a
-                href="https://microsites.spnty.co/pizzahutbolivia/login"
-                target="_blank"
-                class="h-opcion-usuario icon-color-tertiary"
-              >
-                <p>HUT COINTS</p>
-                {% render 'icon-flecha-hutcoins' %}
-              </a>
-              <a
-                href="/pages/sobre-nosotros"
-                class="h-opcion-usuario icon-color-tertiary"
-              >
-                <p>SOBRE NOSOTROS</p>
-              </a>
-              <hr>
-              <a
-                href="/pages/iniciar-sesion"
-                id="h-nism-iniciar-sesion"
-                class="h-opcion-usuario icon-color-primary"
-              >
-                {% render 'icon-iniciar-cerrar' %}
-                <p class="color-letras-primary">INICIAR SESION</p>
-              </a>
-            </div>
-          {% endcomment %}
+
         </section>
         <!-- EESTADO USUARIO NO INICIADO SESION -->
       </div>
@@ -514,6 +469,7 @@
       this.btnCuponesMenuMobile = document.querySelector('#h-ism-cupones-descuentos');
       this.btnHutcoinsMenuMobile = document.querySelector('#h-ism-hutcoins');
       this.btnMisPreferenciasMenuMobile = document.querySelector('#h-ism-mis-preferencias');
+      this.btnCerrarSesionOfMenuM = document.querySelector('#h-ism-cerrar-sesion');
 
       this.btnVerMenuMobile = document.querySelector('#h-btn-menu-mobile');
       // HEADER DESKTOP
@@ -536,6 +492,7 @@
       this.btnHutcoinsOfMenu = document.querySelector('#h-ism-hutcoins');
       this.btnMisPreferenciasOfMenu = document.querySelector('#h-ism-mis-preferencias');
       this.btnconfiguracionOfMenu = document.querySelector('#h-ism-configuracion');
+      this.btnCerrarSesionOfMenuD = document.querySelector('#h-dism-cerrar-sesion');
       // TESTEO DE PRUEBA
       this.itemMenuDesplegable = document.querySelectorAll('.h-menu-opciones-productos-item');
 
@@ -563,6 +520,8 @@
       this.btnCuponesMenuMobile.addEventListener('click', this.redireccionCuponesMenuDesktop.bind(this));
       this.btnHutcoinsMenuMobile.addEventListener('click', this.redireccionHutcoinsMenuDesktop.bind(this));
       this.btnMisPreferenciasMenuMobile.addEventListener('click', this.redireccionPreferenciasMenuDesktop.bind(this));
+      this.btnCerrarSesionOfMenuD.addEventListener('click', this.cerrarSesion.bind(this)); 
+      this.btnCerrarSesionOfMenuM.addEventListener('click', this.cerrarSesion.bind(this)); 
 
       document.addEventListener('click', this.detectarClickFueraDelInputBusqueda.bind(this));
       this.logoPrincipal.forEach((logo) => {
@@ -802,6 +761,15 @@
 
       this.contenedorDisMenu.style.display = 'none';
       window.location.href = '/pages/error-1';
+    }
+
+    cerrarSesion() {
+      // Eliminar datos de localStorage
+      localStorage.removeItem('datos-usuario');
+      localStorage.removeItem('metodo-entrega');
+      localStorage.removeItem('pg-perfil-opcion');
+      // Redirigir a la página de inicio de sesión
+      window.location.href = '/';
     }
   }
 
