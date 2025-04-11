@@ -118,7 +118,7 @@
   grid-template-columns: 1fr;
   gap: var(--espaciado-m);
   margin-top: var(--espaciado-xl);
-  /* margin-top: 8rem; */
+  margin-top: 1.25rem;
 }
 
 .ph-ph-primario.phppu p {
@@ -143,7 +143,7 @@
 /* ===== HISTORIAL DE PEDIDOS ===== */
 
 .phpp-container-historialde-pedidos {
-  /* margin-top: 8rem; */
+  margin-top: 1.25rem;
   width: 100%;
   display: flex;
   flex-direction: column;
