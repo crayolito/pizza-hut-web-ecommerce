@@ -530,7 +530,7 @@
 
       // EVENTOS INICIALIZAR
       this.dropdownsVariantes.forEach((elementoBase) => {
-        elementoBase.addEventListener('click',this.alternarDropdown.bind(this, elementoBase));
+        elementoBase.addEventListener('click',this.alternarDropdown.bind(this));
       });
       document.addEventListener('click', this.clickEspeciales.bind(this));
       this.resultadosSeccionVariantes.forEach((elementoInicial) => {
@@ -620,18 +620,18 @@
 
     alternarDropdown(elementoBase) {
       console.log('Elemento Base:', elementoBase);
-      if (elementoBase.style.display == 'flex') {
+      {% comment %} if (elementoBase.style.display == 'flex') {
         elementoBase.style.display = 'none';
       } else {
         elementoBase.style.display = 'flex';
-      }
+      } {% endcomment %}
 
-      this.dropdownsVariantes.forEach((elementoHermano) => {
+      {% comment %} this.dropdownsVariantes.forEach((elementoHermano) => {
         if (elementoHermano != elementoBase) {
           console.log('Elemento Hermanoo:', elementoHermano);
           elementoHermano.style.display = 'none';
         }
-      });
+      }); {% endcomment %}
     }
   }
 
