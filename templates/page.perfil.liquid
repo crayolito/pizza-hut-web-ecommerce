@@ -392,6 +392,7 @@
       this.seccionHistorial.style.display = 'none';
       this.seccionConfiguraciones.style.display = 'none';
       this.inicializarDatosAlmacenados();
+      this.verificarPermisoNotificaciones();
     }
 
     inicializarDatosAlmacenados() {
@@ -421,7 +422,6 @@
         this.tituloHeaderMobil.innerText = 'CONFIGURACIONES';
         this.seccionConfiguraciones.style.display = 'flex';
       }
-
 
       if (datosUsuario) {
         this.labelNombre.innerText = datosUsuario.nombre || '----';
@@ -510,24 +510,53 @@
     solicitarNotificaciones() {
       if (this.btnCheckboxEstado.checked) {
         // Usuario quiere activar notificaciones
-        Notification.requestPermission().then((permission) => {
-          if (permission !== 'granted') {
-            // Si rechaza, actualizamos el checkbox para reflejar el estado real
+        // Verificar si ya tenemos el permiso
+        if (Notification.permission === 'granted') {
+          console.log('Permisos ya estaban aceptados');
+          localStorage.setItem('ph-notificaciones', 'true');
+          return;
+        }
+
+        // Si no tenemos permiso o está en estado 'default', solicitarlo
+        Notification.requestPermission()
+          .then((permission) => {
+            if (permission !== 'granted') {
+              // Si rechaza, actualizamos el checkbox para reflejar el estado real
+              this.btnCheckboxEstado.checked = false;
+              console.log('Permisos de notificación rechazados por el usuario');
+              localStorage.setItem('ph-notificaciones', 'false');
+            } else {
+              console.log('Permisos de notificación aceptados');
+              this.btnCheckboxEstado.checked = true;
+              localStorage.setItem('ph-notificaciones', 'true');
+            }
+          })
+          .catch((error) => {
+            console.error('Error al solicitar permisos:', error);
             this.btnCheckboxEstado.checked = false;
-            console.log('Permisos de notificación rechazados por el usuario');
             localStorage.setItem('ph-notificaciones', 'false');
-          } else {
-            console.log('Permisos de notificación aceptados');
-            this.btnCheckboxEstado.checked = true;
-            localStorage.setItem('ph-notificaciones', 'true');
-          }
-        });
+          });
       } else {
         // Usuario quiere desactivar notificaciones
         console.log('Usuario ha desactivado las notificaciones');
         localStorage.setItem('ph-notificaciones', 'false');
-        this.btnCheckboxEstado.checked = false;
       }
+    }
+
+    verificarPermisoNotificaciones() {
+      // Obtener el permiso actual
+      const permiso = Notification.permission;
+
+      // Actualizar el checkbox según el permiso actual
+      if (permiso === 'granted') {
+        this.btnCheckboxEstado.checked = true;
+        localStorage.setItem('ph-notificaciones', 'true');
+      } else {
+        this.btnCheckboxEstado.checked = false;
+        localStorage.setItem('ph-notificaciones', 'false');
+      }
+
+      console.log(`Estado actual de permisos de notificación: ${permiso}`);
     }
   }
 

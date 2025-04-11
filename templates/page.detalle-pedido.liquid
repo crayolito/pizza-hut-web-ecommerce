@@ -2,115 +2,226 @@
 {{ 'estilos-generales.css' | asset_url | stylesheet_tag }}
 {{ 'page-detalle-pedido.css' | asset_url | stylesheet_tag }}
 
-<div class="container-main-smecph">
-  <section style="display: none;" class="container-sub-simple-smecph" id="etapa-1-detalle-pedido">
-    <div class="pdpph-imagen-etapa1">
-      <img src="{{ 'imagen-check-verde.png' | asset_url }}" alt="Icono de exito" width="100%" height="100%">
-    </div>
-    <small>¡pedido confirmado! en breve estarás disfrutando</small>
-    <div class="pdpph-mensaje-etapa1">
-      <div class="pdpph-mensaje-etapa1-icono icon-color-secondary">
-        {% render 'icon-recogo-local' %}
+<detalle-pedido>
+  <div class="container-main-smecph">
+    <section class="container-sub-simple-smecph" id="etapa-1-detalle-pedido">
+      <div class="pdpph-imagen-etapa1">
+        <img src="{{ 'imagen-check-verde.png' | asset_url }}" alt="Icono de exito" width="100%" height="100%">
       </div>
-      <h1 class="color-letras-primary">EN LOCAL</h1>
-    </div>
-    <div class="pdpph-info-etapa1 color-letras-extra">
-      <h3>Nº de pedido 235246</h3>
-      <h3>ESTARA LISTO A las 13:30</h3>
-      <h3>fecha 23 de feb. 2025</h3>
-    </div>
-    <hr>
-  </section>
-  <section class="container-sub-simple-smecph" id="etapa-2-detalle-pedido">
-    <small style="width: 100%;">DETALLE DEL PEDIDO</small>
-    <div class="container-sub-simple-smecph-row">
-      <div class="pdpph-etapa2-mensaje">
-        <p>#235246</p>
-        <div class="pdpph-etapa2-mensaje2 color-letras-extra">
-          <p>1 COMBO</p>
-          <p>•</p>
-          <p>Pedido realizado: 13 de febrero de 2025 Hora: 13:00 P.M.</p>
+      <small>¡pedido confirmado! en breve estarás disfrutando</small>
+      <div class="pdpph-mensaje-etapa1">
+        <div class="pdpph-mensaje-etapa1-icono icon-color-secondary">
+          {% render 'icon-recogo-local' %}
         </div>
+        <h1 class="color-letras-primary">EN LOCAL</h1>
       </div>
-      <h3 style="white-space: nowrap;" class="color-letras-primary">55.00 Bs</h3>
-    </div>
-  </section>
-  <section class="container-sub-simple-smecph pdpph-general" id="detalle-general-pedido">
-    <div class="pdpph-general-pedido pdpph-extra-general"></div>
-  </section>
-  <section class="container-sub-simple-smecph" id="etapa-2-detalle-pedido">
-    <h4>PEDIDO EN LOCAL</h4>
-    <div class="container-sub-simple-smecph-column" id="pdpph-etapa2-info-local">
-      <h3 class="color-letras-primary">BANZER 3RE ANILLO</h3>
-      <div class="pdpph-etapa2-info-local">
-        {% render 'icon-location-on' %}
-        <p>Av. 6 de Agosto 1234, La Paz, Bolivia</p>
-      </div>
-      <div class="pdpph-etapa2-info-local">
-        {% render 'icon-headser-mic' %}
-        <p>+591 7 222 222 22</p>
-      </div>
-      <button class="ph-btn-secundario icon-color-primary">
-        <p>ABRIR UBICACION EN MAPA</p>
-        {% render 'icon-map' %}
-      </button>
-    </div>
-    <h4>METODO DE PAGO</h4>
-    <div class="pdpph-etapa2-metodo-pago icon-color-extra" id="pdpph-etapa2-metodo-pago">
-      {% render 'icon-dolar' %}
-      <p class="color-letras-extra">Efectivo contra entrega</p>
-    </div>
-    <h4>TU PEDIDO(1)</h4>
-    <div class="container-sub-smecph">
-      <div class="pdpph-etapa2-info-pedido">
-        <p>COMBO LA CONDICIONAL</p>
-        <p class="color-letras-extra">Cantidad: 1</p>
-      </div>
-      <p style="font-weight: 700;" class="color-letras-primary">55.00 Bs</p>
-    </div>
-    <div class="container-sub-smecph">
-      <div class="pdpph-etapa2-info-pedido">
-        <p>COMBO LA CONDICIONAL</p>
-        <p class="color-letras-extra">Cantidad: 1</p>
-      </div>
-      <p style="font-weight: 700;" class="color-letras-primary">55.00 Bs</p>
-    </div>
-    <div class="pdpph-detalle-precios">
-      <div class="pdpph-detalle-precios-item">
-        <p>Subtotal</p>
-        <p>55.00 Bs</p>
-      </div>
-      <div class="pdpph-detalle-precios-item">
-        <p>Entrega</p>
-        <p>10.00 Bs</p>
-      </div>
-      <div class="pdpph-detalle-precios-item">
-        <p>Descuento</p>
-        <p>0.00 Bs</p>
+      <div class="pdpph-info-etapa1 color-letras-extra">
+        <h3>Nº de pedido 235246</h3>
+        <h3>ESTARA LISTO A las 13:30</h3>
+        <h3>fecha 23 de feb. 2025</h3>
       </div>
       <hr>
-      <div class="pdpph-detalle-precios-item">
-        <p>Total</p>
-        <p>65.00 Bs</p>
+    </section>
+    <section class="container-sub-simple-smecph" id="etapa-2-detalle-pedido">
+      <small style="width: 100%;">DETALLE DEL PEDIDO</small>
+      <div class="container-sub-simple-smecph-row">
+        <div class="pdpph-etapa2-mensaje">
+          <p>#235246</p>
+          <div class="pdpph-etapa2-mensaje2 color-letras-extra">
+            <p>1 COMBO</p>
+            <p>•</p>
+            <p>Pedido realizado: 13 de febrero de 2025 Hora: 13:00 P.M.</p>
+          </div>
+        </div>
+        <h3 style="white-space: nowrap;" class="color-letras-primary">55.00 Bs</h3>
       </div>
-    </div>
-    <div class="container-sub-simple-smecph-column pdpph-extra-mobile">
-      <h4>NOTA DE ENVIO</h4>
-      <p style="text-align: start;">
-        Por favor, agregar extra queso en la pizza y asegurarse de que la masa sea pan pizza. Entregar sin tocar el
-        timbre, solo llamar al celular al llegar. Gracias.
-      </p>
-    </div>
-  </section>
-  <section class="ph-opciones-mobile-footer" id="etapa-1-detalle-pedido">
-    {% comment %}
-      <button class="ph-btn-secundario">
+    </section>
+    <section class="container-sub-simple-smecph pdpph-general" id="detalle-general-pedido">
+      <div
+        id="pdpph-tracking-pedido"
+        class="pdpph-general-pedido pdpph-extra-general"
+      ></div>
+    </section>
+    <section class="container-sub-simple-smecph phpdp-extra" id="etapa-2-info-compra">
+      <h4>PEDIDO EN LOCAL</h4>
+      <div class="container-sub-simple-smecph-column" id="pdpph-etapa2-info-local">
+        <h3 class="color-letras-primary">BANZER 3RE ANILLO</h3>
+        <div class="pdpph-etapa2-info-local">
+          {% render 'icon-location-on' %}
+          <p>Av. 6 de Agosto 1234, La Paz, Bolivia</p>
+        </div>
+        <div class="pdpph-etapa2-info-local">
+          {% render 'icon-headser-mic' %}
+          <p>+591 7 222 222 22</p>
+        </div>
+        <button
+          id="phpdp-btn-abrir-mapa"
+          class="ph-btn-secundario icon-color-primary"
+        >
+          <p>ABRIR UBICACION EN MAPA</p>
+          {% render 'icon-map' %}
+        </button>
+      </div>
+      <h4>METODO DE PAGO</h4>
+      <div class="pdpph-etapa2-metodo-pago icon-color-extra" id="pdpph-etapa2-metodo-pago">
+        {% render 'icon-dolar' %}
+        <p class="color-letras-extra">Efectivo contra entrega</p>
+      </div>
+      <h4>TU PEDIDO(1)</h4>
+      <div class="container-sub-smecph">
+        <div class="pdpph-etapa2-info-pedido">
+          <p>COMBO LA CONDICIONAL</p>
+          <p class="color-letras-extra">Cantidad: 1</p>
+        </div>
+        <p style="font-weight: 700;" class="color-letras-primary">55.00 Bs</p>
+      </div>
+      <div class="container-sub-smecph">
+        <div class="pdpph-etapa2-info-pedido">
+          <p>COMBO LA CONDICIONAL</p>
+          <p class="color-letras-extra">Cantidad: 1</p>
+        </div>
+        <p style="font-weight: 700;" class="color-letras-primary">55.00 Bs</p>
+      </div>
+      <div class="pdpph-detalle-precios">
+        <div class="pdpph-detalle-precios-item">
+          <p>Subtotal</p>
+          <p>55.00 Bs</p>
+        </div>
+        <div class="pdpph-detalle-precios-item">
+          <p>Entrega</p>
+          <p>10.00 Bs</p>
+        </div>
+        <div class="pdpph-detalle-precios-item">
+          <p>Descuento</p>
+          <p>0.00 Bs</p>
+        </div>
+        <hr>
+        <div class="pdpph-detalle-precios-item">
+          <p>Total</p>
+          <p>65.00 Bs</p>
+        </div>
+      </div>
+      <div class="container-sub-simple-smecph-column pdpph-extra-mobile">
+        <h4>NOTA DE ENVIO</h4>
+        <p style="text-align: start;">
+          Por favor, agregar extra queso en la pizza y asegurarse de que la masa sea pan pizza. Entregar sin tocar el
+          timbre, solo llamar al celular al llegar. Gracias.
+        </p>
+      </div>
+    </section>
+    <section class="ph-opciones-mobile-footer" id="phpdp-opciones">
+      <button
+        id="phpdp-btn-ver-mas-detalles"
+        class="ph-btn-secundario"
+      >
         <p>VER MAS DETALLES</p>
       </button>
-    {% endcomment %}
-    <button class="ph-btn-primario icon-color-primary">
-      {% render 'icon-volver-atras' %}
-      <p>VOLVER AL INICIO</p>
-    </button>
+      <button
+        id="phpdp-btn-volver-inicio"
+        class="ph-btn-primario icon-color-primary"
+      >
+        {% render 'icon-volver-atras' %}
+        <p>VOLVER AL INICIO</p>
+      </button>
+    </section>
+  </div>
+
+  <!-- MODAL SNIPPER DE CARGANDO -->
+  <section
+    id="phpdp-modal-snipper"
+    class="ph-background-container-modal"
+  >
+    <div
+      id="phpep-modal-snipper-body"
+      class="ph-modal-main-snipper"
+    >
+      <div class="ph-modal-body-snipper">
+        <div class="snipper-container">
+          <div class="snipper-background">
+            <img
+              src="{{ 'fondoSnipper.png' | asset_url }}"
+              alt="Fondo de Snipper"
+              width="100%"
+              height="100%"
+            >
+          </div>
+          <div class="snipper-logo">
+            <img
+              src="{{ 'logoSnipper.png' | asset_url }}"
+              alt="Logo de Snipper"
+              width="100%"
+              height="100%"
+            >
+          </div>
+        </div>
+      </div>
+      <p>Procesando informacion ...</p>
+    </div>
   </section>
-</div>
+</detalle-pedido>
+
+<script>
+  class DetallePedido extends HTMLElement {
+    constructor() {
+      super();
+    }
+
+    connectedCallback() {
+      // REFERENCIAS A ELEMENTOS
+      this.modalSnipper = this.querySelector('#phpdp-modal-snipper');
+      this.contenedorTrackingPedido = this.querySelector('#pdpph-tracking-pedido');
+      this.detallaPedidof1 = this.querySelector('#etapa-1-detalle-pedido');
+      this.detalleGeneralPedido = this.querySelector('#detalle-general-pedido');
+      this.detallaPedidof2 = this.querySelector('#etapa-2-detalle-pedido');
+      this.infoCompraF2 = this.querySelector('#etapa-2-info-compra');
+      this.btnVerMasDetalles = this.querySelector('#phpdp-btn-ver-mas-detalles');
+      this.btnVolverInicio = this.querySelector('#phpdp-btn-volver-inicio');
+      this.btnAbrirUbicacionLocal = this.querySelector('#phpdp-btn-abrir-mapa');
+      // EVENTOS INICIALIZAR
+
+      // INICIALIZA ELEMENTO Y PROCESOS (CLAVES)
+      this.modalSnipper.style.display = 'none';
+      this.detalleGeneralPedido.style.display = 'none';
+      this.contenedorTrackingPedido.style.display = 'none';
+      this.detallaPedidof1.style.display = 'none';
+      this.detallaPedidof2.style.display = 'none';
+      this.infoCompraF2.style.display = 'none';
+      this.btnVolverInicio.style.display = 'none';
+      this.btnVerMasDetalles.style.display = 'none';
+
+      this.inicializarDataLocalStorage();
+      this.inicializarObjetoGoogleMaps(0);
+    }
+
+    inicializarDataLocalStorage() {
+      const estadoDetallePedido = localStorage.getItem('ph-estadoDP');
+      const origenHistorial = localStorage.getItem('ph-origenHistorial');
+
+      if (estadoDetallePedido == null) {
+        window.location.href = '/';
+      }
+
+      if (estadoDetallePedido == 'etapa-1') {
+        this.detallaPedidof1.style.display = 'flex';
+        this.btnVerMasDetalles.style.display = 'flex';
+        if (origenHistorial == null) {
+          this.btnVolverInicio.style.display = 'none';
+        } else {
+          this.btnVolverInicio.style.display = 'flex';
+        }
+        this.btnVolverInicio.style.display = 'flex';
+        this.detalleGeneralPedido.style.display = 'flex';
+        this.contenedorTrackingPedido.style.display = 'flex';
+      }
+
+      if (estadoDetallePedido == 'etapa-2') {
+        this.detallaPedidof2.style.display = 'flex';
+        this.infoCompraF2.style.display = 'flex';
+        this.btnVolverInicio.style.display = 'flex';
+        this.detalleGeneralPedido.style.display = 'flex';
+        this.contenedorTrackingPedido.style.display = 'flex';
+      }
+    }
+  }
+  customElements.define('detalle-pedido', DetallePedido);
+</script>

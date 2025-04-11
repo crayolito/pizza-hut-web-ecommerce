@@ -218,6 +218,7 @@
       this.btnUsarMiUbicacion = document.getElementById('phpep-btn-usar-mi-ubicacion');
       this.contenedorSugerencias = document.getElementById('phpep-sugerencias-direccion');
 
+      // EVENTOS INCIALIZAR
       this.btnUsarMiUbicacion.addEventListener('click', this.btnUsarMiUbicacionClick.bind(this));
       this.btnContinuar.addEventListener('click', this.btnContinuarClick.bind(this));
       this.btnModalDDContinuar.addEventListener('click', this.btnModalDDContinuarClick.bind(this));
@@ -232,7 +233,6 @@
       this.inputApellido.addEventListener('input', this.validarInputTexto.bind(this));
       document.addEventListener('click', this.clickEspeciales.bind(this));
 
-      // EVENTOS INCIALIZAR
       // INICIALIZAR ELEMENTOS Y PROCESOS (CLAVES)
       this.modalSnipper.style.display = 'none';
       this.modalDarDireccion.style.display = 'none';
@@ -261,11 +261,10 @@
     }
 
     inicializarDataLocalStorage() {
-      console.log('inicializando data local storage');
       const datosUsuario = JSON.parse(localStorage.getItem('datos-usuario'));
       const direccion = localStorage.getItem('direccion-cliente');
-      console.log('Direccion: ', direccion);
-      console.log('Datos de usuario: ', datosUsuario);
+      const coordenadas = JSON.parse(localStorage.getItem('coordenadas'));
+      this.coordenadas = coordenadas || { lat: -17.510420897741643, lng: -63.16459000457593 };
 
       if (datosUsuario.celular == null || direccion == null) {
         window.location.href = '/';

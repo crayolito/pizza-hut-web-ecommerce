@@ -143,7 +143,7 @@
 /* ===== HISTORIAL DE PEDIDOS ===== */
 
 .phpp-container-historialde-pedidos {
-  margin-top: 8rem;
+  /* margin-top: 8rem; */
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -371,7 +371,7 @@
 /* ===== CONFIGURACIONES ===== */
 
 .phpp-container-configuraciones {
-  margin-top: 8rem;
+  /* margin-top: 8rem; */
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -513,7 +513,7 @@ input:checked + .slider:before {
 
 @media (min-width: 768px) {
   .phpp-container-configuraciones {
-    margin-top: 0;
+    margin-top: 1rem;
   }
 
   .phpp-cc-estado3 {
@@ -546,7 +546,7 @@ input:checked + .slider:before {
   }
 
   .phpp-container-historialde-pedidos {
-    margin-top: 0;
+    margin-top: 1rem;
   }
 
   .h-header-principal {
@@ -640,6 +640,14 @@ input:checked + .slider:before {
 }
 
 @media screen and (min-width: 1024px) {
+  .phpp-container-configuraciones {
+    margin-top: 8rem;
+  }
+
+  .phpp-container-historialde-pedidos {
+    margin-top: 8rem;
+  }
+
   .phpp-container {
     gap: 0;
   }
