@@ -260,7 +260,7 @@
 
     inicializarDataLocalStorage() {
       console.log('inicializando data local storage');
-      const datosUsuario = localStorage.getItem('datosUsuario');
+      const datosUsuario = JSON.parse(localStorage.getItem('datos-usuario'));
       const direccion = localStorage.getItem('direccion-cliente');
 
       if (datosUsuario.celular == null || direccion == null) {
