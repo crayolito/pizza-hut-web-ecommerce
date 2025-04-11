@@ -355,6 +355,7 @@
      ========================================================================== */
 
   .variantes-producto {
+    width: 100%;
     display: flex;
     height: fit-content;
     position: absolute;
@@ -368,14 +369,13 @@
     transform: translateX(-50%);
     flex-direction: column;
     padding: var(--espaciado-m);
-    display: none;
   }
 
   .variante-producto-item {
     padding: var(--espaciado-s);
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     gap: var(--espaciado-xs);
     cursor: pointer;
     transition: all 0.3s ease;
@@ -387,7 +387,7 @@
     background-color: #f7dce0;
   }
 
-  .variante-producto-item p:last-child {
+  .variante-producto-item > p:last-child {
     font-weight: 600;
   }
 
