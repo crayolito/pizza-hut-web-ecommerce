@@ -619,10 +619,10 @@
     }
 
     alternarDropdown(elementoBase) {
-      if (elementoInicial.style.display == 'flex') {
-        elementoInicial.style.display = 'none';
+      if (elementoBase.style.display == 'flex') {
+        elementoBase.style.display = 'none';
       } else {
-        elementoInicial.style.display = 'flex';
+        elementoBase.style.display = 'flex';
       }
 
       this.dropdownsVariantes.forEach((elementoHermano) => {
