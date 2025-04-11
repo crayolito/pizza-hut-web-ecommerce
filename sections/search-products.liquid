@@ -493,11 +493,11 @@
       this.dropdownsVariantes = this.querySelectorAll('#phsp-items-variantes');
 
       // EVENTOS INICIALIZAR
-      {% comment %} this.resultadosSeccionVariantes.forEach((elementoInicial) => {
+      this.resultadosSeccionVariantes.forEach((elementoInicial) => {
         elementoInicial.addEventListener('click', (event) => {
           this.procesoVariantes(event, elementoInicial);
         });
-      }); {% endcomment %}
+      });
 
       // INICIALIZAR ELEMENTOS Y PROCESOS CLAVES
       this.dropdownsVariantes.forEach((elementoInicial) => {
@@ -505,7 +505,7 @@
       });
     }
 
-    {% comment %} procesoVariantes(event, elementoInicial) {
+    procesoVariantes(event, elementoInicial) {
       // Del elemento inicial busco el padre para arriba optengo como elemento
       const contenedorPadre = elementoInicial.closest('#phsp-general-variantes');
 
@@ -545,8 +545,10 @@
           dropdownVariantes.style.display = 'none';
         }
       }
-    } {% endcomment %}
+    }
   }
+
+  customElements.define('search-products', SearchProducts);
 </script>
 
 {% schema %}
