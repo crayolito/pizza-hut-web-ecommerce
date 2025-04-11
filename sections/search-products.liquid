@@ -529,6 +529,7 @@
       this.dropdownsVariantes = this.querySelectorAll('#phsp-items-variantes');
 
       // EVENTOS INICIALIZAR
+      document.addEventListener('click', this.clickEspeciales.bind(this));
       this.resultadosSeccionVariantes.forEach((elementoInicial) => {
         elementoInicial.addEventListener('click', (event) => {
           this.procesoVariantes(event, elementoInicial);
@@ -563,7 +564,6 @@
         } else {
           dropdownVariantes.style.display = 'flex';
         }
-        return; // Terminar la función aquí
       }
 
       // Verifico si el click fue en algun elemento con clase "variante-producto-item" o en algunos de sus hijos
@@ -581,6 +581,12 @@
           dropdownVariantes.style.display = 'none';
         }
       }
+    }
+
+    clickEspeciales(event) {
+      // Verifico si el click fue fuera del dropdown especifico cerrarlo
+      // Cerrar los demas dropdowns pero si el elemento es otro dropdown abrirlo este especifico
+      // y cerrar los otros
     }
   }
 
