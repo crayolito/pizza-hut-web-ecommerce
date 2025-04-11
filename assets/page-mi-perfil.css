@@ -163,6 +163,11 @@
   border-radius: 4rem;
 }
 
+.phpp-ph-opcion p {
+  color: var(--colorp-primary);
+  font-weight: 700;
+}
+
 .ph-btn-primario p {
   color: #969696;
   font-weight: 700;
