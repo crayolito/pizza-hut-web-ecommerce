@@ -584,6 +584,22 @@
     }
 
     clickEspeciales(event) {
+      // Verificar primero si el clic fue en cualquier elemento phsp-view-variantes o dentro de alguno
+      const viewVariantesElements = document.querySelectorAll('.phsp-view-variantes');
+
+      // Comprobar si el clic fue en alguno de estos elementos o sus hijos
+      let clickEnViewVariantes = false;
+      viewVariantesElements.forEach((element) => {
+        if (element === event.target || element.contains(event.target)) {
+          clickEnViewVariantes = true;
+        }
+      });
+
+      // Si el clic fue en algún phsp-view-variantes, no hacemos nada
+      if (clickEnViewVariantes) {
+        return;
+      }
+
       // Si el click fue fuera de algun dropdown #phsp-items-variantes entonces cerrar todos los dropdowns
       const dropdowns = this.querySelectorAll('#phsp-items-variantes');
 
@@ -600,10 +616,8 @@
       // Si el clic fue fuera de todos los dropdowns, los cerramos
       if (!clickDentroDropdown) {
         dropdowns.forEach((dropdown) => {
-          // Oculta el dropdown (puedes ajustar esto según tu implementación)
+          // Oculta el dropdown
           dropdown.style.display = 'none';
-          // O alternativamente, si usas una clase para mostrar/ocultar:
-          // dropdown.classList.remove('mostrar');
         });
       }
     }
