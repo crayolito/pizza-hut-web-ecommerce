@@ -584,7 +584,7 @@
       // Comprobar si el clic fue en alguno de estos elementos o sus hijos
       let clickEnViewVariantes = false;
       viewVariantesElements.forEach((element) => {
-        console.log('Elemento:', element);
+        {% comment %} console.log('Elemento:', element); {% endcomment %}
         if (element === event.target || element.contains(event.target)) {
           clickEnViewVariantes = true;
         }
