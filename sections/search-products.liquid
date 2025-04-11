@@ -547,7 +547,7 @@
     }
 
     procesoVariantes(event, elementoInicial) {
-      {% comment %} // Del elemento inicial busco el padre para arriba optengo como elemento
+     // Del elemento inicial busco el padre para arriba optengo como elemento
       const contenedorPadre = elementoInicial.closest('#phsp-general-variantes');
 
       // Despues busco la etiqueta (p) donde se va a mostrar la variante seleccionada
@@ -575,7 +575,7 @@
           dropdownVariantes.style.display = 'none';
           console.log('Variante Seleccionada :', nombreVariante);
         });
-      }); {% endcomment %}
+      });
     }
 
     clickEspeciales(event) {
