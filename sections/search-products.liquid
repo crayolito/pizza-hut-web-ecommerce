@@ -560,14 +560,14 @@
       // Verifico si el elemento clicado es el botón para abrir/cerrar el dropdown
       const botonVerVariantes = contenedorPadre.querySelector('#phsp-view-variantes');
 
-      if (event.target == botonVerVariantes || botonVerVariantes.contains(event.target)) {
+      {% comment %} if (event.target == botonVerVariantes || botonVerVariantes.contains(event.target)) {
         // Si se hizo click en el botón, toggle el dropdown (mostrar/ocultar)
         if (dropdownVariantes.style.display == 'flex') {
           dropdownVariantes.style.display = 'none';
         } else {
           dropdownVariantes.style.display = 'flex';
         }
-      }
+      } {% endcomment %}
 
       const itemVarianteParaSeleccion = dropdownVariantes.querySelectorAll(
         '#phsp-items-variantes .variante-producto-item'
@@ -639,7 +639,6 @@
           elementoHermano.style.display = 'none';
         }
       });
-
     }
   }
 
