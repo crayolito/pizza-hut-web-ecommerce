@@ -599,14 +599,14 @@
       }
 
       // Si el click fue fuera de algun dropdown #phsp-items-variantes entonces cerrar todos los dropdowns
-      const dropdowns = this.querySelectorAll('#phsp-items-variantes');
+      {% comment %} const dropdowns = this.querySelectorAll('#phsp-items-variantes'); {% endcomment %}
 
       // Verifica si el clic fue dentro de algún dropdown
       let clickDentroDropdown = false;
 
-      dropdowns.forEach((dropdown) => {
+      dropdownsVariantes.forEach((dropdown) => {
         // Comprueba si el elemento clicado está dentro del dropdown actual
-        if (dropdown.contains(event.target)) {
+        if (dropdown.contains(event.target) || dropdown == event.target) {
           clickDentroDropdown = true;
         }
       });
@@ -615,7 +615,7 @@
       if (!clickDentroDropdown) {
         dropdowns.forEach((dropdown) => {
           // Oculta el dropdown
-          {% comment %} dropdown.style.display = 'none'; {% endcomment %}
+          dropdown.style.display = 'none';
         });
       }
     }
