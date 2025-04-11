@@ -529,6 +529,9 @@
       this.dropdownsVariantes = this.querySelectorAll('#phsp-items-variantes');
 
       // EVENTOS INICIALIZAR
+      this.dropdownsVariantes.forEach((elementoBase) => {
+        this.procesoVariantes.bind(this)(elementoBase);
+      );
       document.addEventListener('click', this.clickEspeciales.bind(this));
       this.resultadosSeccionVariantes.forEach((elementoInicial) => {
         elementoInicial.addEventListener('click', (event) => {
@@ -622,6 +625,21 @@
           dropdown.style.display = 'none';
         });
       }
+    }
+
+    alternarDropdown(elementoBase){
+      if (elementoInicial.style.display == 'flex') {
+        elementoInicial.style.display = 'none';
+      } else {
+        elementoInicial.style.display = 'flex';
+      }
+
+      this.dropdownsVariantes.forEach((elementoHermano) => {
+        if (elementoHermano != elementoBase) {
+          elementoHermano.style.display = 'none';
+        }
+      });
+
     }
   }
 
