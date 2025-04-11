@@ -492,6 +492,7 @@
     connectedCallback() {
       // REFERENCIAS ELEMENTOS
       this.resultadosSeccionVariantes = this.querySelectorAll('#phsp-items-variantes');
+      this.dropdownsVariantes = this.querySelectorAll('#phsp-view-variantes');
 
       // EVENTOS INICIALIZAR
       this.resultadosSeccionVariantes.forEach((elementoInicial) => {
@@ -500,6 +501,9 @@
         });
       });
       // INICIALIZAR ELEMENTOS Y PROCESOS CLAVES
+      this.dropdownsVariantes.forEach((elementoInicial) => {
+        elementoInicial.style.display = 'none';
+      });
     }
 
     procesoVariantes(event, elementoInicial) {
