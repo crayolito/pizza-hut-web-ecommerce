@@ -378,7 +378,7 @@
       this.btnMenuHeader.addEventListener('click', this.manipulacionContenedorMenu.bind(this));
       this.btnCerrarSesion.addEventListener('click', this.cerrarSesion.bind(this));
       this.btnEliminarCuenta.addEventListener('click', this.eliminarCuenta.bind(this));
-      this.btnCheckboxEstado.addEventListener('change',this.solicitarNotificaciones.bind(this));
+      this.btnCheckboxEstado.addEventListener('change', this.solicitarNotificaciones.bind(this));
       this.btnsVerDetalle.addEventListener('click', () => {
         window.location.href = '/pages/detalle-pedido';
       });
@@ -416,7 +416,7 @@
       const datosUsuario = JSON.parse(localStorage.getItem('datos-usuario'));
 
       if (datosUsuario) {
-        this.labelNombre.innerText = datosUsuario.nombre ? '----';
+        this.labelNombre.innerText = datosUsuario.nombre || '----';
         this.labelApellido.innerText = datosUsuario.apellido || '----';
         this.labelTelefono.innerText = datosUsuario.telefono || '----';
         this.labelCi.innerText = datosUsuario.ci || '----';
@@ -501,24 +501,24 @@
 
     solicitarNotificaciones() {
       if (this.btnCheckboxEstado.checked) {
-          // Usuario quiere activar notificaciones
-          Notification.requestPermission().then(permission => {
-              if (permission !== 'granted') {
-                  // Si rechaza, actualizamos el checkbox para reflejar el estado real
-                  this.btnCheckboxEstado.checked = false;
-                  console.log('Permisos de notificación rechazados por el usuario');
-                  localStorage.setItem('ph-notificaciones', 'false');
-              } else {
-                  console.log('Permisos de notificación aceptados');
-                  this.btnCheckboxEstado.checked = true;
-                  localStorage.setItem('ph-notificaciones', 'true');
-              }
-          });
+        // Usuario quiere activar notificaciones
+        Notification.requestPermission().then((permission) => {
+          if (permission !== 'granted') {
+            // Si rechaza, actualizamos el checkbox para reflejar el estado real
+            this.btnCheckboxEstado.checked = false;
+            console.log('Permisos de notificación rechazados por el usuario');
+            localStorage.setItem('ph-notificaciones', 'false');
+          } else {
+            console.log('Permisos de notificación aceptados');
+            this.btnCheckboxEstado.checked = true;
+            localStorage.setItem('ph-notificaciones', 'true');
+          }
+        });
       } else {
-          // Usuario quiere desactivar notificaciones
-          console.log('Usuario ha desactivado las notificaciones');
-          localStorage.setItem('ph-notificaciones', 'false');
-          this.btnCheckboxEstado.checked = false;
+        // Usuario quiere desactivar notificaciones
+        console.log('Usuario ha desactivado las notificaciones');
+        localStorage.setItem('ph-notificaciones', 'false');
+        this.btnCheckboxEstado.checked = false;
       }
     }
   }
