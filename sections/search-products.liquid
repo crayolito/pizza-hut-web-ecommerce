@@ -560,15 +560,6 @@
       // Verifico si el elemento clicado es el botón para abrir/cerrar el dropdown
       const botonVerVariantes = contenedorPadre.querySelector('#phsp-view-variantes');
 
-      {% comment %} if (event.target == botonVerVariantes || botonVerVariantes.contains(event.target)) {
-        // Si se hizo click en el botón, toggle el dropdown (mostrar/ocultar)
-        if (dropdownVariantes.style.display == 'flex') {
-          dropdownVariantes.style.display = 'none';
-        } else {
-          dropdownVariantes.style.display = 'flex';
-        }
-      } {% endcomment %}
-
       const itemVarianteParaSeleccion = dropdownVariantes.querySelectorAll(
         '#phsp-items-variantes .variante-producto-item'
       );
@@ -627,7 +618,7 @@
       }
     }
 
-    alternarDropdown(elementoBase){
+    alternarDropdown(elementoBase) {
       if (elementoInicial.style.display == 'flex') {
         elementoInicial.style.display = 'none';
       } else {
@@ -636,6 +627,7 @@
 
       this.dropdownsVariantes.forEach((elementoHermano) => {
         if (elementoHermano != elementoBase) {
+          console.log('Elemento Hermano:', elementoHermano);
           elementoHermano.style.display = 'none';
         }
       });
