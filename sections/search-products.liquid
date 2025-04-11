@@ -527,13 +527,12 @@
       // REFERENCIAS ELEMENTOS
       this.resultadosSeccionVariantes = this.querySelectorAll('#phsp-view-variantes');
       this.dropdownsVariantes = this.querySelectorAll('#phsp-items-variantes');
-      console.log('Dropdowns encontrados:', this.dropdownsVariantes.length);
       // EVENTOS INICIALIZAR
       this.dropdownsVariantes.forEach((elementoBase) => {
         elementoBase.addEventListener('click', (event) => {
           console.log('Elemento');
           console.log('Elemento Base:', elementoBase);
-          this.alternarDropdown(elementoBase);
+          {% comment %} this.alternarDropdown(elementoBase); {% endcomment %}
         });
       });
       document.addEventListener('click', this.clickEspeciales.bind(this));
