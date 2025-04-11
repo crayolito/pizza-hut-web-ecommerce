@@ -530,7 +530,7 @@
 
       // EVENTOS INICIALIZAR
       this.dropdownsVariantes.forEach((elementoBase) => {
-        this.procesoVariantes.bind(this)(elementoBase);
+        elementoBase.addEventListener('click', this.alternarDropdown.bind(this, elementoBase));
       );
       document.addEventListener('click', this.clickEspeciales.bind(this));
       this.resultadosSeccionVariantes.forEach((elementoInicial) => {
