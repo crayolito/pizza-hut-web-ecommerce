@@ -395,9 +395,14 @@
     }
 
     inicializarDatosAlmacenados() {
+      const datosUsuario = JSON.parse(localStorage.getItem('direccion-cliente'));
       const dataPerfil = localStorage.getItem('pg-perfil-opcion');
       console.log('inicializando datos almacenados');
       if (dataPerfil == null) {
+        window.location.href = '/';
+      }
+
+      if (datosUsuario.nombre == null || datosUsuario.nombre == '') {
         window.location.href = '/';
       }
 
@@ -415,7 +420,7 @@
         this.seccionConfiguraciones.style.display = 'flex';
       }
 
-      const datosUsuario = JSON.parse(localStorage.getItem('datos-usuario'));
+      const direccion = localStorage.getItem('direccion-cliente');
 
       if (datosUsuario) {
         this.labelNombre.innerText = datosUsuario.nombre || '----';
@@ -423,7 +428,7 @@
         this.labelTelefono.innerText = datosUsuario.telefono || '----';
         this.labelCi.innerText = datosUsuario.ci || '----';
         this.labelCorreo.innerText = datosUsuario.correo || '----';
-        this.labelDireccion.innerText = datosUsuario.direccion || '----';
+        this.labelDireccion.innerText = direccion || '----';
       }
 
       const tieneNotifi = localStorage.getItem('ph-notificaciones');
