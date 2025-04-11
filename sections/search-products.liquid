@@ -569,6 +569,7 @@
       // Verifico si el click fue en algun elemento con clase "variante-producto-item" o en algunos de sus hijos
       const elementoClicado = event.target;
       const itemVariante = elementoClicado.closest('.variante-producto-item');
+      console.log(itemVariante);
 
       if (itemVariante) {
         // Si el elemento clicado es un hijo de variante-producto-item
