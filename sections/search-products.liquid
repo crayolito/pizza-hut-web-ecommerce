@@ -566,22 +566,20 @@
         }
       }
 
-      // Verifico si el click fue en algun elemento con clase "variante-producto-item" o en algunos de sus hijos
-      const elementoClicado = event.target;
-      const itemVariante = elementoClicado.closest('.variante-producto-item');
-      console.log(itemVariante);
+      const itemVarianteParaSeleccion = dropdownVariantes.querySelectorAll(
+        '#phsp-items-variantes .variante-producto-item'
+      );
 
-      if (itemVariante) {
-        // Si el elemento clicado es un hijo de variante-producto-item
-        // Obtengo el texto del primer hijo p
-        const primerEtiquetaP = itemVariante.querySelector('p');
+      // Agrega un evento listener de click a cada elemento
+      itemVarianteParaSeleccion.forEach((item) => {
+        item.addEventListener('click', (event) => {
+          // Obtiene el texto del primer elemento <p> dentro del item
+          const nombreVariante = item.querySelector('p:first-child').innerText;
+          console.log('Variante Seleccionada :', nombreVariante);
 
-        // Si se encontro un elemento de variante
-        if (primerEtiquetaP) {
-          etiquetaEscogido.textContent = primerEtiquetaP.textContent;
-          dropdownVariantes.style.display = 'none';
-        }
-      }
+          etiquetaEscogido.innerText = nombreVariante;
+        });
+      });
     }
 
     clickEspeciales(event) {
