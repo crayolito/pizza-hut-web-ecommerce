@@ -578,7 +578,7 @@
     }
 
     clickEspeciales(event) {
-      // Verificar primero si el clic fue en cualquier elemento phsp-view-variantes o dentro de alguno
+      {% comment %} // Verificar primero si el clic fue en cualquier elemento phsp-view-variantes o dentro de alguno
       const viewVariantesElements = document.querySelectorAll('#phsp-view-variantes');
 
       // Comprobar si el clic fue en alguno de estos elementos o sus hijos
@@ -615,11 +615,11 @@
           // Oculta el dropdown
           {% comment %} dropdown.style.display = 'none'; {% endcomment %}
         });
-      }
+      } {% endcomment %}
     }
 
-    alternarDropdown(elementoBase) {
-      console.log('Elemento Base:', elementoBase);
+    alternarDropdown() {
+      console.log('Elemento Base:');
       {% comment %} if (elementoBase.style.display == 'flex') {
         elementoBase.style.display = 'none';
       } else {
