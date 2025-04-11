@@ -1,103 +1,102 @@
 <!-- Hoja de estiloss css -->
 {{ 'estilos-generales.css' | asset_url | stylesheet_tag }}
+{{ 'estilos-auxliares.css' | asset_url | stylesheet_tag }}
 {{ 'page-checkout.css' | asset_url | stylesheet_tag }}
 
-<div class="container-main-smecph container-base">
-  <h1>Editar Perfil</h1>
-  <section class="container-sub-smecph" id="pcktph-datos-contacto">
-    <div class="smecph-pc-header-especial">
-      <div class="smecph-pc-dch_info">
-        <h4>Datos de contacto</h4>
-        <p>Ingrese tus datos para disfrutar tu pizza favorita.</p>
-      </div>
-    </div>
-    <div class="smecph-formulario-datos-contacto">
-      <div class="smecph-pc-info-input">
-        <p>Nombres</p>
-        <div class="ph-container-input">
-          <input type="text" placeholder="Nombres">
+<editar-perfil>
+  <div class="container-main-smecph container-base">
+    <h1>Editar Perfil</h1>
+    <section class="container-sub-smecph" id="pcktph-datos-contacto">
+      <div class="smecph-pc-header-especial">
+        <div class="smecph-pc-dch_info">
+          <h4>Datos de contacto</h4>
+          <p>Ingrese tus datos para disfrutar tu pizza favorita.</p>
         </div>
       </div>
-      <div class="smecph-pc-info-input">
-        <p>Apellidos</p>
-        <div class="ph-container-input">
-          <input type="text" placeholder="Apellidos">
+      <div class="smecph-formulario-datos-contacto">
+        <div class="smecph-pc-info-input">
+          <p>Nombres</p>
+          <div class="ph-container-input">
+            <input
+              id="phpep-input-nombre"
+              pattern="[A-Za-zÀ-ÖØ-öø-ÿ\s]+"
+              required
+              type="text"
+              placeholder="Nombres"
+            >
+          </div>
+        </div>
+        <div class="smecph-pc-info-input">
+          <p>Apellidos</p>
+          <div class="ph-container-input">
+            <input
+              id="phpep-input-apellido"
+              required
+              pattern="[A-Za-zÀ-ÖØ-öø-ÿ\s]+"
+              type="text"
+              placeholder="Apellidos"
+            >
+          </div>
+        </div>
+        <div class="smecph-pc-info-input">
+          <p>Correo Electrónico</p>
+          <div class="ph-container-input">
+            <input
+              id="phpep-input-email"
+              type="email"
+              placeholder="Correo Electrónico"
+            >
+          </div>
+        </div>
+        <div class="smecph-pc-info-input">
+          <p>Celular</p>
+          <div class="ph-container-input">
+            <input
+              id="phpep-input-celular"
+              type="tel"
+              placeholder="Numero de celular"
+              maxlength="8"
+              oninput="
+                this.value = this.value.replace(/[^0-9]/g, '');
+                if (this.value.length > 0 && this.value[0] !== '6' && this.value[0] !== '7') {
+                  this.value = '7' + this.value.substring(1);
+                }
+              "
+              pattern="[67][0-9]{7}"
+            >
+          </div>
+          <div class="smecph-pc-mensaje-input">
+            {% render 'icon-info' %}
+            <p>Nos contactaremos a este número para entregar tu pedido.</p>
+          </div>
+        </div>
+        <div class="smecph-pc-info-input ">
+          <p>Número de Carnet de identidad (C.I.)</p>
+          <div class="ph-container-input">
+            <input
+              id="phpep-input-ci"
+              type="tel"
+              placeholder="Carnet de identidad"
+              maxlength="15"
+              oninput="this.value=this.value.replace(/[^0-9]/g,'')"
+              pattern="[0-9]{1,8}"
+            >
+          </div>
         </div>
       </div>
-      <div class="smecph-pc-info-input">
-        <p>Correo Electrónico</p>
-        <div class="ph-container-input">
-          <input type="email" placeholder="Correo Electrónico">
+    </section>
+    <section class="container-sub-smecph" id="pcktph-datos-contacto">
+      <div class="smecph-pc-header-especial">
+        <div class="smecph-pc-dch_info">
+          <h4>Direccion</h4>
         </div>
-      </div>
-      <div class="smecph-pc-info-input">
-        <p>Celular</p>
-        <div class="ph-container-input">
-          <input type="number" placeholder="Teléfono">
-        </div>
-        <div class="smecph-pc-mensaje-input">
-          {% render 'icon-info' %}
-          <p>Nos contactaremos a este número para entregar tu pedido.</p>
-        </div>
-      </div>
-      <div class="smecph-pc-info-input error">
-        <p>Número de Carnet de identidad (C.I.)</p>
-        <div class="ph-container-input">
-          <input type="number" placeholder="Carnet de identidad">
-        </div>
-        <div class="smecph-pc-mensaje-input">
-          {% render 'icon-info' %}
-          <p>Este campo es obligatorio.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section class="container-sub-smecph" id="pcktph-datos-contacto">
-    <div class="smecph-pc-header-especial">
-      <div class="smecph-pc-dch_info">
-        <h4>Direccion</h4>
-      </div>
-    </div>
-    <div class="pcktpch-modal-body-fase1">
-      <p>Ingresa tu dirección o usa tu ubicación actual.</p>
-      <button class="pcktpch-btn-secundario">
-        {% render 'icon-gps-rojo' %}
-        <p>USAR MI UBICACIÓN ACTUAL</p>
-      </button>
-      <div class="pcktpch-modal-separador">
-        <div class="pcktpch-modal-separador-linea"></div>
-        <p>O</p>
-        <div class="pcktpch-modal-separador-linea"></div>
-      </div>
-      <div class="ph-container-input icon-color-tertiary">
-        {% render 'icon-location-on' %}
-        <input type="text" placeholder="Ingresar dirección o punto de referencia">
-      </div>
-    </div>
-  </section>
-
-  <section class="ph-opciones-mobile-footer">
-    <button class="pcktph-btn-continuar">
-      <p>Continuar</p>
-    </button>
-  </section>
-  <section class="ph-background-container-modal" style="display: none;">
-    <!-- 1re MODAL : NUEVA DIRECCION -->
-    <div class="ph-mmdi-modal-main">
-      <div class="pcktpch-modal-header">
-        <div class="pcktpch-modal-header-opciones">
-          <button class="pcktpch-modal-volver-atras icon-color-tertiary">
-            {% render 'icon-volver-atras' %}
-          </button>
-          <h4>NUEVA DIRECCIÓN</h4>
-        </div>
-        <button class="pcktpch-modal-btn-cerrar">
-          {% render 'icon-close-custom' %}
-        </button>
       </div>
       <div class="pcktpch-modal-body-fase1">
         <p>Ingresa tu dirección o usa tu ubicación actual.</p>
-        <button class="pcktpch-btn-secundario">
+        <button
+          id="phpep-btn-usar-mi-ubicacion"
+          class="pcktpch-btn-secundario"
+        >
           {% render 'icon-gps-rojo' %}
           <p>USAR MI UBICACIÓN ACTUAL</p>
         </button>
@@ -107,43 +106,32 @@
           <div class="pcktpch-modal-separador-linea"></div>
         </div>
         <div class="ph-container-input icon-color-tertiary">
+          <div id="phpep-sugerencias-direccion" class="psme-sugerencias-container"></div>
           {% render 'icon-location-on' %}
-          <input type="text" placeholder="Ingresar dirección o punto de referencia">
+          <input id="phpep-input-direccion" type="text" placeholder="Ingresar dirección o punto de referencia">
         </div>
       </div>
-      <div class="pcktpch-modal-body-fase2">
-        <div class="smecph-mensaje-informacion">
-          {% render 'icon-info' %}
-          <p>Si es necesario, cambia la ubicación del pin en el mapa.</p>
-        </div>
-        <div class="pcktpch-modal-mapa"></div>
-      </div>
-      <div class="pcktpch-modal-body-fase3">
-        <div class="smecph-pc-info-input">
-          <p>Indicaciones acerca de tu dirección</p>
-          <div class="ph-container-input">
-            <input type="text" placeholder="Ingresar indicaciones para tu dirección">
-          </div>
-        </div>
-        <div class="smecph-pc-info-input">
-          <p>Alias</p>
-          <div class="ph-container-input icon-color-tertiary">
-            {% render 'icon-location-on' %}
-            <input type="text" placeholder="Ingresar o seleccionar">
-          </div>
-        </div>
-      </div>
-      <div class="pcktpch-modal-footer">
-        <button class="pcktpch-btn-general">
-          <p>GUARDAR DIRECCIÓN</p>
-        </button>
-        <button class="pcktpch-btn-secundario">
-          <p>CANCELAR</p>
-        </button>
-      </div>
-    </div>
-    <!-- 2do MODAL : SNIPPER DE CARGANDO -->
-    <div class="ph-modal-main-snipper">
+    </section>
+
+    <section class="ph-opciones-mobile-footer">
+      <button
+        id="phpep-btn-continuar"
+        class="ph-btn-general desactivado"
+      >
+        <p>CONTINUAR</p>
+      </button>
+    </section>
+  </div>
+
+  <!-- 1re MODAL : SNIPPER DE CARGANDO -->
+  <section
+    id="phpep-modal-snipper"
+    class="ph-background-container-modal"
+  >
+    <div
+      id="phpep-modal-snipper-body"
+      class="ph-modal-main-snipper"
+    >
       <div class="ph-modal-body-snipper">
         <div class="snipper-container">
           <div class="snipper-background">
@@ -166,36 +154,304 @@
       </div>
       <p>Procesando informacion ...</p>
     </div>
-    <div class="ph-modal-main-mensajes" style="display: none;">
-      <!-- 3er MODAL : EXITO -->
-      <div class="ph-modal-body-exito">
-        <img src="{{ 'imagen-check-verde.png' | asset_url }}" alt="Icono de exito" width="100%" height="100%">
-        <small>mensaje de confirmación</small>
-      </div>
-      <!-- 4to MODAL : QR -->
-      <div class="ph-modal-body-qr">
-        <h1>PAGO POR QR</h1>
-        <div class="ph-modal-qr-detalles">
-          <h4>ESCANEA EL CÓDIGO QR</h4>
-          <p>1. Abre la aplicación de tu banco.</p>
-          <p>2. Selecciona la forma de pago QR Simple.</p>
-          <p>3. Captura el Código QR con la cámara o descarga la imagen.</p>
-          <p>4. Mantén esta página abierta para que puedas ver la confirmación de tu pago.</p>
-        </div>
-        <div class="smecph-mensaje-informacion">
+  </section>
+
+  <!-- MODAL DE DAR MI DIRECCION -->
+  <section
+    id="phpcc-modal-dar-direccion"
+    class="psme-modal-mapa-envio-domicilio"
+  >
+    <div
+      id="phpcc-contenido-modal-body"
+      class="psme-modal-contenedor-base"
+    >
+      <div class="psme-modal-header">
+        <div class="psme-modal-mensaje">
           {% render 'icon-info' %}
-          <p>Aguardando tu pago...</p>
+          <p>Si es necesario, cambia la ubicación del pin en el mapa.</p>
         </div>
-        <div class="ph-modal-imgen-qr">
-          <img src="{{ 'qr-prueba.png' | asset_url }}" alt="QR" width="100%" height="100%">
-        </div>
-        <button class="pcktpch-btn-secundario">
-          {% render 'icon-descargar' %}
-          <p>DESCARGAR QR</p>
+        <button class="psme-modal-boton-cerrar icon-color-tertiary" id="phpep-boton-cerrar-modal">
+          {% render 'icon-close-rojo' %}
+        </button>
+      </div>
+      <div
+        id="phpcc-modal-mapa"
+        class="psme-modal-body"
+      ></div>
+      <div class="psme-modal-footer">
+        <button class="psme-modal-boton-confirmar" id="phpep-btn-confirmar-modal">
+          <p>Confirmar</p>
+        </button>
+        <button class="psme-modal-boton-cancelar" id="phpep-btn-cancelar-modal">
+          <p>Cerrar</p>
         </button>
       </div>
     </div>
   </section>
-</div>
-{% comment %} asd {% endcomment %}
-{% comment %} 123qsda {% endcomment %}
+</editar-perfil>
+
+<script>
+  class EditarPerfil extends HTMLElement {
+    constructor() {
+      super();
+      this.coordenadas = { lat: -17.510420897741643, lng: -63.16459000457593 };
+      this.direccionSeleccionada = false;
+      this.marcadorMovible = null;
+    }
+
+    connectedCallback() {
+      // REFERENCIAS A ELEMENTOS
+      this.btnContinuar = document.getElementById('phpep-btn-continuar');
+      this.inputNombre = document.getElementById('phpep-input-nombre');
+      this.inputApellido = document.getElementById('phpep-input-apellido');
+      this.inputEmail = document.getElementById('phpep-input-email');
+      this.inputCelular = document.getElementById('phpep-input-celular');
+      this.inputCi = document.getElementById('phpep-input-ci');
+      this.inputDireccion = document.getElementById('pcktpch-input-direccion');
+      this.modalSnipper = document.getElementById('phpep-modal-snipper');
+      this.modalSnipperBody = document.getElementById('phpep-modal-snipper-body');
+      this.modalDarDireccion = document.getElementById('phpep-dar-direccion');
+      this.btnModalDDContinuar = document.getElementById('phpep-btn-confirmar-modal');
+      this.btnModalDDCancelar = document.getElementById('phpep-btn-cancelar-modal');
+      this.btnModalCerrar = document.getElementById('phpep-boton-cerrar-modal');
+      this.btnUsarMiUbicacion = document.getElementById('phpep-btn-usar-mi-ubicacion');
+      this.contenedorSugerencias = document.getElementById('phpep-sugerencias-direccion');
+
+      this.btnUsarMiUbicacion.addEventListener('click', this.btnUsarMiUbicacionClick.bind(this));
+      this.btnContinuar.addEventListener('click', this.btnContinuarClick.bind(this));
+      this.btnModalDDContinuar.addEventListener('click', this.btnModalDDContinuarClick.bind(this));
+      this.btnModalDDCancelar.addEventListener('click', this.cerrarModalDarDireccion.bind(this));
+      this.btnModalCerrar.addEventListener('click', this.cerrarModalDarDireccion.bind(this));
+      this.inputNombre.addEventListener('input', this.verificiarValidacion.bind(this));
+      this.inputApellido.addEventListener('input', this.verificiarValidacion.bind(this));
+      this.inputEmail.addEventListener('input', this.verificiarValidacion.bind(this));
+      this.inputCelular.addEventListener('input', this.verificiarValidacion.bind(this));
+      this.inputCi.addEventListener('input', this.verificiarValidacion.bind(this));
+      this.inputNombre.addEventListener('input', this.validarInputTexto.bind(this));
+      this.inputApellido.addEventListener('input', this.validarInputTexto.bind(this));
+      document.addEventListener('click', this.clickEspeciales.bind(this));
+
+      // EVENTOS INCIALIZAR
+      // INICIALIZAR ELEMENTOS Y PROCESOS (CLAVES)
+      this.modalSnipper.style.display = 'none';
+      this.modalDarDireccion.style.display = 'none';
+      this.inicializarDataLocalStorage();
+      this.inicializarObjetoGoogleMaps(0);
+    }
+
+    inicializarObjetoGoogleMaps(intentos = 0) {
+      // Verificar si Google Maps esta cargado
+      if (typeof google == 'undefined') {
+        this.modalSnipper.style.display = 'flex';
+        if (intentos < 10) {
+          console.log('Google Maps no está cargado, esperando... Intento ' + (intentos + 1));
+          setTimeout(() => {
+            this.inicializarObjetoGoogleMaps(intentos + 1);
+          }, 500); // Esperar 0.5 segundos antes de volver a intentar
+        } else {
+          console.error('Google Maps no se cargó después de varios intentos');
+        }
+        return;
+      }
+
+      console.log('Google Maps cargado correctamente');
+      this.configurarAutocompletadoDirecciones();
+    }
+
+    inicializarDataLocalStorage() {
+      const datosUsuario = localStorage.getItem('datosUsuario');
+      cons direccion = localStorage.getItem('direccion-cliente');
+
+      if(datosUsuario.celular == null || direccion == null) {
+        window.location.href = '/';
+      }
+
+      const inputs = {
+        nombre: this.inputNombre,
+        apellido: this.inputApellido,
+        email: this.inputEmail,
+        celular: this.inputCelular,
+        ci: this.inputCi
+      };
+
+      inputs.nombre.value = datosUsuario.nombre;
+      inputs.apellido.value = datosUsuario.apellido;
+      inputs.email.value = datosUsuario.email;
+      inputs.celular.value = datosUsuario.celular;
+      inputs.ci.value = datosUsuario.ci;
+      this.inputDireccion.value = direccion;
+    }
+
+    configurarAutocompletadoDirecciones() {
+      // Verificar que el input existe
+      if (!this.inputDireccion) return;
+
+      // Variable para almacenar el timer del debounce
+      let timeoutId = null;
+
+      // Variable para el servicio de Places
+      this.placesService = new google.maps.places.AutocompleteService();
+
+      // Escuchar el evento input
+      this.inputDireccion.addEventListener('input', (e) => {
+        // Limpiar el timer anterior si existe
+        if (timeoutId) {
+          clearTimeout(timeoutId);
+        }
+
+        const query = e.target.value.trim();
+
+        // Si el input está vacío, ocultar sugerencias
+        if (!query) {
+          this.contenedorSugerencias.style.display = 'none';
+          return;
+        }
+
+        // Configurar debounce (500ms)
+        timeoutId = setTimeout(() => {
+          this.buscarSugerenciasDirecciones(query);
+        }, 500);
+      });
+
+      // Cerrar sugerencias al hacer clic fuera
+      document.addEventListener('click', (e) => {
+        if (!this.inputDireccion.contains(e.target) && !this.contenedorSugerencias.contains(e.target)) {
+          this.contenedorSugerencias.style.display = 'none';
+        }
+      });
+    }
+
+    buscarSugerenciasDirecciones(query) {
+      // Opciones para la búsqueda
+      const opcionesBusqueda = {
+        input: query,
+        componentRestrictions: { country: 'bo' }, // Ajusta al país (Bolivia)
+      };
+
+      // Realizar la búsqueda
+      this.placesService.getPlacePredictions(opcionesBusqueda, (predictions, status) => {
+        // Limpiar contenedor de sugerencias
+        this.contenedorSugerencias.innerHTML = '';
+
+        if (status !== google.maps.places.PlacesServiceStatus.OK || !predictions) {
+          this.contenedorSugerencias.style.display = 'none';
+          return;
+        }
+
+        // Limitar a 3 sugerencias
+        const sugerencias = predictions.slice(0, 3);
+
+        // Mostrar sugerencias
+        sugerencias.forEach((sugerencia) => {
+          const elemento = document.createElement('div');
+          elemento.classList.add('psme-sugerencia-item');
+
+          // Crear elemento p para el texto
+          const textoElemento = document.createElement('p');
+          textoElemento.textContent = sugerencia.description;
+          elemento.appendChild(textoElemento);
+
+          // Agregar evento de clic
+          elemento.addEventListener('click', () => {
+            this.seleccionarDireccion(sugerencia);
+          });
+
+          this.contenedorSugerencias.appendChild(elemento);
+        });
+
+        // Mostrar el contenedor
+        if (sugerencias.length > 0) {
+          this.contenedorSugerencias.style.display = 'block';
+        } else {
+          this.contenedorSugerencias.style.display = 'none';
+        }
+      });
+    }
+
+    seleccionarDireccion(sugerencia) {
+      this.controlSeleccionInput = true;
+
+      // Actualizar el valor del input
+      this.inputDireccion.value = sugerencia.description;
+
+      // Marcar que se ha seleccionado una dirección
+      this.direccionSeleccionada = true;
+
+      // Ocultar sugerencias
+      this.contenedorSugerencias.style.display = 'none';
+
+      // Obtener las coordenadas del lugar seleccionado
+      const geocoder = new google.maps.Geocoder();
+      geocoder.geocode({ placeId: sugerencia.place_id }, (results, status) => {
+        if (status === google.maps.GeocoderStatus.OK && results[0]) {
+          const ubicacion = results[0].geometry.location;
+
+          // Actualizar la variable de coordenadas usada de forma general
+          this.coordenadas = {
+            lat: ubicacion.lat(),
+            lng: ubicacion.lng(),
+          };
+
+          console.log('Coordenadas de direcciónn seleccionada:', this.coordenadas);
+        }
+      });
+    }
+
+    validarInputTexto(event) {
+      // El elemento que disparó el evento
+      const input = event.target;
+
+      // Guarda la posición actual del cursor
+      const cursorPos = input.selectionStart;
+
+      // Filtra cualquier carácter que no sea letra o espacio
+      const valorOriginal = input.value;
+      const valorFiltrado = valorOriginal.replace(/[^A-Za-zÀ-ÖØ-öø-ÿ\s]/g, '');
+
+      // Solo actualiza si hay cambios
+      if (valorOriginal !== valorFiltrado) {
+        input.value = valorFiltrado;
+
+        // Ajusta la posición del cursor
+        input.setSelectionRange(cursorPos - (valorOriginal.length - valorFiltrado.length),
+                              cursorPos - (valorOriginal.length - valorFiltrado.length));
+      }
+    }
+
+    cerrarModalDarDireccion() {
+      this.modalDarDireccion.style.display = 'none';
+    }
+
+    clickEspeciales(event){
+      const contenedorBackgroundSnipper = this.modalSnipper;
+      const bodySnipper = this.modalSnipperBody;
+
+      contenedorBackgroundSnipper.addEventListener('click', (e) => {
+        if (e.target === contenedorBackgroundSnipper && !bodySnipper.contains(e.target)) {
+          contenedorBackgroundSnipper.style.display = 'none';
+        }
+      });
+    }
+
+    verificiarValidacion(){
+      const inputsForm = [
+        this.inputNombre,
+        this.inputApellido,
+        this.inputEmail,
+        this.inputCelular,
+        this.inputCi
+      ];
+
+
+      const todosValidos = inputsForm.every(input => input.value.trim() !== '');
+
+      if (todosValidos) {
+        this.btnContinuar.classList.remove('desactivado');
+        this.btnContinuar.disabled = false;
+      } else {
+        this.btnContinuar.classList.add('desactivado');
+        this.btnContinuar.disabled = true;
+      }
+    }
+  }
+</script>

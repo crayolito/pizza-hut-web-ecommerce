@@ -396,13 +396,15 @@
 
     inicializarDatosAlmacenados() {
       const datosUsuario = JSON.parse(localStorage.getItem('datos-usuario'));
+      const direccion = localStorage.getItem('direccion-cliente');
+
       const dataPerfil = localStorage.getItem('pg-perfil-opcion');
       console.log('inicializando datos almacenados');
       if (dataPerfil == null) {
         window.location.href = '/';
       }
 
-      if (datosUsuario.nombre == null || datosUsuario.nombre == '') {
+      if (datosUsuario.celular == null || direccion == null) {
         window.location.href = '/';
       }
 
@@ -420,7 +422,6 @@
         this.seccionConfiguraciones.style.display = 'flex';
       }
 
-      const direccion = localStorage.getItem('direccion-cliente');
 
       if (datosUsuario) {
         this.labelNombre.innerText = datosUsuario.nombre || '----';
