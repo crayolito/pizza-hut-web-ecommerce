@@ -87,31 +87,30 @@
         <small class="phpp-titulo-base"> MI PERFIL </small>
         <div class="phpp-container-informaicon-usuario">
           <div
-            id=""
             class="phpp-info color-letras-extra"
           >
             <p>Nombres</p>
-            <p class="phppu-label-nombre">Maria Jose</p>
+            <p id="phppu-label-nombre">Maria Jose</p>
           </div>
           <div class="phpp-info color-letras-extra">
             <p>Apellidos</p>
-            <p class="phppu-label-apellido">Lopez</p>
+            <p id="phppu-label-apellido">Lopez</p>
           </div>
           <div class="phpp-info color-letras-extra">
             <p>Celular</p>
-            <p class="phppu-label-telefono">77453368</p>
+            <p id="phppu-label-telefono">77453368</p>
           </div>
           <div class="phpp-info color-letras-extra">
-            <p>Numeor de Carnte de identidad (C.I.)</p>
-            <p class="phppu-label-ci">8177545 - U</p>
+            <p>Numero de Carnte de identidad (C.I.)</p>
+            <p id="phppu-label-ci">8177545 - U</p>
           </div>
           <div class="phpp-info color-letras-extra">
             <p>Correo electronico</p>
-            <p class="phppu-label-correo">mlopez@gmail.com</p>
+            <p id="phppu-label-correo">mlopez@gmail.com</p>
           </div>
           <div class="phpp-info color-letras-extra">
             <p>Direccion de entrega</p>
-            <p class="phppu-label-direccion">Barrio Santa Ana 1, Doble via a La Guardia</p>
+            <p id="phppu-label-direccion">Barrio Santa Ana 1, Doble via a La Guardia</p>
           </div>
           <hr>
           <a
@@ -161,7 +160,10 @@
                 <button class="ph-btn-primario desactivado">
                   <p>REPETIR PEDIDO</p>
                 </button>
-                <button class="ph-btn-secundario">
+                <button
+                  id="phppu-btn-ver-detalle"
+                  class="ph-btn-secundario"
+                >
                   <p>VER DETALLE</p>
                 </button>
               </div>
@@ -182,10 +184,13 @@
                 </div>
               </div>
               <div class="phpp-ihpdp-opciones">
-                <button class="ph-btn-primario-desactivado">
+                <button class="ph-btn-primario desactivado">
                   <p>REPETIR PEDIDO</p>
                 </button>
-                <button class="ph-btn-secundario">
+                <button
+                  id="phppu-btn-ver-detalle"
+                  class="ph-btn-secundario"
+                >
                   <p>VER DETALLE</p>
                 </button>
               </div>
@@ -206,10 +211,13 @@
                 </div>
               </div>
               <div class="phpp-ihpdp-opciones">
-                <button class="ph-btn-primario-desactivado">
+                <button class="ph-btn-primario desactivado">
                   <p>REPETIR PEDIDO</p>
                 </button>
-                <button class="ph-btn-secundario">
+                <button
+                  id="phppu-btn-ver-detalle"
+                  class="ph-btn-secundario"
+                >
                   <p>VER DETALLE</p>
                 </button>
               </div>
@@ -230,10 +238,13 @@
                 </div>
               </div>
               <div class="phpp-ihpdp-opciones">
-                <button class="ph-btn-primario-desactivado">
+                <button class="ph-btn-primario desactivado">
                   <p>REPETIR PEDIDO</p>
                 </button>
-                <button class="ph-btn-secundario">
+                <button
+                  id="phppu-btn-ver-detalle"
+                  class="ph-btn-secundario"
+                >
                   <p>VER DETALLE</p>
                 </button>
               </div>
@@ -279,7 +290,7 @@
             <div class="phpp-cc-estado">
               <h3>ESTADO</h3>
               <label class="toggle">
-                <input type="checkbox">
+                <input id="phppu-checkbox-estado" type="checkbox">
                 <span class="slider"></span>
               </label>
             </div>
@@ -351,14 +362,26 @@
       this.seccionConfiguraciones = document.getElementById('phpp-cd-configuraciones');
       this.btnCerrarSesion = document.getElementById('phppu-btn-cerrar-sesion');
       this.btnEliminarCuenta = document.getElementById('phppu-btn-eliminar-cuenta');
+      this.labelNombre = document.querySelector('#phppu-label-nombre');
+      this.labelApellido = document.querySelector('#phppu-label-apellido');
+      this.labelTelefono = document.querySelector('#phppu-label-telefono');
+      this.labelCi = document.querySelector('#phppu-label-ci');
+      this.labelCorreo = document.querySelector('#phppu-label-correo');
+      this.labelDireccion = document.querySelector('#phppu-label-direccion');
+      this.btnsVerDetalle = document.querySelectorAll('#phppu-btn-ver-detalle');
+      this.btnCheckboxEstado = document.querySelector('#phppu-checkbox-estado');
 
-      // EVENTOS INICIALIZAR
-      this.btnSectorIPerfil.addEventListener('click', this.seleccionOpcionMenu.bind(this));
+      this.this.btnSectorIPerfil // EVENTOS INICIALIZAR
+        .addEventListener('click', this.seleccionOpcionMenu.bind(this));
       this.btnSectorIHistorial.addEventListener('click', this.seleccionOpcionMenu.bind(this));
       this.btnSectorIConfiguraciones.addEventListener('click', this.seleccionOpcionMenu.bind(this));
       this.btnMenuHeader.addEventListener('click', this.manipulacionContenedorMenu.bind(this));
       this.btnCerrarSesion.addEventListener('click', this.cerrarSesion.bind(this));
       this.btnEliminarCuenta.addEventListener('click', this.eliminarCuenta.bind(this));
+      this.btnCheckboxEstado.addEventListener('change',this.solicitarNotificaciones.bind(this));
+      this.btnsVerDetalle.addEventListener('click', () => {
+        window.location.href = '/pages/detalle-pedido';
+      });
       document.addEventListener('click', this.detectarClickEspeciales.bind(this)(event));
 
       // INICIALIZAR ELEMENTOS Y PROCESOS CLAVES
@@ -388,6 +411,24 @@
         this.btnSectorIConfiguraciones.classList.add('seleccionado');
         this.tituloHeaderMobil.innerText = 'CONFIGURACIONES';
         this.seccionConfiguraciones.style.display = 'flex';
+      }
+
+      const datosUsuario = JSON.parse(localStorage.getItem('datos-usuario'));
+
+      if (datosUsuario) {
+        this.labelNombre.innerText = datosUsuario.nombre ? '----';
+        this.labelApellido.innerText = datosUsuario.apellido || '----';
+        this.labelTelefono.innerText = datosUsuario.telefono || '----';
+        this.labelCi.innerText = datosUsuario.ci || '----';
+        this.labelCorreo.innerText = datosUsuario.correo || '----';
+        this.labelDireccion.innerText = datosUsuario.direccion || '----';
+      }
+
+      const tieneNotifi = localStorage.getItem('ph-notificaciones');
+      if (tieneNotifi == 'true') {
+        this.btnCheckboxEstado.checked = true;
+      } else {
+        this.btnCheckboxEstado.checked = false;
       }
     }
 
@@ -456,6 +497,29 @@
       localStorage.removeItem('pg-perfil-opcion');
       localStorage.removeItem('direccion-cliente');
       window.location.href = '/';
+    }
+
+    solicitarNotificaciones() {
+      if (this.btnCheckboxEstado.checked) {
+          // Usuario quiere activar notificaciones
+          Notification.requestPermission().then(permission => {
+              if (permission !== 'granted') {
+                  // Si rechaza, actualizamos el checkbox para reflejar el estado real
+                  this.btnCheckboxEstado.checked = false;
+                  console.log('Permisos de notificación rechazados por el usuario');
+                  localStorage.setItem('ph-notificaciones', 'false');
+              } else {
+                  console.log('Permisos de notificación aceptados');
+                  this.btnCheckboxEstado.checked = true;
+                  localStorage.setItem('ph-notificaciones', 'true');
+              }
+          });
+      } else {
+          // Usuario quiere desactivar notificaciones
+          console.log('Usuario ha desactivado las notificaciones');
+          localStorage.setItem('ph-notificaciones', 'false');
+          this.btnCheckboxEstado.checked = false;
+      }
     }
   }
 

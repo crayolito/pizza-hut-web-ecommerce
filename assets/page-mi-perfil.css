@@ -309,7 +309,7 @@
   gap: var(--espaciado-m);
 }
 
-.ph-btn-primario.desactivado {
+.ph-btn-primario.desactivado p {
   text-align: center !important;
 }
 
@@ -338,8 +338,11 @@
   font-weight: 700;
 }
 
-.phpp-ni svg rect,
-.phpp-ni rect {
+.phpp-ni svg,
+.phpp-ni svg path,
+.phpp-ni svg g,
+.phpp-ni path,
+.phpp-ni g {
   fill: var(--colorp-extra);
 }
 
