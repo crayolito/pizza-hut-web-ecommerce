@@ -264,6 +264,7 @@
       const datosUsuario = JSON.parse(localStorage.getItem('datos-usuario'));
       const direccion = localStorage.getItem('direccion-cliente');
       console.log('Direccion: ', direccion);
+      console.log('Datos de usuario: ', datosUsuario);
 
       if (datosUsuario.celular == null || direccion == null) {
         window.location.href = '/';
@@ -276,6 +277,8 @@
         celular: this.inputCelular,
         ci: this.inputCi,
       };
+
+      console.log('Inputs: ', inputs);
 
       inputs.nombre.value = datosUsuario.nombre;
       inputs.apellido.value = datosUsuario.apellido;
