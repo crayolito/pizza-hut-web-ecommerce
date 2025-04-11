@@ -303,8 +303,14 @@
 .phpp-ihpdp-opciones {
   width: 100%;
   display: flex;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
   gap: var(--espaciado-m);
+}
+
+.ph-btn-primario.desactivado {
+  text-align: center !important;
 }
 
 .phpp-hp-navegacion-items {
