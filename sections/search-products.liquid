@@ -619,13 +619,13 @@
     }
 
     alternarDropdown(elementoBase) {
+      console.log('Elemento Base:', elementoBase);
       if (elementoBase.style.display == 'flex') {
         elementoBase.style.display = 'none';
       } else {
         elementoBase.style.display = 'flex';
       }
 
-      console.log('Elemento Base:', elementoBase);
 
       this.dropdownsVariantes.forEach((elementoHermano) => {
         if (elementoHermano != elementoBase) {
