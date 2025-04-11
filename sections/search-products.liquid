@@ -30,7 +30,7 @@
               id="phsp-view-variantes"
               class="container-info-variante"
             >
-              <p id="phsp-variante-seleccionado">Pequeño</p>
+              <p id="phsp-variante-seleccionado">Personalizada</p>
               <div class="icono-dropdown-variantes icon-color-tertiary">
                 {% render 'icon-flecha-abajo' %}
               </div>
@@ -85,7 +85,7 @@
               id="phsp-view-variantes"
               class="container-info-variante"
             >
-              <p id="phsp-variante-seleccionado">Pequeño</p>
+              <p id="phsp-variante-seleccionado">Personalizada</p>
               <div class="icono-dropdown-variantes icon-color-tertiary">
                 {% render 'icon-flecha-abajo' %}
               </div>
@@ -140,7 +140,7 @@
               id="phsp-view-variantes"
               class="container-info-variante"
             >
-              <p id="phsp-variante-seleccionado">Pequeño</p>
+              <p id="phsp-variante-seleccionado">Personalizada</p>
               <div class="icono-dropdown-variantes icon-color-tertiary">
                 {% render 'icon-flecha-abajo' %}
               </div>
@@ -195,7 +195,7 @@
               id="phsp-view-variantes"
               class="container-info-variante"
             >
-              <p id="phsp-variante-seleccionado">Pequeño</p>
+              <p id="phsp-variante-seleccionado">Personalizada</p>
               <div class="icono-dropdown-variantes icon-color-tertiary">
                 {% render 'icon-flecha-abajo' %}
               </div>
@@ -533,12 +533,12 @@
           this.alternarContenedorViewVariantes(elementoBase);
         });
       });
-      document.addEventListener('click', this.clickEspeciales.bind(this));
       this.resultadosSeccionVariantes.forEach((elementoInicial) => {
         elementoInicial.addEventListener('click', (event) => {
           this.procesoVariantes(event, elementoInicial);
         });
       });
+      document.addEventListener('click', this.clickEspeciales.bind(this));
 
       // INICIALIZAR ELEMENTOS Y PROCESOS CLAVES
       this.dropdownsVariantes.forEach((elementoInicial) => {
@@ -579,14 +579,14 @@
     }
 
     clickEspeciales(event) {
-      {% comment %} // Verificar primero si el clic fue en cualquier elemento phsp-view-variantes o dentro de alguno
+      // Verificar primero si el clic fue en cualquier elemento phsp-view-variantes o dentro de alguno
       const viewVariantesElements = document.querySelectorAll('#phsp-view-variantes');
 
       // Comprobar si el clic fue en alguno de estos elementos o sus hijos
       let clickEnViewVariantes = false;
       viewVariantesElements.forEach((element) => {
         {% comment %} console.log('Elemento:', element); {% endcomment %}
-        if (element === event.target || element.contains(event.target)) {
+        if (element == event.target || element.contains(event.target)) {
           clickEnViewVariantes = true;
         }
       });
@@ -616,7 +616,7 @@
           // Oculta el dropdown
           {% comment %} dropdown.style.display = 'none'; {% endcomment %}
         });
-      } {% endcomment %}
+      }
     }
 
     alternarContenedorViewVariantes(elementoBase) {
