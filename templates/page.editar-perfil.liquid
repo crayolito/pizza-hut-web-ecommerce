@@ -211,6 +211,7 @@
       this.modalSnipper = document.getElementById('phpep-modal-snipper');
       this.modalSnipperBody = document.getElementById('phpep-modal-snipper-body');
       this.modalDarDireccion = document.getElementById('phpcc-modal-dar-direccion');
+      this.modalBodyMap = document.getElementById('phpcc-modal-mapa');
       this.btnModalDDContinuar = document.getElementById('phpep-btn-confirmar-modal');
       this.btnModalDDCancelar = document.getElementById('phpep-btn-cancelar-modal');
       this.btnModalCerrar = document.getElementById('phpep-boton-cerrar-modal');
@@ -447,6 +448,107 @@
       } else {
         this.btnContinuar.classList.add('desactivado');
         this.btnContinuar.disabled = true;
+      }
+    }
+
+    btnUsarMiUbicacionClick() {
+      this.modalSnipper.style.display = 'flex';
+      this.inicializarMapa();
+    }
+
+    btnContinuarClick() {
+      this.modalSnipper.style.display = 'flex';
+      this.modalSnipperBody.style.display = 'flex';
+
+      const datosUsuario = {
+        nombre: this.inputNombre.value,
+        apellido: this.inputApellido.value,
+        email: this.inputEmail.value,
+        celular: this.inputCelular.value,
+        ci: this.inputCi.value,
+      };
+
+      localStorage.setItem('datos-usuario', JSON.stringify(datosUsuario));
+      localStorage.setItem('direccion-cliente', this.inputDireccion.value);
+
+      setTimeout(() => {
+        window.location.href = '/pages/perfil';
+      }, 2000);
+    }
+
+    btnModalDDContinuarClick(){
+      this.modalDarDireccion.style.display = 'flex';
+
+      // 1. Crear el mapa
+      if (!this.modalBodyMap) {
+        alert('Error: No se pudo cargar el mapa. Por favor recarga la página');
+        return;
+      }
+
+      console.log('Entra a inicializarMapaEnvioDomicilio : ', this.coordenadas);
+
+      const configuracionMapa = {
+        center: this.coordenadas,
+        zoom: 16,
+        mapTypeControl: false,
+        streetViewControl: false,
+        fullscreenControl: false,
+        zoomControl: true,
+        scaleControl: false,
+        rotateControl: false,
+        panControl: false,
+        disableDefaultUI: false,
+      };
+
+      const mapa = new google.maps.Map(this.modalBodyMap, configuracionMapa);
+
+      // 2. Crear el marcador movible
+      {% comment %} const marcadorMovible = new google.maps.Marker({ {% endcomment %}
+      this.marcadorMovible = new google.maps.Marker({
+        position: this.coordenadas,
+        map: mapa,
+        draggable: true,
+        animation: google.maps.Animation.DROP,
+      });
+
+      // 3. Configurar el evento del marcador
+      if(this.direccionSeleccionada == true) return;
+      this.marcadorMovible.addListener('dragend', (evento) => {
+        try {
+          const posicion = this.marcadorMovible.getPosition();
+          this.coordenadas = { lat: posicion.lat(), lng: posicion.lng() };
+
+          console.log('Coordenadas: ', this.coordenadas);
+          mapa.panTo(posicion);
+        } catch {
+          alert('Error al actualizar la posición');
+          console.error(error);
+        }
+      });
+
+      // 4. Pedir la ubicacion del usuario y actualizar el marcador a esa posicion
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            try {
+              const miUbicacion = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude,
+              };
+
+              this.marcadorMovible.setPosition(miUbicacion);
+              mapa.panTo(miUbicacion);
+              this.coordenadas = miUbicacion;
+            } catch (error) {
+              alert('Error al obtener la ubicación: Por favor, verifique la ubicación de su dispositivo');
+              console.log('Error al obtener la ubicación 1: ', error);
+            }
+          },
+          (error) => {
+            alert('Error al obtener la ubicación: Por favor, verifique la ubicación de su dispositivo');
+            console.log('Error al obtener la ubicación 2: ', error);
+          }
+        );
       }
     }
   }
