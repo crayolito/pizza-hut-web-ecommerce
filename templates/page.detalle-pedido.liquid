@@ -320,6 +320,8 @@
     volverAtras(){
       const vinoHistorial = localStorage.getItem('ph-origenHistorial');
       if(vinoHistorial == 'true'){
+        localStorage.removeItem('ph-estadoDP');
+        localStorage.removeItem('ph-origenHistorial');
         window.history.back();
       }else {
         localStorage.setItem('ph-estadoDP', 'etapa-1');

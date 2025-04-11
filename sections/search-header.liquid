@@ -1,3 +1,6 @@
+<!-- Hojas de estilos CSS -->
+{{ 'estilos-generales.css' | asset_url | stylesheet_tag }}
+
 <section class="sh-container-header container-base">
   <small>¡ENCUENTRA TU PIZZA FAVORITA!</small>
   <div class="sh-container-input">
@@ -53,6 +56,9 @@
     border: none;
     cursor: pointer;
     aspect-ratio: 1/1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   @media screen and (min-width: 768px) {

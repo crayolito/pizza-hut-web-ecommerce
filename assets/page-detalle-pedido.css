@@ -189,7 +189,8 @@
 .pdpph-general-pedido {
   width: 100%;
   height: 43.11rem;
-  background-color: var(--colorp-primary);
+  /* background-color: var(--colorp-primary); */
+  background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.85));
   /* margin-bottom: 8rem; */
 }
 

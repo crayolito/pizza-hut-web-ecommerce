@@ -22,11 +22,5 @@
       "settings": {}
     }
   },
-  "order": [
-    "search-header",
-    "search-products",
-    "search-promociones"
-    // "search-promociones-1",
-    // "search-promociones-2"
-  ]
+  "order": ["search-header", "search-products", "search-promociones"]
 }
