@@ -530,7 +530,7 @@
 
       // EVENTOS INICIALIZAR
       this.dropdownsVariantes.forEach((elementoBase) => {
-        elementoBase.addEventListener('click', this.alternarDropdown.bind(this, elementoBase));
+        elementoBase.addEventListener('click', this.alternarDropdown(elementoBase));
       });
       document.addEventListener('click', this.clickEspeciales.bind(this));
       this.resultadosSeccionVariantes.forEach((elementoInicial) => {
@@ -625,7 +625,6 @@
       } else {
         elementoBase.style.display = 'flex';
       }
-
 
       this.dropdownsVariantes.forEach((elementoHermano) => {
         if (elementoHermano != elementoBase) {
