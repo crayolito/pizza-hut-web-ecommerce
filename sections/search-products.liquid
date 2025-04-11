@@ -584,9 +584,28 @@
     }
 
     clickEspeciales(event) {
-      // Verifico si el click fue fuera del dropdown especifico cerrarlo
-      // Cerrar los demas dropdowns pero si el elemento es otro dropdown abrirlo este especifico
-      // y cerrar los otros
+      // Si el click fue fuera de algun dropdown #phsp-items-variantes entonces cerrar todos los dropdowns
+      const dropdowns = this.querySelectorAll('#phsp-items-variantes');
+
+      // Verifica si el clic fue dentro de algún dropdown
+      let clickDentroDropdown = false;
+
+      dropdowns.forEach((dropdown) => {
+        // Comprueba si el elemento clicado está dentro del dropdown actual
+        if (dropdown.contains(event.target)) {
+          clickDentroDropdown = true;
+        }
+      });
+
+      // Si el clic fue fuera de todos los dropdowns, los cerramos
+      if (!clickDentroDropdown) {
+        dropdowns.forEach((dropdown) => {
+          // Oculta el dropdown (puedes ajustar esto según tu implementación)
+          dropdown.style.display = 'none';
+          // O alternativamente, si usas una clase para mostrar/ocultar:
+          // dropdown.classList.remove('mostrar');
+        });
+      }
     }
   }
 
