@@ -57,7 +57,10 @@
               </div>
             </div>
           </div>
-          <button class="boton-producto-personalizar">
+          <button
+            id="phsp-btn-personalizar"
+            class="boton-producto-personalizar"
+          >
             <p class="color-letras-secondary">Personalizar</p>
           </button>
         </div>
@@ -112,7 +115,11 @@
               </div>
             </div>
           </div>
-          <button class="boton-producto-personalizar">
+          <button
+            id="phsp-btn-personalizar"
+
+            class="boton-producto-personalizar"
+          >
             <p class="color-letras-secondary">Personalizar</p>
           </button>
         </div>
@@ -132,7 +139,7 @@
           <h3 class="color-letras-primary">12.56 BS</h3>
           <div
             id="phsp-general-variantes"
-            tipo-producto="simple"
+            tipo-producto="complejo"
             class="seleccion-variante-producto-general"
           >
             <p>Tamaño</p>
@@ -167,7 +174,11 @@
               </div>
             </div>
           </div>
-          <button class="boton-producto-personalizar">
+          <button
+            id="phsp-btn-personalizar"
+
+            class="boton-producto-personalizar"
+          >
             <p class="color-letras-secondary">Personalizar</p>
           </button>
         </div>
@@ -187,7 +198,7 @@
           <h3 class="color-letras-primary">12.56 BS</h3>
           <div
             id="phsp-general-variantes"
-            tipo-producto="simple"
+            tipo-producto="complejo"
             class="seleccion-variante-producto-general"
           >
             <p>Tamaño</p>
@@ -222,7 +233,10 @@
               </div>
             </div>
           </div>
-          <button class="boton-producto-personalizar">
+          <button
+            id="phsp-btn-personalizar"
+            class="boton-producto-personalizar"
+          >
             <p class="color-letras-secondary">Personalizar</p>
           </button>
         </div>
@@ -527,15 +541,30 @@
       // REFERENCIAS ELEMENTOS
       this.resultadosSeccionVariantes = this.querySelectorAll('#phsp-view-variantes');
       this.dropdownsVariantes = this.querySelectorAll('#phsp-items-variantes');
+      this.btnsPersonalizar = this.querySelectorAll('#phsp-btn-personalizar');
+      this.btnsAgregarAlCarrito = this.querySelectorAll('#phsp-btn-agregar-al-carrito');
       // EVENTOS INICIALIZAR
+      this.resultadosSeccionVariantes.forEach((btn) => {
+        elementoBase.addEventListener('click', (event) => {
+          this.personalizarProducto(btn);
+        });
+      });
+
       this.resultadosSeccionVariantes.forEach((elementoBase) => {
         elementoBase.addEventListener('click', (event) => {
           this.alternarContenedorViewVariantes(elementoBase);
         });
       });
+
       this.resultadosSeccionVariantes.forEach((elementoInicial) => {
         elementoInicial.addEventListener('click', (event) => {
           this.procesoVariantes(event, elementoInicial);
+        });
+      });
+
+      this.btsAgregarAlCarrito.forEach((elementoBase) => {
+        elementoBase.addEventListener('click', (event) => {
+          this.agregarAlCarrito();
         });
       });
       document.addEventListener('click', this.clickEspeciales.bind(this));
@@ -579,7 +608,6 @@
     }
 
     clickEspeciales(event) {
-      console.log('Click en el documento:', event.target);
       // Verificar primero si el clic fue en cualquier elemento phsp-view-variantes o dentro de alguno
       const viewVariantesElements = document.querySelectorAll('#phsp-view-variantes');
 
@@ -594,7 +622,6 @@
 
       // Si el clic fue en algún phsp-view-variantes, no hacemos nada
       if (clickEnViewVariantes) {
-        console.log('Click en phsp-view-variantes, no cerrar dropdowns');
         return;
       }
 
@@ -636,6 +663,35 @@
           elementoTrabajo.style.display = 'none';
         }
       });
+    }
+
+    cerrarTodosDropdowns() {
+      this.dropdownsVariantes.forEach((elementoTrabajo) => {
+        elementoTrabajo.style.display = 'none';
+      });
+    }
+
+    personalizarProducto(elementoBase) {
+      // El elementoBase es el id="phsp-btn-personalizar"
+      const padreContenedor = elementoBase.closest('#phsp-general-variantes');
+      const tipoProducto = padreContenedor.getAttribute('tipo-producto');
+
+      if(tipoProducto == 'simple') {
+        // Aquí puedes agregar la lógica para personalizar el producto simple
+        console.log('Personalizando producto simple...');
+        localStorage.setItem('ph-tipoProducto', 'simple');
+      }
+
+      if(tipoProducto == 'complejo') {
+        // Aquí puedes agregar la lógica para personalizar el producto complejo
+        console.log('Personalizando producto complejo...');
+        localStorage.setItem('ph-tipoProducto', 'complejo');
+      }
+
+      // Aquí puedes agregar la lógica para personalizar el producto
+      console.log('Personalizando producto...');
+      this.cerrarTodosDropdowns();
+      window.localtion.href = '/pages/producto';
     }
   }
 

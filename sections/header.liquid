@@ -290,6 +290,9 @@
         <hr>
         <a href="/pages/carrito" class="h-icono-carrito">
           {% render 'icon-carrito' %}
+          <div class="h-ic-cantidad">
+            <p class="hicc-mensaje">0</p>
+          </div>
         </a>
         <hr>
         <!-- ESTADO SIN TIENE METODO ENTREGA -->
@@ -387,7 +390,6 @@
               <p class="color-letras-primary">CERRAR SESION</p>
             </button>
           </div>
-
         </section>
         <!-- EESTADO USUARIO NO INICIADO SESION -->
       </div>
@@ -520,8 +522,8 @@
       this.btnCuponesMenuMobile.addEventListener('click', this.redireccionCuponesMenuDesktop.bind(this));
       this.btnHutcoinsMenuMobile.addEventListener('click', this.redireccionHutcoinsMenuDesktop.bind(this));
       this.btnMisPreferenciasMenuMobile.addEventListener('click', this.redireccionPreferenciasMenuDesktop.bind(this));
-      this.btnCerrarSesionOfMenuD.addEventListener('click', this.cerrarSesion.bind(this)); 
-      this.btnCerrarSesionOfMenuM.addEventListener('click', this.cerrarSesion.bind(this)); 
+      this.btnCerrarSesionOfMenuD.addEventListener('click', this.cerrarSesion.bind(this));
+      this.btnCerrarSesionOfMenuM.addEventListener('click', this.cerrarSesion.bind(this));
 
       document.addEventListener('click', this.detectarClickFueraDelInputBusqueda.bind(this));
       this.logoPrincipal.forEach((logo) => {

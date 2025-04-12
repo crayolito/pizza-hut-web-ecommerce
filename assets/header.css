@@ -26,6 +26,30 @@ header-principal {
   height: 1.5rem;
 } */
 
+.h-icono-carrito {
+  width: max-content;
+  height: max-content;
+  position: relative;
+}
+
+.h-ic-cantidad {
+  position: absolute;
+  top: -0.5rem;
+  right: -0.5rem;
+  width: 1.25rem;
+  height: 1.25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background: var(--colorp-primary);
+}
+
+.h-ic-cantidad p {
+  color: var(--colorp-secondary);
+  font-weight: 700;
+}
+
 /* ===================
      LOGO
      =================== */
