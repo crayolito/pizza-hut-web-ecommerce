@@ -299,10 +299,12 @@
   }
 
   .page-menu-opcion-imagen {
-    width: 8.125rem;
+    /* width: 8.125rem; */
+    width: 40%;
   }
 
   .page-menu-opcion-nombre {
-    width: 10.63rem;
+    /* width: 10.63rem; */
+    width: 60%;
   }
 }
