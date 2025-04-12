@@ -288,8 +288,10 @@
 
 @media (min-width: 1024px) {
   .page-menu-opcion {
+    /* height: 6.125rem; */
+    /* width: 18.75rem; */
     height: 6.125rem;
-    width: 18.75rem;
+    width: 13.75rem;
   }
 
   .page-menu-opcion-imagen {
