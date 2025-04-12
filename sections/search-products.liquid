@@ -545,7 +545,7 @@
       this.btnsAgregarAlCarrito = this.querySelectorAll('#phsp-btn-agregar-al-carrito');
       // EVENTOS INICIALIZAR
       this.resultadosSeccionVariantes.forEach((btn) => {
-        elementoBase.addEventListener('click', (event) => {
+        btn.addEventListener('click', (event) => {
           this.personalizarProducto(btn);
         });
       });
