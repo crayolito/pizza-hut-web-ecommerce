@@ -300,17 +300,18 @@
     /* height: 6.125rem; */
     /* width: 18.75rem; */
     height: 6.125rem;
-    width: 14rem;
-    min-width: 14rem;
+    width: 16rem;
+    min-width: 16rem;
   }
 
   .page-menu-opcion-imagen {
     /* width: 8.125rem; */
-    width: 40%;
+    width: 35%;
   }
 
   .page-menu-opcion-nombre {
     /* width: 10.63rem; */
-    width: 60%;
+    /* width: 65%; */
+    flex: 1 0 65%;
   }
 }
