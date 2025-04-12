@@ -49,6 +49,7 @@
 }
 
 .page-menu-opciones-seleccion {
+  max-width: 1660px;
   width: 100%;
   display: flex;
   gap: var(--espaciado-m);
