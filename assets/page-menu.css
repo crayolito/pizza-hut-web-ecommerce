@@ -54,6 +54,7 @@
   gap: var(--espaciado-m);
   padding-left: 1.25rem;
   overflow: hidden;
+  padding: var(--espaciado-big);
 }
 
 .page-menu-opcion {
