@@ -26,6 +26,7 @@ header-principal {
   height: 1.5rem;
 } */
 
+/* Mantener las clases originales */
 .h-icono-carrito {
   width: max-content;
   height: max-content;
@@ -59,16 +60,15 @@ header-principal {
   text-align: center;
 }
 
-/* Para números de dos dígitos - ajuste moderado */
-.hicc-mensaje:nth-child(n + 10):nth-child(-n + 99) {
+/* Para números de dos dígitos */
+.hicc-mensaje.digitos-2 {
   font-size: 0.7rem;
 }
 
-/* Para números de tres dígitos - ajuste mayor */
-.hicc-mensaje:nth-child(n + 100) {
+/* Para números de tres dígitos */
+.hicc-mensaje.digitos-3 {
   font-size: 0.6rem;
 }
-
 /* ===================
      LOGO
      =================== */
