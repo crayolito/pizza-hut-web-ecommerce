@@ -544,7 +544,7 @@
       this.btnsPersonalizar = this.querySelectorAll('#phsp-btn-personalizar');
       this.btnsAgregarAlCarrito = this.querySelectorAll('#phsp-btn-agregar-al-carrito');
       // EVENTOS INICIALIZARR
-      this.resultadosSeccionVariantes.forEach((btn) => {
+      this.btnsPersonalizar.forEach((btn) => {
         btn.addEventListener('click', (event) => {
           this.personalizarProducto(btn);
         });
