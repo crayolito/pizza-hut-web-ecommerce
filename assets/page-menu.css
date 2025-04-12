@@ -53,8 +53,14 @@
   display: flex;
   gap: var(--espaciado-m);
   padding-left: 1.25rem;
-  overflow: hidden;
+  /* overflow: hidden; */
+  overflow-x: hidden;
+  overflow-y: auto;
   padding-left: var(--espaciado-big);
+}
+
+.page-menu-opciones-seleccion::-webkit-scrollbar {
+  width: 0;
 }
 
 .page-menu-opcion {
