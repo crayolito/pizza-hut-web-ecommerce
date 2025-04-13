@@ -18,7 +18,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--espaciado-big);
+  gap: var(--espaciado-xxxl);
 }
 
 .page-menu-container small {
@@ -40,7 +40,6 @@
   flex-direction: column;
   align-items: center;
   gap: var(--espaciado-xl);
-  padding-top: 2.44rem;
 }
 
 .page-menu-titulo-mobile {
