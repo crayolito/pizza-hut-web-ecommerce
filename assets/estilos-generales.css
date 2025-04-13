@@ -878,17 +878,12 @@
 }
 
 .producto-item-imagen {
-  /* width: 100%;
+  width: 100%;
   min-height: 0;
   flex-grow: 1;
   flex-shrink: 1;
   border-radius: var(--espaciado-xs);
-  border: 1px solid #969696; */
-  width: 8.12rem;
-  border-right: 1.5px solid #969696;
-  border-top-left-radius: var(--espaciado-xs);
-  border-bottom-left-radius: var(--espaciado-xs);
-  overflow: hidden;
+  border: 1px solid #969696;
 }
 
 .producto-item-imagen img {
@@ -1020,6 +1015,7 @@
     padding: 0;
   }
 
+  .producto-item-imagen,
   .producto-es-item-imagen {
     width: 16rem;
     height: 9.5rem;
