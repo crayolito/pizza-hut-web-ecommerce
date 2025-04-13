@@ -457,14 +457,16 @@
   customElements.define('page-menu-productos', PageMenuProductos);
 
   document.addEventListener('DOMContentLoaded', function () {
-    // Selecciona los elementos con overflow-x
-    const scrollableElements = Array.from(document.querySelectorAll('*')).filter((el) => {
-      const style = window.getComputedStyle(el);
-      return (style.overflowX === 'auto' || style.overflowX === 'scroll') && el.scrollWidth > el.clientWidth;
+    // Selecciona todos los elementos que tienen overflow-x scrollable
+    const elementosScrollables = Array.from(document.querySelectorAll('*')).filter((elemento) => {
+      const estilo = window.getComputedStyle(elemento);
+      // Filtra elementos que tienen overflow-x auto o scroll y necesitan scroll horizontal
+      return (estilo.overflowX === 'auto' || estilo.overflowX === 'scroll') && elemento.scrollWidth > elemento.clientWidth;
     });
 
-    scrollableElements.forEach((element) => {
-      // 1. Scroll con rueda del mouse
+    // Configura cada elemento scrollable
+    elementosScrollables.forEach((elemento) => {
+      // Mantenemos el código comentado como lo solicitaste
       {% comment %} element.addEventListener(
         'wheel',
         function (event) {
@@ -477,39 +479,50 @@
         { passive: false }
       ); {% endcomment %}
 
-      // 2. Scroll con clic y arrastre
-      let isDown = false;
-      let startX;
-      let scrollLeft;
+      // Variables para controlar el estado del arrastre
+      let estaPresionado = false;
+      let posicionInicialX;
+      let posicionScrollInicial;
 
-      element.addEventListener('mousedown', (e) => {
-        isDown = true;
-        element.style.cursor = 'grabbing';
-        startX = e.pageX - element.offsetLeft;
-        scrollLeft = element.scrollLeft;
+      // 1. Cuando se presiona el botón del mouse
+      elemento.addEventListener('mousedown', (evento) => {
+        estaPresionado = true;
+        elemento.style.cursor = 'grabbing'; // Cambia el cursor a "agarrando"
+        // Guarda la posición inicial del mouse y del scroll
+        posicionInicialX = evento.pageX - elemento.offsetLeft;
+        posicionScrollInicial = elemento.scrollLeft;
       });
 
-      element.addEventListener('mouseleave', () => {
-        isDown = false;
-        element.style.cursor = 'auto';
+      // 2. Cuando el mouse sale del elemento
+      elemento.addEventListener('mouseleave', () => {
+        estaPresionado = false;
+        elemento.style.cursor = 'auto'; // Restaura el cursor
       });
 
-      element.addEventListener('mouseup', () => {
-        isDown = false;
-        element.style.cursor = 'auto';
+      // 3. Cuando se suelta el botón del mouse
+      elemento.addEventListener('mouseup', () => {
+        estaPresionado = false;
+        elemento.style.cursor = 'auto'; // Restaura el cursor
       });
 
-      element.addEventListener('mousemove', (e) => {
-        if (!isDown) return;
-        e.preventDefault();
-        const x = e.pageX - element.offsetLeft;
-        const walk = (x - startX) * 0.7; // Ajusta la velocidad de arrastre
-        element.scrollLeft = scrollLeft - walk;
+      // 4. Cuando se mueve el mouse
+      elemento.addEventListener('mousemove', (evento) => {
+        // Solo hacer scroll si el botón está presionado
+        if (!estaPresionado) return;
+
+        evento.preventDefault(); // Evita comportamientos no deseados
+
+        // Calcula cuánto se ha movido el mouse
+        const posicionActualX = evento.pageX - elemento.offsetLeft;
+        const distanciaMovida = (posicionActualX - posicionInicialX) * 0.7; // Factor de suavizado
+
+        // Actualiza la posición del scroll
+        elemento.scrollLeft = posicionScrollInicial - distanciaMovida;
       });
     });
   });
 
-  function isMouseOver(event, element) {
+  {% comment %} function isMouseOver(event, element) {
     const rect = element.getBoundingClientRect();
     return (
       event.clientX >= rect.left &&
@@ -517,5 +530,5 @@
       event.clientY >= rect.top &&
       event.clientY <= rect.bottom
     );
-  }
+  } {% endcomment %}
 </script>
