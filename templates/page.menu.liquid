@@ -655,7 +655,7 @@
 
   customElements.define('page-menu-productos', PageMenuProductos);
 
-  // Selecciona el contenedor con la clase page-menu-opciones-seleccion
+  {% comment %} // Selecciona el contenedor con la clase page-menu-opciones-seleccion
   const menuContainer = document.querySelector('.page-menu-opciones-seleccion');
 
   // Añade un event listener para el evento 'wheel'
@@ -665,5 +665,5 @@
 
     // Usa deltaY (el valor de scroll vertical) para hacer scroll horizontal
     menuContainer.scrollLeft += event.deltaY;
-  });
+  }); {% endcomment %}
 </script>
