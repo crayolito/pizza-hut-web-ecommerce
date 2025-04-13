@@ -124,19 +124,23 @@
   color: var(--colorp-primary);
 }
 
-.page-menu-opcion svg,
-.page-menu-opcion svg path,
-.page-menu-opcion svg g,
-.page-menu-opcion path,
-.page-menu-opcion g {
+.page-menu-opcion .page-menu-opcion-nombre svg,
+.page-menu-opcion .page-menu-opcion-nombre svg path,
+.page-menu-opcion .page-menu-opcion-nombre svg g,
+.page-menu-opcion .page-menu-opcion-nombre path,
+.page-menu-opcion .page-menu-opcion-nombre g {
   fill: var(--colorp-tertiary);
 }
 
-.page-menu-opcion.seleccionado .page-menu-opcion svg,
-.page-menu-opcion.seleccionado .page-menu-opcion svg path,
-.page-menu-opcion.seleccionado .page-menu-opcion svg g,
-.page-menu-opcion.seleccionado .page-menu-opcion path,
-.page-menu-opcion.seleccionado .page-menu-opcion g {
+.page-menu-opcion.seleccionado .page-menu-opcion-nombre .page-menu-opcion svg,
+.page-menu-opcion.seleccionado
+  .page-menu-opcion-nombre
+  .page-menu-opcion
+  svg
+  path,
+.page-menu-opcion.seleccionado .page-menu-opcion-nombre .page-menu-opcion svg g,
+.page-menu-opcion.seleccionado .page-menu-opcion-nombre .page-menu-opcion path,
+.page-menu-opcion.seleccionado .page-menu-opcion-nombre .page-menu-opcion g {
   fill: var(--colorp-secondary);
 }
 
