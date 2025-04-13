@@ -899,6 +899,7 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+  gap: var(--espaciado-xs);
 }
 
 .producto-es-item-info,
@@ -1152,7 +1153,8 @@
   .producto-item {
     height: max-content;
     /* height: 28rem; */
-    gap: var(--espaciado-xs);
+    /* gap: var(--espaciado-xs); */
+    gap: 0.5rem;
   }
 
   .container-productos-general {
