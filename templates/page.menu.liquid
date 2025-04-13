@@ -357,6 +357,38 @@
 </page-menu-productos>
 
 {% style %}
+  #phpm-apartado {
+    all: initial; /* Resetea todas las propiedades a su valor inicial */
+    display: block; /* Mantiene que sea un elemento de bloque */
+
+    /* Anular cualquier posible influencia en hijos */
+    background: transparent;
+    border: none;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    height: auto;
+    position: static;
+    box-sizing: content-box;
+
+    /* Asegurarse que no aplica transformaciones */
+    transform: none;
+
+    /* Eliminar cualquier posible efecto de posicionamiento */
+    float: none;
+    clear: none;
+
+    /* Eliminar cualquier posible efecto de flexbox/grid */
+    display: block;
+  }
+
+  /* Y para los hijos directos, asegurarse que no hereden nada problemático */
+  #phpm-apartado > * {
+    /* Propiedades que no quieres que se hereden */
+    position: static;
+    display: block; /* O lo que necesiten ser por defecto */
+  }
+
   .menu-page {
     width: 100%;
     height: 56rem;
