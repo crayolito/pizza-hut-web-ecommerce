@@ -49,36 +49,18 @@
 }
 
 .page-menu-opciones-seleccion {
-  max-width: 1660px;
   width: 100%;
   display: flex;
   gap: var(--espaciado-m);
   padding-left: 1.25rem;
-  /* Quitar el padding del contenedor principal */
+  /* overflow: hidden; */
   overflow-x: auto;
-  overflow-y: hidden;
-  /* padding-left: var(--espaciado-big); */
-  position: relative;
-  /* Ocultar scrollbar pero mantener funcionalidad */
-  scrollbar-width: none;
-  -webkit-overflow-scrolling: touch;
-}
-
-/* Pseudo-elemento para añadir padding izquierdo */
-.page-menu-opciones-seleccion::before {
-  content: "";
-  flex: 0 0 var(--espaciado-big);
-}
-
-/* Pseudo-elemento para añadir padding derecho */
-.page-menu-opciones-seleccion::after {
-  content: "";
-  flex: 0 0 var(--espaciado-big);
+  overflow-y: auto;
+  padding-left: var(--espaciado-big);
 }
 
 .page-menu-opciones-seleccion::-webkit-scrollbar {
   width: 0;
-  height: 0;
 }
 
 .page-menu-opcion {

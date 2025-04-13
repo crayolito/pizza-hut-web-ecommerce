@@ -653,39 +653,5 @@
     }
   }
 
-  document.addEventListener('DOMContentLoaded', function () {
-    const menuScroll = document.querySelector('.page-menu-opciones-seleccion');
-
-    // Verificar si el menú existe
-    if (menuScroll) {
-      // Función para habilitar/verificar scroll horizontal
-      function checkHorizontalScroll() {
-        // Forzar overflow-x siempre
-        menuScroll.style.overflowX = 'auto';
-
-        // Verificar si el contenido es más ancho que el contenedor
-        const isScrollable = menuScroll.scrollWidth > menuScroll.clientWidth;
-
-        // Si no es scrollable en desktop (pantalla grande), forzar scroll
-        if (!isScrollable && window.innerWidth > 768) {
-          // Ajustar el gap para forzar overflow
-          menuScroll.style.gap = 'calc(var(--espaciado-m) + 5px)';
-        }
-      }
-
-      // Ejecutar al cargar y al cambiar el tamaño de ventana
-      checkHorizontalScroll();
-      window.addEventListener('resize', checkHorizontalScroll);
-
-      // Habilitar scroll con rueda del mouse en deskto
-      menuScroll.addEventListener('wheel', function (e) {
-        if (e.deltaY !== 0) {
-          e.preventDefault();
-          menuScroll.scrollLeft += e.deltaY;
-        }
-      });
-    }
-  });
-
   customElements.define('page-menu-productos', PageMenuProductos);
 </script>
