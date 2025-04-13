@@ -74,6 +74,7 @@
   background-color: var(--color-secundario);
   border: 1px solid #969696;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
 }
 
 .page-menu-opcion svg {
