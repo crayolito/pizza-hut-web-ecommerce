@@ -878,6 +878,7 @@
 }
 
 .producto-item-imagen {
+  width: 100%;
   /* width: 100%;
   min-height: 0;
   flex-grow: 1;
@@ -1018,7 +1019,6 @@
     padding: 0;
   }
 
-  .producto-item-imagen,
   .producto-es-item-imagen {
     width: 16rem;
     height: 9.5rem;
