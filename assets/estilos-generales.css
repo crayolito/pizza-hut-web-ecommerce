@@ -1074,6 +1074,7 @@
 
 .variantes-producto {
   display: flex;
+  width: 100%;
   height: fit-content;
   position: absolute;
   background: var(--colorp-secondary);
@@ -1083,7 +1084,7 @@
   flex-direction: column;
   padding: var(--espaciado-m);
   left: 50%;
-  top: -25%;
+  top: 69%;
   display: none;
 }
 
