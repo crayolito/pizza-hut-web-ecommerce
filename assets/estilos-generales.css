@@ -1063,7 +1063,8 @@
   }
 
   .producto-es-item-detalle {
-    width: fit-content;
+    /* width: fit-content; */
+    width: 100%;
   }
 }
 
