@@ -1006,6 +1006,22 @@
   .producto-es-item {
     display: flex;
     flex-direction: column;
+    border: 0;
+  }
+
+  .producto-es-item-detalle {
+    padding: 0;
+  }
+
+  .producto-es-item-imagen {
+    width: 16rem;
+    height: 10.7rem;
+    border: 0;
+    border-radius: var(--espaciado-xs) !important;
+  }
+
+  .producto-es-item-detalle {
+    width: fit-content;
   }
 }
 
