@@ -893,6 +893,13 @@
   border-radius: var(--espaciado-xs);
 }
 
+.producto-item-detalle {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
 .producto-item-info {
   width: 100%;
   display: flex;

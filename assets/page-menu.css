@@ -85,6 +85,7 @@
   border-right: 1.5px solid #969696;
   border-top-left-radius: var(--espaciado-xs);
   border-bottom-left-radius: var(--espaciado-xs);
+  overflow: hidden;
 }
 
 .page-menu-opcion-imagen img {
