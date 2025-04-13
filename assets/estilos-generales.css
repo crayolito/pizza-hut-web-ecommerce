@@ -884,7 +884,7 @@
   flex-shrink: 1;
   border-radius: var(--espaciado-xs);
   border: 1px solid #969696; */
-  width: 11rem;
+  /* width: 11rem; */
   height: 11rem;
 }
 
