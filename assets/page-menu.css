@@ -54,8 +54,7 @@
   gap: var(--espaciado-m);
   overflow-x: auto;
   overflow-y: hidden;
-  /* padding: 0 var(--espaciado-big); */
-  /* padding-bottom: 5px; */
+  margin-bottom: 1rem;
 }
 
 .page-menu-opciones-seleccion::-webkit-scrollbar {
