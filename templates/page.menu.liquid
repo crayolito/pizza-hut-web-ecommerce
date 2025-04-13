@@ -625,75 +625,63 @@
 {% endstyle %}
 
 <script>
-    class PageMenuProductos extends HTMLElement {
-      constructor() {
-        super();
-      }
-
-      connectedCallback() {
-        console.log('page-menu-productos');
-        const botonesPersonalizar = document.querySelectorAll('.boton-producto-personalizar');
-        const botonesAgregar = document.querySelectorAll('.boton-producto-agregar');
-
-        // Agregar event listener a cada botón personalizar
-        botonesPersonalizar.forEach((boton) => {
-          boton.addEventListener('click', () => {
-            console.log('click personalizar');
-            window.location.href = '/pages/producto';
-          });
-        });
-
-        // Agregar event listener a cada botón agregar
-        botonesAgregar.forEach((boton) => {
-          boton.addEventListener('click', () => {
-            console.log('click agregar');
-            window.location.href = '/pages/producto';
-          });
-        });
-      }
+  class PageMenuProductos extends HTMLElement {
+    constructor() {
+      super();
     }
 
-    customElements.define('page-menu-productos', PageMenuProductos);
+    connectedCallback() {
+      console.log('page-menu-productos');
+      const botonesPersonalizar = document.querySelectorAll('.boton-producto-personalizar');
+      const botonesAgregar = document.querySelectorAll('.boton-producto-agregar');
 
-    {% comment %} // Selecciona el contenedor con la clase page-menu-opciones-seleccion
-    const menuContainer = document.querySelector('.page-menu-opciones-seleccion');
+      // Agregar event listener a cada botón personalizar
+      botonesPersonalizar.forEach((boton) => {
+        boton.addEventListener('click', () => {
+          console.log('click personalizar');
+          window.location.href = '/pages/producto';
+        });
+      });
 
-    // Añade un event listener para el evento 'wheel'
-    menuContainer.addEventListener('wheel', function (event) {
-      // Previene el comportamiento predeterminado (scroll vertical)
-      event.preventDefault();
-
-      // Usa deltaY (el valor de scroll vertical) para hacer scroll horizontal
-      menuContainer.scrollLeft += event.deltaY;
-    }); {% endcomment %}
-
-    // Función para aplicar scroll horizontal con la rueda del mouse
-  function enableHorizontalScroll() {
-    // Selecciona todos los elementos que tienen overflow-x: auto o scroll
-    const scrollableElements = Array.from(document.querySelectorAll('*')).filter(el => {
-      const style = window.getComputedStyle(el);
-      return (style.overflowX === 'auto' || style.overflowX === 'scroll') &&
-             el.scrollWidth > el.clientWidth; // Solo si tiene contenido que puede hacer scroll
-    });
-
-    // Añade event listener a cada elemento
-    scrollableElements.forEach(element => {
-      element.addEventListener('wheel', function(event) {
-        // Solo previene el comportamiento predeterminado si el cursor está sobre este elemento
-        if (isMouseOver(event, this)) {
-          event.preventDefault();
-
-          // Factor de velocidad ajustable
-          const scrollSpeed = 0.8;
-
-          // Scroll horizontal
-          this.scrollLeft += event.deltaY * scrollFactor;
-        }
-      }, { passive: false }); // Importante: passive: false permite event.preventDefault()
-    });
+      // Agregar event listener a cada botón agregar
+      botonesAgregar.forEach((boton) => {
+        boton.addEventListener('click', () => {
+          console.log('click agregar');
+          window.location.href = '/pages/producto';
+        });
+      });
+    }
   }
 
-  // Función auxiliar para verificar si el mouse está sobre el elemento
+  customElements.define('page-menu-productos', PageMenuProductos);
+
+  document.addEventListener('DOMContentLoaded', function () {
+    // Selecciona todos los elementos con overflow-x: auto o scroll
+    const scrollableElements = Array.from(document.querySelectorAll('*')).filter((el) => {
+      const style = window.getComputedStyle(el);
+      return (style.overflowX === 'auto' || style.overflowX === 'scroll') && el.scrollWidth > el.clientWidth;
+    });
+
+    scrollableElements.forEach((element) => {
+      element.addEventListener(
+        'wheel',
+        function (event) {
+          if (isMouseOver(event, this)) {
+            event.preventDefault();
+
+            // Ajusta este valor para cambiar la velocidad del scroll
+            // Valores más altos = scroll más rápido
+            const scrollFactor = 2.5;
+
+            // Scroll inmediato sin animación
+            this.scrollLeft += event.deltaY * scrollFactor;
+          }
+        },
+        { passive: false }
+      );
+    });
+  });
+
   function isMouseOver(event, element) {
     const rect = element.getBoundingClientRect();
     return (
@@ -703,18 +691,4 @@
       event.clientY <= rect.bottom
     );
   }
-
-  // Ejecutar cuando el DOM esté listo
-  document.addEventListener('DOMContentLoaded', enableHorizontalScroll);
-
-  // Volver a ejecutar cuando cambie el DOM (para elementos añadidos dinámicamente)
-  // Usa un MutationObserver para detectar cambios en el DOM
-  const observer = new MutationObserver(function(mutations) {
-    enableHorizontalScroll();
-  });
-
-  observer.observe(document.body, {
-    childList: true,
-    subtree: true
-  });
 </script>
