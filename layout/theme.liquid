@@ -162,6 +162,12 @@
         font-style: normal;
         font-weight: 400;
         line-height: normal;
+        -webkit-user-select: none; /* Safari */
+        -ms-user-select: none; /* IE 10 y Edge */
+        user-select: none; /* Estándar */
+
+        /* Opcional: cambiar el cursor para indicar que no se puede seleccionar */
+        cursor: default;
       }
 
       li,
@@ -200,6 +206,10 @@
       img {
         max-width: 100%;
         height: auto;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        pointer-events: none;
       }
 
       svg {
