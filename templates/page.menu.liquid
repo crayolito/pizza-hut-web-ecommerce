@@ -1760,11 +1760,11 @@
       this.seccionPostresYGaseosas = this.querySelector('#phpm-seccion-postres');
 
       // EVENTOS INICIALIZAR
-      this.btnsAgregar.forEach((elementoBtn) => {
+      this.btnsAgregar.forEach((elementoBtnAgregar) => {
         elementoBtnAgregar.addEventListener('click',this.agregarCarrito.bind(this));
       });
 
-      this.btnsPersonalizar.forEach((elementoBtn) => {
+      this.btnsPersonalizar.forEach((elementoBtnPersonalizar) => {
         elementoBtnPersonalizar.addEventListener('click',this.redireccionPersonalizar.bind(this, elementoBtn));
       });
 
