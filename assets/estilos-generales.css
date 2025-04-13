@@ -962,9 +962,50 @@
   justify-content: center;
 }
 
+/* ===== ESPECIAL (PRODUCTO VISTA GENERAL) ===== */
+
+.producto-es-item {
+  display: flex;
+  flex-direction: row;
+  height: fit-content;
+  gap: 0;
+  border-radius: var(--espaciado-xs);
+  border: 1px solid #969696;
+  align-items: stretch;
+}
+
+.producto-es-item-imagen {
+  width: 8.12rem;
+  border-right: 1.5px solid #969696;
+  border-top-left-radius: var(--espaciado-xs);
+  border-bottom-left-radius: var(--espaciado-xs);
+  overflow: hidden;
+}
+
+.producto-es-item-imagen img {
+  border-radius: 0;
+}
+
+.producto-es-item-detalle {
+  padding: var(--espaciado-l);
+  width: 13.12rem;
+  gap: var(--espaciado-xs);
+}
+
+.seleccion-variante-producto-general {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .producto-es-item {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
 /* ==========================================================================
      1.2 PRODUCTO VARIANTES
-     ========================================================================== */
+========================================================================== */
 
 .variantes-producto {
   display: flex;
@@ -999,6 +1040,8 @@
 .variante-producto-item p:last-child {
   font-weight: 600;
 }
+
+/* ===== ESPECIAL (PRODUCTO VARIANTES) ===== */
 
 /* ==========================================================================
      2. CUANDO NO SE ENCUENTRAN PRODUCTOSs
