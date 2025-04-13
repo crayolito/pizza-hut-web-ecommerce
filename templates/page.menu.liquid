@@ -656,29 +656,55 @@
   customElements.define('page-menu-productos', PageMenuProductos);
 
   document.addEventListener('DOMContentLoaded', function () {
-    // Selecciona todos los elementos con overflow-x: auto o scroll
+    // Selecciona los elementos con overflow-x
     const scrollableElements = Array.from(document.querySelectorAll('*')).filter((el) => {
       const style = window.getComputedStyle(el);
       return (style.overflowX === 'auto' || style.overflowX === 'scroll') && el.scrollWidth > el.clientWidth;
     });
 
     scrollableElements.forEach((element) => {
+      // 1. Scroll con rueda del mouse
       element.addEventListener(
         'wheel',
         function (event) {
           if (isMouseOver(event, this)) {
             event.preventDefault();
-
-            // Ajusta este valor para cambiar la velocidad del scroll
-            // Valores más altos = scroll más rápido
             const scrollFactor = 1.2;
-
-            // Scroll inmediato sin animación
             this.scrollLeft += event.deltaY * scrollFactor;
           }
         },
         { passive: false }
       );
+
+      // 2. Scroll con clic y arrastre
+      let isDown = false;
+      let startX;
+      let scrollLeft;
+
+      element.addEventListener('mousedown', (e) => {
+        isDown = true;
+        element.style.cursor = 'grabbing';
+        startX = e.pageX - element.offsetLeft;
+        scrollLeft = element.scrollLeft;
+      });
+
+      element.addEventListener('mouseleave', () => {
+        isDown = false;
+        element.style.cursor = 'auto';
+      });
+
+      element.addEventListener('mouseup', () => {
+        isDown = false;
+        element.style.cursor = 'auto';
+      });
+
+      element.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - element.offsetLeft;
+        const walk = (x - startX) * 1.5; // Ajusta la velocidad de arrastre
+        element.scrollLeft = scrollLeft - walk;
+      });
     });
   });
 
