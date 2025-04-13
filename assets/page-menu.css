@@ -55,9 +55,6 @@
   overflow-x: auto;
   overflow-y: hidden;
   padding: 0 var(--espaciado-big);
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: thin; /* Para Firefox */
   padding-bottom: 10px;
 }
 
