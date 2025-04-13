@@ -1066,7 +1066,7 @@
         if (!isDown) return;
         e.preventDefault();
         const x = e.pageX - element.offsetLeft;
-        const walk = (x - startX) * 1.2; // Ajusta la velocidad de arrastre
+        const walk = (x - startX) * 1; // Ajusta la velocidad de arrastre
         element.scrollLeft = scrollLeft - walk;
       });
     });
