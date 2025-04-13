@@ -1765,7 +1765,7 @@
       });
 
       this.btnsPersonalizar.forEach((elementoBtnPersonalizar) => {
-        elementoBtnPersonalizar.addEventListener('click',this.redireccionPersonalizar.bind(this, elementoBtn));
+        elementoBtnPersonalizar.addEventListener('click',this.redireccionPersonalizar.bind(this, elementoBtnPersonalizar));
       });
 
       this.opcionesMenu.forEach((elementoItemMenu) => {
@@ -1782,19 +1782,19 @@
       const dataLocalStorage = localStorage.getItem('phph-itemMenu') || "todo";
       // Revisar el valor y mostrar la seccion correspondiente
 
-      if(dataPadre == "pizzas"){
+      if(dataLocalStorage == "pizzas"){
         this.seccionTodoYOfertas.style.display = "none";
         this.seccionPizzas.style.display = "flex";
         this.seccionPostresYGaseosas.style.display = "none";
       }
 
-      if(dataPadre == "postres" || dataPadre == "gaseosas y cervezas"){
+      if(dataLocalStorage == "postres" || dataLocalStorage == "gaseosas y cervezas"){
         this.seccionTodoYOfertas.style.display = "none";
         this.seccionPizzas.style.display = "none";
         this.seccionPostresYGaseosas.style.display = "flex";
       }
 
-      if(dataPadre == "todo" || dataPadre == "ofertas"){
+      if(dataLocalStorage == "todo" || dataLocalStorage == "ofertas"){
         this.seccionTodoYOfertas.style.display = "flex";
         this.seccionPizzas.style.display = "none";
         this.seccionPostresYGaseosas.style.display = "none";
