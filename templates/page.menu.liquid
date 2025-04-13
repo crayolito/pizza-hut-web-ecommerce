@@ -687,10 +687,7 @@
           const scrollSpeed = 0.8;
 
           // Scroll horizontal
-          this.scrollBy({
-            left: event.deltaY * scrollSpeed,
-            behavior: 'smooth'
-          });
+          this.scrollLeft += event.deltaY * scrollFactor;
         }
       }, { passive: false }); // Importante: passive: false permite event.preventDefault()
     });
