@@ -66,10 +66,11 @@
       </div>
     </div>
     <!-- PRODUCTOS POSTRES  (OFERTO : SIMPLE) -->
+    div.phpm-apartado
     <div class="phpm-titulo-general container-base ">
       <small>ClÁsicas</small>
     </div>
-    <div class="phpm-container-seccion container-base">
+    <div id="phpm-seccion-pizzas" class="phpm-container-seccion container-base">
       <div class="producto-es-item">
         <div class="producto-es-item-imagen">
           <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
@@ -382,7 +383,7 @@
   .phpm-container-seccion {
     display: flex;
     align-items: start;
-    gap: var(--espaciado-l);
+    gap: var(--espaciado-xl);
     overflow-x: auto;
     overflow-y: hidden;
   }
@@ -464,7 +465,7 @@
 
     scrollableElements.forEach((element) => {
       // 1. Scroll con rueda del mouse
-      element.addEventListener(
+      {% comment %} element.addEventListener(
         'wheel',
         function (event) {
           if (isMouseOver(event, this)) {
@@ -474,7 +475,7 @@
           }
         },
         { passive: false }
-      );
+      ); {% endcomment %}
 
       // 2. Scroll con clic y arrastre
       let isDown = false;
@@ -502,7 +503,7 @@
         if (!isDown) return;
         e.preventDefault();
         const x = e.pageX - element.offsetLeft;
-        const walk = (x - startX) * 1; // Ajusta la velocidad de arrastre
+        const walk = (x - startX) * 0.7; // Ajusta la velocidad de arrastre
         element.scrollLeft = scrollLeft - walk;
       });
     });
