@@ -52,17 +52,15 @@
   width: 100%;
   display: flex;
   gap: var(--espaciado-m);
-  padding-left: 1.25rem;
   overflow-x: auto;
   overflow-y: hidden;
   padding-left: var(--espaciado-big);
   padding-right: var(--espaciado-big);
-  margin: 1rem 0;
 }
 
 .page-menu-opciones-seleccion::-webkit-scrollbar {
   width: 0;
-  /* height: 0; */
+  height: 0;
 }
 
 .page-menu-opcion {
