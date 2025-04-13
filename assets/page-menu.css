@@ -143,12 +143,12 @@
      ========================================================================== */
 
 .page-menu-body {
-  display: flex;
+  /* display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: var(--espaciado-xxxl) 0;
-  width: 100%;
+  width: 100%; */
 }
 
 /* ==========================================================================
