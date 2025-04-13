@@ -10,6 +10,7 @@
        2.3 PRODUCTO3 MOBILE
      3. PRODUCTO PROMOCION CARRITO
         3.1. PRODUCTO DE TARJETA VERTICAL(DESKTOP) A HORIZONTAL(MOBILE)
+        3.2. CANTIDAD SECTOR
      4. BOTONES DE PRODUCTOS
         4.1. BOTON DE PERSONALIZAR
         4.2. BOTON DE AGREGAR AL CARRITO
@@ -93,6 +94,42 @@
 }
 
 /* ===== TARJETA VERTICAL(DESKTOP)===== */
+
+/* ===== 3.2. CANTIDAD SECTOR ===== */
+
+.ph-cantidad {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaciado-xs);
+}
+
+.ph-cantidad-selector {
+  min-width: 100%;
+  width: 100%;
+  /* max-width: 19rem; */
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--espaciado-xl);
+  border-radius: var(--espaciado-s);
+  border: 1px solid #717171;
+}
+
+.ph-cantidad-selector-button {
+  flex-basis: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.ph-cantidad-selector-button svg {
+  width: 1.875rem;
+  height: 1.875rem;
+  aspect-ratio: 1/1;
+}
 
 /* =================================
   4. BOTONES DE PRODUCTOS
