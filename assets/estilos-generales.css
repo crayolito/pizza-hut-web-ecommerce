@@ -977,6 +977,7 @@
   flex-direction: column;
   padding: var(--espaciado-m);
   top: 50%;
+  display: none;
 }
 
 .variante-producto-item {
