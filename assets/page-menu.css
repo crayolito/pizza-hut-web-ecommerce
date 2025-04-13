@@ -77,6 +77,7 @@
 
 .page-menu-opcion.seleccionado {
   border: 3px solid var(--colorp-primary);
+  background: var(--colorp-secondary);
 }
 
 .page-menu-opcion-imagen {
@@ -100,7 +101,6 @@
 .page-menu-opcion-nombre {
   width: 7.25rem;
   height: 100%;
-  background: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -110,7 +110,7 @@
 }
 
 .page-menu-opcion.seleccionado .page-menu-opcion-nombre {
-  background-color: var(--colorp-primary);
+  background: var(--colorp-primary);
 }
 
 .page-menu-opcion-nombre p {
