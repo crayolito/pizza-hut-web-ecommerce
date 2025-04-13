@@ -65,330 +65,303 @@
         </div>
       </div>
     </div>
-    <!-- PRODUCTOS POSTRES  (OFERTO : SIMPLE) -->
-    <seccion-productos>
-      <div class="phpm-titulo-general container-base ">
-        <small>ClÁsicas</small>
+    <!-- PRODUCTOS OFERTAS -->
+    <section class="page-menu-container">
+      <small>PIZZAS</small>
+      <div class="phpm-titulo-general color-letras-primary">
+        <h1>ClÁsicas</h1>
+        <div id="phpm-seccion-pizzas" class="phpm-container-seccion container-base">
+          <div class="producto-es-item">
+            <div class="producto-es-item-imagen">
+              <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+            </div>
+            <div
+              tipo-producto="simple"
+              class="producto-es-item-detalle"
+            >
+              <div class="producto-es-item-info">
+                <h3>CHESSY LOVERS</h3>
+                <p>
+                  Salsa de tomate, queso mozarella, Pepperoni, Jamón, carnes mixtas (res y cerdo, salchicha italiana y
+                  tocino.
+                </p>
+              </div>
+              <h3 class="color-letras-primary">12.56 BS</h3>
+              <div
+                id=" phpm-general-variantes"
+                tipo-producto="simple"
+                class="seleccion-variante-producto-general"
+              >
+                <p>Tamaño</p>
+                <button id="phpm-view-variantes" class="container-info-variante">
+                  <p id=" phpm-variante-seleccionado">Personalizada</p>
+                  <div class="icono-dropdown-variantes icon-color-tertiary">
+                    {% render 'icon-flecha-abajo' %}
+                  </div>
+                </button>
+                <div id=" phpm-items-variantes" class="variantes-producto">
+                  <div class="variante-producto-es-item">
+                    <p>Familiar</p>
+                    <p class="color-letras-primary">12.56 BS</p>
+                  </div>
+                  <div class="variante-producto-es-item">
+                    <p>Mediana</p>
+                    <p class="color-letras-primary">12.56 BS</p>
+                  </div>
+                  <div class="variante-producto-es-item">
+                    <p>Basica</p>
+                    <p class="color-letras-primary">12.56 BS</p>
+                  </div>
+                  <div class="variante-producto-es-item">
+                    <p>Personalizada</p>
+                    <p class="color-letras-primary">12.56 BS</p>
+                  </div>
+                </div>
+              </div>
+              <button id=" phpm-btn-personalizar" class="ph-btn-general phpm-btn-personalizar">
+                <p class="color-letras-secondary">PERSONALIZAR</p>
+              </button>
+              <button id=" phpm-btn-personalizar" class="ph-btn-general phpm-btn-agregar icon-color-secondary">
+                {% render 'icon-carrito' %}
+                <p class="color-letras-secondary">AGREGAR</p>
+              </button>
+            </div>
+          </div>
+          <div class="producto-es-item">
+            <div class="producto-es-item-imagen">
+              <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+            </div>
+            <div
+              tipo-producto="simple"
+              class="producto-es-item-detalle"
+            >
+              <div class="producto-es-item-info">
+                <h3>CHESSY LOVERS</h3>
+                <p>
+                  Salsa de tomate, queso mozarella, Pepperoni, Jamón, carnes mixtas (res y cerdo, salchicha italiana y
+                  tocino.
+                </p>
+              </div>
+              <h3 class="color-letras-primary">12.56 BS</h3>
+              <div
+                id=" phpm-general-variantes"
+                tipo-producto="simple"
+                class="seleccion-variante-producto-general"
+              >
+                <p>Tamaño</p>
+                <button id="phpm-view-variantes" class="container-info-variante">
+                  <p id=" phpm-variante-seleccionado">Personalizada</p>
+                  <div class="icono-dropdown-variantes icon-color-tertiary">
+                    {% render 'icon-flecha-abajo' %}
+                  </div>
+                </button>
+                <div id=" phpm-items-variantes" class="variantes-producto">
+                  <div class="variante-producto-es-item">
+                    <p>Familiar</p>
+                    <p class="color-letras-primary">12.56 BS</p>
+                  </div>
+                  <div class="variante-producto-es-item">
+                    <p>Mediana</p>
+                    <p class="color-letras-primary">12.56 BS</p>
+                  </div>
+                  <div class="variante-producto-es-item">
+                    <p>Basica</p>
+                    <p class="color-letras-primary">12.56 BS</p>
+                  </div>
+                  <div class="variante-producto-es-item">
+                    <p>Personalizada</p>
+                    <p class="color-letras-primary">12.56 BS</p>
+                  </div>
+                </div>
+              </div>
+              <button id=" phpm-btn-personalizar" class="ph-btn-general phpm-btn-personalizar">
+                <p class="color-letras-secondary">PERSONALIZAR</p>
+              </button>
+              <button id=" phpm-btn-personalizar" class="ph-btn-general phpm-btn-agregar icon-color-secondary">
+                {% render 'icon-carrito' %}
+                <p class="color-letras-secondary">AGREGAR</p>
+              </button>
+            </div>
+          </div>
+          <div class="producto-es-item">
+            <div class="producto-es-item-imagen">
+              <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+            </div>
+            <div
+              tipo-producto="simple"
+              class="producto-es-item-detalle"
+            >
+              <div class="producto-es-item-info">
+                <h3>CHESSY LOVERS</h3>
+                <p>
+                  Salsa de tomate, queso mozarella, Pepperoni, Jamón, carnes mixtas (res y cerdo, salchicha italiana y
+                  tocino.
+                </p>
+              </div>
+              <h3 class="color-letras-primary">12.56 BS</h3>
+              <div
+                id=" phpm-general-variantes"
+                tipo-producto="simple"
+                class="seleccion-variante-producto-general"
+              >
+                <p>Tamaño</p>
+                <button id="phpm-view-variantes" class="container-info-variante">
+                  <p id=" phpm-variante-seleccionado">Personalizada</p>
+                  <div class="icono-dropdown-variantes icon-color-tertiary">
+                    {% render 'icon-flecha-abajo' %}
+                  </div>
+                </button>
+                <div id=" phpm-items-variantes" class="variantes-producto">
+                  <div class="variante-producto-es-item">
+                    <p>Familiar</p>
+                    <p class="color-letras-primary">12.56 BS</p>
+                  </div>
+                  <div class="variante-producto-es-item">
+                    <p>Mediana</p>
+                    <p class="color-letras-primary">12.56 BS</p>
+                  </div>
+                  <div class="variante-producto-es-item">
+                    <p>Basica</p>
+                    <p class="color-letras-primary">12.56 BS</p>
+                  </div>
+                  <div class="variante-producto-es-item">
+                    <p>Personalizada</p>
+                    <p class="color-letras-primary">12.56 BS</p>
+                  </div>
+                </div>
+              </div>
+              <button id=" phpm-btn-personalizar" class="ph-btn-general phpm-btn-personalizar">
+                <p class="color-letras-secondary">PERSONALIZAR</p>
+              </button>
+              <button id=" phpm-btn-personalizar" class="ph-btn-general phpm-btn-agregar icon-color-secondary">
+                {% render 'icon-carrito' %}
+                <p class="color-letras-secondary">AGREGAR</p>
+              </button>
+            </div>
+          </div>
+          <div class="producto-es-item">
+            <div class="producto-es-item-imagen">
+              <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+            </div>
+            <div
+              tipo-producto="simple"
+              class="producto-es-item-detalle"
+            >
+              <div class="producto-es-item-info">
+                <h3>CHESSY LOVERS</h3>
+                <p>
+                  Salsa de tomate, queso mozarella, Pepperoni, Jamón, carnes mixtas (res y cerdo, salchicha italiana y
+                  tocino.
+                </p>
+              </div>
+              <h3 class="color-letras-primary">12.56 BS</h3>
+              <div
+                id=" phpm-general-variantes"
+                tipo-producto="simple"
+                class="seleccion-variante-producto-general"
+              >
+                <p>Tamaño</p>
+                <button id="phpm-view-variantes" class="container-info-variante">
+                  <p id=" phpm-variante-seleccionado">Personalizada</p>
+                  <div class="icono-dropdown-variantes icon-color-tertiary">
+                    {% render 'icon-flecha-abajo' %}
+                  </div>
+                </button>
+                <div id=" phpm-items-variantes" class="variantes-producto">
+                  <div class="variante-producto-es-item">
+                    <p>Familiar</p>
+                    <p class="color-letras-primary">12.56 BS</p>
+                  </div>
+                  <div class="variante-producto-es-item">
+                    <p>Mediana</p>
+                    <p class="color-letras-primary">12.56 BS</p>
+                  </div>
+                  <div class="variante-producto-es-item">
+                    <p>Basica</p>
+                    <p class="color-letras-primary">12.56 BS</p>
+                  </div>
+                  <div class="variante-producto-es-item">
+                    <p>Personalizada</p>
+                    <p class="color-letras-primary">12.56 BS</p>
+                  </div>
+                </div>
+              </div>
+              <button id=" phpm-btn-personalizar" class="ph-btn-general phpm-btn-personalizar">
+                <p class="color-letras-secondary">PERSONALIZAR</p>
+              </button>
+              <button id=" phpm-btn-personalizar" class="ph-btn-general phpm-btn-agregar icon-color-secondary">
+                {% render 'icon-carrito' %}
+                <p class="color-letras-secondary">AGREGAR</p>
+              </button>
+            </div>
+          </div>
+          <div class="producto-es-item">
+            <div class="producto-es-item-imagen">
+              <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+            </div>
+            <div
+              tipo-producto="simple"
+              class="producto-es-item-detalle"
+            >
+              <div class="producto-es-item-info">
+                <h3>CHESSY LOVERS</h3>
+                <p>
+                  Salsa de tomate, queso mozarella, Pepperoni, Jamón, carnes mixtas (res y cerdo, salchicha italiana y
+                  tocino.
+                </p>
+              </div>
+              <h3 class="color-letras-primary">12.56 BS</h3>
+              <div
+                id=" phpm-general-variantes"
+                tipo-producto="simple"
+                class="seleccion-variante-producto-general"
+              >
+                <p>Tamaño</p>
+                <button id="phpm-view-variantes" class="container-info-variante">
+                  <p id=" phpm-variante-seleccionado">Personalizada</p>
+                  <div class="icono-dropdown-variantes icon-color-tertiary">
+                    {% render 'icon-flecha-abajo' %}
+                  </div>
+                </button>
+                <div id=" phpm-items-variantes" class="variantes-producto">
+                  <div class="variante-producto-es-item">
+                    <p>Familiar</p>
+                    <p class="color-letras-primary">12.56 BS</p>
+                  </div>
+                  <div class="variante-producto-es-item">
+                    <p>Mediana</p>
+                    <p class="color-letras-primary">12.56 BS</p>
+                  </div>
+                  <div class="variante-producto-es-item">
+                    <p>Basica</p>
+                    <p class="color-letras-primary">12.56 BS</p>
+                  </div>
+                  <div class="variante-producto-es-item">
+                    <p>Personalizada</p>
+                    <p class="color-letras-primary">12.56 BS</p>
+                  </div>
+                </div>
+              </div>
+              <button id=" phpm-btn-personalizar" class="ph-btn-general phpm-btn-personalizar">
+                <p class="color-letras-secondary">PERSONALIZAR</p>
+              </button>
+              <button id=" phpm-btn-personalizar" class="ph-btn-general phpm-btn-agregar icon-color-secondary">
+                {% render 'icon-carrito' %}
+                <p class="color-letras-secondary">AGREGAR</p>
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
-      <div id="phpm-seccion-pizzas" class="phpm-container-seccion container-base">
-        <div class="producto-es-item">
-          <div class="producto-es-item-imagen">
-            <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
-          </div>
-          <div
-            tipo-producto="simple"
-            class="producto-es-item-detalle"
-          >
-            <div class="producto-es-item-info">
-              <h3>CHESSY LOVERS</h3>
-              <p>
-                Salsa de tomate, queso mozarella, Pepperoni, Jamón, carnes mixtas (res y cerdo, salchicha italiana y
-                tocino.
-              </p>
-            </div>
-            <h3 class="color-letras-primary">12.56 BS</h3>
-            <div
-              id=" phpm-general-variantes"
-              tipo-producto="simple"
-              class="seleccion-variante-producto-general"
-            >
-              <p>Tamaño</p>
-              <button id="phpm-view-variantes" class="container-info-variante">
-                <p id=" phpm-variante-seleccionado">Personalizada</p>
-                <div class="icono-dropdown-variantes icon-color-tertiary">
-                  {% render 'icon-flecha-abajo' %}
-                </div>
-              </button>
-              <div id=" phpm-items-variantes" class="variantes-producto">
-                <div class="variante-producto-es-item">
-                  <p>Familiar</p>
-                  <p class="color-letras-primary">12.56 BS</p>
-                </div>
-                <div class="variante-producto-es-item">
-                  <p>Mediana</p>
-                  <p class="color-letras-primary">12.56 BS</p>
-                </div>
-                <div class="variante-producto-es-item">
-                  <p>Basica</p>
-                  <p class="color-letras-primary">12.56 BS</p>
-                </div>
-                <div class="variante-producto-es-item">
-                  <p>Personalizada</p>
-                  <p class="color-letras-primary">12.56 BS</p>
-                </div>
-              </div>
-            </div>
-            <button id=" phpm-btn-personalizar" class="ph-btn-general phpm-btn-personalizar">
-              <p class="color-letras-secondary">PERSONALIZAR</p>
-            </button>
-            <button id=" phpm-btn-personalizar" class="ph-btn-general phpm-btn-agregar icon-color-secondary">
-              {% render 'icon-carrito' %}
-              <p class="color-letras-secondary">AGREGAR</p>
-            </button>
-          </div>
-        </div>
-        <div class="producto-es-item">
-          <div class="producto-es-item-imagen">
-            <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
-          </div>
-          <div
-            tipo-producto="simple"
-            class="producto-es-item-detalle"
-          >
-            <div class="producto-es-item-info">
-              <h3>CHESSY LOVERS</h3>
-              <p>
-                Salsa de tomate, queso mozarella, Pepperoni, Jamón, carnes mixtas (res y cerdo, salchicha italiana y
-                tocino.
-              </p>
-            </div>
-            <h3 class="color-letras-primary">12.56 BS</h3>
-            <div
-              id=" phpm-general-variantes"
-              tipo-producto="simple"
-              class="seleccion-variante-producto-general"
-            >
-              <p>Tamaño</p>
-              <button id="phpm-view-variantes" class="container-info-variante">
-                <p id=" phpm-variante-seleccionado">Personalizada</p>
-                <div class="icono-dropdown-variantes icon-color-tertiary">
-                  {% render 'icon-flecha-abajo' %}
-                </div>
-              </button>
-              <div id=" phpm-items-variantes" class="variantes-producto">
-                <div class="variante-producto-es-item">
-                  <p>Familiar</p>
-                  <p class="color-letras-primary">12.56 BS</p>
-                </div>
-                <div class="variante-producto-es-item">
-                  <p>Mediana</p>
-                  <p class="color-letras-primary">12.56 BS</p>
-                </div>
-                <div class="variante-producto-es-item">
-                  <p>Basica</p>
-                  <p class="color-letras-primary">12.56 BS</p>
-                </div>
-                <div class="variante-producto-es-item">
-                  <p>Personalizada</p>
-                  <p class="color-letras-primary">12.56 BS</p>
-                </div>
-              </div>
-            </div>
-            <button id=" phpm-btn-personalizar" class="ph-btn-general phpm-btn-personalizar">
-              <p class="color-letras-secondary">PERSONALIZAR</p>
-            </button>
-            <button id=" phpm-btn-personalizar" class="ph-btn-general phpm-btn-agregar icon-color-secondary">
-              {% render 'icon-carrito' %}
-              <p class="color-letras-secondary">AGREGAR</p>
-            </button>
-          </div>
-        </div>
-        <div class="producto-es-item">
-          <div class="producto-es-item-imagen">
-            <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
-          </div>
-          <div
-            tipo-producto="simple"
-            class="producto-es-item-detalle"
-          >
-            <div class="producto-es-item-info">
-              <h3>CHESSY LOVERS</h3>
-              <p>
-                Salsa de tomate, queso mozarella, Pepperoni, Jamón, carnes mixtas (res y cerdo, salchicha italiana y
-                tocino.
-              </p>
-            </div>
-            <h3 class="color-letras-primary">12.56 BS</h3>
-            <div
-              id=" phpm-general-variantes"
-              tipo-producto="simple"
-              class="seleccion-variante-producto-general"
-            >
-              <p>Tamaño</p>
-              <button id="phpm-view-variantes" class="container-info-variante">
-                <p id=" phpm-variante-seleccionado">Personalizada</p>
-                <div class="icono-dropdown-variantes icon-color-tertiary">
-                  {% render 'icon-flecha-abajo' %}
-                </div>
-              </button>
-              <div id=" phpm-items-variantes" class="variantes-producto">
-                <div class="variante-producto-es-item">
-                  <p>Familiar</p>
-                  <p class="color-letras-primary">12.56 BS</p>
-                </div>
-                <div class="variante-producto-es-item">
-                  <p>Mediana</p>
-                  <p class="color-letras-primary">12.56 BS</p>
-                </div>
-                <div class="variante-producto-es-item">
-                  <p>Basica</p>
-                  <p class="color-letras-primary">12.56 BS</p>
-                </div>
-                <div class="variante-producto-es-item">
-                  <p>Personalizada</p>
-                  <p class="color-letras-primary">12.56 BS</p>
-                </div>
-              </div>
-            </div>
-            <button id=" phpm-btn-personalizar" class="ph-btn-general phpm-btn-personalizar">
-              <p class="color-letras-secondary">PERSONALIZAR</p>
-            </button>
-            <button id=" phpm-btn-personalizar" class="ph-btn-general phpm-btn-agregar icon-color-secondary">
-              {% render 'icon-carrito' %}
-              <p class="color-letras-secondary">AGREGAR</p>
-            </button>
-          </div>
-        </div>
-        <div class="producto-es-item">
-          <div class="producto-es-item-imagen">
-            <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
-          </div>
-          <div
-            tipo-producto="simple"
-            class="producto-es-item-detalle"
-          >
-            <div class="producto-es-item-info">
-              <h3>CHESSY LOVERS</h3>
-              <p>
-                Salsa de tomate, queso mozarella, Pepperoni, Jamón, carnes mixtas (res y cerdo, salchicha italiana y
-                tocino.
-              </p>
-            </div>
-            <h3 class="color-letras-primary">12.56 BS</h3>
-            <div
-              id=" phpm-general-variantes"
-              tipo-producto="simple"
-              class="seleccion-variante-producto-general"
-            >
-              <p>Tamaño</p>
-              <button id="phpm-view-variantes" class="container-info-variante">
-                <p id=" phpm-variante-seleccionado">Personalizada</p>
-                <div class="icono-dropdown-variantes icon-color-tertiary">
-                  {% render 'icon-flecha-abajo' %}
-                </div>
-              </button>
-              <div id=" phpm-items-variantes" class="variantes-producto">
-                <div class="variante-producto-es-item">
-                  <p>Familiar</p>
-                  <p class="color-letras-primary">12.56 BS</p>
-                </div>
-                <div class="variante-producto-es-item">
-                  <p>Mediana</p>
-                  <p class="color-letras-primary">12.56 BS</p>
-                </div>
-                <div class="variante-producto-es-item">
-                  <p>Basica</p>
-                  <p class="color-letras-primary">12.56 BS</p>
-                </div>
-                <div class="variante-producto-es-item">
-                  <p>Personalizada</p>
-                  <p class="color-letras-primary">12.56 BS</p>
-                </div>
-              </div>
-            </div>
-            <button id=" phpm-btn-personalizar" class="ph-btn-general phpm-btn-personalizar">
-              <p class="color-letras-secondary">PERSONALIZAR</p>
-            </button>
-            <button id=" phpm-btn-personalizar" class="ph-btn-general phpm-btn-agregar icon-color-secondary">
-              {% render 'icon-carrito' %}
-              <p class="color-letras-secondary">AGREGAR</p>
-            </button>
-          </div>
-        </div>
-        <div class="producto-es-item">
-          <div class="producto-es-item-imagen">
-            <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
-          </div>
-          <div
-            tipo-producto="simple"
-            class="producto-es-item-detalle"
-          >
-            <div class="producto-es-item-info">
-              <h3>CHESSY LOVERS</h3>
-              <p>
-                Salsa de tomate, queso mozarella, Pepperoni, Jamón, carnes mixtas (res y cerdo, salchicha italiana y
-                tocino.
-              </p>
-            </div>
-            <h3 class="color-letras-primary">12.56 BS</h3>
-            <div
-              id=" phpm-general-variantes"
-              tipo-producto="simple"
-              class="seleccion-variante-producto-general"
-            >
-              <p>Tamaño</p>
-              <button id="phpm-view-variantes" class="container-info-variante">
-                <p id=" phpm-variante-seleccionado">Personalizada</p>
-                <div class="icono-dropdown-variantes icon-color-tertiary">
-                  {% render 'icon-flecha-abajo' %}
-                </div>
-              </button>
-              <div id=" phpm-items-variantes" class="variantes-producto">
-                <div class="variante-producto-es-item">
-                  <p>Familiar</p>
-                  <p class="color-letras-primary">12.56 BS</p>
-                </div>
-                <div class="variante-producto-es-item">
-                  <p>Mediana</p>
-                  <p class="color-letras-primary">12.56 BS</p>
-                </div>
-                <div class="variante-producto-es-item">
-                  <p>Basica</p>
-                  <p class="color-letras-primary">12.56 BS</p>
-                </div>
-                <div class="variante-producto-es-item">
-                  <p>Personalizada</p>
-                  <p class="color-letras-primary">12.56 BS</p>
-                </div>
-              </div>
-            </div>
-            <button id=" phpm-btn-personalizar" class="ph-btn-general phpm-btn-personalizar">
-              <p class="color-letras-secondary">PERSONALIZAR</p>
-            </button>
-            <button id=" phpm-btn-personalizar" class="ph-btn-general phpm-btn-agregar icon-color-secondary">
-              {% render 'icon-carrito' %}
-              <p class="color-letras-secondary">AGREGAR</p>
-            </button>
-          </div>
-        </div>
-      </div>
-    </seccion-productos>
+    </section>
+
+    <!-- PRODUCTOS PIZZAS -->
+    <!-- PRODUCTOS POSTRES -->
+    <!-- PRODUCTOS GASEOSAS Y CERVESAS -->
   </section>
 </page-menu-productos>
 
 {% style %}
-  #phpm-apartado {
-    all: initial; /* Resetea todas las propiedades a su valor inicial */
-    display: block; /* Mantiene que sea un elemento de bloque */
-
-    /* Anular cualquier posible influencia en hijos */
-    background: transparent;
-    border: none;
-    margin: 0;
-    padding: 0;
-    width: auto;
-    height: auto;
-    position: static;
-    box-sizing: content-box;
-
-    /* Asegurarse que no aplica transformaciones */
-    transform: none;
-
-    /* Eliminar cualquier posible efecto de posicionamiento */
-    float: none;
-    clear: none;
-
-    /* Eliminar cualquier posible efecto de flexbox/grid */
-    display: block;
-  }
-
-  /* Y para los hijos directos, asegurarse que no hereden nada problemático */
-  #phpm-apartado > * {
-    /* Propiedades que no quieres que se hereden */
-    position: static;
-    display: block; /* O lo que necesiten ser por defecto */
-  }
-
   .menu-page {
     width: 100%;
     height: 56rem;
@@ -397,11 +370,12 @@
 
   .phpm-titulo-general {
     width: 100%;
+    max-width: 1660px;
+    margin: auto;
     display: flex;
-    align-items: start;
     justify-content: start;
-    padding-top: var(--espaciado-xl);
-    padding-bottom: var(--espaciado-xl);
+    align-items: start;
+    gap: var(--espaciado-xxl);
   }
 
   .phpm-titulo-general small {

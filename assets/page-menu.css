@@ -18,6 +18,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: var(--espaciado-xxl);
+}
+
+.page-menu-container small {
+  font-size: 4.375rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%;
+  letter-spacing: -0.0875rem;
+  text-transform: uppercase;
 }
 
 /* ==========================================================================
