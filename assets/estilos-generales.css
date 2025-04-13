@@ -1057,7 +1057,8 @@
   }
 
   .producto-es-item-imagen {
-    width: 16rem;
+    /* width: 16rem; */
+    width: auto;
     height: 9.5rem;
     border: 0;
     border-radius: var(--espaciado-xs) !important;
