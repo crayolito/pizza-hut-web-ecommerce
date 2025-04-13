@@ -57,11 +57,12 @@
   overflow-y: hidden;
   padding-left: var(--espaciado-big);
   padding-right: var(--espaciado-big);
+  margin: 1rem 0;
 }
 
 .page-menu-opciones-seleccion::-webkit-scrollbar {
   width: 0;
-  height: 0;
+  /* height: 0; */
 }
 
 .page-menu-opcion {
