@@ -67,10 +67,14 @@
     </div>
     <!-- PRODUCTOS OFERTAS -->
     <section class="page-menu-container">
-      <small>PIZZAS</small>
-      <div class="phpm-titulo-general">
-        <h1 class="phpm-titulo-secundario color-letras-primary">ClÁsicas</h1>
-        <div id="phpm-seccion-pizzas" class="phpm-container-seccion container-base">
+      <div class="phpm-titulo-primario">
+        <small>PIZZAS</small>
+      </div>
+      <div class="phpm-seccion">
+        <div class="phpm-titulo-secundario">
+          <h1 class="color-letras-primary">ClÁsicas</h1>
+        </div>
+        <div id="phpm-seccion-pizzas" class="phpm-items container-base">
           <div class="producto-es-item">
             <div class="producto-es-item-imagen">
               <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
@@ -368,7 +372,9 @@
     background-color: var(--color-primary);
   }
 
-  .phpm-titulo-general {
+  .phpm-titulo-primario,
+  .phpm-titulo-secundario,
+  .phpm-seccion {
     width: 100%;
     max-width: 1660px;
     margin: auto;
@@ -379,7 +385,7 @@
     gap: var(--espaciado-xxl);
   }
 
-  .phpm-titulo-general small {
+  .phpm-seccion small {
     font-size: 4.375rem;
     font-style: normal;
     font-weight: 400;
@@ -388,7 +394,7 @@
     text-transform: uppercase;
   }
 
-  .phpm-container-seccion {
+  .phpm-items {
     display: flex;
     align-items: start;
     gap: var(--espaciado-xl);
@@ -396,7 +402,7 @@
     overflow-y: hidden;
   }
 
-  .phpm-container-seccion::-webkit-scrollbar {
+  .phpm-items::-webkit-scrollbar {
     width: 0;
     height: 0;
   }
