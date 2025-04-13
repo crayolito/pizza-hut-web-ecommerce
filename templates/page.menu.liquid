@@ -451,9 +451,9 @@
         </div>
       </div>
       <!-- PRODUCTOS POSTRES  (OFERTO : SIMPLE) -->
-      <div class="page-menu-productos-complejos">
-        <div class="page-menu-pc-categoria">
-          <h1>ClÁsicas</h1>
+      <div class="phph-container-general">
+        <div class="phph-container-seccion">
+          <small>ClÁsicas</small>
           <div class="container-productos-general">
             <div class="producto-item">
               <div class="producto-item-imagen">
@@ -705,6 +705,19 @@
     background-color: var(--color-primary);
   }
 
+  .phph-container-general {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .phph-container-general {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: var(--espaciado-xl);
+  }
+
   .container-productos-general {
     display: flex;
   }
@@ -723,16 +736,22 @@
     height: fit-content;
     gap: 0;
     border-radius: var(--espaciado-xs);
-    border: 1px solid #969696;
+    border-left: 0;
+    border-top: 0;
+    border-bottom: 0;
+    border-right: 1.5px solid #969696;
   }
 
   .producto-item-imagen {
     width: 8.12rem;
+    border-radius: 0;
+    border: 0;
   }
 
   .producto-item-detalle {
     padding: var(--espaciado-l);
     width: 13.12rem;
+    gap: var(--espaciado-xs);
   }
 
   .seleccion-variante-producto-general {
