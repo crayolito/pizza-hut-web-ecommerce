@@ -864,7 +864,6 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--espaciado-l);
-  /* display: none; */
 }
 
 .producto-item {
