@@ -909,7 +909,7 @@
   flex-direction: column;
   align-items: start;
   gap: var(--espaciado-m);
-  cursor: pointer;
+  /* cursor: pointer; */
   position: relative;
 }
 
