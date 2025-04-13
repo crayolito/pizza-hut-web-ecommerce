@@ -669,7 +669,7 @@
         function (event) {
           if (isMouseOver(event, this)) {
             event.preventDefault();
-            const scrollFactor = 1.2;
+            const scrollFactor = 1.5;
             this.scrollLeft += event.deltaY * scrollFactor;
           }
         },
@@ -702,7 +702,7 @@
         if (!isDown) return;
         e.preventDefault();
         const x = e.pageX - element.offsetLeft;
-        const walk = (x - startX) * 1.5; // Ajusta la velocidad de arrastre
+        const walk = (x - startX) * 1.2; // Ajusta la velocidad de arrastre
         element.scrollLeft = scrollLeft - walk;
       });
     });

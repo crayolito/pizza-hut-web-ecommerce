@@ -73,30 +73,30 @@
   border-radius: var(--espaciado-xs);
   background-color: var(--color-secundario);
   border: 1px solid #969696;
-  /* box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); */
-  /* cursor: pointer; */
 }
 
-.page-menu-opcion svg {
-  filter: brightness(0) saturate(100%) invert(8%) sepia(9%) saturate(535%)
-    hue-rotate(314deg) brightness(94%) contrast(91%);
-}
-
-.page-menu-opcion p {
-  text-transform: uppercase;
-  font-weight: 600;
+.page-menu-opcion.seleccionado {
+  border: 2px solid var(--colorp-primary);
 }
 
 .page-menu-opcion-imagen {
   height: 100%;
   width: 3.5rem;
   border-right: 1.5px solid #969696;
+  border-top-right-radius: var(--espaciado-xs);
+  border-bottom-right-radius: var(--espaciado-xs);
 }
 
 .page-menu-opcion-imagen img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-top-right-radius: var(--espaciado-xs);
+  border-bottom-right-radius: var(--espaciado-xs);
+}
+
+.page-menu-opcion.seleccionado .page-menu-opcion-imagen img {
+  border-right: 0;
 }
 
 .page-menu-opcion-nombre {
@@ -111,30 +111,33 @@
   padding: 0 var(--espaciado-l);
 }
 
+.page-menu-opcion.seleccionado .page-menu-opcion-nombre {
+  background-color: var(--colorp-primary);
+}
+
 .page-menu-opcion-nombre p {
   font-weight: 600;
   text-transform: uppercase;
 }
 
-.page-menu-opcion.boton-activado {
-  border: 1px solid var(--colorp-primary);
-  color: var(--colorp-secondary);
+.page-menu-opcion.seleccionado .page-menu-opcion-nombre p {
+  color: var(--colorp-primary);
 }
 
-.page-menu-opcion.boton-activado svg {
+.page-menu-opcion svg,
+.page-menu-opcion svg path,
+.page-menu-opcion svg g,
+.page-menu-opcion path,
+.page-menu-opcion g {
+  fill: var(--colorp-tertiary);
+}
+
+.page-menu-opcion.seleccionado .page-menu-opcion svg,
+.page-menu-opcion.seleccionado .page-menu-opcion svg path,
+.page-menu-opcion.seleccionado .page-menu-opcion svg g,
+.page-menu-opcion.seleccionado .page-menu-opcion path,
+.page-menu-opcion.seleccionado .page-menu-opcion g {
   fill: var(--colorp-secondary);
-}
-
-.page-menu-opcion.boton-activado {
-  background-color: var(--colorp-primary);
-}
-
-.page-menu-opcion-imagen.boton-activado {
-  border-right: 0;
-}
-
-.page-menu-opcion-nombre.boton-activado p {
-  color: var(--colorp-secondary);
 }
 
 /* ==========================================================================
