@@ -107,7 +107,6 @@
 .ph-cantidad-selector {
   min-width: 100%;
   width: 100%;
-  /* max-width: 19rem; */
   height: 3rem;
   display: flex;
   align-items: center;
