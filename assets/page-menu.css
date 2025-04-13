@@ -93,7 +93,7 @@
   object-fit: cover;
 }
 
-.page-menu-opcion.seleccionado .page-menu-opcion-imagen img {
+.page-menu-opcion.seleccionado .page-menu-opcion-imagen {
   border-right: 0;
 }
 
