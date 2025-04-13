@@ -71,13 +71,12 @@
   align-items: center;
   justify-content: center;
   border-radius: var(--espaciado-xs);
-  background-color: var(--color-secundario);
   border: 1px solid #969696;
 }
 
 .page-menu-opcion.seleccionado {
   border: 3px solid var(--colorp-primary);
-  background: var(--colorp-secondary);
+  background: var(--colorp-primary);
 }
 
 .page-menu-opcion-imagen {
