@@ -908,12 +908,14 @@
   gap: var(--espaciado-xs);
 }
 
+.producto-es-item-info h3,
 .producto-item-info h3 {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
+.producto-es-item-info p,
 .producto-item-info p {
   display: -webkit-box;
   line-clamp: 3;
@@ -983,7 +985,9 @@
 }
 
 .producto-es-item-imagen img {
-  border-radius: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .producto-es-item-detalle {
