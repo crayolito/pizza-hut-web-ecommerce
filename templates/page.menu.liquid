@@ -1839,12 +1839,17 @@
 
     clicksEspeciales(event){
       // Si el click es en algun elemento con id="phpm-view-variantes" no hace nada y se sale
+      let clickEnContenedorVariante = false;
       this.contenedorVarianteSeleccionado.forEach((elementoBase) => {
         if (elementoBase.contains(event.target)) {
           console.log('click en contenedor variante');
-          return; // Sale de la funcion
+          clickEnContenedorVariante = true;
         }
       });
+
+      if (clickEnContenedorVariante) {
+        return;
+      }
 
       // Si el elemento clickeado no es en el contenedor id="phpm-items-variantes" tons cierra a todos
       this.contenedorVariantes.forEach((elementoBase) => {
