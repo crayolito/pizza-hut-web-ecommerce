@@ -799,7 +799,7 @@
       });
     }); {% endcomment %}
 
-    document.addEventListener('DOMContentLoaded', function () {
+    {% comment %} document.addEventListener('DOMContentLoaded', function () {
       // Función para configurar el desplazamiento por arrastre en un elemento
       function configurarDesplazamientoPorArrastre(elemento) {
         // Variables para controlar el estado del arrastre
@@ -881,7 +881,7 @@
         clearTimeout(timerID);
         timerID = setTimeout(buscarElementosDesplazables, 300);
       });
-    });
+    }); {% endcomment %}
 
     {% comment %} function isMouseOver(event, element) {
       const rect = element.getBoundingClientRect();
