@@ -35,6 +35,8 @@ class AuxiliaresGlobal {
     }
   }
       
-    static limpiarCarrito(){}
-    static eliminarCarrito(){}
+  static limpiarCarrito(){}
+  static eliminarCarrito(){}
+  static mensajeExitoCarrito(){}
+
 }

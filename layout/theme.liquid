@@ -490,10 +490,30 @@
         </section>
       </div>
     </modal-inicial>
+
+    <!-- MENSAJE EXITO : CARRITO = MEC -->
+    <section id="ph-mec" class="ph-mec-general">
+      {% render 'icon-check-verde' %}
+      <p>Se añadió tu orden al carrito con éxito.</p>
+    </section>
   </body>
 </html>
 
 {% style %}
+  .ph-mec-general {
+    position: fixed;
+    z-index: 9999;
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    gap: var(--espaciado-s);
+    background-color: #edf6ea;
+    border-left: 4px solid #aed5a5;
+    border-radius: var(--espaciado-xs);
+    height: 3.75rem;
+    width: 43rem;
+  }
+
   .modal-general-sme {
     position: fixed;
     top: 0;
