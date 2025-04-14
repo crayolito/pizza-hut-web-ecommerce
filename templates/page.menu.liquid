@@ -1841,18 +1841,19 @@
       // Si el click es en algun elemento con id="phpm-view-variantes" no hace nada y se sale
       this.contenedorVarianteSeleccionado.forEach((elementoBase) => {
         if (elementoBase.contains(event.target)) {
+          console.log('click en contenedor variante');
           return; // Sale de la funcion
         }
       });
 
       // Si el elemento clickeado no es en el contenedor id="phpm-items-variantes" tons cierra a todos
-      this.contenedorVariantes.forEach((elementoBase) => {
+      {% comment %} this.contenedorVariantes.forEach((elementoBase) => {
         if (!elementoBase.contains(event.target)) {
           {% comment %} elementoBase.style.display = "none"; // Oculto {% endcomment %}
           elementoBase.classList.remove('elemento-visible');
           elementoBase.classList.add('elemento-oculto');
         }
-      });
+      }); {% endcomment %}
     }
 
     verificacionDataEnLocalStorage(){
