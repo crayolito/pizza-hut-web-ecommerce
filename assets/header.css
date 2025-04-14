@@ -630,8 +630,15 @@ header-principal {
   overflow-y: hidden;
 }
 
+.h-menu-opciones-productos::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
 .h-menu-opciones-productos-item {
-  width: 17.5rem;
+  /* width: 17.5rem; */
+  width: 16.5rem;
+  min-width: 16.5rem;
   height: 4rem;
   display: flex;
   align-items: center;
