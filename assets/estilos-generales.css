@@ -1193,9 +1193,9 @@
     height: 19.38rem;
   }
 
-  .container-productos-general {
+  /* .container-productos-general {
     gap: var(--espaciado-xxl);
-  }
+  } */
 
   .producto-item {
     height: max-content;
@@ -1206,6 +1206,8 @@
 
   .container-productos-general {
     grid-template-columns: 1fr 1fr 1fr;
+    row-gap: 3rem;
+    column-gap: 1.5rem;
   }
 
   .sp-boton-explorar-menu {

@@ -1,5 +1,6 @@
 <!-- Hoja de estilos Css -->
 {{ 'productos-index.css' | asset_url | stylesheet_tag }}
+{{ 'estilos-generales.css' | asset_url | stylesheet_tag }}
 
 <productos-index>
   <div class="pi-base container-base">
@@ -7,125 +8,578 @@
       <small class="pi-titulo-1">tu pizza favorita</small>
       <small class="pi-titulo-2">¡Te espera!</small>
     </section>
-    <section class="pi-items">
-      <div class="pi-item-producto">
-        <div class="pi-producto-imagen">
-          <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
-        </div>
-        <div class="pi-producto-informacion">
-          <h3>PEPPERONI</h3>
-          <p>
-            Salsa de tomate, queso mozzarella, y Pepperoni importado de Italia. Nuestra receta tradicional incluye una
-            bocado frece un perfecto equilibrio entre lo salado, ahumado y ligeramente picante.
-          </p>
-        </div>
-        <h3 class="pi-producto-precio">90BS</h3>
-        <div class="pi-producto-seleccion">
-          <p>Tamaño</p>
-          <div class="pi-producto-seleccion-input">
-            <input type="text" placeholder="Mediana">
-            {% render 'icon-flecha-abajo' %}
+    <section class="container-base">
+      <!-- APARTADO DESKTOP -->
+      <div class="phpi-general-mobile">
+        <div id="phpi-sector1-mobile" class="container-productos-general">
+          <div class="producto-item">
+            <div class="producto-item-imagen">
+              <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+            </div>
+            <div
+              tipo-producto="simple"
+              class="producto-item-detalle"
+            >
+              <div class="producto-item-info">
+                <h3>CHESSY LOVERS</h3>
+                <p>
+                  Salsa de tomate, queso mozarella, Pepperoni, Jamón, carnes mixtas (res y cerdo, salchicha italiana y
+                  tocino.
+                </p>
+              </div>
+              <h3 class="color-letras-primary">12.56 BS</h3>
+              <div
+                id="phpm-general-variantes"
+                tipo-producto="simple"
+                class="seleccion-variante-producto-general"
+              >
+                <p>Tamaño</p>
+                <button id="phpm-view-variantes" class="container-info-variante">
+                  <p id="phpm-variante-seleccionado">Personal</p>
+                  <div class="icono-dropdown-variantes icon-color-tertiary">
+                    {% render 'icon-flecha-abajo' %}
+                  </div>
+                </button>
+                <div id="phpm-items-variantes" class="variantes-producto">
+                  <div class="variante-producto-item">
+                    <p>Personal</p>
+                    <p class="color-letras-primary">12.56 BS</p>
+                  </div>
+                  <div class="variante-producto-item">
+                    <p>Super Pers.</p>
+                    <p class="color-letras-primary">12.56 BS</p>
+                  </div>
+                  <div class="variante-producto-item">
+                    <p>Mediana</p>
+                    <p class="color-letras-primary">12.56 BS</p>
+                  </div>
+                  <div class="variante-producto-item">
+                    <p>Familiar</p>
+                    <p class="color-letras-primary">12.56 BS</p>
+                  </div>
+                </div>
+              </div>
+              <button id="phpm-btn-personalizar" class="ph-btn-general   phpm-btn-personalizar">
+                <p class="color-letras-secondary">PERSONALIZAR</p>
+              </button>
+            </div>
+          </div>
+          <div class="producto-item">
+            <div class="producto-item-imagen">
+              <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+            </div>
+            <div
+              tipo-producto="simple"
+              class="producto-item-detalle"
+            >
+              <div class="producto-item-info">
+                <h3>CHESSY LOVERS</h3>
+                <p>
+                  Salsa de tomate, queso mozarella, Pepperoni, Jamón, carnes mixtas (res y cerdo, salchicha italiana y
+                  tocino.
+                </p>
+              </div>
+              <h3 class="color-letras-primary">12.56 BS</h3>
+              <div
+                id="phpm-general-variantes"
+                tipo-producto="simple"
+                class="seleccion-variante-producto-general"
+              >
+                <p>Tamaño</p>
+                <button id="phpm-view-variantes" class="container-info-variante">
+                  <p id="phpm-variante-seleccionado">Personal</p>
+                  <div class="icono-dropdown-variantes icon-color-tertiary">
+                    {% render 'icon-flecha-abajo' %}
+                  </div>
+                </button>
+                <div id="phpm-items-variantes" class="variantes-producto">
+                  <div class="variante-producto-item">
+                    <p>Personal</p>
+                    <p class="color-letras-primary">12.56 BS</p>
+                  </div>
+                  <div class="variante-producto-item">
+                    <p>Super Pers.</p>
+                    <p class="color-letras-primary">12.56 BS</p>
+                  </div>
+                  <div class="variante-producto-item">
+                    <p>Mediana</p>
+                    <p class="color-letras-primary">12.56 BS</p>
+                  </div>
+                  <div class="variante-producto-item">
+                    <p>Familiar</p>
+                    <p class="color-letras-primary">12.56 BS</p>
+                  </div>
+                </div>
+              </div>
+              <button id="phpm-btn-personalizar" class="ph-btn-general   phpm-btn-personalizar">
+                <p class="color-letras-secondary">PERSONALIZAR</p>
+              </button>
+            </div>
           </div>
         </div>
-        <button class="pi-producto-personalizar">
-          <p>PERSONALIZAR</p>
-        </button>
-      </div>
-      <div class="pi-item-producto">
-        <div class="pi-producto-imagen">
-          <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
-        </div>
-        <div class="pi-producto-informacion">
-          <h3>PEPPERONI</h3>
-          <p>
-            Salsa de tomate, queso mozzarella, y Pepperoni importado de Italia. Nuestra receta tradicional incluye una
-            bocado frece un perfecto equilibrio entre lo salado, ahumado y ligeramente picante.
-          </p>
-        </div>
-        <h3 class="pi-producto-precio">90BS</h3>
-        <div class="pi-producto-seleccion">
-          <p>Tamaño</p>
-          <div class="pi-producto-seleccion-input">
-            <input type="text" placeholder="Mediana">
-            {% render 'icon-flecha-abajo' %}
+        <div class="phpi-sector2-mobile"></div>
+        <div id="phpi-sector3-mobile" class="container-productos-general">
+          <div class="producto-item">
+            <div class="producto-item-imagen">
+              <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+            </div>
+            <div
+              tipo-producto="simple"
+              class="producto-item-detalle"
+            >
+              <div class="producto-item-info">
+                <h3>CHESSY LOVERS</h3>
+                <p>
+                  Salsa de tomate, queso mozarella, Pepperoni, Jamón, carnes mixtas (res y cerdo, salchicha italiana y
+                  tocino.
+                </p>
+              </div>
+              <h3 class="color-letras-primary">12.56 BS</h3>
+              <div
+                id="phpm-general-variantes"
+                tipo-producto="simple"
+                class="seleccion-variante-producto-general"
+              >
+                <p>Tamaño</p>
+                <button id="phpm-view-variantes" class="container-info-variante">
+                  <p id="phpm-variante-seleccionado">Personal</p>
+                  <div class="icono-dropdown-variantes icon-color-tertiary">
+                    {% render 'icon-flecha-abajo' %}
+                  </div>
+                </button>
+                <div id="phpm-items-variantes" class="variantes-producto">
+                  <div class="variante-producto-item">
+                    <p>Personal</p>
+                    <p class="color-letras-primary">12.56 BS</p>
+                  </div>
+                  <div class="variante-producto-item">
+                    <p>Super Pers.</p>
+                    <p class="color-letras-primary">12.56 BS</p>
+                  </div>
+                  <div class="variante-producto-item">
+                    <p>Mediana</p>
+                    <p class="color-letras-primary">12.56 BS</p>
+                  </div>
+                  <div class="variante-producto-item">
+                    <p>Familiar</p>
+                    <p class="color-letras-primary">12.56 BS</p>
+                  </div>
+                </div>
+              </div>
+              <button id="phpm-btn-personalizar" class="ph-btn-general   phpm-btn-personalizar">
+                <p class="color-letras-secondary">PERSONALIZAR</p>
+              </button>
+            </div>
+          </div>
+          <div class="producto-item">
+            <div class="producto-item-imagen">
+              <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+            </div>
+            <div
+              tipo-producto="simple"
+              class="producto-item-detalle"
+            >
+              <div class="producto-item-info">
+                <h3>CHESSY LOVERS</h3>
+                <p>
+                  Salsa de tomate, queso mozarella, Pepperoni, Jamón, carnes mixtas (res y cerdo, salchicha italiana y
+                  tocino.
+                </p>
+              </div>
+              <h3 class="color-letras-primary">12.56 BS</h3>
+              <div
+                id="phpm-general-variantes"
+                tipo-producto="simple"
+                class="seleccion-variante-producto-general"
+              >
+                <p>Tamaño</p>
+                <button id="phpm-view-variantes" class="container-info-variante">
+                  <p id="phpm-variante-seleccionado">Personal</p>
+                  <div class="icono-dropdown-variantes icon-color-tertiary">
+                    {% render 'icon-flecha-abajo' %}
+                  </div>
+                </button>
+                <div id="phpm-items-variantes" class="variantes-producto">
+                  <div class="variante-producto-item">
+                    <p>Personal</p>
+                    <p class="color-letras-primary">12.56 BS</p>
+                  </div>
+                  <div class="variante-producto-item">
+                    <p>Super Pers.</p>
+                    <p class="color-letras-primary">12.56 BS</p>
+                  </div>
+                  <div class="variante-producto-item">
+                    <p>Mediana</p>
+                    <p class="color-letras-primary">12.56 BS</p>
+                  </div>
+                  <div class="variante-producto-item">
+                    <p>Familiar</p>
+                    <p class="color-letras-primary">12.56 BS</p>
+                  </div>
+                </div>
+              </div>
+              <button id="phpm-btn-personalizar" class="ph-btn-general   phpm-btn-personalizar">
+                <p class="color-letras-secondary">PERSONALIZAR</p>
+              </button>
+            </div>
           </div>
         </div>
-        <button class="pi-producto-personalizar">
-          <p>PERSONALIZAR</p>
-        </button>
       </div>
-      <div class="pi-item-producto">
-        <div class="pi-producto-imagen">
-          <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
-        </div>
-        <div class="pi-producto-informacion">
-          <h3>PEPPERONI</h3>
-          <p>
-            Salsa de tomate, queso mozzarella, y Pepperoni importado de Italia. Nuestra receta tradicional incluye una
-            bocado frece un perfecto equilibrio entre lo salado, ahumado y ligeramente picante.
-          </p>
-        </div>
-        <h3 class="pi-producto-precio">90BS</h3>
-        <div class="pi-producto-seleccion">
-          <p>Tamaño</p>
-          <div class="pi-producto-seleccion-input">
-            <input type="text" placeholder="Mediana">
-            {% render 'icon-flecha-abajo' %}
+      <!-- APARTADO MOBIL -->
+      <div class="container-productos-general phpi-control-desktop">
+        <div class="producto-item">
+          <div class="producto-item-imagen">
+            <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+          </div>
+          <div
+            tipo-producto="simple"
+            class="producto-item-detalle"
+          >
+            <div class="producto-item-info">
+              <h3>CHESSY LOVERS</h3>
+              <p>
+                Salsa de tomate, queso mozarella, Pepperoni, Jamón, carnes mixtas (res y cerdo, salchicha italiana y
+                tocino.
+              </p>
+            </div>
+            <h3 class="color-letras-primary">12.56 BS</h3>
+            <div
+              id="phpm-general-variantes"
+              tipo-producto="simple"
+              class="seleccion-variante-producto-general"
+            >
+              <p>Tamaño</p>
+              <button id="phpm-view-variantes" class="container-info-variante">
+                <p id="phpm-variante-seleccionado">Personal</p>
+                <div class="icono-dropdown-variantes icon-color-tertiary">
+                  {% render 'icon-flecha-abajo' %}
+                </div>
+              </button>
+              <div id="phpm-items-variantes" class="variantes-producto">
+                <div class="variante-producto-item">
+                  <p>Personal</p>
+                  <p class="color-letras-primary">12.56 BS</p>
+                </div>
+                <div class="variante-producto-item">
+                  <p>Super Pers.</p>
+                  <p class="color-letras-primary">12.56 BS</p>
+                </div>
+                <div class="variante-producto-item">
+                  <p>Mediana</p>
+                  <p class="color-letras-primary">12.56 BS</p>
+                </div>
+                <div class="variante-producto-item">
+                  <p>Familiar</p>
+                  <p class="color-letras-primary">12.56 BS</p>
+                </div>
+              </div>
+            </div>
+            <button id="phpm-btn-personalizar" class="ph-btn-general   phpm-btn-personalizar">
+              <p class="color-letras-secondary">PERSONALIZAR</p>
+            </button>
           </div>
         </div>
-        <button class="pi-producto-personalizar">
-          <p>PERSONALIZAR</p>
-        </button>
-      </div>
-      <div class="pi-item-producto">
-        <div class="pi-producto-imagen">
-          <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
-        </div>
-        <div class="pi-producto-informacion">
-          <h3>PEPPERONI</h3>
-          <p>
-            Salsa de tomate, queso mozzarella, y Pepperoni importado de Italia. Nuestra receta tradicional incluye una
-            bocado frece un perfecto equilibrio entre lo salado, ahumado y ligeramente picante.
-          </p>
-        </div>
-        <h3 class="pi-producto-precio">90BS</h3>
-        <div class="pi-producto-seleccion">
-          <p>Tamaño</p>
-          <div class="pi-producto-seleccion-input">
-            <input type="text" placeholder="Mediana">
-            {% render 'icon-flecha-abajo' %}
+        <div class="producto-item">
+          <div class="producto-item-imagen">
+            <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+          </div>
+          <div
+            tipo-producto="simple"
+            class="producto-item-detalle"
+          >
+            <div class="producto-item-info">
+              <h3>CHESSY LOVERS</h3>
+              <p>
+                Salsa de tomate, queso mozarella, Pepperoni, Jamón, carnes mixtas (res y cerdo, salchicha italiana y
+                tocino.
+              </p>
+            </div>
+            <h3 class="color-letras-primary">12.56 BS</h3>
+            <div
+              id="phpm-general-variantes"
+              tipo-producto="simple"
+              class="seleccion-variante-producto-general"
+            >
+              <p>Tamaño</p>
+              <button id="phpm-view-variantes" class="container-info-variante">
+                <p id="phpm-variante-seleccionado">Personal</p>
+                <div class="icono-dropdown-variantes icon-color-tertiary">
+                  {% render 'icon-flecha-abajo' %}
+                </div>
+              </button>
+              <div id="phpm-items-variantes" class="variantes-producto">
+                <div class="variante-producto-item">
+                  <p>Personal</p>
+                  <p class="color-letras-primary">12.56 BS</p>
+                </div>
+                <div class="variante-producto-item">
+                  <p>Super Pers.</p>
+                  <p class="color-letras-primary">12.56 BS</p>
+                </div>
+                <div class="variante-producto-item">
+                  <p>Mediana</p>
+                  <p class="color-letras-primary">12.56 BS</p>
+                </div>
+                <div class="variante-producto-item">
+                  <p>Familiar</p>
+                  <p class="color-letras-primary">12.56 BS</p>
+                </div>
+              </div>
+            </div>
+            <button id="phpm-btn-personalizar" class="ph-btn-general   phpm-btn-personalizar">
+              <p class="color-letras-secondary">PERSONALIZAR</p>
+            </button>
           </div>
         </div>
-        <button class="pi-producto-personalizar">
-          <p>PERSONALIZAR</p>
-        </button>
-      </div>
-      <div class="pi-item-producto">
-        <div class="pi-producto-imagen">
-          <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
-        </div>
-        <div class="pi-producto-informacion">
-          <h3>PEPPERONI</h3>
-          <p>
-            Salsa de tomate, queso mozzarella, y Pepperoni importado de Italia. Nuestra receta tradicional incluye una
-            bocado frece un perfecto equilibrio entre lo salado, ahumado y ligeramente picante.
-          </p>
-        </div>
-        <h3 class="pi-producto-precio">90BS</h3>
-        <div class="pi-producto-seleccion">
-          <p>Tamaño</p>
-          <div class="pi-producto-seleccion-input">
-            <input type="text" placeholder="Mediana">
-            {% render 'icon-flecha-abajo' %}
+        <div class="producto-item">
+          <div class="producto-item-imagen">
+            <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+          </div>
+          <div
+            tipo-producto="simple"
+            class="producto-item-detalle"
+          >
+            <div class="producto-item-info">
+              <h3>CHESSY LOVERS</h3>
+              <p>
+                Salsa de tomate, queso mozarella, Pepperoni, Jamón, carnes mixtas (res y cerdo, salchicha italiana y
+                tocino.
+              </p>
+            </div>
+            <h3 class="color-letras-primary">12.56 BS</h3>
+            <div
+              id="phpm-general-variantes"
+              tipo-producto="simple"
+              class="seleccion-variante-producto-general"
+            >
+              <p>Tamaño</p>
+              <button id="phpm-view-variantes" class="container-info-variante">
+                <p id="phpm-variante-seleccionado">Personal</p>
+                <div class="icono-dropdown-variantes icon-color-tertiary">
+                  {% render 'icon-flecha-abajo' %}
+                </div>
+              </button>
+              <div id="phpm-items-variantes" class="variantes-producto">
+                <div class="variante-producto-item">
+                  <p>Personal</p>
+                  <p class="color-letras-primary">12.56 BS</p>
+                </div>
+                <div class="variante-producto-item">
+                  <p>Super Pers.</p>
+                  <p class="color-letras-primary">12.56 BS</p>
+                </div>
+                <div class="variante-producto-item">
+                  <p>Mediana</p>
+                  <p class="color-letras-primary">12.56 BS</p>
+                </div>
+                <div class="variante-producto-item">
+                  <p>Familiar</p>
+                  <p class="color-letras-primary">12.56 BS</p>
+                </div>
+              </div>
+            </div>
+            <button id="phpm-btn-personalizar" class="ph-btn-general   phpm-btn-personalizar">
+              <p class="color-letras-secondary">PERSONALIZAR</p>
+            </button>
           </div>
         </div>
-        <button class="pi-producto-personalizar">
-          <p>PERSONALIZAR</p>
-        </button>
+        <div class="producto-item">
+          <div class="producto-item-imagen">
+            <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+          </div>
+          <div
+            tipo-producto="simple"
+            class="producto-item-detalle"
+          >
+            <div class="producto-item-info">
+              <h3>CHESSY LOVERS</h3>
+              <p>
+                Salsa de tomate, queso mozarella, Pepperoni, Jamón, carnes mixtas (res y cerdo, salchicha italiana y
+                tocino.
+              </p>
+            </div>
+            <h3 class="color-letras-primary">12.56 BS</h3>
+            <div
+              id="phpm-general-variantes"
+              tipo-producto="simple"
+              class="seleccion-variante-producto-general"
+            >
+              <p>Tamaño</p>
+              <button id="phpm-view-variantes" class="container-info-variante">
+                <p id="phpm-variante-seleccionado">Personal</p>
+                <div class="icono-dropdown-variantes icon-color-tertiary">
+                  {% render 'icon-flecha-abajo' %}
+                </div>
+              </button>
+              <div id="phpm-items-variantes" class="variantes-producto">
+                <div class="variante-producto-item">
+                  <p>Personal</p>
+                  <p class="color-letras-primary">12.56 BS</p>
+                </div>
+                <div class="variante-producto-item">
+                  <p>Super Pers.</p>
+                  <p class="color-letras-primary">12.56 BS</p>
+                </div>
+                <div class="variante-producto-item">
+                  <p>Mediana</p>
+                  <p class="color-letras-primary">12.56 BS</p>
+                </div>
+                <div class="variante-producto-item">
+                  <p>Familiar</p>
+                  <p class="color-letras-primary">12.56 BS</p>
+                </div>
+              </div>
+            </div>
+            <button id="phpm-btn-personalizar" class="ph-btn-general   phpm-btn-personalizar">
+              <p class="color-letras-secondary">PERSONALIZAR</p>
+            </button>
+          </div>
+        </div>
       </div>
+      {% comment %}
+        <div class="pi-item-producto">
+          <div class="pi-producto-imagen">
+            <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+          </div>
+          <div class="pi-producto-informacion">
+            <h3>PEPPERONI</h3>
+            <p>
+              Salsa de tomate, queso mozzarella, y Pepperoni importado de Italia. Nuestra receta tradicional incluye una
+              bocado frece un perfecto equilibrio entre lo salado, ahumado y ligeramente picante.
+            </p>
+          </div>
+          <h3 class="pi-producto-precio">90BS</h3>
+          <div class="pi-producto-seleccion">
+            <p>Tamaño</p>
+            <div class="pi-producto-seleccion-input">
+              <input type="text" placeholder="Mediana">
+              {% render 'icon-flecha-abajo' %}
+            </div>
+          </div>
+          <button class="pi-producto-personalizar">
+            <p>PERSONALIZAR</p>
+          </button>
+        </div>
+        <div class="pi-item-producto">
+          <div class="pi-producto-imagen">
+            <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+          </div>
+          <div class="pi-producto-informacion">
+            <h3>PEPPERONI</h3>
+            <p>
+              Salsa de tomate, queso mozzarella, y Pepperoni importado de Italia. Nuestra receta tradicional incluye una
+              bocado frece un perfecto equilibrio entre lo salado, ahumado y ligeramente picante.
+            </p>
+          </div>
+          <h3 class="pi-producto-precio">90BS</h3>
+          <div class="pi-producto-seleccion">
+            <p>Tamaño</p>
+            <div class="pi-producto-seleccion-input">
+              <input type="text" placeholder="Mediana">
+              {% render 'icon-flecha-abajo' %}
+            </div>
+          </div>
+          <button class="pi-producto-personalizar">
+            <p>PERSONALIZAR</p>
+          </button>
+        </div>
+        <div class="pi-item-producto">
+          <div class="pi-producto-imagen">
+            <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+          </div>
+          <div class="pi-producto-informacion">
+            <h3>PEPPERONI</h3>
+            <p>
+              Salsa de tomate, queso mozzarella, y Pepperoni importado de Italia. Nuestra receta tradicional incluye una
+              bocado frece un perfecto equilibrio entre lo salado, ahumado y ligeramente picante.
+            </p>
+          </div>
+          <h3 class="pi-producto-precio">90BS</h3>
+          <div class="pi-producto-seleccion">
+            <p>Tamaño</p>
+            <div class="pi-producto-seleccion-input">
+              <input type="text" placeholder="Mediana">
+              {% render 'icon-flecha-abajo' %}
+            </div>
+          </div>
+          <button class="pi-producto-personalizar">
+            <p>PERSONALIZAR</p>
+          </button>
+        </div>
+        <div class="pi-item-producto">
+          <div class="pi-producto-imagen">
+            <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+          </div>
+          <div class="pi-producto-informacion">
+            <h3>PEPPERONI</h3>
+            <p>
+              Salsa de tomate, queso mozzarella, y Pepperoni importado de Italia. Nuestra receta tradicional incluye una
+              bocado frece un perfecto equilibrio entre lo salado, ahumado y ligeramente picante.
+            </p>
+          </div>
+          <h3 class="pi-producto-precio">90BS</h3>
+          <div class="pi-producto-seleccion">
+            <p>Tamaño</p>
+            <div class="pi-producto-seleccion-input">
+              <input type="text" placeholder="Mediana">
+              {% render 'icon-flecha-abajo' %}
+            </div>
+          </div>
+          <button class="pi-producto-personalizar">
+            <p>PERSONALIZAR</p>
+          </button>
+        </div>
+        <div class="pi-item-producto">
+          <div class="pi-producto-imagen">
+            <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+          </div>
+          <div class="pi-producto-informacion">
+            <h3>PEPPERONI</h3>
+            <p>
+              Salsa de tomate, queso mozzarella, y Pepperoni importado de Italia. Nuestra receta tradicional incluye una
+              bocado frece un perfecto equilibrio entre lo salado, ahumado y ligeramente picante.
+            </p>
+          </div>
+          <h3 class="pi-producto-precio">90BS</h3>
+          <div class="pi-producto-seleccion">
+            <p>Tamaño</p>
+            <div class="pi-producto-seleccion-input">
+              <input type="text" placeholder="Mediana">
+              {% render 'icon-flecha-abajo' %}
+            </div>
+          </div>
+          <button class="pi-producto-personalizar">
+            <p>PERSONALIZAR</p>
+          </button>
+        </div>
+      {% endcomment %}
     </section>
   </div>
 </productos-index>
+
+{% style %}
+  .phpi-general-mobile {
+    width: 100%;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaciado-xl);
+  }
+
+  .phpi-control-desktop {
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    .phpi-general-mobile {
+      display: none;
+    }
+
+    .phpi-control-desktop {
+      display: flex;
+    }
+  }
+{% endstyle %}
 
 <script>
   class ProductosIndex extends HTMLElement {

@@ -457,35 +457,6 @@
       }
     }
 
-    {% comment %} btnUsarMiUbicacionClick() {
-      this.modalDarDireccion.style.display = 'flex';
-      // Activar el mapa dentro de modal
-
-      // 1. Crear el mapa
-      if(!this.modalDarDireccion) {
-        alert('Error: No se pudo cargar el mapa. Por favor recarga la página');
-        return;
-      }
-
-      console.log('Entra a inicializarMapaEnvioDomicilio : ', this.coordenadas);
-
-      const configuracionMapa = {
-        center: this.coordenadas,
-        zoom: 16,
-        mapTypeControl: false,
-        streetViewControl: false,
-        fullscreenControl: false,
-        zoomControl: true,
-        scaleControl: false,
-        rotateControl: false,
-        panControl: false,
-        disableDefaultUI: false,
-      };
-
-      const mapa = new google.maps.Map(this.modalDarDireccion, configuracionMapa);
-
-    } {% endcomment %}
-
     procesarConfirmacionModal(){
       const posicion = this.marcadorMovible.getPosition();
       this.coordenadas = { lat: posicion.lat(), lng: posicion.lng() };
