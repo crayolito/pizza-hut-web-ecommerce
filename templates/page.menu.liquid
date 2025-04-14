@@ -1788,28 +1788,33 @@
     }
 
     mostrarYOcultarContenedorVariantes(elementoBase){
-      // Busco al elemento Padree
-      const elementoPadre = elementoBase.closest('#phpm-general-variantes');
-      // Busco a su hermano
-      const hermano = elementoPadre.querySelector('#phpm-items-variantes');
+      mostrarYOcultarContenedorVariantes(elementoBase) {
+        // Busco al elemento Padre
+        const elementoPadre = elementoBase.closest('#phpm-general-variantes');
+        // Busco a su hermano
+        const hermano = elementoPadre.querySelector('#phpm-items-variantes');
 
-      // Verifico si esta visible
-      const estaVisible = hermano.style.display === "flex";
-      if(estaVisible){
-        console.log("Esta visible");
-        hermano.style.display = "none"; // Oculto
-      } else {
-        console.log("No esta visible");
-        hermano.style.display = "flex"; // Muestro
-      }
+        // Usar getComputedStyle para verificar el estado real
+        const estiloComputado = window.getComputedStyle(hermano);
+        const estaVisible = estiloComputado.display !== "none";
 
-      // Oculto a los otros que no sea al elementoBase
-      this.contenedorVariantes.forEach((elementoBase) => {
-        if (elementoBase !== hermano) {
-          elementoBase.style.display = "none";
+        if(estaVisible) {
+          console.log("Está visible");
+          hermano.style.display = "none"; // Oculto - esto sobrescribe el CSS
+        } else {
+          console.log("No está visible");
+          // Aquí es donde establecemos "flex", pero podríamos simplemente
+          // eliminar el estilo inline para permitir que el CSS se aplique
+          hermano.style.display = ""; // Esto permite que el CSS se aplique
         }
-      });
-    }
+
+        // Oculto a los otros elementos
+        this.contenedorVariantes.forEach((elemento) => {
+          if (elemento !== hermano) {
+            elemento.style.display = "none";
+          }
+        });
+      }
 
     procesoVarianteSeleccionada(elementoBase){
       // Busco dentro del elemento al la primer etiqueta <p> y obtengo su valor ya que tenog 3 etiqueta p
