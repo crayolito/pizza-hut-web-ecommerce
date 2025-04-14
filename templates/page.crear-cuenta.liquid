@@ -719,5 +719,26 @@
     }
   }
 
+    // Funcion para procesar el login de Google
+    function handleGoogleLogin(responde) {
+      console.log('Login con Google:', responde);
+    }
+  
+    // Inicializar Facebook SDK
+    window.fbAsyncInit = function () {
+      FB.init({
+        appId: '657863972925266',
+        cookie: true,
+        xfbml: true,
+        version: 'v15.0',
+      });
+    };
+  
+    // Escucha eventos de login
+    FB.Event.subscribe('auth.login', function (response) {
+      console.log('Login con Facebook:', response);
+    });
+  
+
   customElements.define('crear-cuenta', CrearCuenta);
 </script>

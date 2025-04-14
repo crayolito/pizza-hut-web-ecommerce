@@ -724,7 +724,7 @@
   .psme-rl-locales {
     justify-content: start;
     flex: 1 1 calc(50% - 2rem);
-    padding: var(--espaciado-xxl);
+    padding: 0 var(--espaciado-xxl);
   }
 
   .psme-opciones-envio-domicilio {

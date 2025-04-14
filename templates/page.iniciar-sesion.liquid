@@ -2,6 +2,17 @@
 {{ 'estilos-generales.css' | asset_url | stylesheet_tag }}
 {{ 'page-checkout.css' | asset_url | stylesheet_tag }}
 
+<!-- Script de Facebook -->
+<script
+  async
+  defer
+  crossorigin="anonymous"
+  src="https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v15.0&appId=657863972925266"
+></script>
+
+<!-- Script de Google -->
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+
 <inicio-sesion>
   <div class="container-main-smecph container-base">
     <div class="container-sub-simple-smecph">
@@ -34,19 +45,40 @@
       >
         <p>Iniciar sesión con teléfono</p>
       </button>
-      <button
-        id="phpis-btn-google"
-        class="ph-btn-secundario"
-      >
+      {% comment %} id="phpis-btn-google" {% endcomment %}
+      {% comment %}
         {% render 'icon-google' %}
         <p>Continuar con Google</p>
+      {% endcomment %}
+      <button class="ph-btn-secundario">
+        <!-- FACEBOOK LOGIN - MÍNIMO NECESARIO -->
+        <div id="fb-root"></div>
+        <div
+          class="fb-login-button"
+          data-width="300"
+          data-size="large"
+          data-button-type="continue_with"
+          data-scope="public_profile,email"
+        ></div>
       </button>
-      <button
+      {% comment %}
         id="phpis-btn-facebook"
-        class="ph-btn-secundario"
-      >
         {% render 'icon-facebook-custom' %}
         <p>Continuar con Facebook</p>
+      {% endcomment %}
+      <button class="ph-btn-secundario">
+        <div
+          id="g_id_onload"
+          data-client_id="658161391897-43e6il3h9ugg7vmecsmstrc8fbl0esmg.apps.googleusercontent.com"
+          data-callback="handleGoogleLogin"
+        ></div>
+
+        <div
+          class="g_id_signin"
+          data-type="standard"
+          data-size="large"
+          data-width="300"
+        ></div>
       </button>
       <div class="pccph-modal-separador">
         <div class="pccph-modal-separador-linea"></div>
@@ -298,7 +330,11 @@
         localStorage.setItem(
           'ph-datos-usuario',
           JSON.stringify({
-            numero: '78452415',
+            nombre: '----',
+            celular: this.input.value,
+            apellido: '----',
+            email: '----',
+            ci: '----',
           })
         );
         window.location.href = '/';
@@ -317,7 +353,11 @@
         localStorage.setItem(
           'ph-datos-usuario',
           JSON.stringify({
-            numero: '78452415',
+            nombre: '----',
+            celular: this.input.value || '----',
+            apellido: '----',
+            email: '----',
+            ci: '----',
           })
         );
         window.location.href = '/pages/perfil';
@@ -358,7 +398,11 @@
           localStorage.setItem(
             'ph-datos-usuario',
             JSON.stringify({
-              numero: this.input.value,
+              nombre: '----',
+              celular: this.input.value || '----',
+              apellido: '----',
+              email: '----',
+              ci: '----',
             })
           );
           window.location.href = '/';
@@ -397,6 +441,26 @@
   }
 
   customElements.define('inicio-sesion', InicioSesion);
+
+  // Funcion para procesar el login de Google
+  function handleGoogleLogin(responde) {
+    console.log('Login con Google:', responde);
+  }
+
+  // Inicializar Facebook SDK
+  window.fbAsyncInit = function () {
+    FB.init({
+      appId: '657863972925266',
+      cookie: true,
+      xfbml: true,
+      version: 'v15.0',
+    });
+  };
+
+  // Escucha eventos de login
+  FB.Event.subscribe('auth.login', function (response) {
+    console.log('Login con Facebook:', response);
+  });
 </script>
 
 {% style %}
