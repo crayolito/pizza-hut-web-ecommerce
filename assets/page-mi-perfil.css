@@ -626,8 +626,8 @@ input:checked + .slider:before {
   }
 
   .ph-btn-primario {
-    /* justify-content: start !important; */
-    justify-content: center !important;
+    justify-content: start !important;
+    /* justify-content: center !important; */
   }
 
   .phpp-border-especial {
