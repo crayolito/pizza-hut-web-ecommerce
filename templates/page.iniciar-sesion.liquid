@@ -447,19 +447,51 @@
     console.log('Login con Google:', responde);
   }
 
+  // Funcion para cargar el SDK de Facebook de manera segura
+  function loadFacebookSDK() {
+    // Carga asincrona del SDK de Facebook
+    (function (d, s, id) {
+      var js,
+        fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {
+        return;
+      }
+      js = d.createElement(s);
+      js.id = id;
+      js.src = 'https://connect.facebook.net/en_US/sdk.js';
+      js.onload = function () {
+        // Inicializar SDK cuando se haya cargado
+        window.fbAsyncInit();
+      };
+      fjs.parentNode.insertBefore(js, fjs);
+    })(document, 'script', 'facebook-jssdk');
+  }
+
   // Inicializar Facebook SDK
   window.fbAsyncInit = function () {
-    FB.init({
-      appId: '657863972925266',
-      cookie: true,
-      xfbml: true,
-      version: 'v15.0',
-    });
+    // Solo inicializar si FB esta definido
+    if (typeof FB !== 'undefined') {
+      FB.init({
+        appId: '657863972925266',
+        cookie: true,
+        xfbml: true,
+        version: 'v15.0',
+      });
+
+      // Escuchar eventos de login
+      FB.Event.subscribe('auth.login', function (response) {
+        console.log('Login con Facebook exitoso');
+        console.log(response);
+        // Aquí puedes añadir el código para manejar la respuesta
+      });
+    } else {
+      console.log('El SDK de Facebook no está disponible');
+    }
   };
 
-  // Escucha eventos de login
-  FB.Event.subscribe('auth.login', function (response) {
-    console.log('Login con Facebook:', response);
+  // Cargar Facebook SDK cuando el DOM esté listo
+  document.addEventListener('DOMContentLoaded', function () {
+    loadFacebookSDK();
   });
 </script>
 
