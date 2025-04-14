@@ -1753,6 +1753,7 @@
       this.opcionesMenu = this.querySelectorAll('.page-menu-opcion');
       this.contenedorVarianteSeleccionado = this.querySelectorAll('#phpm-view-variantes');
       this.contenedorVariantes = this.querySelectorAll('#phpm-items-variantes');
+      this.varianteElemento = this.querySelectorAll('.variante-producto-es-item');
       this.btnsAgregar = this.querySelectorAll('#phpm-btn-agregar');
       this.btnsPersonalizar = this.querySelectorAll('#phpm-btn-personalizar');
       this.seccionTodoYOfertas = this.querySelector('#phpm-seccion-todo');
@@ -1772,9 +1773,74 @@
         elementoItemMenu.addEventListener('click', this.seleccionItemMenu.bind(this, elementoItemMenu));
       });
 
+      this.contenedorVarianteSeleccionado.forEach((elementoBase) => {
+        elementoBase.addEventListener('click', this.mostrarYOcultarContenedorVariantes.bind(this, elementoBase));
+      });
+
+      this.varianteElemento.forEach((elementoBase) => {
+        elementoBase.addEventListener('click', this.procesoVarianteSeleccionada.bind(this, elementoBase));
+      });
+
+      document.addEventListener('click', this.clicksEspeciales.bind(this));
+
       // INICIALIZAR ELEMENTOS Y PROCESOS CLAVES
       this.verificacionDataEnLocalStorage();
+    }
 
+    mostrarYOcultarContenedorVariantes(elementoBase){
+      // Busco al elemento Padre
+      const elementoPadre = elementoBase.closest#('#phpm-general-variantes');
+      // Busco a su hermano
+      const hermano = elementoPadre.querySelector('#phpm-items-variantes');
+      // Verifico si esta visible
+      const estaVisible = hermano.style.display === "flex";
+      if(estaVisible){
+        hermano.style.display = "none"; // Oculto
+      } else {
+        hermano.style.display = "flex"; // Muestro
+      }
+
+      // Oculto a los otros que no sea al elementoBase
+      this.contenedorVariantes.forEach((elementoBase) => {
+        if (elementoBase !== hermano) {
+          elementoBase.style.display = "none";
+        }
+      });
+    }
+
+    procesoVarianteSeleccionada(elementoBase){
+      // Busco dentro del elemento al la primer etiqueta <p> y obtengo su valor ya que tenog 3 etiqueta p
+      const primerP = elementoBase.querySelectorAll('p')[0];
+      // Busco al elemento Padre General con id="phpm-general-variantes"
+      const padreGeneral = elementoBase.closest('#phpm-general-variantes');
+      // Busco al hijo de Padre con id="phpm-view-variantes"
+      const hijo = padreGeneral.querySelector('#phpm-view-variantes');
+      // El hijo tiene otro hijo que es una etiqueta p con id="phpm-variante-seleccionado"
+      const hijoP = hijo.querySelector('#phpm-variante-seleccionado');
+      hijoP.innerHTML = primerP.innerHTML; // Cambiamos el valor de la etiqueta p
+      // Busco al elemento Padre id="phpm-items-variantes"
+      // O tambien cierro a todos con ese id
+      this.contenedorVariantes.forEach((elementoBase) => {
+        if (elementoBase !== padreGeneral) {
+          elementoBase.style.display = "none";
+        }
+      });
+    }
+
+    clicksEspeciales(event){
+      // Si el click es en algun elemento con id="phpm-view-variantes" no hace nada y se sale
+      this.contenedorVarianteSeleccionado.forEach((elementoBase) => {
+        if (elementoBase.contains(event.target)) {
+          return; // Sale de la funcion
+        }
+      });
+
+      // Si el elemento clickeado no es en el contenedor id="phpm-items-variantes" tons cierra a todos
+      this.contenedorVariantes.forEach((elementoBase) => {
+        if (!elementoBase.contains(event.target)) {
+          elementoBase.style.display = "none"; // Oculto
+        }
+      });
     }
 
     verificacionDataEnLocalStorage(){
