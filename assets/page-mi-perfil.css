@@ -79,6 +79,14 @@
   color: var(--colorp-primary) !important;
 }
 
+.ph-btn-primario {
+  justify-content: start !important;
+}
+
+.ph-btn-primario p {
+  text-align: start !important;
+}
+
 /* ===== SECCION DERECHA ===== */
 
 .phpp-titulo-base {
