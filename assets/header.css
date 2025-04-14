@@ -626,6 +626,8 @@ header-principal {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   padding: var(--espaciado-xl);
   gap: var(--espaciado-m);
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 .h-menu-opciones-productos-item {
@@ -637,7 +639,7 @@ header-principal {
   border-radius: var(--border-radius-2);
   background: var(--colorp-secondary);
   border: 1.5px solid #dedede;
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 
 .h-menu-producto-info-imagen {
