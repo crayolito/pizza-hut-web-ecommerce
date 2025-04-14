@@ -1784,6 +1784,9 @@
       document.addEventListener('click', this.clicksEspeciales.bind(this));
 
       // INICIALIZAR ELEMENTOS Y PROCESOS CLAVES
+      this.contenedorVariantes.forEach((elementoBase) => {
+        elementoBase.classList.add('elemento-oculto');
+      });
       this.verificacionDataEnLocalStorage();
     }
 
