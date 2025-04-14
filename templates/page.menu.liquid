@@ -1796,9 +1796,7 @@
         // Busco a su hermano
         const hermano = elementoPadre.querySelector('#phpm-items-variantes');
 
-        // Usar getComputedStyle para verificar el estado real
-        const estiloComputado = window.getComputedStyle(hermano);
-        const estaVisible = estiloComputado.display !== "none";
+        const estaVisible = hermano.classList.contains('elemento-visible');
 
         if(estaVisible) {
           console.log("Está visible");
