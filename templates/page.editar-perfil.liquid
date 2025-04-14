@@ -489,6 +489,7 @@
     procesarConfirmacionModal(){
       const posicion = this.marcadorMovible.getPosition();
       this.coordenadas = { lat: posicion.lat(), lng: posicion.lng() };
+      this.inputDireccion.value = posicion;
       console.log('Coordenadas de dirección seleccionada:', this.coordenadas);
       console.log('Posicion del marcador:', posicion);
       this.cerrarModalDarDireccion();

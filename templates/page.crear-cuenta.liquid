@@ -577,6 +577,7 @@
     procesoConfirmacionModal() {
       const posicion = this.marcadorMovible.getPosition();
       this.coordenadas = { lat: posicion.lat(), lng: posicion.lng() };
+      this.inputDireccion.value = posicion;
       console.log('Coordenadas de dirección seleccionada:', this.coordenadas);
       this.cerrarModalMiUbicacion();
     }
@@ -716,7 +717,6 @@
                               cursorPos - (valorOriginal.length - valorFiltrado.length));
       }
     }
-    
   }
 
   customElements.define('crear-cuenta', CrearCuenta);
