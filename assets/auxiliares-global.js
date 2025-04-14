@@ -56,7 +56,7 @@ class AuxiliaresGlobal {
     }
   }
 
-  static obtenerDireccionDesdeLasCoordenadas(lat,lng){
+  static obtenerDireccionDesdeCoordenadas (lat,lng){
     return new Promise((resolve, reject) => {
       const geocoder = new google.maps.Geocoder();
       const latlng = {
