@@ -885,8 +885,10 @@
     // Selecciona todos los elementos que tienen overflow-x scrollable
     const elementosScrollables = Array.from(document.querySelectorAll('*')).filter((elemento) => {
       const estilo = window.getComputedStyle(elemento);
+      console.log('estilo', estilo);
       // Filtra elementos que tienen overflow-x auto o scroll y necesitan scroll horizontal
       return (estilo.overflowX === 'auto' || estilo.overflowX === 'scroll') && elemento.scrollWidth > elemento.clientWidth;
+      
     });
 
     // Configura cada elemento scrollable
