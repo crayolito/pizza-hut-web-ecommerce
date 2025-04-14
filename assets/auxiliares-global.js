@@ -56,4 +56,60 @@ class AuxiliaresGlobal {
     }
   }
 
+  static obtenerDireccionDesdeLasCoordenadas(lat,lng){
+    return new Promise((resolve, reject) => {
+      const geocoder = new google.maps.Geocoder();
+      const latlng = {
+        lat: parseFloat(lat),
+        lng: parseFloat(lng)
+      };
+      
+      geocoder.geocode({ 
+        location: latlng,
+        language: 'es' // Resultados en español
+      }, (results, status) => {
+        if (status === "OK" && results && results.length > 0) {
+          // Intentar extraer la información más útil para delivery
+          let direccionFinal = "";
+          let calleEncontrada = false;
+          
+          // Primero buscar el resultado que tenga más detalles de calle
+          for (const result of results) {
+            // Verificar si este resultado tiene componentes de dirección útiles
+            const tieneRuta = result.address_components.some(comp => 
+              comp.types.includes('route') || comp.types.includes('street_address'));
+            
+            if (tieneRuta) {
+              direccionFinal = result.formatted_address;
+              calleEncontrada = true;
+              break;
+            }
+          }
+          
+          // Si no se encontró información de calle, usar la dirección más detallada disponible
+          if (!calleEncontrada) {
+            direccionFinal = results[0].formatted_address;
+          }
+          
+          // Eliminar el código plus (si existe) de la dirección final
+          direccionFinal = direccionFinal.replace(/\b[0-9A-Z]{4}\+[0-9A-Z]{2,3}\b,?/g, '').trim();
+          
+          // Eliminar el país si está al final para hacerlo más conciso
+          const paisRegex = /, Bolivia$/;
+          if (paisRegex.test(direccionFinal)) {
+            direccionFinal = direccionFinal.replace(paisRegex, '');
+          }
+          
+          resolve(direccionFinal || "Dirección no disponible");
+        } else {
+          reject("No se pudo obtener una dirección detallada: " + status);
+        }
+      });
+    });
+  }
+
+  static mensajeError(){}
+  static mensajeExito(){}
+  static mensajeAlerta(){}
+  static mensajeInformacion(){}
 }

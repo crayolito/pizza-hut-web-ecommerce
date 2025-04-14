@@ -3,6 +3,9 @@
 {{ 'estilos-auxliares.css' | asset_url | stylesheet_tag }}
 {{ 'page-checkout.css' | asset_url | stylesheet_tag }}
 
+<!-- HOJA DE JS -->
+<script src="{{ 'auxiliares-global.js' | asset_url }}" defer></script>
+
 <editar-perfil>
   <div class="container-main-smecph container-base">
     <h1>Editar Perfil</h1>
@@ -458,12 +461,16 @@
       }
     }
 
-    procesarConfirmacionModal(){
+    procesarConfirmacionModal() async {
       const posicion = this.marcadorMovible.getPosition();
       this.coordenadas = { lat: posicion.lat(), lng: posicion.lng() };
-      this.inputDireccion.value = posicion;
+      const direccion = await AuxiliaresGlobal.obtenerDireccionDesdeCoordenadas(posicion.lat(), posicion.lng());
+      localStorage.setItem('direccion-cliente', direccion);
+      localStorage.setItem('ubicacion-cliente', JSON.stringify(this.coordenadas));
+      this.inputDireccion.value = direccion;
       console.log('Coordenadas de dirección seleccionada:', this.coordenadas);
       console.log('Posicion del marcador:', posicion);
+      console.log('Direccion seleccionada:', direccion);
       this.cerrarModalDarDireccion();
     }
 

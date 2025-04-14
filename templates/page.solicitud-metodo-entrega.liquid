@@ -13,6 +13,8 @@
     ></script>
     {{ 'estilos-auxliares.css' | asset_url | stylesheet_tag }}
     {{ 'estilos-generales.css' | asset_url | stylesheet_tag }}
+    <!-- HOJA DE JS -->
+    <script src="{{ 'auxiliares-global.js' | asset_url }}" defer></script>
   </head>
   <body>
     <cliente-localizacion>
@@ -782,7 +784,8 @@
       );
 
       // Se guarda en el localStorage las coordendas del local
-      const direccion = await this.obtenerDireccionDesdeCordenadas(localSeleccionado.lat, localSeleccionado.lng);
+      const direccion = await AuxiliaresGlobal.obtenerDireccionDesdeLasCoordenadas(localSeleccionado.lat, localSeleccionado.lng);
+      {% comment %} const direccion = await this.obtenerDireccionDesdeCordenadas(localSeleccionado.lat, localSeleccionado.lng); {% endcomment %}
       localStorage.setItem('direccion-cliente', JSON.stringify(direccion));
       localStorage.setItem('ubicacion-cliente', JSON.stringify({
         lat: localSeleccionado.lat,
@@ -1116,10 +1119,12 @@
       console.log('Ubicacion guardada en localStorage: ', localStorage.getItem('ubicacion-cliente'));
       this.cerrarModal();
       localStorage.setItem('ph-metodo-entrega', 'domicilio');
-      const direccion = await this.obtenerDireccionDesdeCordenadas(
+      const direccion = await AuxiliaresGlobal.obtenerDireccionDesdeLasCoordenadas(localSeleccionado.lat, localSeleccionado.lng);
+
+      {% comment %} const direccion = await this.obtenerDireccionDesdeCordenadas(
         this.coordenadas.lat, 
         this.coordenadas.lng
-      );
+      ); {% endcomment %}
       localStorage.setItem('direccion-cliente', JSON.stringify(direccion));
       localStorage.setItem('ubicacion-cliente', JSON.stringify(this.coordenadas));
       window.location.href = '/';
@@ -1145,10 +1150,11 @@
     }
 
     async botonOmitirPrincipal(){
-      const direccion = await this.obtenerDireccionDesdeCordenadas(
+      const direccion = await AuxiliaresGlobal.obtenerDireccionDesdeLasCoordenadas(localSeleccionado.lat, localSeleccionado.lng);
+      {% comment %} const direccion = await this.obtenerDireccionDesdeCordenadas(
         this.coordenadas.lat, 
         this.coordenadas.lng
-      );
+      ); {% endcomment %}
       localStorage.setItem('direccion-cliente', JSON.stringify(direccion));
       localStorage.setItem('ubicacion-cliente', JSON.stringify(this.coordenadas));
       localStorage.setItem('ph-metodo-entrega', 'no');
@@ -1158,10 +1164,14 @@
     }
 
     async botonSiguientePrincipal(){
+
+      const direccion = await AuxiliaresGlobal.obtenerDireccionDesdeLasCoordenadas(localSeleccionado.lat, localSeleccionado.lng);
+      {% comment %}
       const direccion = await this.obtenerDireccionDesdeCordenadas(
         this.coordenadas.lat, 
         this.coordenadas.lng
       );
+      {% endcomment %}
       localStorage.setItem('direccion-cliente', JSON.stringify(direccion));
       localStorage.setItem('ph-metodo-entrega', 'domicilio');
       localStorage.setItem('ubicacion-cliente', JSON.stringify(this.coordenadas));
@@ -1296,7 +1306,7 @@
       return radioTierra * c; // Distancia en kilómetros
     }
 
-    obtenerDireccionDesdeCordenadas(lat, lng) {
+    {% comment %} obtenerDireccionDesdeCordenadas(lat, lng) {
       return new Promise((resolve, reject) => {
         const geocoder = new google.maps.Geocoder();
         const latlng = {
@@ -1346,7 +1356,7 @@
           }
         });
       });
-    }
+    } {% endcomment %}
   }
 
   customElements.define('cliente-localizacion', ClienteLocalizacion);
