@@ -31,12 +31,29 @@ class AuxiliaresGlobal {
         } else if (valorStr.length >= 3) {
           mensaje.classList.add('digitos-3');
         }
+
+        // Mostrar mensaje de éxito después de actualizar el carrito
+        this.mensajeExitoCarrito();
       }
     }
   }
       
   static limpiarCarrito(){}
   static eliminarCarrito(){}
-  static mensajeExitoCarrito(){}
+
+  static mensajeExitoCarrito() {
+    const mensajeExito = document.getElementById('ph-mec');
+    
+    // Si ya está mostrando un mensaje, no hacer nada
+    if (mensajeExito && !mensajeExito.classList.contains('ph-mec-visible')) {
+      // Agregar clase para mostrar el mensaje
+      mensajeExito.classList.add('ph-mec-visible');
+      
+      // Remover la clase después de 3 segundos
+      setTimeout(() => {
+        mensajeExito.classList.remove('ph-mec-visible');
+      }, 3000);
+    }
+  }
 
 }
