@@ -1,14 +1,36 @@
 <!-- Hoja de estilos Css -->
 {{ 'oferta-index.css' | asset_url | stylesheet_tag }}
 
-<div class="container-base  oi_contenedor-base">
-  <a href="/pages/menu" class="oi_oferta">
-    <img src="{{ 'oferta-index-1.png' | asset_url  }}" class="oferta-imagen" height="100%" width="100%">
-  </a>
-  <a href="/pages/menu" class="oi_oferta">
-    <img src="{{ 'oferta-index-2.png' | asset_url }}" class="oferta-imagen" height="100%" width="100%">
-  </a>
-</div>
+<oferta-index>
+  <div class="container-base  oi_contenedor-base">
+    <button class="oi_oferta">
+      <img src="{{ 'oferta-index-1.png' | asset_url  }}" class="oferta-imagen" height="100%" width="100%">
+    </button>
+    <button class="oi_oferta">
+      <img src="{{ 'oferta-index-2.png' | asset_url }}" class="oferta-imagen" height="100%" width="100%">
+    </button>
+  </div>
+</oferta-index>
+
+<script>
+  class OfertaIndex extends HTMLElement {
+    constructor() {
+      super();
+    }
+
+    connectedCallback() {
+      // REFERENCIA ELEMENTOS
+      this.btnOferta = this.querySelectorAll('.oi_oferta');
+      // INICIALIZAR EVENTOS
+      this.btnOferta.forEach((btn, index) => {
+        btn.addEventListener('click', (e) => {
+          localStorage.setItem('ph-tipoProducto', 'simple');
+          window.location.href = '/pages/producto';
+        });
+      });
+    }
+  }
+  customElements.define('oferta-index', OfertaIndex);
 
 {% schema %}
 {

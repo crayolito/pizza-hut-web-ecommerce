@@ -1,30 +1,30 @@
 <!-- Diseños css -->
 {{ 'sub-menu-index.css' | asset_url | stylesheet_tag }}
 
-<div class="container-base smi-index">
-  <a
-    href="/pages/menu"
-    class="smi-opciones"
-    id="smi-menu"
-  >
-    <small>MENÚ</small>
-  </a>
-  <a
-    href="/pages/menu"
-    class="smi-opciones"
-    id="smi-ofertas"
-  >
-    <small>OFERTAS</small>
-  </a>
-  <a
-    href="https://microsites.spnty.co/pizzahutbolivia/login"
-    target="_blank"
-    class="smi-opciones"
-    id="smi-hut-coins"
-  >
-    <img src="{{ 'logo-hutCoints.png' | asset_url }}" alt="Hut Coins" width="100%" height="100%">
-  </a>
-</div>
+<sub-menu-index>
+  <div class="container-base smi-index">
+    <button
+      class="smi-opciones"
+      id="smi-menu"
+    >
+      <small>MENÚ</small>
+    </button>
+    <button
+      class="smi-opciones"
+      id="smi-ofertas"
+    >
+      <small>OFERTAS</small>
+    </button>
+    <a
+      href="https://microsites.spnty.co/pizzahutbolivia/login"
+      target="_blank"
+      class="smi-opciones"
+      id="smi-hut-coins"
+    >
+      <img src="{{ 'logo-hutCoints.png' | asset_url }}" alt="Hut Coins" width="100%" height="100%">
+    </a>
+  </div>
+</sub-menu-index>
 
 {% schema %}
 {
@@ -37,9 +37,26 @@
 {% endschema %}
 
 <script>
-  const opcionMenu = document.querySelector('#smi-menu');
+  class SubMenuIndex extends HTMLElement {
+    constructor() {
+      super();
+    }
 
-  opcionMenu.addEventListener('click', () => {
-    window.location.href = '/pages/menu';
-  });
+    connectedCallback() {
+      // REFERENCIA ELEMENTOS
+      this.btnMenu = this.querySelector('#smi-menu');
+      this.btnOfertas = this.querySelector('#smi-ofertas');
+      // INICIALIZAR EVENTOS
+      this.btnMenu.addEventListener('click', (e) => {
+        localStorage.setItem('phph-itemMenu', 'todo');
+        window.location.href = '/pages/menu';
+      });
+      this.btnOfertas.addEventListener('click', (e) => {
+        localStorage.setItem('phph-itemMenu', 'ofertas');
+        window.location.href = '/pages/menu';
+      });
+    }
+  }
+
+  customElements.define('sub-menu-index', SubMenuIndex);
 </script>
