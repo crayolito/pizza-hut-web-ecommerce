@@ -48,7 +48,7 @@
 }
 
 .page-menu-titulo-desktop {
-  display: none;
+  /* display: none; */
   text-align: center;
   font-size: 4.375rem;
   font-style: normal;
