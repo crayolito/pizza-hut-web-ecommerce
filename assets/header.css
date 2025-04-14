@@ -525,6 +525,7 @@ header-principal {
   gap: var(--espaciado-l);
   width: 100%;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .h-busqueda-especifica-item img {
