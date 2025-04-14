@@ -281,11 +281,11 @@
       console.log('Inputs: ', inputs);
       console.log('Datos de usuario: ', datosUsuario);
 
-      inputs.nombre.value = inputs.nombre.value == "----" ? "" : datosUsuario.nombre;
-      inputs.apellido.value = inputs.apellido.value == "----" ? "" : datosUsuario.apellido;
-      inputs.email.value = inputs.email.value == "----" ? "" : datosUsuario.email;
-      inputs.celular.value = inputs.celular.value == "----" ? "" : datosUsuario.celular;
-      inputs.ci.value = inputs.ci.value == "----" ? "" : datosUsuario.ci;
+      inputs.nombre.value = datosUsuario.nombre == "----" ? "" : datosUsuario.nombre;
+      inputs.apellido.value = datosUsuario.apellido == "----" ? "" : datosUsuario.apellido;
+      inputs.email.value = datosUsuario.email == "----" ? "" : datosUsuario.email;
+      inputs.celular.value = datosUsuario.celular== "----" ? "" : datosUsuario.celular;
+      inputs.ci.value = datosUsuario.ci == "----" ? "" : datosUsuario.ci;
       this.inputDireccion.value = direccion == "----" ? "" : direccion;
 
       this.verificiarValidacion();
