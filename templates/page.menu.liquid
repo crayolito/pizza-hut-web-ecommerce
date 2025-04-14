@@ -1793,14 +1793,13 @@
       // Busco a su hermano
       const hermano = elementoPadre.querySelector('#phpm-items-variantes');
 
-      console.log('elementoPadre', elementoPadre);
-      console.log('Hijos del padre:', elementoPadre.children);
-      console.log('hermano', hermano);
       // Verifico si esta visible
       const estaVisible = hermano.style.display === "flex";
       if(estaVisible){
+        console.log("Esta visible");
         hermano.style.display = "none"; // Oculto
       } else {
+        console.log("No esta visible");
         hermano.style.display = "flex"; // Muestro
       }
 
