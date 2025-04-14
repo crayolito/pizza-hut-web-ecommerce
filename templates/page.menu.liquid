@@ -1945,7 +1945,8 @@
     }
 
     redireccionPersonalizar(elementoBtn){
-      const padreElemento = elementoBtn.closest('.producto-item-detalle');
+      const padreElemento = elementoBtn.closest('.producto-es-item-detalle') || elementoBtn.closest('.producto-item-detalle');
+
 
       const dataPadre = padreElemento.getAttribute('tipo-producto');
 
