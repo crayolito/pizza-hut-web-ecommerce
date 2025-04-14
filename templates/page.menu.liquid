@@ -1847,13 +1847,14 @@
       });
 
       // Si el elemento clickeado no es en el contenedor id="phpm-items-variantes" tons cierra a todos
-      {% comment %} this.contenedorVariantes.forEach((elementoBase) => {
+      this.contenedorVariantes.forEach((elementoBase) => {
         if (!elementoBase.contains(event.target)) {
           {% comment %} elementoBase.style.display = "none"; // Oculto {% endcomment %}
-          elementoBase.classList.remove('elemento-visible');
-          elementoBase.classList.add('elemento-oculto');
+          {% comment %} elementoBase.classList.remove('elemento-visible'); {% endcomment %}
+          {% comment %} elementoBase.classList.add('elemento-oculto'); {% endcomment %}
+           console.log('click fuera de contenedor variante');
         }
-      }); {% endcomment %}
+      });
     }
 
     verificacionDataEnLocalStorage(){
