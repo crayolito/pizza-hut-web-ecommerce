@@ -48,7 +48,6 @@
 }
 
 .page-menu-titulo-desktop {
-  /* display: none; */
   text-align: center;
   font-size: 4.375rem;
   font-style: normal;
@@ -146,6 +145,11 @@
   fill: var(--colorp-secondary);
 }
 
+@media screen and (min-width: 768px) {
+}
+
+@media screen and (min-width: 1024px) {
+}
 /* ==========================================================================
      2. BODY
      ========================================================================== */
@@ -301,16 +305,22 @@
   }
 
   .page-menu-opcion {
-    height: 5.125rem;
-    width: 14.625rem;
+    /* height: 6.125rem; */
+    /* width: 18.75rem; */
+    height: 4.716rem;
+    width: 12.32rem;
+    min-width: 12.32rem;
   }
 
   .page-menu-opcion-imagen {
-    width: 6.3375rem;
+    /* width: 8.125rem; */
+    width: 35%;
   }
 
   .page-menu-opcion-nombre {
-    width: 8.2914rem;
+    /* width: 10.63rem; */
+    /* width: 65%; */
+    flex: 1 0 65%;
   }
 }
 
