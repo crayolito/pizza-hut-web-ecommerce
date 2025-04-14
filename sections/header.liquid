@@ -580,8 +580,8 @@
     verificarEstadoSesion() {
       // Obtener localStorage indentificador sesion
       // telefono cliente - metodo entrega (Official)
-      const sesion = localStorage.getItem('datos-usuario');
-      const metodoEntrega = localStorage.getItem('metodo-entrega');
+      const sesion = localStorage.getItem('ph-datos-usuario');
+      const metodoEntrega = localStorage.getItem('ph-metodo-entrega');
 
       if (sesion == null) {
         this.tituloMenuMobile.style.display = 'flex';
@@ -601,7 +601,7 @@
 
     verificarEstadoEntrega() {
       // Obtener localStorage la seleccion metodo de entrega del usuario
-      const metodoEntrega = localStorage.getItem('metodo-entrega');
+      const metodoEntrega = localStorage.getItem('ph-metodo-entrega');
 
       // Si el usuario no tiene un metodo de entrega seleccionado,
       // mostrar el boton de (selecciona tu metodo de entrega)
@@ -724,7 +724,7 @@
 
     verMenuDesktop() {
       const estaAbierto = this.contenedorDisMenu.style.display == 'flex';
-      const datosCliente = localStorage.getItem('datos-usuario');
+      const datosCliente = localStorage.getItem('ph-datos-usuario');
       console.log('ver menu desktop', estaAbierto);
 
       // Verificar primero si hay datos de cliente
@@ -793,8 +793,8 @@
 
     cerrarSesion() {
       // Eliminar datos de localStorage
-      localStorage.removeItem('datos-usuario');
-      localStorage.removeItem('metodo-entrega');
+      localStorage.removeItem('ph-datos-usuario');
+      localStorage.removeItem('ph-metodo-entrega');
       localStorage.removeItem('pg-perfil-opcion');
       // Redirigir a la página de inicio de sesión
       window.location.href = '/';

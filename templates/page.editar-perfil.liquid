@@ -261,7 +261,7 @@
     }
 
     inicializarDataLocalStorage() {
-      const datosUsuario = JSON.parse(localStorage.getItem('datos-usuario'));
+      const datosUsuario = JSON.parse(localStorage.getItem('ph-datos-usuario'));
       const direccion = localStorage.getItem('direccion-cliente');
       const coordenadas = JSON.parse(localStorage.getItem('coordenadas'));
       this.coordenadas = coordenadas || { lat: -17.510420897741643, lng: -63.16459000457593 };
@@ -478,7 +478,7 @@
         ci: this.inputCi.value,
       };
 
-      localStorage.setItem('datos-usuario', JSON.stringify(datosUsuario));
+      localStorage.setItem('ph-datos-usuario', JSON.stringify(datosUsuario));
       localStorage.setItem('direccion-cliente', this.inputDireccion.value);
 
       setTimeout(() => {

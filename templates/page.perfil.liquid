@@ -398,7 +398,7 @@
     }
 
     inicializarDatosAlmacenados() {
-      const datosUsuario = JSON.parse(localStorage.getItem('datos-usuario'));
+      const datosUsuario = JSON.parse(localStorage.getItem('ph-datos-usuario'));
       const direccion = localStorage.getItem('direccion-cliente');
 
       const dataPerfil = localStorage.getItem('pg-perfil-opcion');
@@ -496,14 +496,14 @@
     }
 
     cerrarSesion() {
-      localStorage.removeItem('datos-usuario');
+      localStorage.removeItem('ph-datos-usuario');
       localStorage.removeItem('pg-perfil-opcion');
       localStorage.removeItem('direccion-cliente');
       window.location.href = '/';
     }
 
     eliminarCuenta() {
-      localStorage.removeItem('datos-usuario');
+      localStorage.removeItem('ph-datos-usuario');
       localStorage.removeItem('pg-perfil-opcion');
       localStorage.removeItem('direccion-cliente');
       window.location.href = '/';

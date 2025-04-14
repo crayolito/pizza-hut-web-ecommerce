@@ -377,8 +377,8 @@
     <script>
       // Verificar si la URL actual contiene /pages/perfil
       if (window.location.pathname.includes('/pages/perfil')) {
-        // Verificar si existe el item 'datos-usuario' en localStorage
-        const datosUsuario = localStorage.getItem('datos-usuario');
+        // Verificar si existe el item 'ph-datos-usuario' en localStorage
+        const datosUsuario = localStorage.getItem('ph-datos-usuario');
 
         // Si no existe o está vacío, redirigir a la página de inicio de sesión
         if (!datosUsuario) {
