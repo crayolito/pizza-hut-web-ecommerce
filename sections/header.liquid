@@ -396,490 +396,500 @@
     </div>
 
     <!-- MENU DE OPCIONES PARA LOS PRODUCTOS -->
-    <div class="h-menu-opciones-productos">
-      <div
-        menu="ofertas"
-        id="h-opcion-menu-gaseosas"
-        class="h-menu-opciones-productos-item"
-      >
-        <div class="h-menu-producto-info-imagen">
-          <img src="{{ 'menu-img-gaseosas.png' | asset_url }}" alt="Gaseosas y Cervezas" width="100" height="100">
-        </div>
-        <div class="h-menu-producto-info-nombre">
-          <p>OFERTAS</p>
-        </div>
-      </div>
-      <div
-        menu="pizzas"
-        id="h-opcion-menu-gaseosas"
-        class="h-menu-opciones-productos-item"
-      >
-        <div class="h-menu-producto-info-imagen">
-          <img src="{{ 'menu-img-gaseosas.png' | asset_url }}" alt="Gaseosas y Cervezas" width="100" height="100">
-        </div>
-        <div class="h-menu-producto-info-nombre">
-          <p>PIZZAS</p>
-        </div>
-      </div>
-      <div
-        menu="postres"
-        id="h-opcion-menu-gaseosas"
-        class="h-menu-opciones-productos-item"
-      >
-        <div class="h-menu-producto-info-imagen">
-          <img src="{{ 'menu-img-gaseosas.png' | asset_url }}" alt="Gaseosas y Cervezas" width="100" height="100">
-        </div>
-        <div class="h-menu-producto-info-nombre">
-          <p>postres</p>
-        </div>
-      </div>
-      <div
-        menu="gaseosas y cervezas"
-        id="h-opcion-menu-gaseosas"
-        class="h-menu-opciones-productos-item"
-      >
-        <div class="h-menu-producto-info-imagen">
-          <img src="{{ 'menu-img-gaseosas.png' | asset_url }}" alt="Gaseosas y Cervezas" width="100" height="100">
-        </div>
-        <div class="h-menu-producto-info-nombre">
-          <p>GASEOSAS Y CERVESAS</p>
-        </div>
-      </div>
-      <div
-        menu="ofertas"
-        id="h-opcion-menu-gaseosas"
-        class="h-menu-opciones-productos-item"
-      >
-        <div class="h-menu-producto-info-imagen">
-          <img src="{{ 'menu-img-gaseosas.png' | asset_url }}" alt="Gaseosas y Cervezas" width="100" height="100">
-        </div>
-        <div class="h-menu-producto-info-nombre">
-          <p>OFERTAS</p>
-        </div>
-      </div>
-      <div
-        menu="pizzas"
-        id="h-opcion-menu-gaseosas"
-        class="h-menu-opciones-productos-item"
-      >
-        <div class="h-menu-producto-info-imagen">
-          <img src="{{ 'menu-img-gaseosas.png' | asset_url }}" alt="Gaseosas y Cervezas" width="100" height="100">
-        </div>
-        <div class="h-menu-producto-info-nombre">
-          <p>PIZZAS</p>
-        </div>
-      </div>
-    </div>
   </header>
 </header-principal>
 
 <script>
-  class HeaderPrincipal extends HTMLElement {
-    constructor() {
-      super();
-    }
+    class HeaderPrincipal extends HTMLElement {
+      constructor() {
+        super();
+      }
 
-    connectedCallback() {
-      this.logoPrincipal = document.querySelectorAll('.h-logo-principal');
-      // HEADER MOBILE
-      this.contenedorMenuMobile = document.querySelector('#h-menu-inicio-sesion-usuario-mobile');
-      this.btnBuscarMobile = document.querySelector('#h-btn-buscar-mobile');
-      this.btnCarritoMobile = document.querySelector('.h-icono-carrito');
-      this.btnSeleccionEntregaMobile = document.querySelector('#h-seleccion-metodo-entrega-mobile');
-      this.btnOpcionUsuarioMobile = document.querySelector('#h-opciones-usuario-mobile');
-      this.btnEntregaLocalMobile = document.querySelector('#h-btn-entrega-local-mobile');
-      this.btnEntregaDomicilioMobile = document.querySelector('#h-btn-entrega-domicilio-mobile');
-      this.contenedorIsMenu = document.querySelector('#h-ism-menu-principal');
-      this.contenedorNisMenu = document.querySelector('#h-nism-menu-principal');
-      this.tituloMenuMobile = document.querySelector('#h-titulo-mobile-menu');
-      this.btnCerrrarMenuMobile = document.querySelector('#h-boton-cerrar-menu-mobile');
-      this.btnPerfilMenuMobile = document.querySelector('#h-ism-perfil');
-      this.btnHistorialMenuMobile = document.querySelector('#h-ism-historial-pedidos');
-      this.btnConfiguracionMenuMobile = document.querySelector('#h-ism-configuracion');
-      this.btnCuponesMenuMobile = document.querySelector('#h-ism-cupones-descuentos');
-      this.btnHutcoinsMenuMobile = document.querySelector('#h-ism-hutcoins');
-      this.btnMisPreferenciasMenuMobile = document.querySelector('#h-ism-mis-preferencias');
-      this.btnCerrarSesionOfMenuM = document.querySelector('#h-ism-cerrar-sesion');
+      connectedCallback() {
+        this.logoPrincipal = document.querySelectorAll('.h-logo-principal');
+        // HEADER MOBILE
+        this.contenedorMenuMobile = document.querySelector('#h-menu-inicio-sesion-usuario-mobile');
+        this.btnBuscarMobile = document.querySelector('#h-btn-buscar-mobile');
+        this.btnCarritoMobile = document.querySelector('.h-icono-carrito');
+        this.btnSeleccionEntregaMobile = document.querySelector('#h-seleccion-metodo-entrega-mobile');
+        this.btnOpcionUsuarioMobile = document.querySelector('#h-opciones-usuario-mobile');
+        this.btnEntregaLocalMobile = document.querySelector('#h-btn-entrega-local-mobile');
+        this.btnEntregaDomicilioMobile = document.querySelector('#h-btn-entrega-domicilio-mobile');
+        this.contenedorIsMenu = document.querySelector('#h-ism-menu-principal');
+        this.contenedorNisMenu = document.querySelector('#h-nism-menu-principal');
+        this.tituloMenuMobile = document.querySelector('#h-titulo-mobile-menu');
+        this.btnCerrrarMenuMobile = document.querySelector('#h-boton-cerrar-menu-mobile');
+        this.btnPerfilMenuMobile = document.querySelector('#h-ism-perfil');
+        this.btnHistorialMenuMobile = document.querySelector('#h-ism-historial-pedidos');
+        this.btnConfiguracionMenuMobile = document.querySelector('#h-ism-configuracion');
+        this.btnCuponesMenuMobile = document.querySelector('#h-ism-cupones-descuentos');
+        this.btnHutcoinsMenuMobile = document.querySelector('#h-ism-hutcoins');
+        this.btnMisPreferenciasMenuMobile = document.querySelector('#h-ism-mis-preferencias');
+        this.btnCerrarSesionOfMenuM = document.querySelector('#h-ism-cerrar-sesion');
 
-      this.btnVerMenuMobile = document.querySelector('#h-btn-menu-mobile');
-      // HEADER DESKTOP
-      this.btnMenu = document.querySelector('.h-mostrar-menu-opciones-productos');
-      this.contenedorEstadosEntrega = document.querySelector('.h-sector-metodo-entrega');
-      this.btnOpcionOnSesion = document.querySelector('#h-boton-modo-cliente');
-      this.btnOpcionOffSesion = document.querySelector('.h-boton-modo-no-cliente');
-      this.btnSeleccionMetodoEntrega = document.querySelector('#h-boton-cambio-metodo-entrega');
-      this.btnDominicilio = document.querySelector('.h-metodo-domicilio');
-      this.btnLocal = document.querySelector('.h-metodo-local');
-      this.contenedorMenuDesplegable = document.querySelector('.h-menu-opciones-productos');
-      this.contenedorResultadoBusqueda = document.querySelector('.h-busqueda-especifica');
-      this.sectorGeneralBusqueda = document.querySelector('.h-sector-busqueda');
-      this.containerInputBusqueda = document.querySelector('#h-container-input-search');
-      this.inputBusqueda = document.querySelector('#h-input-buscar');
-      this.contenedorDisMenu = document.getElementById('h-dis-opciones-usuario');
-      this.btnMiPerfilOfMenu = document.querySelector('#h-ism-menu');
-      this.btnHistorialOfMenu = document.querySelector('#h-ism-historial-pedidos');
-      this.btnCuponesOfMenu = document.querySelector('#h-ism-cupones-descuentos');
-      this.btnHutcoinsOfMenu = document.querySelector('#h-ism-hutcoins');
-      this.btnMisPreferenciasOfMenu = document.querySelector('#h-ism-mis-preferencias');
-      this.btnconfiguracionOfMenu = document.querySelector('#h-ism-configuracion');
-      this.btnCerrarSesionOfMenuD = document.querySelector('#h-dism-cerrar-sesion');
-      // TESTEO DE PRUEBA
-      this.itemMenuDesplegable = document.querySelectorAll('.h-menu-opciones-productos-item');
+        this.btnVerMenuMobile = document.querySelector('#h-btn-menu-mobile');
+        // HEADER DESKTOP
+        this.btnMenu = document.querySelector('.h-mostrar-menu-opciones-productos');
+        this.contenedorEstadosEntrega = document.querySelector('.h-sector-metodo-entrega');
+        this.btnOpcionOnSesion = document.querySelector('#h-boton-modo-cliente');
+        this.btnOpcionOffSesion = document.querySelector('.h-boton-modo-no-cliente');
+        this.btnSeleccionMetodoEntrega = document.querySelector('#h-boton-cambio-metodo-entrega');
+        this.btnDominicilio = document.querySelector('.h-metodo-domicilio');
+        this.btnLocal = document.querySelector('.h-metodo-local');
+        this.contenedorMenuDesplegable = document.querySelector('.h-menu-opciones-productos');
+        this.contenedorResultadoBusqueda = document.querySelector('.h-busqueda-especifica');
+        this.sectorGeneralBusqueda = document.querySelector('.h-sector-busqueda');
+        this.containerInputBusqueda = document.querySelector('#h-container-input-search');
+        this.inputBusqueda = document.querySelector('#h-input-buscar');
+        this.contenedorDisMenu = document.getElementById('h-dis-opciones-usuario');
+        this.btnMiPerfilOfMenu = document.querySelector('#h-ism-menu');
+        this.btnHistorialOfMenu = document.querySelector('#h-ism-historial-pedidos');
+        this.btnCuponesOfMenu = document.querySelector('#h-ism-cupones-descuentos');
+        this.btnHutcoinsOfMenu = document.querySelector('#h-ism-hutcoins');
+        this.btnMisPreferenciasOfMenu = document.querySelector('#h-ism-mis-preferencias');
+        this.btnconfiguracionOfMenu = document.querySelector('#h-ism-configuracion');
+        this.btnCerrarSesionOfMenuD = document.querySelector('#h-dism-cerrar-sesion');
+        // TESTEO DE PRUEBA
+        this.itemMenuDesplegable = document.querySelectorAll('.h-menu-opciones-productos-item');
 
-      // EVENTOS LISTENER
-      this.btnMenu.addEventListener('click', this.mostrarMenuDesplegable.bind(this));
-      this.inputBusqueda.addEventListener('keyup', this.accionEnterInput.bind(this));
-      this.inputBusqueda.addEventListener('input', this.accionEscribeInput.bind(this));
-      this.btnCarritoMobile.addEventListener('click', this.redireccionarCarrito.bind(this));
-      this.btnBuscarMobile.addEventListener('click', this.redireccionarBusqueda.bind(this));
-      this.btnCerrrarMenuMobile.addEventListener('click', this.cerrarMenuMobile.bind(this));
-      this.btnVerMenuMobile.addEventListener('click', this.verMenuMobile.bind(this));
-      this.btnOpcionOnSesion.addEventListener('click', this.verMenuDesktop.bind(this));
-      this.btnDominicilio.addEventListener('click', this.redireccionMetodoEntrega.bind(this));
-      this.btnLocal.addEventListener('click', this.redireccionMetodoEntrega.bind(this));
-      this.btnSeleccionEntregaMobile.addEventListener('click', this.redireccionMetodoEntrega.bind(this));
-      this.btnMiPerfilOfMenu.addEventListener('click', this.redireccionPerfilMenuDesktop.bind(this));
-      this.btnHistorialOfMenu.addEventListener('click', this.redireccionHistorialMenuDesktop.bind(this));
-      this.btnCuponesOfMenu.addEventListener('click', this.redireccionCuponesMenuDesktop.bind(this));
-      this.btnHutcoinsOfMenu.addEventListener('click', this.redireccionHutcoinsMenuDesktop.bind(this));
-      this.btnMisPreferenciasOfMenu.addEventListener('click', this.redireccionPreferenciasMenuDesktop.bind(this));
-      this.btnconfiguracionOfMenu.addEventListener('click', this.redireccionConfiguracionMenuDesktop.bind(this));
-      this.btnPerfilMenuMobile.addEventListener('click', this.redireccionPerfilMenuDesktop.bind(this));
-      this.btnHistorialMenuMobile.addEventListener('click', this.redireccionHistorialMenuDesktop.bind(this));
-      this.btnConfiguracionMenuMobile.addEventListener('click', this.redireccionConfiguracionMenuDesktop.bind(this));
-      this.btnCuponesMenuMobile.addEventListener('click', this.redireccionCuponesMenuDesktop.bind(this));
-      this.btnHutcoinsMenuMobile.addEventListener('click', this.redireccionHutcoinsMenuDesktop.bind(this));
-      this.btnMisPreferenciasMenuMobile.addEventListener('click', this.redireccionPreferenciasMenuDesktop.bind(this));
-      this.btnCerrarSesionOfMenuD.addEventListener('click', this.cerrarSesion.bind(this));
-      this.btnCerrarSesionOfMenuM.addEventListener('click', this.cerrarSesion.bind(this));
+        // EVENTOS LISTENER
+        this.btnMenu.addEventListener('click', this.mostrarMenuDesplegable.bind(this));
+        this.inputBusqueda.addEventListener('keyup', this.accionEnterInput.bind(this));
+        this.inputBusqueda.addEventListener('input', this.accionEscribeInput.bind(this));
+        this.btnCarritoMobile.addEventListener('click', this.redireccionarCarrito.bind(this));
+        this.btnBuscarMobile.addEventListener('click', this.redireccionarBusqueda.bind(this));
+        this.btnCerrrarMenuMobile.addEventListener('click', this.cerrarMenuMobile.bind(this));
+        this.btnVerMenuMobile.addEventListener('click', this.verMenuMobile.bind(this));
+        this.btnOpcionOnSesion.addEventListener('click', this.verMenuDesktop.bind(this));
+        this.btnDominicilio.addEventListener('click', this.redireccionMetodoEntrega.bind(this));
+        this.btnLocal.addEventListener('click', this.redireccionMetodoEntrega.bind(this));
+        this.btnSeleccionEntregaMobile.addEventListener('click', this.redireccionMetodoEntrega.bind(this));
+        this.btnMiPerfilOfMenu.addEventListener('click', this.redireccionPerfilMenuDesktop.bind(this));
+        this.btnHistorialOfMenu.addEventListener('click', this.redireccionHistorialMenuDesktop.bind(this));
+        this.btnCuponesOfMenu.addEventListener('click', this.redireccionCuponesMenuDesktop.bind(this));
+        this.btnHutcoinsOfMenu.addEventListener('click', this.redireccionHutcoinsMenuDesktop.bind(this));
+        this.btnMisPreferenciasOfMenu.addEventListener('click', this.redireccionPreferenciasMenuDesktop.bind(this));
+        this.btnconfiguracionOfMenu.addEventListener('click', this.redireccionConfiguracionMenuDesktop.bind(this));
+        this.btnPerfilMenuMobile.addEventListener('click', this.redireccionPerfilMenuDesktop.bind(this));
+        this.btnHistorialMenuMobile.addEventListener('click', this.redireccionHistorialMenuDesktop.bind(this));
+        this.btnConfiguracionMenuMobile.addEventListener('click', this.redireccionConfiguracionMenuDesktop.bind(this));
+        this.btnCuponesMenuMobile.addEventListener('click', this.redireccionCuponesMenuDesktop.bind(this));
+        this.btnHutcoinsMenuMobile.addEventListener('click', this.redireccionHutcoinsMenuDesktop.bind(this));
+        this.btnMisPreferenciasMenuMobile.addEventListener('click', this.redireccionPreferenciasMenuDesktop.bind(this));
+        this.btnCerrarSesionOfMenuD.addEventListener('click', this.cerrarSesion.bind(this));
+        this.btnCerrarSesionOfMenuM.addEventListener('click', this.cerrarSesion.bind(this));
 
-      document.addEventListener('click', this.detectarClickFueraDelInputBusqueda.bind(this));
-      this.logoPrincipal.forEach((logo) => {
-        logo.addEventListener('click', () => {
-          window.location.href = '/';
+        document.addEventListener('click', this.detectarClickFueraDelInputBusqueda.bind(this));
+        this.logoPrincipal.forEach((logo) => {
+          logo.addEventListener('click', () => {
+            window.location.href = '/';
+          });
         });
-      });
-      this.itemMenuDesplegable.forEach((item) => {
-        item.addEventListener('click', () => {
-          window.location.href = '/pages/menu';
-          this.contenedorMenuDesplegable.style.display = 'none';
+        this.itemMenuDesplegable.forEach((item) => {
+          item.addEventListener('click', () => {
+            window.location.href = '/pages/menu';
+            this.contenedorMenuDesplegable.style.display = 'none';
+          });
         });
-      });
 
-      // INICIALIZACION DE CONTENIDOSS
-      this.contenedorMenuMobile.style.display = 'none';
-      this.tituloMenuMobile.style.display = 'none';
-      this.contenedorMenuDesplegable.style.display = 'none';
-      this.contenedorResultadoBusqueda.style.display = 'none';
-      this.contenedorIsMenu.style.display = 'none';
-      this.contenedorNisMenu.style.display = 'none';
-      this.contenedorDisMenu.style.display = 'none';
-      this.verificarEstadoSesion();
-      this.verificarEstadoEntrega();
-    }
-
-    verificarEstadoSesion() {
-      // Obtener localStorage indentificador sesion
-      // telefono cliente - metodo entrega (Official)
-      const sesion = localStorage.getItem('datos-usuario');
-      const metodoEntrega = localStorage.getItem('metodo-entrega');
-
-      if (sesion == null) {
-        this.tituloMenuMobile.style.display = 'flex';
-        this.btnOpcionOffSesion.style.display = 'flex';
-        this.btnOpcionOnSesion.style.display = 'none';
-        this.contenedorIsMenu.style.display = 'none';
-        this.contenedorNisMenu.style.display = 'flex';
-      } else {
-        // Si tienee el dato en el localStorage, traer datos de este mismo
+        // INICIALIZACION DE CONTENIDOSS
+        this.contenedorMenuMobile.style.display = 'none';
         this.tituloMenuMobile.style.display = 'none';
-        this.btnOpcionOffSesion.style.display = 'none';
-        this.btnOpcionOnSesion.style.display = 'flex';
-        this.contenedorIsMenu.style.display = 'flex';
-        this.contenedorNisMenu.style.display = 'none';
-      }
-    }
-
-    verificarEstadoEntrega() {
-      // Obtener localStorage la seleccion metodo de entrega del usuario
-      const metodoEntrega = localStorage.getItem('metodo-entrega');
-
-      // Si el usuario no tiene un metodo de entrega seleccionado,
-      // mostrar el boton de (selecciona tu metodo de entrega)
-      if (metodoEntrega == null || metodoEntrega == 'no') {
-        this.contenedorEstadosEntrega.style.display = 'none';
-        this.btnSeleccionMetodoEntrega.style.display = 'flex';
-        this.btnSeleccionEntregaMobile.style.display = 'flex';
-        this.btnOpcionUsuarioMobile.style.display = 'none';
-      } else {
-        this.btnSeleccionMetodoEntrega.style.display = 'none';
-        this.contenedorEstadosEntrega.style.display = 'flex';
-        this.btnSeleccionEntregaMobile.style.display = 'none';
-        this.btnOpcionUsuarioMobile.style.display = 'flex';
-        if (metodoEntrega == 'local') {
-          this.btnLocal.style.display = 'flex';
-          this.btnDominicilio.style.display = 'none';
-          this.btnEntregaLocalMobile.style.display = 'flex';
-          this.btnEntregaDomicilioMobile.style.display = 'none';
-        }
-
-        if (metodoEntrega == 'domicilio') {
-          this.btnDominicilio.style.display = 'flex';
-          this.btnLocal.style.display = 'none';
-          this.btnEntregaLocalMobile.style.display = 'none';
-          this.btnEntregaDomicilioMobile.style.display = 'flex';
-        }
-      }
-    }
-
-    mostrarMenuDesplegable() {
-      const estaSeleccionado = this.btnMenu.classList.contains('seleccionado');
-      if (estaSeleccionado) {
-        this.btnMenu.classList.remove('seleccionado');
         this.contenedorMenuDesplegable.style.display = 'none';
-      } else {
-        this.btnMenu.classList.add('seleccionado');
-        this.contenedorMenuDesplegable.style.display = 'flex';
-      }
-    }
-
-    accionEnterInput(event) {
-      if (event.key === 'Enter') {
-        const textoInput = this.inputBusqueda.value.trim();
-        const estaVisible = this.contenedorResultadoBusqueda.style.display === 'flex';
-
-        // Caso 1: Si hay texto y el contenedor está visible, redirigir y ocultar
-        if (textoInput !== '' && estaVisible) {
-          window.location.href = '/search';
-          this.contenedorResultadoBusqueda.style.display = 'none';
-        }
-        // Caso 2: Si hay texto pero el contenedor NO está visible, solo redirigir
-        else if (textoInput !== '' && !estaVisible) {
-          window.location.href = '/search';
-        }
-        // Caso 3: Si NO hay texto pero el contenedor está visible, solo ocultar
-        else if (textoInput === '' && estaVisible) {
-          this.contenedorResultadoBusqueda.style.display = 'none';
-        }
-        // Caso 4: Si NO hay texto y el contenedor NO está visible, no hacer nada
-      }
-    }
-
-    accionEscribeInput() {
-      const inputVacio = this.inputBusqueda.value.trim() === '';
-      const estaVisible = this.contenedorResultadoBusqueda.style.display === 'flex';
-
-      if (!inputVacio && !estaVisible) {
-        // Solo mostrar si no está vacío y no está visible
-        this.contenedorResultadoBusqueda.style.display = 'flex';
-      } else if (inputVacio && estaVisible) {
-        // Solo ocultar si está vacío y está visible
         this.contenedorResultadoBusqueda.style.display = 'none';
+        this.contenedorIsMenu.style.display = 'none';
+        this.contenedorNisMenu.style.display = 'none';
+        this.contenedorDisMenu.style.display = 'none';
+        this.verificarEstadoSesion();
+        this.verificarEstadoEntrega();
       }
-    }
 
-    detectarClickFueraDelInputBusqueda(event) {
-      // Verificar estado del contenedor de resultados de búsqueda
-      let estaAbiertoBusqueda = this.contenedorResultadoBusqueda.style.display == 'flex';
-      if (estaAbiertoBusqueda) {
-        if (event.target !== this.sectorGeneralBusqueda && !this.sectorGeneralBusqueda.contains(event.target)) {
-          this.contenedorResultadoBusqueda.style.display = 'none';
+      verificarEstadoSesion() {
+        // Obtener localStorage indentificador sesion
+        // telefono cliente - metodo entrega (Official)
+        const sesion = localStorage.getItem('datos-usuario');
+        const metodoEntrega = localStorage.getItem('metodo-entrega');
+
+        if (sesion == null) {
+          this.tituloMenuMobile.style.display = 'flex';
+          this.btnOpcionOffSesion.style.display = 'flex';
+          this.btnOpcionOnSesion.style.display = 'none';
+          this.contenedorIsMenu.style.display = 'none';
+          this.contenedorNisMenu.style.display = 'flex';
+        } else {
+          // Si tienee el dato en el localStorage, traer datos de este mismo
+          this.tituloMenuMobile.style.display = 'none';
+          this.btnOpcionOffSesion.style.display = 'none';
+          this.btnOpcionOnSesion.style.display = 'flex';
+          this.contenedorIsMenu.style.display = 'flex';
+          this.contenedorNisMenu.style.display = 'none';
         }
       }
 
-      // Verificar si el clic fue en el botón del menú
-      let btnMenuDesktopClicked =
-        event.target === this.btnOpcionOnSesion || this.btnOpcionOnSesion.contains(event.target);
+      verificarEstadoEntrega() {
+        // Obtener localStorage la seleccion metodo de entrega del usuario
+        const metodoEntrega = localStorage.getItem('metodo-entrega');
 
-      // Si se hizo clic en el botón del menú, salir de la función
-      if (btnMenuDesktopClicked) {
-        return;
-      }
+        // Si el usuario no tiene un metodo de entrega seleccionado,
+        // mostrar el boton de (selecciona tu metodo de entrega)
+        if (metodoEntrega == null || metodoEntrega == 'no') {
+          this.contenedorEstadosEntrega.style.display = 'none';
+          this.btnSeleccionMetodoEntrega.style.display = 'flex';
+          this.btnSeleccionEntregaMobile.style.display = 'flex';
+          this.btnOpcionUsuarioMobile.style.display = 'none';
+        } else {
+          this.btnSeleccionMetodoEntrega.style.display = 'none';
+          this.contenedorEstadosEntrega.style.display = 'flex';
+          this.btnSeleccionEntregaMobile.style.display = 'none';
+          this.btnOpcionUsuarioMobile.style.display = 'flex';
+          if (metodoEntrega == 'local') {
+            this.btnLocal.style.display = 'flex';
+            this.btnDominicilio.style.display = 'none';
+            this.btnEntregaLocalMobile.style.display = 'flex';
+            this.btnEntregaDomicilioMobile.style.display = 'none';
+          }
 
-      // Verificar si se hizo clic fuera del menú y el menú está abierto
-      let estaAbiertoMenu = this.contenedorDisMenu.style.display == 'flex';
-      if (estaAbiertoMenu) {
-        if (event.target !== this.contenedorDisMenu && !this.contenedorDisMenu.contains(event.target)) {
-          this.contenedorDisMenu.style.display = 'none';
-        }
-      }
-    }
-
-    redireccionarCarrito() {
-      window.location.href = '/pages/carrito';
-    }
-
-    redireccionarBusqueda() {
-      window.location.href = '/search';
-    }
-
-    cerrarMenuMobile() {
-      console.log('cerrar menu mobile');
-      this.contenedorMenuMobile.style.display = 'none';
-    }
-
-    verMenuMobile() {
-      console.log('ver menu mobile');
-      this.contenedorMenuMobile.style.display = 'flex';
-    }
-
-    verMenuDesktop() {
-      const estaAbierto = this.contenedorDisMenu.style.display == 'flex';
-      const datosCliente = localStorage.getItem('datos-usuario');
-      console.log('ver menu desktop', estaAbierto);
-
-      // Verificar primero si hay datos de cliente
-      if (datosCliente == null) {
-        console.log('no hay datos de cliente');
-        this.contenedorDisMenu.style.display = 'none';
-        return; // Salir de la función si no hay datos
-      }
-
-      // Si hay datos de cliente, alternar la visibilidad del menú
-      if (estaAbierto) {
-        console.log('cerrar menu desktop');
-        this.contenedorDisMenu.style.display = 'none';
-      } else {
-        console.log('abrir menu desktop');
-        this.contenedorDisMenu.style.display = 'flex';
-      }
-    }
-
-    redireccionMetodoEntrega() {
-      window.location.href = '/pages/metodo-entrega';
-    }
-
-    redireccionPerfilMenuDesktop() {
-      console.log('redireccionar a perfil');
-      this.contenedorMenuMobile.style.display = 'none';
-      this.contenedorDisMenu.style.display = 'none';
-      localStorage.setItem('pg-perfil-opcion', 'perfil');
-      window.location.href = '/pages/perfil';
-    }
-
-    redireccionHistorialMenuDesktop() {
-      this.contenedorMenuMobile.style.display = 'none';
-      this.contenedorDisMenu.style.display = 'none';
-      localStorage.setItem('pg-perfil-opcion', 'historial');
-      window.location.href = '/pages/perfil';
-    }
-
-    redireccionConfiguracionMenuDesktop() {
-      this.contenedorMenuMobile.style.display = 'none';
-
-      this.contenedorDisMenu.style.display = 'none';
-      localStorage.setItem('pg-perfil-opcion', 'configuracion');
-      window.location.href = '/pages/perfil';
-    }
-
-    redireccionCuponesMenuDesktop() {
-      this.contenedorMenuMobile.style.display = 'none';
-
-      this.contenedorDisMenu.style.display = 'none';
-      window.location.href = '/pages/error-1';
-    }
-
-    redireccionHutcoinsMenuDesktop() {
-      this.contenedorMenuMobile.style.display = 'none';
-
-      this.contenedorDisMenu.style.display = 'none';
-      window.open('https://microsites.spnty.co/pizzahutbolivia/login', '_blank');
-    }
-
-    redireccionPreferenciasMenuDesktop() {
-      this.contenedorMenuMobile.style.display = 'none';
-
-      this.contenedorDisMenu.style.display = 'none';
-      window.location.href = '/pages/error-1';
-    }
-
-    cerrarSesion() {
-      // Eliminar datos de localStorage
-      localStorage.removeItem('datos-usuario');
-      localStorage.removeItem('metodo-entrega');
-      localStorage.removeItem('pg-perfil-opcion');
-      // Redirigir a la página de inicio de sesión
-      window.location.href = '/';
-    }
-  }
-
-  customElements.define('header-principal', HeaderPrincipal);
-
-  document.addEventListener('DOMContentLoaded', function () {
-    // Selecciona todos los elementos que tienen overflow-x scrollable
-    const elementosScrollables = Array.from(document.querySelectorAll('*')).filter((elemento) => {
-      const estilo = window.getComputedStyle(elemento);
-      console.log('estilo', estilo);
-      // Filtra elementos que tienen overflow-x auto o scroll y necesitan scroll horizontal
-      return (estilo.overflowX === 'auto' || estilo.overflowX === 'scroll') && elemento.scrollWidth > elemento.clientWidth;
-
-    });
-
-    // Configura cada elemento scrollable
-    elementosScrollables.forEach((elemento) => {
-      // Mantenemos el código comentado como lo solicitaste
-      {% comment %} element.addEventListener(
-        'wheel',
-        function (event) {
-          if (isMouseOver(event, this)) {
-            event.preventDefault();
-            const scrollFactor = 1.5;
-            this.scrollLeft += event.deltaY * scrollFactor;
+          if (metodoEntrega == 'domicilio') {
+            this.btnDominicilio.style.display = 'flex';
+            this.btnLocal.style.display = 'none';
+            this.btnEntregaLocalMobile.style.display = 'none';
+            this.btnEntregaDomicilioMobile.style.display = 'flex';
           }
         }
-        { passive: false }
-      ); {% endcomment %}
+      }
 
-      // Variables para controlar el estado del arrastre
-      let estaPresionado = false;
-      let posicionInicialX;
-      let posicionScrollInicial;
+      mostrarMenuDesplegable() {
+        const estaSeleccionado = this.btnMenu.classList.contains('seleccionado');
+        if (estaSeleccionado) {
+          this.btnMenu.classList.remove('seleccionado');
+          this.contenedorMenuDesplegable.style.display = 'none';
+        } else {
+          this.btnMenu.classList.add('seleccionado');
+          this.contenedorMenuDesplegable.style.display = 'flex';
+        }
+      }
 
-      // 1. Cuando se presiona el botón del mouse
-      elemento.addEventListener('mousedown', (evento) => {
-        estaPresionado = true;
-        elemento.style.cursor = 'grabbing'; // Cambia el cursor a "agarrando"
-        // Guarda la posición inicial del mouse y del scroll
-        posicionInicialX = evento.pageX - elemento.offsetLeft;
-        posicionScrollInicial = elemento.scrollLeft;
+      accionEnterInput(event) {
+        if (event.key === 'Enter') {
+          const textoInput = this.inputBusqueda.value.trim();
+          const estaVisible = this.contenedorResultadoBusqueda.style.display === 'flex';
+
+          // Caso 1: Si hay texto y el contenedor está visible, redirigir y ocultar
+          if (textoInput !== '' && estaVisible) {
+            window.location.href = '/search';
+            this.contenedorResultadoBusqueda.style.display = 'none';
+          }
+          // Caso 2: Si hay texto pero el contenedor NO está visible, solo redirigir
+          else if (textoInput !== '' && !estaVisible) {
+            window.location.href = '/search';
+          }
+          // Caso 3: Si NO hay texto pero el contenedor está visible, solo ocultar
+          else if (textoInput === '' && estaVisible) {
+            this.contenedorResultadoBusqueda.style.display = 'none';
+          }
+          // Caso 4: Si NO hay texto y el contenedor NO está visible, no hacer nada
+        }
+      }
+
+      accionEscribeInput() {
+        const inputVacio = this.inputBusqueda.value.trim() === '';
+        const estaVisible = this.contenedorResultadoBusqueda.style.display === 'flex';
+
+        if (!inputVacio && !estaVisible) {
+          // Solo mostrar si no está vacío y no está visible
+          this.contenedorResultadoBusqueda.style.display = 'flex';
+        } else if (inputVacio && estaVisible) {
+          // Solo ocultar si está vacío y está visible
+          this.contenedorResultadoBusqueda.style.display = 'none';
+        }
+      }
+
+      detectarClickFueraDelInputBusqueda(event) {
+        // Verificar estado del contenedor de resultados de búsqueda
+        let estaAbiertoBusqueda = this.contenedorResultadoBusqueda.style.display == 'flex';
+        if (estaAbiertoBusqueda) {
+          if (event.target !== this.sectorGeneralBusqueda && !this.sectorGeneralBusqueda.contains(event.target)) {
+            this.contenedorResultadoBusqueda.style.display = 'none';
+          }
+        }
+
+        // Verificar si el clic fue en el botón del menú
+        let btnMenuDesktopClicked =
+          event.target === this.btnOpcionOnSesion || this.btnOpcionOnSesion.contains(event.target);
+
+        // Si se hizo clic en el botón del menú, salir de la función
+        if (btnMenuDesktopClicked) {
+          return;
+        }
+
+        // Verificar si se hizo clic fuera del menú y el menú está abierto
+        let estaAbiertoMenu = this.contenedorDisMenu.style.display == 'flex';
+        if (estaAbiertoMenu) {
+          if (event.target !== this.contenedorDisMenu && !this.contenedorDisMenu.contains(event.target)) {
+            this.contenedorDisMenu.style.display = 'none';
+          }
+        }
+      }
+
+      redireccionarCarrito() {
+        window.location.href = '/pages/carrito';
+      }
+
+      redireccionarBusqueda() {
+        window.location.href = '/search';
+      }
+
+      cerrarMenuMobile() {
+        console.log('cerrar menu mobile');
+        this.contenedorMenuMobile.style.display = 'none';
+      }
+
+      verMenuMobile() {
+        console.log('ver menu mobile');
+        this.contenedorMenuMobile.style.display = 'flex';
+      }
+
+      verMenuDesktop() {
+        const estaAbierto = this.contenedorDisMenu.style.display == 'flex';
+        const datosCliente = localStorage.getItem('datos-usuario');
+        console.log('ver menu desktop', estaAbierto);
+
+        // Verificar primero si hay datos de cliente
+        if (datosCliente == null) {
+          console.log('no hay datos de cliente');
+          this.contenedorDisMenu.style.display = 'none';
+          return; // Salir de la función si no hay datos
+        }
+
+        // Si hay datos de cliente, alternar la visibilidad del menú
+        if (estaAbierto) {
+          console.log('cerrar menu desktop');
+          this.contenedorDisMenu.style.display = 'none';
+        } else {
+          console.log('abrir menu desktop');
+          this.contenedorDisMenu.style.display = 'flex';
+        }
+      }
+
+      redireccionMetodoEntrega() {
+        window.location.href = '/pages/metodo-entrega';
+      }
+
+      redireccionPerfilMenuDesktop() {
+        console.log('redireccionar a perfil');
+        this.contenedorMenuMobile.style.display = 'none';
+        this.contenedorDisMenu.style.display = 'none';
+        localStorage.setItem('pg-perfil-opcion', 'perfil');
+        window.location.href = '/pages/perfil';
+      }
+
+      redireccionHistorialMenuDesktop() {
+        this.contenedorMenuMobile.style.display = 'none';
+        this.contenedorDisMenu.style.display = 'none';
+        localStorage.setItem('pg-perfil-opcion', 'historial');
+        window.location.href = '/pages/perfil';
+      }
+
+      redireccionConfiguracionMenuDesktop() {
+        this.contenedorMenuMobile.style.display = 'none';
+
+        this.contenedorDisMenu.style.display = 'none';
+        localStorage.setItem('pg-perfil-opcion', 'configuracion');
+        window.location.href = '/pages/perfil';
+      }
+
+      redireccionCuponesMenuDesktop() {
+        this.contenedorMenuMobile.style.display = 'none';
+
+        this.contenedorDisMenu.style.display = 'none';
+        window.location.href = '/pages/error-1';
+      }
+
+      redireccionHutcoinsMenuDesktop() {
+        this.contenedorMenuMobile.style.display = 'none';
+
+        this.contenedorDisMenu.style.display = 'none';
+        window.open('https://microsites.spnty.co/pizzahutbolivia/login', '_blank');
+      }
+
+      redireccionPreferenciasMenuDesktop() {
+        this.contenedorMenuMobile.style.display = 'none';
+
+        this.contenedorDisMenu.style.display = 'none';
+        window.location.href = '/pages/error-1';
+      }
+
+      cerrarSesion() {
+        // Eliminar datos de localStorage
+        localStorage.removeItem('datos-usuario');
+        localStorage.removeItem('metodo-entrega');
+        localStorage.removeItem('pg-perfil-opcion');
+        // Redirigir a la página de inicio de sesión
+        window.location.href = '/';
+      }
+    }
+
+    customElements.define('header-principal', HeaderPrincipal);
+  {% comment %}
+    document.addEventListener('DOMContentLoaded', function () {
+      // Selecciona todos los elementos que tienen overflow-x scrollable
+      const elementosScrollables = Array.from(document.querySelectorAll('*')).filter((elemento) => {
+        const estilo = window.getComputedStyle(elemento);
+        console.log('estilo', estilo);
+        // Filtra elementos que tienen overflow-x auto o scroll y necesitan scroll horizontal
+        return (estilo.overflowX === 'auto' || estilo.overflowX === 'scroll') && elemento.scrollWidth > elemento.clientWidth;
+
       });
 
-      // 2. Cuando el mouse sale del elemento
-      elemento.addEventListener('mouseleave', () => {
-        estaPresionado = false;
-        elemento.style.cursor = 'auto'; // Restaura el cursor
+      // Configura cada elemento scrollable
+      elementosScrollables.forEach((elemento) => {
+        // Mantenemos el código comentado como lo solicitaste
+        {% comment %} element.addEventListener(
+          'wheel',
+          function (event) {
+            if (isMouseOver(event, this)) {
+              event.preventDefault();
+              const scrollFactor = 1.5;
+              this.scrollLeft += event.deltaY * scrollFactor;
+            }
+          }
+          { passive: false }
+        ); {% endcomment %}
+
+        // Variables para controlar el estado del arrastre
+        let estaPresionado = false;
+        let posicionInicialX;
+        let posicionScrollInicial;
+
+        // 1. Cuando se presiona el botón del mouse
+        elemento.addEventListener('mousedown', (evento) => {
+          estaPresionado = true;
+          elemento.style.cursor = 'grabbing'; // Cambia el cursor a "agarrando"
+          // Guarda la posición inicial del mouse y del scroll
+          posicionInicialX = evento.pageX - elemento.offsetLeft;
+          posicionScrollInicial = elemento.scrollLeft;
+        });
+
+        // 2. Cuando el mouse sale del elemento
+        elemento.addEventListener('mouseleave', () => {
+          estaPresionado = false;
+          elemento.style.cursor = 'auto'; // Restaura el cursor
+        });
+
+        // 3. Cuando se suelta el botón del mouse
+        elemento.addEventListener('mouseup', () => {
+          estaPresionado = false;
+          elemento.style.cursor = 'auto'; // Restaura el cursor
+        });
+
+        // 4. Cuando se mueve el mouse
+        elemento.addEventListener('mousemove', (evento) => {
+          // Solo hacer scroll si el botón está presionado
+          if (!estaPresionado) return;
+
+          evento.preventDefault(); // Evita comportamientos no deseados
+
+          // Calcula cuánto se ha movido el mouse
+          const posicionActualX = evento.pageX - elemento.offsetLeft;
+          const distanciaMovida = (posicionActualX - posicionInicialX) * 0.7; // Factor de suavizado
+
+          // Actualiza la posición del scroll
+          elemento.scrollLeft = posicionScrollInicial - distanciaMovida;
+        });
       });
+    }); {% endcomment %}
 
-      // 3. Cuando se suelta el botón del mouse
-      elemento.addEventListener('mouseup', () => {
-        estaPresionado = false;
-        elemento.style.cursor = 'auto'; // Restaura el cursor
-      });
+    document.addEventListener('DOMContentLoaded', function () {
+      // Función para configurar el desplazamiento por arrastre en un elemento
+      function configurarDesplazamientoPorArrastre(elemento) {
+        // Variables para controlar el estado del arrastre
+        let estaPresionado = false;
+        let posicionInicialX;
+        let posicionScrollInicial;
 
-      // 4. Cuando se mueve el mouse
-      elemento.addEventListener('mousemove', (evento) => {
-        // Solo hacer scroll si el botón está presionado
-        if (!estaPresionado) return;
+        // 1. Cuando se presiona el botón del mouse
+        elemento.addEventListener('mousedown', (evento) => {
+          estaPresionado = true;
+          elemento.style.cursor = 'grabbing'; // Cambia el cursor a "agarrando"
+          // Guarda la posición inicial del mouse y del scroll
+          posicionInicialX = evento.clientX;
+          posicionScrollInicial = elemento.scrollLeft;
+        });
 
-        evento.preventDefault(); // Evita comportamientos no deseados
+        // 2. Cuando el mouse sale del elemento
+        elemento.addEventListener('mouseleave', () => {
+          estaPresionado = false;
+          elemento.style.cursor = 'grab'; // Restaura el cursor
+        });
 
-        // Calcula cuánto se ha movido el mouse
-        const posicionActualX = evento.pageX - elemento.offsetLeft;
-        const distanciaMovida = (posicionActualX - posicionInicialX) * 0.7; // Factor de suavizado
+        // 3. Cuando se suelta el botón del mouse
+        elemento.addEventListener('mouseup', () => {
+          estaPresionado = false;
+          elemento.style.cursor = 'grab'; // Restaura el cursor
+        });
 
-        // Actualiza la posición del scroll
-        elemento.scrollLeft = posicionScrollInicial - distanciaMovida;
+        // 4. Cuando se mueve el mouse
+        elemento.addEventListener('mousemove', (evento) => {
+          // Solo hacer scroll si el botón está presionado
+          if (!estaPresionado) return;
+
+          evento.preventDefault(); // Evita comportamientos no deseados
+
+          // Calcula cuánto se ha movido el mouse
+          const posicionActualX = evento.clientX;
+          const distanciaMovida = (posicionActualX - posicionInicialX) * 1.5; // Factor de movimiento
+
+          // Actualiza la posición del scroll
+          elemento.scrollLeft = posicionScrollInicial - distanciaMovida;
+        });
+
+        // Asegurarse de que el cursor cambie al pasar por encima
+        elemento.style.cursor = 'grab';
+      }
+
+      // Buscar elementos con desplazamiento horizontal
+      function buscarElementosDesplazables() {
+        const todosLosElementos = document.querySelectorAll('*');
+
+        todosLosElementos.forEach(elemento => {
+          const estilo = window.getComputedStyle(elemento);
+
+          // Verifica si el elemento tiene desbordamiento horizontal
+          if (estilo.overflowX === 'auto' || estilo.overflowX === 'scroll') {
+            // Verificar si el elemento es desplazable horizontalmente
+            // o configurarlo por defecto si tiene esos estilos
+            if (elemento.scrollWidth > elemento.clientWidth ||
+                estilo.overflowX === 'auto' ||
+                estilo.overflowX === 'scroll') {
+              configurarDesplazamientoPorArrastre(elemento);
+            }
+          }
+        });
+      }
+
+      // Ejecutar la búsqueda inicial
+      buscarElementosDesplazables();
+
+      // También podemos volver a verificar después de que se carguen las imágenes
+      // ya que pueden cambiar el tamaño de los elementos
+      window.addEventListener('load', buscarElementosDesplazables);
+
+      // Opcional: comprobar periódicamente si hay nuevos elementos desplazables
+      // (útil si tu sitio añade elementos dinámicamente)
+      let timerID;
+      window.addEventListener('resize', function() {
+        clearTimeout(timerID);
+        timerID = setTimeout(buscarElementosDesplazables, 300);
       });
     });
-  });
 
-  {% comment %} function isMouseOver(event, element) {
-    const rect = element.getBoundingClientRect();
-    return (
-      event.clientX >= rect.left &&
-      event.clientX <= rect.right &&
-      event.clientY >= rect.top &&
-      event.clientY <= rect.bottom
-    );
-  } {% endcomment %}
+    {% comment %} function isMouseOver(event, element) {
+      const rect = element.getBoundingClientRect();
+      return (
+        event.clientX >= rect.left &&
+        event.clientX <= rect.right &&
+        event.clientY >= rect.top &&
+        event.clientY <= rect.bottom
+      );
+    } {% endcomment %}
 </script>

@@ -631,8 +631,8 @@ header-principal {
 }
 
 .h-menu-opciones-productos::-webkit-scrollbar {
-  /* width: 0; */
-  /* height: 0; */
+  width: 0;
+  height: 0;
 }
 
 .h-menu-opciones-productos-item {
