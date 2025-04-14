@@ -1777,11 +1777,11 @@
         elementoBase.addEventListener('click', this.mostrarYOcultarContenedorVariantes.bind(this, elementoBase));
       });
 
-      this.varianteElemento.forEach((elementoBase) => {
+      {% comment %} this.varianteElemento.forEach((elementoBase) => {
         elementoBase.addEventListener('click', this.procesoVarianteSeleccionada.bind(this, elementoBase));
       });
 
-      document.addEventListener('click', this.clicksEspeciales.bind(this));
+      document.addEventListener('click', this.clicksEspeciales.bind(this)); {% endcomment %}
 
       // INICIALIZAR ELEMENTOS Y PROCESOS CLAVES
       this.contenedorVariantes.forEach((elementoBase) => {
