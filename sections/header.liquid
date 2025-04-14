@@ -396,6 +396,80 @@
     </div>
 
     <!-- MENU DE OPCIONES PARA LOS PRODUCTOS -->
+    <div class="h-menu-opciones-productos">
+      <div
+        menu="ofertas"
+        id="h-opcion-menu-gaseosas"
+        class="h-menu-opciones-productos-item"
+      >
+        <div class="h-menu-producto-info-imagen">
+          <img src="{{ 'menu-img-gaseosas.png' | asset_url }}" alt="Gaseosas y Cervezas" width="100" height="100">
+        </div>
+        <div class="h-menu-producto-info-nombre">
+          <p>OFERTAS</p>
+        </div>
+      </div>
+      <div
+        menu="pizzas"
+        id="h-opcion-menu-gaseosas"
+        class="h-menu-opciones-productos-item"
+      >
+        <div class="h-menu-producto-info-imagen">
+          <img src="{{ 'menu-img-gaseosas.png' | asset_url }}" alt="Gaseosas y Cervezas" width="100" height="100">
+        </div>
+        <div class="h-menu-producto-info-nombre">
+          <p>PIZZAS</p>
+        </div>
+      </div>
+      <div
+        menu="postres"
+        id="h-opcion-menu-gaseosas"
+        class="h-menu-opciones-productos-item"
+      >
+        <div class="h-menu-producto-info-imagen">
+          <img src="{{ 'menu-img-gaseosas.png' | asset_url }}" alt="Gaseosas y Cervezas" width="100" height="100">
+        </div>
+        <div class="h-menu-producto-info-nombre">
+          <p>postres</p>
+        </div>
+      </div>
+      <div
+        menu="gaseosas y cervezas"
+        id="h-opcion-menu-gaseosas"
+        class="h-menu-opciones-productos-item"
+      >
+        <div class="h-menu-producto-info-imagen">
+          <img src="{{ 'menu-img-gaseosas.png' | asset_url }}" alt="Gaseosas y Cervezas" width="100" height="100">
+        </div>
+        <div class="h-menu-producto-info-nombre">
+          <p>GASEOSAS Y CERVESAS</p>
+        </div>
+      </div>
+      <div
+        menu="ofertas"
+        id="h-opcion-menu-gaseosas"
+        class="h-menu-opciones-productos-item"
+      >
+        <div class="h-menu-producto-info-imagen">
+          <img src="{{ 'menu-img-gaseosas.png' | asset_url }}" alt="Gaseosas y Cervezas" width="100" height="100">
+        </div>
+        <div class="h-menu-producto-info-nombre">
+          <p>OFERTAS</p>
+        </div>
+      </div>
+      <div
+        menu="pizzas"
+        id="h-opcion-menu-gaseosas"
+        class="h-menu-opciones-productos-item"
+      >
+        <div class="h-menu-producto-info-imagen">
+          <img src="{{ 'menu-img-gaseosas.png' | asset_url }}" alt="Gaseosas y Cervezas" width="100" height="100">
+        </div>
+        <div class="h-menu-producto-info-nombre">
+          <p>PIZZAS</p>
+        </div>
+      </div>
+    </div>
   </header>
 </header-principal>
 
@@ -799,7 +873,7 @@
       });
     }); {% endcomment %}
 
-    {% comment %} document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function () {
       // Función para configurar el desplazamiento por arrastre en un elemento
       function configurarDesplazamientoPorArrastre(elemento) {
         // Variables para controlar el estado del arrastre
@@ -881,7 +955,7 @@
         clearTimeout(timerID);
         timerID = setTimeout(buscarElementosDesplazables, 300);
       });
-    }); {% endcomment %}
+    });
 
     {% comment %} function isMouseOver(event, element) {
       const rect = element.getBoundingClientRect();
