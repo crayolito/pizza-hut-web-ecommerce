@@ -461,7 +461,7 @@
       }
     }
 
-    procesarConfirmacionModal() async {
+    async procesarConfirmacionModal()  {
       const posicion = this.marcadorMovible.getPosition();
       this.coordenadas = { lat: posicion.lat(), lng: posicion.lng() };
       const direccion = await AuxiliaresGlobal.obtenerDireccionDesdeCoordenadas(posicion.lat(), posicion.lng());
