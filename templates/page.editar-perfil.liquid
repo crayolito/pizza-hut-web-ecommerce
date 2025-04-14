@@ -158,7 +158,7 @@
 
   <!-- MODAL DE DAR MI DIRECCIOsN -->
   <section
-    id="phpcc-modal-dar-direccion"
+    id="phpep-modal-dar-direccion"
     class="psme-modal-mapa-envio-domicilio"
   >
     <div
@@ -210,7 +210,7 @@
       this.inputDireccion = document.getElementById('phpep-input-direccion');
       this.modalSnipper = document.getElementById('phpep-modal-snipper');
       this.modalSnipperBody = document.getElementById('phpep-modal-snipper-body');
-      this.modalDarDireccion = document.getElementById('phpcc-modal-dar-direccion');
+      this.modalDarDireccion = document.getElementById('phpep-modal-dar-direccion');
       this.modalBodyMap = document.getElementById('phpcc-modal-mapa');
       this.btnModalDDContinuar = document.getElementById('phpep-btn-confirmar-modal');
       this.btnModalDDCancelar = document.getElementById('phpep-btn-cancelar-modal');
@@ -219,9 +219,9 @@
       this.contenedorSugerencias = document.getElementById('phpep-sugerencias-direccion');
 
       // EVENTOS INCIALIZAR
-      this.btnUsarMiUbicacion.addEventListener('click', this.btnUsarMiUbicacionClick.bind(this));
+      this.btnUsarMiUbicacion.addEventListener('click', this.btnUsarMiUbicacionActual.bind(this));
       this.btnContinuar.addEventListener('click', this.btnContinuarClick.bind(this));
-      this.btnModalDDContinuar.addEventListener('click', this.btnModalDDContinuarClick.bind(this));
+      this.btnModalDDContinuar.addEventListener('click', this.procesarConfirmacionModal.bind(this));
       this.btnModalDDCancelar.addEventListener('click', this.cerrarModalDarDireccion.bind(this));
       this.btnModalCerrar.addEventListener('click', this.cerrarModalDarDireccion.bind(this));
       this.inputNombre.addEventListener('input', this.verificiarValidacion.bind(this));
@@ -457,9 +457,41 @@
       }
     }
 
-    btnUsarMiUbicacionClick() {
-      this.modalSnipper.style.display = 'flex';
-      this.inicializarMapa();
+    {% comment %} btnUsarMiUbicacionClick() {
+      this.modalDarDireccion.style.display = 'flex';
+      // Activar el mapa dentro de modal
+
+      // 1. Crear el mapa
+      if(!this.modalDarDireccion) {
+        alert('Error: No se pudo cargar el mapa. Por favor recarga la página');
+        return;
+      }
+
+      console.log('Entra a inicializarMapaEnvioDomicilio : ', this.coordenadas);
+
+      const configuracionMapa = {
+        center: this.coordenadas,
+        zoom: 16,
+        mapTypeControl: false,
+        streetViewControl: false,
+        fullscreenControl: false,
+        zoomControl: true,
+        scaleControl: false,
+        rotateControl: false,
+        panControl: false,
+        disableDefaultUI: false,
+      };
+
+      const mapa = new google.maps.Map(this.modalDarDireccion, configuracionMapa);
+
+    } {% endcomment %}
+
+    procesarConfirmacionModal(){
+      const posicion = this.marcadorMovible.getPosition();
+      this.coordenadas = { lat: posicion.lat(), lng: posicion.lng() };
+      console.log('Coordenadas de dirección seleccionada:', this.coordenadas);
+      console.log('Posicion del marcador:', posicion);
+      this.cerrarModalDarDireccion();
     }
 
     btnContinuarClick() {
@@ -482,7 +514,7 @@
       }, 2000);
     }
 
-    btnModalDDContinuarClick(){
+    btnUsarMiUbicacionActual(){
       this.modalDarDireccion.style.display = 'flex';
 
       // 1. Crear el mapa

@@ -82,7 +82,8 @@ document.addEventListener('DOMContentLoaded', function () {
     constructor(elemento, opciones = {}) {
       this.elemento = elemento;
       this.opciones = Object.assign({
-        sensibilidad: 1.5,       // Factor de sensibilidad del desplazamiento
+        // sensibilidad: 1.5,       // Factor de sensibilidad del desplazamiento
+        sensibilidad: 0.8,       // Factor de sensibilidad del desplazamiento
         amortiguacion: 0.92,     // Factor de amortiguación para la inercia (0-1)
         velocidadMaxima: 30,     // Velocidad máxima del desplazamiento
         umbraldeClic: 5,         // Distancia mínima para considerar arrastre vs clic
