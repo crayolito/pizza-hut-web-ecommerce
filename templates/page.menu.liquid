@@ -1777,9 +1777,9 @@
         elementoBase.addEventListener('click', this.mostrarYOcultarContenedorVariantes.bind(this, elementoBase));
       });
 
-      {% comment %} this.varianteElemento.forEach((elementoBase) => {
+      this.varianteElemento.forEach((elementoBase) => {
         elementoBase.addEventListener('click', this.procesoVarianteSeleccionada.bind(this, elementoBase));
-      }); {% endcomment %}
+      }); 
 
       document.addEventListener('click', this.clicksEspeciales.bind(this));
 
