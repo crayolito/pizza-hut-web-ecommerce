@@ -1799,12 +1799,10 @@
 
         if(estaVisible) {
           console.log("Está visible");
-          hermano.style.display = "none"; // Oculto - esto sobrescribe el CSS
+          hermano.classList.add('elemento-oculto');
         } else {
           console.log("No está visible");
-          // Aquí es donde establecemos "flex", pero podríamos simplemente
-          // eliminar el estilo inline para permitir que el CSS se aplique
-          hermano.style.display = "flex"; // Esto permite que el CSS se aplique
+          hermano.classList.add('elemento-visible');
         }
 
         // Oculto a los otros elementos
