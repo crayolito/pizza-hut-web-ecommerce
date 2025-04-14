@@ -38,6 +38,14 @@
      11. MEDIA QUERIES
      ========================================================================== */
 
+.elemento-visible {
+  display: flex;
+}
+
+.elemento-invisible {
+  display: none;
+}
+
 /* =================================
   3. PRODUCTO PROMOCION CARRITO
 ================================= */
