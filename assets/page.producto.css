@@ -554,7 +554,7 @@
   align-items: center;
   /* overflow-y: auto; */
   /* MODIFIQUE AQUI */
-  /* display: none; */
+  display: none;
 }
 
 .pmph-modal-informacion-extras {

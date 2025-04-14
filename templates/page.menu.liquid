@@ -1811,7 +1811,9 @@
         // Oculto a los otros elementos
         this.contenedorVariantes.forEach((elemento) => {
           if (elemento !== hermano) {
-            elemento.style.display = "none";
+            elemento.classList.remove('elemento-visible');
+            elemento.classList.add('elemento-oculto');
+            {% comment %} elemento.style.display = "none"; {% endcomment %}
           }
         });
       }
@@ -1830,7 +1832,9 @@
       // O tambien cierro a todos con ese id
       this.contenedorVariantes.forEach((elementoBase) => {
         if (elementoBase !== padreGeneral) {
-          elementoBase.style.display = "none";
+          {% comment %} elementoBase.style.display = "none"; {% endcomment %}
+          elementoBase.classList.remove('elemento-visible');
+          elementoBase.classList.add('elemento-oculto');
         }
       });
     }
@@ -1846,7 +1850,9 @@
       // Si el elemento clickeado no es en el contenedor id="phpm-items-variantes" tons cierra a todos
       this.contenedorVariantes.forEach((elementoBase) => {
         if (!elementoBase.contains(event.target)) {
-          elementoBase.style.display = "none"; // Oculto
+          {% comment %} elementoBase.style.display = "none"; // Oculto {% endcomment %}
+          elementoBase.classList.remove('elemento-visible');
+          elementoBase.classList.add('elemento-oculto');
         }
       });
     }
