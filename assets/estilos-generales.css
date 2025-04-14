@@ -1018,6 +1018,7 @@
   border: 1px solid #969696;
   align-items: stretch;
   min-height: 12.5rem;
+  position: relative;
 }
 
 .producto-es-item-imagen {
