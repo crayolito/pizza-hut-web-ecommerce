@@ -8,7 +8,7 @@
   <section class="page-menu-container">
     <div class="page-menu-header">
       <small class="page-menu-titulo-desktop">Menu</small>
-      <div class="page-menu-opciones-seleccion container-base">
+      <div class="phpm-items-menu container-base">
         <div
           categoria="todo"
           class="page-menu-opcion"
@@ -1664,6 +1664,17 @@
     text-transform: uppercase;
   }
 
+  .phpm-items-menu {
+    display: flex;
+    align-items: start;
+    gap: var(--espaciado-xl);
+    overflow-x: auto;
+    overflow-y: hidden;
+    position: relative;
+    scrollbar-width: none; /* Para Firefox */
+    -ms-overflow-style: none; /* Para IE/Edge */
+  }
+
   .phpm-items {
     display: flex;
     align-items: start;
@@ -1779,7 +1790,7 @@
 
       this.varianteElemento.forEach((elementoBase) => {
         elementoBase.addEventListener('click', this.procesoVarianteSeleccionada.bind(this, elementoBase));
-      }); 
+      });
 
       document.addEventListener('click', this.clicksEspeciales.bind(this));
 
@@ -1842,7 +1853,6 @@
       let clickEnContenedorVariante = false;
       this.contenedorVarianteSeleccionado.forEach((elementoBase) => {
         if (elementoBase.contains(event.target)) {
-          console.log('click en contenedor variante');
           clickEnContenedorVariante = true;
         }
       });
