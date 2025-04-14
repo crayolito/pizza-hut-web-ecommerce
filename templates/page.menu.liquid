@@ -1855,9 +1855,8 @@
       this.contenedorVariantes.forEach((elementoBase) => {
         if (!elementoBase.contains(event.target)) {
           {% comment %} elementoBase.style.display = "none"; // Oculto {% endcomment %}
-          {% comment %} elementoBase.classList.remove('elemento-visible'); {% endcomment %}
-          {% comment %} elementoBase.classList.add('elemento-oculto'); {% endcomment %}
-           console.log('click fuera de contenedor variante');
+           elementoBase.classList.remove('elemento-visible');
+           elementoBase.classList.add('elemento-oculto');
         }
       });
     }
