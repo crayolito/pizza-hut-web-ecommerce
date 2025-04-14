@@ -280,12 +280,12 @@
 
       console.log('Inputs: ', inputs);
 
-      inputs.nombre.value = datosUsuario.nombre;
-      inputs.apellido.value = datosUsuario.apellido;
-      inputs.email.value = datosUsuario.email;
-      inputs.celular.value = datosUsuario.celular;
-      inputs.ci.value = datosUsuario.ci;
-      this.inputDireccion.value = direccion;
+      inputs.nombre.value = inputs.nombre.value == "----" ? "" : datosUsuario.nombre;
+      inputs.apellido.value = inputs.apellido.value == "----" ? "" : datosUsuario.apellido;
+      inputs.email.value = inputs.email.value == "----" ? "" : datosUsuario.email;
+      inputs.celular.value = inputs.celular.value == "----" ? "" : datosUsuario.celular;
+      inputs.ci.value = inputs.ci.value == "----" ? "" : datosUsuario.ci;
+      this.inputDireccion.value = direccion == "----" ? "" : direccion;
 
       this.verificiarValidacion();
     }

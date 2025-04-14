@@ -512,10 +512,21 @@
     solicitarNotificaciones() {
       if (this.btnCheckboxEstado.checked) {
         // Usuario quiere activar notificaciones
+
         // Verificar si ya tenemos el permiso
         if (Notification.permission === 'granted') {
           console.log('Permisos ya estaban aceptados');
           localStorage.setItem('ph-notificaciones', 'true');
+          return;
+        }
+
+        // Si el permiso ya fue denegado anteriormente, mostrar alerta
+        if (Notification.permission === 'denied') {
+          alert(
+            'Las notificaciones están bloqueadas. Por favor, habilite los permisos de notificación en la configuración de su navegador para este sitio.'
+          );
+          this.btnCheckboxEstado.checked = false;
+          localStorage.setItem('ph-notificaciones', 'false');
           return;
         }
 
@@ -527,6 +538,11 @@
               this.btnCheckboxEstado.checked = false;
               console.log('Permisos de notificación rechazados por el usuario');
               localStorage.setItem('ph-notificaciones', 'false');
+
+              // Mostrar alerta pidiendo que habilite las notificaciones
+              alert(
+                'Para recibir notificaciones importantes, por favor habilite los permisos en la configuración de su navegador.'
+              );
             } else {
               console.log('Permisos de notificación aceptados');
               this.btnCheckboxEstado.checked = true;
@@ -537,6 +553,9 @@
             console.error('Error al solicitar permisos:', error);
             this.btnCheckboxEstado.checked = false;
             localStorage.setItem('ph-notificaciones', 'false');
+
+            // Mostrar alerta en caso de error
+            alert('Ocurrió un error al solicitar permisos de notificación. Por favor, inténtelo nuevamente.');
           });
       } else {
         // Usuario quiere desactivar notificaciones
