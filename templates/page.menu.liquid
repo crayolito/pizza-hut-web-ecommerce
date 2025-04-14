@@ -1779,9 +1779,9 @@
 
       {% comment %} this.varianteElemento.forEach((elementoBase) => {
         elementoBase.addEventListener('click', this.procesoVarianteSeleccionada.bind(this, elementoBase));
-      });
+      }); {% endcomment %}
 
-      document.addEventListener('click', this.clicksEspeciales.bind(this)); {% endcomment %}
+      document.addEventListener('click', this.clicksEspeciales.bind(this));
 
       // INICIALIZAR ELEMENTOS Y PROCESOS CLAVES
       this.contenedorVariantes.forEach((elementoBase) => {
@@ -1799,14 +1799,11 @@
         const estaVisible = hermano.classList.contains('elemento-visible');
 
         if(estaVisible) {
-          console.log("Está visible");
           hermano.classList.remove('elemento-visible');
           hermano.classList.add('elemento-oculto');
-          console.log(hermano);
         } else {
           hermano.classList.remove('elemento-oculto');
           hermano.classList.add('elemento-visible');
-          console.log(hermano);
         }
 
         // Oculto a los otros elementos
