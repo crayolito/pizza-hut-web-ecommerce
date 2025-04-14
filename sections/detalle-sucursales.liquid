@@ -1,116 +1,145 @@
 <!-- Hoja de estilos Css -->
 {{ 'detalle-sucursales.css' | asset_url | stylesheet_tag }}
 
-<div class="container-base ds-contenedor-base">
-  <div class="ds-contenedor-left">
-    <img
-      class="ds-fondo-detalle-sucursales"
-      src="{{ 'fondo-detalle-sucursales.png' | asset_url }}"
-      width="100%"
-      height="100%"
-    >
-    <img class="ds-image-sucursales-aux" src="{{ 'image-sucursales-aux.png' | asset_url }}" width="100%" height="100%">
-    <div class="ds-informacion-seleccion">
-      <small>Encuentra tu sucursal más cercana</small>
-      <div class="ds-info">
-        <h3>Selecciona tu ciudad</h3>
-        <div class="ds-select-info">
-          <h3>Santa Cruz</h3>
-          {% render 'icon-flecha-abajo' %}
+<sucursales-informacion>
+  <div class="container-base ds-contenedor-base">
+    <div class="ds-contenedor-left">
+      <img
+        class="ds-fondo-detalle-sucursales"
+        src="{{ 'fondo-detalle-sucursales.png' | asset_url }}"
+        width="100%"
+        height="100%"
+      >
+      <img
+        class="ds-image-sucursales-aux"
+        src="{{ 'image-sucursales-aux.png' | asset_url }}"
+        width="100%"
+        height="100%"
+      >
+      <div class="ds-informacion-seleccion">
+        <small>Encuentra tu sucursal más cercana</small>
+        <div class="ds-info">
+          <h3>Selecciona tu ciudad</h3>
+          <div class="ds-select-info">
+            <h3>Santa Cruz</h3>
+            {% render 'icon-flecha-abajo' %}
+          </div>
+        </div>
+        <div class="ds-info">
+          <h3>Selecciona tu ciudad</h3>
+          <div class="ds-select-info">
+            <h3>ENVÍO A DOMICILIO</h3>
+            {% render 'icon-flecha-abajo' %}
+          </div>
         </div>
       </div>
-      <div class="ds-info">
-        <h3>Selecciona tu ciudad</h3>
-        <div class="ds-select-info">
-          <h3>ENVÍO A DOMICILIO</h3>
-          {% render 'icon-flecha-abajo' %}
+    </div>
+    <div class="ds-contenedor-right">
+      <div class="ds-rl-local ">
+        <div class="ds-titulos">
+          <h3>sANTA CRUZ</h3>
+          <h3 style="color: #C8102E;">las palmas</h3>
         </div>
+        <div class="ds-rl-disponibilidad">
+          <div class="ds-rl-disponibilidad-info ds-abierto">
+            {% render 'icon-disponibilidad' %}
+            <p>ABIERTO</p>
+          </div>
+        </div>
+        <div class="ds-rl-info-local ">
+          <div class="ds-rl-info-local-item">
+            {% render 'icon-location-on' %}
+            <p>Doble vía a La Guardia</p>
+          </div>
+          <div class="ds-rl-info-local-item">
+            {% render 'icon-headser-mic' %}
+            <p>78452415</p>
+          </div>
+          <div class="ds-rl-info-local-item">
+            {% render 'icon-clock' %}
+            <p>Abre a las 11:00 AM</p>
+          </div>
+          <div class="ds-rl-info-servicios">
+            <div class="ds-rl-info-servicio">
+              {% render 'icon-check' %}
+              <p>Envío a domicilio</p>
+            </div>
+            <div class="ds-rl-info-servicio">
+              {% render 'icon-check' %}
+              <p>Recoger en local</p>
+            </div>
+          </div>
+        </div>
+        <button class="ds-rl-boton ds-rl-ubicacion">
+          <p>Abrir ubicación en mapa</p>
+          {% render 'icon-map' %}
+        </button>
+      </div>
+      <div class="ds-rl-local ">
+        <div class="ds-titulos">
+          <h3>sANTA CRUZ</h3>
+          <h3 style="color: #C8102E;">las palmas</h3>
+        </div>
+        <div class="ds-rl-disponibilidad">
+          <div class="ds-rl-disponibilidad-info ds-cerrado">
+            {% render 'icon-disponibilidad' %}
+            <p>CERRADO</p>
+          </div>
+        </div>
+        <div class="ds-rl-info-local ">
+          <div class="ds-rl-info-local-item">
+            {% render 'icon-location-on' %}
+            <p>Doble vía a La Guardia</p>
+          </div>
+          <div class="ds-rl-info-local-item">
+            {% render 'icon-headser-mic' %}
+            <p>78452415</p>
+          </div>
+          <div class="ds-rl-info-local-item">
+            {% render 'icon-clock' %}
+            <p>Abre a las 11:00 AM</p>
+          </div>
+          <div class="ds-rl-info-servicios">
+            <div class="ds-rl-info-servicio">
+              {% render 'icon-check' %}
+              <p>Envío a domicilio</p>
+            </div>
+            <div class="ds-rl-info-servicio">
+              {% render 'icon-check' %}
+              <p>Recoger en local</p>
+            </div>
+          </div>
+        </div>
+        <button class="ds-rl-boton ds-rl-ubicacion">
+          <p>Abrir ubicación en mapa</p>
+          {% render 'icon-map' %}
+        </button>
       </div>
     </div>
   </div>
-  <div class="ds-contenedor-right">
-    <div class="ds-rl-local ">
-      <div class="ds-titulos">
-        <h3>sANTA CRUZ</h3>
-        <h3 style="color: #C8102E;">las palmas</h3>
-      </div>
-      <div class="ds-rl-disponibilidad">
-        <div class="ds-rl-disponibilidad-info ds-abierto">
-          {% render 'icon-disponibilidad' %}
-          <p>ABIERTO</p>
-        </div>
-      </div>
-      <div class="ds-rl-info-local ">
-        <div class="ds-rl-info-local-item">
-          {% render 'icon-location-on' %}
-          <p>Doble vía a La Guardia</p>
-        </div>
-        <div class="ds-rl-info-local-item">
-          {% render 'icon-headser-mic' %}
-          <p>78452415</p>
-        </div>
-        <div class="ds-rl-info-local-item">
-          {% render 'icon-clock' %}
-          <p>Abre a las 11:00 AM</p>
-        </div>
-        <div class="ds-rl-info-servicios">
-          <div class="ds-rl-info-servicio">
-            {% render 'icon-check' %}
-            <p>Envío a domicilio</p>
-          </div>
-          <div class="ds-rl-info-servicio">
-            {% render 'icon-check' %}
-            <p>Recoger en local</p>
-          </div>
-        </div>
-      </div>
-      <button class="ds-rl-boton ds-rl-ubicacion">
-        <p>Abrir ubicación en mapa</p>
-        {% render 'icon-map' %}
-      </button>
-    </div>
-    <div class="ds-rl-local ">
-      <div class="ds-titulos">
-        <h3>sANTA CRUZ</h3>
-        <h3 style="color: #C8102E;">las palmas</h3>
-      </div>
-      <div class="ds-rl-disponibilidad">
-        <div class="ds-rl-disponibilidad-info ds-cerrado">
-          {% render 'icon-disponibilidad' %}
-          <p>CERRADO</p>
-        </div>
-      </div>
-      <div class="ds-rl-info-local ">
-        <div class="ds-rl-info-local-item">
-          {% render 'icon-location-on' %}
-          <p>Doble vía a La Guardia</p>
-        </div>
-        <div class="ds-rl-info-local-item">
-          {% render 'icon-headser-mic' %}
-          <p>78452415</p>
-        </div>
-        <div class="ds-rl-info-local-item">
-          {% render 'icon-clock' %}
-          <p>Abre a las 11:00 AM</p>
-        </div>
-        <div class="ds-rl-info-servicios">
-          <div class="ds-rl-info-servicio">
-            {% render 'icon-check' %}
-            <p>Envío a domicilio</p>
-          </div>
-          <div class="ds-rl-info-servicio">
-            {% render 'icon-check' %}
-            <p>Recoger en local</p>
-          </div>
-        </div>
-      </div>
-      <button class="ds-rl-boton ds-rl-ubicacion">
-        <p>Abrir ubicación en mapa</p>
-        {% render 'icon-map' %}
-      </button>
-    </div>
-  </div>
-</div>
+</sucursales-informacion>
+
+<script>
+  class SucursalesInformacion extends HTMLElement {
+    constructor() {
+      super();
+    }
+
+    connectedCallback() {
+      this.btnsAbrirUbicaiconMapa = this.querySelectorAll('.ds-rl-boton ');
+      this.btnsAbrirUbicaiconMapa.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          // Se habre otra venta google maps con las coordenadas del local
+          window.open(
+            `https://www.google.com/maps/search/?api=1&query=-17.510134974492885, -63.16464342542768`,
+            '_blank'
+          );
+          console.log('Boton ubicacion en mapa presionado: ', nombreLocal);
+        });
+      });
+    }
+  }
+</script>
 
 {% schema %}
 {
