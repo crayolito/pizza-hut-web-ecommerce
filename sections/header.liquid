@@ -86,48 +86,48 @@
             {% render 'icon-close-rojo' %}
           </button>
         </div>
-        <!-- INICIADO SESION MENU -->
+        <!-- INICIADO SESION MENU MOBILE -->
         <div
           id="h-ism-menu-principal"
           class="h-opciones-mobile-body"
         >
           <button
-            id="h-ism-perfil"
+            id="h-ismm-perfil"
             class="h-opcion-usuario icon-color-tertiary"
           >
             {% render 'icon-cuenta-blanco' %}
             <p>MI PERFIL</p>
           </button>
           <button
-            id="h-ism-historial-pedidos"
+            id="h-ismm-historial-pedidos"
             class="h-opcion-usuario icon-color-tertiary"
           >
             {% render 'icon-historial' %}
             <p>HISTORIAL DE PEDIDOS</p>
           </button>
           <button
-            id="h-ism-cupones-descuentos"
+            id="h-ismm-cupones-descuentos"
             class="h-opcion-usuario icon-color-tertiary"
           >
             {% render 'icon-cupon' %}
             <p>CUPONES Y DESCUENTOS</p>
           </button>
           <button
-            id="h-ism-hutcoins"
+            id="h-ismm-hutcoins"
             class="h-opcion-usuario icon-color-tertiary"
           >
             {% render 'icon-pizza-metodo-entrega' %}
             <p>HUT COINTS</p>
           </button>
           <a
-            id="h-ism-mis-preferencias"
+            id="h-ismm-mis-preferencias"
             class="h-opcion-usuario icon-color-tertiary"
           >
             {% render 'icon-favorito' %}
             <p>MIS PREFERENCIAS</p>
           </a>
           <button
-            id="h-ism-configuracion"
+            id="h-ismm-configuracion"
             class="h-opcion-usuario icon-color-tertiary"
           >
             {% render 'icon-configuracion' %}
@@ -135,16 +135,16 @@
           </button>
           <hr>
           <button
-            id="h-ism-cerrar-sesion"
+            id="h-ismm-cerrar-sesion"
             class="h-opcion-usuario icon-color-primary"
           >
             {% render 'icon-iniciar-cerrar' %}
             <p class="color-letras-primary">CERRAR SESION</p>
           </button>
         </div>
-        <!-- NO INICIO SESION - MENU -->
+        <!-- NO INICIO SESION - MENU MOBILE -->
         <div
-          id="h-nism-menu-principal"
+          id="h-nismm-menu-principal"
           class="h-opciones-mobile-body"
         >
           <a
@@ -157,7 +157,6 @@
           </a>
           <a
             href="/pages/menu"
-            target="_blank"
             class="h-opcion-usuario icon-color-tertiary"
           >
             <p>MENU</p>
@@ -179,7 +178,7 @@
           <hr>
           <a
             href="/pages/iniciar-sesion"
-            id="h-nism-iniciar-sesion"
+            id="h-nismm-iniciar-sesion"
             class="h-opcion-usuario icon-color-primary"
           >
             {% render 'icon-iniciar-cerrar' %}
@@ -334,48 +333,48 @@
             {% render 'icon-cuenta-blanco' %}
             {% render 'icon-flecha-abajo' %}
           </button>
-          <!-- DESKTOP INICIADO SESION -->
+          <!-- INICIADO SESION DESKTOP -->
           <div
-            id="h-dis-opciones-usuario"
+            id="h-ismd-opciones-usuario"
             class="h-opciones-usuario"
           >
             <button
-              id="h-ism-menu"
+              id="h-ismd-menu"
               class="h-opcion-usuario icon-color-tertiary"
             >
               {% render 'icon-cuenta-blanco' %}
               <p>MI PERFIL</p>
             </button>
             <button
-              id="h-ism-historial-pedidos"
+              id="h-ismd-historial-pedidos"
               class="h-opcion-usuario icon-color-tertiary"
             >
               {% render 'icon-historial' %}
               <p>HISTORIAL DE PEDIDOS</p>
             </button>
             <button
-              id="h-ism-cupones-descuentos"
+              id="h-ismd-cupones-descuentos"
               class="h-opcion-usuario icon-color-tertiary"
             >
               {% render 'icon-cupon' %}
               <p>CUPONES Y DESCUENTOS</p>
             </button>
             <button
-              id="h-ism-hutcoins"
+              id="h-ismd-hutcoins"
               class="h-opcion-usuario icon-color-tertiary"
             >
               {% render 'icon-pizza-metodo-entrega' %}
               <p>HUT COINTS</p>
             </button>
             <button
-              id="h-ism-mis-preferencias"
+              id="h-ismd-mis-preferencias"
               class="h-opcion-usuario icon-color-tertiary"
             >
               {% render 'icon-favorito' %}
               <p>MIS PREFERENCIAS</p>
             </button>
             <button
-              id="h-ism-configuracion"
+              id="h-ismd-configuracion"
               class="h-opcion-usuario icon-color-tertiary"
             >
               {% render 'icon-configuracion' %}
@@ -383,7 +382,7 @@
             </button>
             <hr>
             <button
-              id="h-dism-cerrar-sesion"
+              id="h-ismd-cerrar-sesion"
               class="h-opcion-usuario icon-color-primary"
             >
               {% render 'icon-iniciar-cerrar' %}
@@ -489,17 +488,17 @@
       this.btnOpcionUsuarioMobile = document.querySelector('#h-opciones-usuario-mobile');
       this.btnEntregaLocalMobile = document.querySelector('#h-btn-entrega-local-mobile');
       this.btnEntregaDomicilioMobile = document.querySelector('#h-btn-entrega-domicilio-mobile');
-      this.contenedorIsMenu = document.querySelector('#h-ism-menu-principal');
-      this.contenedorNisMenu = document.querySelector('#h-nism-menu-principal');
+      this.contenedorIsMenu = document.querySelector('#h-ismm-menu-principal');
+      this.contenedorNisMenu = document.querySelector('#h-nismm-menu-principal');
       this.tituloMenuMobile = document.querySelector('#h-titulo-mobile-menu');
       this.btnCerrrarMenuMobile = document.querySelector('#h-boton-cerrar-menu-mobile');
-      this.btnPerfilMenuMobile = document.querySelector('#h-ism-perfil');
-      this.btnHistorialMenuMobile = document.querySelector('#h-ism-historial-pedidos');
-      this.btnConfiguracionMenuMobile = document.querySelector('#h-ism-configuracion');
-      this.btnCuponesMenuMobile = document.querySelector('#h-ism-cupones-descuentos');
-      this.btnHutcoinsMenuMobile = document.querySelector('#h-ism-hutcoins');
-      this.btnMisPreferenciasMenuMobile = document.querySelector('#h-ism-mis-preferencias');
-      this.btnCerrarSesionOfMenuM = document.querySelector('#h-ism-cerrar-sesion');
+      this.btnPerfilMenuMobile = document.querySelector('#h-ismm-perfil');
+      this.btnHistorialMenuMobile = document.querySelector('#h-ismm-historial-pedidos');
+      this.btnConfiguracionMenuMobile = document.querySelector('#h-ismm-configuracion');
+      this.btnCuponesMenuMobile = document.querySelector('#h-ismm-cupones-descuentos');
+      this.btnHutcoinsMenuMobile = document.querySelector('#h-ismm-hutcoins');
+      this.btnMisPreferenciasMenuMobile = document.querySelector('#h-ismm-mis-preferencias');
+      this.btnCerrarSesionOfMenuM = document.querySelector('#h-ismm-cerrar-sesion');
 
       this.btnVerMenuMobile = document.querySelector('#h-btn-menu-mobile');
       // HEADER DESKTOP
@@ -515,14 +514,14 @@
       this.sectorGeneralBusqueda = document.querySelector('.h-sector-busqueda');
       this.containerInputBusqueda = document.querySelector('#h-container-input-search');
       this.inputBusqueda = document.querySelector('#h-input-buscar');
-      this.contenedorDisMenu = document.getElementById('h-dis-opciones-usuario');
-      this.btnMiPerfilOfMenu = document.querySelector('#h-ism-menu');
-      this.btnHistorialOfMenu = document.querySelector('#h-ism-historial-pedidos');
-      this.btnCuponesOfMenu = document.querySelector('#h-ism-cupones-descuentos');
-      this.btnHutcoinsOfMenu = document.querySelector('#h-ism-hutcoins');
-      this.btnMisPreferenciasOfMenu = document.querySelector('#h-ism-mis-preferencias');
-      this.btnconfiguracionOfMenu = document.querySelector('#h-ism-configuracion');
-      this.btnCerrarSesionOfMenuD = document.querySelector('#h-dism-cerrar-sesion');
+      this.contenedorDisMenu = document.getElementById('h-ismd-opciones-usuario');
+      this.btnMiPerfilOfMenu = document.querySelector('#h-ismd-menu');
+      this.btnHistorialOfMenu = document.querySelector('#h-ismd-historial-pedidos');
+      this.btnCuponesOfMenu = document.querySelector('#h-ismd-cupones-descuentos');
+      this.btnHutcoinsOfMenu = document.querySelector('#h-ismd-hutcoins');
+      this.btnMisPreferenciasOfMenu = document.querySelector('#h-ismd-mis-preferencias');
+      this.btnconfiguracionOfMenu = document.querySelector('#h-ismd-configuracion');
+      this.btnCerrarSesionOfMenuD = document.querySelector('#h-ismd-cerrar-sesion');
       // TESTEO DE PRUEBA
       this.itemMenuDesplegable = document.querySelectorAll('.h-menu-opciones-productos-item');
 
@@ -774,7 +773,6 @@
 
     redireccionCuponesMenuDesktop() {
       this.contenedorMenuMobile.style.display = 'none';
-
       this.contenedorDisMenu.style.display = 'none';
       window.location.href = '/pages/error-1';
     }

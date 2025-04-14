@@ -35,7 +35,7 @@
               >
                 <p>Tamaño</p>
                 <button id="phpi-view-variantes" class="container-info-variante">
-                  <p id="phpm-variante-seleccionado">Personal</p>
+                  <p id="phpi-variante-seleccionado">Personal</p>
                   <div class="icono-dropdown-variantes icon-color-tertiary">
                     {% render 'icon-flecha-abajo' %}
                   </div>
@@ -87,7 +87,7 @@
               >
                 <p>Tamaño</p>
                 <button id="phpi-view-variantes" class="container-info-variante">
-                  <p id="phpm-variante-seleccionado">Personal</p>
+                  <p id="phpi-variante-seleccionado">Personal</p>
                   <div class="icono-dropdown-variantes icon-color-tertiary">
                     {% render 'icon-flecha-abajo' %}
                   </div>
@@ -142,7 +142,7 @@
               >
                 <p>Tamaño</p>
                 <button id="phpi-view-variantes" class="container-info-variante">
-                  <p id="phpm-variante-seleccionado">Personal</p>
+                  <p id="phpi-variante-seleccionado">Personal</p>
                   <div class="icono-dropdown-variantes icon-color-tertiary">
                     {% render 'icon-flecha-abajo' %}
                   </div>
@@ -194,7 +194,7 @@
               >
                 <p>Tamaño</p>
                 <button id="phpi-view-variantes" class="container-info-variante">
-                  <p id="phpm-variante-seleccionado">Personal</p>
+                  <p id="phpi-variante-seleccionado">Personal</p>
                   <div class="icono-dropdown-variantes icon-color-tertiary">
                     {% render 'icon-flecha-abajo' %}
                   </div>
@@ -250,7 +250,7 @@
             >
               <p>Tamaño</p>
               <button id="phpi-view-variantes" class="container-info-variante">
-                <p id="phpm-variante-seleccionado">Personal</p>
+                <p id="phpi-variante-seleccionado">Personal</p>
                 <div class="icono-dropdown-variantes icon-color-tertiary">
                   {% render 'icon-flecha-abajo' %}
                 </div>
@@ -302,7 +302,7 @@
             >
               <p>Tamaño</p>
               <button id="phpi-view-variantes" class="container-info-variante">
-                <p id="phpm-variante-seleccionado">Personal</p>
+                <p id="phpi-variante-seleccionado">Personal</p>
                 <div class="icono-dropdown-variantes icon-color-tertiary">
                   {% render 'icon-flecha-abajo' %}
                 </div>
@@ -354,7 +354,7 @@
             >
               <p>Tamaño</p>
               <button id="phpi-view-variantes" class="container-info-variante">
-                <p id="phpm-variante-seleccionado">Personal</p>
+                <p id="phpi-variante-seleccionado">Personal</p>
                 <div class="icono-dropdown-variantes icon-color-tertiary">
                   {% render 'icon-flecha-abajo' %}
                 </div>
@@ -406,7 +406,7 @@
             >
               <p>Tamaño</p>
               <button id="phpi-view-variantes" class="container-info-variante">
-                <p id="phpm-variante-seleccionado">Personal</p>
+                <p id="phpi-variante-seleccionado">Personal</p>
                 <div class="icono-dropdown-variantes icon-color-tertiary">
                   {% render 'icon-flecha-abajo' %}
                 </div>
@@ -495,6 +495,9 @@
           this.redireccionPersonalizar.bind(this, elementoBtnPersonalizar)
         );
       });
+      this.varianteElemento.forEach((elementoBase) => {
+        elementoBase.addEventListener('click', this.procesoVarianteSeleccionada.bind(this, elementoBase));
+      });
       document.addEventListener('click', this.clicksEspeciales.bind(this));
 
       // INICIALIZAR ELEMENTOS Y PROCESOS CLAVES
@@ -563,6 +566,28 @@
 
       localStorage.setItem('phpp-tipo-producto', dataPadre);
       window.location.href = "/pages/producto";
+    }
+
+
+    procesoVarianteSeleccionada(elementoBase){
+      // Busco dentro del elemento al la primer etiqueta <p> y obtengo su valor ya que tenog 3 etiqueta p
+      const primerP = elementoBase.querySelectorAll('p')[0];
+      // Busco al elemento Padre General con id="phpi-general-variantes"
+      const padreGeneral = elementoBase.closest('#phpi-general-variantes');
+      // Busco al hijo de Padre con id="phpi-view-variantes"
+      const hijo = padreGeneral.querySelector('#phpi-view-variantes');
+      // El hijo tiene otro hijo que es una etiqueta p con id="phpi-variante-seleccionado"
+      const hijoP = hijo.querySelector('#phpi-variante-seleccionado');
+      hijoP.innerHTML = primerP.innerHTML; // Cambiamos el valor de la etiqueta p
+      // Busco al elemento Padre id="phpi-items-variantes"
+      // O tambien cierro a todos con ese id
+      this.contenedorVariantes.forEach((elementoBase) => {
+        if (elementoBase !== padreGeneral) {
+          {% comment %} elementoBase.style.display = "none"; {% endcomment %}
+          elementoBase.classList.remove('elemento-visible');
+          elementoBase.classList.add('elemento-oculto');
+        }
+      });
     }
   }
 
