@@ -784,7 +784,10 @@
       );
 
       // Se guarda en el localStorage las coordendas del local
-      const direccion = await AuxiliaresGlobal.obtenerDireccionDesdeCoordenadas(localSeleccionado.lat, localSeleccionado.lng);
+      const direccion = await AuxiliaresGlobal.obtenerDireccionDesdeCoordenadas(
+        localSeleccionado.lat, 
+        localSeleccionado.lng
+      );
       {% comment %} const direccion = await this.obtenerDireccionDesdeCordenadas(localSeleccionado.lat, localSeleccionado.lng); {% endcomment %}
       localStorage.setItem('direccion-cliente', JSON.stringify(direccion));
       localStorage.setItem('ubicacion-cliente', JSON.stringify({
@@ -1119,7 +1122,10 @@
       console.log('Ubicacion guardada en localStorage: ', localStorage.getItem('ubicacion-cliente'));
       this.cerrarModal();
       localStorage.setItem('ph-metodo-entrega', 'domicilio');
-      const direccion = await AuxiliaresGlobal.obtenerDireccionDesdeCoordenadas(localSeleccionado.lat, localSeleccionado.lng);
+      const direccion = await AuxiliaresGlobal.obtenerDireccionDesdeCoordenadas(
+        this.coordenadas.lat, 
+        this.coordenadas.lng
+      );
 
       {% comment %} const direccion = await this.obtenerDireccionDesdeCordenadas(
         this.coordenadas.lat, 
@@ -1150,7 +1156,10 @@
     }
 
     async botonOmitirPrincipal(){
-      const direccion = await AuxiliaresGlobal.obtenerDireccionDesdeCoordenadas(localSeleccionado.lat, localSeleccionado.lng);
+      const direccion = await AuxiliaresGlobal.obtenerDireccionDesdeCoordenadas(
+        this.coordenadas.lat,
+        this.coordenadas.lng
+        );
       {% comment %} const direccion = await this.obtenerDireccionDesdeCordenadas(
         this.coordenadas.lat, 
         this.coordenadas.lng
@@ -1165,7 +1174,10 @@
 
     async botonSiguientePrincipal(){
 
-      const direccion = await AuxiliaresGlobal.obtenerDireccionDesdeCoordenadas(localSeleccionado.lat, localSeleccionado.lng);
+      const direccion = await AuxiliaresGlobal.obtenerDireccionDesdeCoordenadas(
+        this.coordenadas.lat, 
+        this.coordenadas.lng
+      );
       {% comment %}
       const direccion = await this.obtenerDireccionDesdeCordenadas(
         this.coordenadas.lat, 
