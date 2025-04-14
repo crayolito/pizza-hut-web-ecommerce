@@ -1792,6 +1792,9 @@
       const elementoPadre = elementoBase.closest('#phpm-general-variantes');
       // Busco a su hermano
       const hermano = elementoPadre.querySelector('#phpm-items-variantes');
+
+      console.log('elementoPadre', elementoPadre);
+      console.log('hermano', hermano);
       // Verifico si esta visible
       const estaVisible = hermano.style.display === "flex";
       if(estaVisible){
@@ -1847,6 +1850,9 @@
       // Verificar si hay un valor en el localStorage
       const dataLocalStorage = localStorage.getItem('phph-itemMenu') || "todo";
       // Revisar el valor y mostrar la seccion correspondiente
+
+      // Preseleccionar el primer elemento solamente
+      this.opcionesMenu[0].classList.add('seleccionado');
 
       if(dataLocalStorage == "pizzas"){
         this.seccionTodoYOfertas.style.display = "none";
