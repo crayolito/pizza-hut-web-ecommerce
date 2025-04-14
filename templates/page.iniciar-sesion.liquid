@@ -50,36 +50,41 @@
         {% render 'icon-google' %}
         <p>Continuar con Google</p>
       {% endcomment %}
-      <button class="ph-btn-secundario">
-        <!-- FACEBOOK LOGIN - MÍNIMO NECESARIO -->
-        <div id="fb-root"></div>
-        <div
-          class="fb-login-button"
-          data-width="300"
-          data-size="large"
-          data-button-type="continue_with"
-          data-scope="public_profile,email"
-        ></div>
-      </button>
+      {% comment %}
+        <button class="ph-btn-secundario">
+        </button>
+      {% endcomment %}
+      <!-- FACEBOOK LOGIN - MÍNIMO NECESARIO -->
+      <div id="fb-root"></div>
+      <div
+        class="fb-login-button"
+        data-width="300"
+        data-size="large"
+        data-button-type="continue_with"
+        data-scope="public_profile,email"
+      ></div>
       {% comment %}
         id="phpis-btn-facebook"
         {% render 'icon-facebook-custom' %}
         <p>Continuar con Facebook</p>
       {% endcomment %}
-      <button class="ph-btn-secundario">
-        <div
-          id="g_id_onload"
-          data-client_id="658161391897-43e6il3h9ugg7vmecsmstrc8fbl0esmg.apps.googleusercontent.com"
-          data-callback="handleGoogleLogin"
-        ></div>
+      {% comment %}
+        <button class="ph-btn-secundario">
+        </button>
+      {% endcomment %}
 
-        <div
-          class="g_id_signin"
-          data-type="standard"
-          data-size="large"
-          data-width="300"
-        ></div>
-      </button>
+      <div
+        id="g_id_onload"
+        data-client_id="658161391897-43e6il3h9ugg7vmecsmstrc8fbl0esmg.apps.googleusercontent.com"
+        data-callback="handleGoogleLogin"
+      ></div>
+
+      <div
+        class="g_id_signin"
+        data-type="standard"
+        data-size="large"
+        data-width="300"
+      ></div>
       <div class="pccph-modal-separador">
         <div class="pccph-modal-separador-linea"></div>
         <p class="color-letras-extra">¿No puedes iniciar sesión?</p>
