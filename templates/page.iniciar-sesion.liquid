@@ -226,8 +226,8 @@
       this.input = this.querySelector('#phpis-input');
       this.mensajeVerificarNumero = this.querySelector('#phpis-mensaje-verificar-numero');
       this.btnIniciarSesion = this.querySelector('#phpis-btn-iniciar-sesion');
-      this.btnGoogle = this.querySelector('#phpis-btn-google');
-      this.btnFacebook = this.querySelector('#phpis-btn-facebook');
+      {% comment %} this.btnGoogle = this.querySelector('#phpis-btn-google');
+      this.btnFacebook = this.querySelector('#phpis-btn-facebook'); {% endcomment %}
       this.containerGeneral = this.querySelector('#phpis-container-modal');
       this.containerSnipper = this.querySelector('#phpis-snipper-modal');
       this.containerMensaje = this.querySelector('#phpis-mensaje-proceso');
@@ -245,8 +245,8 @@
       this.input3Verificacion.addEventListener('input', this.verificarNumero.bind(this));
       this.input4Verificacion.addEventListener('input', this.verificarNumero.bind(this));
       this.btnIniciarSesion.addEventListener('click', this.iniciarSesion.bind(this));
-      this.btnGoogle.addEventListener('click', this.iniciarSesionGoogle.bind(this));
-      this.btnFacebook.addEventListener('click', this.iniciarSesionFacebook.bind(this));
+      {% comment %} this.btnGoogle.addEventListener('click', this.iniciarSesionGoogle.bind(this));
+      this.btnFacebook.addEventListener('click', this.iniciarSesionFacebook.bind(this)); {% endcomment %}
 
       // INICIALIZAR ELEMENTOS
       this.reiniciarProceso();
@@ -261,8 +261,8 @@
       this.input3Verificacion.removeEventListener('input', this.verificarNumero);
       this.input4Verificacion.removeEventListener('input', this.verificarNumero);
       this.btnIniciarSesion.removeEventListener('click', this.iniciarSesion);
-      this.btnGoogle.removeEventListener('click', this.iniciarSesionGoogle);
-      this.btnFacebook.removeEventListener('click', this.iniciarSesionFacebook);
+      {% comment %} this.btnGoogle.removeEventListener('click', this.iniciarSesionGoogle);
+      this.btnFacebook.removeEventListener('click', this.iniciarSesionFacebook); {% endcomment %}
 
       // Si añadiste los botones de cancelar o volver
       if (this.btnVolver) {
