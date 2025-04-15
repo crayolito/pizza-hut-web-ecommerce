@@ -1528,6 +1528,7 @@
 {% endstyle %}
 
 <script>
+
   class PageMenuProductos extends HTMLElement {
     constructor() {
       super();
@@ -1619,30 +1620,57 @@
       });
     }
 
-    verificacionDataEnLocalStorage(){
+    verificacionDataEnLocalStorage() {
       // Verificar si hay un valor en el localStorage
       const dataLocalStorage = localStorage.getItem('phph-itemMenu') || "todo";
-      // Revisar el valor y mostrar la seccion correspondiente
 
-      // Preseleccionar el primer elemento solamente
-      this.opcionesMenu[0].classList.add('seleccionado');
+      console.log("Data Local Storage: ", dataLocalStorage);
 
-      if(dataLocalStorage == "pizzas"){
+      // Mostrar la sección correspondiente según el valor en localStorage
+      if(dataLocalStorage == "pizzas") {
         this.seccionTodoYOfertas.style.display = "none";
         this.seccionPizzas.style.display = "flex";
         this.seccionPostresYGaseosas.style.display = "none";
-      }
-
-      if(dataLocalStorage == "postres" || dataLocalStorage == "gaseosas y cervezas"){
+      } else if(dataLocalStorage == "postres" || dataLocalStorage == "gaseosas y cervezas") {
         this.seccionTodoYOfertas.style.display = "none";
         this.seccionPizzas.style.display = "none";
         this.seccionPostresYGaseosas.style.display = "flex";
-      }
-
-      if(dataLocalStorage == "todo" || dataLocalStorage == "ofertas"){
+      } else if(dataLocalStorage == "todo" || dataLocalStorage == "ofertas") {
         this.seccionTodoYOfertas.style.display = "flex";
         this.seccionPizzas.style.display = "none";
         this.seccionPostresYGaseosas.style.display = "none";
+      }
+
+      // Quitar selección de todos los elementos
+      this.opcionesMenu.forEach((elementoItemMenu) => {
+        elementoItemMenu.classList.remove('seleccionado');
+      });
+
+      // Encontrar y seleccionar el elemento que coincide con el valor del localStorage
+      let elementoSeleccionado = null;
+
+      this.opcionesMenu.forEach((elementoItemMenu) => {
+        const dataPadre = elementoItemMenu.getAttribute('categoria');
+
+        if(dataPadre == dataLocalStorage) {
+          elementoItemMenu.classList.add('seleccionado');
+          elementoSeleccionado = elementoItemMenu;
+        }
+      });
+
+      // Si encontramos el elemento seleccionado, hacemos scroll hacia él
+      if(elementoSeleccionado) {
+        // Retrasamos ligeramente el scroll para asegurar que los elementos ya se han renderizado
+        setTimeout(() => {
+          // Calculamos la posición para centrar el elemento en el contenedor
+          const contenedor = document.querySelector('.phpm-items-menu');
+          const offsetLeft = elementoSeleccionado.offsetLeft;
+          const elementoWidth = elementoSeleccionado.offsetWidth;
+          const contenedorWidth = contenedor.offsetWidth;
+
+          // Scroll hacia el elemento seleccionado centrándolo en el viewport
+          contenedor.scrollLeft = offsetLeft - (contenedorWidth / 2) + (elementoWidth / 2);
+        }, 100);
       }
     }
 
@@ -1657,12 +1685,12 @@
       localStorage.setItem('phph-itemMenu', dataPadre);
 
       // Se agrega un atributo para que muestre seleccion
-      elementoItemMenu.classList.add('seleccionado');
+      padreElemento.classList.add('seleccionado');
 
       // Si hay otra opcion seleccionada, se le quita el atributo
-      this.opcionesMenu.forEach((elementoItemMenu) => {
-        if (elementoItemMenu !== padreElemento) {
-          elementoItemMenu.classList.remove('seleccionado');
+      this.opcionesMenu.forEach((opcion) => {
+        if (opcion !== padreElemento) {
+          opcion.classList.remove('seleccionado');
         }
       });
 
@@ -1685,6 +1713,14 @@
         this.seccionPostresYGaseosas.style.display = "none";
       }
 
+      // Hacer scroll para que el elemento seleccionado sea visible
+      const contenedor = document.querySelector('.phpm-items-menu');
+      const offsetLeft = padreElemento.offsetLeft;
+      const elementoWidth = padreElemento.offsetWidth;
+      const contenedorWidth = contenedor.offsetWidth;
+
+      // Scroll hacia el elemento seleccionado centrándolo en el viewport
+      contenedor.scrollLeft = offsetLeft - (contenedorWidth / 2) + (elementoWidth / 2);
     }
 
     agregarCarrito() {

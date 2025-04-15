@@ -37,7 +37,6 @@ class AuxiliaresGlobal {
       }
     }
   }
-      
   static limpiarCarrito(){}
   static eliminarCarrito(){}
 
@@ -112,4 +111,88 @@ class AuxiliaresGlobal {
   static mensajeExito(){}
   static mensajeAlerta(){}
   static mensajeInformacion(){}
+
+  // Metodo para capturar la cantidad 
 }
+
+class CantidadInput extends HTMLElement {
+  constructor() {
+    super();
+    this.iconos
+    
+    this.cantidadEtiqueta = parseInt(this.querySelector('p').textContent) || 0;
+    this.btn = this.querySelectorAll('button');
+    this.contenedorGeneral = this.querySelector('div');
+    this.baseTrabajo = null;
+    this.min = null;
+    this.max = null;
+  }
+
+  connectedCallback() {
+    this.inicializarElemento();
+    this.btn.forEach((boton) => {
+      boton.addEventListener('click',this.manejarAccionBoton.bind(this,boton));
+    });
+  }
+
+  inicializarElemento(){
+    this.baseTrabajo = this.contenedorGeneral.getAttribute('origen-trabajo') || 'no-definido';
+    this.min = this.contenedorGeneral.getAttribute('min') || 0;
+    this.max = this.contenedorGeneral.getAttribute('max') || 100;
+    this.idProducto = this.contenedorGeneral.getAttribute('id-producto') || 'no-definido';
+    this.hadle = this.contenedorGeneral.getAttribute('handle') || 'no-definido';
+
+    console.log('Base de trabajo:', this.baseTrabajo);
+    if(this.baseTrabajo != 'carrito'){
+      this.btn[1].classList.remove('elemento-oculto');
+    }else{
+      this.btn[0].classList.remove('elemento-oculto');
+    }
+   }
+
+   manejarAccionBoton(boton){
+    const accion = boton.getAttribute('accion');
+
+    if(accion == 'incrementar'){
+      if (this.cantidadEtiqueta >= this.max) {
+        return;
+      }
+      this.cantidadEtiqueta++;
+      this.querySelector('p').textContent = this.cantidadEtiqueta;
+      if (this.cantidadEtiqueta >= 0  && this.baseTrabajo == 'carrito') {
+        this.btn[0].classList.add('elemento-oculto');
+        this.btn[1].classList.remove('elemento-oculto');
+      }    
+    }
+
+    if(accion == 'decrementar'){
+      if (this.cantidadEtiqueta <= this.min) {
+        return;
+      }
+      this.cantidadEtiqueta--;
+      this.querySelector('p').textContent = this.cantidadEtiqueta;
+      console.log({
+        cantidadEtiqueta: this.cantidadEtiqueta,
+        baseTrabajo: this.baseTrabajo,
+        accion: accion,
+      })
+      if (this.cantidadEtiqueta <= 0  && this.baseTrabajo == 'carrito') {
+        this.btn[0].classList.remove('elemento-oculto');
+        this.btn[1].classList.add('elemento-oculto');
+      }
+    }
+  }
+}
+
+customElements.define('cantidad-input', CantidadInput);
+
+
+//  <div class="ppme-modal-item-extra-cantidad">
+//                   <button class="ppme-modal-item-extra-cantidad-button icon-color-tertiary">
+//                     {% render 'icon-menos' %}
+//                   </button>
+//                   <p>0</p>
+//                   <button class="ppme-modal-item-extra-cantidad-button icon-color-tertiary">
+//                     {% render 'icon-mas' %}
+//                   </button>
+//                 </div> 

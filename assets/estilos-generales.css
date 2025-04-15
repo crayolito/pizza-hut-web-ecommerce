@@ -38,6 +38,11 @@
      11. MEDIA QUERIES
      ========================================================================== */
 
+cantidad-input {
+  width: 100%;
+  height: auto;
+}
+
 /* =================================
   3. PRODUCTO PROMOCION CARRITO
 ================================= */
@@ -594,14 +599,15 @@
   bottom: 0;
   left: 0;
   width: 100%;
+  min-width: 100%;
   max-width: 40.25rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: var(--espaciado-l);
+  gap: var(--espaciado-xs);
   height: max-content;
-  padding: var(--espaciado-xl);
+  padding: var(--espaciado-l) var(--espaciado-xl);
   background-color: var(--colorp-secondary);
   border-top: 1px solid #dedede;
 }
@@ -642,6 +648,15 @@
   gap: var(--espaciado-xs);
 }
 
+.ph-btn-general svg,
+.ph-btn-general svg path,
+.ph-btn-general svg mask rect,
+.ph-btn-general svg g,
+.ph-btn-general path,
+.ph-btn-general g {
+  fill: var(--colorp-secondary);
+}
+
 .ph-btn-general p {
   color: var(--colorp-secondary);
   font-weight: 600;
@@ -658,6 +673,15 @@
   border-radius: var(--espaciado-xs);
   background-color: #efefef;
   gap: var(--espaciado-xs);
+}
+
+.ph-btn-general.desactivado svg,
+.ph-btn-general.desactivado svg path,
+.ph-btn-general.desactivado svg mask rect,
+.ph-btn-general.desactivado svg g,
+.ph-btn-general.desactivado path,
+.ph-btn-general.desactivado g {
+  fill: var(--colorp-extra);
 }
 
 .ph-btn-general.desactivado p {
@@ -1173,6 +1197,7 @@
     background-color: transparent;
     border-top: 0;
     padding: 0;
+    gap: var(--espaciado-l);
   }
 
   .container-main-smecph {

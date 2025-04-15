@@ -1,455 +1,1132 @@
 <!-- Hoja de estilos css -->
 {{ 'estilos-generales.css' | asset_url | stylesheet_tag }}
-
 {{ 'page.producto.css' | asset_url | stylesheet_tag }}
 
-<div class="container-base pmph-container">
-  <div class="pmph-imagen compleja">
-    <!-- IMAGE PRODUCTO SIMPLE -->
-    <img class="phmp-img-simple" src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
-    <!-- IMAGE PRODUCTO COMPLEJO -->
-    <div class="phmp-img-compleja">
-      <!-- BORDE DE PIZZA -->
+<ph-producto>
+  <div class="container-base pmph-container">
+    <div class="pmph-imagen compleja">
+      <!-- IMAGE PRODUCTO SIMPLE -->
       <img
-        class="phmp-borde-pizza-img"
-        src="{{ 'pizza-borde.png' | asset_url }}"
+        id="phmp-contenido-ver-producto-simple"
+        class="phmp-img-simple"
+        src="{{ 'imagen-pizza-1.png' | asset_url }}"
         alt="Pizza 1"
         width="100%"
         height="100%"
       >
-      <!-- SEPARADOS DE MITAD DE PIZZA -->
-      <img
-        class="phmp-separador-pizza-img"
-        src="{{ 'separador-mitad-pizza.png' | asset_url }}"
-        alt="Pizza 1"
-        width="100%"
-        height="100%"
+      <!-- IMAGE PRODUCTO COMPLEJO -->
+      <div
+        id="phmp-contenido-ver-producto-complejo"
+        class="phmp-img-compleja"
       >
-      <!-- SECCION BOTONES PARA TIPO DE MITADD -->
-      <div class="phmp-detalle-imagen-compleja-botones">
-        <button class="phmp-pizza-seleccion-mitad seleccionado">
-          <p>LADO IZQUIERDO</p>
-          {% render 'icon-estado-on-plus' %}
-        </button>
-        <button class="phmp-pizza-seleccion-mitad">
-          <p>LADO DERECHO</p>
-          {% render 'icon-flecha-derecha' %}
-        </button>
-      </div>
-      <!-- SECCION MITADES DE PIZZA -->
-      <div class="phmp-imagenes-mitades">
-        <div class="phmp-mitad-izquierda">
-          <img src="{{ 'imagen-mitad-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
-        </div>
-        <div class="phmp-mitad-derecha"></div>
-      </div>
-    </div>
-  </div>
-  <div class="pmph-detalle-producto">
-    <div class="pmph-header">
-      <button class="pmph-volver-atras icon-color-primary ">
-        {% render 'icon-volver-atras' %}
-        <p class="color-letras-primary">Volver</p>
-      </button>
-      <small>Choclo y Tocino</small>
-      <p>Salsa de tomate, queso mozarella, Choclo y tocino</p>
-    </div>
-    <div class="pmph-seleccion">
-      <div class="pmph-seleccion-normal pmph-cantidad">
-        <h3>Cantidad</h3>
-        <div class="pmph-cantidad-selector">
-          <button class="pmph-cantidad-selector-button icon-color-tertiary">
-            {% render 'icon-menos' %}
+        <!-- BORDE DE PIZZA -->
+        <img
+          class="phmp-borde-pizza-img"
+          src="{{ 'pizza-borde.png' | asset_url }}"
+          alt="Pizza 1"
+          width="100%"
+          height="100%"
+        >
+        <!-- SEPARADOS DE MITAD DE PIZZA -->
+        <img
+          class="phmp-separador-pizza-img"
+          src="{{ 'separador-mitad-pizza.png' | asset_url }}"
+          alt="Pizza 1"
+          width="100%"
+          height="100%"
+        >
+        <!-- SECCION BOTONES PARA TIPO DE MITADD -->
+        <div class="phmp-detalle-imagen-compleja-botones">
+          <button
+            lado-pizza-btn="izquierda"
+            id="phpm-btn-complejo-izq"
+            class="phmp-pizza-seleccion-mitad "
+          >
+            <p>LADO IZQUIERDO</p>
+            <div class="phmp-psm-icon">
+              {% render 'icon-volver-atras' %}
+            </div>
           </button>
-          <p>0</p>
-          <button class="pmph-cantidad-selector-button icon-color-tertiary">
-            {% render 'icon-mas' %}
+          <button
+            lado-pizza-btn="derecha"
+            id="phpm-btn-complejo-der"
+            class="phmp-pizza-seleccion-mitad"
+          >
+            <p>LADO DERECHO</p>
+            <div class="phmp-psm-icon">
+              {% render 'icon-flecha-derecha' %}
+            </div>
           </button>
         </div>
-      </div>
-      <div id="pmph-seleccion-n1" class="pmph-seleccion-normal ">
-        <h3>Tamaño</h3>
-        <div class="pmp-item-simple">
-          <div class="pmp-item-simple-info">
-            <h3>Personal</h3>
-            <p>para 1 persona</p>
+        <!-- SECCION MITADES DE PIZZA -->
+        <div class="phmp-imagenes-mitades">
+          <div id="phpm-producto-complejo-img-izq" class="phmp-mitad-izquierda">
+            <img src="{{ 'imagen-mitad-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
           </div>
-          <div class="pmp-item-simple-escoger">
-            {% render 'icon-estado-off' %}
-          </div>
-        </div>
-        <div class="pmp-item-simple seleccionado">
-          <div class="pmp-item-simple-info seleccionado">
-            <h3>Mediana</h3>
-            <p>para 3 personas + Bs. 18</p>
-          </div>
-          <div class="pmp-item-simple-escoger">
-            {% render 'icon-estado-on-plus' %}
-          </div>
-        </div>
-        <div class="pmp-item-simple">
-          <div class="pmp-item-simple-info">
-            <h3>Grande</h3>
-            <p>para 4 personas + Bs. 61</p>
-          </div>
-          <div class="pmp-item-simple-escoger">
-            {% render 'icon-estado-off' %}
-          </div>
-        </div>
-        <div class="pmp-item-simple seleccionado">
-          <div class="pmp-item-simple-info seleccionado">
-            <h3>Familiar</h3>
-            <p>para 5 personas + Bs. 87</p>
-          </div>
-          <div class="pmp-item-simple-escoger">
-            {% render 'icon-estado-on-plus' %}
+          <div id="phpm-producto-complejo-img-der" class="phmp-mitad-derecha">
+            <img src="{{ 'imagen-mitad-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
           </div>
         </div>
       </div>
-      <div id="pmph-seleccion-n2" class="pmph-seleccion-especial ">
-        <h3>Masa y Borde</h3>
-        <div class="pmp-item-complejo">
-          <div class="pmp-item-complejo-imagen">
-            <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
-          </div>
-          <div class="pmp-item-complejo-info">
-            <p>PAN PIZZA</p>
-            <div class="pmp-item-container-n2-escoger">
+    </div>
+    <div class="pmph-detalle-producto">
+      <div class="pmph-header">
+        <button class="pmph-volver-atras icon-color-primary ">
+          {% render 'icon-volver-atras' %}
+          <p class="color-letras-primary">Volver</p>
+        </button>
+        <small>Choclo y Tocino</small>
+        <p>Salsa de tomate, queso mozarella, Choclo y tocino</p>
+      </div>
+      <div class="pmph-seleccion">
+        <div class="pmph-seleccion-normal pmph-cantidad">
+          <h3>Cantidad</h3>
+          <cantidad-input>
+            <div
+              origen-trabajo="producto"
+              min="0"
+              max="10"
+              id="producto-id"
+              handle="producto-handle"
+              class="pmph-cantidad-selector"
+            >
+              <button
+                accion="decrementar"
+                class="pmph-cantidad-selector-button elemento-oculto icon-color-tertiary"
+              >
+                {% render 'icon-basura' %}
+              </button>
+              <button
+                accion="decrementar"
+                class="pmph-cantidad-selector-button  elemento-oculto icon-color-tertiary"
+              >
+                {% render 'icon-menos' %}
+              </button>
+              <p>0</p>
+              <button
+                accion="incrementar"
+                class="pmph-cantidad-selector-button icon-color-tertiary"
+              >
+                {% render 'icon-mas' %}
+              </button>
+            </div>
+          </cantidad-input>
+        </div>
+        <div id="pmph-seleccion-n1" class="pmph-seleccion-normal ">
+          <h3>Tamaño</h3>
+          <button id="pmp-item-n1" class="pmp-item-simple">
+            <div class="pmp-item-simple-info">
+              <h3>Personal</h3>
+              <p>para 1 persona</p>
+            </div>
+            <div class="pmp-item-simple-escoger">
               {% render 'icon-estado-off' %}
             </div>
-          </div>
-        </div>
-        <div class="pmp-item-complejo seleccionado">
-          <div class="pmp-item-complejo-imagen seleccionado">
-            <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
-          </div>
-          <div class="pmp-item-complejo-info seleccionado">
-            <p>CRISPY: DELGADA Y CRUJIENTE</p>
-            <div class="pmp-item-container-n2-escoger">
-              {% render 'icon-estado-on-plus' %}
+          </button>
+          <button id="pmp-item-n1" class="pmp-item-simple desactivado">
+            <div class="pmp-item-simple-info seleccionado">
+              <h3>Mediana</h3>
+              <p>para 3 personas + Bs. 18</p>
             </div>
-          </div>
-        </div>
-        <div class="pmp-item-complejo">
-          <div class="pmp-item-complejo-imagen">
-            <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
-          </div>
-          <div class="pmp-item-complejo-info">
-            <p>PAN PIZZA</p>
-            <div class="pmp-item-container-n2-escoger">
+            <div class="pmp-item-simple-escoger">
+              {% comment %} {% render 'icon-estado-on-plus' %} {% endcomment %}
               {% render 'icon-estado-off' %}
             </div>
-          </div>
+          </button>
+          <button id="pmp-item-n1" class="pmp-item-simple desactivado">
+            <div class="pmp-item-simple-info">
+              <h3>Grande</h3>
+              <p>para 4 personas + Bs. 61</p>
+            </div>
+            <div class="pmp-item-simple-escoger">
+              {% render 'icon-estado-off' %}
+            </div>
+          </button>
+          <button id="pmp-item-n1" class="pmp-item-simple ">
+            <div class="pmp-item-simple-info seleccionado">
+              <h3>Familiar</h3>
+              <p>para 5 personas + Bs. 87</p>
+            </div>
+            <div class="pmp-item-simple-escoger">
+              {% render 'icon-estado-off' %}
+            </div>
+          </button>
         </div>
-        <div class="pmp-item-complejo seleccionado">
-          <div class="pmp-item-complejo-imagen seleccionado">
-            <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
-          </div>
-          <div class="pmp-item-complejo-info seleccionado">
-            <p>PAN PIZZA</p>
-            <div class="pmp-item-container-n2-escoger">
-              {% render 'icon-estado-on-plus' %}
+        <div id="pmph-seleccion-n2" class="pmph-seleccion-especial ">
+          <h3>Masa y Borde</h3>
+          <button id="pmp-item-n2" class="pmp-item-complejo">
+            <div class="pmp-item-complejo-imagen">
+              <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
             </div>
-          </div>
+            <div class="pmp-item-complejo-info">
+              <p>PAN PIZZA</p>
+              <div class="pmp-item-simple-escoger">
+                {% render 'icon-estado-off' %}
+              </div>
+            </div>
+          </button>
+          <button id="pmp-item-n2" class="pmp-item-complejo ">
+            <div class="pmp-item-complejo-imagen seleccionado">
+              <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+            </div>
+            <div class="pmp-item-complejo-info seleccionado">
+              <p>CRISPY: DELGADA Y CRUJIENTE</p>
+              <div class="pmp-item-simple-escoger">
+                {% render 'icon-estado-off' %}
+              </div>
+            </div>
+          </button>
+          <button id="pmp-item-n2" class="pmp-item-complejo">
+            <div class="pmp-item-complejo-imagen">
+              <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+            </div>
+            <div class="pmp-item-complejo-info">
+              <p>PAN PIZZA</p>
+              <div class="pmp-item-simple-escoger">
+                {% render 'icon-estado-off' %}
+              </div>
+            </div>
+          </button>
+          <button id="pmp-item-n2" class="pmp-item-complejo desactivado">
+            <div class="pmp-item-complejo-imagen seleccionado">
+              <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+            </div>
+            <div class="pmp-item-complejo-info seleccionado">
+              <p>PAN PIZZA</p>
+              <div class="pmp-item-simple-escoger">
+                {% render 'icon-estado-off' %}
+              </div>
+            </div>
+          </button>
         </div>
-      </div>
-      <div id="pmph-seleccion-n3" class="pmph-seleccion-especial">
-        <h3>Extras</h3>
-        <div class="pmp-item-complejo ">
-          <div class="pmp-item-complejo-imagen ">
-            <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
-          </div>
-          <div class="pmp-item-complejo-info">
-            <div class="pmp-item-complejo-info-detalle ">
-              <p>Piña</p>
-              <p>+Bs 7</p>
-            </div>
-            <div class="pmp-item-container-n2-escoger">
-              {% render 'icon-checkbox-off' %}
-            </div>
-          </div>
-        </div>
-        <div class="pmp-item-complejo seleccionado">
-          <div class="pmp-item-complejo-imagen seleccionado">
-            <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
-          </div>
-          <div class="pmp-item-complejo-info">
-            <div class="pmp-item-complejo-info-detalle seleccionado">
-              <p>Salsa de Tomate</p>
-              <p>+Bs 7</p>
-            </div>
-            <div class="pmp-item-container-n2-escoger">
-              {% render 'icon-checkbox-on' %}
-            </div>
-          </div>
-        </div>
-        <div class="pmp-item-complejo ">
-          <div class="pmp-item-complejo-imagen ">
-            <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
-          </div>
-          <div class="pmp-item-complejo-info">
-            <div class="pmp-item-complejo-info-detalle ">
-              <p>Pepperoni</p>
-              <p>+Bs 7</p>
-            </div>
-            <div class="pmp-item-container-n2-escoger">
-              {% render 'icon-checkbox-off' %}
-            </div>
-          </div>
-        </div>
-        <div class="pmp-item-complejo seleccionado">
-          <div class="pmp-item-complejo-imagen seleccionado">
-            <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
-          </div>
-          <div class="pmp-item-complejo-info">
-            <div class="pmp-item-complejo-info-detalle seleccionado">
-              <p>Aceitunas</p>
-              <p>+Bs 7</p>
-            </div>
-            <div class="pmp-item-container-n2-escoger">
-              {% render 'icon-checkbox-on' %}
-            </div>
-          </div>
-        </div>
-        <div class="pmp-item-simple-escoger"></div>
-      </div>
-      <div id="pmph-seleccion-extras-n1" class="pmph-seleccion-normal">
-        <div class="pmph-extras-header">
+        <div id="pmph-seleccion-n3" class="pmph-seleccion-especial">
           <h3>Extras</h3>
+          <button id="pmp-item-n3" class="pmp-item-complejo desactivado">
+            <div class="pmp-item-complejo-imagen ">
+              <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+            </div>
+            <div class="pmp-item-complejo-info">
+              <div class="pmp-item-complejo-info-detalle ">
+                <p>Piña</p>
+                <p>+Bs 7</p>
+              </div>
+              <div class="pmp-item-simple-escoger">
+                {% render 'icon-checkbox-off' %}
+              </div>
+            </div>
+          </button>
+          <button id="pmp-item-n3" class="pmp-item-complejo ">
+            <div class="pmp-item-complejo-imagen seleccionado">
+              <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+            </div>
+            <div class="pmp-item-complejo-info">
+              <div class="pmp-item-complejo-info-detalle seleccionado">
+                <p>Salsa de Tomate</p>
+                <p>+Bs 7</p>
+              </div>
+              <div class="pmp-item-simple-escoger">
+                {% render 'icon-checkbox-off' %}
+              </div>
+            </div>
+          </button>
+          <button id="pmp-item-n3" class="pmp-item-complejo desactivado">
+            <div class="pmp-item-complejo-imagen ">
+              <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+            </div>
+            <div class="pmp-item-complejo-info">
+              <div class="pmp-item-complejo-info-detalle ">
+                <p>Pepperoni</p>
+                <p>+Bs 7</p>
+              </div>
+              <div class="pmp-item-simple-escoger">
+                {% render 'icon-checkbox-off' %}
+              </div>
+            </div>
+          </button>
+          <button id="pmp-item-n3" class="pmp-item-complejo ">
+            <div class="pmp-item-complejo-imagen seleccionado">
+              <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+            </div>
+            <div class="pmp-item-complejo-info">
+              <div class="pmp-item-complejo-info-detalle seleccionado">
+                <p>Aceitunas</p>
+                <p>+Bs 7</p>
+              </div>
+              <div class="pmp-item-simple-escoger">
+                {% render 'icon-checkbox-off' %}
+              </div>
+            </div>
+          </button>
         </div>
-        <!-- CUANDO NO HAY SELECCIONADO UN EXTRA -->
-        <div class="pmph-extras">
-          <p>SELECcIONAR POSTRE</p>
-          <button class="pmph-extras-button icon-color-primary">
-            {% render 'icon-flecha-izquierda' %}
+        <div id="pmph-seleccion-pizza-mitadymitad" class="pmph-seleccion-normal ">
+          <h3>UN SABOR PARA CADA MITAD</h3>
+          <div
+            lado-pizza="izquierda"
+            id="phpm-item-pizzamitadymitad"
+            class="pmph-extras "
+          >
+            <div class="pmph-extras-detalle">
+              <p class="phpm-mensaje-primario-pizzamitadymitad">CHOCLO Y PIÑA</p>
+              <p>LADO IZQUIERDA</p>
+            </div>
+            <button class="pmph-extras-button">
+              {% render 'icon-flecha-izquierda' %}
+            </button>
+          </div>
+          <div
+            lado-pizza="derecha"
+            id="phpm-item-pizzamitadymitad"
+            class="pmph-extras "
+          >
+            <div class="pmph-extras-detalle">
+              <p class="phpm-mensaje-primario-pizzamitadymitad">CHOCLO Y PIÑA</p>
+              <p>LADO IZQUIERDA</p>
+            </div>
+            <button class="pmph-extras-button ">
+              {% render 'icon-flecha-izquierda' %}
+            </button>
+          </div>
+        </div>
+        <div id="pmph-seleccion-extras-n1" class="pmph-seleccion-basico">
+          <div class="pmph-extras-header">
+            <h3>Postres</h3>
+            <button
+              id="phpm-btn-anadir-extras-n1"
+              class="pmph-extras-button icon-color-primary"
+            >
+              {% render 'icon-mas' %}
+              <p>Añadir</p>
+            </button>
+          </div>
+          <!-- CUANDO NO HAY SELECCIONADO UN EXTRA -->
+          <div id="phpm-vacio-extras-especiales-n1" class="pmph-extras">
+            <p>SELECcIONAR POSTRE</p>
+            <button class="pmph-extras-button icon-color-tertiary ">
+              {% render 'icon-flecha-izquierda' %}
+            </button>
+          </div>
+          <!-- CUANDO HAY SELECCIONADO UN EXTRA -->
+          <div id="phpm-extras-especiales-n1" class="pmp-items-extras-seleccionados">
+            <div id="pmp-item-extra" class="pmp-item-extra-seleccionado">
+              <div class="pmp-item-extra-imagen">
+                <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+              </div>
+              <div class="pmp-item-extra-info">
+                <div class="pmp-item-extra-detalle">
+                  <p>x1</p>
+                  <p>MOUSE MARACUYA</p>
+                  <p>12 Bs</p>
+                </div>
+                <button class="pmp-item-extra-delete icon-color-primary">
+                  {% render 'icon-basura' %}
+                </button>
+              </div>
+            </div>
+            <div id="pmp-item-extra" class="pmp-item-extra-seleccionado">
+              <div class="pmp-item-extra-imagen">
+                <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+              </div>
+              <div class="pmp-item-extra-info">
+                <div class="pmp-item-extra-detalle">
+                  <p>x5</p>
+                  <p>TARTALETA DE LIMON</p>
+                  <p>22 Bs</p>
+                </div>
+                <button class="pmp-item-extra-delete icon-color-primary">
+                  {% render 'icon-basura' %}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="pmph-seleccion-extras-n2" class="pmph-seleccion-basico">
+          <div class="pmph-extras-header">
+            <h3>Gaseosas y cervezas</h3>
+            <button
+              id="phpm-btn-anadir-extras-n2"
+              class="pmph-extras-button icon-color-primary"
+            >
+              {% render 'icon-mas' %}
+              <p>Añadir</p>
+            </button>
+          </div>
+          <!-- CUANDO NO HAY SELECCIONADO UN EXTRA -->
+          <div id="phpm-vacio-extras-especiales-n2" class="pmph-extras">
+            <p>SELECcIONAR</p>
+            <button class="pmph-extras-button icon-color-tertiary ">
+              {% render 'icon-flecha-izquierda' %}
+            </button>
+          </div>
+          <!-- CUANDO HAY SELECCIONADO UN EXTRA -->
+          <div id="phpm-extras-especiales-n2" class="pmp-items-extras-seleccionados">
+            <div id="pmp-item-extra" class="pmp-item-extra-seleccionado">
+              <div class="pmp-item-extra-imagen">
+                <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+              </div>
+              <div class="pmp-item-extra-info">
+                <div class="pmp-item-extra-detalle">
+                  <p>x1</p>
+                  <p>Sprite 2lt</p>
+                  <p>22 Bs</p>
+                </div>
+                <button class="pmp-item-extra-delete icon-color-primary">
+                  {% render 'icon-basura' %}
+                </button>
+              </div>
+            </div>
+            <div id="pmp-item-extra" class="pmp-item-extra-seleccionado">
+              <div class="pmp-item-extra-imagen">
+                <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+              </div>
+              <div class="pmp-item-extra-info">
+                <div class="pmp-item-extra-detalle">
+                  <p>x1</p>
+                  <p>Sprite 2lt</p>
+                  <p>22 Bs</p>
+                </div>
+                <button class="pmp-item-extra-delete icon-color-primary">
+                  {% render 'icon-basura' %}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <section class="ph-opciones-mobile-footer">
+          <button
+            id="phpm-btn-haz-un-pedido"
+            class="ph-btn-general"
+          >
+            {% render 'icon-tarjeta-credito' %}
+            <p>
+              HAZ UN PEDIDO <br>
+              BS 50.00
+            </p>
+          </button>
+          <button
+            id="phpm-btn-agregar-carrito"
+            class="ph-btn-general"
+          >
+            {% render 'icon-carrito' %}
+            <p>
+              AGREGAR CARRITO <br>
+              BS 116.00
+            </p>
+          </button>
+        </section>
+      </div>
+    </div>
+    <!-- MODAL INFORMACION EXTRAAA -->
+    <div
+      id="pmph-modal-productos-extras"
+      class="pmph-modal-general"
+    >
+      <div class="pmph-modal-informacion-extras">
+        <div
+          id="phpp-modal-productos-extras"
+          class="ppme-modal-informacion-extras-body"
+        >
+          <small class="phpp-modal-extras-titulo">POSTRES</small>
+          <div class="ppme-modal-items-extras">
+            <div class="ppme-modal-item-extra">
+              <div class="ppme-modal-item-extra-imagen">
+                <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+              </div>
+              <div class="ppme-modal-item-extra-info">
+                <div class="ppme-modal-item-extra-info-detalle">
+                  <p>Pan de Pizza</p>
+                  <p>10 Bs</p>
+                </div>
+                <cantidad-input>
+                  <div
+                    origen-trabajo="producto"
+                    min="0"
+                    max="10"
+                    id="producto-id"
+                    handle="producto-handle"
+                    class="ppme-modal-item-extra-cantidad"
+                  >
+                    <button
+                      accion="decrementar"
+                      class="pmph-cantidad-selector-button elemento-oculto icon-color-tertiary"
+                    >
+                      {% render 'icon-basura' %}
+                    </button>
+                    <button
+                      accion="decrementar"
+                      class="ppme-modal-item-extra-cantidad-button icon-color-tertiary"
+                    >
+                      {% render 'icon-menos' %}
+                    </button>
+                    <p>0</p>
+                    <button
+                      accion="incrementar"
+                      class="ppme-modal-item-extra-cantidad-button icon-color-tertiary"
+                    >
+                      {% render 'icon-mas' %}
+                    </button>
+                  </div>
+                </cantidad-input>
+              </div>
+            </div>
+            <div class="ppme-modal-item-extra">
+              <div class="ppme-modal-item-extra-imagen">
+                <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+              </div>
+              <div class="ppme-modal-item-extra-info">
+                <div class="ppme-modal-item-extra-info-detalle">
+                  <p>Pan de Pizza</p>
+                  <p>10 Bs</p>
+                </div>
+                <cantidad-input>
+                  <div
+                    origen-trabajo="producto"
+                    min="0"
+                    max="10"
+                    id="producto-id"
+                    handle="producto-handle"
+                    class="ppme-modal-item-extra-cantidad"
+                  >
+                    <button
+                      accion="decrementar"
+                      class="pmph-cantidad-selector-button elemento-oculto icon-color-tertiary"
+                    >
+                      {% render 'icon-basura' %}
+                    </button>
+                    <button
+                      accion="decrementar"
+                      class="ppme-modal-item-extra-cantidad-button icon-color-tertiary"
+                    >
+                      {% render 'icon-menos' %}
+                    </button>
+                    <p>0</p>
+                    <button
+                      accion="incrementar"
+                      class="ppme-modal-item-extra-cantidad-button icon-color-tertiary"
+                    >
+                      {% render 'icon-mas' %}
+                    </button>
+                  </div>
+                </cantidad-input>
+              </div>
+            </div>
+            <div class="ppme-modal-item-extra">
+              <div class="ppme-modal-item-extra-imagen">
+                <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+              </div>
+              <div class="ppme-modal-item-extra-info">
+                <div class="ppme-modal-item-extra-info-detalle">
+                  <p>Pan de Pizza</p>
+                  <p>10 Bs</p>
+                </div>
+                <cantidad-input>
+                  <div
+                    origen-trabajo="producto"
+                    min="0"
+                    max="10"
+                    id="producto-id"
+                    handle="producto-handle"
+                    class="ppme-modal-item-extra-cantidad"
+                  >
+                    <button
+                      accion="decrementar"
+                      class="pmph-cantidad-selector-button elemento-oculto icon-color-tertiary"
+                    >
+                      {% render 'icon-basura' %}
+                    </button>
+                    <button
+                      accion="decrementar"
+                      class="ppme-modal-item-extra-cantidad-button icon-color-tertiary"
+                    >
+                      {% render 'icon-menos' %}
+                    </button>
+                    <p>0</p>
+                    <button
+                      accion="incrementar"
+                      class="ppme-modal-item-extra-cantidad-button icon-color-tertiary"
+                    >
+                      {% render 'icon-mas' %}
+                    </button>
+                  </div>
+                </cantidad-input>
+              </div>
+            </div>
+            <div class="ppme-modal-item-extra">
+              <div class="ppme-modal-item-extra-imagen">
+                <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+              </div>
+              <div class="ppme-modal-item-extra-info">
+                <div class="ppme-modal-item-extra-info-detalle">
+                  <p>Pan de Pizza</p>
+                  <p>10 Bs</p>
+                </div>
+                <cantidad-input>
+                  <div
+                    origen-trabajo="producto"
+                    min="0"
+                    max="10"
+                    id="producto-id"
+                    handle="producto-handle"
+                    class="ppme-modal-item-extra-cantidad"
+                  >
+                    <button
+                      accion="decrementar"
+                      class="pmph-cantidad-selector-button elemento-oculto icon-color-tertiary"
+                    >
+                      {% render 'icon-basura' %}
+                    </button>
+                    <button
+                      accion="decrementar"
+                      class="ppme-modal-item-extra-cantidad-button icon-color-tertiary"
+                    >
+                      {% render 'icon-menos' %}
+                    </button>
+                    <p>0</p>
+                    <button
+                      accion="incrementar"
+                      class="ppme-modal-item-extra-cantidad-button icon-color-tertiary"
+                    >
+                      {% render 'icon-mas' %}
+                    </button>
+                  </div>
+                </cantidad-input>
+              </div>
+            </div>
+            <div class="ppme-modal-item-extra">
+              <div class="ppme-modal-item-extra-imagen">
+                <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+              </div>
+              <div class="ppme-modal-item-extra-info">
+                <div class="ppme-modal-item-extra-info-detalle">
+                  <p>Pan de Pizza</p>
+                  <p>10 Bs</p>
+                </div>
+                <cantidad-input>
+                  <div
+                    origen-trabajo="producto"
+                    min="0"
+                    max="10"
+                    id="producto-id"
+                    handle="producto-handle"
+                    class="ppme-modal-item-extra-cantidad"
+                  >
+                    <button
+                      accion="decrementar"
+                      class="pmph-cantidad-selector-button elemento-oculto icon-color-tertiary"
+                    >
+                      {% render 'icon-basura' %}
+                    </button>
+                    <button
+                      accion="decrementar"
+                      class="ppme-modal-item-extra-cantidad-button icon-color-tertiary"
+                    >
+                      {% render 'icon-menos' %}
+                    </button>
+                    <p>0</p>
+                    <button
+                      accion="incrementar"
+                      class="ppme-modal-item-extra-cantidad-button icon-color-tertiary"
+                    >
+                      {% render 'icon-mas' %}
+                    </button>
+                  </div>
+                </cantidad-input>
+              </div>
+            </div>
+            <div class="ppme-modal-item-extra">
+              <div class="ppme-modal-item-extra-imagen">
+                <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+              </div>
+              <div class="ppme-modal-item-extra-info">
+                <div class="ppme-modal-item-extra-info-detalle">
+                  <p>Pan de Pizza</p>
+                  <p>10 Bs</p>
+                </div>
+                <cantidad-input>
+                  <div
+                    origen-trabajo="producto"
+                    min="0"
+                    max="10"
+                    id="producto-id"
+                    handle="producto-handle"
+                    class="ppme-modal-item-extra-cantidad"
+                  >
+                    <button
+                      accion="decrementar"
+                      class="pmph-cantidad-selector-button elemento-oculto icon-color-tertiary"
+                    >
+                      {% render 'icon-basura' %}
+                    </button>
+                    <button
+                      accion="decrementar"
+                      class="ppme-modal-item-extra-cantidad-button icon-color-tertiary"
+                    >
+                      {% render 'icon-menos' %}
+                    </button>
+                    <p>0</p>
+                    <button
+                      accion="incrementar"
+                      class="ppme-modal-item-extra-cantidad-button icon-color-tertiary"
+                    >
+                      {% render 'icon-mas' %}
+                    </button>
+                  </div>
+                </cantidad-input>
+              </div>
+            </div>
+            <div class="ppme-modal-item-extra">
+              <div class="ppme-modal-item-extra-imagen">
+                <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+              </div>
+              <div class="ppme-modal-item-extra-info">
+                <div class="ppme-modal-item-extra-info-detalle">
+                  <p>Pan de Pizza</p>
+                  <p>10 Bs</p>
+                </div>
+                <cantidad-input>
+                  <div
+                    origen-trabajo="producto"
+                    min="0"
+                    max="10"
+                    id="producto-id"
+                    handle="producto-handle"
+                    class="ppme-modal-item-extra-cantidad"
+                  >
+                    <button
+                      accion="decrementar"
+                      class="pmph-cantidad-selector-button elemento-oculto icon-color-tertiary"
+                    >
+                      {% render 'icon-basura' %}
+                    </button>
+                    <button
+                      accion="decrementar"
+                      class="ppme-modal-item-extra-cantidad-button icon-color-tertiary"
+                    >
+                      {% render 'icon-menos' %}
+                    </button>
+                    <p>0</p>
+                    <button
+                      accion="incrementar"
+                      class="ppme-modal-item-extra-cantidad-button icon-color-tertiary"
+                    >
+                      {% render 'icon-mas' %}
+                    </button>
+                  </div>
+                </cantidad-input>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="phpp-modal-productos-pizzamitadymitad" class="ppme-modal-informacion-extras-body">
+          <small>ESCOGE TU MITAD</small>
+          <div class="ppme-modal-items-pizzamitadymitad ">
+            <div class="producto-item">
+              <div class="producto-item-imagen">
+                <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+              </div>
+              <div
+                tipo-producto="simple"
+                class="producto-item-detalle"
+              >
+                <div class="producto-item-info">
+                  <h3>CHESSY LOVERS</h3>
+                  <p>
+                    Salsa de tomate, queso mozarella, Pepperoni, Jamón, carnes mixtas (res y cerdo, salchicha italiana y
+                    tocino.
+                  </p>
+                </div>
+                <h3 class="color-letras-primary">12.56 BS</h3>
+                <button id="phpm--modal-btn-elegir" class="ph-btn-general">
+                  <p class="color-letras-secondary">ELEGIR</p>
+                </button>
+              </div>
+            </div>
+            <div class="producto-item">
+              <div class="producto-item-imagen">
+                <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+              </div>
+              <div
+                tipo-producto="simple"
+                class="producto-item-detalle"
+              >
+                <div class="producto-item-info">
+                  <h3>CHESSY LOVERS</h3>
+                  <p>
+                    Salsa de tomate, queso mozarella, Pepperoni, Jamón, carnes mixtas (res y cerdo, salchicha italiana y
+                    tocino.
+                  </p>
+                </div>
+                <h3 class="color-letras-primary">12.56 BS</h3>
+                <button id="phpm--modal-btn-elegir" class="ph-btn-general">
+                  <p class="color-letras-secondary">ELEGIR</p>
+                </button>
+              </div>
+            </div>
+            <div class="producto-item">
+              <div class="producto-item-imagen">
+                <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+              </div>
+              <div
+                tipo-producto="simple"
+                class="producto-item-detalle"
+              >
+                <div class="producto-item-info">
+                  <h3>CHESSY LOVERS</h3>
+                  <p>
+                    Salsa de tomate, queso mozarella, Pepperoni, Jamón, carnes mixtas (res y cerdo, salchicha italiana y
+                    tocino.
+                  </p>
+                </div>
+                <h3 class="color-letras-primary">12.56 BS</h3>
+                <button id="phpm--modal-btn-elegir" class="ph-btn-general">
+                  <p class="color-letras-secondary">ELEGIR</p>
+                </button>
+              </div>
+            </div>
+            <div class="producto-item">
+              <div class="producto-item-imagen">
+                <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+              </div>
+              <div
+                tipo-producto="simple"
+                class="producto-item-detalle"
+              >
+                <div class="producto-item-info">
+                  <h3>CHESSY LOVERS</h3>
+                  <p>
+                    Salsa de tomate, queso mozarella, Pepperoni, Jamón, carnes mixtas (res y cerdo, salchicha italiana y
+                    tocino.
+                  </p>
+                </div>
+                <h3 class="color-letras-primary">12.56 BS</h3>
+                <button id="phpm--modal-btn-elegir" class="ph-btn-general">
+                  <p class="color-letras-secondary">ELEGIR</p>
+                </button>
+              </div>
+            </div>
+            <div class="producto-item">
+              <div class="producto-item-imagen">
+                <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+              </div>
+              <div
+                tipo-producto="simple"
+                class="producto-item-detalle"
+              >
+                <div class="producto-item-info">
+                  <h3>CHESSY LOVERS</h3>
+                  <p>
+                    Salsa de tomate, queso mozarella, Pepperoni, Jamón, carnes mixtas (res y cerdo, salchicha italiana y
+                    tocino.
+                  </p>
+                </div>
+                <h3 class="color-letras-primary">12.56 BS</h3>
+                <button id="phpm--modal-btn-elegir" class="ph-btn-general">
+                  <p class="color-letras-secondary">ELEGIR</p>
+                </button>
+              </div>
+            </div>
+            <div class="producto-item">
+              <div class="producto-item-imagen">
+                <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+              </div>
+              <div
+                tipo-producto="simple"
+                class="producto-item-detalle"
+              >
+                <div class="producto-item-info">
+                  <h3>CHESSY LOVERS</h3>
+                  <p>
+                    Salsa de tomate, queso mozarella, Pepperoni, Jamón, carnes mixtas (res y cerdo, salchicha italiana y
+                    tocino.
+                  </p>
+                </div>
+                <h3 class="color-letras-primary">12.56 BS</h3>
+                <button id="phpm--modal-btn-elegir" class="ph-btn-general">
+                  <p class="color-letras-secondary">ELEGIR</p>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ppme-modal-informacion-extras-footer">
+          <button
+            id="phppm-btn-guardar"
+            class="ppme-modal-boton-guardar"
+          >
+            <p class="color-letras-secondary">Guardar</p>
+          </button>
+          <button
+            id="phppm-btn-salir"
+            class="ppme-modal-boton-salir"
+          >
+            <p class="color-letras-primary">Salir</p>
           </button>
         </div>
       </div>
-      <div id="pmph-seleccion-extras-n2" class="pmph-seleccion-normal">
-        <div class="pmph-extras-header">
-          <h3>Gaseosas y cervezas</h3>
-          <button class="pmph-extras-button icon-color-primary">
-            {% render 'icon-mas' %}
-            <p>Añadir</p>
-          </button>
-        </div>
-        <!-- CUANDO HAY SELECCIONADO UN EXTRA -->
-        <div class="pmp-items-extras-seleccionados">
-          <div class="pmp-item-extra-seleccionado">
-            <div class="pmp-item-extra-imagen">
-              <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
-            </div>
-            <div class="pmp-item-extra-info">
-              <div class="pmp-item-extra-detalle">
-                <p>x1</p>
-                <p>Sprite 2lt</p>
-                <p>22 Bs</p>
-              </div>
-              <button class="pmp-item-extra-delete icon-color-primary">
-                {% render 'icon-basura' %}
-              </button>
-            </div>
-          </div>
-          <div class="pmp-item-extra-seleccionado">
-            <div class="pmp-item-extra-imagen">
-              <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
-            </div>
-            <div class="pmp-item-extra-info">
-              <div class="pmp-item-extra-detalle">
-                <p>x1</p>
-                <p>Sprite 2lt</p>
-                <p>22 Bs</p>
-              </div>
-              <button class="pmp-item-extra-delete icon-color-primary">
-                {% render 'icon-basura' %}
-              </button>
-            </div>
-          </div>
-          <div class="pmp-item-extra-seleccionado">
-            <div class="pmp-item-extra-imagen">
-              <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
-            </div>
-            <div class="pmp-item-extra-info">
-              <div class="pmp-item-extra-detalle">
-                <p>x1</p>
-                <p>Sprite 2lt</p>
-                <p>22 Bs</p>
-              </div>
-              <button class="pmp-item-extra-delete icon-color-primary">
-                {% render 'icon-basura' %}
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <button class="pmph-pagar ">
-        <p>49BS PAGAR</p>
-        {% render 'icon-tarjeta-credito' %}
-      </button>
     </div>
   </div>
-  <!-- MODAL INFORMACION EXTRA -->
-  <div class="pmph-modal-general">
-    <div class="pmph-modal-informacion-extras">
-      <div class="ppme-modal-informacion-extras-body">
-        <small>POSTRES</small>
-        <div class="ppme-modal-items-extras">
-          <div class="ppme-modal-item-extra">
-            <div class="ppme-modal-item-extra-imagen">
-              <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
-            </div>
-            <div class="ppme-modal-item-extra-info">
-              <div class="ppme-modal-item-extra-info-detalle">
-                <p>Pan de Pizza</p>
-                <p>10 Bs</p>
-              </div>
-              <div class="ppme-modal-item-extra-cantidad">
-                <button class="ppme-modal-item-extra-cantidad-button icon-color-tertiary">
-                  {% render 'icon-menos' %}
-                </button>
-                <p>0</p>
-                <button class="ppme-modal-item-extra-cantidad-button icon-color-tertiary">
-                  {% render 'icon-mas' %}
-                </button>
-              </div>
-            </div>
-          </div>
-          <div class="ppme-modal-item-extra">
-            <div class="ppme-modal-item-extra-imagen">
-              <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
-            </div>
-            <div class="ppme-modal-item-extra-info">
-              <div class="ppme-modal-item-extra-info-detalle">
-                <p>Pan de Pizza</p>
-                <p>10 Bs</p>
-              </div>
-              <div class="ppme-modal-item-extra-cantidad">
-                <button class="ppme-modal-item-extra-cantidad-button icon-color-tertiary">
-                  {% render 'icon-menos' %}
-                </button>
-                <p>0</p>
-                <button class="ppme-modal-item-extra-cantidad-button icon-color-tertiary">
-                  {% render 'icon-mas' %}
-                </button>
-              </div>
-            </div>
-          </div>
-          <div class="ppme-modal-item-extra">
-            <div class="ppme-modal-item-extra-imagen">
-              <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
-            </div>
-            <div class="ppme-modal-item-extra-info">
-              <div class="ppme-modal-item-extra-info-detalle">
-                <p>Pan de Pizza</p>
-                <p>10 Bs</p>
-              </div>
-              <div class="ppme-modal-item-extra-cantidad">
-                <button class="ppme-modal-item-extra-cantidad-button icon-color-tertiary">
-                  {% render 'icon-menos' %}
-                </button>
-                <p>0</p>
-                <button class="ppme-modal-item-extra-cantidad-button icon-color-tertiary">
-                  {% render 'icon-mas' %}
-                </button>
-              </div>
-            </div>
-          </div>
-          <div class="ppme-modal-item-extra">
-            <div class="ppme-modal-item-extra-imagen">
-              <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
-            </div>
-            <div class="ppme-modal-item-extra-info">
-              <div class="ppme-modal-item-extra-info-detalle">
-                <p>Pan de Pizza</p>
-                <p>10 Bs</p>
-              </div>
-              <div class="ppme-modal-item-extra-cantidad">
-                <button class="ppme-modal-item-extra-cantidad-button icon-color-tertiary">
-                  {% render 'icon-menos' %}
-                </button>
-                <p>0</p>
-                <button class="ppme-modal-item-extra-cantidad-button icon-color-tertiary">
-                  {% render 'icon-mas' %}
-                </button>
-              </div>
-            </div>
-          </div>
-          <div class="ppme-modal-item-extra">
-            <div class="ppme-modal-item-extra-imagen">
-              <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
-            </div>
-            <div class="ppme-modal-item-extra-info">
-              <div class="ppme-modal-item-extra-info-detalle">
-                <p>Pan de Pizza</p>
-                <p>10 Bs</p>
-              </div>
-              <div class="ppme-modal-item-extra-cantidad">
-                <button class="ppme-modal-item-extra-cantidad-button icon-color-tertiary">
-                  {% render 'icon-menos' %}
-                </button>
-                <p>0</p>
-                <button class="ppme-modal-item-extra-cantidad-button icon-color-tertiary">
-                  {% render 'icon-mas' %}
-                </button>
-              </div>
-            </div>
-          </div>
-          <div class="ppme-modal-item-extra">
-            <div class="ppme-modal-item-extra-imagen">
-              <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
-            </div>
-            <div class="ppme-modal-item-extra-info">
-              <div class="ppme-modal-item-extra-info-detalle">
-                <p>Pan de Pizza</p>
-                <p>10 Bs</p>
-              </div>
-              <div class="ppme-modal-item-extra-cantidad">
-                <button class="ppme-modal-item-extra-cantidad-button icon-color-tertiary">
-                  {% render 'icon-menos' %}
-                </button>
-                <p>0</p>
-                <button class="ppme-modal-item-extra-cantidad-button icon-color-tertiary">
-                  {% render 'icon-mas' %}
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="ppme-modal-informacion-extras-footer">
-        <button class="ppme-modal-boton-guardar">
-          <p class="color-letras-secondary">Guardar</p>
-        </button>
-        <button class="ppme-modal-boton-salir">
-          <p class="color-letras-primary">Salir</p>
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
+</ph-producto>
 
 <script>
-  const modalInformacionExtras = document.querySelector('.pmph-modal-general');
-  const botonSalir = document.querySelector('.ppme-modal-boton-salir');
-  const botonGuardar = document.querySelector('.ppme-modal-boton-guardar');
-  const anadirExtra = document.querySelector('.pmph-extras-button');
-  const volverAtras = document.querySelector('.pmph-volver-atras');
+  class PizzaHutProducto extends HTMLElement {
+    constructor() {
+      super();
+      this.iconos = {
+        iconCheckBoxOff: `{% render 'icon-checkbox-off' %}`,
+        iconCheckBoxOn: `{% render 'icon-checkbox-on' %}`,
+        iconEstadoOff: `{% render 'icon-estado-off' %}`,
+        iconEstadoOn: `{% render 'icon-estado-on-plus' %}`,
+        flechaIzquierda: `{% render 'icon-volver-atras' %}`,
+        flechaDerecha: `{% render 'icon-flecha-derecha' %}`,
+      };
 
-  anadirExtra.addEventListener('click', () => {
-    modalInformacionExtras.style.display = 'flex';
-    console.log('click');
-  });
+      this.estadoTrabajoExtras = 'n1';
+      this.ladoPizza = '';
+      this.tipoProceso = '';
+      // REFERENCIAS ELEMENTOSS
+      this.imgSimple = this.querySelector('#phmp-contenido-ver-producto-simple');
+      this.imgCompleja = this.querySelector('#phmp-contenido-ver-producto-complejo');
+      this.btnImgComplejaIzq = this.querySelector('#phpm-btn-complejo-izq');
+      this.btnImgComplejaDer = this.querySelector('#phpm-btn-complejo-der');
+      this.modalBodyExtras = this.querySelector('#phpp-modal-productos-extras');
+      this.modalBodyPizaaMitadyMitad = this.querySelector('#phpp-modal-productos-pizzamitadymitad');
+      this.contenedorImgProductoComplejoIzq = this.querySelector('#phpm-producto-complejo-img-izq');
+      this.contenedorImgProductoComplejoDer = this.querySelector('#phpm-producto-complejo-img-der');
+      this.elementosN1 = this.querySelectorAll('#pmp-item-n1');
+      this.elementosN2 = this.querySelectorAll('#pmp-item-n2');
+      this.elementosN3 = this.querySelectorAll('#pmp-item-n3');
+      this.contenedorItemsComplejos = this.querySelector('#pmph-seleccion-pizza-mitadymitad');
+      this.itemsSeleccionComplejo = this.querySelectorAll('#phpm-item-pizzamitadymitad');
+      this.extrasVacioContenedorN1 = this.querySelector('#phpm-vacio-extras-especiales-n1');
+      this.extrasVacioContenedorN2 = this.querySelector('#phpm-vacio-extras-especiales-n2');
+      this.extrasContenedorN1 = this.querySelector('#phpm-extras-especiales-n1');
+      this.extrasContenedorN2 = this.querySelector('#phpm-extras-especiales-n2');
+      this.btnAnadirExtrasN1 = this.querySelector('#phpm-btn-anadir-extras-n1');
+      this.btnAnadirExtrasN2 = this.querySelector('#phpm-btn-anadir-extras-n2');
+      this.modalProductoExtras = this.querySelector('#pmph-modal-productos-extras');
+      this.btnModalSalir = this.querySelector('#phppm-btn-salir');
+      this.btnModalGuardar = this.querySelector('#phppm-btn-guardar');
+      this.btnsElegirProductoComplejo = this.querySelectorAll('#phpm--modal-btn-elegir');
+      this.tituloModalExtras = this.querySelector('.phpp-modal-extras-titulo');
+      this.btnHazUnPedido = this.querySelector('#phpm-btn-haz-un-pedido');
+      this.btnAgregarCarrito = this.querySelector('#phpm-btn-agregar-carrito');
+    }
 
-  botonGuardar.addEventListener('click', () => {
-    modalInformacionExtras.style.display = 'none';
-  });
+    connectedCallback() {
+      // EVENTOS INICIALIZAR
+      this.elementosN1.forEach((elemento) => {
+        elemento.addEventListener('click', this.procesoItemN1.bind(this, elemento));
+      });
 
-  botonSalir.addEventListener('click', () => {
-    modalInformacionExtras.style.display = 'none';
-    console.log('click');
-  });
+      this.elementosN2.forEach((elemento) => {
+        elemento.addEventListener('click', this.procesoItemN2.bind(this, elemento));
+      });
 
-  volverAtras.addEventListener('click', () => {
-    window.history.back();
-  });
+      this.elementosN3.forEach((elemento) => {
+        elemento.addEventListener('click', this.procesoItemN3.bind(this, elemento));
+      });
+
+      this.itemsSeleccionComplejo.forEach((elemento) => {
+        elemento.addEventListener('click', this.procesoItemComplejo.bind(this, elemento));
+      });
+
+      this.btnHazUnPedido.addEventListener('click', this.redireccionHazUnPedido.bind(this));
+      this.btnAgregarCarrito.addEventListener('click', this.agregarCarrito.bind(this));
+
+      this.btnImgComplejaDer.addEventListener('click', this.procesoItemComplejo.bind(this, this.btnImgComplejaDer));
+      this.btnImgComplejaIzq.addEventListener('click', this.procesoItemComplejo.bind(this, this.btnImgComplejaIzq));
+
+      this.extrasVacioContenedorN1.addEventListener('click', this.procesoItemExtrasAbrirModal.bind(this, 'n1'));
+      this.extrasVacioContenedorN2.addEventListener('click', this.procesoItemExtrasAbrirModal.bind(this, 'n2'));
+
+      this.btnAnadirExtrasN1.addEventListener('click', this.procesoAnadirProductos.bind(this, 'n1'));
+      this.btnAnadirExtrasN2.addEventListener('click', this.procesoAnadirProductos.bind(this, 'n2'));
+      this.btnModalSalir.addEventListener('click', this.cerrarModal.bind(this));
+      this.btnModalGuardar.addEventListener('click', this.procesarProductoModal.bind(this));
+
+      // INICIALIZAR ELEMENTOS Y PROCESOS CLAVES
+      this.modalProductoExtras.style.display = 'none';
+      this.contenedorItemsComplejos.style.display = 'none';
+      this.btnAnadirExtrasN1.style.display = 'none';
+      this.btnAnadirExtrasN2.style.display = 'none';
+      this.extrasContenedorN1.style.display = 'none';
+      this.extrasContenedorN2.style.display = 'none';
+      this.inicializarMedianteDataLocalStorage();
+    }
+
+    inicializarMedianteDataLocalStorage() {
+      // PRODUCTO SIMPLEE
+      const tipoProducto = localStorage.getItem('phpp-tipo-producto') || 'simple';
+      console.log(tipoProducto);
+      if (tipoProducto == 'simple') {
+        this.imgSimple.style.display = 'flex';
+        this.imgCompleja.style.display = 'none';
+      } else if (tipoProducto == 'complejo') {
+        this.imgSimple.style.display = 'none';
+        this.imgCompleja.style.display = 'flex';
+        this.contenedorItemsComplejos.style.display = 'flex';
+      }
+      // PRODUCTO COMPLEJO
+    }
+
+    procesoItemN1(elemento) {
+      const estaHabilitado = elemento.classList.contains('desactivado');
+      if (estaHabilitado) return;
+
+      const icono = elemento.querySelector('.pmp-item-simple-escoger');
+      const estaSeleccionado = elemento.classList.contains('seleccionado');
+
+      if (estaSeleccionado) {
+        elemento.classList.remove('seleccionado');
+        icono.innerHTML = this.iconos.iconEstadoOff;
+      } else {
+        elemento.classList.add('seleccionado');
+        icono.innerHTML = this.iconos.iconEstadoOn;
+      }
+
+      this.elementosN1.forEach((item) => {
+        if (item !== elemento) {
+          item.classList.remove('seleccionado');
+          const icono = item.querySelector('.pmp-item-simple-escoger');
+          icono.innerHTML = this.iconos.iconEstadoOff;
+        }
+      });
+    }
+
+    procesoItemN2(elemento) {
+      const estaHabilitado = elemento.classList.contains('desactivado');
+      if (estaHabilitado) return;
+
+      const icono = elemento.querySelector('.pmp-item-simple-escoger');
+      const estaSeleccionado = elemento.classList.contains('seleccionado');
+
+      if (estaSeleccionado) {
+        elemento.classList.remove('seleccionado');
+        icono.innerHTML = this.iconos.iconEstadoOff;
+      } else {
+        elemento.classList.add('seleccionado');
+        icono.innerHTML = this.iconos.iconEstadoOn;
+      }
+
+      this.elementosN2.forEach((item) => {
+        if (item !== elemento) {
+          item.classList.remove('seleccionado');
+          const icono = item.querySelector('.pmp-item-simple-escoger');
+          icono.innerHTML = this.iconos.iconEstadoOff;
+        }
+      });
+    }
+
+    procesoItemN3(elemento) {
+      const estaHabilitado = elemento.classList.contains('desactivado');
+      if (estaHabilitado) return;
+
+      const icono = elemento.querySelector('.pmp-item-simple-escoger');
+      const estaSeleccionado = elemento.classList.contains('seleccionado');
+
+      if (estaSeleccionado) {
+        elemento.classList.remove('seleccionado');
+        icono.innerHTML = this.iconos.iconCheckBoxOff;
+      } else {
+        elemento.classList.add('seleccionado');
+        icono.innerHTML = this.iconos.iconCheckBoxOn;
+      }
+
+      this.elementosN3.forEach((item) => {
+        if (item !== elemento) {
+          item.classList.remove('seleccionado');
+          const icono = item.querySelector('.pmp-item-simple-escoger');
+          icono.innerHTML = this.iconos.iconCheckBoxOff;
+        }
+      });
+    }
+
+    procesoItemComplejo(elemento) {
+      this.tipoProceso = 'pizzaMitadyMitad';
+      this.modalProductoExtras.style.display = 'flex';
+      this.modalBodyExtras.style.display = 'none';
+      this.modalBodyPizaaMitadyMitad.style.display = 'flex';
+
+      const data = elemento.getAttribute('lado-pizza') || elemento.getAttribute('lado-pizza-btn');
+      this.ladoPizza = data;
+    }
+
+    procesoAnadirProductos(tipoExtras) {
+      this.modalProductoExtras.style.display = 'flex';
+      this.modalBodyExtras.style.display = 'flex';
+      this.modalBodyPizaaMitadyMitad.style.display = 'none';
+    }
+
+    cerrarModal() {
+      this.modalProductoExtras.style.display = 'none';
+    }
+
+    procesarProductoModal() {
+      if (this.tipoProceso == 'extras') {
+        if (this.estadoTrabajoExtras == 'n1') {
+          this.extrasContenedorN1.style.display = 'flex';
+          this.extrasVacioContenedorN1.style.display = 'none';
+          this.btnAnadirExtrasN1.style.display = 'flex';
+        }
+
+        if (this.estadoTrabajoExtras == 'n2') {
+          this.extrasContenedorN2.style.display = 'flex';
+          this.extrasVacioContenedorN2.style.display = 'none';
+          this.btnAnadirExtrasN2.style.display = 'flex';
+        }
+      }
+
+      let elementoPizzaOrigen;
+      console.log('hola desde el test', this.ladoPizza);
+      if (this.tipoProceso == 'pizzaMitadyMitad') {
+        if (this.ladoPizza == 'izquierda') {
+          elementoPizzaOrigen = document.querySelector('[lado-pizza="izquierda"]');
+        }
+        if (this.ladoPizza == 'derecha') {
+          elementoPizzaOrigen = document.querySelector('[lado-pizza="derecha"]');
+        }
+        elementoPizzaOrigen.classList.add('seleccionado');
+        if (this.ladoPizza == 'izquierda') {
+          console.log('elemento Izquierdo', this.btnImgComplejaIzq);
+          this.btnImgComplejaIzq.classList.add('seleccionado');
+          const contenedorIcono = this.btnImgComplejaIzq.querySelector('.phmp-psm-icon');
+          contenedorIcono.innerHTML = this.iconos.iconEstadoOn;
+          this.contenedorImgProductoComplejoIzq.classList.add('seleccionado');
+        }
+
+        if (this.ladoPizza == 'derecha') {
+          console.log('elemento Derecho', this.btnImgComplejaDer);
+          this.btnImgComplejaDer.classList.add('seleccionado');
+          const contenedorIcono = this.btnImgComplejaDer.querySelector('.phmp-psm-icon');
+          contenedorIcono.innerHTML = this.iconos.iconEstadoOn;
+          this.contenedorImgProductoComplejoDer.classList.add('seleccionado');
+        }
+      }
+      this.modalProductoExtras.style.display = 'none';
+    }
+
+    procesoItemExtrasAbrirModal(tipoExtras) {
+      this.tipoProceso = 'extras';
+      this.estadoTrabajoExtras = tipoExtras;
+      this.modalProductoExtras.style.display = 'flex';
+      this.modalBodyExtras.style.display = 'flex';
+      this.modalBodyPizaaMitadyMitad.style.display = 'none';
+      if (tipoExtras == 'n1') {
+        this.tituloModalExtras.innerHTML = 'POSTRES';
+      } else {
+        this.tituloModalExtras.innerHTML = 'GASEOSAS Y CERVEZAS';
+      }
+    }
+
+    redireccionHazUnPedido() {
+      window.location.href = '/pages/carrito';
+    }
+
+    agregarCarrito() {
+      AuxiliaresGlobal.agregarCarrito(1);
+    }
+  }
+
+  {% comment %} asdasd {% endcomment %}
+
+  customElements.define('ph-producto', PizzaHutProducto);
 </script>

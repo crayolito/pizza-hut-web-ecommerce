@@ -558,11 +558,8 @@
           window.location.href = '/';
         });
       });
-      this.itemMenuDesplegable.forEach((item) => {
-        item.addEventListener('click', () => {
-          window.location.href = '/pages/menu';
-          this.contenedorMenuDesplegable.style.display = 'none';
-        });
+      this.itemMenuDesplegable.forEach((elementoBase) => {
+        elementoBase.addEventListener('click', this.reduccionarDesdeMenuDesplegable.bind(this, elementoBase));
       });
 
       // INICIALIZACION DE CONTENIDOSS
@@ -798,6 +795,15 @@
       localStorage.removeItem('pg-perfil-opcion');
       // Redirigir a la página de inicio de sesión
       window.location.href = '/';
+    }
+
+    reduccionarDesdeMenuDesplegable(elementoBase) {
+      // Del elemento Base traer el atributo menu
+      const dataElemento = elementoBase.getAttribute('menu');
+      // Guardar en localStorage el valor para que el Menu Page sepa que hhacer
+      localStorage.setItem('phph-itemMenu', dataElemento);
+      // Depsue redireccionar
+      window.location.href = '/pages/menu';
     }
   }
 

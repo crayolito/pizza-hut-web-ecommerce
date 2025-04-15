@@ -256,7 +256,8 @@ header-principal {
   min-width: min-content;
   align-items: center;
   justify-content: center;
-  gap: var(--espaciado-xxl);
+  /* gap: var(--espaciado-xxl); */
+  gap: var(--espaciado-l);
   flex-grow: 1;
   flex-shrink: 1;
   flex-basis: auto;
