@@ -185,14 +185,3 @@ class CantidadInput extends HTMLElement {
 }
 
 customElements.define('cantidad-input', CantidadInput);
-
-
-//  <div class="ppme-modal-item-extra-cantidad">
-//                   <button class="ppme-modal-item-extra-cantidad-button icon-color-tertiary">
-//                     {% render 'icon-menos' %}
-//                   </button>
-//                   <p>0</p>
-//                   <button class="ppme-modal-item-extra-cantidad-button icon-color-tertiary">
-//                     {% render 'icon-mas' %}
-//                   </button>
-//                 </div> 
