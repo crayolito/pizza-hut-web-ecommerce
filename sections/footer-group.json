@@ -1,7 +1,6 @@
 {
   "name": "Pie de página",
   "type": "footer",
-  "enabled_by_default": true,
   "sections": {
     "footer": {
       "type": "footer",
