@@ -567,120 +567,6 @@
       this.traerInformacionShopify();
     }
 
-    async  traerInformacionShopify() {
-      // Primero va traer la informacion de la coleccion PIZZA
-      const primeraData = await this.primeraFaseConsulta();
-      // Depues va trae la informacion de las otras colecciones emdiante otra informacion 
-      const segundaData = await this.segundaFaseConsulta();
-    }
-
-    async   primeraFaseConsulta(){
-      const graphQLQuery = `
-        query GetCollectionByFlexibleTitle {
-              collections(first: 1, query: "title:*PIZZA*") {
-                edges {
-                  node {
-                    id
-                    title
-                    handle
-                    products(first: 20) {
-                      edges {
-                        node {
-                          id
-                          title
-                          handle
-                          description
-                          images(first: 1) {
-                            edges {
-                              node {
-                                url
-                              }
-                            }
-                          }
-                          metafield(namespace: "estructura", key: "json") {
-                            value
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-      `;
-
-      try{
-        // Realliza la solicitud a la API de Shopify
-        const myTest = 'shpat_' + '45f4a7476152f4881d058f87ce063698';
-        const respuesta = await fetch(this.urlConsulta,{
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'X-Shopify-Access-Token': myTest,
-          },
-          body: JSON.stringify({ query: graphQLQuery }),
-        });
-
-        if(!respuesta.ok){
-          throw new Error(`Error de red: ${respuesta.status} ${respuesta.statusText}`);
-        }
-
-        // Obtener los datos de la respuesta
-        const datosRespuesta = await respuesta.json();
-
-        // Verificar si tenemos datos
-        if(!datosRespuesta.data || !datosRespuesta.data.collections.edges.length || !datosRespuesta.data.collections.edges[0].node.products.edges.length){
-          console.log("No se encontraron productos en la coleecion PIZZA");
-          return [];
-        }
-
-
-        // Extraer la finoramcion de la coleccion 
-        const coleccion = datosRespuesta.data.collections.edges[0].node;
-
-        // Transformar los productos a un formato mas simple
-        const productosSimplificados = coleccion.products.edges.map(edge => {
-          const producto = edge.node;
-          const imagenURL = producto.images.edges.length > 0 ? producto.images.edges[0].node.url : '';
-
-          // Crear un objeto simplificado del producto
-          const productoSimplificado ={
-            id: producto.id,
-            titulo: producto.title,
-            handle: producto.handle,
-            descripcion: producto.description,
-            imagen: imagenURL,
-            estructura: producto.metafield ? JSON.parse(producto.metafield.value) : "",
-          };
-
-          return productoSimplificado;
-        })
-
-        // Crear un objeto con informacion de la coleccion y los productos
-        const resultado = {
-          coleccion:{
-            id: coleccion.id,
-            titulo: coleccion.title,
-            handle: coleccion.handle,
-          },
-          productos: productosSimplificados
-        };
-
-        // Mostrar el resultado de la consola 
-        console.log('Data no procesada : ', resultado);
-        console.log('Data procesada : ', productosSimplificados);
-
-        return resultado;
-
-      } catch (error) {
-        // Errores al traer los datos
-        console.error('Error al obtener los datos de la colección:', error);
-        return [];
-      }
-    }
-    
-    async segundaFaseConsulta(){}
-
     mostrarYOcultarContenedorVariantes(elementoBase) {
       // Busco al elemento Padre
       const elementoPadre = elementoBase.closest('#phpi-general-variantes');
@@ -705,7 +591,177 @@
           {% comment %} elemento.style.display = "none"; {% endcomment %}
         }
       });
-    }async primeraFaseConsulta() {
+    }
+
+    async  traerInformacionShopify() {
+      // Primero va traer la informacion de la coleccion PIZZA
+       const {informacionColeccion, productosColeccion } = await this.primeraFaseConsulta();
+      {% comment %} console.log({
+        informacionColeccion,
+        productosColeccion
+      })  {% endcomment %}
+      
+      const estructuraClasicas = informacionColeccion.estructura.clasicas;  
+      console.log(estructuraClasicas);
+      {% comment %} const { coleccionPCT,coleccionPCE,coleccionPCMB } = await this.segundaFaseConsulta(); {% endcomment %}
+
+    }
+    
+    async segundaFaseConsulta(codigosColeccion = ["PCT", "PCE", "PCMB"]) {
+      // Validar que codigosColeccion sea un array
+      if (!Array.isArray(codigosColeccion) || codigosColeccion.length === 0) {
+        console.error("Error: codigosColeccion debe ser un array con al menos un elemento");
+        return {};
+      }
+    
+      // Construir dinámicamente las partes del query para cada colección
+      const coleccionesQueries = codigosColeccion.map((codigo, index) => {
+        // Crear un alias único para cada colección basado en su código
+        const aliasSeguro = `${codigo.toLowerCase()}Collection`;
+        
+        return `
+          ${aliasSeguro}: collections(first: 1, query: "title:${codigo}") {
+            edges {
+              node {
+                id
+                title
+                handle
+                products(first: 50) {
+                  edges {
+                    node {
+                      id
+                      title
+                      handle
+                      description
+                      tags
+                      images(first: 1) {
+                        edges {
+                          node {
+                            url
+                          }
+                        }
+                      }
+                      metafield(namespace: "estructura", key: "json") {
+                        value
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        `;
+      }).join('\n');
+    
+      // Construir el query completo con todas las colecciones
+      const graphQLQuery = `
+        query GetProductsFromSpecificCollections {
+          ${coleccionesQueries}
+        }
+      `;
+    
+      try {
+        // Realiza la solicitud a la API de Shopify
+        const myTest = 'shpat_' + '45f4a7476152f4881d058f87ce063698';
+        const respuesta = await fetch(this.urlConsulta, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-Shopify-Access-Token': myTest,
+          },
+          body: JSON.stringify({ query: graphQLQuery }),
+        });
+    
+        if (!respuesta.ok) {
+          throw new Error(`Error de red: ${respuesta.status} ${respuesta.statusText}`);
+        }
+    
+        // Obtener los datos de la respuesta
+        const datosRespuesta = await respuesta.json();
+        
+        // Verificar si hay errores en la respuesta de GraphQL
+        if (datosRespuesta.errors) {
+          console.error("Errores en la consulta GraphQL:", datosRespuesta.errors);
+          throw new Error("Error en la consulta GraphQL");
+        }
+        
+        // Función para procesar los datos de una colección
+        const procesarProductosColeccion = (coleccion) => {
+          // Verificar si la colección existe y tiene edges
+          if (!coleccion || !coleccion.edges || coleccion.edges.length === 0) {
+            return [];
+          }
+          
+          const nodoColeccion = coleccion.edges[0].node;
+          
+          // Verificar si hay productos
+          if (!nodoColeccion.products || !nodoColeccion.products.edges) {
+            return [];
+          }
+          
+          // Procesar productos
+          return nodoColeccion.products.edges.map(edge => {
+            const producto = edge.node;
+            const imagenURL = producto.images && producto.images.edges && producto.images.edges.length > 0 
+              ? producto.images.edges[0].node.url 
+              : '';
+            
+            // Procesar el metafield de estructura
+            let estructura = {};
+            if (producto.metafield && producto.metafield.value) {
+              try {
+                estructura = JSON.parse(producto.metafield.value);
+              } catch (e) {
+                console.error(`Error al parsear estructura para ${producto.title}:`, e);
+              }
+            }
+            
+            return {
+              id: producto.id,
+              titulo: producto.title,
+              handle: producto.handle,
+              descripcion: producto.description,
+              tags: producto.tags || [],
+              imagen: imagenURL,
+              estructura: estructura
+            };
+          });
+        };
+        
+        // Crear el objeto de resultado con propiedades para cada colección
+        const resultado = {};
+        
+        // Mapear los códigos de colección a los alias usados en el query
+        codigosColeccion.forEach(codigo => {
+          const aliasQuery = `${codigo.toLowerCase()}Collection`;
+          const nombrePropiedad = `coleccion${codigo}`;
+          
+          // Verificar si existe la respuesta para este alias
+          if (datosRespuesta.data && datosRespuesta.data[aliasQuery]) {
+            resultado[nombrePropiedad] = procesarProductosColeccion(datosRespuesta.data[aliasQuery]);
+          } else {
+            // Si no hay datos para esta colección, guardar un array vacío
+            resultado[nombrePropiedad] = [];
+          }
+        });
+        
+        console.log('Datos de colecciones obtenidos');
+        
+        return resultado;
+      } catch (error) {
+        console.error('Error al obtener datos de las colecciones específicas:', error);
+        
+        // Crear un objeto vacío con las propiedades esperadas
+        const resultado = {};
+        codigosColeccion.forEach(codigo => {
+          resultado[`coleccion${codigo}`] = [];
+        });
+        
+        return resultado;
+      }
+    }
+    
+    async primeraFaseConsulta() {
       const graphQLQuery = `
         query GetCollectionByFlexibleTitle {
           collections(first: 1, query: "title:*PIZZA*") {
@@ -810,13 +866,13 @@
     
         // Crear un objeto con información de la colección y los productos
         const resultado = {
-          coleccion: {
+          informacionColeccion: {
             id: coleccion.id,
             titulo: coleccion.title,
             handle: coleccion.handle,
             estructura: estructuraColeccion
           },
-          productos: productosSimplificados
+          productosColeccion: productosSimplificados
         };
     
         // Mostrar el resultado en la consola
