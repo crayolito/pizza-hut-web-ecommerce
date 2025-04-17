@@ -593,14 +593,13 @@
       });
     }
 
-    async  traerInformacionShopify() {
+    async traerInformacionShopify() {
       // Primero va traer la informacion de la coleccion PIZZA
        const {informacionColeccion, productosColeccion } = await this.primeraFaseConsulta();
       
       const estructuraClasicas = informacionColeccion.estructura.clasicas;  
-      console.log(estructuraClasicas);
-      const data = await this.segundaFaseConsulta(); 
-      console.log(data);
+      console.log(informacionColeccion.estructura);
+      const { coleccionPCE, coleccionPCMB, coleccionPCT} = await this.segundaFaseConsulta(); 
     }
     
     async segundaFaseConsulta(codigosColeccion = ["PCT", "PCE", "PCMB"]) {
@@ -872,8 +871,8 @@
         };
     
         // Mostrar el resultado en la consola
-        console.log('Data no procesada: ', resultado);
-        console.log('Data procesada: ', productosSimplificados);
+        {% comment %} console.log('Data no procesada: ', resultado);
+        console.log('Data procesada: ', productosSimplificados); {% endcomment %}
     
         return resultado;
     
