@@ -647,7 +647,7 @@
                 traerObjetoTrabajo = producto.estructura.Familiar;
               }
 
-              if(!existeTamanoParaTrabajarlo){
+              if(!traerObjetoTrabajo){
                 return;
               }
 
@@ -688,6 +688,10 @@
                 traerObjetoTrabajo = producto.estructura.Familiar;
               }
 
+              if(!traerObjetoTrabajo){
+                return;
+              }
+
               const productoTrabajo = {
                 idShopfiy: producto.id,
                 idTrabajo : traerObjetoTrabajo.id,
@@ -705,7 +709,7 @@
               extras,
               bordesMasas
           }
-          
+
           tamanos.productos.push(productoTamano);
         });
 
