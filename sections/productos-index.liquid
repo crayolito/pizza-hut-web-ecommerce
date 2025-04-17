@@ -629,8 +629,12 @@
           console.log("Producto secundario", productoSecundario);
           var bordesMasas = {
             condicion : {
-              min : productoSecundario.estructura.masaborde.min || 0,
-              max : productoSecundario.estructura.masaborde.max || 0
+              min: (productoSecundario.estructura && 
+                productoSecundario.estructura.masaborde) ? 
+                productoSecundario.estructura.masaborde.min || 0 : 0,
+              max: (productoSecundario.estructura && 
+                  productoSecundario.estructura.masaborde) ? 
+                  productoSecundario.estructura.masaborde.max || 0 : 0
             },
             productos : []
           };
