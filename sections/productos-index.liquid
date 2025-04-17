@@ -627,7 +627,7 @@
             productos :[]
           };
           console.log("Producto extras",extras);
-          var bordes_masas = {
+          var bordesMasas = {
             condicion : {
               min : productoSecundario.estructura.masaborde.min || 0,
               max : productoSecundario.estructura.masaborde.max || 0
@@ -667,7 +667,7 @@
               precio: producto.estructura[tituloTrabajoBordeYMasa].precio,
             }
 
-            extras.productos.push(productoTrabajo)
+            bordesMasas.productos.push(productoTrabajo)
           });
 
           // Coleccion Extras
@@ -682,15 +682,15 @@
               handle: producto.handle,
               precio: producto.estructura[tituloTrabajoExtras].precio,
             }
-            bordes_masas.productos.push(productoTrabajo);
+            extras.productos.push(productoTrabajo);
           });
           
           const productoTamano = {
-              idShopify: producto.id,
-              titulo: producto.titulo,
-              precio: producto.estructura.precio,
+              idShopify: productoSecundario.id,
+              titulo: productoSecundario.titulo,
+              precio: productoSecundario.estructura.precio,
               extras,
-              bordes_masas
+              bordesMasas
           }
 
           tamanos.productos.push(productoTamano);
