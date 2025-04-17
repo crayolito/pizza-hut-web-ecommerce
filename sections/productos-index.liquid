@@ -608,27 +608,45 @@
         coleccionPCT
       });
       var productosEstructurado = [];
-      productosColeccion.forEach((producto) => {
-        var tamanos = [];
+      productosColeccion.forEach((productoPrimario) => {
+        var tamanos = {
+          condicion : {
+            min : productoPrimario.estructura.tamano.min || 0,
+            max : productoPrimario.estructura.tamano.max || 0
+          },
+          productos : []
+        };
         
         // Coleccion de Tamaños
-        coleccionPCT.forEach((producto) => {
-          var extras = [];
-          var bordes_masas = [];
+        coleccionPCT.forEach((productoSecundario) => {
+          var extras = {
+            condicion : {
+              min : productoSecundario.estructura.extra.min || 0,
+              max : productoSecundario.estructura.extra.max || 0
+            },
+            productos :[]
+          };
+          var bordes_masas = {
+            condicion : {
+              min : productoSecundario.estructura.masa-borde.min || 0,
+              max : productoSecundario.estructura.masa-borde.max || 0
+            },
+            productos : []
+          };
           var tituloTrabajoBordeYMasa = "";
           var tituloTrabajoExtras=""
                     
-          if (producto.titulo.includes("Super personal")){
+          if (productoBase.titulo.includes("Super personal")){
             tituloTrabajoBordeYMasa= "SuperPersonal";
             tituloTrabajoExtras="SuperPersonal"
           }
 
-          if (producto.titulo.includes("Mediana")){
+          if (productoBase.titulo.includes("Mediana")){
             tituloTrabajoBordeYMasa= "Mediana";
             tituloTrabajoExtras="Mediana"
           }
                     
-          if (producto.titulo.includes("Familiar")){
+          if (productoBase.titulo.includes("Familiar")){
             tituloTrabajoBordeYMasa= "Familiar";
             tituloTrabajoExtras="Familiar"
           }
@@ -648,7 +666,7 @@
               precio: producto.estructura[tituloTrabajoBordeYMasa].precio,
             }
 
-            extras.push(productoTrabajo)
+            extras.productos.push(productoTrabajo)
           });
 
           // Coleccion Extras
@@ -663,7 +681,7 @@
               handle: producto.handle,
               precio: producto.estructura[tituloTrabajoExtras].precio,
             }
-            bordes_masas.push(productoTrabajo);
+            bordes_masas.productos.push(productoTrabajo);
           });
           
           const productoTamano = {
@@ -674,16 +692,15 @@
               bordes_masas
           }
 
-          tamanos.push(productoTamano);
+          tamanos.productos.push(productoTamano);
         });
 
-        const { id, titulo, handle, descripcion, tags, imagen, estructura } = producto;
 
         const nuevoProducto = { 
           idShopify: id,
-          idTrabajo: producto.estructura.id,
+          idTrabajo: productoPrimario.estructura.id,
           handle,
-          precio,
+          precio: productoPrimario.estructura.precio,
           imagen,
           descripcion,
           tamanos
