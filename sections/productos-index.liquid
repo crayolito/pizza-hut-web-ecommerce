@@ -637,9 +637,6 @@
             tituloTrabajoExtras="Familiar"
           }
 
-          console.log("Producto Familiar", productoSecundario.estructura[tituloTrabajoBordeYMasa]);
-          console.log("Producto Extra", productoSecundario.estructura[tituloTrabajoExtras]);
-
           var extras = {
             condicion: {
               min: productoSecundario.estructura?.extra?.min || 0,
@@ -659,6 +656,8 @@
           // Coleccion Bordes y Masa
           coleccionPCMB.forEach((producto) =>{
             const existeTamanoParaTrabajarlo = producto.estructura[tituloTrabajoBordeYMasa];
+            console.log("producto ?" , producto);
+            console.log("existe ?" , existeTamanoParaTrabajarlo);
             if(!existeTamanoParaTrabajarlo){
               return;
             }
