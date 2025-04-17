@@ -314,7 +314,7 @@
         </div>
       </div>
       <!-- APARTADO MOBIL -->
-      <div class="container-productos-general phpi-control-desktop">
+      <div id="phpi-contenedor-productos-muestra" class="container-productos-general phpi-control-desktop">
         <div class="producto-item">
           <div class="producto-item-imagen">
             <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
@@ -596,17 +596,164 @@
     async traerInformacionShopify() {
       // Primero va traer la informacion de la coleccion PIZZA
       const {informacionColeccion, productosColeccion } = await this.primeraFaseConsulta();
-      console.log({
+      {% comment %} console.log({
         informacionColeccion,
         productosColeccion
-      });
+      }); {% endcomment %}
       const estructuraClasicas = informacionColeccion.estructura.clasica.estructura;  
       const { coleccionPCE, coleccionPCMB, coleccionPCT} = await this.segundaFaseConsulta(estructuraClasicas); 
-      console.log({
+      {% comment %} console.log({
         coleccionPCE,
         coleccionPCMB,
         coleccionPCT
       });
+      {% endcomment %}
+      var productosEstructurado = [];
+      productosColeccion.forEach((producto) => {
+        var tamanos = [];
+        
+        // Coleccion de Tamaños
+        coleccionPCT.forEach((producto) => {
+          var extras = [];
+          var bordes_masas = [];
+          var tituloTrabajoBordeYMasa = "";
+          var tituloTrabajoExtras=""
+                    
+          if (producto.titulo.includes("Super personal")){
+            tituloTrabajoBordeYMasa= "SuperPersonal";
+            tituloTrabajoExtras="SuperPersonal"
+          }
+
+          if (producto.titulo.includes("Mediana")){
+            tituloTrabajoBordeYMasa= "Mediana";
+            tituloTrabajoExtras="Mediana"
+          }
+                    
+          if (producto.titulo.includes("Familiar")){
+            tituloTrabajoBordeYMasa= "Familiar";
+            tituloTrabajoExtras="Familiar"
+          }
+          
+
+          // Coleccion Bordes y Masa
+          coleccionPCMB.forEach((producto) =>{
+            const existeTamanoParaTrabajarlo = producto.estructura[tituloTrabajoBordeYMasa];
+            if(!existeTamanoParaTrabajarlo){
+              return;
+            }
+
+            const productoTrabajo = {
+              idShopfiy: producto.id,
+              idTrabajo : producto.estructura[tituloTrabajoBordeYMasa].id,
+              handle: producto.handle,
+              precio: producto.estructura[tituloTrabajoBordeYMasa].precio,
+            }
+
+            extras.push(productoTrabajo)
+          });
+
+          // Coleccion Extras
+          coleccionPCE.forEach((producto) =>{
+            const existeTamanoParaTrabajarlo = producto.estructura[tituloTrabajoExtras];
+            if(!existeTamanoParaTrabajarlo){
+              return;
+            }
+            const productoTrabajo = {
+              idShopfiy: producto.id,
+              idTrabajo : producto.estructura[tituloTrabajoExtras].id,
+              handle: producto.handle,
+              precio: producto.estructura[tituloTrabajoExtras].precio,
+            }
+            bordes_masas.push(productoTrabajo);
+          });
+          
+          const productoTamano = {
+              idShopify: producto.id,
+              titulo: producto.titulo,
+              precio: producto.estructura.precio,
+              extras,
+              bordes_masas
+          }
+
+          tamanos.push(productoTamano);
+        });
+
+        const { id, titulo, handle, descripcion, tags, imagen, estructura } = producto;
+
+        const nuevoProducto = { 
+          idShopify: id,
+          idTrabajo: producto.estructura.id,
+          handle,
+          precio,
+          imagen,
+          descripcion,
+          tamanos
+        }
+        productosEstructurado.push(nuevoProducto);
+      });
+
+      console.log("Productos Finales trabajados:",productosEstructurado);
+
+      // Contruccion del productos en su estado visible en la seccion
+      const contenedorProductos = this.querySelector('#phpi-contenedor-productos-muestra');
+      contenidoHTML = `
+              <div class="producto-item">
+          <div class="producto-item-imagen">
+            <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+          </div>
+          <div
+            tipo-producto="simple"
+            class="producto-item-detalle"
+          >
+            <div class="producto-item-info">
+              <h3>CHESSY LOVERS</h3>
+              <p>
+                Salsa de tomate, queso mozarella, Pepperoni, Jamón, carnes mixtas (res y cerdo, salchicha italiana y
+                tocino.
+              </p>
+            </div>
+            <h3 class="color-letras-primary">12.56 BS</h3>
+            <div
+              id="phpi-general-variantes"
+              tipo-producto="simple"
+              class="seleccion-variante-producto-general"
+            >
+              <p>Tamaño</p>
+              <button id="phpi-view-variantes" class="container-info-variante">
+                <p id="phpi-variante-seleccionado">Personal</p>
+                <div class="icono-dropdown-variantes icon-color-tertiary">
+                  {% render 'icon-flecha-abajo' %}
+                </div>
+              </button>
+              <div id="phpi-items-variantes" class="variantes-producto">
+                <div class="variante-producto-item">
+                  <p>Personal</p>
+                  <p class="color-letras-primary">12.56 BS</p>
+                </div>
+                <div class="variante-producto-item">
+                  <p>Super Pers.</p>
+                  <p class="color-letras-primary">12.56 BS</p>
+                </div>
+                <div class="variante-producto-item">
+                  <p>Mediana</p>
+                  <p class="color-letras-primary">12.56 BS</p>
+                </div>
+                <div class="variante-producto-item">
+                  <p>Familiar</p>
+                  <p class="color-letras-primary">12.56 BS</p>
+                </div>
+              </div>
+            </div>
+            <button id="phpi-btn-personalizar" class="ph-btn-general   phpi-btn-personalizar">
+              <p class="color-letras-secondary">PERSONALIZAR</p>
+            </button>
+          </div>
+        </div>
+      
+      `;
+
+      productosEstructurado
+      
     }
     
     async segundaFaseConsulta(codigosColeccion = ["PCT", "PCE", "PCMB"]) {
