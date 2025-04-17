@@ -620,23 +620,19 @@
         // Coleccion de Tamañoss
         coleccionPCT.forEach((productoSecundario) => {
           var extras = {
-            condicion : {
-              min : productoSecundario.estructura.extra.min || 0,
-              max : productoSecundario.estructura.extra.max || 0
+            condicion: {
+              min: productoSecundario.estructura?.extra?.min || 0,
+              max: productoSecundario.estructura?.extra?.max || 0
             },
-            productos :[]
+            productos: []
           };
           console.log("Producto secundario", productoSecundario);
           var bordesMasas = {
-            condicion : {
-              min: (productoSecundario.estructura && 
-                productoSecundario.estructura.masaborde) ? 
-                productoSecundario.estructura.masaborde.min || 0 : 0,
-              max: (productoSecundario.estructura && 
-                  productoSecundario.estructura.masaborde) ? 
-                  productoSecundario.estructura.masaborde.max || 0 : 0
+            condicion: {
+              min: productoSecundario.estructura?.masaborde?.min || 0,
+              max: productoSecundario.estructura?.masaborde?.max || 0
             },
-            productos : []
+            productos: []
           };
           var tituloTrabajoBordeYMasa = "";
           var tituloTrabajoExtras=""
