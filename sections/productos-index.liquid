@@ -596,15 +596,11 @@
     async  traerInformacionShopify() {
       // Primero va traer la informacion de la coleccion PIZZA
        const {informacionColeccion, productosColeccion } = await this.primeraFaseConsulta();
-      {% comment %} console.log({
-        informacionColeccion,
-        productosColeccion
-      })  {% endcomment %}
       
       const estructuraClasicas = informacionColeccion.estructura.clasicas;  
       console.log(estructuraClasicas);
-      {% comment %} const { coleccionPCT,coleccionPCE,coleccionPCMB } = await this.segundaFaseConsulta(); {% endcomment %}
-
+      const data = await this.segundaFaseConsulta(); 
+      console.log(data);
     }
     
     async segundaFaseConsulta(codigosColeccion = ["PCT", "PCE", "PCMB"]) {
