@@ -596,18 +596,17 @@
     async traerInformacionShopify() {
       // Primero va traer la informacion de la coleccion PIZZA
       const {informacionColeccion, productosColeccion } = await this.primeraFaseConsulta();
-      {% comment %} console.log({
+        console.log({
         informacionColeccion,
         productosColeccion
-      }); {% endcomment %}
+      }); 
       const estructuraClasicas = informacionColeccion.estructura.clasica.estructura;  
       const { coleccionPCE, coleccionPCMB, coleccionPCT} = await this.segundaFaseConsulta(estructuraClasicas); 
-      {% comment %} console.log({
+       console.log({
         coleccionPCE,
         coleccionPCMB,
         coleccionPCT
       });
-      {% endcomment %}
       var productosEstructurado = [];
       productosColeccion.forEach((producto) => {
         var tamanos = [];
