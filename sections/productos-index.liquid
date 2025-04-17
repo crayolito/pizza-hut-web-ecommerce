@@ -626,7 +626,6 @@
             },
             productos: []
           };
-          console.log("Producto secundario", productoSecundario);
           var bordesMasas = {
             condicion: {
               min: productoSecundario.estructura?.masaborde?.min || 0,
@@ -713,7 +712,7 @@
 
       // Contruccion del productos en su estado visible en la seccion
       const contenedorProductos = this.querySelector('#phpi-contenedor-productos-muestra');
-      contenidoHTML = `
+       var contenidoHTML = `
               <div class="producto-item">
           <div class="producto-item-imagen">
             <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
