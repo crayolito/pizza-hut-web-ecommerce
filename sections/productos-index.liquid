@@ -542,27 +542,32 @@
     connectedCallback() {
       // REFERENCIAS ELEMENTOS
       this.traerInformacionShopify();
+      document.addEventListener('click', this.clicksEspeciales.bind(this));
+    }
+
+    inicializarEventos() {
+      // REFERENCIAS ELEMENTOS
       this.contenedorVarianteSeleccionado = this.querySelectorAll('#phpi-view-variantes');
       this.contenedorVariantes = this.querySelectorAll('#phpi-items-variantes');
       this.varianteElemento = this.querySelectorAll('.variante-producto-item');
       this.btnsPersonalizar = this.querySelectorAll('#phpi-btn-personalizar');
-
+      
       // EVENTOS INICIALIZAR
-
       this.contenedorVarianteSeleccionado.forEach((elementoBase) => {
         elementoBase.addEventListener('click', this.mostrarYOcultarContenedorVariantes.bind(this, elementoBase));
       });
+      
       this.btnsPersonalizar.forEach((elementoBtnPersonalizar) => {
         elementoBtnPersonalizar.addEventListener(
           'click',
           this.redireccionPersonalizar.bind(this, elementoBtnPersonalizar)
         );
       });
+      
       this.varianteElemento.forEach((elementoBase) => {
         elementoBase.addEventListener('click', this.procesoVarianteSeleccionada.bind(this, elementoBase));
       });
-      document.addEventListener('click', this.clicksEspeciales.bind(this));
-
+      
       // INICIALIZAR ELEMENTOS Y PROCESOS CLAVES
       this.contenedorVariantes.forEach((elementoBase) => {
         elementoBase.classList.add('elemento-oculto');
@@ -794,7 +799,7 @@
       });
 
       contenedorProductos.innerHTML = contenidoHTML;
-
+      this.inicializarEventos();
       
     }
     
