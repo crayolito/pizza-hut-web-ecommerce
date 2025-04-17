@@ -619,20 +619,6 @@
         
         // Coleccion de Tamañoss
         coleccionPCT.forEach((productoSecundario) => {
-          var extras = {
-            condicion: {
-              min: productoSecundario.estructura?.extra?.min || 0,
-              max: productoSecundario.estructura?.extra?.max || 0
-            },
-            productos: []
-          };
-          var bordesMasas = {
-            condicion: {
-              min: productoSecundario.estructura?.masaborde?.min || 0,
-              max: productoSecundario.estructura?.masaborde?.max || 0
-            },
-            productos: []
-          };
           var tituloTrabajoBordeYMasa = "";
           var tituloTrabajoExtras=""
                     
@@ -650,8 +636,26 @@
             tituloTrabajoBordeYMasa= "Familiar";
             tituloTrabajoExtras="Familiar"
           }
-          
 
+          console.log("Producto Familiar", productoSecundario.estructura[tituloTrabajoBordeYMasa]);
+          console.log("Producto Extra", productoSecundario.estructura[tituloTrabajoExtras]);
+
+          var extras = {
+            condicion: {
+              min: productoSecundario.estructura?.extra?.min || 0,
+              max: productoSecundario.estructura?.extra?.max || 0
+            },
+            productos: []
+          };
+          var bordesMasas = {
+            condicion: {
+              min: productoSecundario.estructura?.masaborde?.min || 0,
+              max: productoSecundario.estructura?.masaborde?.max || 0
+            },
+            productos: []
+          };
+
+          
           // Coleccion Bordes y Masa
           coleccionPCMB.forEach((producto) =>{
             const existeTamanoParaTrabajarlo = producto.estructura[tituloTrabajoBordeYMasa];
@@ -698,6 +702,7 @@
         const nuevoProducto = { 
           idShopify: productoPrimario.id,
           idTrabajo: productoPrimario.estructura.id,
+          titulo: productoPrimario.titulo,
           handle : productoPrimario.handle,
           precio: productoPrimario.estructura.precio,
           imagen : productoPrimario.imagen,
