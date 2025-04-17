@@ -619,75 +619,84 @@
         
         // Coleccion de Tamañoss
         coleccionPCT.forEach((productoSecundario) => {
-          var tituloTrabajoBordeYMasa = "";
-          var tituloTrabajoExtras=""
-                    
-          if (productoPrimario.titulo.includes("Super personal")){
-            tituloTrabajoBordeYMasa= "SuperPersonal";
-            tituloTrabajoExtras="SuperPersonal"
+
+          var extras = null;
+          var bordesMasas = null;
+
+          if(productoSecundario.estructura.masaborde){
+            bordesMasas = {
+              condicion: {
+                min: productoSecundario.estructura?.masaborde?.min || 0,
+                max: productoSecundario.estructura?.masaborde?.max || 0
+              },
+              productos: []
+            };
+
+            // Coleccion Bordes y Masa
+            coleccionPCMB.forEach((producto) =>{
+              var traerObjetoTrabajo = null;
+              if (productoPrimario.titulo.includes("Super personal")){
+                traerObjetoTrabajo = producto.estructura.SuperPersonal;
+              }
+            
+              if (productoPrimario.titulo.includes("Mediana")){
+                traerObjetoTrabajo = producto.estructura.Mediana;
+              }
+
+              if (productoPrimario.titulo.includes("Familiar")){
+                traerObjetoTrabajo = producto.estructura.Familiar;
+              }
+
+              if(!existeTamanoParaTrabajarlo){
+                return;
+              }
+
+              const productoTrabajo = {
+                idShopfiy: producto.id,
+                idTrabajo : traerObjetoTrabajo.id,
+                handle: producto.handle,
+                precio: traerObjetoTrabajo.precio,
+              }
+
+              bordesMasas.productos.push(productoTrabajo)
+            });
           }
 
-          if (productoPrimario.titulo.includes("Mediana")){
-            tituloTrabajoBordeYMasa= "Mediana";
-            tituloTrabajoExtras="Mediana"
+          if(productoSecundario.estructura.extras){
+            extras = {
+                condicion: {
+                  min: productoSecundario.estructura?.extra?.min || 0,
+                  max: productoSecundario.estructura?.extra?.max || 0
+                },
+                productos: []
+              };
+
+
+
+            // Coleccion Extras
+            coleccionPCE.forEach((producto) =>{
+              var traerObjetoTrabajo = null;
+              if (productoPrimario.titulo.includes("Super personal")){
+                traerObjetoTrabajo = producto.estructura.SuperPersonal;
+              }
+    
+              if (productoPrimario.titulo.includes("Mediana")){
+                traerObjetoTrabajo = producto.estructura.Mediana;
+              }
+                        
+              if (productoPrimario.titulo.includes("Familiar")){
+                traerObjetoTrabajo = producto.estructura.Familiar;
+              }
+
+              const productoTrabajo = {
+                idShopfiy: producto.id,
+                idTrabajo : traerObjetoTrabajo.id,
+                handle: producto.handle,
+                precio: traerObjetoTrabajo.precio,
+              }
+              extras.productos.push(productoTrabajo);
+            });
           }
-                    
-          if (productoPrimario.titulo.includes("Familiar")){
-            tituloTrabajoBordeYMasa= "Familiar";
-            tituloTrabajoExtras="Familiar"
-          }
-
-          var extras = {
-            condicion: {
-              min: productoSecundario.estructura?.extra?.min || 0,
-              max: productoSecundario.estructura?.extra?.max || 0
-            },
-            productos: []
-          };
-          var bordesMasas = {
-            condicion: {
-              min: productoSecundario.estructura?.masaborde?.min || 0,
-              max: productoSecundario.estructura?.masaborde?.max || 0
-            },
-            productos: []
-          };
-
-          
-          // Coleccion Bordes y Masa
-          coleccionPCMB.forEach((producto) =>{
-            const existeTamanoParaTrabajarlo = producto.estructura[tituloTrabajoBordeYMasa];
-            const a = producto.estructura.Familiar;
-            console.log("producto ?" , a);
-            console.log("producto ?" , producto);
-            console.log("existe ?" , existeTamanoParaTrabajarlo);
-            if(!existeTamanoParaTrabajarlo){
-              return;
-            }
-
-            const productoTrabajo = {
-              idShopfiy: producto.id,
-              idTrabajo : producto.estructura[tituloTrabajoBordeYMasa].id,
-              handle: producto.handle,
-              precio: producto.estructura[tituloTrabajoBordeYMasa].precio,
-            }
-
-            bordesMasas.productos.push(productoTrabajo)
-          });
-
-          // Coleccion Extras
-          coleccionPCE.forEach((producto) =>{
-            const existeTamanoParaTrabajarlo = producto.estructura[tituloTrabajoExtras];
-            if(!existeTamanoParaTrabajarlo){
-              return;
-            }
-            const productoTrabajo = {
-              idShopfiy: producto.id,
-              idTrabajo : producto.estructura[tituloTrabajoExtras].id,
-              handle: producto.handle,
-              precio: producto.estructura[tituloTrabajoExtras].precio,
-            }
-            extras.productos.push(productoTrabajo);
-          });
           
           const productoTamano = {
               idShopify: productoSecundario.id,
