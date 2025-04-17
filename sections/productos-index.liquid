@@ -596,18 +596,15 @@
     async traerInformacionShopify() {
       // Primero va traer la informacion de la coleccion PIZZA
       const {informacionColeccion, productosColeccion } = await this.primeraFaseConsulta();
-        console.log({
-        informacionColeccion,
-        productosColeccion
-      }); 
+
       const estructuraClasicas = informacionColeccion.estructura.clasica.estructura;  
       const { coleccionPCE, coleccionPCMB, coleccionPCT} = await this.segundaFaseConsulta(estructuraClasicas); 
-       console.log({
-        coleccionPCE,
-        coleccionPCMB,
-        coleccionPCT
-      });
+
       var productosEstructurado = [];
+      var tamanosC = [];
+      var extrasC = [];
+      var bordesMasasC = [];
+
       productosColeccion.forEach((productoPrimario) => {
         var tamanos = {
           condicion : {
@@ -707,12 +704,16 @@
               titulo: productoSecundario.titulo,
               precio: productoSecundario.estructura.precio,
               extras,
-              bordesMasas
+              bordesMasas,
+              contruccion: {
+                tamanosC,
+                extrasC,
+                bordesMasasC
+              }
           }
 
           tamanos.productos.push(productoTamano);
         });
-
 
         const nuevoProducto = { 
           idShopify: productoPrimario.id,
@@ -732,9 +733,9 @@
       // Contruccion del productos en su estado visible en la seccion
       const contenedorProductos = this.querySelector('#phpi-contenedor-productos-muestra');
        var contenidoHTML = `
-              <div class="producto-item">
+        <div class="producto-item">
           <div class="producto-item-imagen">
-            <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+            <img src="" alt="Pizza 1" width="100%" height="100%">
           </div>
           <div
             tipo-producto="simple"
@@ -784,8 +785,67 @@
             </button>
           </div>
         </div>
-      
       `;
+
+      productosEstructurado.forEach((producto) => {
+        contenidoHTML += `
+          <div 
+          data-id="${producto.idShopify}"
+          data-id-trabajo="${producto.idTrabajo}"
+          class="producto-item">
+            <div class="producto-item-imagen">
+              <img src="${producto.imagen}" alt="${producto.titulo}" width="100%" height="100%">
+            </div>
+            <div
+              tipo-producto="simple"
+              class="producto-item-detalle"
+            >
+              <div class="producto-item-info">
+                <h3>${producto.titulo}</h3>
+                <p>${producto.descripcion}</p>
+              </div>
+              <h3 class="color-letras-primary">${producto.precio}.00 BS</h3>
+              <div
+                id="phpi-general-variantes"
+                tipo-producto="simple"
+                class="seleccion-variante-producto-general"
+              >
+                <p>Tamaño</p>
+                <button id="phpi-view-variantes" class="container-info-variante">
+                  <p id="phpi-variante-seleccionado">Personal</p>
+                  <div class="icono-dropdown-variantes icon-color-tertiary">
+                    {% render 'icon-flecha-abajo' %}
+                  </div>
+                </button>
+                <div id="phpi-items-variantes" class="variantes-producto">
+                  <div class="variante-producto-item">
+                    <p>Personal</p>
+                    <p class="color-letras-primary">12.56 BS</p>
+                  </div>
+                  <div class="variante-producto-item">
+                    <p>Super Pers.</p>
+                    <p class="color-letras-primary">12.56 BS</p>
+                  </div>
+                  <div class="variante-producto-item">
+                    <p>Mediana</p>
+                    <p class="color-letras-primary">12.56 BS</p>
+                  </div>
+                  <div class="variante-producto-item">
+                    <p>Familiar</p>
+                    <p class="color-letras-primary">12.56 BS</p>
+                  </div>
+                </div>
+              </div>
+              <button id="phpi-btn-personalizar" class="ph-btn-general   phpi-btn-personalizar">
+                <p class="color-letras-secondary">PERSONALIZAR</p>
+              </button>
+            </div>
+          </div>
+        `;
+      });
+
+      contenedorProductos.innerHTML = contenidoHTML;
+
       
     }
     
