@@ -700,10 +700,10 @@
         const nuevoProducto = { 
           idShopify: productoPrimario.id,
           idTrabajo: productoPrimario.estructura.id,
-          handle,
+          handle : productoPrimario.handle,
           precio: productoPrimario.estructura.precio,
-          imagen,
-          descripcion,
+          imagen : productoPrimario.imagen,
+          descripcion : productoPrimario.descripcion,
           tamanos
         }
         productosEstructurado.push(nuevoProducto);
