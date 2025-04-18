@@ -1227,22 +1227,29 @@
     }
         
     // Función para verificar si un producto de rama coincide con alguna clave de estructura
-    filtrarProductosPorTitulo(productoDeRama, estructuraProducto) {
-      // Obtener la primera palabra del título del producto
-      var primeraPalabra = productoDeRama.titulo.split(' ')[0];
-      
-      // Verificar si la primera palabra coincide con alguna clave en la estructura
-      for (var clave in estructuraProducto) {
-        // Ignorar propiedades básicas que no son tamaños
-        if (clave !== "id" && clave !== "precio" && clave !== "estado") {
-          console.log("Clave:", clave);
-          console.log("Primera palabra:", primeraPalabra);
-          if (clave.toLowerCase() === primeraPalabra.toLowerCase()) {
-            return true;
-          }
-        }
+    filtrarProductosPorTitulo(productosArray, tituloReferencia) {
+      // Si los parámetros no son válidos, devolver array vacío
+      if (!productosArray || !Array.isArray(productosArray) || !tituloReferencia) {
+        return [];
       }
-      return false;
+      
+      // Extraer la primera palabra del título de referencia
+      var primeraPalabraReferencia = tituloReferencia.split(' ')[0].toLowerCase();
+      
+      console.log("Buscando productos que coincidan con:", primeraPalabraReferencia);
+      
+      // Filtrar los productos que coinciden con la primera palabra del título
+      return productosArray.filter(producto => {
+        if (!producto || !producto.titulo) return false;
+        
+        // Obtener la primera palabra del título del producto
+        var primeraPalabraProducto = producto.titulo.split(' ')[0].toLowerCase();
+        
+        console.log("Comparando:", primeraPalabraProducto, "con", primeraPalabraReferencia);
+        
+        // Verificar si la primera palabra coincide
+        return primeraPalabraProducto === primeraPalabraReferencia;
+      });
     }
 
     clicksEspeciales(event){
