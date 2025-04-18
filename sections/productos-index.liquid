@@ -601,18 +601,7 @@
       });
     }
 
-    filtrarProductosPorTitulo(productos, titulo) {
-      console.log("Productos ABC:", productos);
-      console.log("Titulo ABC:", titulo);
-      return productos.filter((producto) => {
-        // Si el producto tiene un titulo
-        if (producto.titulo) {
-          // Si el titulo del producto es igual al que busco
-          return producto.titulo === titulo;
-        }
-        return false;
-      });
-    }
+
 
     async traerInformacionShopify() {
       // Primero va traer la informacion de la colecci  on PIZZA
@@ -1230,6 +1219,19 @@
         console.error('Error al obtener los datos de la colección:', error);
         return [];
       }
+    }
+
+    filtrarProductosPorTitulo(productos, titulo) {
+      console.log("Productos ABC:", productos);
+      console.log("Titulo ABC:", titulo);
+      return productos.filter((producto) => {
+        // Si el producto tiene un titulo
+        if (producto.titulo) {
+          // Si el titulo del producto es igual al que busco
+          return producto.titulo === titulo;
+        }
+        return false;
+      });
     }
 
     clicksEspeciales(event){
