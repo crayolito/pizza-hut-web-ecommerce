@@ -740,8 +740,52 @@
       // Contruccion del productos en su estado visible en la seccion
       const contenedorProductos = this.querySelector('#phpi-contenedor-productos-muestra');
        var contenidoHTML = ``;
+       
+
+
 
       productosEstructurado.forEach((producto) => {
+        var variantesHTML = ``;
+        let elementoSeleccionado; 
+
+        producto.tamanosproductos.forEach((productoTamano, index) => {
+          // Función para acortar el título
+          const acortarTitulo = (titulo) => {
+            if (titulo.includes("Super personal")) {
+              return "Super Pers.";
+            } else if (titulo.includes("Mediana")) {
+              return "Mediana";
+            } else if (titulo.includes("Familiar")) {
+              return "Familiar";
+            } else if (titulo.includes("Personal")) {
+              return "Personal";
+            } else {
+              return titulo;
+            }
+          };
+
+          // Determinamos si este elemento está seleccionado (solo el primero)
+          const esSeleccionado = index === 0 ? "seleccionado" : "";
+          
+          // Si es el primer elemento, lo guardamos en la variable
+          if (index === 0) {
+            elementoSeleccionado = productoTamano;
+            {% comment %} console.log("Elemento seleccionado:", elementoSeleccionado); {% endcomment %}
+          }
+
+          // Acortamos el título
+          const tituloCorto = acortarTitulo(productoTamano.titulo || productoTamano.nombre);
+          
+          // Agregamos el HTML con la clase de seleccionado para el primer elemento
+          variantesHTML += `
+            <div class="variante-producto-item ${esSeleccionado}">
+              <p>${tituloCorto}</p>
+              <p class="color-letras-primary">${productoTamano.precio} BS</p>
+            </div>
+          `;
+        });
+
+
         contenidoHTML += `
           <div 
           data-id="${producto.idShopify}"
@@ -765,32 +809,19 @@
                 class="seleccion-variante-producto-general"
               >
                 <p>Tamaño</p>
-                <button id="phpi-view-variantes" class="container-info-variante">
-                  <p id="phpi-variante-seleccionado">Personal</p>
+                <button 
+                   data-shopify="${elementoSeleccionado.idShopify}"
+                   id="phpi-view-variantes" class="container-info-variante">
+                  <p id="phpi-variante-seleccionado">${elementoSeleccionado}</p>
                   <div class="icono-dropdown-variantes icon-color-tertiary">
                     {% render 'icon-flecha-abajo' %}
                   </div>
                 </button>
                 <div id="phpi-items-variantes" class="variantes-producto">
-                  <div class="variante-producto-item">
-                    <p>Personal</p>
-                    <p class="color-letras-primary">12.56 BS</p>
-                  </div>
-                  <div class="variante-producto-item">
-                    <p>Super Pers.</p>
-                    <p class="color-letras-primary">12.56 BS</p>
-                  </div>
-                  <div class="variante-producto-item">
-                    <p>Mediana</p>
-                    <p class="color-letras-primary">12.56 BS</p>
-                  </div>
-                  <div class="variante-producto-item">
-                    <p>Familiar</p>
-                    <p class="color-letras-primary">12.56 BS</p>
-                  </div>
+                  ${variantesHTML}
                 </div>
               </div>
-              <button id="phpi-btn-personalizar" class="ph-btn-general   phpi-btn-personalizar">
+              <button id="phpi-btn-personalizar" class="ph-btn-general  phpi-btn-personalizar">
                 <p class="color-letras-secondary">PERSONALIZAR</p>
               </button>
             </div>
