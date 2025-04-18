@@ -1054,6 +1054,8 @@
         const coleccion = datosRespuesta.data.collections.edges[0].node;
         
         // Procesar los metafields de la colección
+        console.log("ID de la colección:", datosRespuesta);
+        console.log("Metafields de la colección:", coleccion.metafields);
         const estructuraColeccion = null;
         if (coleccion.metafields && coleccion.metafields.value) {
           try {
