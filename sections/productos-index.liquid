@@ -1055,11 +1055,12 @@
         
         // Procesar los metafields de la colección
         console.log("Metafields de la colección:", coleccion.metafield.value);
-        const estructuraColeccion = null;
+        var estructuraColeccion = null;
         if (coleccion.metafield && coleccion.metafield.value) {
           try {
-            estructuraColeccion = JSON.parse(coleccion.metafields.value);
+            estructuraColeccion = JSON.parse(coleccion.metafield.value);
           } catch (e) {
+            estructuraColeccion = null;
             console.error('Error al parsear la estructura de la colección:', e);
           } 
         }
