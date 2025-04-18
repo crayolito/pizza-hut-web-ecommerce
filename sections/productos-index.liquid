@@ -790,6 +790,7 @@
           <div 
           data-id="${producto.idShopify}"
           data-id-trabajo="${producto.idTrabajo}"
+          data-seleccionado="${elementoSeleccionado.idShopify}"
           class="producto-item">
             <div class="producto-item-imagen">
               <img src="${producto.imagen}" alt="${producto.titulo}" width="100%" height="100%">
@@ -810,7 +811,6 @@
               >
                 <p>Tamaño</p>
                 <button 
-                   data-shopify="${elementoSeleccionado.idShopify}"
                    id="phpi-view-variantes" class="container-info-variante">
                   <p id="phpi-variante-seleccionado">${elementoSeleccionado}</p>
                   <div class="icono-dropdown-variantes icon-color-tertiary">
