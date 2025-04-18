@@ -690,7 +690,6 @@
           // En este caso son los productos de las variantes TAMAÑO
           // Filtrar solo los productos que se va usar deacuerdo al titulo => producto.title
           productosDeRama.forEach((productoDeRama) => {
-            console.log("Producto de la rama:", productoDeRama);
             // Si la rama original tiene sub-ramas
             if(ramaOriginal.ramas){
               // Recorrer las sub-ramas
@@ -700,7 +699,7 @@
                 // Obtener los productos de esta sub-rama desde todasColecciones
                 var productosDeSubRama = todasColecciones["coleccion"+codigoSubRama] || [];
                 // Filtrar solo los productos que se va usar deacuerdo al titulo => producto.titl
-                var productosFiltrados = this.filtrarProductosPorTitulo(productoDeRama,productosDeSubRama );
+                var productosFiltrados = this.filtrarProductosPorTitulo(productosDeSubRama,productoDeRama.titulo );
 
                 // Crear estructura de la sub-rama
                 ramaNueva.ramas[codigoSubRama] = {
@@ -1228,15 +1227,8 @@
         
     // Función para verificar si un producto de rama coincide con alguna clave de estructura
     filtrarProductosPorTitulo(productosArray, tituloReferencia) {
-      // Si los parámetros no son válidos, devolver array vacío
-      if (!productosArray || !Array.isArray(productosArray) || !tituloReferencia) {
-        return [];
-      }
-      
       // Extraer la primera palabra del título de referencia (como "Familiar")
-      var primeraPalabraReferencia = tituloReferencia.split(' ')[0].toLowerCase();
-      
-      console.log("Filtrando productos para:", primeraPalabraReferencia);
+      var primeraPalabraReferencia = tituloReferencia.split(' ')[0]
       
       // Filtrar y devolver los productos completos que cumplen con la condición
       var productosFiltrados = productosArray.filter(producto => {
@@ -1244,8 +1236,9 @@
         
         // Verificar si alguna clave en la estructura coincide con la primera palabra del título
         for (var clave in producto.estructura) {
-          if (clave.toLowerCase() === primeraPalabraReferencia) {
-            console.log(`Producto con título "${producto.titulo}" tiene clave "${clave}" que coincide con "${primeraPalabraReferencia}"`);
+          console.log("Clave de producto:", clave);
+          console.log("Primera palabra de referencia:", primeraPalabraReferencia);
+          if (clave == primeraPalabraReferencia) {
             return true;
           }
         }
