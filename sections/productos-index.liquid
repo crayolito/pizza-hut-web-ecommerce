@@ -601,7 +601,6 @@
       });
     }
 
-
     async traerInformacionShopify() {
       // Primero va traer la informacion de la colecci  on PIZZA
       const {informacionColeccion,  productosColeccion } = await this.primeraFaseConsulta();
@@ -700,7 +699,7 @@
                 // Obtener los productos de esta sub-rama desde todasColecciones
                 var productosDeSubRama = todasColecciones["coleccion"+codigoSubRama] || [];
                 // Filtrar solo los productos que se va usar deacuerdo al titulo => producto.title
-                var productosFiltrados = filtrarProductosPorTitulo(productosDeSubRama, productoDeRama.titulo);
+                var productosFiltrados = this.filtrarProductosPorTitulo(productosDeSubRama, productoDeRama.titulo);
 
                 // Crear estructura de la sub-rama
                 ramaNueva.ramas[codigoSubRama] = {
@@ -1225,7 +1224,6 @@
         return [];
       }
     }
-
         
     // Función para verificar si un producto de rama coincide con alguna clave de estructura
     filtrarProductosPorTitulo(productoDeRama, estructuraProducto) {
@@ -1245,8 +1243,6 @@
       }
       return false;
     }
-
-
 
     clicksEspeciales(event){
       // Si el click es en algun elemento con id="phpi-view-variantes" no hace nada y se sale
