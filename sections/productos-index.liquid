@@ -600,25 +600,6 @@
         }
       });
     }
-    
-    // Función para verificar si un producto de rama coincide con alguna clave de estructura
-    filtrarProductosPorTitulo(productoDeRama, estructuraProducto) {
-      // Obtener la primera palabra del título del producto
-      var primeraPalabra = productoDeRama.titulo.split(' ')[0];
-      
-      // Verificar si la primera palabra coincide con alguna clave en la estructura
-      for (var clave in estructuraProducto) {
-        // Ignorar propiedades básicas que no son tamaños
-        if (clave !== "id" && clave !== "precio" && clave !== "estado") {
-          console.log("Clave:", clave);
-          console.log("Primera palabra:", primeraPalabra);
-          if (clave.toLowerCase() === primeraPalabra.toLowerCase()) {
-            return true;
-          }
-        }
-      }
-      return false;
-    }
 
 
     async traerInformacionShopify() {
@@ -1244,6 +1225,27 @@
         return [];
       }
     }
+
+        
+    // Función para verificar si un producto de rama coincide con alguna clave de estructura
+    filtrarProductosPorTitulo(productoDeRama, estructuraProducto) {
+      // Obtener la primera palabra del título del producto
+      var primeraPalabra = productoDeRama.titulo.split(' ')[0];
+      
+      // Verificar si la primera palabra coincide con alguna clave en la estructura
+      for (var clave in estructuraProducto) {
+        // Ignorar propiedades básicas que no son tamaños
+        if (clave !== "id" && clave !== "precio" && clave !== "estado") {
+          console.log("Clave:", clave);
+          console.log("Primera palabra:", primeraPalabra);
+          if (clave.toLowerCase() === primeraPalabra.toLowerCase()) {
+            return true;
+          }
+        }
+      }
+      return false;
+    }
+
 
 
     clicksEspeciales(event){
