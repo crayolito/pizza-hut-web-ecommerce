@@ -803,7 +803,7 @@
                 <h3>${producto.titulo}</h3>
                 <p>${producto.descripcion}</p>
               </div>
-              <h3 class="color-letras-primary">${producto.precio == undefined ? "" : producto.precio+".00 BS" }</h3>
+              <h3 class="color-letras-primary">${(producto.precio !== undefined && producto.precio !== null && producto.precio !== "") ? producto.precio + ".00 BS" : ""}</h3>
               <div
                 id="phpi-general-variantes"
                 tipo-producto="simple"
