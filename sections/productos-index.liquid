@@ -601,6 +601,19 @@
       });
     }
 
+    filtrarProductosPorTitulo(productos, titulo) {
+      console.log("Productos ABC:", productos);
+      console.log("Titulo ABC:", titulo);
+      return productos.filter((producto) => {
+        // Si el producto tiene un titulo
+        if (producto.titulo) {
+          // Si el titulo del producto es igual al que busco
+          return producto.titulo === titulo;
+        }
+        return false;
+      });
+    }
+
     async traerInformacionShopify() {
       // Primero va traer la informacion de la colecci  on PIZZA
       const {informacionColeccion,  productosColeccion } = await this.primeraFaseConsulta();
@@ -695,6 +708,8 @@
 
               // Obtener los productos de esta sub-rama desde todasColecciones
               var productosDeSubRama = todasColecciones["coleccion"+codigoSubRama] || [];
+              // Filtrar solo los productos que se va usar deacuerdo al titulo => producto.title
+              var productosFiltrados = filtrarProductosPorTitulo(productosDeSubRama, producto.titulo);
 
               // Crear estructura de la sub-rama
               ramaNueva.ramas[codigoSubRama] = {
@@ -704,11 +719,10 @@
                   min: subRamaOriginal.min || 0,
                   max: subRamaOriginal.max || 0
                 },
-                productos: productosDeSubRama
+                productos: productosFiltrados
               };
 
               // Agregar la rama al producto
-              console.log("Agregando sub-rama:", codigoSubRama, "a producto:", producto.titulo);
               productoCompleto.ramas[codigoRama] = ramaNueva;
             };
           }
