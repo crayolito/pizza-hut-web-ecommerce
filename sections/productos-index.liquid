@@ -662,8 +662,8 @@
         }
 
         // Recorrer la estructura de la ramas para manejarlo
-        for(var codigoRama in estructuraRamas.ramas){
-          var ramaOriginal = estructuraRamas.ramas[codigoRama];
+        for(var codigoRama in informacionColeccion.estructura.ramas){
+          var ramaOriginal = informacionColeccion.estructura.ramas[codigoRama];
 
           // Obtener los productos de esta rama desde todasColecciones
           var productosDeRama = todasColecciones["coleccion"+codigoRama] || [];
