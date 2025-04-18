@@ -649,6 +649,12 @@
       
       var listaProductos = [];
 
+      console.log({
+        informacionColeccion.estructura,
+        productosColeccion,
+        todasColecciones
+      })
+
       productosColeccion.forEach((producto) => {
         // Crear producto con estructura completa
         var productoCompleto = {
@@ -701,6 +707,7 @@
               };
 
               // Agregar la rama al producto
+              console.log("Agregando sub-rama:", codigoSubRama, "a producto:", producto.titulo);
               productoCompleto.ramas[codigoRama] = ramaNueva;
             };
           }
