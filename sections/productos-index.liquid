@@ -613,7 +613,7 @@
       var extrasC = [];
       var bordesMasasC = [];
 
-      console.log("Productos de la coleccion:",coleccionPCT);
+      
 
       productosColeccion.forEach((productoPrimario) => {
         var tamanos = {
@@ -630,6 +630,8 @@
 
           var extras = null;
           var bordesMasas = null;
+          console.log("testeo 1",  productoSecundario.estructura.masaborde);
+          console.log("testeo 2",  productoSecundario.estructura.extras);
 
           if(productoSecundario.estructura.masaborde){
             bordesMasas = {
@@ -1152,10 +1154,7 @@
       const dataId = elementoPadreGeneral.dataset.id;
       // Buscar el id en el this.productosTrabajo
       const productoTrabajo = this.productosTrabajo.find((producto) => producto.idTrabajo == dataId);
-      
-
       const padreElemento = elementoBtn.closest('.producto-es-item-detalle') || elementoBtn.closest('.producto-item-detalle');
-
       const dataPadre = padreElemento.getAttribute('tipo-producto');
 
       if(dataPadre == null){
