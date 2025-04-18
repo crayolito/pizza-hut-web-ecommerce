@@ -605,10 +605,11 @@
       // Primero va traer la informacion de la coleccion PIZZA
       const {informacionColeccion, productosColeccion } = await this.primeraFaseConsulta();
 
-      const estructuraClasicas = informacionColeccion.estructura.clasica.estructura;  
-      const { coleccionPCE, coleccionPCMB, coleccionPCT} = await this.segundaFaseConsulta(estructuraClasicas); 
+      const estructuraColeccion = informacionColeccion.estructura;  
+      console.log("Estructura de la coleccion:",estructuraColeccion);
+      {% comment %} const { coleccionPCE, coleccionPCMB, coleccionPCT} = await this.segundaFaseConsulta(estructuraClasicas);  {% endcomment %}
 
-      var productosEstructurado = [];
+      {% comment %} var productosEstructurado = [];
 
       productosColeccion.forEach((productoPrimario) => {
         var tamanos = {
@@ -828,7 +829,7 @@
       });
 
       contenedorProductos.innerHTML = contenidoHTML;
-      this.inicializarEventos();
+      this.inicializarEventos(); {% endcomment %}
       
     }
     
