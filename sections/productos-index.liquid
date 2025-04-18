@@ -606,7 +606,6 @@
       const {informacionColeccion, productosColeccion } = await this.primeraFaseConsulta();
       
       let estructuraColeccionGeneral = [] ;
-      console.log("Informacion de la coleccion:",informacionColeccion);
       // Ejemplo base de json
       // {
       //   "ramas": {
@@ -644,9 +643,11 @@
         }
       }
 
-      console.log("Estructura de la coleccion general:",estructuraColeccionGeneral);
+      // const { coleccionPCE, coleccionPCMB, coleccionPCT} = await this.segundaFaseConsulta(estructuraColeccionGeneral); 
+      const todasColecciones = await this.segundaFaseConsulta(estructuraColeccionGeneral); 
 
-      {% comment %} const { coleccionPCE, coleccionPCMB, coleccionPCT} = await this.segundaFaseConsulta(estructuraColeccionGeneral);  {% endcomment %}
+      console.log("Todas las colecciones:",todasColecciones);
+
 
       {% comment %} var productosEstructurado = [];
 
