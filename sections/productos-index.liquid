@@ -605,7 +605,7 @@
       // Primero va traer la informacion de la coleccion PIZZA
       const {informacionColeccion, productosColeccion } = await this.primeraFaseConsulta();
 
-      const estructuraColeccion = informacionColeccion.estructura;  
+      const estructuraColeccion = informacionColeccion;  
       console.log("Estructura de la coleccion:",estructuraColeccion);
       {% comment %} const { coleccionPCE, coleccionPCMB, coleccionPCT} = await this.segundaFaseConsulta(estructuraClasicas);  {% endcomment %}
 
