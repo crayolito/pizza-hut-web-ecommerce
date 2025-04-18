@@ -832,7 +832,7 @@
       
     }
     
-    async segundaFaseConsulta(codigosColeccion = ["PCT", "PCE", "PCMB"]) {
+    async segundaFaseConsulta(codigosColeccion) {
       // Validar que codigosColeccion sea un array
       if (!Array.isArray(codigosColeccion) || codigosColeccion.length === 0) {
         console.error("Error: codigosColeccion debe ser un array con al menos un elemento");
@@ -989,19 +989,14 @@
     async primeraFaseConsulta() {
       const graphQLQuery = `
         query GetCollectionByFlexibleTitle {
-          collections(first: 1, query: "title:*PIZZA*") {
+          collections(first: 1, query: "title:*PClasica*") {
             edges {
               node {
                 id
                 title
                 handle
-                metafields(first: 10, namespace: "estructura") {
-                  edges {
-                    node {
-                      key
-                      value
-                    }
-                  }
+                metafield(namespace: "estructura", key: "json") {
+                  value
                 }
                 products(first: 20) {
                   edges {
@@ -1058,17 +1053,13 @@
         const coleccion = datosRespuesta.data.collections.edges[0].node;
         
         // Procesar los metafields de la colección
-        const estructuraColeccion = {};
-        if (coleccion.metafields && coleccion.metafields.edges) {
-          coleccion.metafields.edges.forEach(edge => {
-            if (edge.node && edge.node.key && edge.node.value) {
-              try {
-                estructuraColeccion[edge.node.key] = JSON.parse(edge.node.value);
-              } catch (e) {
-                estructuraColeccion[edge.node.key] = edge.node.value;
-              }
-            }
-          });
+        const estructuraColeccion = null;
+        if (coleccion.metafields && coleccion.metafields.value) {
+          try {
+            estructuraColeccion = JSON.parse(coleccion.metafields.value);
+          } catch (e) {
+            console.error('Error al parsear la estructura de la colección:', e);
+          } 
         }
     
         // Transformar los productos a un formato más simple
