@@ -534,6 +534,7 @@
   class ProductosIndex extends HTMLElement {
     constructor() {
       super();
+      this.productosTrabajo = null;
       this.accesoX="shpat_";
       this.accesoY="45f4a7476152f4881d058f87ce063698";
       this.urlConsulta = "https://pizza-hut-bo.myshopify.com/admin/api/2025-01/graphql.json";
@@ -738,6 +739,8 @@
         }
         productosEstructurado.push(nuevoProducto);
       });
+
+      this.productosTrabajo = productosEstructurado;
 
       console.log("Productos Finales trabajados:",productosEstructurado);
 
@@ -1143,6 +1146,14 @@
     }
 
     redireccionPersonalizar(elementoBtn){
+      // Buscar al elemento padre general class="producto-item"
+      const elementoPadreGeneral = elementoBtn.closest('.producto-item');
+      // Buscar del padre general data-id
+      const dataId = elementoPadreGeneral.dataset.id;
+      // Buscar el id en el this.productosTrabajo
+      const productoTrabajo = this.productosTrabajo.find((producto) => producto.idTrabajo == dataId);
+      
+
       const padreElemento = elementoBtn.closest('.producto-es-item-detalle') || elementoBtn.closest('.producto-item-detalle');
 
       const dataPadre = padreElemento.getAttribute('tipo-producto');
@@ -1152,6 +1163,12 @@
       }
 
       localStorage.setItem('phpp-tipo-producto', dataPadre);
+      // Guardar en el localStorage el productoBase y tamano seleccionado su id
+      localStorage.setItem('phpp-productoData', JSON.stringify({
+        productoTrabajo,
+        tamanoSeleccionado: elementoPadreGeneral.dataset.seleccionado
+      }));
+
       window.location.href = "/pages/producto";
     }
 
