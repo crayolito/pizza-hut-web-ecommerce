@@ -602,11 +602,11 @@
     }
 
     async traerInformacionShopify() {
-      // Primero va traer la informacion de la coleccion PIZZA
+      // Primero va traer la informacion de la colecci  on PIZZA
       const {informacionColeccion, productosColeccion } = await this.primeraFaseConsulta();
       
       let estructuraColeccionGeneral = [] ;
-
+      console.log("Informacion de la coleccion:",informacionColeccion);
       // Ejemplo base de json
       // {
       //   "ramas": {
@@ -631,13 +631,13 @@
       // }
   
       // Procesar la estructura, para saber que colecciones traer correctamente
-      for (var keyCustom1 in informacionColeccion.ramas) {
+      for (var keyCustom1 in informacionColeccion.estructura.ramas) {
         // Aqui se va guardar = PCT
         estructuraColeccionGeneral.push(keyCustom1);
 
         // Recorrer las otras ramas del keyCustom
-        if(informacionColeccion.ramas[keyCustom1].ramas){
-          for (var keyCustom2 in informacionColeccion.ramas[keyCustom1].ramas) {
+        if(informacionColeccion.estructura.ramas[keyCustom1].ramas){
+          for (var keyCustom2 in informacionColeccion.estructura.ramas[keyCustom1].ramas) {
             // Aqui se va guardar = PCE y PCMB
             estructuraColeccionGeneral.push(keyCustom2);
           }
