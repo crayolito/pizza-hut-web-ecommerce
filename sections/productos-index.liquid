@@ -1233,23 +1233,28 @@
         return [];
       }
       
-      // Extraer la primera palabra del título de referencia
+      // Extraer la primera palabra del título de referencia (como "Familiar")
       var primeraPalabraReferencia = tituloReferencia.split(' ')[0].toLowerCase();
       
-      console.log("Buscando productos que coincidan con:", primeraPalabraReferencia);
+      console.log("Filtrando productos para:", primeraPalabraReferencia);
       
-      // Filtrar los productos que coinciden con la primera palabra del título
-      return productosArray.filter(producto => {
-        if (!producto || !producto.titulo) return false;
+      // Filtrar y devolver los productos completos que cumplen con la condición
+      var productosFiltrados = productosArray.filter(producto => {
+        if (!producto || !producto.estructura) return false;
         
-        // Obtener la primera palabra del título del producto
-        var primeraPalabraProducto = producto.titulo.split(' ')[0].toLowerCase();
+        // Verificar si alguna clave en la estructura coincide con la primera palabra del título
+        for (var clave in producto.estructura) {
+          if (clave.toLowerCase() === primeraPalabraReferencia) {
+            console.log(`Producto con título "${producto.titulo}" tiene clave "${clave}" que coincide con "${primeraPalabraReferencia}"`);
+            return true;
+          }
+        }
         
-        console.log("Comparando:", primeraPalabraProducto, "con", primeraPalabraReferencia);
-        
-        // Verificar si la primera palabra coincide
-        return primeraPalabraProducto === primeraPalabraReferencia;
+        return false;
       });
+      
+      console.log(`Se encontraron ${productosFiltrados.length} productos que coinciden con "${primeraPalabraReferencia}"`);
+      return productosFiltrados;
     }
 
     clicksEspeciales(event){
