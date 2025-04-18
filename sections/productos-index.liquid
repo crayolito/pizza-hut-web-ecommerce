@@ -741,28 +741,28 @@
       const contenedorProductos = this.querySelector('#phpi-contenedor-productos-muestra');
        var contenidoHTML = ``;
        
-
+       const acortarTitulo = (titulo) => {
+        if (titulo.includes("Super personal")) {
+          return "Super Pers.";
+        } else if (titulo.includes("Mediana")) {
+          return "Mediana";
+        } else if (titulo.includes("Familiar")) {
+          return "Familiar";
+        } else if (titulo.includes("Personal")) {
+          return "Personal";
+        } else {
+          return titulo;
+        }
+      };
 
 
       productosEstructurado.forEach((producto) => {
         var variantesHTML = ``;
         let elementoSeleccionado; 
 
-        producto.tamanos.productos.forEach((productoTamano, index) => {
+        producto.tamanos.productos.reverse().forEach((productoTamano, index) => {
           // Función para acortar el título
-          const acortarTitulo = (titulo) => {
-            if (titulo.includes("Super personal")) {
-              return "Super Pers.";
-            } else if (titulo.includes("Mediana")) {
-              return "Mediana";
-            } else if (titulo.includes("Familiar")) {
-              return "Familiar";
-            } else if (titulo.includes("Personal")) {
-              return "Personal";
-            } else {
-              return titulo;
-            }
-          };
+          
 
           // Determinamos si este elemento está seleccionado (solo el primero
           const esSeleccionado = index === 0 ? "seleccionado" : "";
@@ -803,7 +803,7 @@
                 <h3>${producto.titulo}</h3>
                 <p>${producto.descripcion}</p>
               </div>
-              <h3 class="color-letras-primary">${producto.precio}.00 BS</h3>
+              <h3 class="color-letras-primary">${producto.precio == undefined ? "" : producto.precio+".00 BS" }</h3>
               <div
                 id="phpi-general-variantes"
                 tipo-producto="simple"
@@ -812,7 +812,7 @@
                 <p>Tamaño</p>
                 <button 
                    id="phpi-view-variantes" class="container-info-variante">
-                  <p id="phpi-variante-seleccionado">${elementoSeleccionado.titulo}</p>
+                  <p id="phpi-variante-seleccionado">${acortarTitulo(elementoSeleccionado.titulo)}</p>
                   <div class="icono-dropdown-variantes icon-color-tertiary">
                     {% render 'icon-flecha-abajo' %}
                   </div>
