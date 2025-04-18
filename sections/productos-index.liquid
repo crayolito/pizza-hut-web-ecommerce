@@ -612,6 +612,8 @@
       var extrasC = [];
       var bordesMasasC = [];
 
+      console.log("Productos de la coleccion:",coleccionPCT);
+
       productosColeccion.forEach((productoPrimario) => {
         var tamanos = {
           condicion : {
@@ -620,6 +622,7 @@
           },
           productos : []
         };
+        
         
         // Coleccion de Tamañoss
         coleccionPCT.forEach((productoSecundario) => {
