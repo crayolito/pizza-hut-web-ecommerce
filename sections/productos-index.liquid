@@ -631,7 +631,7 @@
           var extras = null;
           var bordesMasas = null;
           console.log("testeo 1",  productoSecundario.estructura.masaborde);
-          console.log("testeo 2",  productoSecundario.estructura.extras);
+          console.log("testeo 2",  productoSecundario.estructura.extra);
 
           if(productoSecundario.estructura.masaborde){
             bordesMasas = {
@@ -672,7 +672,7 @@
             });
           }
 
-          if(productoSecundario.estructura.extras){
+          if(productoSecundario.estructura.extra){
             extras = {
                 condicion: {
                   min: productoSecundario.estructura?.extra?.min || 0,
