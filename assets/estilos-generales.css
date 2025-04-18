@@ -967,7 +967,7 @@ cantidad-input {
 
 .producto-es-item-info,
 .producto-item-info {
-  height: 6.689rem;
+  height: 3.3rem;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -1029,6 +1029,20 @@ cantidad-input {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+@media screen and (min-width: 768px) {
+  .producto-es-item-info,
+  .producto-item-info {
+    height: 4.3rem;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .producto-es-item-info,
+  .producto-item-info {
+    height: 6.3rem;
+  }
 }
 
 /* ===== ESPECIAL (PRODUCTO VISTA GENERAL) ===== */
