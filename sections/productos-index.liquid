@@ -700,7 +700,7 @@
                 // Obtener los productos de esta sub-rama desde todasColecciones
                 var productosDeSubRama = todasColecciones["coleccion"+codigoSubRama] || [];
                 // Filtrar solo los productos que se va usar deacuerdo al titulo => producto.title
-                var productosFiltrados = this.filtrarProductosPorTitulo(productosDeSubRama, productoDeRama.titulo);
+                var productosFiltrados = this.filtrarProductosPorTitulo(productoDeRama,productosDeSubRama );
 
                 // Crear estructura de la sub-rama
                 ramaNueva.ramas[codigoSubRama] = {
