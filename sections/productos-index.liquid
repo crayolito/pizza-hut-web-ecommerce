@@ -778,13 +778,14 @@
           
           // Agregamos el HTML con la clase de seleccionado para el primer elemento
           variantesHTML += `
-            <div class="variante-producto-item ${esSeleccionado}">
+            <div 
+            data-id="${productoTamano.idShopify}"
+            class="variante-producto-item ${esSeleccionado}">
               <p>${tituloCorto}</p>
               <p class="color-letras-primary">${(productoTamano.precio !== undefined && productoTamano.precio !== null && productoTamano.precio !== "") ? productoTamano.precio + ".00 BS" : ""}</p>
             </div>
           `;
         });
-
 
         contenidoHTML += `
           <div 
@@ -1152,6 +1153,8 @@
     }
 
     procesoVarianteSeleccionada(elementoBase){
+      // Es el que tiene la class="producto-item"
+      const elementoPadreGeneral = elementoBase.closest('.producto-item');
       // Busco dentro del elemento al la primer etiqueta <p> y obtengo su valor ya que tenog 3 etiqueta p
       const primerP = elementoBase.querySelectorAll('p')[0];
       // Busco al elemento Padre General con id="phpi-general-variantes"
@@ -1161,6 +1164,20 @@
       // El hijo tiene otro hijo que es una etiqueta p con id="phpi-variante-seleccionado"
       const hijoP = hijo.querySelector('#phpi-variante-seleccionado');
       hijoP.innerHTML = primerP.innerHTML; // Cambiamos el valor de la etiqueta p
+
+      // Se edita el valor del atributo data-seleccionado del padre general
+      elementoPadreGeneral.dataset.seleccionado = elementoBase.dataset.id;
+
+      // Se procede a agregar clase seleccionado a elementoBase y se lo quita a los demas si es que lo llevan
+      const hermanos = elementoPadreGeneral.querySelectorAll('.variante-producto-item');
+      hermanos.forEach((hermano) => {
+        if (hermano !== elementoBase) {
+          hermano.classList.remove('seleccionado');
+        } else {
+          hermano.classList.add('seleccionado');
+        }
+      });
+
       // Busco al elemento Padre id="phpi-items-variantes"
       // O tambien cierro a todos con ese id
       this.contenedorVariantes.forEach((elementoBase) => {
