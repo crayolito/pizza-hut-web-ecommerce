@@ -762,7 +762,7 @@
 
         producto.tamanos.productos.reverse().forEach((productoTamano, index) => {
           // Función para acortar el título
-          
+
 
           // Determinamos si este elemento está seleccionado (solo el primero
           const esSeleccionado = index === 0 ? "seleccionado" : "";
@@ -770,17 +770,17 @@
           // Si es el primer elemento, lo guardamos en la variable
           if (index === 0) {
             elementoSeleccionado = productoTamano;
-            console.log("Elemento seleccionado:", elementoSeleccionado);
+            {% comment %} console.log("Elemento seleccionado:", elementoSeleccionado); {% endcomment %}
           }
 
           // Acortamos el título
           const tituloCorto = acortarTitulo(productoTamano.titulo || productoTamano.nombre);
           
-          // Agregamos el HTML con la clase de seleccionado para el primer elemen
+          // Agregamos el HTML con la clase de seleccionado para el primer elemento
           variantesHTML += `
             <div class="variante-producto-item ${esSeleccionado}">
               <p>${tituloCorto}</p>
-              <p class="color-letras-primary">${productoTamano.precio}.00 BS</p>
+              <p class="color-letras-primary">${(productoTamano.precio !== undefined && productoTamano.precio !== null && productoTamano.precio !== "") ? productoTamano.precio + ".00 BS" : ""}</p>
             </div>
           `;
         });
@@ -803,7 +803,7 @@
                 <h3>${producto.titulo}</h3>
                 <p>${producto.descripcion}</p>
               </div>
-              <h3 class="color-letras-primary">${(producto.precio !== undefined && producto.precio !== null && producto.precio !== "") ? producto.precio + ".00 BS" : ""}</h3>
+              <h3 class="color-letras-primary">${producto.precio}.00 BS</h3>
               <div
                 id="phpi-general-variantes"
                 tipo-producto="simple"
@@ -812,7 +812,7 @@
                 <p>Tamaño</p>
                 <button 
                    id="phpi-view-variantes" class="container-info-variante">
-                  <p id="phpi-variante-seleccionado">${acortarTitulo(elementoSeleccionado.titulo)}</p>
+                  <p id="phpi-variante-seleccionado">${elementoSeleccionado.titulo}</p>
                   <div class="icono-dropdown-variantes icon-color-tertiary">
                     {% render 'icon-flecha-abajo' %}
                   </div>
