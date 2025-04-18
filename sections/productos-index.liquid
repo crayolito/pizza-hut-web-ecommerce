@@ -609,14 +609,10 @@
       const { coleccionPCE, coleccionPCMB, coleccionPCT} = await this.segundaFaseConsulta(estructuraClasicas); 
 
       var productosEstructurado = [];
-      var tamanosC = [];
-      var extrasC = [];
-      var bordesMasasC = [];
-
-      
 
       productosColeccion.forEach((productoPrimario) => {
         var tamanos = {
+          titulo : "Tamaños",
           condicion : {
             min : productoPrimario.estructura.tamano.min || 0,
             max : productoPrimario.estructura.tamano.max || 0
@@ -635,6 +631,7 @@
 
           if(productoSecundario.estructura.masaborde){
             bordesMasas = {
+              titulo: "Bordes y Masas",
               condicion: {
                 min: productoSecundario.estructura?.masaborde?.min || 0,
                 max: productoSecundario.estructura?.masaborde?.max || 0
@@ -674,14 +671,13 @@
 
           if(productoSecundario.estructura.extra){
             extras = {
+                titulo: "Extras",
                 condicion: {
                   min: productoSecundario.estructura?.extra?.min || 0,
                   max: productoSecundario.estructura?.extra?.max || 0
                 },
                 productos: []
               };
-
-
 
             // Coleccion Extras
             coleccionPCE.forEach((producto) =>{
@@ -718,12 +714,7 @@
               titulo: productoSecundario.titulo,
               precio: productoSecundario.estructura.precio,
               extras,
-              bordesMasas,
-              contruccion: {
-                tamanosC,
-                extrasC,
-                bordesMasasC
-              }
+              bordesMasas
           }
 
           tamanos.productos.push(productoTamano);
@@ -737,6 +728,7 @@
           precio: productoPrimario.estructura.precio,
           imagen : productoPrimario.imagen,
           descripcion : productoPrimario.descripcion,
+          contruccion : productoPrimario.estructura.construccion,
           tamanos
         }
         productosEstructurado.push(nuevoProducto);
