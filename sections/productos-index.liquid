@@ -601,8 +601,6 @@
       });
     }
 
-
-
     async traerInformacionShopify() {
       // Primero va traer la informacion de la colecci  on PIZZA
       const {informacionColeccion,  productosColeccion } = await this.primeraFaseConsulta();
@@ -689,32 +687,38 @@
             ramas: {}
           };
 
-          // Si la rama original tiene sub-ramas
-          if(ramaOriginal.ramas){
-            // Recorrer las sub-ramas
-            for(var codigoSubRama in ramaOriginal.ramas){
-              var subRamaOriginal = ramaOriginal.ramas[codigoSubRama];
+          // En este caso son los productos de las variantes TAMAÑO
+          // Filtrar solo los productos que se va usar deacuerdo al titulo => producto.title
+          productosDeRama.forEach((productoDeRama) => {
+            // Si la rama original tiene sub-ramas
+            if(ramaOriginal.ramas){
+              // Recorrer las sub-ramas
+              for(var codigoSubRama in ramaOriginal.ramas){
+                var subRamaOriginal = ramaOriginal.ramas[codigoSubRama];
 
-              // Obtener los productos de esta sub-rama desde todasColecciones
-              var productosDeSubRama = todasColecciones["coleccion"+codigoSubRama] || [];
-              // Filtrar solo los productos que se va usar deacuerdo al titulo => producto.title
-              var productosFiltrados = filtrarProductosPorTitulo(productosDeSubRama, producto.titulo);
+                // Obtener los productos de esta sub-rama desde todasColecciones
+                var productosDeSubRama = todasColecciones["coleccion"+codigoSubRama] || [];
+                // Filtrar solo los productos que se va usar deacuerdo al titulo => producto.title
+                var productosFiltrados = filtrarProductosPorTitulo(productosDeSubRama, productoDeRama.titulo);
 
-              // Crear estructura de la sub-rama
-              ramaNueva.ramas[codigoSubRama] = {
-                codigo : codigoSubRama,
-                titulo: subRamaOriginal.titulo,
-                condiciones : {
-                  min: subRamaOriginal.min || 0,
-                  max: subRamaOriginal.max || 0
-                },
-                productos: productosFiltrados
+                // Crear estructura de la sub-rama
+                ramaNueva.ramas[codigoSubRama] = {
+                  codigo : codigoSubRama,
+                  titulo: subRamaOriginal.titulo,
+                  condiciones : {
+                    min: subRamaOriginal.min || 0,
+                    max: subRamaOriginal.max || 0
+                  },
+                  productos: productosFiltrados
+                };
+
+                // Agregar la rama al producto
+                productoCompleto.ramas[codigoRama] = ramaNueva;
               };
+            }
+          });
 
-              // Agregar la rama al producto
-              productoCompleto.ramas[codigoRama] = ramaNueva;
-            };
-          }
+
         };
 
         // Agregar el producto a la lista
