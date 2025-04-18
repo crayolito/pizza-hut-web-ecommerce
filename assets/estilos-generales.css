@@ -967,6 +967,7 @@ cantidad-input {
 
 .producto-es-item-info,
 .producto-item-info {
+  height: 6.689rem;
   width: 100%;
   display: flex;
   flex-direction: column;
