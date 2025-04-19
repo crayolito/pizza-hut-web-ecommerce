@@ -534,7 +534,9 @@
   class ProductosIndex extends HTMLElement {
     constructor() {
       super();
-      this.productosTrabajo = null;
+      this.productoTrabajo = null;
+      this.estructuraTrabajo = null;
+      this.idProductoSeleccionado = null;
       this.accesoX="shpat_";
       this.accesoY="45f4a7476152f4881d058f87ce063698";
       this.urlConsulta = "https://pizza-hut-bo.myshopify.com/admin/api/2025-01/graphql.json";
@@ -644,91 +646,9 @@
         }
       }
 
-      // const { coleccionPCE, coleccionPCMB, coleccionPCT} = await this.segundaFaseConsulta(estructuraColeccionGeneral); 
       const todasColecciones = await this.segundaFaseConsulta(estructuraColeccionGeneral); 
-      {% comment %} console.log("Todas las colecciones:",todasColecciones); {% endcomment %}
-      
       var listaProductos = [];
 
-      console.log({
-        "a" : informacionColeccion.estructura,
-        "b" : productosColeccion,
-        "c" : todasColecciones
-      })
-
-      {% comment %} productosColeccion.forEach((producto) => {
-        // Crear producto con estructura completa
-        var productoCompleto = {
-          idTrabajo: producto.id,
-          idShopify: producto.estructura.id,
-          precio: producto.estructura.precio,
-          handle: producto.handle,
-          titulo: producto.titulo,
-          imagen: producto.imagen,
-          descripcion: producto.descripcion,
-          ramas: {}
-        }
-
-        // Recorrer la estructura de la ramas para manejarlo
-        for(var codigoRama in informacionColeccion.estructura.ramas){
-          var ramaOriginal = informacionColeccion.estructura.ramas[codigoRama];
-
-          // Obtener los productos de esta rama desde todasColecciones
-          var productosDeRama = todasColecciones["coleccion"+codigoRama] || [];
-
-          // Crear la estructura de la rama para este producto
-          
-
-          // En este caso son los productos de las variantes TAMAÑO
-          // Filtrar solo los productos que se va usar deacuerdo al titulo => producto.title
-          productosDeRama.forEach((productoDeRama) => {
-            // Si la rama original tiene sub-ramas
-            if(ramaOriginal.ramas){
-              // Recorrer las sub-ramas
-              for(var codigoSubRama in ramaOriginal.ramas){
-                var subRamaOriginal = ramaOriginal.ramas[codigoSubRama];
-
-                // Obtener los productos de esta sub-rama desde todasColecciones
-                var productosDeSubRama = todasColecciones["coleccion"+codigoSubRama] || [];
-                // Filtrar solo los productos que se va usar deacuerdo al titulo => producto.titl
-                var productosFiltrados = this.filtrarProductosPorTitulo(productosDeSubRama,productoDeRama.titulo );
-
-                // Crear estructura de la sub-rama
-                ramaNueva.ramas[codigoSubRama] = {
-                  codigo : codigoSubRama,
-                  titulo: subRamaOriginal.titulo,
-                  condiciones : {
-                    min: subRamaOriginal.min || 0,
-                    max: subRamaOriginal.max || 0
-                  },
-                  productos: productosFiltrados
-                };
-
-                // Agregar la rama al producto
-                productoCompleto.ramas[codigoRama] = ramaNueva;
-              };
-            }
-          });
-
-          var ramaNueva = {
-            tituloColeccion : codigoRama,
-            titulo: ramaOriginal.titulo,
-            condiciones : {
-              min: ramaOriginal.min || 0,
-              max: ramaOriginal.max || 0
-            },
-            ramas:{
-              "PCE"
-              "PCT"
-            }
-          };
-
-
-        };
-
-        // Agregar el producto a la lista
-        listaProductos.push(productoCompleto);
-      }); {% endcomment %}
 
       var productosEstructurados = [];
 
@@ -769,7 +689,7 @@
             ramas: subProductos
           }
 
-          listaEstructurada.push(productoTrabajo);
+          productosEstructurados.push(productoTrabajo);
         });
       };
 
@@ -866,7 +786,6 @@
 
       contenedorProductos.innerHTML = contenidoHTML;
       this.inicializarEventos();  
-      
     }
     
     async segundaFaseConsulta(codigosColeccion) {
