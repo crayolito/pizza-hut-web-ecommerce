@@ -534,7 +534,7 @@
   class ProductosIndex extends HTMLElement {
     constructor() {
       super();
-      this.productoTrabajo = null;
+      this.productosTrabajo = null;
       this.estructuraTrabajo = null;
       this.productoParaEstructuraTrabajo = null;
       this.idProductoSeleccionado = null;
@@ -736,6 +736,8 @@
           precio: producto.estructura.precio,
         }
       });
+
+      this.productosTrabajo = productosContruccion;
 
       productosContruccion.forEach((producto) => {
         var variantesHTML = ``;
