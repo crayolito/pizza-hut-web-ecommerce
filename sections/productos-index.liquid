@@ -1277,31 +1277,33 @@
         
     // Función para verificar si un producto de rama coincide con alguna clave de estructura
     filtrarProductosPorTitulo(productosArray, tituloReferencia) {
-      // Extraer la primera palabra del título de referencia (como "Familiar")
-      var primeraPalabraReferencia = tituloReferencia.split(' ')[0]
-      // Filtrar y devolver los productos completos que cumplen con la condición
-      var productosFiltrados = productosArray.filter(producto => {
-        if (!producto || !producto.estructura) return false;
-        // Verificar si alguna clave en la estructura coincide con la primera palabra del título
-        for (var clave in producto.estructura) {
-          console.log({
-            "clave" : clave,
-            "tituloReferencia" : tituloReferencia,
-            "primeraPalabraReferencia" : primeraPalabraReferencia,
-            "condicion" : clave == primeraPalabraReferencia
-          });
-
-          if (clave == primeraPalabraReferencia) {
-            return true;
-          }
-        }
-        return false;
-      });
+      // Validación rápida
+      if (!productosArray || !tituloReferencia) return [];
       
-      console.log(`Se encontraron ${productosFiltrados.length} productos que coinciden con "${primeraPalabraReferencia}"`);
+      // Extraer la primera palabra una sola vez
+      var primeraPalabraReferencia = tituloReferencia.split(' ')[0];
+      
+      // Usar reduce para filtrar y transformar en una sola iteración
+      var productosFiltrados = productosArray.reduce((resultado, producto) => {
+        if (!producto || !producto.estructura) return resultado;
+        
+        // Buscar la clave que coincide directamente
+        if (producto.estructura[primeraPalabraReferencia]) {
+          // Si encontramos coincidencia, creamos el objeto formateado inmediatamente
+          resultado.push({
+            idTrabajo: producto.estructura[primeraPalabraReferencia].id,
+            idShopify: producto.id,
+            titulo: producto.titulo,
+            handle: producto.handle,
+            precio: producto.estructura[primeraPalabraReferencia].precio
+          });
+        }
+        
+        return resultado;
+      }, []);
+      
       return productosFiltrados;
-    } 
-
+    }
     clicksEspeciales(event){
       // Si el click es en algun elemento con id="phpi-view-variantes" no hace nada y se sale
       let clickEnContenedorVariante = false;
