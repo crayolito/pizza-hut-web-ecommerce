@@ -1228,6 +1228,8 @@
             console.error('Error al parsear la estructura de la colección:', e);
           } 
         }
+
+        console.log('Estructura de la colección:', coleccion.products.edges);
     
         // Transformar los productos a un formato más simple
         const productosSimplificados = coleccion.products.edges.map(edge => {
