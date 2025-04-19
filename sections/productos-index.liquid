@@ -1229,7 +1229,7 @@
           } 
         }
 
-        console.log('Estructura de la colección:', coleccion.products.edges);
+        {% comment %} console.log('Estructura de la colección:', coleccion.products.edges); {% endcomment %}
         // Transformar los productos a un formato más simple
         const productosSimplificados = coleccion.products.edges.map(edge => {
           const producto = edge.node;
@@ -1250,7 +1250,7 @@
           return productoSimplificado;
         });
     
-        console.log('Productos simplificados:', productosSimplificados);
+        {% comment %} console.log('Productos simplificados:', productosSimplificados); {% endcomment %}
         // Crear un objeto con información de la colección y los productos
         const resultado = {
           informacionColeccion: {
@@ -1263,8 +1263,8 @@
         };
     
         // Mostrar el resultado en la consola
-        {% comment %} console.log('Data no procesada: ', resultado);
-        console.log('Data procesada: ', productosSimplificados); {% endcomment %}
+        console.log('Data no procesada: ', resultado);
+        console.log('Data procesada: ', productosSimplificados); 
     
         return resultado;
     
