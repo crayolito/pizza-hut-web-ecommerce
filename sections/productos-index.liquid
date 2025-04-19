@@ -749,7 +749,7 @@
         var variantesHTML = ``;
         let elementoSeleccionado; 
 
-        productosEstructurados[0].productos.reverse().forEach((productoTrabajo, index) => {
+        productosEstructurados[0].productos.forEach((productoTrabajo, index) => {
           // Determinamos si este elemento está seleccionado (solo el primero
           const esSeleccionado = index === 0 ? "seleccionado" : "";
           // Si es el primer elemento, lo guardamos en la variable

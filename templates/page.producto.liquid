@@ -958,11 +958,16 @@
       const dataProducto = JSON.parse(localStorage.getItem('phpp-productoData'));
       // Primero se crea la estructura generale productos del atributo => productoParaEstructuraTrabajo
       
-      var indece = 0;
+      var indice = 0;
       for(var ramaPrincipal in dataProducto.estructura){
         // Obtenemos los datos pero del dataProducto.productoParaEstructuraTrabajo
-        {% comment %} const productoTrabajo = dataProducto.productoParaEstructuraTrabajo[ramaPrincipal]; {% endcomment %}
-        
+        const productoTrabajo = dataProducto.productoParaEstructuraTrabajo[indice];
+        if(ramaPrincipal == productoTrabajo.codigo){
+          console.log({
+            "ramaPrincipal": ramaPrincipal,
+            "productoTrabajo": productoTrabajo
+          });
+        }
       }
       
       
