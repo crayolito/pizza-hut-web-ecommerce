@@ -657,8 +657,8 @@
       var listaProductos = [];
 
       var productosEstructurados = [];
-      var productosRamaPrincipal = [];
       for(var codigoRama in informacionColeccion.estructura.ramas){
+        var productosRamaPrincipal = [];
         var dataRama = informacionColeccion.estructura.ramas[codigoRama];
         // Ramas : PCT
         // Obtener la coleccion de productos de esta rama de trabajo
@@ -749,7 +749,7 @@
         var variantesHTML = ``;
         let elementoSeleccionado; 
 
-        productosEstructurados.reverse().forEach((productoTrabajo, index) => {
+        productosEstructurados[0].productos.reverse().forEach((productoTrabajo, index) => {
           // Determinamos si este elemento está seleccionado (solo el primero
           const esSeleccionado = index === 0 ? "seleccionado" : "";
           // Si es el primer elemento, lo guardamos en la variable
