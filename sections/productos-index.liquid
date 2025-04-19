@@ -542,8 +542,8 @@
 
     connectedCallback() {
       // REFERENCIAS ELEMENTOS
-      this.primeraFaseConsulta();
-      {% comment %} this.traerInformacionShopify(); {% endcomment %}
+      {% comment %} this.primeraFaseConsulta(); {% endcomment %}
+      this.traerInformacionShopify();
       document.addEventListener('click', this.clicksEspeciales.bind(this));
     }
 
@@ -1276,7 +1276,7 @@
     }
         
     // Función para verificar si un producto de rama coincide con alguna clave de estructura
-    {% comment %} filtrarProductosPorTitulo(productosArray, tituloReferencia) {
+    filtrarProductosPorTitulo(productosArray, tituloReferencia) {
       // Extraer la primera palabra del título de referencia (como "Familiar")
       var primeraPalabraReferencia = tituloReferencia.split(' ')[0]
       // Filtrar y devolver los productos completos que cumplen con la condición
@@ -1300,7 +1300,7 @@
       
       console.log(`Se encontraron ${productosFiltrados.length} productos que coinciden con "${primeraPalabraReferencia}"`);
       return productosFiltrados;
-    } {% endcomment %}
+    } 
 
     clicksEspeciales(event){
       // Si el click es en algun elemento con id="phpi-view-variantes" no hace nada y se sale
