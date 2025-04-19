@@ -655,7 +655,7 @@
         "c" : todasColecciones
       })
 
-      productosColeccion.forEach((producto) => {
+      {% comment %} productosColeccion.forEach((producto) => {
         // Crear producto con estructura completa
         var productoCompleto = {
           idTrabajo: producto.id,
@@ -676,16 +676,7 @@
           var productosDeRama = todasColecciones["coleccion"+codigoRama] || [];
 
           // Crear la estructura de la rama para este producto
-          var ramaNueva = {
-            tituloColeccion : codigoRama,
-            titulo: ramaOriginal.titulo,
-            condiciones : {
-              min: ramaOriginal.min || 0,
-              max: ramaOriginal.max || 0
-            },
-            productos: productosDeRama,
-            ramas: {}
-          };
+          
 
           // En este caso son los productos de las variantes TAMAÑO
           // Filtrar solo los productos que se va usar deacuerdo al titulo => producto.title
@@ -718,16 +709,70 @@
             }
           });
 
+          var ramaNueva = {
+            tituloColeccion : codigoRama,
+            titulo: ramaOriginal.titulo,
+            condiciones : {
+              min: ramaOriginal.min || 0,
+              max: ramaOriginal.max || 0
+            },
+            ramas:{
+              "PCE"
+              "PCT"
+            }
+          };
+
 
         };
 
         // Agregar el producto a la lista
         listaProductos.push(productoCompleto);
-      });
+      }); {% endcomment %}
 
-      console.log("Lista de productos:", listaProductos);
+      var listaEstructurada = [];
 
-      
+      for(var codigoRama in informacionColeccion.estructura.ramas){
+        var dataRama = informacionColeccion.estructura.ramas[codigoRama];
+        // Ramas : PCT
+        // Obtener la coleccion de productos de esta rama de trabajo
+        var productosDeRama = todasColecciones["coleccion"+codigoRama] || [];
+        productosDeRama.forEach((producto) => {
+          var subProductos = [];
+          
+          for(var codigoSubRama in dataRama.ramas){
+            var dataSubRama = dataRama.ramas[codigoSubRama];
+            // Obtener la coleccion de productos de esta sub-rama de trabajo
+            var productosDeSubRama = todasColecciones["coleccion"+codigoSubRama] || [];
+            // Filtrar solo los productos que se va usar deacuerdo al titulo => producto.titulo
+            var productosFiltrados = this.filtrarProductosPorTitulo(productosDeSubRama,producto.titulo );
+            // Crear estructura de la sub-rama
+            var subRamaNueva = {
+              codigo : codigoSubRama,
+              titulo: dataSubRama.titulo,
+              condiciones : {
+                min: dataSubRama.min || 0,
+                max: dataSubRama.max || 0
+              },
+              productos: productosFiltrados
+            };
+
+            // Agregar la sub-rama al producto
+            subProductos.push(subRamaNueva);
+          }
+
+          var productoTrabajo = {
+            idShopify: producto.id,
+            idTrabajo: producto.estructura.id,
+            handle: producto.handle,
+            precio: producto.estructura.precio,
+            ramas: subProductos
+          }
+
+          listaEstructurada.push(productoTrabajo);
+        });
+      };
+
+      console.log("Lista de productos:", listaEstructurada);
       
       {% comment %} 
       var productosEstructurado = [];
@@ -1228,21 +1273,23 @@
     // Función para verificar si un producto de rama coincide con alguna clave de estructura
     filtrarProductosPorTitulo(productosArray, tituloReferencia) {
       // Extraer la primera palabra del título de referencia (como "Familiar")
-      var primeraPalabraReferencia = tituloReferencia.split(' ')[0]
-      
+      var primeraPalabraReferencia = tituloReferencia.split(' ')[0]ñ
       // Filtrar y devolver los productos completos que cumplen con la condición
       var productosFiltrados = productosArray.filter(producto => {
         if (!producto || !producto.estructura) return false;
-        
         // Verificar si alguna clave en la estructura coincide con la primera palabra del título
         for (var clave in producto.estructura) {
-          console.log("Clave de producto:", clave);
-          console.log("Primera palabra de referencia:", primeraPalabraReferencia);
+          console.log({
+            "clave" : clave,
+            "tituloReferencia" : tituloReferencia,
+            "primeraPalabraReferencia" : primeraPalabraReferencia
+            "condicion" : clave == primeraPalabraReferencia
+          });
+
           if (clave == primeraPalabraReferencia) {
             return true;
           }
         }
-        
         return false;
       });
       
