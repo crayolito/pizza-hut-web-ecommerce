@@ -536,6 +536,7 @@
       super();
       this.productoTrabajo = null;
       this.estructuraTrabajo = null;
+      this.productoParaEstructuraTrabajo = null;
       this.idProductoSeleccionado = null;
       this.accesoX="shpat_";
       this.accesoY="45f4a7476152f4881d058f87ce063698";
@@ -608,6 +609,9 @@
       // Primero va traer la informacion de la colecci  on PIZZA
       const {informacionColeccion,  productosColeccion } = await this.primeraFaseConsulta();
       
+      console.log("Informacion de la coleccion :", informacionColeccion);
+      console.log("Productos de la coleccion :", productosColeccion);
+
       let estructuraColeccionGeneral = [] ;
       // Ejemplo base de json
       // {
@@ -632,6 +636,9 @@
       //   } 
       // }
   
+      // Estructura de trabajo y contruccion de un producto
+      this.estructuraTrabajo = informacionColeccion.estructura;
+
       // Procesar la estructura, para saber que colecciones traer correctamente
       for (var keyCustom1 in informacionColeccion.estructura.ramas) {
         // Aqui se va guardar = PCT
@@ -652,7 +659,7 @@
 
       var productosEstructurados = [];
 
-      for(var codigoRama in informacionColeccion.estructura.ramas){
+      for(var codigoRama in informacionColeccion.e structura.ramas){
         var dataRama = informacionColeccion.estructura.ramas[codigoRama];
         // Ramas : PCT
         // Obtener la coleccion de productos de esta rama de trabajo
@@ -684,6 +691,7 @@
           var productoTrabajo = {
             idShopify: producto.id,
             idTrabajo: producto.estructura.id,
+            titulo: producto.titulo,
             handle: producto.handle,
             precio: producto.estructura.precio,
             ramas: subProductos
@@ -693,6 +701,8 @@
         });
       };
 
+      // Productos estructurados, deacuerdo a la estructura de trabajo para mostrar un producto
+      this.productoParaEstructuraTrabajo = productosEstructurados;
       console.log("Estructura todos productos :", productosEstructurados);
 
       // Contruccion del productos en su estado visible en la seccion
@@ -726,7 +736,6 @@
           precio: producto.estructura.precio,
         }
       });
-
 
       productosContruccion.forEach((producto) => {
         var variantesHTML = ``;
