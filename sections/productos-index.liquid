@@ -761,7 +761,7 @@
             data-id="${productoTrabajo.idTrabajo}"
             class="variante-producto-item ${esSeleccionado}">
               <p>${tituloCorto}</p>
-              <p class="color-letras-primary">${(productoTrabajo.precio !== undefined && productoTrabajo.precio !== null && productoTrabajo.precio !== "") ? productoTrabajo.precio + ".00 BS" : ""}</p>
+              <p class="color-letras-primary">${(productoTrabajo.precio !== "0") ? productoTrabajo.precio + ".00 BS" : ""}</p>
             </div>
           `;
         });
