@@ -730,7 +730,7 @@
         listaProductos.push(productoCompleto);
       }); {% endcomment %}
 
-      var listaEstructurada = [];
+      var productosEstructurados = [];
 
       for(var codigoRama in informacionColeccion.estructura.ramas){
         var dataRama = informacionColeccion.estructura.ramas[codigoRama];
@@ -773,135 +773,7 @@
         });
       };
 
-      console.log("Lista de productos:", listaEstructurada);
-      
-      {% comment %} 
-      var productosEstructurado = [];
-
-      todasColecciones.forEach((coleccionTrabajo) => {
-      });
-
-      productosColeccion.forEach((productoPrimario) => {
-        var tamanos = {
-          condicion : {
-            min : productoPrimario.estructura.tamano.min || 0,
-            max : productoPrimario.estructura.tamano.max || 0
-          },
-          productos : []
-        };
-        
-        
-        // Coleccion de Tamañoss
-        coleccionPCT.forEach((productoSecundario) => {
-          var extras = null;
-          var bordesMasas = null;
-
-          if(productoSecundario.estructura.masaborde){
-            bordesMasas = {
-              condicion: {
-                min: productoSecundario.estructura?.masaborde?.min || 0,
-                max: productoSecundario.estructura?.masaborde?.max || 0
-              },
-              productos: []
-            };
-
-            // Coleccion Bordes y Masa
-            coleccionPCMB.forEach((producto) =>{
-              var traerObjetoTrabajo = null;
-              if (productoSecundario.titulo.includes("Super personal")){
-                traerObjetoTrabajo = producto.estructura.SuperPersonal;
-              }
-            
-              if (productoSecundario.titulo.includes("Mediana")){
-                traerObjetoTrabajo = producto.estructura.Mediana;
-              }
-
-              if (productoSecundario.titulo.includes("Familiar")){
-                traerObjetoTrabajo = producto.estructura.Familiar;
-              }
-
-              if(!traerObjetoTrabajo){
-                return;
-              }
-
-              const productoTrabajo = {
-                idShopfiy: producto.id,
-                idTrabajo : traerObjetoTrabajo.id,
-                handle: producto.handle,
-                precio: traerObjetoTrabajo.precio,
-              }
-
-              bordesMasas.productos.push(productoTrabajo)
-            });
-          }
-
-          if(productoSecundario.estructura.extra){
-            extras = {
-                condicion: {
-                  min: productoSecundario.estructura?.extra?.min || 0,
-                  max: productoSecundario.estructura?.extra?.max || 0
-                },
-                productos: []
-              };
-
-            // Coleccion Extras
-            coleccionPCE.forEach((producto) =>{
-              var traerObjetoTrabajo = null;
-              if (productoSecundario.titulo.includes("Super personal")){
-                traerObjetoTrabajo = producto.estructura.SuperPersonal;
-              }
-    
-              if (productoSecundario.titulo.includes("Mediana")){
-                traerObjetoTrabajo = producto.estructura.Mediana;
-              }
-                        
-              if (productoSecundario.titulo.includes("Familiar")){
-                traerObjetoTrabajo = producto.estructura.Familiar;
-              }
-
-              if(!traerObjetoTrabajo){
-                return;
-              }
-
-              const productoTrabajo = {
-                idShopfiy: producto.id,
-                idTrabajo : traerObjetoTrabajo.id,
-                handle: producto.handle,
-                precio: traerObjetoTrabajo.precio,
-              }
-              extras.productos.push(productoTrabajo);
-            });
-          }
-          
-          const productoTamano = {
-              idShopify: productoSecundario.id,
-              idTrabajo: productoSecundario.estructura.id,
-              titulo: productoSecundario.titulo,
-              precio: productoSecundario.estructura.precio,
-              extras,
-              bordesMasas
-          }
-
-          tamanos.productos.push(productoTamano);
-        });
-
-        const nuevoProducto = { 
-          idShopify: productoPrimario.id,
-          idTrabajo: productoPrimario.estructura.id,
-          titulo: productoPrimario.titulo,
-          handle : productoPrimario.handle,
-          precio: productoPrimario.estructura.precio,
-          imagen : productoPrimario.imagen,
-          descripcion : productoPrimario.descripcion,
-          contruccion : productoPrimario.estructura.construccion,
-          tamanos
-        }
-        productosEstructurado.push(nuevoProducto);
-      });
-
-      this.productosTrabajo = productosEstructurado;
-
-      console.log("Productos Finales trabajados:",productosEstructurado);
+      console.log("Estructura todos productos :", productosEstructurados);
 
       // Contruccion del productos en su estado visible en la seccion
       const contenedorProductos = this.querySelector('#phpi-contenedor-productos-muestra');
@@ -926,29 +798,26 @@
         var variantesHTML = ``;
         let elementoSeleccionado; 
 
-        producto.tamanos.productos.reverse().forEach((productoTamano, index) => {
-          // Función para acortar el título
-
-
+        productosEstructurados.reverse().forEach((productoTrabajo, index) => {
           // Determinamos si este elemento está seleccionado (solo el primero
           const esSeleccionado = index === 0 ? "seleccionado" : "";
           
           // Si es el primer elemento, lo guardamos en la variable
           if (index === 0) {
-            elementoSeleccionado = productoTamano;
+            elementoSeleccionado = productoTrabajo;
             {% comment %} console.log("Elemento seleccionado:", elementoSeleccionado); {% endcomment %}
           }
 
           // Acortamos el título
-          const tituloCorto = acortarTitulo(productoTamano.titulo || productoTamano.nombre);
+          const tituloCorto = acortarTitulo(productoTrabajo.titulo || productoTrabajo.nombre);
           
           // Agregamos el HTML con la clase de seleccionado para el primer elemento
           variantesHTML += `
             <div 
-            data-id="${productoTamano.idTrabajo}"
+            data-id="${productoTrabajo.idTrabajo}"
             class="variante-producto-item ${esSeleccionado}">
               <p>${tituloCorto}</p>
-              <p class="color-letras-primary">${(productoTamano.precio !== undefined && productoTamano.precio !== null && productoTamano.precio !== "") ? productoTamano.precio + ".00 BS" : ""}</p>
+              <p class="color-letras-primary">${(productoTrabajo.precio !== undefined && productoTrabajo.precio !== null && productoTrabajo.precio !== "") ? productoTrabajo.precio + ".00 BS" : ""}</p>
             </div>
           `;
         });
@@ -996,7 +865,7 @@
       });
 
       contenedorProductos.innerHTML = contenidoHTML;
-      this.inicializarEventos();  {% endcomment %}
+      this.inicializarEventos();  
       
     }
     
