@@ -1242,7 +1242,6 @@
             imagen: imagenURL,
             estructura: producto.metafield ? JSON.parse(producto.metafield.value) : "",
           };
-          {% comment %} asd {% endcomment %}
           // Si la estructura no es válida, asignar un objeto vacío
 
     
@@ -1258,7 +1257,7 @@
             handle: coleccion.handle,
             estructura: estructuraColeccion
           },
-          productosColeccion: productosSimplificados
+          productosColeccion: null
         };
     
         // Mostrar el resultado en la consola
