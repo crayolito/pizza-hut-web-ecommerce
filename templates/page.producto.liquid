@@ -955,9 +955,17 @@
 
     inicializarMedianteDataLocalStorage() {
       // Traer informacion para contruir el producto
-      const dataProducto = localStorage.getItem('phpp-productoData');
-      const productoTrabajo = JSON.parse(dataProducto);
-      const variantePreseleccionada = dataProducto.tamanoSeleccionado;
+      const dataProducto = JSON.parse(localStorage.getItem('phpp-productoData'));
+      // Primero se crea la estructura generale productos del atributo => productoParaEstructuraTrabajo
+      
+      var indece = 0;
+      for(var ramaPrincipal in dataProducto.estructura){
+        // Obtenemos los datos pero del dataProducto.productoParaEstructuraTrabajo
+        {% comment %} const productoTrabajo = dataProducto.productoParaEstructuraTrabajo[ramaPrincipal]; {% endcomment %}
+        
+      }
+      
+      
 
       // Esto es el formato de contruccion que va tener el produccion para su seleccion 
       const baseConstruccion = productoTrabajo.contruccion;

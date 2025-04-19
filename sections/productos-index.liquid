@@ -656,9 +656,8 @@
       const todasColecciones = await this.segundaFaseConsulta(estructuraColeccionGeneral); 
       var listaProductos = [];
 
-
       var productosEstructurados = [];
-
+      var productosRamaPrincipal = [];
       for(var codigoRama in informacionColeccion.estructura.ramas){
         var dataRama = informacionColeccion.estructura.ramas[codigoRama];
         // Ramas : PCT
@@ -697,8 +696,15 @@
             ramas: subProductos
           }
 
-          productosEstructurados.push(productoTrabajo);
+          productosRamaPrincipal.push(productoTrabajo);
         });
+
+        productosEstructurados.push({
+          codigo: codigoRama,
+          productos: productosRamaPrincipal,
+        });
+
+
       };
 
       // Productos estructurados, deacuerdo a la estructura de trabajo para mostrar un producto
