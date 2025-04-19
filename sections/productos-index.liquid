@@ -1242,10 +1242,14 @@
             imagen: imagenURL,
             estructura: producto.metafield ? JSON.parse(producto.metafield.value) : "",
           };
+
+          // Si la estructura no es válida, asignar un objeto vacío
+
     
           return productoSimplificado;
         });
     
+        console.log('Productos simplificados:', productosSimplificados);
         // Crear un objeto con información de la colección y los productos
         const resultado = {
           informacionColeccion: {
