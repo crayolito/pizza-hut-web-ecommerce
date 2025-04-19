@@ -1114,6 +1114,7 @@
       
       return productosFiltrados;
     }
+
     clicksEspeciales(event){
       // Si el click es en algun elemento con id="phpi-view-variantes" no hace nada y se sale
       let clickEnContenedorVariante = false;
@@ -1154,7 +1155,9 @@
       localStorage.setItem('phpp-tipo-producto', dataPadre);
       // Guardar en el localStorage el productoBase y tamano seleccionado su id
       localStorage.setItem('phpp-productoData', JSON.stringify({
-        productoTrabajo,
+        "producto" : productoTrabajo
+        "estructura" : this.estructuraTrabajo,
+        "productoParaEstructuraTrabajo" : this.productoParaEstructuraTrabajo,
         tamanoSeleccionado: elementoPadreGeneral.dataset.seleccionado
       }));
 
