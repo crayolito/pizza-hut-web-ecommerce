@@ -542,7 +542,8 @@
 
     connectedCallback() {
       // REFERENCIAS ELEMENTOS
-      this.traerInformacionShopify();
+      this.primeraFaseConsulta();
+      {% comment %} this.traerInformacionShopify(); {% endcomment %}
       document.addEventListener('click', this.clicksEspeciales.bind(this));
     }
 
@@ -1260,6 +1261,7 @@
           productosColeccion: null
         };
     
+        // Mostrar el resultado en la consola
         {% comment %} console.log('Data no procesada: ', resultado);
         console.log('Data procesada: ', productosSimplificados); {% endcomment %}
     
