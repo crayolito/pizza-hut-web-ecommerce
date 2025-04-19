@@ -715,8 +715,20 @@
 
       console.log("ProductosColeccion :", productosColeccion);
 
+      const productosContruccion = productosColeccion.map((producto) => {
+        return {
+          idShopify: producto.id,
+          idTrabajo: producto.estructura.id,
+          handle: producto.handle,
+          imagen: producto.imagen,
+          titulo: producto.titulo,
+          descripcion: producto.descripcion,
+          precio: producto.estructura.precio,
+        }
+      });
 
-      productosColeccion.forEach((producto) => {
+
+      productosContruccion.forEach((producto) => {
         var variantesHTML = ``;
         let elementoSeleccionado; 
 
@@ -746,7 +758,7 @@
 
         contenidoHTML += `
           <div 
-          data-id="${producto.idTrabajo}"
+          data-id="${}"
           data-seleccionado="${elementoSeleccionado.idShopify}"
           class="producto-item">
             <div class="producto-item-imagen">
