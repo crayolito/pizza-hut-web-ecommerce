@@ -968,7 +968,7 @@
 
     dividirTitulo(titulo) {
       // Verificar si es el caso excepcional "Super Personal"
-      if (titulo.includes("Super Personal")) {
+      if (titulo.includes("Super personal")) {
         return {
           importante: "Super Personal",
           mensaje: titulo.replace("Super Personal", "").trim()
@@ -1109,8 +1109,8 @@
           }
         });
 
+        // Se va optener el primer elemento sus sub elemento al primeor con precio 0
         var auxProductoPreSeleccionado = productoRamaTrabajo.find((item) => parseInt(item.precio) == 0);
-        console.log("Testeo Productos ",auxProductoPreSeleccionado)
 
         detalleSubProductos += `
         <div
