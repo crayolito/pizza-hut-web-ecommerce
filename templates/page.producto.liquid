@@ -993,7 +993,7 @@
                 }
               });
             });
-          });
+          };
 
             coleccionSubProductosTrabajar.push({
               codigo : subRama.codigo,
@@ -1002,37 +1002,8 @@
               productos: subProductosTrabajo
             })
           }
-
-
-
-          for(var subRama in ramaPrincipal.ramas){
-            const subProductoTrabajo = ramaPrincipal.ramas[subRama];
-
-            if(subRama == subProductoTrabajo.codigo){
-              var b = {
-                codigo : subProductoTrabajo.codigo,
-                min : subRama.min,
-                max : subRama.max
-              }
-              
-              if(){
-                coleccionSubProductosTrabajar.push(b);
-              }
-            }
-          }
-
           coleccionSubProductosTrabajar.push(b);
         }
-
-        {% comment %} var productosB = []
-
-        productoTrabajo.productos.forEach((producto) =>{
-          producto.ramas.forEach((rama) => {
-            rama.productos.forEach((subProducto) => {
-              
-            });
-          });
-        }); {% endcomment %}
 
         indice++;
       }
