@@ -1109,6 +1109,9 @@
           }
         });
 
+        var auxProductoPreSeleccionado = productoRamaTrabajo.find((item) => parseInt(item.precio) == 0);
+        console.log("Testeo Productos ",auxProductoPreSeleccionado)
+
         detalleSubProductos += `
         <div
         data-max="${infoRamaPrincipal.maximo}"
@@ -1117,10 +1120,10 @@
         id="pmph-seleccion-rama-principal" class="pmph-seleccion-normal">
           <h3>${infoRamaPrincipal.titulo}</h3>
         `;
-        infoRamaPrincipal.productos.forEach((producto,index) => {
+        infoRamaPrincipal.productos.forEach((producto) => {
           const {importante , mensaje} = this.dividirTitulo(producto.titulo);
 
-          if (index == 0) {
+          if (auxProductoPreSeleccionado.titulo == producto.titulo) {
             detalleSubProductos += `
             <button 
             data-idtrabajo="${producto.idTrabajo}"
@@ -1133,7 +1136,7 @@
               <div class="pmp-item-simple-escoger">
                ${this.iconos.iconEstadoOn}
               </div>
-            </button>
+          </button>
             `;
           }else{
             detalleSubProductos += `
@@ -1164,7 +1167,7 @@
           var subProductoTrabajo = [];
           var banderaPrimero = false;
           // De los productos PCT me traigo sus ramas del primer elemento en este caso (Personal)
-          productoRamaTrabajo[0].ramas.forEach((producto) => {
+          auxProductoPreSeleccionado.ramas.forEach((producto) => {
             if (subRama == producto.codigo) {
               subProductoTrabajo = producto.productos;
             }
