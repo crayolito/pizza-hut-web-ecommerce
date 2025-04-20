@@ -986,9 +986,9 @@
               producto.ramas.forEach((subProducto) => {
                 if(subRama == subProducto.codigo){
                   subProducto.productos.forEach((subProductoTrabajo) => {
-                    console.log('Comparando:', subProductoTrabajo.idTrabajo, 'con existentes:', subProductosTrabajo.map(item => item.idTrabajo));
-                    console.log('¿Ya existe?:', subProductosTrabajo.some(item => item.idTrabajo === subProductoTrabajo.idTrabajo));
-                    if(!subProductosTrabajo.some(item => item.idTrabajo === subProductoTrabajo.idTrabajo)){
+                    console.log('Comparando:', subProductoTrabajo.idShopify, 'con existentes:', subProductosTrabajo.map(item => item.idShopify));
+                    console.log('¿Ya existe?:', subProductosTrabajo.some(item => item.idShopify === subProductoTrabajo.idShopify));
+                    if(!subProductosTrabajo.some(item => item.idShopify === subProductoTrabajo.idShopify)){
                       subProductosTrabajo.push(subProductoTrabajo);
                     }
                   });
@@ -1003,10 +1003,7 @@
               productos: subProductosTrabajo
             });
           }
-
-
         }
-
         indice++;
       }
 
