@@ -1262,7 +1262,7 @@
       this.querySelector('.pmph-seleccion').insertAdjacentHTML('afterbegin', detalleSubProductos);
 
       // PRODUCTO SIMPLEE
-      const tipoProducto = localStorage.getItem('phpp-tipo-producto') || 'simple';
+      {% comment %} const tipoProducto = localStorage.getItem('phpp-tipo-producto') || 'simple';
       console.log(tipoProducto);
       if (tipoProducto == 'simple') {
         this.imgSimple.style.display = 'flex';
@@ -1271,7 +1271,7 @@
         this.imgSimple.style.display = 'none';
         this.imgCompleja.style.display = 'flex';
         this.contenedorItemsComplejos.style.display = 'flex';
-      }
+      } {% endcomment %}
       // PRODUCTO COMPLEJO
     }
 
