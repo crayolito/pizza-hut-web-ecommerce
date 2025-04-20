@@ -957,26 +957,29 @@
       // Traer informacion para contruir el producto
       const dataProducto = JSON.parse(localStorage.getItem('phpp-productoData'));
       // Primero se crea la estructura generale productos del atributo => productoParaEstructuraTrabajo
+      var estructuraContruccion = dataProducto.estructuraTrabajo;
       var coleccionSubProductosTrabajar = []
       
       var indice = 0;
-      for(var ramaPrincipal in dataProducto.estructura.ramas){
+      for(var ramaPrincipal in estructuraContruccion.ramas){
         // Obtenemos los datos pero del dataProducto.productoParaEstructuraTrabajo
         const productoTrabajo = dataProducto.productoParaEstructuraTrabajo[indice];
 
         if(ramaPrincipal == productoTrabajo.codigo){
-          var a = {
+           estructuraContruccion.ramas[ramaPrincipal].productos = productoTrabajo.productos;
+
+          {% comment %} var a = {
             codigo : productoTrabajo.codigo,
-            min : dataProducto.estructura.ramas[ramaPrincipal].min ,
-            max : dataProducto.estructura.ramas[ramaPrincipal].max,
+            min : estructuraContruccion.ramas[ramaPrincipal].min ,
+            max : estructuraContruccion.ramas[ramaPrincipal].max,
             productos: productoTrabajo.productos
-          }
+          } {% endcomment %}
 
           coleccionSubProductosTrabajar.push(a);
 
           var subProductosTrabajo = null;
           // Esto es la estructura rama sus ramas hijas => PCE y PCMB
-          for(var subRama in dataProducto.estructura.ramas[ramaPrincipal].ramas){
+          for(var subRama in estructuraContruccion.ramas[ramaPrincipal].ramas){
             var subIndice = 0;
             subProductosTrabajo = [];
 
@@ -986,8 +989,6 @@
               producto.ramas.forEach((subProducto) => {
                 if(subRama == subProducto.codigo){
                   subProducto.productos.forEach((subProductoTrabajo) => {
-                    console.log('Comparando:', subProductoTrabajo.idShopify, 'con existentes:', subProductosTrabajo.map(item => item.idShopify));
-                    console.log('¿Ya existe?:', subProductosTrabajo.some(item => item.idShopify === subProductoTrabajo.idShopify));
                     if(!subProductosTrabajo.some(item => item.idShopify === subProductoTrabajo.idShopify)){
                       subProductosTrabajo.push(subProductoTrabajo);
                     }
@@ -996,22 +997,24 @@
               });
             });
 
-            coleccionSubProductosTrabajar.push({
+            estructuraContruccion.ramas[ramaPrincipal].ramas[subRama].productos = subProductosTrabajo;
+
+            {% comment %} coleccionSubProductosTrabajar.push({
               codigo : subRama,
-              min : dataProducto.estructura.ramas[ramaPrincipal].ramas[subRama].min,
-              max : dataProducto.estructura.ramas[ramaPrincipal].ramas[subRama].max,
+              min : estructuraContruccion.ramas[ramaPrincipal].ramas[subRama].min,
+              max : estructuraContruccion.ramas[ramaPrincipal].ramas[subRama].max,
               productos: subProductosTrabajo
-            });
+            }); {% endcomment %}
           }
         }
         indice++;
       }
 
-      console.log('coleccionSubProductosTrabajar :', coleccionSubProductosTrabajar);
+      console.log('estructuraContruccion Testeo :', estructuraContruccion);
 
       // Esto es el formato de contruccion que va tener el produccion para su seleccion 
      console.log('dataProducto :',{
-        "estructura" : dataProducto.estructura,
+        "estructura" : estructuraContruccion,
         "producto" : dataProducto.producto,
         "productoParaEstructuraTrabajo" : dataProducto.productoParaEstructuraTrabajo,
         "subProductoSeleccionado" : dataProducto.tamanoSeleccionado,
