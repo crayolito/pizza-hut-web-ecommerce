@@ -991,7 +991,7 @@
               producto.ramas.forEach((subProducto) => {
                 if(subRama == subProducto.codigo){
                   subProducto.productos.forEach((subProductoTrabajo) => {
-                    if(!subProductos.includes(subProductoTrabajo)){
+                    if(!subProductosTrabajo.includes(subProductoTrabajo)){
                       subProductosTrabajo.push(subProductoTrabajo);
                     }
                   });
