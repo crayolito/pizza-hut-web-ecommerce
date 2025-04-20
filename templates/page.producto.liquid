@@ -1423,7 +1423,7 @@
       if(dataSucursal == "") return dataTrabajo.producto.stockTotal;
 
       dataTrabajo.producto.sucursales.forEach((sucursal) => {
-        if(sucursal.sucursal == dataSucursal.name){
+        if(sucursal.nombre == dataSucursal.name){
           return sucursal.stock;
         }
       });
