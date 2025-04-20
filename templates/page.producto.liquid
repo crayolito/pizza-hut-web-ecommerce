@@ -975,14 +975,10 @@
           coleccionSubProductosTrabajar.push(a);
 
           var subProductosTrabajo = null;
-          console.log("prueba :",{
-            ramaPrincipal : ramaPrincipal,
-          });
-          
           // Esto es la estructura rama sus ramas hijas => PCE y PCMB
           for(var subRama in dataProducto.estructura.ramas[ramaPrincipal].ramas){
             var subIndice = 0;
-            subProductos = [];
+            subProductosTrabajo = [];
             console.log('testeo de mi:',{
               subRama : subRama,
               subIndice : subIndice,
@@ -994,9 +990,9 @@
               // Aqui trae los los productos de la subRama = [PCE, PCMB]
               producto.ramas.forEach((subProducto) => {
                 if(subRama == subProducto.codigo){
-                  subProductos.productos.forEach((subProductoTrabajo) => {
+                  subProducto.productos.forEach((subProductoTrabajo) => {
                     if(!subProductos.includes(subProductoTrabajo)){
-                      subProductos.push(subProductoTrabajo);
+                      subProductosTrabajo.push(subProductoTrabajo);
                     }
                   });
                 }
