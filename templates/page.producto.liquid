@@ -993,23 +993,19 @@
                 }
               });
             });
-          };
-
-            coleccionSubProductosTrabajar.push({
-              codigo : subRama.codigo,
-              min : subRama.min,
-              max : subRama.max,
-              productos: subProductosTrabajo
-            })
           }
+
+          {% comment %} coleccionSubProductosTrabajar.push({
+            codigo : subRama.codigo,
+            min : subRama.min,
+            max : subRama.max,
+            productos: subProductosTrabajo
+          })
+          } {% endcomment %}
         }
 
         indice++;
       }
-
-      
-      
-      
 
       // Esto es el formato de contruccion que va tener el produccion para su seleccion 
       {% comment %} console.log('dataProducto :',{
