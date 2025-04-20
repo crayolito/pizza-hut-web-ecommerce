@@ -957,19 +957,87 @@
       // Traer informacion para contruir el producto
       const dataProducto = JSON.parse(localStorage.getItem('phpp-productoData'));
       // Primero se crea la estructura generale productos del atributo => productoParaEstructuraTrabajo
+      var coleccionSubProductosTrabajar = []
       
       var indice = 0;
       for(var ramaPrincipal in dataProducto.estructura){
         // Obtenemos los datos pero del dataProducto.productoParaEstructuraTrabajo
         const productoTrabajo = dataProducto.productoParaEstructuraTrabajo[indice];
-        console.log({
-          "ramaPrincipal": ramaPrincipal,
-          "productoTrabajo": productoTrabajo
-        });
+
         if(ramaPrincipal == productoTrabajo.codigo){
+          var a = {
+            codigo : productoTrabajo.codigo,
+            min : ramaPrincipal.min,
+            max : ramaPrincipal.max,
+            productos: productoTrabajo.productos
+          }
+
+          coleccionSubProductosTrabajar.push(a);
+
+          var subProductosTrabajo = null;
           
+          // Esto es la estructura rama sus ramas hijas => PCE y PCMB
+          for(var subRama in ramaPrincipal.ramas){
+            var subIndice = 0;
+            subProductos = [];
+            // Estos son los productos => PCT de la rama principal
+            productoTrabajo.productos.forEach((producto) =>{
+              // Aqui trae los los productos de la subRama = [PCE, PCMB]
+              producto.ramas.forEach((subProducto) => {
+                if(subRama == subProducto.codigo){
+                  subProductos.productos.forEach((subProductoTrabajo) => {
+                    if(!subProductos.includes(subProductoTrabajo)){
+                      subProductos.push(subProductoTrabajo);
+                    }
+                  });
+                }
+              });
+            });
+          });
+
+            coleccionSubProductosTrabajar.push({
+              codigo : subRama.codigo,
+              min : subRama.min,
+              max : subRama.max,
+              productos: subProductosTrabajo
+            })
+          }
+
+
+
+          for(var subRama in ramaPrincipal.ramas){
+            const subProductoTrabajo = ramaPrincipal.ramas[subRama];
+
+            if(subRama == subProductoTrabajo.codigo){
+              var b = {
+                codigo : subProductoTrabajo.codigo,
+                min : subRama.min,
+                max : subRama.max
+              }
+              
+              if(){
+                coleccionSubProductosTrabajar.push(b);
+              }
+            }
+          }
+
+          coleccionSubProductosTrabajar.push(b);
         }
+
+        {% comment %} var productosB = []
+
+        productoTrabajo.productos.forEach((producto) =>{
+          producto.ramas.forEach((rama) => {
+            rama.productos.forEach((subProducto) => {
+              
+            });
+          });
+        }); {% endcomment %}
+
+        indice++;
       }
+
+      
       
       
 
