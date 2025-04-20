@@ -37,6 +37,8 @@
       {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
     </title>
 
+    <script src="{{ 'cambios-estandar.js' | asset_url }}" defer="defer"></script>
+
     {{ content_for_header }}
 
     {% style %}
@@ -372,7 +374,6 @@
       defer
       src="https://maps.googleapis.com/maps/api/js?key={{settings.keyGoogleMap}}&libraries=places"
     ></script>
-    <script src="{{ 'cambios-estandar.js' | asset_url }}" defer="defer"></script>
 
     <script>
       // Verificar si la URL actual contiene /pages/perfil
