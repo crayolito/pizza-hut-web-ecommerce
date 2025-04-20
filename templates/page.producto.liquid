@@ -1254,21 +1254,6 @@
       // PRODUCTO COMPLEJO
     }
 
-    optenerStockTrabajo(){
-      // Verificar si tenemos una sucursal seleccionada
-      const dataSucursal = AuxiliaresGlobal.sucursal;
-      // Informacion del producto
-      const dataTrabajo = JSON.parse(localStorage.getItem('phpp-productoData'));
-
-      if(dataSucursal == "") return dataTrabajo.producto.stockTotal;
-
-      dataTrabajo.producto.sucursales.forEach((sucursal) => {
-        if(sucursal.sucursal == dataSucursal){
-          return sucursal.stock;
-        }
-      });
-    }
-
     procesoItemN1(elemento) {
       const estaHabilitado = elemento.classList.contains('desactivado');
       if (estaHabilitado) return;
@@ -1426,6 +1411,21 @@
       const perra = AuxiliaresGlobal.sucursal;
       console.log('sucursal', perra);
       AuxiliaresGlobal.agregarCarrito(1);
+    }
+
+    optenerStockTrabajo(){
+      // Verificar si tenemos una sucursal seleccionada
+      const dataSucursal = AuxiliaresGlobal.sucursal;
+      // Informacion del producto
+      const dataTrabajo = JSON.parse(localStorage.getItem('phpp-productoData'));
+
+      if(dataSucursal == "") return dataTrabajo.producto.stockTotal;
+
+      dataTrabajo.producto.sucursales.forEach((sucursal) => {
+        if(sucursal.sucursal == dataSucursal){
+          return sucursal.stock;
+        }
+      });
     }
   }
 
