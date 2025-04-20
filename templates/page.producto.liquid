@@ -971,8 +971,8 @@
         if(ramaPrincipal == productoTrabajo.codigo){
           var a = {
             codigo : productoTrabajo.codigo,
-            min : ramaPrincipal.min,
-            max : ramaPrincipal.max,
+            min : ramaPrincipal[min] || ramaPrincipal.min ,
+            max : ramaPrincipal[max] || ramaPrincipal.max,
             productos: productoTrabajo.productos
           }
 
