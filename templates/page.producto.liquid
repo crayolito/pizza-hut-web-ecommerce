@@ -1127,7 +1127,7 @@
                 <p>${mensaje}</p>
               </div>
               <div class="pmp-item-simple-escoger">
-                {% render 'icon-estado-off' %}
+               ${this.iconos.iconEstadoOn}
               </div>
             </button>
             `;
@@ -1142,7 +1142,7 @@
                 <p>${mensaje}</p>
               </div>
               <div class="pmp-item-simple-escoger">
-                {% render 'icon-estado-off' %}
+               ${this.iconos.iconEstadoOff}
               </div>
             </button>
             `;
@@ -1165,6 +1165,14 @@
               subProductoTrabajo = producto.productos;
             }
           });
+
+          console.log('Testeo de pruebas :',{
+            subRama: subRama,
+            infoSubRama: infoSubRama,
+            subProductoTrabajo: subProductoTrabajo,
+            infoRamaPrincipal: infoRamaPrincipal,
+            productoRamaTrabajo: productoRamaTrabajo,
+          } );
 
           detalleSubProductos += `
           <div 

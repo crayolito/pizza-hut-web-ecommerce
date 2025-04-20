@@ -64,7 +64,6 @@
   height: 100%;
   object-fit: cover;
   border-radius: var(--espaciado-s);
-  display: none;
 }
 
 /* ===== IMAGEN PRODUCTO COMPLEJO===== */
