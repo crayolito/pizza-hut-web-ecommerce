@@ -971,7 +971,7 @@
         return resultado;
       }
     }
-    
+
     async primeraFaseConsulta() {
       const graphQLQuery = `
         query GetCollectionByFlexibleTitle {
@@ -1006,7 +1006,7 @@
                         edges {
                           node {
                             inventoryItem {
-                              inventoryLevels(first: 10) {
+                              inventoryLevels(first: 100) {
                                 edges {
                                   node {
                                     location {
@@ -1050,7 +1050,7 @@
     
         // Obtener los datos de la respuesta
         const datosRespuesta = await respuesta.json();
-
+    
         console.log('Datos de la coleccion:', datosRespuesta);
     
         // Verificar si tenemos datos
@@ -1070,12 +1070,41 @@
             console.error('Error al parsear la estructura de la colección:', e);
           } 
         }
-
+    
         {% comment %} console.log('Estructura de la colección:', coleccion.products.edges); {% endcomment %}
         // Transformar los productos a un formato más simple
         const productosSimplificados = coleccion.products.edges.map(edge => {
           const producto = edge.node;
           const imagenURL = producto.images.edges.length > 0 ? producto.images.edges[0].node.url : '';
+          
+          // Obtener el inventario total del producto
+          const stockGeneral = producto.totalInventory || 0;
+          
+          // Obtener el inventario por sucursal
+          const sucursales = [];
+          if (producto.variants && producto.variants.edges.length > 0) {
+            const variante = producto.variants.edges[0].node;
+            if (variante.inventoryItem && variante.inventoryItem.inventoryLevels.edges.length > 0) {
+              variante.inventoryItem.inventoryLevels.edges.forEach(levelEdge => {
+                const level = levelEdge.node;
+                const nombreSucursal = level.location.name;
+                let stockSucursal = 0;
+                
+                // Buscar la cantidad disponible
+                if (level.quantities && level.quantities.length > 0) {
+                  const availableQuantity = level.quantities.find(q => q.name === "available");
+                  if (availableQuantity) {
+                    stockSucursal = availableQuantity.quantity;
+                  }
+                }
+                
+                sucursales.push({
+                  nombre: nombreSucursal,
+                  stock: stockSucursal
+                });
+              });
+            }
+          }
     
           // Crear un objeto simplificado del producto
           const productoSimplificado = {
@@ -1084,10 +1113,10 @@
             handle: producto.handle,
             descripcion: producto.description,
             imagen: imagenURL,
-            estructura: producto.metafield ? JSON.parse(producto.metafield.value) : "",
+            stockGeneral: stockGeneral,
+            sucursales: sucursales,
+            estructura: producto.metafield && producto.metafield.value ? JSON.parse(producto.metafield.value) : "",
           };
-          // Si la estructura no es válida, asignar un objeto vacío
-
     
           return productoSimplificado;
         });
@@ -1104,10 +1133,6 @@
           productosColeccion: productosSimplificados
         };
     
-        // Mostrar el resultado en la consola
-        console.log('Data no procesada: ', resultado);
-        console.log('Data procesada: ', productosSimplificados); 
-    
         return resultado;
     
       } catch (error) {
@@ -1116,7 +1141,7 @@
         return [];
       }
     }
-        
+    
     // Función para verificar si un producto de rama coincide con alguna clave de estructura
     filtrarProductosPorTitulo(productosArray, tituloReferencia) {
       // Validación rápida
