@@ -1059,7 +1059,7 @@
 
       // Aqui se va definir si se usar el stockTodo o de alguna sucursal especifica
       var stockTrabajo = this.optenerStockTrabajo();
-      
+      console.log('stockTrabajo :', stockTrabajo);
 
       var detalleSubProductos = '';
       detalleSubProductos += `
@@ -1427,6 +1427,7 @@
           nombre: sucursal.nombre,
           "nombre2" : dataSucursal.name,
           stock: sucursal.stock,
+          "testeoIgual" : sucursal.nombre == dataSucursal.name
         })
         if(sucursal.nombre == dataSucursal.name){
           return sucursal.stock;
