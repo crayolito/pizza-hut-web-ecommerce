@@ -911,7 +911,6 @@
       this.btnsElegirProductoComplejo = this.querySelectorAll('#phpm--modal-btn-elegir');
       this.tituloModalExtras = this.querySelector('.phpp-modal-extras-titulo');
        {% endcomment %}
-      {% comment %} {% endcomment %}
       
       this.btnHazUnPedido = this.querySelector('#phpm-btn-haz-un-pedido');
       this.btnAgregarCarrito = this.querySelector('#phpm-btn-agregar-carrito'); 
@@ -945,8 +944,6 @@
       this.itemsSeleccionComplejo.forEach((elemento) => {
         elemento.addEventListener('click', this.procesoItemComplejo.bind(this, elemento));
       });
-
-
 
       this.btnImgComplejaDer.addEventListener('click', this.procesoItemComplejo.bind(this, this.btnImgComplejaDer));
       this.btnImgComplejaIzq.addEventListener('click', this.procesoItemComplejo.bind(this, this.btnImgComplejaIzq));
@@ -1035,10 +1032,6 @@
         subProductoSeleccionado: dataProducto.tamanoSeleccionado,
       });
 
-      // Traer toda la coleccion
-
-      // Contruccion de <cantidad-input> segun la estructura de los productos
-
       var productoImagenHTML = '';
       const contenedorImg = this.querySelector('.pmph-imagen');
       productoImagenHTML += `
@@ -1064,6 +1057,9 @@
       `;
       this.querySelector('.pmph-header').innerHTML = detallaBasicoProducto;
 
+      // Aqui se va definir si se usar el stockTodo o de alguna sucursal especifica
+      var stockTrabajo = this.optenerStockTrabajo();
+
       var detalleSubProductos = '';
       detalleSubProductos += `
         <div class="pmph-seleccion-normal pmph-cantidad">
@@ -1072,7 +1068,7 @@
             <div
               origen-trabajo="producto"
               min="0"
-              max="10"
+              max="${stockTrabajo}"
               id="producto-id"
               handle="producto-handle"
               class="pmph-cantidad-selector"
@@ -1256,6 +1252,21 @@
         this.contenedorItemsComplejos.style.display = 'flex';
       } {% endcomment %}
       // PRODUCTO COMPLEJO
+    }
+
+    optenerStockTrabajo(){
+      // Verificar si tenemos una sucursal seleccionada
+      const dataSucursal = AutoShopify.sucursal;
+      // Informacion del producto
+      const dataTrabajo = JSON.parse(localStorage.getItem('phpp-productoData'));
+
+      if(dataSucursal == "") return dataTrabajo.producto.stockTotal;
+
+      dataTrabajo.producto.sucursales.forEach((sucursal) => {
+        if(sucursal.sucursal == dataSucursal){
+          return sucursal.stock;
+        }
+      });
     }
 
     procesoItemN1(elemento) {
