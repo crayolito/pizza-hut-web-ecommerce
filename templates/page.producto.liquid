@@ -889,7 +889,7 @@
       this.ladoPizza = '';
       this.tipoProceso = '';
       // REFERENCIAS ELEMENTOSS
-      this.imgSimple = this.querySelector('#phmp-contenido-ver-producto-simple');
+      {% comment %} this.imgSimple = this.querySelector('#phmp-contenido-ver-producto-simple');
       this.imgCompleja = this.querySelector('#phmp-contenido-ver-producto-complejo');
       this.btnImgComplejaIzq = this.querySelector('#phpm-btn-complejo-izq');
       this.btnImgComplejaDer = this.querySelector('#phpm-btn-complejo-der');
@@ -900,26 +900,29 @@
       this.elementosN1 = this.querySelectorAll('#pmp-item-n1');
       this.elementosN2 = this.querySelectorAll('#pmp-item-n2');
       this.elementosN3 = this.querySelectorAll('#pmp-item-n3');
-      this.contenedorItemsComplejos = this.querySelector('#pmph-seleccion-pizza-mitadymitad');
       this.itemsSeleccionComplejo = this.querySelectorAll('#phpm-item-pizzamitadymitad');
       this.extrasVacioContenedorN1 = this.querySelector('#phpm-vacio-extras-especiales-n1');
       this.extrasVacioContenedorN2 = this.querySelector('#phpm-vacio-extras-especiales-n2');
-      this.extrasContenedorN1 = this.querySelector('#phpm-extras-especiales-n1');
-      this.extrasContenedorN2 = this.querySelector('#phpm-extras-especiales-n2');
-      this.btnAnadirExtrasN1 = this.querySelector('#phpm-btn-anadir-extras-n1');
-      this.btnAnadirExtrasN2 = this.querySelector('#phpm-btn-anadir-extras-n2');
-      this.modalProductoExtras = this.querySelector('#pmph-modal-productos-extras');
+
       this.btnModalSalir = this.querySelector('#phppm-btn-salir');
       this.btnModalGuardar = this.querySelector('#phppm-btn-guardar');
       this.btnsElegirProductoComplejo = this.querySelectorAll('#phpm--modal-btn-elegir');
       this.tituloModalExtras = this.querySelector('.phpp-modal-extras-titulo');
-      this.btnHazUnPedido = this.querySelector('#phpm-btn-haz-un-pedido');
-      this.btnAgregarCarrito = this.querySelector('#phpm-btn-agregar-carrito');
+      this.btnHazUnPedido = this.querySelector('#phpm-btn-haz-un-pedido'); {% endcomment %}
+      {% comment %} this.btnAgregarCarrito = this.querySelector('#phpm-btn-agregar-carrito'); {% endcomment %}
+      
+      
+      this.modalProductoExtras = this.querySelector('#pmph-modal-productos-extras');
+      this.contenedorItemsComplejos = this.querySelector('#pmph-seleccion-pizza-mitadymitad');
+      this.extrasContenedorN1 = this.querySelector('#phpm-extras-especiales-n1');
+      this.extrasContenedorN2 = this.querySelector('#phpm-extras-especiales-n2');
+      this.btnAnadirExtrasN1 = this.querySelector('#phpm-btn-anadir-extras-n1');
+      this.btnAnadirExtrasN2 = this.querySelector('#phpm-btn-anadir-extras-n2');
     }
 
     connectedCallback() {
       // EVENTOS INICIALIZAR
-      this.elementosN1.forEach((elemento) => {
+      {% comment %} this.elementosN1.forEach((elemento) => {
         elemento.addEventListener('click', this.procesoItemN1.bind(this, elemento));
       });
 
@@ -947,7 +950,7 @@
       this.btnAnadirExtrasN1.addEventListener('click', this.procesoAnadirProductos.bind(this, 'n1'));
       this.btnAnadirExtrasN2.addEventListener('click', this.procesoAnadirProductos.bind(this, 'n2'));
       this.btnModalSalir.addEventListener('click', this.cerrarModal.bind(this));
-      this.btnModalGuardar.addEventListener('click', this.procesarProductoModal.bind(this));
+      this.btnModalGuardar.addEventListener('click', this.procesarProductoModal.bind(this)); {% endcomment %}
 
       // INICIALIZAR ELEMENTOS Y PROCESOS CLAVES
       this.modalProductoExtras.style.display = 'none';
