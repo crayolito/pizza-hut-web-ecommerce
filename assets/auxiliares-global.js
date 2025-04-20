@@ -1,4 +1,16 @@
 class AuxiliaresGlobal {
+  static #sucursal = (()=>{
+    return  localStorage.getItem('sucursal-informacion') || '';
+  })();
+
+  static get sucursal() {
+    return this.#sucursal;
+  }
+
+  static set sucursal(valor) {
+    this.#sucursal = valor;
+  }
+
   static agregarCarrito(valor) {
     // Verificar que el valor sea un número válido mayor a 0
     if (typeof valor === 'number' && valor > 0) {
@@ -112,7 +124,6 @@ class AuxiliaresGlobal {
   static mensajeAlerta(){}
   static mensajeInformacion(){}
 
-  // Metodo para capturar la cantidad 
 }
 
 class CantidadInput extends HTMLElement {
