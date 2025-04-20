@@ -991,6 +991,7 @@
                       title
                       handle
                       description
+                      totalInventory
                       images(first: 1) {
                         edges {
                           node {
@@ -1000,6 +1001,27 @@
                       }
                       metafield(namespace: "estructura", key: "json") {
                         value
+                      }
+                      variants(first: 10) {
+                        nodes {
+                          id
+                          inventoryQuantity
+                          inventoryItem {
+                            inventoryLevels(first: 10) {
+                              edges {
+                                node {
+                                  quantities(names: ["available"]) {
+                                    name
+                                    quantity
+                                  }
+                                  location {
+                                    name
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
                       }
                     }
                   }
@@ -1028,6 +1050,8 @@
     
         // Obtener los datos de la respuesta
         const datosRespuesta = await respuesta.json();
+
+        console.log('Datos de la coleccion:', datosRespuesta);
     
         // Verificar si tenemos datos
         if (!datosRespuesta.data || !datosRespuesta.data.collections.edges.length || !datosRespuesta.data.collections.edges[0].node.products.edges.length) {
