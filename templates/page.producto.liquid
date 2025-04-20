@@ -6,68 +6,72 @@
   <div class="container-base pmph-container">
     <div class="pmph-imagen compleja">
       <!-- IMAGE PRODUCTO SIMPLE -->
-      <img
-        id="phmp-contenido-ver-producto-simple"
-        class="phmp-img-simple"
-        src="{{ 'imagen-pizza-1.png' | asset_url }}"
-        alt="Pizza 1"
-        width="100%"
-        height="100%"
-      >
+      {% comment %}
+        <img
+          id="phmp-contenido-ver-producto-simple"
+          class="phmp-img-simple"
+          src="{{ 'imagen-pizza-1.png' | asset_url }}"
+          alt="Pizza 1"
+          width="100%"
+          height="100%"
+        >
+      {% endcomment %}
       <!-- IMAGE PRODUCTO COMPLEJO -->
-      <div
-        id="phmp-contenido-ver-producto-complejo"
-        class="phmp-img-compleja"
-      >
-        <!-- BORDE DE PIZZA -->
-        <img
-          class="phmp-borde-pizza-img"
-          src="{{ 'pizza-borde.png' | asset_url }}"
-          alt="Pizza 1"
-          width="100%"
-          height="100%"
+      {% comment %}
+        <div
+          id="phmp-contenido-ver-producto-complejo"
+          class="phmp-img-compleja"
         >
-        <!-- SEPARADOS DE MITAD DE PIZZA -->
-        <img
-          class="phmp-separador-pizza-img"
-          src="{{ 'separador-mitad-pizza.png' | asset_url }}"
-          alt="Pizza 1"
-          width="100%"
-          height="100%"
-        >
-        <!-- SECCION BOTONES PARA TIPO DE MITADD -->
-        <div class="phmp-detalle-imagen-compleja-botones">
-          <button
-            lado-pizza-btn="izquierda"
-            id="phpm-btn-complejo-izq"
-            class="phmp-pizza-seleccion-mitad "
+          <!-- BORDE DE PIZZA -->
+          <img
+            class="phmp-borde-pizza-img"
+            src="{{ 'pizza-borde.png' | asset_url }}"
+            alt="Pizza 1"
+            width="100%"
+            height="100%"
           >
-            <p>LADO IZQUIERDO</p>
-            <div class="phmp-psm-icon">
-              {% render 'icon-volver-atras' %}
-            </div>
-          </button>
-          <button
-            lado-pizza-btn="derecha"
-            id="phpm-btn-complejo-der"
-            class="phmp-pizza-seleccion-mitad"
+          <!-- SEPARADOS DE MITAD DE PIZZA -->
+          <img
+            class="phmp-separador-pizza-img"
+            src="{{ 'separador-mitad-pizza.png' | asset_url }}"
+            alt="Pizza 1"
+            width="100%"
+            height="100%"
           >
-            <p>LADO DERECHO</p>
-            <div class="phmp-psm-icon">
-              {% render 'icon-flecha-derecha' %}
+          <!-- SECCION BOTONES PARA TIPO DE MITADD -->
+          <div class="phmp-detalle-imagen-compleja-botones">
+            <button
+              lado-pizza-btn="izquierda"
+              id="phpm-btn-complejo-izq"
+              class="phmp-pizza-seleccion-mitad "
+            >
+              <p>LADO IZQUIERDO</p>
+              <div class="phmp-psm-icon">
+                {% render 'icon-volver-atras' %}
+              </div>
+            </button>
+            <button
+              lado-pizza-btn="derecha"
+              id="phpm-btn-complejo-der"
+              class="phmp-pizza-seleccion-mitad"
+            >
+              <p>LADO DERECHO</p>
+              <div class="phmp-psm-icon">
+                {% render 'icon-flecha-derecha' %}
+              </div>
+            </button>
+          </div>
+          <!-- SECCION MITADES DE PIZZA -->
+          <div class="phmp-imagenes-mitades">
+            <div id="phpm-producto-complejo-img-izq" class="phmp-mitad-izquierda">
+              <img src="{{ 'imagen-mitad-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
             </div>
-          </button>
-        </div>
-        <!-- SECCION MITADES DE PIZZA -->
-        <div class="phmp-imagenes-mitades">
-          <div id="phpm-producto-complejo-img-izq" class="phmp-mitad-izquierda">
-            <img src="{{ 'imagen-mitad-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
-          </div>
-          <div id="phpm-producto-complejo-img-der" class="phmp-mitad-derecha">
-            <img src="{{ 'imagen-mitad-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+            <div id="phpm-producto-complejo-img-der" class="phmp-mitad-derecha">
+              <img src="{{ 'imagen-mitad-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+            </div>
           </div>
         </div>
-      </div>
+      {% endcomment %}
     </div>
     <div class="pmph-detalle-producto">
       <div class="pmph-header">
@@ -79,185 +83,187 @@
         <p>Salsa de tomate, queso mozarella, Choclo y tocino</p>
       </div>
       <div class="pmph-seleccion">
-        <div class="pmph-seleccion-normal pmph-cantidad">
-          <h3>Cantidad</h3>
-          <cantidad-input>
-            <div
-              origen-trabajo="producto"
-              min="0"
-              max="10"
-              id="producto-id"
-              handle="producto-handle"
-              class="pmph-cantidad-selector"
-            >
-              <button
-                accion="decrementar"
-                class="pmph-cantidad-selector-button elemento-oculto icon-color-tertiary"
+        {% comment %}
+          <div class="pmph-seleccion-normal pmph-cantidad">
+            <h3>Cantidad</h3>
+            <cantidad-input>
+              <div
+                origen-trabajo="producto"
+                min="0"
+                max="10"
+                id="producto-id"
+                handle="producto-handle"
+                class="pmph-cantidad-selector"
               >
-                {% render 'icon-basura' %}
-              </button>
-              <button
-                accion="decrementar"
-                class="pmph-cantidad-selector-button  elemento-oculto icon-color-tertiary"
-              >
-                {% render 'icon-menos' %}
-              </button>
-              <p>0</p>
-              <button
-                accion="incrementar"
-                class="pmph-cantidad-selector-button icon-color-tertiary"
-              >
-                {% render 'icon-mas' %}
-              </button>
-            </div>
-          </cantidad-input>
-        </div>
-        <div id="pmph-seleccion-n1" class="pmph-seleccion-normal ">
-          <h3>Tamaño</h3>
-          <button id="pmp-item-n1" class="pmp-item-simple">
-            <div class="pmp-item-simple-info">
-              <h3>Personal</h3>
-              <p>para 1 persona</p>
-            </div>
-            <div class="pmp-item-simple-escoger">
-              {% render 'icon-estado-off' %}
-            </div>
-          </button>
-          <button id="pmp-item-n1" class="pmp-item-simple desactivado">
-            <div class="pmp-item-simple-info seleccionado">
-              <h3>Mediana</h3>
-              <p>para 3 personas + Bs. 18</p>
-            </div>
-            <div class="pmp-item-simple-escoger">
-              {% comment %} {% render 'icon-estado-on-plus' %} {% endcomment %}
-              {% render 'icon-estado-off' %}
-            </div>
-          </button>
-          <button id="pmp-item-n1" class="pmp-item-simple desactivado">
-            <div class="pmp-item-simple-info">
-              <h3>Grande</h3>
-              <p>para 4 personas + Bs. 61</p>
-            </div>
-            <div class="pmp-item-simple-escoger">
-              {% render 'icon-estado-off' %}
-            </div>
-          </button>
-          <button id="pmp-item-n1" class="pmp-item-simple ">
-            <div class="pmp-item-simple-info seleccionado">
-              <h3>Familiar</h3>
-              <p>para 5 personas + Bs. 87</p>
-            </div>
-            <div class="pmp-item-simple-escoger">
-              {% render 'icon-estado-off' %}
-            </div>
-          </button>
-        </div>
-        <div id="pmph-seleccion-n2" class="pmph-seleccion-especial ">
-          <h3>Masa y Borde</h3>
-          <button id="pmp-item-n2" class="pmp-item-complejo">
-            <div class="pmp-item-complejo-imagen">
-              <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
-            </div>
-            <div class="pmp-item-complejo-info">
-              <p>PAN PIZZA</p>
+                <button
+                  accion="decrementar"
+                  class="pmph-cantidad-selector-button elemento-oculto icon-color-tertiary"
+                >
+                  {% render 'icon-basura' %}
+                </button>
+                <button
+                  accion="decrementar"
+                  class="pmph-cantidad-selector-button  elemento-oculto icon-color-tertiary"
+                >
+                  {% render 'icon-menos' %}
+                </button>
+                <p>0</p>
+                <button
+                  accion="incrementar"
+                  class="pmph-cantidad-selector-button icon-color-tertiary"
+                >
+                  {% render 'icon-mas' %}
+                </button>
+              </div>
+            </cantidad-input>
+          </div>
+          <div id="pmph-seleccion-n1" class="pmph-seleccion-normal ">
+            <h3>Tamaño</h3>
+            <button id="pmp-item-n1" class="pmp-item-simple">
+              <div class="pmp-item-simple-info">
+                <h3>Personal</h3>
+                <p>para 1 persona</p>
+              </div>
               <div class="pmp-item-simple-escoger">
                 {% render 'icon-estado-off' %}
               </div>
-            </div>
-          </button>
-          <button id="pmp-item-n2" class="pmp-item-complejo ">
-            <div class="pmp-item-complejo-imagen seleccionado">
-              <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
-            </div>
-            <div class="pmp-item-complejo-info seleccionado">
-              <p>CRISPY: DELGADA Y CRUJIENTE</p>
+            </button>
+            <button id="pmp-item-n1" class="pmp-item-simple desactivado">
+              <div class="pmp-item-simple-info seleccionado">
+                <h3>Mediana</h3>
+                <p>para 3 personas + Bs. 18</p>
+              </div>
+              <div class="pmp-item-simple-escoger">
+                {% comment %} {% render 'icon-estado-on-plus' %} {% endcomment %}
+                {% render 'icon-estado-off' %}
+              </div>
+            </button>
+            <button id="pmp-item-n1" class="pmp-item-simple desactivado">
+              <div class="pmp-item-simple-info">
+                <h3>Grande</h3>
+                <p>para 4 personas + Bs. 61</p>
+              </div>
               <div class="pmp-item-simple-escoger">
                 {% render 'icon-estado-off' %}
               </div>
-            </div>
-          </button>
-          <button id="pmp-item-n2" class="pmp-item-complejo">
-            <div class="pmp-item-complejo-imagen">
-              <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
-            </div>
-            <div class="pmp-item-complejo-info">
-              <p>PAN PIZZA</p>
+            </button>
+            <button id="pmp-item-n1" class="pmp-item-simple ">
+              <div class="pmp-item-simple-info seleccionado">
+                <h3>Familiar</h3>
+                <p>para 5 personas + Bs. 87</p>
+              </div>
               <div class="pmp-item-simple-escoger">
                 {% render 'icon-estado-off' %}
               </div>
-            </div>
-          </button>
-          <button id="pmp-item-n2" class="pmp-item-complejo desactivado">
-            <div class="pmp-item-complejo-imagen seleccionado">
-              <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
-            </div>
-            <div class="pmp-item-complejo-info seleccionado">
-              <p>PAN PIZZA</p>
-              <div class="pmp-item-simple-escoger">
-                {% render 'icon-estado-off' %}
+            </button>
+          </div>
+          <div id="pmph-seleccion-n2" class="pmph-seleccion-especial ">
+            <h3>Masa y Borde</h3>
+            <button id="pmp-item-n2" class="pmp-item-complejo">
+              <div class="pmp-item-complejo-imagen">
+                <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
               </div>
-            </div>
-          </button>
-        </div>
-        <div id="pmph-seleccion-n3" class="pmph-seleccion-especial">
-          <h3>Extras</h3>
-          <button id="pmp-item-n3" class="pmp-item-complejo desactivado">
-            <div class="pmp-item-complejo-imagen ">
-              <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
-            </div>
-            <div class="pmp-item-complejo-info">
-              <div class="pmp-item-complejo-info-detalle ">
-                <p>Piña</p>
-                <p>+Bs 7</p>
+              <div class="pmp-item-complejo-info">
+                <p>PAN PIZZA</p>
+                <div class="pmp-item-simple-escoger">
+                  {% render 'icon-estado-off' %}
+                </div>
               </div>
-              <div class="pmp-item-simple-escoger">
-                {% render 'icon-checkbox-off' %}
+            </button>
+            <button id="pmp-item-n2" class="pmp-item-complejo ">
+              <div class="pmp-item-complejo-imagen seleccionado">
+                <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
               </div>
-            </div>
-          </button>
-          <button id="pmp-item-n3" class="pmp-item-complejo ">
-            <div class="pmp-item-complejo-imagen seleccionado">
-              <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
-            </div>
-            <div class="pmp-item-complejo-info">
-              <div class="pmp-item-complejo-info-detalle seleccionado">
-                <p>Salsa de Tomate</p>
-                <p>+Bs 7</p>
+              <div class="pmp-item-complejo-info seleccionado">
+                <p>CRISPY: DELGADA Y CRUJIENTE</p>
+                <div class="pmp-item-simple-escoger">
+                  {% render 'icon-estado-off' %}
+                </div>
               </div>
-              <div class="pmp-item-simple-escoger">
-                {% render 'icon-checkbox-off' %}
+            </button>
+            <button id="pmp-item-n2" class="pmp-item-complejo">
+              <div class="pmp-item-complejo-imagen">
+                <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
               </div>
-            </div>
-          </button>
-          <button id="pmp-item-n3" class="pmp-item-complejo desactivado">
-            <div class="pmp-item-complejo-imagen ">
-              <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
-            </div>
-            <div class="pmp-item-complejo-info">
-              <div class="pmp-item-complejo-info-detalle ">
-                <p>Pepperoni</p>
-                <p>+Bs 7</p>
+              <div class="pmp-item-complejo-info">
+                <p>PAN PIZZA</p>
+                <div class="pmp-item-simple-escoger">
+                  {% render 'icon-estado-off' %}
+                </div>
               </div>
-              <div class="pmp-item-simple-escoger">
-                {% render 'icon-checkbox-off' %}
+            </button>
+            <button id="pmp-item-n2" class="pmp-item-complejo desactivado">
+              <div class="pmp-item-complejo-imagen seleccionado">
+                <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
               </div>
-            </div>
-          </button>
-          <button id="pmp-item-n3" class="pmp-item-complejo ">
-            <div class="pmp-item-complejo-imagen seleccionado">
-              <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
-            </div>
-            <div class="pmp-item-complejo-info">
-              <div class="pmp-item-complejo-info-detalle seleccionado">
-                <p>Aceitunas</p>
-                <p>+Bs 7</p>
+              <div class="pmp-item-complejo-info seleccionado">
+                <p>PAN PIZZA</p>
+                <div class="pmp-item-simple-escoger">
+                  {% render 'icon-estado-off' %}
+                </div>
               </div>
-              <div class="pmp-item-simple-escoger">
-                {% render 'icon-checkbox-off' %}
+            </button>
+          </div>
+          <div id="pmph-seleccion-n3" class="pmph-seleccion-especial">
+            <h3>Extras</h3>
+            <button id="pmp-item-n3" class="pmp-item-complejo desactivado">
+              <div class="pmp-item-complejo-imagen ">
+                <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
               </div>
-            </div>
-          </button>
-        </div>
+              <div class="pmp-item-complejo-info">
+                <div class="pmp-item-complejo-info-detalle ">
+                  <p>Piña</p>
+                  <p>+Bs 7</p>
+                </div>
+                <div class="pmp-item-simple-escoger">
+                  {% render 'icon-checkbox-off' %}
+                </div>
+              </div>
+            </button>
+            <button id="pmp-item-n3" class="pmp-item-complejo ">
+              <div class="pmp-item-complejo-imagen seleccionado">
+                <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+              </div>
+              <div class="pmp-item-complejo-info">
+                <div class="pmp-item-complejo-info-detalle seleccionado">
+                  <p>Salsa de Tomate</p>
+                  <p>+Bs 7</p>
+                </div>
+                <div class="pmp-item-simple-escoger">
+                  {% render 'icon-checkbox-off' %}
+                </div>
+              </div>
+            </button>
+            <button id="pmp-item-n3" class="pmp-item-complejo desactivado">
+              <div class="pmp-item-complejo-imagen ">
+                <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+              </div>
+              <div class="pmp-item-complejo-info">
+                <div class="pmp-item-complejo-info-detalle ">
+                  <p>Pepperoni</p>
+                  <p>+Bs 7</p>
+                </div>
+                <div class="pmp-item-simple-escoger">
+                  {% render 'icon-checkbox-off' %}
+                </div>
+              </div>
+            </button>
+            <button id="pmp-item-n3" class="pmp-item-complejo ">
+              <div class="pmp-item-complejo-imagen seleccionado">
+                <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+              </div>
+              <div class="pmp-item-complejo-info">
+                <div class="pmp-item-complejo-info-detalle seleccionado">
+                  <p>Aceitunas</p>
+                  <p>+Bs 7</p>
+                </div>
+                <div class="pmp-item-simple-escoger">
+                  {% render 'icon-checkbox-off' %}
+                </div>
+              </div>
+            </button>
+          </div>
+        {% endcomment %}
         <div id="pmph-seleccion-pizza-mitadymitad" class="pmph-seleccion-normal ">
           <h3>UN SABOR PARA CADA MITAD</h3>
           <div
@@ -953,50 +959,52 @@
       this.inicializarMedianteDataLocalStorage();
     }
 
+    dividirTitulo(titulo) {
+      // Verificar si es el caso excepcional "Super Personal"
+      if (titulo.includes("Super Personal")) {
+        return {
+          importante: "Super Personal",
+          mensaje: titulo.replace("Super Personal", "").trim()
+        };
+      }
+      
+      // Caso general: la primera palabra es la importante
+      const palabras = titulo.split(" ");
+      const importante = palabras[0];
+      const mensaje = palabras.slice(1).join(" ");
+      
+      return {
+        importante,
+        mensaje
+      };
+    }
+
     inicializarMedianteDataLocalStorage() {
       // Traer informacion para contruir el producto
       const dataProducto = JSON.parse(localStorage.getItem('phpp-productoData'));
       // Primero se crea la estructura generale productos del atributo => productoParaEstructuraTrabajo
       var estructuraContruccion = dataProducto.estructura;
-      var coleccionSubProductosTrabajar = []
+      var coleccionSubProductosTrabajar = [];
 
-      console.log('dataProducto :',{
-        "estructura" : estructuraContruccion,
-        "producto" : dataProducto.producto,
-        "productoParaEstructuraTrabajo" : dataProducto.productoParaEstructuraTrabajo,
-        "subProductoSeleccionado" : dataProducto.tamanoSeleccionado,
-      } );
-     
-      
       var indice = 0;
-      for(var ramaPrincipal in estructuraContruccion.ramas){
+      for (var ramaPrincipal in estructuraContruccion.ramas) {
         const productoTrabajo = dataProducto.productoParaEstructuraTrabajo[indice];
 
-        if(ramaPrincipal == productoTrabajo.codigo){
-           estructuraContruccion.ramas[ramaPrincipal].productos = productoTrabajo.productos;
-
-          {% comment %} var a = {
-            codigo : productoTrabajo.codigo,
-            min : estructuraContruccion.ramas[ramaPrincipal].min ,
-            max : estructuraContruccion.ramas[ramaPrincipal].max,
-            productos: productoTrabajo.productos
-          } {% endcomment %}
-
-          {% comment %} coleccionSubProductosTrabajar.push(a); {% endcomment %}
-
+        if (ramaPrincipal == productoTrabajo.codigo) {
+          estructuraContruccion.ramas[ramaPrincipal].productos = productoTrabajo.productos;
           var subProductosTrabajo = null;
           // Esto es la estructura rama sus ramas hijas => PCE y PCMB
-          for(var subRama in estructuraContruccion.ramas[ramaPrincipal].ramas){
+          for (var subRama in estructuraContruccion.ramas[ramaPrincipal].ramas) {
             var subIndice = 0;
             subProductosTrabajo = [];
 
             // Estos son los productos => PCT de la rama principa
-            productoTrabajo.productos.forEach((producto) =>{
+            productoTrabajo.productos.forEach((producto) => {
               // Aqui trae los los productos de la subRama = [PCE, PCMB]
               producto.ramas.forEach((subProducto) => {
-                if(subRama == subProducto.codigo){
+                if (subRama == subProducto.codigo) {
                   subProducto.productos.forEach((subProductoTrabajo) => {
-                    if(!subProductosTrabajo.some(item => item.idShopify === subProductoTrabajo.idShopify)){
+                    if (!subProductosTrabajo.some((item) => item.idShopify === subProductoTrabajo.idShopify)) {
                       subProductosTrabajo.push(subProductoTrabajo);
                     }
                   });
@@ -1005,25 +1013,250 @@
             });
 
             estructuraContruccion.ramas[ramaPrincipal].ramas[subRama].productos = subProductosTrabajo;
-
-            {% comment %} coleccionSubProductosTrabajar.push({
-              codigo : subRama,
-              min : estructuraContruccion.ramas[ramaPrincipal].ramas[subRama].min,
-              max : estructuraContruccion.ramas[ramaPrincipal].ramas[subRama].max,
-              productos: subProductosTrabajo
-            }); {% endcomment %}
           }
         }
         indice++;
       }
 
-      console.log('estructuraContruccion Testeo :', estructuraContruccion);
+      console.log('dataProducto :', {
+        estructura: estructuraContruccion,
+        producto: dataProducto.producto,
+        productoParaEstructuraTrabajo: dataProducto.productoParaEstructuraTrabajo,
+        subProductoSeleccionado: dataProducto.tamanoSeleccionado,
+      });
 
-      // Esto es el formato de contruccion que va tener el produccion para su seleccion 
-     
-      // Es el formato de uso para cambios en la variante
-      {% comment %} const estructuraModificacion =  {% endcomment %}
-      
+      // Traer toda la coleccion
+
+      // Contruccion de <cantidad-input> segun la estructura de los productos
+
+      var productoImagenHTML = '';
+      const contenedorImg = this.querySelector('#pmph-imagen compleja');
+      productoImagenHTML += `
+        <img
+        id="phmp-contenido-ver-producto-simple"
+        class="phmp-img-simple"
+        src="${dataProducto.producto.imagen}"
+        alt="${dataProducto.producto.titulo}"
+        width="100%"
+        height="100%"
+        >
+      `;
+      contenedorImg.innerHTML = productoImagenHTML;
+
+      var detallaBasicoProducto = '';
+      detallaBasicoProducto += `
+        <button class="pmph-volver-atras icon-color-primary ">
+          {% render 'icon-volver-atras' %}
+          <p class="color-letras-primary">Volver</p>
+        </button>
+        <small>${dataProducto.producto.titulo}</small>
+        <p>${dataProducto.producto.descripcion}</p>
+      `;
+      this.querySelector('.pmph-header').innerHTML = detallaBasicoProducto;
+
+      var detalleSubProductos = '';
+      detalleSubProductos += `
+        <div class="pmph-seleccion-normal pmph-cantidad">
+          <h3>Cantidad</h3>
+          <cantidad-input>
+            <div
+              origen-trabajo="producto"
+              min="0"
+              max="10"
+              id="producto-id"
+              handle="producto-handle"
+              class="pmph-cantidad-selector"
+            >
+              <button
+                accion="decrementar"
+                class="pmph-cantidad-selector-button elemento-oculto icon-color-tertiary"
+              >
+                {% render 'icon-basura' %}
+              </button>
+              <button
+                accion="decrementar"
+                class="pmph-cantidad-selector-button  elemento-oculto icon-color-tertiary"
+              >
+                {% render 'icon-menos' %}
+              </button>
+              <p>0</p>
+              <button
+                accion="incrementar"
+                class="pmph-cantidad-selector-button icon-color-tertiary"
+              >
+                {% render 'icon-mas' %}
+              </button>
+            </div>
+          </cantidad-input>
+        </div>
+      `;
+      // Contruccion de la estructura de los (SUB - VARIANTES) productos para el HTML
+      for (var ramaPrincipal in estructuraContruccion.ramas) {
+        var infoRamaPrincipal = estructuraContruccion.ramas[ramaPrincipal];
+        var productoRamaTrabajo = [];
+
+        // En esta parte me traigo los productos PCT => Personal Familiar Mediana
+        dataProducto.productoParaEstructuraTrabajo.forEach((producto) => {
+          if (ramaPrincipal == producto.codigo) {
+            productoRamaTrabajo = producto.productos;
+          }
+        });
+
+        detalleSubProductos += `
+        <div
+        data-max="${infoRamaPrincipal.maximo}"
+        data-min="${infoRamaPrincipal.minimo}"
+        data-codigo="${infoRamaPrincipal.codigo}"
+        id="pmph-seleccion-rama-principal" class="pmph-seleccion-normal">
+          <h3>${infoRamaPrincipal.titulo}</h3>
+        `;
+        infoRamaPrincipal.productos.forEach((producto,index) => {
+          const {importante , mensaje} = this.dividirTitulo(producto.titulo);
+
+          if (index == 0) {
+            detalleSubProductos += `
+            <button 
+            data-idtrabajo="${producto.idTrabajo}"
+            data-idshopify="${producto.idShopify}"
+            id="pmp-item-rama-principal" class="pmp-item-simple seleccionado">
+              <div class="pmp-item-simple-info">
+                <h3>${importante}</h3>
+                <p>${mensaje}</p>
+              </div>
+              <div class="pmp-item-simple-escoger">
+                {% render 'icon-estado-off' %}
+              </div>
+            </button>
+            `;
+          }else{
+            detalleSubProductos += `
+            <button 
+            data-idtrabajo="${producto.idTrabajo}"
+            data-idshopify="${producto.idShopify}"
+            id="pmp-item-rama-principal" class="pmp-item-simple">
+              <div class="pmp-item-simple-info">
+                <h3>${importante}</h3>
+                <p>${mensaje}</p>
+              </div>
+              <div class="pmp-item-simple-escoger">
+                {% render 'icon-estado-off' %}
+              </div>
+            </button>
+            `;
+          }
+        });
+        detalleSubProductos += `
+        </div>
+        `;
+
+        // Bandera para tipo de botones = circle o checkbx
+        var bptb = false;
+
+        for (var subRama in infoRamaPrincipal.ramas) {
+          var infoSubRama = infoRamaPrincipal.ramas[subRama];
+          var subProductoTrabajo = [];
+          var banderaPrimero = false;
+          // De los productos PCT me traigo sus ramas del primer elemento en este caso (Personal)
+          productoRamaTrabajo[0].ramas.forEach((producto) => {
+            if (subRama == producto.codigo) {
+              subProductoTrabajo = producto.productos;
+            }
+          });
+
+          detalleSubProductos += `
+          <div 
+          data-max="${infoSubRama.maximo}"
+          data-min="${infoSubRama.minimo}"
+          data-codigo="${infoSubRama.codigo}"
+          tipo-boton="${bptb ? 'circle' : 'checkbox'}"
+          id="pmph-seleccion-subRama" class="pmph-seleccion-especial ">
+          <h3>Masa y Borde</h3>
+          `;
+          infoSubRama.productos.forEach((producto,index) => {
+            {% comment %} subProductosTrabajo.some((item) => item.idShopify === subProductoTrabajo.idShopify) {% endcomment %}
+            
+            // Verifica si el producto se encuentra dentro del categoria de ramas de la (Personal)
+            if(subProductoTrabajo.some((item) => item.idShopify === producto.idShopify)){
+              // Si se encuentra todos estara activado
+              if(banderaPrimero == false){
+                // Se auto preseleccionara el primer elemento
+                detalleSubProductos += `
+                <button id="pmp-item-subRama" class="pmp-item-complejo seleccionado ">
+                  <div class="pmp-item-complejo-imagen">
+                    <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="${producto.titulo}" width="100%" height="100%">
+                  </div>
+                  <div class="pmp-item-complejo-info">
+                    <p>${producto.titulo}</p>
+                    <div class="pmp-item-simple-escoger">
+                       ${bptb ? this.iconos.iconCheckBoxOn : this.iconos.iconEstadoOn}
+                    </div>
+                  </div>
+                </button>
+                `;
+                banderaPrimero = true;
+              }else{
+                // Elemento activado pero no seleccionado
+                detalleSubProductos += `
+                <button id="pmp-item-subRama" class="pmp-item-complejo  ">
+                  <div class="pmp-item-complejo-imagen">
+                    <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="${producto.titulo}" width="100%" height="100%">
+                  </div>
+                  <div class="pmp-item-complejo-info">
+                    <p>${producto.titulo}</p>
+                    <div class="pmp-item-simple-escoger">
+                       ${bptb ? this.iconos.iconCheckBoxOff : this.iconos.iconEstadoOff}
+                    </div>
+                  </div>
+                </button>
+                `;
+              }
+            }else{
+              // Aqui el producto no se encuentra se lo desactivaba
+              detalleSubProductos += `
+              <button id="pmp-item-subRama" class="pmp-item-complejo desactivado ">
+                <div class="pmp-item-complejo-imagen">
+                  <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="${producto.titulo}" width="100%" height="100%">
+                </div>
+                <div class="pmp-item-complejo-info">
+                  <p>${producto.titulo}</p>
+                  <div class="pmp-item-simple-escoger">
+                    ${bptb ? this.iconos.iconCheckBoxOff : this.iconos.iconEstadoOff}
+                  </div>
+                </div>
+              </button>
+              `;
+              
+            }
+                        
+
+            if (index == 0) {
+              detalleSubProductos += `
+              <button id="pmp-item-subRama" class="pmp-item-complejo">
+                <div class="pmp-item-complejo-imagen">
+                  <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+                </div>
+                <div class="pmp-item-complejo-info">
+                  <p>PAN PIZZA</p>
+                  <div class="pmp-item-simple-escoger">
+                    {% render 'icon-estado-off' %}
+                  </div>
+                </div>
+              </button>
+              `;
+
+            }else{}  
+          });
+
+          
+          detalleSubProductos += `
+          </div>
+          `;
+
+          bptb = !bptb;
+        }
+      }
+
+      this.querySelector('.pmph-seleccion').insertAdjacentHTML('afterbegin', detalleSubProductos);
 
       // PRODUCTO SIMPLEE
       const tipoProducto = localStorage.getItem('phpp-tipo-producto') || 'simple';
