@@ -171,11 +171,6 @@ class CantidadInput extends HTMLElement {
       }
       this.cantidadEtiqueta--;
       this.querySelector('p').textContent = this.cantidadEtiqueta;
-      console.log({
-        cantidadEtiqueta: this.cantidadEtiqueta,
-        baseTrabajo: this.baseTrabajo,
-        accion: accion,
-      })
       if (this.cantidadEtiqueta <= 0  && this.baseTrabajo == 'carrito') {
         this.btn[0].classList.remove('elemento-oculto');
         this.btn[1].classList.add('elemento-oculto');

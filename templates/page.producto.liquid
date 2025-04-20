@@ -75,12 +75,14 @@
     </div>
     <div class="pmph-detalle-producto">
       <div class="pmph-header">
-        <button class="pmph-volver-atras icon-color-primary ">
-          {% render 'icon-volver-atras' %}
-          <p class="color-letras-primary">Volver</p>
-        </button>
-        <small>Choclo y Tocino</small>
-        <p>Salsa de tomate, queso mozarella, Choclo y tocino</p>
+        {% comment %}
+          <button class="pmph-volver-atras icon-color-primary ">
+            {% render 'icon-volver-atras' %}
+            <p class="color-letras-primary">Volver</p>
+          </button>
+          <small>Choclo y Tocino</small>
+          <p>Salsa de tomate, queso mozarella, Choclo y tocino</p>
+        {% endcomment %}
       </div>
       <div class="pmph-seleccion">
         {% comment %}
@@ -911,6 +913,8 @@
       this.btnHazUnPedido = this.querySelector('#phpm-btn-haz-un-pedido'); {% endcomment %}
       {% comment %} this.btnAgregarCarrito = this.querySelector('#phpm-btn-agregar-carrito'); {% endcomment %}
       
+      this.btnVolverAtras = this.querySelector('.pmph-volver-atras');
+
       
       this.modalProductoExtras = this.querySelector('#pmph-modal-productos-extras');
       this.contenedorItemsComplejos = this.querySelector('#pmph-seleccion-pizza-mitadymitad');
@@ -1166,14 +1170,6 @@
             }
           });
 
-          console.log('Testeo de pruebas :',{
-            subRama: subRama,
-            infoSubRama: infoSubRama,
-            subProductoTrabajo: subProductoTrabajo,
-            infoRamaPrincipal: infoRamaPrincipal,
-            productoRamaTrabajo: productoRamaTrabajo,
-          } );
-
           detalleSubProductos += `
           <div 
           data-max="${infoSubRama.maximo}"
@@ -1181,13 +1177,13 @@
           data-codigo="${infoSubRama.codigo}"
           tipo-boton="${bptb ? 'circle' : 'checkbox'}"
           id="pmph-seleccion-subRama" class="pmph-seleccion-especial ">
-          <h3>Masa y Borde</h3>
+          <h3>${}</h3>
           `;
           infoSubRama.productos.forEach((producto,index) => {
             // Verifica si el producto se encuentra dentro del categoria de ramas de la (Personal)
             if(subProductoTrabajo.some((item) => item.idShopify === producto.idShopify)){
               // Si se encuentra todos estara activado
-              if(banderaPrimero == false){
+              if(banderaPrimero == false && infoSubRama.min == "1"){
                 // Se auto preseleccionara el primer elemento
                 detalleSubProductos += `
                 <button id="pmp-item-subRama" class="pmp-item-complejo seleccionado ">
@@ -1236,12 +1232,9 @@
               `;
             }
           });
-
-          
           detalleSubProductos += `
           </div>
           `;
-
           bptb = !bptb;
         }
       }
