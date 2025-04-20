@@ -959,6 +959,14 @@
       // Primero se crea la estructura generale productos del atributo => productoParaEstructuraTrabajo
       var estructuraContruccion = dataProducto.estructuraTrabajo;
       var coleccionSubProductosTrabajar = []
+
+      console.log('dataProducto :',{
+        "estructura" : estructuraContruccion,
+        "producto" : dataProducto.producto,
+        "productoParaEstructuraTrabajo" : dataProducto.productoParaEstructuraTrabajo,
+        "subProductoSeleccionado" : dataProducto.tamanoSeleccionado,
+      } );
+     
       
       var indice = 0;
       for(var ramaPrincipal in estructuraContruccion.ramas){
@@ -1012,12 +1020,6 @@
       console.log('estructuraContruccion Testeo :', estructuraContruccion);
 
       // Esto es el formato de contruccion que va tener el produccion para su seleccion 
-     console.log('dataProducto :',{
-        "estructura" : estructuraContruccion,
-        "producto" : dataProducto.producto,
-        "productoParaEstructuraTrabajo" : dataProducto.productoParaEstructuraTrabajo,
-        "subProductoSeleccionado" : dataProducto.tamanoSeleccionado,
-      } );
      
       // Es el formato de uso para cambios en la variante
       {% comment %} const estructuraModificacion =  {% endcomment %}
