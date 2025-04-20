@@ -1051,8 +1051,6 @@
         // Obtener los datos de la respuesta
         const datosRespuesta = await respuesta.json();
     
-        console.log('Datos de la coleccion:', datosRespuesta);
-    
         // Verificar si tenemos datos
         if (!datosRespuesta.data || !datosRespuesta.data.collections.edges.length || !datosRespuesta.data.collections.edges[0].node.products.edges.length) {
           console.log("No se encontraron productos en la colección PIZZA");
@@ -1117,11 +1115,10 @@
             sucursales: sucursales,
             estructura: producto.metafield && producto.metafield.value ? JSON.parse(producto.metafield.value) : "",
           };
-    
+
           return productoSimplificado;
         });
     
-        {% comment %} console.log('Productos simplificados:', productosSimplificados); {% endcomment %}
         // Crear un objeto con información de la colección y los productos
         const resultado = {
           informacionColeccion: {
@@ -1132,6 +1129,8 @@
           },
           productosColeccion: productosSimplificados
         };
+
+        console.log('Datos de la colección obtenidos:', resultado);
     
         return resultado;
     
@@ -1141,7 +1140,7 @@
         return [];
       }
     }
-    
+
     // Función para verificar si un producto de rama coincide con alguna clave de estructura
     filtrarProductosPorTitulo(productosArray, tituloReferencia) {
       // Validación rápida
