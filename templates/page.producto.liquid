@@ -926,6 +926,8 @@
 
     connectedCallback() {
       // EVENTOS INICIALIZAR
+      this.btnHazUnPedido.addEventListener('click', this.redireccionHazUnPedido.bind(this));
+      this.btnAgregarCarrito.addEventListener('click', this.agregarCarrito.bind(this));
       {% comment %} this.elementosN1.forEach((elemento) => {
         elemento.addEventListener('click', this.procesoItemN1.bind(this, elemento));
       });
@@ -942,8 +944,7 @@
         elemento.addEventListener('click', this.procesoItemComplejo.bind(this, elemento));
       });
 
-      this.btnHazUnPedido.addEventListener('click', this.redireccionHazUnPedido.bind(this));
-      this.btnAgregarCarrito.addEventListener('click', this.agregarCarrito.bind(this));
+
 
       this.btnImgComplejaDer.addEventListener('click', this.procesoItemComplejo.bind(this, this.btnImgComplejaDer));
       this.btnImgComplejaIzq.addEventListener('click', this.procesoItemComplejo.bind(this, this.btnImgComplejaIzq));
