@@ -1058,7 +1058,7 @@
       this.querySelector('.pmph-header').innerHTML = detallaBasicoProducto;
 
       // Aqui se va definir si se usar el stockTodo o de alguna sucursal especifica
-      var stockTrabajo = 0;
+      var stockTrabajo = this.optenerStockTrabajo();
       
 
       var detalleSubProductos = '';
@@ -1416,14 +1416,14 @@
 
     optenerStockTrabajo(){
       // Verificar si tenemos una sucursal seleccionada
-      const dataSucursal = AuxiliaresGlobal.sucursal;
+      const dataSucursal = JSON.parse(localStorage.getItem('phpp-sucursal'));
       // Informacion del producto
       const dataTrabajo = JSON.parse(localStorage.getItem('phpp-productoData'));
 
       if(dataSucursal == "") return dataTrabajo.producto.stockTotal;
 
       dataTrabajo.producto.sucursales.forEach((sucursal) => {
-        if(sucursal.sucursal == dataSucursal){
+        if(sucursal.sucursal == dataSucursal.name){
           return sucursal.stock;
         }
       });

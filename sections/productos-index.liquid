@@ -728,8 +728,6 @@
         }
       };
 
-      console.log("ProductosColeccion :", productosColeccion);
-
       const productosContruccion = productosColeccion.map((producto) => {
         return {
           idShopify: producto.id,
@@ -739,8 +737,8 @@
           titulo: producto.titulo,
           descripcion: producto.descripcion,
           precio: producto.estructura.precio,
-          stockTotal: producto.stock,
-          sucursales: producto.sucursal,
+          stockTotal: producto.stockGeneral,
+          sucursales: producto.sucursales,
         }
       });
 
