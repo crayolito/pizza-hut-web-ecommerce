@@ -1423,6 +1423,11 @@
       if(dataSucursal == "") return dataTrabajo.producto.stockTotal;
 
       dataTrabajo.producto.sucursales.forEach((sucursal) => {
+        console.log("Sucursales Test :",{
+          nombre: sucursal.nombre,
+          "nombre2" : dataSucursal.name,
+          stock: sucursal.stock,
+        })
         if(sucursal.nombre == dataSucursal.name){
           return sucursal.stock;
         }
