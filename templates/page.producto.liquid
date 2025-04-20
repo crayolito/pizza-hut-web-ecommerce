@@ -963,6 +963,10 @@
       for(var ramaPrincipal in dataProducto.estructura){
         // Obtenemos los datos pero del dataProducto.productoParaEstructuraTrabajo
         const productoTrabajo = dataProducto.productoParaEstructuraTrabajo[indice];
+        console.log('ramaPrincipal :', {
+          ramaPrincipal : ramaPrincipal,
+          productoTrabajo : productoTrabajo.codigo,
+        });
 
         if(ramaPrincipal == productoTrabajo.codigo){
           var a = {
