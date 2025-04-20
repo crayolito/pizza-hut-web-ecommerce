@@ -1000,9 +1000,9 @@
             });
 
             coleccionSubProductosTrabajar.push({
-              codigo : subRama.codigo,
-              min : subRama.min,
-              max : subRama.max,
+              codigo : subRama,
+              min : dataProducto.estructura.ramas[ramaPrincipal].ramas[subRama].min,
+              max : dataProducto.estructura.ramas[ramaPrincipal].ramas[subRama].max,
               productos: subProductosTrabajo
             });
           }
