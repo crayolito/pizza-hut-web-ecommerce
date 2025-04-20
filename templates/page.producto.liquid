@@ -1183,6 +1183,8 @@
           <h3>${infoSubRama.titulo}</h3>
           `;
           infoSubRama.productos.forEach((producto,index) => {
+            const tituloTrabajo = producto.titulo.startsWith("Extra ") ? producto.titulo.substring(6) : producto.titulo;
+
             // Verifica si el producto se encuentra dentro del categoria de ramas de la (Personal)
             if(subProductoTrabajo.some((item) => item.idShopify === producto.idShopify)){
               // Si se encuentra todos estara activado
@@ -1191,10 +1193,10 @@
                 detalleSubProductos += `
                 <button id="pmp-item-subRama" class="pmp-item-complejo seleccionado ">
                   <div class="pmp-item-complejo-imagen">
-                    <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="${producto.titulo}" width="100%" height="100%">
+                    <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="${tituloTrabajo}" width="100%" height="100%">
                   </div>
                   <div class="pmp-item-complejo-info">
-                    <p>${producto.titulo}</p>
+                    <p>${tituloTrabajo}</p>
                     <div class="pmp-item-simple-escoger">
                        ${bptb ? this.iconos.iconCheckBoxOn : this.iconos.iconEstadoOn}
                     </div>
@@ -1207,10 +1209,10 @@
                 detalleSubProductos += `
                 <button id="pmp-item-subRama" class="pmp-item-complejo  ">
                   <div class="pmp-item-complejo-imagen">
-                    <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="${producto.titulo}" width="100%" height="100%">
+                    <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="${tituloTrabajo}" width="100%" height="100%">
                   </div>
                   <div class="pmp-item-complejo-info">
-                    <p>${producto.titulo}</p>
+                    <p>${tituloTrabajo}</p>
                     <div class="pmp-item-simple-escoger">
                        ${bptb ? this.iconos.iconCheckBoxOff : this.iconos.iconEstadoOff}
                     </div>
@@ -1223,10 +1225,10 @@
               detalleSubProductos += `
               <button id="pmp-item-subRama" class="pmp-item-complejo desactivado ">
                 <div class="pmp-item-complejo-imagen">
-                  <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="${producto.titulo}" width="100%" height="100%">
+                  <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="${tituloTrabajo}" width="100%" height="100%">
                 </div>
                 <div class="pmp-item-complejo-info">
-                  <p>${producto.titulo}</p>
+                  <p>${tituloTrabajo}</p>
                   <div class="pmp-item-simple-escoger">
                     ${bptb ? this.iconos.iconCheckBoxOff : this.iconos.iconEstadoOff}
                   </div>
