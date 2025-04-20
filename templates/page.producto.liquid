@@ -1430,7 +1430,7 @@
           "testeoIgual" : sucursal.nombre == dataSucursal.name
         })
         if(sucursal.nombre == dataSucursal.name){
-          return sucursal.stock;
+          return parseInt(sucursal.stock);
         }
       });
     }
