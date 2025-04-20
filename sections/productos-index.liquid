@@ -1002,15 +1002,21 @@
                       metafield(namespace: "estructura", key: "json") {
                         value
                       }
-                      inventoryLevels(first: 10) {
+                      inventoryItems(first: 10) {
                         edges {
                           node {
-                            quantities(names: ["available"]) {
-                              name
-                              quantity
-                            }
-                            location {
-                              name
+                            inventoryLevels(first: 10) {
+                              edges {
+                                node {
+                                  quantities(names: ["available"]) {
+                                    name
+                                    quantity
+                                  }
+                                  location {
+                                    name
+                                  }
+                                }
+                              }
                             }
                           }
                         }
