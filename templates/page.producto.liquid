@@ -963,10 +963,6 @@
       for(var ramaPrincipal in dataProducto.estructura.ramas){
         // Obtenemos los datos pero del dataProducto.productoParaEstructuraTrabajo
         const productoTrabajo = dataProducto.productoParaEstructuraTrabajo[indice];
-        console.log('ramaPrincipal :', {
-          ramaPrincipal : ramaPrincipal,
-          productoTrabajo : productoTrabajo.codigo,
-        });
 
         if(ramaPrincipal == productoTrabajo.codigo){
           var a = {
@@ -985,6 +981,7 @@
             var subIndice = 0;
             subProductos = [];
             // Estos son los productos => PCT de la rama principal
+            console.log('productoTrabajo :', productoTrabajo.productos);
             productoTrabajo.productos.forEach((producto) =>{
               // Aqui trae los los productos de la subRama = [PCE, PCMB]
               producto.ramas.forEach((subProducto) => {
