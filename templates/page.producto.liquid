@@ -981,7 +981,7 @@
             var subIndice = 0;
             subProductos = [];
             // Estos son los productos => PCT de la rama principal
-            console.log('productoTrabajo :', productoTrabajo.productos);
+            console.log('productoTrabajo :', productoTrabajo);
             productoTrabajo.productos.forEach((producto) =>{
               // Aqui trae los los productos de la subRama = [PCE, PCMB]
               producto.ramas.forEach((subProducto) => {
@@ -994,15 +994,16 @@
                 }
               });
             });
+
+            coleccionSubProductosTrabajar.push({
+              codigo : subRama.codigo,
+              min : subRama.min,
+              max : subRama.max,
+              productos: subProductosTrabajo
+            });
           }
 
-          {% comment %} coleccionSubProductosTrabajar.push({
-            codigo : subRama.codigo,
-            min : subRama.min,
-            max : subRama.max,
-            productos: subProductosTrabajo
-          })
-          } {% endcomment %}
+
         }
 
         indice++;
