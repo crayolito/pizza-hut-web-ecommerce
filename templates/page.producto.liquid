@@ -979,19 +979,16 @@
           for(var subRama in dataProducto.estructura.ramas[ramaPrincipal].ramas){
             var subIndice = 0;
             subProductosTrabajo = [];
-            console.log('testeo de mi:',{
-              subRama : subRama,
-              subIndice : subIndice,
-              ramaPrincipal : ramaPrincipal
-            })
+
             // Estos son los productos => PCT de la rama principa
-            console.log('productoTrabajo :', productoTrabajo);
             productoTrabajo.productos.forEach((producto) =>{
               // Aqui trae los los productos de la subRama = [PCE, PCMB]
               producto.ramas.forEach((subProducto) => {
                 if(subRama == subProducto.codigo){
                   subProducto.productos.forEach((subProductoTrabajo) => {
-                    if(!subProductosTrabajo.some(item => item.idTrabajo == subProductoTrabajo.idTrabajo)){
+                    console.log('Comparando:', subProductoTrabajo.idTrabajo, 'con existentes:', subProductosTrabajo.map(item => item.idTrabajo));
+                    console.log('¿Ya existe?:', subProductosTrabajo.some(item => item.idTrabajo === subProductoTrabajo.idTrabajo));
+                    if(!subProductosTrabajo.some(item => item.idTrabajo === subProductoTrabajo.idTrabajo)){
                       subProductosTrabajo.push(subProductoTrabajo);
                     }
                   });
