@@ -894,6 +894,7 @@
       this.ladoPizza = '';
       this.tipoProceso = '';
       this.urlConsulta = "https://pizza-hut-bo.myshopify.com/admin/api/2025-01/graphql.json";
+      this.productoSeleccionadoRamaPrincipal = null;
       // REFERENCIAS ELEMENTOSS
       {% comment %} this.imgSimple = this.querySelector('#phmp-contenido-ver-producto-simple');
       this.imgCompleja = this.querySelector('#phmp-contenido-ver-producto-complejo');
@@ -1914,10 +1915,6 @@
     }
 
     procesoItemSubRama(btnElemento){
-      const cantidadSeleccionados = contenedorPadreSeccion.querySelectorAll('.seleccionado').length;
-      // Si estamos al mínimo, no permitir deseleccionar
-      if ( cantidadSeleccionado <= min) return;
-      
       // Busco al contenedor padre de la seccion con id="pmph-seleccion-subRama"
       // Obtengo su informacion max min codigo (tipo boton)
       const contenedorPadreSeccion = btnElemento.closest('#pmph-seleccion-subRama');
@@ -1925,6 +1922,10 @@
       const min = contenedorPadreSeccion.getAttribute('data-min');
       const codigo = contenedorPadreSeccion.getAttribute('data-codigo');
       const tipoBoton = contenedorPadreSeccion.getAttribute('tipo-boton');
+
+      const cantidadSeleccionados = contenedorPadreSeccion.querySelectorAll('.seleccionado').length;
+      // Si estamos al mínimo, no permitir deseleccionar
+      if ( cantidadSeleccionado <= min) return;
 
       const contenedorPadreRamaPrincipal = this.querySelector('#pmph-seleccion-rama-principal');
       const codigoRamaPrincipal = contenedorPadreRamaPrincipal.getAttribute('data-codigo');
