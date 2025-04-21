@@ -1832,8 +1832,10 @@
       // Si ya esta seleccionado no se hace nada
       const estaSeleccionado = btnElemento.classList.contains('seleccionado');
       const cantidadSeleccionado = contenedorPadre.querySelectorAll('.seleccionado').length;
-      if (estaSeleccionado && cantidadSeleccionado==min) return;
-      // if (cantidadSeleccionado == min) return;
+      // Si el botón ya está seleccionado y estamos en el mínimo, no permitir deseleccionar
+      if (estaSeleccionado && cantidadSeleccionado <= min) return;
+      // Si el botón no está seleccionado y ya alcanzamos el máximo, no permitir seleccionar más
+      if (!estaSeleccionado && cantidadSeleccionado >= max) return;
       
       // Al ponerlo como seleccionado actualizar las sub ramas this.btnsProductosSubRama usando 
       // la informacion estructura del localStorage data.productoParaEstructuraTrabajo y data.estructura
@@ -1854,13 +1856,6 @@
         return false;
       });
       
-      console.log('testeo :', {
-        idTrabajo: idTrabajo,
-        idShopify: idShopify,
-        codigo: codigo,
-        elementoTrabajo: elementoTrabajo,
-      });
-
       // Actualuzar, preseleccionados subRamas y id del HTML de las subRamas tambien precios desactivar
       // los que no son de esa rama principal
       this.seccionProductosSubRama.forEach((elementoSeccion) => {
@@ -1931,6 +1926,18 @@
     }
 
     procesoItemSubRama(btnElemento){
+      // Verifica si el boton desactivado si lanza el evento
+      console.log("Haciendo testeo para ver si se lanza");
+      
+      // Busco al contenedor padre de la seccion con id="pmph-seleccion-subRama"
+      // Obtengo su informacion max min codigo (tipo boton)
+      
+      // Del contendor Padre cuento sus hijos en este caso a los hermanos de btnElemento
+      // Verficico si cumple que la cantidad se encuentre entre los rangos min y max
+      // Eso implica a la hora de desactivador o tomar encuenta si el boton esta ya seleccionado
+
+      // Si se intenta seleccionar a uno pero ya esta en el max tomar encuenta que debo 
+
     }
   }
 
