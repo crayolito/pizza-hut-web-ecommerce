@@ -981,11 +981,7 @@
       this.seccionExtrasGaseosasCerversas = this.querySelector('#phpp-modal-productos-gaseosasycervezas');
 
       // INICIALIZAR EVENTOS
-      console.log('declararComponentesDespuesCreacion :',{
-        btnsProductosRamaPrincipales: this.btnsProductosRamaPrincipales.length,
-        btnsProductosSubRama: this.btnsProductosSubRama.length,
-      })
-       this.btnsProductosRamaPrincipales.forEach((btn) => {
+      this.btnsProductosRamaPrincipales.forEach((btn) => {
         btn.addEventListener('click', this.procesoItemRamaPrincipal.bind(this, btn));
       });
       this.btnsProductosSubRama.forEach((btn) => {
@@ -1858,7 +1854,7 @@
 
       // Actualuzar, preseleccionados subRamas y id del HTML de las subRamas tambien precios desactivar
       // los que no son de esa rama principal
-      this.seccionSubRama.forEach((elementoSeccion) => {
+      this.seccionProductosSubRama.forEach((elementoSeccion) => {
         const codigo = elementoSeccion.getAttribute('data-codigo');
         const max = elementoSeccion.getAttribute('data-max');
         const min = elementoSeccion.getAttribute('data-min');
