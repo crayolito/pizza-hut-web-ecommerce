@@ -1882,6 +1882,7 @@
           if (!productoTrabajo) {
             itemHTML.classList.remove('seleccionado');
             itemHTML.classList.add('desactivado');
+            itemHTML.querySelector('.pmp-item-simple-escoger').innerHTML = tipoBoton == 'checkbox' ? this.iconos.iconCheckBoxOff : this.iconos.iconEstadoOff;
           }else{
             // Si se encuentra coincidencia se lo activa
             if(min == "1" && parseInt(productoTrabajo.precio) == 0 && seleccionaPrimero == false){
@@ -1894,8 +1895,8 @@
             }else{
               itemHTML.classList.remove('desactivado');
               itemHTML.classList.remove('seleccionado');
+              itemHTML.querySelector('.pmp-item-simple-escoger').innerHTML = tipoBoton == 'checkbox' ? this.iconos.iconCheckBoxOff : this.iconos.iconEstadoOff;
               itemHTML.setAttribute('data-idtrabajo', productoTrabajo.idTrabajo);
-
             }  
             if(itemHTML.querySelectorAll('p').length == 2){
               itemHTML.querySelectorAll('p')[1].innerHTML = `+ ${productoTrabajo.precio} Bs`;
