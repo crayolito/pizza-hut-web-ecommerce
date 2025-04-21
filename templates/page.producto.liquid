@@ -429,298 +429,300 @@
       class="pmph-modal-general"
     >
       <div class="pmph-modal-informacion-extras">
-        <div id="phpp-modal-productos-postres" class="ppme-modal-informacion-extras-body">
-          <small class="phpp-modal-extras-titulo">POSTRES</small>
-          <div class="ppme-modal-items-extras">
-            <div class="ppme-modal-item-extra">
-              <div class="ppme-modal-item-extra-imagen">
-                <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
-              </div>
-              <div class="ppme-modal-item-extra-info">
-                <div class="ppme-modal-item-extra-info-detalle">
-                  <p>Pan de Pizza</p>
-                  <p>10 Bs</p>
+        {% comment %}
+          <div id="phpp-modal-productos-postres" class="ppme-modal-informacion-extras-body">
+            <small class="phpp-modal-extras-titulo">POSTRES</small>
+            <div class="ppme-modal-items-extras">
+              <div class="ppme-modal-item-extra">
+                <div class="ppme-modal-item-extra-imagen">
+                  <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
                 </div>
-                <cantidad-input>
-                  <div
-                    origen-trabajo="producto"
-                    min="0"
-                    max="10"
-                    id="producto-id"
-                    handle="producto-handle"
-                    class="ppme-modal-item-extra-cantidad"
-                  >
-                    <button
-                      accion="decrementar"
-                      class="pmph-cantidad-selector-button elemento-oculto icon-color-tertiary"
-                    >
-                      {% render 'icon-basura' %}
-                    </button>
-                    <button
-                      accion="decrementar"
-                      class="ppme-modal-item-extra-cantidad-button icon-color-tertiary"
-                    >
-                      {% render 'icon-menos' %}
-                    </button>
-                    <p>0</p>
-                    <button
-                      accion="incrementar"
-                      class="ppme-modal-item-extra-cantidad-button icon-color-tertiary"
-                    >
-                      {% render 'icon-mas' %}
-                    </button>
+                <div class="ppme-modal-item-extra-info">
+                  <div class="ppme-modal-item-extra-info-detalle">
+                    <p>Pan de Pizza</p>
+                    <p>10 Bs</p>
                   </div>
-                </cantidad-input>
-              </div>
-            </div>
-            <div class="ppme-modal-item-extra">
-              <div class="ppme-modal-item-extra-imagen">
-                <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
-              </div>
-              <div class="ppme-modal-item-extra-info">
-                <div class="ppme-modal-item-extra-info-detalle">
-                  <p>Pan de Pizza</p>
-                  <p>10 Bs</p>
+                  <cantidad-input>
+                    <div
+                      origen-trabajo="producto"
+                      min="0"
+                      max="10"
+                      id="producto-id"
+                      handle="producto-handle"
+                      class="ppme-modal-item-extra-cantidad"
+                    >
+                      <button
+                        accion="decrementar"
+                        class="pmph-cantidad-selector-button elemento-oculto icon-color-tertiary"
+                      >
+                        {% render 'icon-basura' %}
+                      </button>
+                      <button
+                        accion="decrementar"
+                        class="ppme-modal-item-extra-cantidad-button icon-color-tertiary"
+                      >
+                        {% render 'icon-menos' %}
+                      </button>
+                      <p>0</p>
+                      <button
+                        accion="incrementar"
+                        class="ppme-modal-item-extra-cantidad-button icon-color-tertiary"
+                      >
+                        {% render 'icon-mas' %}
+                      </button>
+                    </div>
+                  </cantidad-input>
                 </div>
-                <cantidad-input>
-                  <div
-                    origen-trabajo="producto"
-                    min="0"
-                    max="10"
-                    id="producto-id"
-                    handle="producto-handle"
-                    class="ppme-modal-item-extra-cantidad"
-                  >
-                    <button
-                      accion="decrementar"
-                      class="pmph-cantidad-selector-button elemento-oculto icon-color-tertiary"
-                    >
-                      {% render 'icon-basura' %}
-                    </button>
-                    <button
-                      accion="decrementar"
-                      class="ppme-modal-item-extra-cantidad-button icon-color-tertiary"
-                    >
-                      {% render 'icon-menos' %}
-                    </button>
-                    <p>0</p>
-                    <button
-                      accion="incrementar"
-                      class="ppme-modal-item-extra-cantidad-button icon-color-tertiary"
-                    >
-                      {% render 'icon-mas' %}
-                    </button>
-                  </div>
-                </cantidad-input>
               </div>
-            </div>
-            <div class="ppme-modal-item-extra">
-              <div class="ppme-modal-item-extra-imagen">
-                <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
-              </div>
-              <div class="ppme-modal-item-extra-info">
-                <div class="ppme-modal-item-extra-info-detalle">
-                  <p>Pan de Pizza</p>
-                  <p>10 Bs</p>
+              <div class="ppme-modal-item-extra">
+                <div class="ppme-modal-item-extra-imagen">
+                  <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
                 </div>
-                <cantidad-input>
-                  <div
-                    origen-trabajo="producto"
-                    min="0"
-                    max="10"
-                    id="producto-id"
-                    handle="producto-handle"
-                    class="ppme-modal-item-extra-cantidad"
-                  >
-                    <button
-                      accion="decrementar"
-                      class="pmph-cantidad-selector-button elemento-oculto icon-color-tertiary"
-                    >
-                      {% render 'icon-basura' %}
-                    </button>
-                    <button
-                      accion="decrementar"
-                      class="ppme-modal-item-extra-cantidad-button icon-color-tertiary"
-                    >
-                      {% render 'icon-menos' %}
-                    </button>
-                    <p>0</p>
-                    <button
-                      accion="incrementar"
-                      class="ppme-modal-item-extra-cantidad-button icon-color-tertiary"
-                    >
-                      {% render 'icon-mas' %}
-                    </button>
+                <div class="ppme-modal-item-extra-info">
+                  <div class="ppme-modal-item-extra-info-detalle">
+                    <p>Pan de Pizza</p>
+                    <p>10 Bs</p>
                   </div>
-                </cantidad-input>
-              </div>
-            </div>
-            <div class="ppme-modal-item-extra">
-              <div class="ppme-modal-item-extra-imagen">
-                <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
-              </div>
-              <div class="ppme-modal-item-extra-info">
-                <div class="ppme-modal-item-extra-info-detalle">
-                  <p>Pan de Pizza</p>
-                  <p>10 Bs</p>
+                  <cantidad-input>
+                    <div
+                      origen-trabajo="producto"
+                      min="0"
+                      max="10"
+                      id="producto-id"
+                      handle="producto-handle"
+                      class="ppme-modal-item-extra-cantidad"
+                    >
+                      <button
+                        accion="decrementar"
+                        class="pmph-cantidad-selector-button elemento-oculto icon-color-tertiary"
+                      >
+                        {% render 'icon-basura' %}
+                      </button>
+                      <button
+                        accion="decrementar"
+                        class="ppme-modal-item-extra-cantidad-button icon-color-tertiary"
+                      >
+                        {% render 'icon-menos' %}
+                      </button>
+                      <p>0</p>
+                      <button
+                        accion="incrementar"
+                        class="ppme-modal-item-extra-cantidad-button icon-color-tertiary"
+                      >
+                        {% render 'icon-mas' %}
+                      </button>
+                    </div>
+                  </cantidad-input>
                 </div>
-                <cantidad-input>
-                  <div
-                    origen-trabajo="producto"
-                    min="0"
-                    max="10"
-                    id="producto-id"
-                    handle="producto-handle"
-                    class="ppme-modal-item-extra-cantidad"
-                  >
-                    <button
-                      accion="decrementar"
-                      class="pmph-cantidad-selector-button elemento-oculto icon-color-tertiary"
-                    >
-                      {% render 'icon-basura' %}
-                    </button>
-                    <button
-                      accion="decrementar"
-                      class="ppme-modal-item-extra-cantidad-button icon-color-tertiary"
-                    >
-                      {% render 'icon-menos' %}
-                    </button>
-                    <p>0</p>
-                    <button
-                      accion="incrementar"
-                      class="ppme-modal-item-extra-cantidad-button icon-color-tertiary"
-                    >
-                      {% render 'icon-mas' %}
-                    </button>
-                  </div>
-                </cantidad-input>
               </div>
-            </div>
-            <div class="ppme-modal-item-extra">
-              <div class="ppme-modal-item-extra-imagen">
-                <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
-              </div>
-              <div class="ppme-modal-item-extra-info">
-                <div class="ppme-modal-item-extra-info-detalle">
-                  <p>Pan de Pizza</p>
-                  <p>10 Bs</p>
+              <div class="ppme-modal-item-extra">
+                <div class="ppme-modal-item-extra-imagen">
+                  <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
                 </div>
-                <cantidad-input>
-                  <div
-                    origen-trabajo="producto"
-                    min="0"
-                    max="10"
-                    id="producto-id"
-                    handle="producto-handle"
-                    class="ppme-modal-item-extra-cantidad"
-                  >
-                    <button
-                      accion="decrementar"
-                      class="pmph-cantidad-selector-button elemento-oculto icon-color-tertiary"
-                    >
-                      {% render 'icon-basura' %}
-                    </button>
-                    <button
-                      accion="decrementar"
-                      class="ppme-modal-item-extra-cantidad-button icon-color-tertiary"
-                    >
-                      {% render 'icon-menos' %}
-                    </button>
-                    <p>0</p>
-                    <button
-                      accion="incrementar"
-                      class="ppme-modal-item-extra-cantidad-button icon-color-tertiary"
-                    >
-                      {% render 'icon-mas' %}
-                    </button>
+                <div class="ppme-modal-item-extra-info">
+                  <div class="ppme-modal-item-extra-info-detalle">
+                    <p>Pan de Pizza</p>
+                    <p>10 Bs</p>
                   </div>
-                </cantidad-input>
-              </div>
-            </div>
-            <div class="ppme-modal-item-extra">
-              <div class="ppme-modal-item-extra-imagen">
-                <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
-              </div>
-              <div class="ppme-modal-item-extra-info">
-                <div class="ppme-modal-item-extra-info-detalle">
-                  <p>Pan de Pizza</p>
-                  <p>10 Bs</p>
+                  <cantidad-input>
+                    <div
+                      origen-trabajo="producto"
+                      min="0"
+                      max="10"
+                      id="producto-id"
+                      handle="producto-handle"
+                      class="ppme-modal-item-extra-cantidad"
+                    >
+                      <button
+                        accion="decrementar"
+                        class="pmph-cantidad-selector-button elemento-oculto icon-color-tertiary"
+                      >
+                        {% render 'icon-basura' %}
+                      </button>
+                      <button
+                        accion="decrementar"
+                        class="ppme-modal-item-extra-cantidad-button icon-color-tertiary"
+                      >
+                        {% render 'icon-menos' %}
+                      </button>
+                      <p>0</p>
+                      <button
+                        accion="incrementar"
+                        class="ppme-modal-item-extra-cantidad-button icon-color-tertiary"
+                      >
+                        {% render 'icon-mas' %}
+                      </button>
+                    </div>
+                  </cantidad-input>
                 </div>
-                <cantidad-input>
-                  <div
-                    origen-trabajo="producto"
-                    min="0"
-                    max="10"
-                    id="producto-id"
-                    handle="producto-handle"
-                    class="ppme-modal-item-extra-cantidad"
-                  >
-                    <button
-                      accion="decrementar"
-                      class="pmph-cantidad-selector-button elemento-oculto icon-color-tertiary"
-                    >
-                      {% render 'icon-basura' %}
-                    </button>
-                    <button
-                      accion="decrementar"
-                      class="ppme-modal-item-extra-cantidad-button icon-color-tertiary"
-                    >
-                      {% render 'icon-menos' %}
-                    </button>
-                    <p>0</p>
-                    <button
-                      accion="incrementar"
-                      class="ppme-modal-item-extra-cantidad-button icon-color-tertiary"
-                    >
-                      {% render 'icon-mas' %}
-                    </button>
-                  </div>
-                </cantidad-input>
               </div>
-            </div>
-            <div class="ppme-modal-item-extra">
-              <div class="ppme-modal-item-extra-imagen">
-                <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
-              </div>
-              <div class="ppme-modal-item-extra-info">
-                <div class="ppme-modal-item-extra-info-detalle">
-                  <p>Pan de Pizza</p>
-                  <p>10 Bs</p>
+              <div class="ppme-modal-item-extra">
+                <div class="ppme-modal-item-extra-imagen">
+                  <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
                 </div>
-                <cantidad-input>
-                  <div
-                    origen-trabajo="producto"
-                    min="0"
-                    max="10"
-                    id="producto-id"
-                    handle="producto-handle"
-                    class="ppme-modal-item-extra-cantidad"
-                  >
-                    <button
-                      accion="decrementar"
-                      class="pmph-cantidad-selector-button elemento-oculto icon-color-tertiary"
-                    >
-                      {% render 'icon-basura' %}
-                    </button>
-                    <button
-                      accion="decrementar"
-                      class="ppme-modal-item-extra-cantidad-button icon-color-tertiary"
-                    >
-                      {% render 'icon-menos' %}
-                    </button>
-                    <p>0</p>
-                    <button
-                      accion="incrementar"
-                      class="ppme-modal-item-extra-cantidad-button icon-color-tertiary"
-                    >
-                      {% render 'icon-mas' %}
-                    </button>
+                <div class="ppme-modal-item-extra-info">
+                  <div class="ppme-modal-item-extra-info-detalle">
+                    <p>Pan de Pizza</p>
+                    <p>10 Bs</p>
                   </div>
-                </cantidad-input>
+                  <cantidad-input>
+                    <div
+                      origen-trabajo="producto"
+                      min="0"
+                      max="10"
+                      id="producto-id"
+                      handle="producto-handle"
+                      class="ppme-modal-item-extra-cantidad"
+                    >
+                      <button
+                        accion="decrementar"
+                        class="pmph-cantidad-selector-button elemento-oculto icon-color-tertiary"
+                      >
+                        {% render 'icon-basura' %}
+                      </button>
+                      <button
+                        accion="decrementar"
+                        class="ppme-modal-item-extra-cantidad-button icon-color-tertiary"
+                      >
+                        {% render 'icon-menos' %}
+                      </button>
+                      <p>0</p>
+                      <button
+                        accion="incrementar"
+                        class="ppme-modal-item-extra-cantidad-button icon-color-tertiary"
+                      >
+                        {% render 'icon-mas' %}
+                      </button>
+                    </div>
+                  </cantidad-input>
+                </div>
+              </div>
+              <div class="ppme-modal-item-extra">
+                <div class="ppme-modal-item-extra-imagen">
+                  <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+                </div>
+                <div class="ppme-modal-item-extra-info">
+                  <div class="ppme-modal-item-extra-info-detalle">
+                    <p>Pan de Pizza</p>
+                    <p>10 Bs</p>
+                  </div>
+                  <cantidad-input>
+                    <div
+                      origen-trabajo="producto"
+                      min="0"
+                      max="10"
+                      id="producto-id"
+                      handle="producto-handle"
+                      class="ppme-modal-item-extra-cantidad"
+                    >
+                      <button
+                        accion="decrementar"
+                        class="pmph-cantidad-selector-button elemento-oculto icon-color-tertiary"
+                      >
+                        {% render 'icon-basura' %}
+                      </button>
+                      <button
+                        accion="decrementar"
+                        class="ppme-modal-item-extra-cantidad-button icon-color-tertiary"
+                      >
+                        {% render 'icon-menos' %}
+                      </button>
+                      <p>0</p>
+                      <button
+                        accion="incrementar"
+                        class="ppme-modal-item-extra-cantidad-button icon-color-tertiary"
+                      >
+                        {% render 'icon-mas' %}
+                      </button>
+                    </div>
+                  </cantidad-input>
+                </div>
+              </div>
+              <div class="ppme-modal-item-extra">
+                <div class="ppme-modal-item-extra-imagen">
+                  <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+                </div>
+                <div class="ppme-modal-item-extra-info">
+                  <div class="ppme-modal-item-extra-info-detalle">
+                    <p>Pan de Pizza</p>
+                    <p>10 Bs</p>
+                  </div>
+                  <cantidad-input>
+                    <div
+                      origen-trabajo="producto"
+                      min="0"
+                      max="10"
+                      id="producto-id"
+                      handle="producto-handle"
+                      class="ppme-modal-item-extra-cantidad"
+                    >
+                      <button
+                        accion="decrementar"
+                        class="pmph-cantidad-selector-button elemento-oculto icon-color-tertiary"
+                      >
+                        {% render 'icon-basura' %}
+                      </button>
+                      <button
+                        accion="decrementar"
+                        class="ppme-modal-item-extra-cantidad-button icon-color-tertiary"
+                      >
+                        {% render 'icon-menos' %}
+                      </button>
+                      <p>0</p>
+                      <button
+                        accion="incrementar"
+                        class="ppme-modal-item-extra-cantidad-button icon-color-tertiary"
+                      >
+                        {% render 'icon-mas' %}
+                      </button>
+                    </div>
+                  </cantidad-input>
+                </div>
+              </div>
+              <div class="ppme-modal-item-extra">
+                <div class="ppme-modal-item-extra-imagen">
+                  <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+                </div>
+                <div class="ppme-modal-item-extra-info">
+                  <div class="ppme-modal-item-extra-info-detalle">
+                    <p>Pan de Pizza</p>
+                    <p>10 Bs</p>
+                  </div>
+                  <cantidad-input>
+                    <div
+                      origen-trabajo="producto"
+                      min="0"
+                      max="10"
+                      id="producto-id"
+                      handle="producto-handle"
+                      class="ppme-modal-item-extra-cantidad"
+                    >
+                      <button
+                        accion="decrementar"
+                        class="pmph-cantidad-selector-button elemento-oculto icon-color-tertiary"
+                      >
+                        {% render 'icon-basura' %}
+                      </button>
+                      <button
+                        accion="decrementar"
+                        class="ppme-modal-item-extra-cantidad-button icon-color-tertiary"
+                      >
+                        {% render 'icon-menos' %}
+                      </button>
+                      <p>0</p>
+                      <button
+                        accion="incrementar"
+                        class="ppme-modal-item-extra-cantidad-button icon-color-tertiary"
+                      >
+                        {% render 'icon-mas' %}
+                      </button>
+                    </div>
+                  </cantidad-input>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        {% endcomment %}
         <div
           id="phpp-modal-productos-pizzamitadymitad"
           class="ppme-modal-informacion-extras-body"
@@ -891,6 +893,7 @@
       this.estadoTrabajoExtras = 'n1';
       this.ladoPizza = '';
       this.tipoProceso = '';
+      this.urlConsulta = "https://pizza-hut-bo.myshopify.com/admin/api/2025-01/graphql.json";
       // REFERENCIAS ELEMENTOSS
       {% comment %} this.imgSimple = this.querySelector('#phmp-contenido-ver-producto-simple');
       this.imgCompleja = this.querySelector('#phmp-contenido-ver-producto-complejo');
@@ -1301,7 +1304,7 @@
 
     async creacionHTMLGaseosasCervesas(){
       // Obtener coleccion de productos 
-      const {informacionColeccion,  productosColeccion } = await this.obtenerColeccionShopify('Gaseosas y Cervezas');
+      const {informacionColeccion,  productosColeccion } = await this.obtenerColeccionShopify('Gaseosas y Cervesas');
       var contenidoHTML = `
         <div id="phpp-modal-productos-gaseosasycerveza" class="ppme-modal-informacion-extras-body">
           <small class="phpp-modal-extras-titulo">GASEOSAS Y CERVESAS</small>
