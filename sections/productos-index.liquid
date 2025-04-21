@@ -695,7 +695,8 @@
             titulo: producto.titulo,
             handle: producto.handle,
             precio: producto.estructura.precio,
-            ramas: subProductos.reverse()
+            imagen : producto.imagen,
+            ramas: subProductos
           }
 
           productosRamaPrincipal.push(productoTrabajo);
@@ -703,7 +704,7 @@
 
         productosEstructurados.push({
           codigo: codigoRama,
-          productos: productosRamaPrincipal.reverse(),
+          productos: productosRamaPrincipal
         });
 
 

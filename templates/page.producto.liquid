@@ -1238,7 +1238,9 @@
                 data-idshopify="${producto.idShopify}"
                 id="pmp-item-subRama" class="pmp-item-complejo seleccionado">
                   <div class="pmp-item-complejo-imagen ">
-                    <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="${tituloTrabajo}"1" width="100%" height="100%">
+                  ${ producto.imagen == "" ?
+                     `<img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="${tituloTrabajo}"1" width="100%" height="100%">` :
+                    `<img src="${producto.imagen}" alt="${tituloTrabajo}" width="100%" height="100%">`}
                   </div>
                   <div class="pmp-item-complejo-info">
                     <div class="pmp-item-complejo-info-detalle ">
@@ -1261,7 +1263,9 @@
                 data-idshopify="${producto.idShopify}"
                 id="pmp-item-subRama" class="pmp-item-complejo ">
                   <div class="pmp-item-complejo-imagen ">
-                    <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="${tituloTrabajo}"1" width="100%" height="100%">
+                                      ${ producto.imagen == "" ?
+                     `<img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="${tituloTrabajo}"1" width="100%" height="100%">` :
+                    `<img src="${producto.imagen}" alt="${tituloTrabajo}" width="100%" height="100%">`}
                   </div>
                   <div class="pmp-item-complejo-info">
                     <div class="pmp-item-complejo-info-detalle ">
@@ -1283,7 +1287,9 @@
                 data-idshopify="${producto.idShopify}"
                 id="pmp-item-subRama" class="pmp-item-complejo desactivado">
                   <div class="pmp-item-complejo-imagen ">
-                    <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="${tituloTrabajo}"1" width="100%" height="100%">
+                                      ${ producto.imagen == "" ?
+                     `<img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="${tituloTrabajo}"1" width="100%" height="100%">` :
+                    `<img src="${producto.imagen}" alt="${tituloTrabajo}" width="100%" height="100%">`}
                   </div>
                   <div class="pmp-item-complejo-info">
                     <div class="pmp-item-complejo-info-detalle ">
