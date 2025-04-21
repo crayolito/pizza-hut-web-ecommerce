@@ -1011,15 +1011,15 @@
     obtenerStockGenericoTrabajo(productoTrabajo){
       // Verificar si tenemos una sucursal seleccionada
       const dataSucursal = JSON.parse(localStorage.getItem('sucursal-informacion'));
-      if(!dataSucursal || dataSucursal == "") return productoTrabajo.producto.stockTotal;
+      if(!dataSucursal || dataSucursal == "") return productoTrabajo.stockTotal;
 
-      const sucursalEncontrada = productoTrabajo.producto.sucursales.find(
+      const sucursalEncontrada = productoTrabajo.sucursales.find(
         sucursal => sucursal.nombre == dataSucursal.name
       );
 
       return sucursalEncontrada 
       ? parseInt(sucursalEncontrada.stock) 
-      : productoTrabajo.producto.stockTotal;
+      : productoTrabajo.stockTotal;
     }
 
     async inicializarMedianteDataLocalStorage() {
