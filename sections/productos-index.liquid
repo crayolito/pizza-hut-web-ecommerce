@@ -672,7 +672,9 @@
             var dataSubRama = dataRama.ramas[codigoSubRama];
             // Obtener la coleccion de productos de esta sub-rama de trabajo
             var productosDeSubRama = todasColecciones["coleccion"+codigoSubRama] || [];
-            console.log('Testeo de pruebas coleccion',productosDeSubRama);
+
+            console.log('Testeo de la creacion de coleccion SubRama :',productosDeSubRama);
+
             // Filtrar solo los productos que se va usar deacuerdo al titulo => producto.titulo
             var productosFiltrados = this.filtrarProductosPorTitulo(productosDeSubRama,producto.titulo );
             // Crear estructura de la sub-rama
