@@ -1825,16 +1825,6 @@
       const idTrabajo = btnElemento.getAttribute('data-idtrabajo');
       const idShopify = btnElemento.getAttribute('data-idshopify');
 
-      // Obtener la cantidad btns seleccionado en esa seccion
-      // Si el valor es min=1 y la cantidad de seleccionado es 1 no hacer nada
-      // Si ya esta seleccionado no se hace nada
-      const estaSeleccionado = btnElemento.classList.contains('seleccionado');
-      const cantidadSeleccionado = contenedorPadre.querySelectorAll('.seleccionado').length;
-      // Si el botón ya está seleccionado y estamos en el mínimo, no permitir deseleccionar
-      {% comment %} if (estaSeleccionado && cantidadSeleccionado <= min) return; {% endcomment %}
-      // Si el botón no está seleccionado y ya alcanzamos el máximo, no permitir seleccionar más
-      {% comment %} if (!estaSeleccionado && cantidadSeleccionado >= max) return; {% endcomment %}
-      
       // Al ponerlo como seleccionado actualizar las sub ramas this.btnsProductosSubRama usando 
       // la informacion estructura del localStorage data.productoParaEstructuraTrabajo y data.estructura
       // 1. Mediante el codigo y el (idTrabajo o idShopify) se obtiene el productuctos trabajo
@@ -1924,6 +1914,10 @@
     }
 
     procesoItemSubRama(btnElemento){
+      const cantidadSeleccionados = contenedorPadreSeccion.querySelectorAll('.seleccionado').length;
+      // Si estamos al mínimo, no permitir deseleccionar
+      if ( cantidadSeleccionado <= min) return;
+      
       // Busco al contenedor padre de la seccion con id="pmph-seleccion-subRama"
       // Obtengo su informacion max min codigo (tipo boton)
       const contenedorPadreSeccion = btnElemento.closest('#pmph-seleccion-subRama');
@@ -1931,14 +1925,28 @@
       const min = contenedorPadreSeccion.getAttribute('data-min');
       const codigo = contenedorPadreSeccion.getAttribute('data-codigo');
       const tipoBoton = contenedorPadreSeccion.getAttribute('tipo-boton');
-      
-      const cantidadSeleccionados = contenedorPadreSeccion.querySelectorAll('.seleccionado').length;
-      // Si el botón ya está seleccionado y estamos en el mínimo, no permitir deseleccionar
-      if (estaSeleccionado && cantidadSeleccionado <= min) return;
-      // Si el botón no está seleccionado y ya alcanzamos el máximo, no permitir seleccionar más
-      if (!estaSeleccionado && cantidadSeleccionado >= max) return;
 
-      
+      const contenedorPadreRamaPrincipal = this.querySelector('#pmph-seleccion-rama-principal');
+      const codigoRamaPrincipal = contenedorPadreRamaPrincipal.getAttribute('data-codigo');
+      const hijoSeleccionado = contenedorPadreRamaPrincipal.classList.contains('seleccionado');
+      const dataLocalStorage = JSON.parse(localStorage.getItem('phpp-productoData'));
+      let elementosTrabajo = null;
+
+      dataLocalStorage.productoParaEstructuraTrabajo.some((objetoDetalle) => {
+        if (objetoDetalle.codigo == codigoRamaPrincipal) {
+          return objetoDetalle.productos.some((productoRamaPrincipal) => {
+            if (productoRamaPrincipal.idTrabajo == idTrabajo || productoRamaPrincipal.idShopify == idShopify) {
+              elementosTrabajo = productoRamaPrincipal.ramas.find((rama) => rama.codigo == codigo);
+              return true; 
+            }
+            return false;
+          });
+        }
+        return false;
+      });
+
+      console.log('Hola Mundo Testeo',elementosTrabajo);
+
 
       // Hay que actualizar el valor de los botones inferiores
     }
