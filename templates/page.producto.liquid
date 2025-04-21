@@ -985,12 +985,12 @@
         btnsProductosRamaPrincipales: this.btnsProductosRamaPrincipales.length,
         btnsProductosSubRama: this.btnsProductosSubRama.length,
       })
-      {% comment %} this.btnsProductosRamaPrincipales.forEach((btn) => {
+       this.btnsProductosRamaPrincipales.forEach((btn) => {
         btn.addEventListener('click', this.procesoItemRamaPrincipal.bind(this, btn));
       });
       this.btnsProductosSubRama.forEach((btn) => {
         btn.addEventListener('click', this.procesoItemSubRama.bind(this, btn));
-      }); {% endcomment %}
+      }); 
       
       // INICIALIZAR ELEMENTOS Y PROCESOS CLAVES
       this.seccionExtrasPostres.style.display = 'none';
@@ -1801,16 +1801,62 @@
 
     procesoItemRamaPrincipal(btnElemento){
       // Si ya esta seleccionado no se hace nada
+      const estaSeleccionado = btnElemento.classList.contains('seleccionado');
+      if (estaSeleccionado) return;
+
       // Ir a buscar al padre de esa seccion con id="pmph-seleccion-subRama"
       // Despues obtener 4 valores max - min - codigo - tipo boton
+      const contenedorPadre = btnElemento.closest('#pmph-seleccion-subRama');
+      const max = contenedorPadre.getAttribute('data-max');
+      const min = contenedorPadre.getAttribute('data-min');
+      const codigo = contenedorPadre.getAttribute('data-codigo');
+      // El tipo de boton que s eusa siempre en rama princiaples es para todos
+      // const tipoBoton = contenedorPadre.getAttribute('tipo-boton');
+
+      // El btnElemento tiene un atributo data-idtrabajo y data-idshopify
+      const idTrabajo = btnElemento.getAttribute('data-idtrabajo');
+      const idShopify = btnElemento.getAttribute('data-idshopify');
+
       // Obtener la cantidad btns seleccionado en esa seccion
       // Si el valor es min=1 y la cantidad de seleccionado es 1 no hacer nada
+      const cantidadSeleccionado = contenedorPadre.querySelectorAll('.seleccionado').length;
+      if (cantidadSeleccionado == min) return;
       
       // Al ponerlo como seleccionado actualizar las sub ramas this.btnsProductosSubRama usando 
       // la informacion estructura del localStorage data.productoParaEstructuraTrabajo y data.estructura
-      
+      // 1. Mediante el codigo y el (idTrabajo o idShopify) se obtiene el productuctos trabajo
+      const dataLocalStorage = JSON.parse(localStorage.getItem('phpp-productoData'));
+      let elementoTrabajo = null;
+      dataLocalStorage.productoParaEstructuraTrabajo.some((objetoDetalle)=>{
+        if (objetoDetalle.codigo == codigo) {
+          return objetoDetalle.productos.some((productoRamaPrincipal) => {
+            if (productoRamaPrincipal.idTrabajo == idTrabajo || productoRamaPrincipal.idShopify == idShopify) {
+              elementoTrabajo = productoRamaPrincipal;
+              return true; 
+            }
+            return false;
+          });
+        }
+        return false;
+      });
+
+      console.log('elementoTrabajo :', elementoTrabajo);
+      // dataLocalStorage.productoParaEstructuraTrabajo.forEach((objetoDetalle) => {
+      //   if (objetoDetalle.codigo == codigo) {
+      //     objetoDetalle.productos.forEach((productoRamaPrincipal) => {
+      //       if (productoRamaPrincipal.idTrabajo == idTrabajo || productoRamaPrincipal.idShopify == idShopify) {
+      //         elementoTrabajo = productoRamaPrincipal;
+      //       }
+      //     });
+      //   }
+      // });
+
+
       // Actualuzar, preseleccionados subRamas y id del HTML de las subRamas tambien precios desactivar
       // los que no son de esa rama principal
+    }
+
+    procesoItemSubRama(btnElemento){
     }
   }
 
