@@ -1224,8 +1224,6 @@
           <h3>${infoSubRama.titulo}</h3>
           `;
 
-          console.log('Testeo Pruebas',infoSubRama.productos);
-
           infoSubRama.productos.forEach((producto,index) => {
             const tituloTrabajo = producto.titulo.startsWith("Extra ") ? producto.titulo.substring(6) : producto.titulo;
             const sePondraNombre = infoSubRama.titulo == "Masas y Bordes";
@@ -1814,14 +1812,14 @@
     }
 
     procesoItemRamaPrincipal(btnElemento){
+      // SIEMPE LA LOGICA DE LOS PRINCIPALES ES QUE SELECCIONA UNO SOLO Y SUS SUB PRODUCTOS SE ACTUALIZAN
+
       // Ir a buscar al padre de esa seccion con id="pmph-seleccion-rama-principal"
       // Despues obtener 4 valores max - min - codigo - tipo boton
       const contenedorPadre = btnElemento.closest('#pmph-seleccion-rama-principal');
       const max = contenedorPadre.getAttribute('data-max');
       const min = contenedorPadre.getAttribute('data-min');
       const codigo = contenedorPadre.getAttribute('data-codigo');
-      // El tipo de boton que s eusa siempre en rama princiaples es para todos
-      // const tipoBoton = contenedorPadre.getAttribute('tipo-boton');
 
       // El btnElemento tiene un atributo data-idtrabajo y data-idshopify
       const idTrabajo = btnElemento.getAttribute('data-idtrabajo');
@@ -1833,9 +1831,9 @@
       const estaSeleccionado = btnElemento.classList.contains('seleccionado');
       const cantidadSeleccionado = contenedorPadre.querySelectorAll('.seleccionado').length;
       // Si el botón ya está seleccionado y estamos en el mínimo, no permitir deseleccionar
-      if (estaSeleccionado && cantidadSeleccionado <= min) return;
+      {% comment %} if (estaSeleccionado && cantidadSeleccionado <= min) return; {% endcomment %}
       // Si el botón no está seleccionado y ya alcanzamos el máximo, no permitir seleccionar más
-      if (!estaSeleccionado && cantidadSeleccionado >= max) return;
+      {% comment %} if (!estaSeleccionado && cantidadSeleccionado >= max) return; {% endcomment %}
       
       // Al ponerlo como seleccionado actualizar las sub ramas this.btnsProductosSubRama usando 
       // la informacion estructura del localStorage data.productoParaEstructuraTrabajo y data.estructura
@@ -1926,18 +1924,23 @@
     }
 
     procesoItemSubRama(btnElemento){
-      // Verifica si el boton desactivado si lanza el evento
-      console.log("Haciendo testeo para ver si se lanza");
-      
       // Busco al contenedor padre de la seccion con id="pmph-seleccion-subRama"
       // Obtengo su informacion max min codigo (tipo boton)
+      const contenedorPadreSeccion = btnElemento.closest('#pmph-seleccion-subRama');
+      const max = contenedorPadreSeccion.getAttribute('data-max');
+      const min = contenedorPadreSeccion.getAttribute('data-min');
+      const codigo = contenedorPadreSeccion.getAttribute('data-codigo');
+      const tipoBoton = contenedorPadreSeccion.getAttribute('tipo-boton');
       
-      // Del contendor Padre cuento sus hijos en este caso a los hermanos de btnElemento
-      // Verficico si cumple que la cantidad se encuentre entre los rangos min y max
-      // Eso implica a la hora de desactivador o tomar encuenta si el boton esta ya seleccionado
+      const cantidadSeleccionados = contenedorPadreSeccion.querySelectorAll('.seleccionado').length;
+      // Si el botón ya está seleccionado y estamos en el mínimo, no permitir deseleccionar
+      if (estaSeleccionado && cantidadSeleccionado <= min) return;
+      // Si el botón no está seleccionado y ya alcanzamos el máximo, no permitir seleccionar más
+      if (!estaSeleccionado && cantidadSeleccionado >= max) return;
 
-      // Si se intenta seleccionar a uno pero ya esta en el max tomar encuenta que debo 
+      
 
+      // Hay que actualizar el valor de los botones inferiores
     }
   }
 
