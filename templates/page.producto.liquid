@@ -411,20 +411,18 @@
             class="ph-btn-general"
           >
             {% render 'icon-tarjeta-credito' %}
-            <p>
-              HAZ UN PEDIDO <br>
-              BS 50.00
-            </p>
+            <p>HAZ UN PEDIDO</p>
+            <br>
+            <p id="phpp-etiqueta-hazunpedido"></p>
           </button>
           <button
             id="phpm-btn-agregar-carrito"
             class="ph-btn-general"
           >
             {% render 'icon-carrito' %}
-            <p>
-              AGREGAR CARRITO <br>
-              BS 116.00
-            </p>
+            <p>HAZ UN PEDIDO</p>
+            <br>
+            <p id="phpp-etiqueta-agregarcarrito"></p>
           </button>
         </section>
       </div>
@@ -927,6 +925,8 @@
       
       this.btnHazUnPedido = this.querySelector('#phpm-btn-haz-un-pedido');
       this.btnAgregarCarrito = this.querySelector('#phpm-btn-agregar-carrito'); 
+      this.etiquetaAgregarCarrito = this.querySelector('#phpp-etiqueta-agregarcarrito');
+      this.etiquetaHazUnPedido = this.querySelector('#phpp-etiqueta-hazunpedido');
       this.btnVolverAtras = this.querySelector('.pmph-volver-atras');
       
       this.modalProductoExtras = this.querySelector('#pmph-modal-productos-extras');
@@ -942,32 +942,9 @@
       this.btnHazUnPedido.addEventListener('click', this.redireccionHazUnPedido.bind(this));
       this.btnAgregarCarrito.addEventListener('click', this.agregarCarrito.bind(this));
 
-      {% comment %} this.elementosN1.forEach((elemento) => {
-        elemento.addEventListener('click', this.procesoItemN1.bind(this, elemento));
-      });
-
-      this.elementosN2.forEach((elemento) => {
-        elemento.addEventListener('click', this.procesoItemN2.bind(this, elemento));
-      });
-
-      this.elementosN3.forEach((elemento) => {
-        elemento.addEventListener('click', this.procesoItemN3.bind(this, elemento));
-      });
-
-      this.itemsSeleccionComplejo.forEach((elemento) => {
-        elemento.addEventListener('click', this.procesoItemComplejo.bind(this, elemento));
-      });
-
-      this.btnImgComplejaDer.addEventListener('click', this.procesoItemComplejo.bind(this, this.btnImgComplejaDer));
-      this.btnImgComplejaIzq.addEventListener('click', this.procesoItemComplejo.bind(this, this.btnImgComplejaIzq));
-
-      this.extrasVacioContenedorN1.addEventListener('click', this.procesoItemExtrasAbrirModal.bind(this, 'n1'));
-      this.extrasVacioContenedorN2.addEventListener('click', this.procesoItemExtrasAbrirModal.bind(this, 'n2'));
-
-      this.btnAnadirExtrasN1.addEventListener('click', this.procesoAnadirProductos.bind(this, 'n1'));
-      this.btnAnadirExtrasN2.addEventListener('click', this.procesoAnadirProductos.bind(this, 'n2'));
-      this.btnModalSalir.addEventListener('click', this.cerrarModal.bind(this));
-      this.btnModalGuardar.addEventListener('click', this.procesarProductoModal.bind(this)); {% endcomment %}
+      // INICIZAR EVENTOS
+      this.btnHazUnPedido.addEventListener('click', this.hazUnPedido.bind(this));
+      this.btnAgregarCarrito.addEventListener('click', this.agregarAlCarrito.bind(this));
 
       // INICIALIZAR ELEMENTOS Y PROCESOS CLAVES
       this.contenedorItemsComplejos.style.display = 'none';
@@ -992,6 +969,8 @@
 
       this.btnSeccionModalSalir = this.querySelector('#phppm-btn-salir');
       this.btnSeccionModalGuardar = this.querySelector('#phppm-btn-guardar');
+
+      
 
       this.seccionProductosRamaPrincipales = this.querySelectorAll('#pmph-seleccion-rama-principal');
       this.seccionProductosSubRama = this.querySelectorAll('#pmph-seleccion-subRama');
@@ -1350,6 +1329,13 @@
 
       // Creacion de elementos de la coleccion Gaseosas y Postres
       await this.creacionHTMLGaseosasCervesas();
+
+      console.log('Obtener el objeto carrito',await AuxiliaresGlobal.obtenerCarritoShopify());
+      console.log('Obtener cantidad productos en el carrito',await AuxiliaresGlobal.totalPrecioCarritoShopify());
+
+      
+
+      // Seccion de la pizza Mitad y Mitad      
       
       // Declaracion referenciar - inicializar - eventos
       this.declararComponentesDespuesCreacion();
@@ -1951,7 +1937,7 @@
       });
 
       // Hay que actualizar el valor de los botones inferiores
-
+      this.actualizarEstadoBotonesInferiores();
     }
 
     procesoItemSubRama(btnElemento){  
@@ -2055,6 +2041,9 @@
           }
         }
       });
+
+      // Hay que actualizar el valor de los botones inferiores
+      this.actualizarEstadoBotonesInferiores();
     }
 
     abrirSeccionModalExtras(tipoProductos){
@@ -2308,9 +2297,34 @@
 
     }
 
-    // Hay que actualizar el valor de los botones inferiores
+    async actualizarEstadoBotonesInferiores(){
+      var cumplenLasRamasPrincipales = false;
+      var cumplenLasSubRamas = false;
+
+      var cantidadHazUnPedido = 0;
+      var precioTotalCarrito = await AuxiliaresGlobal.obtenerCantidadCarrito();
+
+      console.log('Precio Total del carrito :', precioTotalCarrito);
+
+      this.seccionProductosRamaPrincipales = this.querySelectorAll('#pmph-seleccion-rama-principal');
+      this.seccionProductosSubRama = this.querySelectorAll('#pmph-seleccion-subRama');
+
+      if(cumplenLasRamasPrincipales == false && cumplenLasSubRamas == false ){
+        this.btnHazUnPedido.classList.add('desactivado');
+        this.btnAgregarCarrito.classList.add('desactivado');
+      }else{
+        this.btnHazUnPedido.classList.remove('desactivado');
+        this.btnAgregarCarrito.classList.remove('desactivado');
+      }
+
+
     }
-  
+
+    async agregarAlCarrito(){}
+
+    async hazUnPedido(){}
+
+  }
 
   customElements.define('ph-producto', PizzaHutProducto);
 </script>

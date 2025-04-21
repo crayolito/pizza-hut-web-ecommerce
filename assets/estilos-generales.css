@@ -673,6 +673,11 @@ cantidad-input {
   border-radius: var(--espaciado-xs);
   background-color: #efefef;
   gap: var(--espaciado-xs);
+
+  /* Propiedades para desactivar clics */
+  pointer-events: none; /* Desactiva todos los eventos del mouse */
+  cursor: not-allowed; /* Cambia el cursor a "no permitido" */
+  user-select: none;
 }
 
 .ph-btn-general.desactivado svg,

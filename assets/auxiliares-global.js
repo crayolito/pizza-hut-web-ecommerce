@@ -140,6 +140,37 @@ class AuxiliaresGlobal {
     });
   }
 
+  static totalPrecioCarritoShopify() {
+    return new Promise((resolve, reject) => {
+      // Utilizar la función existente para obtener el carrito
+      this.obtenerCarritoShopify()
+        .then(carrito => {
+          // Verificar que existe la información y el precio total
+          if (carrito && carrito.informacionCompleta && 
+              typeof carrito.informacionCompleta.total_price !== 'undefined') {
+            
+            // Obtener el precio total (viene en centavos)
+            const precioTotalCentavos = carrito.informacionCompleta.total_price;
+            
+            // Convertir a formato de moneda (dividir por 100 para obtener el valor en la moneda base)
+            const precioTotal = precioTotalCentavos / 100;
+            
+            // Mostrar en consola el precio total formateado
+            console.log(`Precio total del carrito: ${precioTotal.toFixed(2)}`);
+            
+            // Resolver la promesa con el precio total
+            resolve(precioTotal);
+          } else {
+            throw new Error('No se pudo obtener el precio total del carrito');
+          }
+        })
+        .catch(error => {
+          console.error('Error al calcular el precio total del carrito:', error);
+          reject(error);
+        });
+    });
+  }
+
 }
 
 class CantidadInput extends HTMLElement {
