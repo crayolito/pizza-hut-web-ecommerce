@@ -1981,7 +1981,9 @@
         const estaDesactivado = itemHTML.classList.contains('desactivado');
         const itemHTMLPerteneceElementoTrabajo = elementosTrabajo.find((producto) => producto.idShopify == idShopify);
 
-        if(itemHTML.classList.contains('seleccionado')) return;
+        if(!(max == "1" && min == "1")){
+          if(itemHTML.classList.contains('seleccionado')) return;
+        }
         if(itemHTML == btnElemento ) return;
 
         if(itemHTMLPerteneceElementoTrabajo){
