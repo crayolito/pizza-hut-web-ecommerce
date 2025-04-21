@@ -1010,6 +1010,9 @@
       this.estadoVacioContenedorGaseosasCerversas.addEventListener('click', this.abrirSeccionModalExtras.bind(this, 'gaseosasycervezas'));
       this.btnSeccionModalSalir.addEventListener('click', this.cerrarSeccionModalExtras.bind(this));
       this.btnSeccionModalGuardar.addEventListener('click', this.procesarSeccionModal.bind(this));
+      this.anadirMasContenedorPostres.addEventListener('click', this.abrirSeccionModalExtras.bind(this,'postres'));
+      this.anadirMasContenedorGaseosasCerversas.addEventListener('click', this.abrirSeccionModalExtras.bind(this,'gaseosasycervezas'));
+
       // INICIALIZAR ELEMENTOS Y PROCESOS CLAVESS
       this.seccionModalExtrasPostres.style.display = 'none';
       this.seccionModalExtrasGaseosasCerversas.style.display = 'none';
@@ -2127,7 +2130,7 @@
                 <div class="pmp-item-extra-detalle">
                   <p>x${producto.cantidad}</p>
                   <p>${producto.titulo}</p>
-                  <p>${producto.precio} Bs</p>
+                  <p>${producto.precio}</p>
                 </div>
                 <button
                 data-extras="postres"
@@ -2142,6 +2145,7 @@
           this.estadoItemsContenedorPostres.innerHTML = contenidoHTML;
           this.estadoItemsContenedorPostres.style.display = 'flex';
           this.anadirMasContenedorPostres.style.display = 'flex';
+          this.estadoVacioContenedorPostres.style.display = 'none';
         }
         this.btnsEliminarExtrasPostres = this.estadoItemsContenedorPostres.querySelectorAll('.pmp-item-extra-delete');
         return;
@@ -2196,7 +2200,7 @@
                 <div class="pmp-item-extra-detalle">
                   <p>x${producto.cantidad}</p>
                   <p>${producto.titulo}</p>
-                  <p>${producto.precio} Bs</p>
+                  <p>${producto.precio}</p>
                 </div>
                 <button
                 data-extras="gaseosasycervezas"
@@ -2211,6 +2215,7 @@
           this.estadoItemsContenedorGaseosasCerversas.innerHTML = contenidoHTML;
           this.estadoItemsContenedorGaseosasCerversas.style.display = 'flex';
           this.anadirMasContenedorGaseosasCerversas.style.display = 'flex';
+          this.estadoVacioContenedorGaseosasCerversas.style.display = 'none';
         }
         this.btnsEliminarExtrasGaseosasCerversas = this.estadoItemsContenedorGaseosasCerversas.querySelectorAll('.pmp-item-extra-delete');
         return;
