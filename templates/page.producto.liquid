@@ -1008,6 +1008,20 @@
       };
     }
 
+    obtenerStockGenericoTrabajo(productoTrabajo){
+      // Verificar si tenemos una sucursal seleccionada
+      const dataSucursal = JSON.parse(localStorage.getItem('sucursal-informacion'));
+      if(!dataSucursal || dataSucursal == "") return productoTrabajo.producto.stockTotal;
+
+      const sucursalEncontrada = productoTrabajo.producto.sucursales.find(
+        sucursal => sucursal.nombre == dataSucursal.name
+      );
+
+      return sucursalEncontrada 
+      ? parseInt(sucursalEncontrada.stock) 
+      : productoTrabajo.producto.stockTotal;
+    }
+
     async inicializarMedianteDataLocalStorage() {
       // Traer informacion para contruir el producto
       const dataProducto = JSON.parse(localStorage.getItem('phpp-productoData'));
@@ -1778,19 +1792,7 @@
         : dataTrabajo.producto.stockTotal;
     }
 
-    obtenerStockGenericoTrabajo(productoTrabajo){
-      // Verificar si tenemos una sucursal seleccionada
-      const dataSucursal = JSON.parse(localStorage.getItem('sucursal-informacion'));
-      if(!dataSucursal || dataSucursal == "") return productoTrabajo.producto.stockTotal;
 
-      const sucursalEncontrada = productoTrabajo.producto.sucursales.find(
-        sucursal => sucursal.nombre == dataSucursal.name
-      );
-
-      return sucursalEncontrada 
-      ? parseInt(sucursalEncontrada.stock) 
-      : productoTrabajo.producto.stockTotal;
-    }
   }
 
   customElements.define('ph-producto', PizzaHutProducto);
