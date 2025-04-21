@@ -1983,8 +1983,8 @@
 
         if(!(max == "1" && min == "1")){
           if(itemHTML.classList.contains('seleccionado')) return;
+          if(itemHTML == btnElemento ) return;
         }
-        if(itemHTML == btnElemento ) return;
 
         if(itemHTMLPerteneceElementoTrabajo){
           if(cantidadSeleccionados >= max){
