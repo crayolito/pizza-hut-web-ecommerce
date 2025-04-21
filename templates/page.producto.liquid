@@ -1237,7 +1237,10 @@
               if(banderaPrimero == false && infoSubRama.min == "1" && parseInt(producto.precio) == 0){
                 // Se auto preseleccionara el primer elemento
                 detalleSubProductos += `
-                <button id="pmp-item-subRama" class="pmp-item-complejo seleccionado">
+                <button 
+                data-idtrabajo="${producto.idTrabajo}"
+                data-idshopify="${producto.idShopify}"
+                id="pmp-item-subRama" class="pmp-item-complejo seleccionado">
                   <div class="pmp-item-complejo-imagen ">
                     <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="${tituloTrabajo}"1" width="100%" height="100%">
                   </div>
@@ -1257,7 +1260,10 @@
                 // Elemento activado pero no seleccionado
                 detalleSubProductos += `
 
-                <button id="pmp-item-subRama" class="pmp-item-complejo ">
+                <button
+                data-idtrabajo="${producto.idTrabajo}"
+                data-idshopify="${producto.idShopify}"
+                id="pmp-item-subRama" class="pmp-item-complejo ">
                   <div class="pmp-item-complejo-imagen ">
                     <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="${tituloTrabajo}"1" width="100%" height="100%">
                   </div>
@@ -1276,7 +1282,10 @@
             }else{
               // Aqui el producto no se encuentra se lo desactivaba
               detalleSubProductos += `
-                <button id="pmp-item-subRama" class="pmp-item-complejo desactivado">
+                <button
+                data-idtrabajo="${producto.idTrabajo}"
+                data-idshopify="${producto.idShopify}"
+                id="pmp-item-subRama" class="pmp-item-complejo desactivado">
                   <div class="pmp-item-complejo-imagen ">
                     <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="${tituloTrabajo}"1" width="100%" height="100%">
                   </div>
@@ -1840,7 +1849,6 @@
         }
         return false;
       });
-
       
       console.log('testeo :', {
         idTrabajo: idTrabajo,
@@ -1849,19 +1857,10 @@
         elementoTrabajo: elementoTrabajo,
       });
 
-      // dataLocalStorage.productoParaEstructuraTrabajo.forEach((objetoDetalle) => {
-      //   if (objetoDetalle.codigo == codigo) {
-      //     objetoDetalle.productos.forEach((productoRamaPrincipal) => {
-      //       if (productoRamaPrincipal.idTrabajo == idTrabajo || productoRamaPrincipal.idShopify == idShopify) {
-      //         elementoTrabajo = productoRamaPrincipal;
-      //       }
-      //     });
-      //   }
-      // });
-
-
       // Actualuzar, preseleccionados subRamas y id del HTML de las subRamas tambien precios desactivar
       // los que no son de esa rama principal
+
+
     }
 
     procesoItemSubRama(btnElemento){
