@@ -1858,6 +1858,7 @@
         const codigo = elementoSeccion.getAttribute('data-codigo');
         const max = elementoSeccion.getAttribute('data-max');
         const min = elementoSeccion.getAttribute('data-min');
+        const tipoBoton = elementoSeccion.getAttribute('tipo-boton');
 
         let productosTrabajo = elementoTrabajo.ramas.find((rama) => rama.codigo == codigo);
         const hijosSeccion = elementoSeccion.querySelectorAll('#pmp-item-subRama');
@@ -1887,6 +1888,7 @@
               // Si el min es 1 y el elemento productoTrabajo es 0 (se va preseleccionar)
               itemHTML.classList.remove('desactivado');
               itemHTML.classList.add('seleccionado');
+              itemHTML.querySelector('.pmp-item-simple-escoger').innerHTML = tipoBoton == 'checkbox' ? this.iconos.iconCheckBoxOn : this.iconos.iconEstadoOn;
               seleccionaPrimero = true;
             }else{
               itemHTML.classList.remove('desactivado');
