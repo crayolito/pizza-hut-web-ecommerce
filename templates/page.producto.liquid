@@ -1225,7 +1225,7 @@
             if(subProductoTrabajo.some((item) => item.idShopify === producto.idShopify)){
 
               // Si se encuentra todos estara activado
-              if(banderaPrimero == false && infoSubRama.min == "1"){
+              if(banderaPrimero == false && infoSubRama.min == "1" && parseInt(producto.precio) == 0){
                 // Se auto preseleccionara el primer elemento
                 detalleSubProductos += `
                 <button id="pmp-item-subRama" class="pmp-item-complejo seleccionado">
@@ -1613,7 +1613,6 @@
         return [];
       }
     }
-
 
     procesoItemN1(elemento) {
       const estaHabilitado = elemento.classList.contains('desactivado');
