@@ -1800,10 +1800,7 @@
     }
 
     procesoItemRamaPrincipal(btnElemento){
-      // Si ya esta seleccionado no se hace nada
-      const estaSeleccionado = btnElemento.classList.contains('seleccionado');
-      if (estaSeleccionado) return;
-
+      
       // Ir a buscar al padre de esa seccion con id="pmph-seleccion-rama-principal"
       // Despues obtener 4 valores max - min - codigo - tipo boton
       const contenedorPadre = btnElemento.closest('#pmph-seleccion-rama-principal');
@@ -1819,14 +1816,19 @@
 
       // Obtener la cantidad btns seleccionado en esa seccion
       // Si el valor es min=1 y la cantidad de seleccionado es 1 no hacer nada
+      // Si ya esta seleccionado no se hace nada
+      const estaSeleccionado = btnElemento.classList.contains('seleccionado');
       const cantidadSeleccionado = contenedorPadre.querySelectorAll('.seleccionado').length;
-      if (cantidadSeleccionado == min) return;
+      if (estaSeleccionado && cantidadSeleccionado==min) return;
+
+      // if (cantidadSeleccionado == min) return;
       
       // Al ponerlo como seleccionado actualizar las sub ramas this.btnsProductosSubRama usando 
       // la informacion estructura del localStorage data.productoParaEstructuraTrabajo y data.estructura
       // 1. Mediante el codigo y el (idTrabajo o idShopify) se obtiene el productuctos trabajo
       const dataLocalStorage = JSON.parse(localStorage.getItem('phpp-productoData'));
       let elementoTrabajo = null;
+
       dataLocalStorage.productoParaEstructuraTrabajo.some((objetoDetalle)=>{
         if (objetoDetalle.codigo == codigo) {
           return objetoDetalle.productos.some((productoRamaPrincipal) => {
@@ -1840,7 +1842,6 @@
         return false;
       });
 
-      console.log('elementoTrabajo :', elementoTrabajo);
       // dataLocalStorage.productoParaEstructuraTrabajo.forEach((objetoDetalle) => {
       //   if (objetoDetalle.codigo == codigo) {
       //     objetoDetalle.productos.forEach((productoRamaPrincipal) => {
