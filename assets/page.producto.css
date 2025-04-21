@@ -503,6 +503,11 @@
   cursor: pointer;
 }
 
+.pmph-extras:hover {
+  border: 1.5px solid var(--colorp-primary);
+  cursor: pointer;
+}
+
 .pmph-extras-detalle {
   width: 100%;
   display: flex;
