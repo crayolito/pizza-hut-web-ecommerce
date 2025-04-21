@@ -1986,6 +1986,14 @@
         }
         if(itemHTML == btnElemento ) return;
 
+        console.log("Testeo de area",{
+          elementosTrabajo,
+          itemHTMLPerteneceElementoTrabajo ,
+          max,
+          min,
+          "condicion" : cantidadSeleccionados >= max,
+        })
+
         if((max == "1" && min == "1")){
           if(itemHTMLPerteneceElementoTrabajo){
             itemHTML.classList.remove('seleccionado');
@@ -2015,7 +2023,7 @@
 
       // Hay que actualizar el valor de los botones inferiores
     }
-  }
+  
 
   customElements.define('ph-producto', PizzaHutProducto);
 </script>
