@@ -1939,6 +1939,12 @@
         btnElemento.querySelector('.pmp-item-simple-escoger').innerHTML = tipoBoton == 'checkbox' ? this.iconos.iconCheckBoxOn : this.iconos.iconEstadoOn;
         cantidadSeleccionados++;
       }
+
+      console.log("Testeo de area",{
+        cantidadSeleccionados: cantidadSeleccionados,
+        max: max,
+        min: min,
+      })
        
       if (cantidadSeleccionados >= max) return;
 
