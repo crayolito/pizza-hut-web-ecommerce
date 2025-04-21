@@ -454,6 +454,8 @@ class AuxiliaresGlobal {
 class CarritoShopify extends HTMLElement {
   constructor() {
     super();
+    // Inicializar variable para almacenar la cantidad
+    this.cantidadTotal = 0;
   }
 
   connectedCallback() {
@@ -463,10 +465,17 @@ class CarritoShopify extends HTMLElement {
     // Usar AuxiliaresGlobal para obtener la cantidad actual del carrito de Shopify
     AuxiliaresGlobal.obtenerCarritoShopify()
       .then(carrito => {
+        // Guardar la cantidad en la propiedad de la clase
+        this.cantidadTotal = carrito.cantidadTotal || 0;
+        
         // Actualizar el texto del contador con la cantidad actual
         if (contador) {
-          contador.textContent = carrito.cantidadTotal || 0;
+          contador.textContent = this.cantidadTotal;
         }
+        
+        // Log después de obtener los datos
+        console.log('Componente CarritoShopify inicializado');
+        console.log('Cantidad total de productos:', this.cantidadTotal);
       })
       .catch(error => {
         console.error('Error al obtener el carrito:', error);
