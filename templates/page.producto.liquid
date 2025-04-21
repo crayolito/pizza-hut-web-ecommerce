@@ -1928,6 +1928,7 @@
 
       var cantidadSeleccionados = contenedorPadreSeccion.querySelectorAll('.seleccionado').length;
       const estaSeleccionado = btnElemento.classList.contains('seleccionado');
+      if (cantidadSeleccionados >= max) return;
       if(estaSeleccionado){
         // Se procede a seleccionar el elemento
         btnElemento.classList.remove('seleccionado');
@@ -1947,7 +1948,6 @@
         "condicion" : cantidadSeleccionados >= max,
       })
        
-      if (cantidadSeleccionados >= max) return;
 
       // El btnElemento tiene un atributo data-idtrabajo y data-idshopifyy
       const idTrabajo = btnElemento.getAttribute('data-idtrabajo');
