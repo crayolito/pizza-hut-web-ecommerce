@@ -1247,7 +1247,7 @@
                   <div class="pmp-item-complejo-info">
                     <div class="pmp-item-complejo-info-detalle ">
                       <p>${tituloTrabajo}</p>
-                      <p id="pmp-item-info-precio">+ ${producto.precio} Bs</p>
+                       ${parseInt(producto.precio) == 0 ? '' : `<p id="pmp-item-info-precio">+ ${producto.precio} Bs</p>`}
                     </div>
                     <div class="pmp-item-simple-escoger">
                       ${bptb ? this.iconos.iconCheckBoxOn : this.iconos.iconEstadoOn}
@@ -1272,7 +1272,7 @@
                   <div class="pmp-item-complejo-info">
                     <div class="pmp-item-complejo-info-detalle ">
                       <p>${tituloTrabajo}</p>
-                      <p id="pmp-item-info-precio">+ ${producto.precio} Bs</p>
+                       ${parseInt(producto.precio) == 0 ? '' : `<p id="pmp-item-info-precio">+ ${producto.precio} Bs</p>`}
                     </div>
                     <div class="pmp-item-simple-escoger">
                       ${bptb ? this.iconos.iconCheckBoxOff : this.iconos.iconEstadoOff}
@@ -1296,7 +1296,7 @@
                   <div class="pmp-item-complejo-info">
                     <div class="pmp-item-complejo-info-detalle ">
                       <p>${tituloTrabajo}</p>
-                      <p id="pmp-item-info-precio">+ ${producto.precio} Bs</p>
+                       ${parseInt(producto.precio) == 0 ? '' : `<p id="pmp-item-info-precio">+ ${producto.precio} Bs</p>`}
                     </div>
                     <div class="pmp-item-simple-escoger">
                       ${bptb ? this.iconos.iconCheckBoxOff : this.iconos.iconEstadoOff}
