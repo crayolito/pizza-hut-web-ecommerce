@@ -1800,7 +1800,6 @@
     }
 
     procesoItemRamaPrincipal(btnElemento){
-      
       // Ir a buscar al padre de esa seccion con id="pmph-seleccion-rama-principal"
       // Despues obtener 4 valores max - min - codigo - tipo boton
       const contenedorPadre = btnElemento.closest('#pmph-seleccion-rama-principal');
@@ -1827,6 +1826,12 @@
       // 1. Mediante el codigo y el (idTrabajo o idShopify) se obtiene el productuctos trabajo
       const dataLocalStorage = JSON.parse(localStorage.getItem('phpp-productoData'));
       let elementoTrabajo = null;
+
+      console.log('testeo :', {
+        idTrabajo: idTrabajo,
+        idShopify: idShopify,
+        codigo: codigo,
+      });
 
       dataLocalStorage.productoParaEstructuraTrabajo.some((objetoDetalle)=>{
         if (objetoDetalle.codigo == codigo) {
