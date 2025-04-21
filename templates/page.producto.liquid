@@ -1844,6 +1844,8 @@
         }
         return false;
       });
+
+      this.productoSeleccionadoRamaPrincipal = elementoTrabajo;
       
       // Actualuzar, preseleccionados subRamas y id del HTML de las subRamas tambien precios desactivar
       // los que no son de esa rama principal
@@ -1923,32 +1925,20 @@
       const codigo = contenedorPadreSeccion.getAttribute('data-codigo');
       const tipoBoton = contenedorPadreSeccion.getAttribute('tipo-boton');
 
-
+      // El btnElemento tiene un atributo data-idtrabajo y data-idshopify
+      const idTrabajo = btnElemento.getAttribute('data-idtrabajo');
+      const idShopify = btnElemento.getAttribute('data-idshopify');
 
       const cantidadSeleccionados = contenedorPadreSeccion.querySelectorAll('.seleccionado').length;
       // Si estamos al mínimo, no permitir deseleccionarr
       {% comment %} if ( cantidadSeleccionados == min) return; {% endcomment %}
 
-      const contenedorPadreRamaPrincipal = this.querySelector('#pmph-seleccion-rama-principal');
-      const codigoRamaPrincipal = contenedorPadreRamaPrincipal.getAttribute('data-codigo');
-      const hijoSeleccionado = contenedorPadreRamaPrincipal.classList.contains('seleccionado');
-      const idShopiyHijoSeleccionado = hijoSeleccionado.getAttribute('data-idshopify');
-      const idTrabajoHijoSeleccionado = hijoSeleccionado.getAttribute('data-idtrabajo');
-
-      const dataLocalStorage = JSON.parse(localStorage.getItem('phpp-productoData'));
       let elementosTrabajo = null;
 
-      dataLocalStorage.productoParaEstructuraTrabajo.some((objetoDetalle) => {
-        if (objetoDetalle.codigo == codigoRamaPrincipal) {
-          return objetoDetalle.productos.some((productoRamaPrincipal) => {
-            if (productoRamaPrincipal.idTrabajo == idTrabajo || productoRamaPrincipal.idShopify == idShopify) {
-              elementosTrabajo = productoRamaPrincipal.ramas.find((rama) => rama.codigo == codigo);
-              return true; 
-            }
-            return false;
-          });
+      this.productoSeleccionadoRamaPrincipal.ramas.forEach((objetoDetalle)=>{
+        if (objetoDetalle.codigo == codigo) {
+            elementosTrabajo =objetoDetalle.productos;
         }
-        return false;
       });
 
       console.log('Hola Mundo Testeo',elementosTrabajo);
