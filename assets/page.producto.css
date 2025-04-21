@@ -504,7 +504,7 @@
 }
 
 .pmph-extras:hover {
-  border: 1.5px solid var(--colorp-primary);
+  border: 2px solid var(--colorp-primary);
   cursor: pointer;
 }
 
