@@ -654,6 +654,8 @@
       }
 
       const todasColecciones = await this.segundaFaseConsulta(estructuraColeccionGeneral); 
+      console.log("Todas las colecciones :", todasColecciones);
+
       var listaProductos = [];
 
       var productosEstructurados = [];
@@ -983,7 +985,7 @@
                 metafield(namespace: "estructura", key: "json") {
                   value
                 }
-                products(first: 20) {
+                products(first: 50) {
                   edges {
                     node {
                       id
