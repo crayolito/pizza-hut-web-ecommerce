@@ -968,9 +968,7 @@
       this.extrasContenedorN1.style.display = 'none';
       this.extrasContenedorN2.style.display = 'none';
       this.inicializarMedianteDataLocalStorage();
-
     }
-
 
     declararComponentesDespuesCreacion(){
       // REFERENCIAS ELEMENTOS
@@ -983,6 +981,13 @@
       this.seccionExtrasGaseosasCerversas = this.querySelector('#phpp-modal-productos-gaseosasycervezas');
 
       // INICIALIZAR EVENTOS
+      this.btnsProductosRamaPrincipales.forEach((btn) => {
+        btn.addEventListener('click', this.procesoItemRamaPrincipal.bind(this, btn));
+      });
+      this.btnsProductosSubRama.forEach((btn) => {
+        btn.addEventListener('click', this.procesoItemSubRama.bind(this, btn));
+      });
+      
       // INICIALIZAR ELEMENTOS Y PROCESOS CLAVES
       this.seccionExtrasPostres.style.display = 'none';
       this.seccionExtrasGaseosasCerversas.style.display = 'none';
@@ -1150,9 +1155,9 @@
 
         detalleSubProductos += `
         <div
-        data-max="${infoRamaPrincipal.maximo}"
-        data-min="${infoRamaPrincipal.minimo}"
-        data-codigo="${infoRamaPrincipal.codigo}"
+        data-max="${infoRamaPrincipal.max}"
+        data-min="${infoRamaPrincipal.min}"
+        data-codigo="${ramaPrincipal}"
         id="pmph-seleccion-rama-principal" class="pmph-seleccion-normal">
           <h3>${infoRamaPrincipal.titulo}</h3>
         `;
@@ -1211,9 +1216,9 @@
 
           detalleSubProductos += `
           <div 
-          data-max="${infoSubRama.maximo}"
-          data-min="${infoSubRama.minimo}"
-          data-codigo="${infoSubRama.codigo}"
+          data-max="${infoSubRama.max}"
+          data-min="${infoSubRama.min}"
+          data-codigo="${subRama}"
           tipo-boton="${bptb ? 'circle' : 'checkbox'}"
           id="pmph-seleccion-subRama" class="pmph-seleccion-especial ">
           <h3>${infoSubRama.titulo}</h3>
@@ -1788,6 +1793,20 @@
       return sucursalEncontrada 
         ? parseInt(sucursalEncontrada.stock) 
         : dataTrabajo.producto.stockTotal;
+    }
+
+    procesoItemRamaPrincipal(btnElemento){
+      // Si ya esta seleccionado no se hace nada
+      // Ir a buscar al padre de esa seccion con id="pmph-seleccion-subRama"
+      // Despues obtener 4 valores max - min - codigo - tipo boton
+      // Obtener la cantidad btns seleccionado en esa seccion
+      // Si el valor es min=1 y la cantidad de seleccionado es 1 no hacer nada
+      
+      // Al ponerlo como seleccionado actualizar las sub ramas this.btnsProductosSubRama usando 
+      // la informacion estructura del localStorage data.productoParaEstructuraTrabajo y data.estructura
+      
+      // Actualuzar, preseleccionados subRamas y id del HTML de las subRamas tambien precios desactivar
+      // los que no son de esa rama principal
     }
   }
 
