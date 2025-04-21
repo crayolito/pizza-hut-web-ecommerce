@@ -1928,7 +1928,7 @@
 
       var cantidadSeleccionados = contenedorPadreSeccion.querySelectorAll('.seleccionado').length;
       const estaSeleccionado = btnElemento.classList.contains('seleccionado');
-      if (cantidadSeleccionados >= max) return;
+      if (cantidadSeleccionados >= max && !estaSeleccionado) return;
       if(estaSeleccionado){
         // Se procede a seleccionar el elementoo
         btnElemento.classList.remove('seleccionado');
