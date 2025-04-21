@@ -2240,6 +2240,28 @@
 
         this.itemsSeleccionadoPostres = this.itemsSeleccionadoPostres.filter((item) => item.idTrabajo != idTrabajo && item.idShopify != idShopify);
         contenedorPadre.remove();
+
+        // Buscar el elemento en id="phpp-modal-productos-postres" y Eliminarlo o limpiar la cantidad   
+        // this.seccionModalExtrasPostres = this.querySelector('#phpp-modal-productos-postres');
+        const productosModal = this.seccionModalExtrasPostres.querySelector('.ppme-modal-items-extras').querySelectorAll('.ppme-modal-item-extra');
+        productosModal.forEach((itemHTML) => {
+          const idTrabajoItem = itemHTML.getAttribute('data-idtrabajo');
+          const idShopifyItem = itemHTML.getAttribute('data-idshopify');
+          if(idShopifyItem == idShopify){
+            itemHTML.querySelector('#phpd-cantidad-extras').innerHTML = 0;
+          }
+        });
+        
+        // Proceder a contar la cantidad de elementos seleccionados en id="phpm-extras-especiales-postres"
+        // this.estadoItemsContenedorPostres = this.querySelector('#phpm-extras-especiales-postres');
+        const cantidadElementosSeleccionados = this.estadoItemsContenedorPostres.querySelectorAll('#pmp-item-extra').length;
+
+        // Si la cantidad es 0 mostrar contenedor vacio y ocultar el btn anadir
+        if(cantidadElementosSeleccionados == 0){
+          this.estadoItemsContenedorPostres.style.display = 'none';
+          this.anadirMasContenedorPostres.style.display = 'none';
+          this.estadoVacioContenedorPostres.style.display = 'flex';
+        }
       }
       
       if(tipoExtra == 'gaseosasycervezas'){
@@ -2249,6 +2271,28 @@
 
         this.itemsSeleccionadoGaseosasCerversas = this.itemsSeleccionadoGaseosasCerversas.filter((item) => item.idTrabajo != idTrabajo && item.idShopify != idShopify);
         contenedorPadre.remove();
+
+        // Buscar el elemento en id="phpp-modal-productos-gaseosas" y Eliminarlo o limpiar la cantidad
+        // this.seccionModalExtrasGaseosasCerversas = this.querySelector('#phpp-modal-productos-gaseosas');
+        const productosModal = this.seccionModalExtrasGaseosasCerversas.querySelector('.ppme-modal-items-extras').querySelectorAll('.ppme-modal-item-extra');
+        productosModal.forEach((itemHTML) => {
+          const idTrabajoItem = itemHTML.getAttribute('data-idtrabajo');
+          const idShopifyItem = itemHTML.getAttribute('data-idshopify');
+          if(idShopifyItem == idShopify){
+            itemHTML.querySelector('#phpd-cantidad-extras').innerHTML = 0;
+          }
+        });
+
+        // Proceder a contar la cantidad de elementos seleccionados en id="phpm-extras-especiales-gaseosas"
+        // this.estadoItemsContenedorGaseosasCerversas = this.querySelector('#phpm-extras-especiales-gaseosas');
+        const cantidadElementosSeleccionados = this.estadoItemsContenedorGaseosasCerversas.querySelectorAll('#pmp-item-extra').length;
+
+        // Si la cantidad es 0 mostrar contenedor vacio y ocultar el btn anadir
+        if(cantidadElementosSeleccionados == 0){
+          this.estadoItemsContenedorGaseosasCerversas.style.display = 'none';
+          this.anadirMasContenedorGaseosasCerversas.style.display = 'none';
+          this.estadoVacioContenedorGaseosasCerversas.style.display = 'flex';
+        }
       }
 
     }
