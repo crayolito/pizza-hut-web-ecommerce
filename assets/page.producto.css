@@ -436,7 +436,6 @@
 .pmp-item-complejo-info p {
   text-align: start;
   text-transform: uppercase;
-  font-weight: 600;
   display: -webkit-box;
   line-clamp: 2;
   -webkit-line-clamp: 2;
