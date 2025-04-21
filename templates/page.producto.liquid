@@ -1977,7 +1977,7 @@
         const idShopify = itemHTML.getAttribute('data-idshopify');
         const estaSeleccionado = itemHTML.classList.contains('seleccionado');
         const estaDesactivado = itemHTML.classList.contains('desactivado');
-        const itemHTMLPerteneceElementoTrabajo = elementosTrabajo.find((producto) => producto.idShopify == idShopify);
+        const itemHTMLPerteneceElementoTrabajo = elementosTrabajo.some((producto) => producto.idShopify == idShopify);
 
         if(!(max == "1" && min == "1")){
           if(itemHTML.classList.contains('seleccionado')) return;
