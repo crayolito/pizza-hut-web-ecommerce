@@ -312,36 +312,38 @@
           </div>
           <!-- CUANDO HAY SELECCIONADO UN EXTRA -->
           <div id="phpm-extras-especiales-postres" class="pmp-items-extras-seleccionados">
-            <div id="pmp-item-extra" class="pmp-item-extra-seleccionado">
-              <div class="pmp-item-extra-imagen">
-                <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
-              </div>
-              <div class="pmp-item-extra-info">
-                <div class="pmp-item-extra-detalle">
-                  <p>x1</p>
-                  <p>MOUSE MARACUYA</p>
-                  <p>12 Bs</p>
+            {% comment %}
+              <div id="pmp-item-extra" class="pmp-item-extra-seleccionado">
+                <div class="pmp-item-extra-imagen">
+                  <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
                 </div>
-                <button class="pmp-item-extra-delete icon-color-primary">
-                  {% render 'icon-basura' %}
-                </button>
-              </div>
-            </div>
-            <div id="pmp-item-extra" class="pmp-item-extra-seleccionado">
-              <div class="pmp-item-extra-imagen">
-                <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
-              </div>
-              <div class="pmp-item-extra-info">
-                <div class="pmp-item-extra-detalle">
-                  <p>x5</p>
-                  <p>TARTALETA DE LIMON</p>
-                  <p>22 Bs</p>
+                <div class="pmp-item-extra-info">
+                  <div class="pmp-item-extra-detalle">
+                    <p>x1</p>
+                    <p>MOUSE MARACUYA</p>
+                    <p>12 Bs</p>
+                  </div>
+                  <button class="pmp-item-extra-delete icon-color-primary">
+                    {% render 'icon-basura' %}
+                  </button>
                 </div>
-                <button class="pmp-item-extra-delete icon-color-primary">
-                  {% render 'icon-basura' %}
-                </button>
               </div>
-            </div>
+              <div id="pmp-item-extra" class="pmp-item-extra-seleccionado">
+                <div class="pmp-item-extra-imagen">
+                  <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+                </div>
+                <div class="pmp-item-extra-info">
+                  <div class="pmp-item-extra-detalle">
+                    <p>x5</p>
+                    <p>TARTALETA DE LIMON</p>
+                    <p>22 Bs</p>
+                  </div>
+                  <button class="pmp-item-extra-delete icon-color-primary">
+                    {% render 'icon-basura' %}
+                  </button>
+                </div>
+              </div>
+            {% endcomment %}
           </div>
         </div>
         <div id="pmph-seleccion-extras-gaseosasycervezas" class="pmph-seleccion-basico">
@@ -364,36 +366,38 @@
           </div>
           <!-- CUANDO HAY SELECCIONADO UN EXTRA -->
           <div id="phpm-extras-especiales-gaseosasycervezas" class="pmp-items-extras-seleccionados">
-            <div id="pmp-item-extra" class="pmp-item-extra-seleccionado">
-              <div class="pmp-item-extra-imagen">
-                <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
-              </div>
-              <div class="pmp-item-extra-info">
-                <div class="pmp-item-extra-detalle">
-                  <p>x1</p>
-                  <p>Sprite 2lt</p>
-                  <p>22 Bs</p>
+            {% comment %}
+              <div id="pmp-item-extra" class="pmp-item-extra-seleccionado">
+                <div class="pmp-item-extra-imagen">
+                  <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
                 </div>
-                <button class="pmp-item-extra-delete icon-color-primary">
-                  {% render 'icon-basura' %}
-                </button>
-              </div>
-            </div>
-            <div id="pmp-item-extra" class="pmp-item-extra-seleccionado">
-              <div class="pmp-item-extra-imagen">
-                <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
-              </div>
-              <div class="pmp-item-extra-info">
-                <div class="pmp-item-extra-detalle">
-                  <p>x1</p>
-                  <p>Sprite 2lt</p>
-                  <p>22 Bs</p>
+                <div class="pmp-item-extra-info">
+                  <div class="pmp-item-extra-detalle">
+                    <p>x1</p>
+                    <p>Sprite 2lt</p>
+                    <p>22 Bs</p>
+                  </div>
+                  <button class="pmp-item-extra-delete icon-color-primary">
+                    {% render 'icon-basura' %}
+                  </button>
                 </div>
-                <button class="pmp-item-extra-delete icon-color-primary">
-                  {% render 'icon-basura' %}
-                </button>
               </div>
-            </div>
+              <div id="pmp-item-extra" class="pmp-item-extra-seleccionado">
+                <div class="pmp-item-extra-imagen">
+                  <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
+                </div>
+                <div class="pmp-item-extra-info">
+                  <div class="pmp-item-extra-detalle">
+                    <p>x1</p>
+                    <p>Sprite 2lt</p>
+                    <p>22 Bs</p>
+                  </div>
+                  <button class="pmp-item-extra-delete icon-color-primary">
+                    {% render 'icon-basura' %}
+                  </button>
+                </div>
+              </div>
+            {% endcomment %}
           </div>
         </div>
         <section class="ph-opciones-mobile-footer">
@@ -919,6 +923,7 @@
       this.btnHazUnPedido = this.querySelector('#phpm-btn-haz-un-pedido');
       this.btnAgregarCarrito = this.querySelector('#phpm-btn-agregar-carrito'); 
       this.btnVolverAtras = this.querySelector('.pmph-volver-atras');
+      
 
       
       this.modalProductoExtras = this.querySelector('#pmph-modal-productos-extras');
@@ -933,6 +938,7 @@
       // EVENTOS INICIALIZAR
       this.btnHazUnPedido.addEventListener('click', this.redireccionHazUnPedido.bind(this));
       this.btnAgregarCarrito.addEventListener('click', this.agregarCarrito.bind(this));
+
       {% comment %} this.elementosN1.forEach((elemento) => {
         elemento.addEventListener('click', this.procesoItemN1.bind(this, elemento));
       });
@@ -975,10 +981,12 @@
       this.estadoVacioContenedorPostres = this.querySelector('#phpm-vacio-extras-especiales-postres');
       this.estadoItemsContenedorPostres = this.querySelector('#phpm-extras-especiales-postres');
       this.anadirMasContenedorPostres = this.querySelector('#phpm-btn-anadir-extras-postres');
+      this.btnsEliminarExtrasPostres = null;
 
       this.estadoVacioContenedorGaseosasCerversas = this.querySelector('#phpm-vacio-extras-especiales-gaseosasycervezas');
       this.estadoItemsContenedorGaseosasCerversas = this.querySelector('#phpm-extras-especiales-gaseosasycervezas');
       this.anadirMasContenedorGaseosasCerversas = this.querySelector('#phpm-btn-anadir-extras-gaseosasycervezas');
+      this.btnsEliminarExtrasGaseosasCerversas = null;
 
       this.btnSeccionModalSalir = this.querySelector('#phppm-btn-salir');
       this.btnSeccionModalGuardar = this.querySelector('#phppm-btn-guardar');
@@ -1307,7 +1315,7 @@
                 id="pmp-item-subRama" class="pmp-item-complejo desactivado">
                   <div class="pmp-item-complejo-imagen ">
                                       ${ producto.imagen == "" ?
-                     `<img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="${tituloTrabajo}"1" width="100%" height="100%">` :
+                     `<img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="${tituloTrabajo}" width="100%" height="100%">` :
                     `<img src="${producto.imagen}" alt="${tituloTrabajo}" width="100%" height="100%">`}
                   </div>
                   <div class="pmp-item-complejo-info">
@@ -2068,16 +2076,144 @@
     procesarSeccionModal(){
       this.cerrarSeccionModalExtras();
       var elClienteSiSelecciono = false;
-
+      var itemsPedidos =[];
 
       if(this.cualSeccionExtrasEs == 'postres'){
         var contenedorItems =  this.seccionModalExtrasPostres.querySelector('.ppme-modal-items-extras');
+        var productosTrabajo = contenedorItems.querySelectorAll('.ppme-modal-item-extra');
 
+        productosTrabajo.forEach((itemHTML) => {
+          const idTrabajo = itemHTML.getAttribute('data-idtrabajo');
+          const idShopify = itemHTML.getAttribute('data-idshopify');
+          const cantidad = itemHTML.querySelector('#phpd-cantidad-extras').innerHTML;
 
+          const imagen = itemHTML.querySelector('.ppme-modal-item-extra-imagen img').getAttribute('src');
+          const [titulo, precio]  = itemHTML.querySelectorAll('.ppme-modal-item-extra-info-detalle p');
+          {% comment %} const [titulo, precio] = [informacionProducto[0], informacionProducto[1]]; {% endcomment %}
+
+          if(parseInt(cantidad) > 0) {
+            elClienteSiSelecciono = true;
+            itemsPedidos.push({
+              idTrabajo: idTrabajo,
+              idShopify: idShopify,
+              cantidad: cantidad,
+              titulo: titulo.innerHTML,
+              precio: precio.innerHTML,
+              imagen
+            });
+          }
+        });
+
+        this.itemsSeleccionadoPostres = itemsPedidos;
+        if(elClienteSiSelecciono){
+          var contenidoHTML = ``;
+          
+          itemsPedidos.forEach((producto) => {
+            contenidoHTML += `
+            <div 
+            data-handle="${producto.handle}"
+            data-idtrabajo="${producto.idTrabajo}"
+            data-idshopify="${producto.idShopify}"
+            data-cantidad="${producto.cantidad}"
+            data-titulo="${producto.titulo}"
+            data-precio="${producto.precio}"
+            id="pmp-item-extra" class="pmp-item-extra-seleccionado">
+              <div class="pmp-item-extra-imagen">
+                  ${ producto.imagen == "" ?
+                  `<img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="${producto.titulo}" width="100%" height="100%">` :
+                  `<img src="${producto.imagen}" alt="${producto.titulo}" width="100%" height="100%">`}
+              </div>
+              <div class="pmp-item-extra-info">
+                <div class="pmp-item-extra-detalle">
+                  <p>x${producto.cantidad}</p>
+                  <p>${producto.titulo}</p>
+                  <p>${producto.precio} Bs</p>
+                </div>
+                <button
+                data-extras="postres"
+                class="pmp-item-extra-delete icon-color-primary">
+                  {% render 'icon-basura' %}
+                </button>
+              </div>
+            </div>
+            `;
+          });
+
+          this.estadoItemsContenedorPostres.innerHTML = contenidoHTML;
+          this.estadoItemsContenedorPostres.style.display = 'flex';
+          this.anadirMasContenedorPostres.style.display = 'flex';
+        }
+        this.btnsEliminarExtrasPostres = this.estadoItemsContenedorPostres.querySelectorAll('.pmp-item-extra-delete');
+        return;
       }
 
       if(this.cualSeccionExtrasEs == 'gaseosasycervezas'){
         var contenedorItems =  this.seccionModalExtrasGaseosasCerversas.querySelector('.ppme-modal-items-extras');
+        var productosTrabajo = contenedorItems.querySelectorAll('.ppme-modal-item-extra');
+
+        productosTrabajo.forEach((itemHTML) => {
+          const idTrabajo = itemHTML.getAttribute('data-idtrabajo');
+          const idShopify = itemHTML.getAttribute('data-idshopify');
+          const cantidad = itemHTML.querySelector('#phpd-cantidad-extras').innerHTML;
+
+          const imagen = itemHTML.querySelector('.ppme-modal-item-extra-imagen img').getAttribute('src');
+          const [titulo, precio]  = itemHTML.querySelectorAll('.ppme-modal-item-extra-info-detalle p');
+          {% comment %} const [titulo, precio] = [informacionProducto[0], informacionProducto[1]]; {% endcomment %}
+
+          if(parseInt(cantidad) > 0) {
+            elClienteSiSelecciono = true;
+            itemsPedidos.push({
+              idTrabajo: idTrabajo,
+              idShopify: idShopify,
+              cantidad: cantidad,
+              titulo: titulo.innerHTML,
+              precio: precio.innerHTML,
+              imagen
+            });
+          }
+        });
+
+        this.itemsSeleccionadoGaseosasCerversas = itemsPedidos;
+        if(elClienteSiSelecciono){
+          var contenidoHTML = ``;
+          
+          itemsPedidos.forEach((producto) => {
+            contenidoHTML += `
+            <div 
+            data-handle="${producto.handle}"
+            data-idtrabajo="${producto.idTrabajo}"
+            data-idshopify="${producto.idShopify}"
+            data-cantidad="${producto.cantidad}"
+            data-titulo="${producto.titulo}"
+            data-precio="${producto.precio}"
+            id="pmp-item-extra" class="pmp-item-extra-seleccionado">
+              <div class="pmp-item-extra-imagen">
+                  ${ producto.imagen == "" ?
+                  `<img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="${producto.titulo}" width="100%" height="100%">` :
+                  `<img src="${producto.imagen}" alt="${producto.titulo}" width="100%" height="100%">`}
+              </div>
+              <div class="pmp-item-extra-info">
+                <div class="pmp-item-extra-detalle">
+                  <p>x${producto.cantidad}</p>
+                  <p>${producto.titulo}</p>
+                  <p>${producto.precio} Bs</p>
+                </div>
+                <button
+                data-extras="gaseosasycervezas"
+                class="pmp-item-extra-delete icon-color-primary">
+                  {% render 'icon-basura' %}
+                </button>
+              </div>
+            </div>
+            `;
+          });
+
+          this.estadoItemsContenedorGaseosasCerversas.innerHTML = contenidoHTML;
+          this.estadoItemsContenedorGaseosasCerversas.style.display = 'flex';
+          this.anadirMasContenedorGaseosasCerversas.style.display = 'flex';
+        }
+        this.btnsEliminarExtrasGaseosasCerversas = this.estadoItemsContenedorGaseosasCerversas.querySelectorAll('.pmp-item-extra-delete');
+        return;
       }
     }
 
