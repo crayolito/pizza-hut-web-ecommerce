@@ -1444,7 +1444,6 @@
       `;
 
       this.querySelector('.pmph-modal-informacion-extras').insertAdjacentHTML('afterbegin', contenidoHTML);
-      
     }
 
     async obtenerColeccionShopify(coleccion) {
@@ -1585,7 +1584,7 @@
             handle: producto.handle,
             descripcion: producto.description,
             imagen: imagenURL,
-            stockGeneral: stockGeneral,
+            stockTotal: producto.stockGeneral,
             sucursales: sucursales,
             estructura: producto.metafield && producto.metafield.value ? JSON.parse(producto.metafield.value) : "",
           };
@@ -1791,8 +1790,6 @@
         ? parseInt(sucursalEncontrada.stock) 
         : dataTrabajo.producto.stockTotal;
     }
-
-
   }
 
   customElements.define('ph-producto', PizzaHutProducto);
