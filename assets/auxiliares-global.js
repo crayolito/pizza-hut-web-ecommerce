@@ -1,6 +1,4 @@
 class AuxiliaresGlobal {
-
-
   static agregarCarrito(valor) {
     // Verificar que el valor sea un número válido mayor a 0
     if (typeof valor === 'number' && valor > 0) {
@@ -171,7 +169,313 @@ class AuxiliaresGlobal {
     });
   }
 
+  static cantidadProductosCarritoShopify() {
+    return new Promise((resolve, reject) => {
+      // Utilizar la función existente para obtener el carrito
+      this.obtenerCarritoShopify()
+        .then(carrito => {
+          // Verificar que existe la información del carrito
+          if (carrito && typeof carrito.cantidadTotal !== 'undefined') {
+            
+            // Obtener la cantidad total de productos
+            const cantidadTotal = carrito.cantidadTotal;
+            
+            // Mostrar en consola la cantidad total de productos
+            console.log(`Cantidad total de productos en el carrito: ${cantidadTotal}`);
+            
+            // Resolver la promesa con la cantidad total
+            resolve(cantidadTotal);
+          } else {
+            throw new Error('No se pudo obtener la cantidad de productos del carrito');
+          }
+        })
+        .catch(error => {
+          console.error('Error al obtener la cantidad de productos del carrito:', error);
+          reject(error);
+        });
+    });
+  }
+
+  /**
+  * Agrega productos al carrito y actualiza la visualización
+  * @param {number} valor - Cantidad de productos a agregar
+  * @param {number} variantId - ID de la variante del producto (opcional)
+  * @param {Object} opciones - Opciones adicionales para el producto (opcional)
+  */
+  static agregarCarrito(valor, variantId = null, opciones = {}) {
+    // Verificar que el valor sea un número válido mayor a 0
+    if (typeof valor === 'number' && valor > 0) {
+      // Si se proporciona un variantId, agregar al carrito de Shopify
+      if (variantId) {
+        // Datos para enviar a la API de Shopify
+        const datos = {
+          items: [{
+            id: variantId,
+            quantity: valor,
+            ...opciones // Propiedades adicionales (como propiedades de línea)
+          }]
+        };
+        
+        // Realizar la petición para añadir al carrito
+        fetch('/cart/add.js', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(datos)
+        })
+        .then(response => response.json())
+        .then(data => {
+          // Actualizar el contador visual
+          this._actualizarContadorVisual(valor);
+          
+          // Disparar evento personalizado
+          document.dispatchEvent(new CustomEvent('product:added-to-cart', { 
+            detail: { product: data }
+          }));
+          
+          console.log('Producto agregado al carrito:', data);
+        })
+        .catch(error => {
+          console.error('Error al agregar al carrito:', error);
+          this.mensajeError('No se pudo agregar el producto al carrito');
+        });
+      } else {
+        // Si no hay variantId, solo actualizar el contador visual
+        this._actualizarContadorVisual(valor);
+      }
+    }
+  }
+  
+  /**
+   * Método privado para actualizar el contador visual
+   */
+  static _actualizarContadorVisual(valor) {
+    const contenedorPadre = document.querySelector('.h-ic-cantidad');
+    const mensaje = document.querySelector('.hicc-mensaje');
+    
+    // Verificar que los elementos existan
+    if (mensaje && contenedorPadre) {
+      // Obtener el valor actual (si existe)
+      let valorActual = 0;
+      if (mensaje.textContent.trim() !== '') {
+        valorActual = parseInt(mensaje.textContent, 10) || 0;
+      }
+      
+      // Sumar el nuevo valor al actual
+      const nuevoValor = valorActual + valor;
+      
+      // Actualizar el texto con el nuevo valor
+      mensaje.textContent = nuevoValor;
+      
+      // Quitar clases existentes de tamaños de dígitos
+      mensaje.classList.remove('digitos-2', 'digitos-3');
+      
+      // Convertir el valor a string para verificar su longitud
+      const valorStr = nuevoValor.toString();
+      
+      // Añadir clase según número de dígitos
+      if (valorStr.length === 2) {
+        mensaje.classList.add('digitos-2');
+      } else if (valorStr.length >= 3) {
+        mensaje.classList.add('digitos-3');
+      }
+
+      // Mostrar mensaje de éxito después de actualizar el carrito
+      this.mensajeExitoCarrito();
+      
+      // Actualizar también todos los componentes CarritoShopify
+      this._actualizarComponentesCarrito();
+    }
+  }
+  
+  /**
+   * Actualiza todos los componentes CarritoShopify en la página
+   */
+  static _actualizarComponentesCarrito() {
+    // Si existe el método estático en CarritoShopify, usarlo
+    if (typeof CarritoShopify !== 'undefined' && 
+        typeof CarritoShopify.actualizarContador === 'function') {
+      CarritoShopify.actualizarContador();
+    } else {
+      // Si no, buscar todos los componentes y actualizar manualmente
+      const componentesCarrito = document.querySelectorAll('carrito-shopify');
+      componentesCarrito.forEach(componente => {
+        if (typeof componente.actualizarContadorCarrito === 'function') {
+          componente.actualizarContadorCarrito();
+        }
+      });
+    }
+  }
+
+  /**
+   * Limpia el carrito (lo vacía por completo)
+   */
+  static limpiarCarrito() {
+    return new Promise((resolve, reject) => {
+      // Usar la API de Shopify para vaciar el carrito
+      fetch('/cart/clear.js', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        // Actualizar el contador visual a 0
+        const mensaje = document.querySelector('.hicc-mensaje');
+        if (mensaje) {
+          mensaje.textContent = '0';
+          mensaje.classList.remove('digitos-2', 'digitos-3');
+        }
+        
+        // Actualizar los componentes CarritoShopify
+        this._actualizarComponentesCarrito();
+        
+        // Disparar evento personalizado
+        document.dispatchEvent(new CustomEvent('cart:cleared'));
+        
+        console.log('Carrito limpiado:', data);
+        resolve(data);
+      })
+      .catch(error => {
+        console.error('Error al limpiar el carrito:', error);
+        reject(error);
+      });
+    });
+  }
+
+  /**
+   * Elimina un ítem específico del carrito
+   * @param {number} lineId - ID de línea del ítem a eliminar (1-based, no 0-based)
+   */
+  static eliminarItemCarrito(lineId) {
+    return new Promise((resolve, reject) => {
+      // Usar la API de Shopify para actualizar el carrito
+      fetch('/cart/change.js', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          line: lineId,
+          quantity: 0 // Cantidad 0 elimina el ítem
+        })
+      })
+      .then(response => response.json())
+      .then(cart => {
+        // Actualizar el contador visual y componentes
+        this._sincronizarContadorConCarrito(cart);
+        
+        // Disparar evento personalizado
+        document.dispatchEvent(new CustomEvent('cart:updated', {
+          detail: { cart }
+        }));
+        
+        console.log('Ítem eliminado del carrito:', cart);
+        resolve(cart);
+      })
+      .catch(error => {
+        console.error('Error al eliminar ítem del carrito:', error);
+        reject(error);
+      });
+    });
+  }
+
+  /**
+   * Actualiza la cantidad de un ítem en el carrito
+   * @param {number} lineId - ID de línea del ítem a actualizar (1-based, no 0-based)
+   * @param {number} cantidad - Nueva cantidad
+   */
+  static actualizarCantidadItem(lineId, cantidad) {
+    return new Promise((resolve, reject) => {
+      // Validar cantidad
+      if (typeof cantidad !== 'number' || cantidad < 0) {
+        reject(new Error('Cantidad inválida'));
+        return;
+      }
+      
+      // Usar la API de Shopify para actualizar el carrito
+      fetch('/cart/change.js', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          line: lineId,
+          quantity: cantidad
+        })
+      })
+      .then(response => response.json())
+      .then(cart => {
+        // Actualizar el contador visual y componentes
+        this._sincronizarContadorConCarrito(cart);
+        
+        // Disparar evento personalizado
+        document.dispatchEvent(new CustomEvent('cart:updated', {
+          detail: { cart }
+        }));
+        
+        console.log('Carrito actualizado:', cart);
+        resolve(cart);
+      })
+      .catch(error => {
+        console.error('Error al actualizar el carrito:', error);
+        reject(error);
+      });
+    });
+  }
+  
+  /**
+   * Sincroniza el contador visual con el estado actual del carrito
+   * @param {Object} cart - Objeto carrito devuelto por Shopify
+   */
+  static _sincronizarContadorConCarrito(cart) {
+    const mensaje = document.querySelector('.hicc-mensaje');
+    if (mensaje) {
+      const cantidadTotal = cart.item_count || 0;
+      mensaje.textContent = cantidadTotal;
+      
+      // Actualizar clases
+      mensaje.classList.remove('digitos-2', 'digitos-3');
+      const valorStr = cantidadTotal.toString();
+      if (valorStr.length === 2) {
+        mensaje.classList.add('digitos-2');
+      } else if (valorStr.length >= 3) {
+        mensaje.classList.add('digitos-3');
+      }
+    }
+    
+    // Actualizar componentes CarritoShopify
+    this._actualizarComponentesCarrito();
+  }
 }
+
+class CarritoShopify extends HTMLElement {
+  constructor() {
+    super();
+  }
+
+  connectedCallback() {
+    // Obtener el contador
+    const contador = this.querySelector('#contador-carrito');
+    
+    // Usar AuxiliaresGlobal para obtener la cantidad actual del carrito de Shopify
+    AuxiliaresGlobal.obtenerCarritoShopify()
+      .then(carrito => {
+        // Actualizar el texto del contador con la cantidad actual
+        if (contador) {
+          contador.textContent = carrito.cantidadTotal || 0;
+        }
+      })
+      .catch(error => {
+        console.error('Error al obtener el carrito:', error);
+      });
+  }
+}
+
+// Registrar el componente
+customElements.define('carrito-shopify', CarritoShopify);
 
 class CantidadInput extends HTMLElement {
   constructor() {
