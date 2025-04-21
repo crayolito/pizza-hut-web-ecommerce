@@ -1971,8 +1971,6 @@
         }
       });
 
-
-
       // Se evalua a sus hermano
       hermanosBtnElemento.forEach((itemHTML) => {
         const idTrabajo = itemHTML.getAttribute('data-idtrabajo');
@@ -1991,7 +1989,7 @@
           itemHTMLPerteneceElementoTrabajo ,
           max,
           min,
-          "condicion" : cantidadSeleccionados >= max,
+          "condicion" : cantidadSeleccionados >= max
         });
 
         if((max == "1" && min == "1")){
@@ -2020,6 +2018,7 @@
           itemHTML.querySelector('.pmp-item-simple-escoger').innerHTML = tipoBoton == 'checkbox' ? this.iconos.iconCheckBoxOff : this.iconos.iconEstadoOff;
         }
       });
+    }
 
       // Hay que actualizar el valor de los botones inferiores
     }
