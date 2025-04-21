@@ -1827,11 +1827,6 @@
       const dataLocalStorage = JSON.parse(localStorage.getItem('phpp-productoData'));
       let elementoTrabajo = null;
 
-      console.log('testeo :', {
-        idTrabajo: idTrabajo,
-        idShopify: idShopify,
-        codigo: codigo,
-      });
 
       dataLocalStorage.productoParaEstructuraTrabajo.some((objetoDetalle)=>{
         if (objetoDetalle.codigo == codigo) {
@@ -1844,6 +1839,14 @@
           });
         }
         return false;
+      });
+
+      
+      console.log('testeo :', {
+        idTrabajo: idTrabajo,
+        idShopify: idShopify,
+        codigo: codigo,
+        elementoTrabajo: elementoTrabajo,
       });
 
       // dataLocalStorage.productoParaEstructuraTrabajo.forEach((objetoDetalle) => {
