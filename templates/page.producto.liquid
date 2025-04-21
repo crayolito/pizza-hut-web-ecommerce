@@ -1241,7 +1241,7 @@
                 data-idshopify="${producto.idShopify}"
                 id="pmp-item-subRama" class="pmp-item-complejo seleccionado">
                   <div class="pmp-item-complejo-imagen ">
-                  ${ producto.imagen == "" ?
+                  ${ producto.imagen == "" || producto.imagen == undefined || producto.imagen == null?
                      `<img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="${tituloTrabajo}" width="100%" height="100%">` :
                     `<img src="${producto.imagen}" alt="${tituloTrabajo}" width="100%" height="100%">`}
                   </div>
