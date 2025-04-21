@@ -114,7 +114,6 @@ class AuxiliaresGlobal {
   static mensajeAlerta(){}
   static mensajeInformacion(){}
 
-
   static obtenerCarritoShopify() {
     return new Promise((resolve, reject) => {
       fetch('/cart.js')
@@ -146,64 +145,79 @@ class AuxiliaresGlobal {
 class CantidadInput extends HTMLElement {
   constructor() {
     super();
-    this.iconos
     
-    this.cantidadEtiqueta = parseInt(this.querySelector('p').textContent) || 0;
     this.btn = this.querySelectorAll('button');
     this.contenedorGeneral = this.querySelector('div');
+    this.parrafo = this.querySelector('p');
     this.baseTrabajo = null;
     this.min = null;
     this.max = null;
   }
 
+  // Propiedad calculada que siempre lee el valor actual del DOM
+  get cantidadEtiqueta() {
+    return parseInt(this.parrafo.textContent) || 0;
+  }
+  
+  // Setter que actualiza tanto la variable como el DOM
+  set cantidadEtiqueta(valor) {
+    this.parrafo.textContent = valor;
+    this.actualizarBotones();
+  }
+  
   connectedCallback() {
     this.inicializarElemento();
+    this.actualizarBotones(); // Inicializar estado de botones
+    
     this.btn.forEach((boton) => {
-      boton.addEventListener('click',this.manejarAccionBoton.bind(this,boton));
+      boton.addEventListener('click', this.manejarAccionBoton.bind(this, boton));
     });
   }
-
-  inicializarElemento(){
+  
+  inicializarElemento() {
     this.baseTrabajo = this.contenedorGeneral.getAttribute('origen-trabajo') || 'no-definido';
-    this.min = this.contenedorGeneral.getAttribute('min') || 0;
-    this.max = this.contenedorGeneral.getAttribute('max') || 100;
+    this.min = parseInt(this.contenedorGeneral.getAttribute('min')) || 0;
+    this.max = parseInt(this.contenedorGeneral.getAttribute('max')) || 100;
     this.idProducto = this.contenedorGeneral.getAttribute('id-producto') || 'no-definido';
-    this.hadle = this.contenedorGeneral.getAttribute('handle') || 'no-definido';
-
+    this.handle = this.contenedorGeneral.getAttribute('handle') || 'no-definido';
+    
     console.log('Base de trabajo:', this.baseTrabajo);
+    
     if(this.baseTrabajo != 'carrito'){
       this.btn[1].classList.remove('elemento-oculto');
-    }else{
-      this.btn[0].classList.remove('elemento-oculto');
     }
-   }
-
-   manejarAccionBoton(boton){
-    const accion = boton.getAttribute('accion');
-
-    if(accion == 'incrementar'){
-      if (this.cantidadEtiqueta >= this.max) {
-        return;
-      }
-      this.cantidadEtiqueta++;
-      this.querySelector('p').textContent = this.cantidadEtiqueta;
-      if (this.cantidadEtiqueta >= 0  && this.baseTrabajo == 'carrito') {
-        this.btn[0].classList.add('elemento-oculto');
-        this.btn[1].classList.remove('elemento-oculto');
-      }    
-    }
-
-    if(accion == 'decrementar'){
-      if (this.cantidadEtiqueta <= this.min) {
-        return;
-      }
-      this.cantidadEtiqueta--;
-      this.querySelector('p').textContent = this.cantidadEtiqueta;
-      if (this.cantidadEtiqueta <= 0  && this.baseTrabajo == 'carrito') {
+  }
+   
+  actualizarBotones() {
+    // Actualizar visibilidad de botones según el valor actual
+    const cantidad = this.cantidadEtiqueta;
+    
+    if (this.baseTrabajo == 'carrito') {
+      if (cantidad <= 0) {
         this.btn[0].classList.remove('elemento-oculto');
         this.btn[1].classList.add('elemento-oculto');
+      } else {
+        this.btn[0].classList.add('elemento-oculto');
+        this.btn[1].classList.remove('elemento-oculto');
       }
     }
+  }
+  
+  manejarAccionBoton(boton) {
+    const accion = boton.getAttribute('accion');
+    let nuevaCantidad = this.cantidadEtiqueta;
+    
+    if (accion == 'incrementar' && nuevaCantidad < this.max) {
+      nuevaCantidad++;
+      this.parrafo.textContent = nuevaCantidad;
+    }
+    
+    if (accion == 'decrementar' && nuevaCantidad > this.min) {
+      nuevaCantidad--;
+      this.parrafo.textContent = nuevaCantidad;
+    }
+    
+    this.actualizarBotones();
   }
 }
 
