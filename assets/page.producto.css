@@ -422,7 +422,7 @@
   height: 100%;
 }
 
-.pmp-item-complejo-info-detalle p:first-child {
+.pmp-item-complejo-info-detalle > p:first-child {
   text-transform: uppercase;
   font-weight: 600;
   display: -webkit-box;
