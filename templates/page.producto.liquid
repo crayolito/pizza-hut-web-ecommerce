@@ -1917,7 +1917,19 @@
     }
 
     procesoItemSubRama(btnElemento){  
+      var cantidadSeleccionados = contenedorPadreSeccion.querySelectorAll('.seleccionado').length;
       const estaSeleccionado = btnElemento.classList.contains('seleccionado');
+      if(estaSeleccionado){
+        // Se procede a seleccionar el elemento
+        btnElemento.classList.remove('seleccionado');
+        btnElemento.querySelector('.pmp-item-simple-escoger').innerHTML = tipoBoton == 'checkbox' ? this.iconos.iconCheckBoxOff : this.iconos.iconEstadoOff;
+        cantidadSeleccionados--;
+      }else{
+        // Se procede a seleccionar el elemento
+        btnElemento.classList.add('seleccionado');
+        btnElemento.querySelector('.pmp-item-simple-escoger').innerHTML = tipoBoton == 'checkbox' ? this.iconos.iconCheckBoxOn : this.iconos.iconEstadoOn;
+        cantidadSeleccionados++;
+      }
 
       // Busco al contenedor padre de la seccion con id="pmph-seleccion-subRama"
       // Obtengo su informacion max min codigo (tipo boton)
@@ -1929,7 +1941,6 @@
       const codigo = contenedorPadreSeccion.getAttribute('data-codigo');
       const tipoBoton = contenedorPadreSeccion.getAttribute('tipo-boton');
 
-      var cantidadSeleccionados = contenedorPadreSeccion.querySelectorAll('.seleccionado').length;
       if (cantidadSeleccionados >= max) return;
 
       // El btnElemento tiene un atributo data-idtrabajo y data-idshopify
@@ -1945,17 +1956,7 @@
         }
       });
 
-      if(estaSeleccionado){
-        // Se procede a seleccionar el elemento
-        btnElemento.classList.remove('seleccionado');
-        btnElemento.querySelector('.pmp-item-simple-escoger').innerHTML = tipoBoton == 'checkbox' ? this.iconos.iconCheckBoxOff : this.iconos.iconEstadoOff;
-        cantidadSeleccionados--;
-      }else{
-        // Se procede a seleccionar el elemento
-        btnElemento.classList.add('seleccionado');
-        btnElemento.querySelector('.pmp-item-simple-escoger').innerHTML = tipoBoton == 'checkbox' ? this.iconos.iconCheckBoxOn : this.iconos.iconEstadoOn;
-        cantidadSeleccionados++;
-      }
+
 
       // Se evalua a sus hermanos
       hermanosBtnElemento.forEach((itemHTML) => {
