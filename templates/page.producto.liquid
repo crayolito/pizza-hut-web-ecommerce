@@ -1899,14 +1899,17 @@
         });
       });
 
-      // Actulizar el icono y la clase del boton a (seleccionado o no seleecionado)
-      if (estaSeleccionado) {
-        btnElemento.classList.remove('seleccionado');
-        btnElemento.querySelector('.pmp-item-simple-escoger').innerHTML = this.iconos.iconEstadoOff;
-      } else {
-        btnElemento.classList.add('seleccionado');
-        btnElemento.querySelector('.pmp-item-simple-escoger').innerHTML = this.iconos.iconEstadoOn;
-      }
+      // Desactivar los botones y cambiar el icono excepto al btnElemento(activarlo y seleccionarlo)
+      this.btnsProductosRamaPrincipales.forEach((itemHTML) => {
+        if (itemHTML !== btnElemento) {
+          itemHTML.classList.remove('seleccionado');
+          itemHTML.querySelector('.pmp-item-simple-escoger').innerHTML = this.iconos.iconEstadoOff;
+        }else{
+          itemHTML.classList.remove('desactivado');
+          itemHTML.classList.add('seleccionado');
+          itemHTML.querySelector('.pmp-item-simple-escoger').innerHTML = this.iconos.iconEstadoOn;
+        }
+      });
 
     }
 
