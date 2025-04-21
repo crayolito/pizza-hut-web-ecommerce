@@ -921,10 +921,10 @@
       
       this.modalProductoExtras = this.querySelector('#pmph-modal-productos-extras');
       this.contenedorItemsComplejos = this.querySelector('#pmph-seleccion-pizza-mitadymitad');
-      this.extrasContenedorN1 = this.querySelector('#phpm-extras-especiales-n1');
+      {% comment %} this.extrasContenedorN1 = this.querySelector('#phpm-extras-especiales-n1');
       this.extrasContenedorN2 = this.querySelector('#phpm-extras-especiales-n2');
       this.btnAnadirExtrasN1 = this.querySelector('#phpm-btn-anadir-extras-n1');
-      this.btnAnadirExtrasN2 = this.querySelector('#phpm-btn-anadir-extras-n2');
+      this.btnAnadirExtrasN2 = this.querySelector('#phpm-btn-anadir-extras-n2'); {% endcomment %}
     }
 
     connectedCallback() {
@@ -1744,7 +1744,7 @@
     }
 
     procesarProductoModal() {
-      if (this.tipoProceso == 'extras') {
+      {% comment %} if (this.tipoProceso == 'extras') {
         if (this.estadoTrabajoExtras == 'n1') {
           this.extrasContenedorN1.style.display = 'flex';
           this.extrasVacioContenedorN1.style.display = 'none';
@@ -1784,7 +1784,7 @@
           this.contenedorImgProductoComplejoDer.classList.add('seleccionado');
         }
       }
-      this.modalProductoExtras.style.display = 'none';
+      this.modalProductoExtras.style.display = 'none'; {% endcomment %}
     }
 
     procesoItemExtrasAbrirModal(tipoExtras) {
