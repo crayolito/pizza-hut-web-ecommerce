@@ -1121,8 +1121,8 @@
           <h3>${infoRamaPrincipal.titulo}</h3>
         `;
         infoRamaPrincipal.productos.forEach((producto) => {
-          const {importante , mensaje} = this.dividirTitulo(producto.titulo);
-
+          const precio = parseInt(producto.precio) == 0 ? '' : producto.precio;
+          const {importante , mensaje} = this.dividirTitulo(producto.titulo+precio);
           if (auxProductoPreSeleccionado.titulo == producto.titulo) {
             detalleSubProductos += `
             <button 
@@ -1184,21 +1184,25 @@
           `;
           infoSubRama.productos.forEach((producto,index) => {
             const tituloTrabajo = producto.titulo.startsWith("Extra ") ? producto.titulo.substring(6) : producto.titulo;
-
+            const sePondraNombre = infoSubRama.titulo == "Masas y Bordes";
             // Verifica si el producto se encuentra dentro del categoria de ramas de la (Personal)
             if(subProductoTrabajo.some((item) => item.idShopify === producto.idShopify)){
+
               // Si se encuentra todos estara activado
               if(banderaPrimero == false && infoSubRama.min == "1"){
                 // Se auto preseleccionara el primer elemento
                 detalleSubProductos += `
-                <button id="pmp-item-subRama" class="pmp-item-complejo seleccionado ">
-                  <div class="pmp-item-complejo-imagen">
-                    <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="${tituloTrabajo}" width="100%" height="100%">
+                <button id="pmp-item-subRama" class="pmp-item-complejo seleccionado">
+                  <div class="pmp-item-complejo-imagen ">
+                    <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="${tituloTrabajo}"1" width="100%" height="100%">
                   </div>
                   <div class="pmp-item-complejo-info">
-                    <p>${tituloTrabajo}</p>
+                    <div class="pmp-item-complejo-info-detalle ">
+                      <p>${tituloTrabajo}</p>
+                      ${sePondraNombre ? '' : `<p>${producto.precio}</p>`}
+                    </div>
                     <div class="pmp-item-simple-escoger">
-                       ${bptb ? this.iconos.iconCheckBoxOn : this.iconos.iconEstadoOn}
+                      ${bptb ? this.iconos.iconCheckBoxOn : this.iconos.iconEstadoOn}
                     </div>
                   </div>
                 </button>
@@ -1207,14 +1211,18 @@
               }else{
                 // Elemento activado pero no seleccionado
                 detalleSubProductos += `
-                <button id="pmp-item-subRama" class="pmp-item-complejo  ">
-                  <div class="pmp-item-complejo-imagen">
-                    <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="${tituloTrabajo}" width="100%" height="100%">
+
+                <button id="pmp-item-subRama" class="pmp-item-complejo ">
+                  <div class="pmp-item-complejo-imagen ">
+                    <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="${tituloTrabajo}"1" width="100%" height="100%">
                   </div>
                   <div class="pmp-item-complejo-info">
-                    <p>${tituloTrabajo}</p>
+                    <div class="pmp-item-complejo-info-detalle ">
+                      <p>${tituloTrabajo}</p>
+                      ${sePondraNombre ? '' : `<p>${producto.precio}</p>`}
+                    </div>
                     <div class="pmp-item-simple-escoger">
-                       ${bptb ? this.iconos.iconCheckBoxOff : this.iconos.iconEstadoOff}
+                      ${bptb ? this.iconos.iconCheckBoxOff : this.iconos.iconEstadoOff}
                     </div>
                   </div>
                 </button>
@@ -1223,17 +1231,20 @@
             }else{
               // Aqui el producto no se encuentra se lo desactivaba
               detalleSubProductos += `
-              <button id="pmp-item-subRama" class="pmp-item-complejo desactivado ">
-                <div class="pmp-item-complejo-imagen">
-                  <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="${tituloTrabajo}" width="100%" height="100%">
-                </div>
-                <div class="pmp-item-complejo-info">
-                  <p>${tituloTrabajo}</p>
-                  <div class="pmp-item-simple-escoger">
-                    ${bptb ? this.iconos.iconCheckBoxOff : this.iconos.iconEstadoOff}
+                <button id="pmp-item-subRama" class="pmp-item-complejo desactivado">
+                  <div class="pmp-item-complejo-imagen ">
+                    <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="${tituloTrabajo}"1" width="100%" height="100%">
                   </div>
-                </div>
-              </button>
+                  <div class="pmp-item-complejo-info">
+                    <div class="pmp-item-complejo-info-detalle ">
+                      <p>${tituloTrabajo}</p>
+                      ${sePondraNombre ? '' : `<p>${producto.precio}</p>`}
+                    </div>
+                    <div class="pmp-item-simple-escoger">
+                      ${bptb ? this.iconos.iconCheckBoxOff : this.iconos.iconEstadoOff}
+                    </div>
+                  </div>
+                </button>
               `;
             }
           });
