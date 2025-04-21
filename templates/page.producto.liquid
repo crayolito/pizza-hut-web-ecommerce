@@ -1804,9 +1804,9 @@
       const estaSeleccionado = btnElemento.classList.contains('seleccionado');
       if (estaSeleccionado) return;
 
-      // Ir a buscar al padre de esa seccion con id="pmph-seleccion-subRama"
+      // Ir a buscar al padre de esa seccion con id="pmph-seleccion-rama-principal"
       // Despues obtener 4 valores max - min - codigo - tipo boton
-      const contenedorPadre = btnElemento.closest('#pmph-seleccion-subRama');
+      const contenedorPadre = btnElemento.closest('#pmph-seleccion-rama-principal');
       const max = contenedorPadre.getAttribute('data-max');
       const min = contenedorPadre.getAttribute('data-min');
       const codigo = contenedorPadre.getAttribute('data-codigo');
