@@ -1889,10 +1889,13 @@
               itemHTML.classList.remove('desactivado');
               itemHTML.classList.add('seleccionado');
               itemHTML.querySelector('.pmp-item-simple-escoger').innerHTML = tipoBoton == 'checkbox' ? this.iconos.iconCheckBoxOn : this.iconos.iconEstadoOn;
+              itemHTML.setAttribute('data-idtrabajo', productoTrabajo.idTrabajo);
               seleccionaPrimero = true;
             }else{
               itemHTML.classList.remove('desactivado');
               itemHTML.classList.remove('seleccionado');
+              itemHTML.setAttribute('data-idtrabajo', productoTrabajo.idTrabajo);
+
             }  
             if(itemHTML.querySelectorAll('p').length == 2){
               itemHTML.querySelectorAll('p')[1].innerHTML = `+ ${productoTrabajo.precio} Bs`;
@@ -1912,6 +1915,8 @@
           itemHTML.querySelector('.pmp-item-simple-escoger').innerHTML = this.iconos.iconEstadoOn;
         }
       });
+
+      // Hay que actualizar el valor de los botones inferiores
 
     }
 
