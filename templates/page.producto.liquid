@@ -1925,7 +1925,7 @@
 
       const cantidadSeleccionados = contenedorPadreSeccion.querySelectorAll('.seleccionado').length;
       // Si estamos al mínimo, no permitir deseleccionar
-      if ( cantidadSeleccionado <= min) return;
+      if ( cantidadSeleccionados <= min) return;
 
       const contenedorPadreRamaPrincipal = this.querySelector('#pmph-seleccion-rama-principal');
       const codigoRamaPrincipal = contenedorPadreRamaPrincipal.getAttribute('data-codigo');
