@@ -1917,9 +1917,13 @@
     }
 
     procesoItemSubRama(btnElemento){
+      const cantidadSeleccionados = contenedorPadreSeccion.querySelectorAll('.seleccionado').length;
+      if (cantidadSeleccionados >= max) return;
+
       // Busco al contenedor padre de la seccion con id="pmph-seleccion-subRama"
       // Obtengo su informacion max min codigo (tipo boton)
       const contenedorPadreSeccion = btnElemento.closest('#pmph-seleccion-subRama');
+      const hermanosBtnElemento = contenedorPadreSeccion.querySelectorAll('#pmp-item-subRama');
       const max = contenedorPadreSeccion.getAttribute('data-max');
       const min = contenedorPadreSeccion.getAttribute('data-min');
       const codigo = contenedorPadreSeccion.getAttribute('data-codigo');
@@ -1929,10 +1933,10 @@
       const idTrabajo = btnElemento.getAttribute('data-idtrabajo');
       const idShopify = btnElemento.getAttribute('data-idshopify');
 
-      const cantidadSeleccionados = contenedorPadreSeccion.querySelectorAll('.seleccionado').length;
+      {% comment %} const cantidadSeleccionados = contenedorPadreSeccion.querySelectorAll('.seleccionado').length; {% endcomment %}
       // Si estamos al mínimo, no permitir deseleccionarr
-      {% comment %} if ( cantidadSeleccionados == min) return; {% endcomment %}
 
+      // Son los elementos subRama sus productos del elemento seleccionado actual que es de una rama principal
       let elementosTrabajo = null;
 
       this.productoSeleccionadoRamaPrincipal.ramas.forEach((objetoDetalle)=>{
@@ -1941,8 +1945,34 @@
         }
       });
 
-      console.log('Hola Mundo Testeo',elementosTrabajo);
+      // Se procede a seleccionar el elemento
+      btnElemento.classList.toggle('seleccionado');
+      btnElemento.querySelector('.pmp-item-simple-escoger').innerHTML = tipoBoton == 'checkbox' ? this.iconos.iconCheckBoxOn : this.iconos.iconEstadoOn;
+      cantidadSeleccionados++;
 
+      // Se evalua a sus hermanos
+      hermanosBtnElemento.forEach((itemHTML) => {
+        const idTrabajo = itemHTML.getAttribute('data-idtrabajo');
+        const idShopify = itemHTML.getAttribute('data-idshopify');
+        const estaSeleccionado = itemHTML.classList.contains('seleccionado');
+        const estaDesactivado = itemHTML.classList.contains('desactivado');
+        const itemHTMLPerteneceElementoTrabajo = elementosTrabajo.find((producto) => producto.idShopify == idShopify);
+
+        if(itemHTMLPerteneceElementoTrabajo){
+          if(seleccionadoActual >= max){
+            itemHTML.classList.add('desactivado');
+            itemHTML.querySelector('.pmp-item-simple-escoger').innerHTML = tipoBoton == 'checkbox' ? this.iconos.iconCheckBoxOff : this.iconos.iconEstadoOff;
+          }else {
+            itemHTML.classList.remove('desactivado');
+            itemHTML.classList.remove('seleccionado');
+            itemHTML.querySelector('.pmp-item-simple-escoger').innerHTML = tipoBoton == 'checkbox' ? this.iconos.iconCheckBoxOff : this.iconos.iconEstadoOff;
+          }
+        }else{
+          itemHTML.classList.remove('seleccionado');
+          itemHTML.classList.add('desactivado');
+          itemHTML.querySelector('.pmp-item-simple-escoger').innerHTML = tipoBoton == 'checkbox' ? this.iconos.iconCheckBoxOff : this.iconos.iconEstadoOff;
+        }
+      });
 
       // Hay que actualizar el valor de los botones inferiores
     }
