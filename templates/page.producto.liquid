@@ -1989,7 +1989,6 @@
           itemHTMLPerteneceElementoTrabajo ,
           max,
           min,
-          "condicion" : cantidadSeleccionados >= max
         });
 
         if((max == "1" && min == "1")){
@@ -2001,21 +2000,21 @@
             itemHTML.classList.add('desactivado');
             itemHTML.querySelector('.pmp-item-simple-escoger').innerHTML = tipoBoton == 'checkbox' ? this.iconos.iconCheckBoxOff : this.iconos.iconEstadoOff;
           }
-        }
-
-        if(itemHTMLPerteneceElementoTrabajo){
-          if(cantidadSeleccionados >= max){
+        }else {
+          if(itemHTMLPerteneceElementoTrabajo){
+            if(cantidadSeleccionados >= max){
+              itemHTML.classList.add('desactivado');
+              itemHTML.querySelector('.pmp-item-simple-escoger').innerHTML = tipoBoton == 'checkbox' ? this.iconos.iconCheckBoxOff : this.iconos.iconEstadoOff;
+            }else {
+              itemHTML.classList.remove('desactivado');
+              itemHTML.classList.remove('seleccionado');
+              itemHTML.querySelector('.pmp-item-simple-escoger').innerHTML = tipoBoton == 'checkbox' ? this.iconos.iconCheckBoxOff : this.iconos.iconEstadoOff;
+            }
+          }else{
+            itemHTML.classList.remove('seleccionado');
             itemHTML.classList.add('desactivado');
             itemHTML.querySelector('.pmp-item-simple-escoger').innerHTML = tipoBoton == 'checkbox' ? this.iconos.iconCheckBoxOff : this.iconos.iconEstadoOff;
-          }else {
-            itemHTML.classList.remove('desactivado');
-            itemHTML.classList.remove('seleccionado');
-            itemHTML.querySelector('.pmp-item-simple-escoger').innerHTML = tipoBoton == 'checkbox' ? this.iconos.iconCheckBoxOff : this.iconos.iconEstadoOff;
           }
-        }else{
-          itemHTML.classList.remove('seleccionado');
-          itemHTML.classList.add('desactivado');
-          itemHTML.querySelector('.pmp-item-simple-escoger').innerHTML = tipoBoton == 'checkbox' ? this.iconos.iconCheckBoxOff : this.iconos.iconEstadoOff;
         }
       });
     }
