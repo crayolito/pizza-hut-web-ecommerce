@@ -1584,7 +1584,7 @@
             handle: producto.handle,
             descripcion: producto.description,
             imagen: imagenURL,
-            stockTotal: producto.stockGeneral,
+            stockTotal: stockGeneral,
             sucursales: sucursales,
             estructura: producto.metafield && producto.metafield.value ? JSON.parse(producto.metafield.value) : "",
           };
