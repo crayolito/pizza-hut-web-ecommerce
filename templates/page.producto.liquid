@@ -295,26 +295,23 @@
             </button>
           </div>
         </div>
-        <div id="pmph-seleccion-extras-n1" class="pmph-seleccion-basico">
+        <div id="pmph-seleccion-extras-postres" class="pmph-seleccion-basico">
           <div class="pmph-extras-header">
             <h3>Postres</h3>
-            <button
-              id="phpm-btn-anadir-extras-n1"
-              class="pmph-extras-button icon-color-primary"
-            >
+            <button id="phpm-btn-anadir-extras-postres" class="pmph-extras-button icon-color-primary">
               {% render 'icon-mas' %}
               <p>Añadir</p>
             </button>
           </div>
           <!-- CUANDO NO HAY SELECCIONADO UN EXTRA -->
-          <div id="phpm-vacio-extras-especiales-n1" class="pmph-extras">
+          <div id="phpm-vacio-extras-especiales-postres" class="pmph-extras">
             <p>SELECcIONAR POSTRE</p>
             <button class="pmph-extras-button icon-color-tertiary ">
               {% render 'icon-flecha-izquierda' %}
             </button>
           </div>
           <!-- CUANDO HAY SELECCIONADO UN EXTRA -->
-          <div id="phpm-extras-especiales-n1" class="pmp-items-extras-seleccionados">
+          <div id="phpm-extras-especiales-postres" class="pmp-items-extras-seleccionados">
             <div id="pmp-item-extra" class="pmp-item-extra-seleccionado">
               <div class="pmp-item-extra-imagen">
                 <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
@@ -347,11 +344,11 @@
             </div>
           </div>
         </div>
-        <div id="pmph-seleccion-extras-n2" class="pmph-seleccion-basico">
+        <div id="pmph-seleccion-extras-gaseosasycervezas" class="pmph-seleccion-basico">
           <div class="pmph-extras-header">
             <h3>Gaseosas y cervezas</h3>
             <button
-              id="phpm-btn-anadir-extras-n2"
+              id="phpm-btn-anadir-extras-gaseosasycervezas"
               class="pmph-extras-button icon-color-primary"
             >
               {% render 'icon-mas' %}
@@ -359,14 +356,14 @@
             </button>
           </div>
           <!-- CUANDO NO HAY SELECCIONADO UN EXTRA -->
-          <div id="phpm-vacio-extras-especiales-n2" class="pmph-extras">
+          <div id="phpm-vacio-extras-especiales-gaseosasycervezas" class="pmph-extras">
             <p>SELECcIONAR</p>
             <button class="pmph-extras-button icon-color-tertiary ">
               {% render 'icon-flecha-izquierda' %}
             </button>
           </div>
           <!-- CUANDO HAY SELECCIONADO UN EXTRA -->
-          <div id="phpm-extras-especiales-n2" class="pmp-items-extras-seleccionados">
+          <div id="phpm-extras-especiales-gaseosasycervezas" class="pmp-items-extras-seleccionados">
             <div id="pmp-item-extra" class="pmp-item-extra-seleccionado">
               <div class="pmp-item-extra-imagen">
                 <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Pizza 1" width="100%" height="100%">
@@ -911,7 +908,7 @@
       this.extrasVacioContenedorN1 = this.querySelector('#phpm-vacio-extras-especiales-n1');
       this.extrasVacioContenedorN2 = this.querySelector('#phpm-vacio-extras-especiales-n2');
 
-      this.btnModalSalir = this.querySelector('#phppm-btn-salir');
+      
       this.btnModalGuardar = this.querySelector('#phppm-btn-guardar');
       this.btnsElegirProductoComplejo = this.querySelectorAll('#phpm--modal-btn-elegir');
       this.tituloModalExtras = this.querySelector('.phpp-modal-extras-titulo');
@@ -973,13 +970,24 @@
 
     declararComponentesDespuesCreacion(){
       // REFERENCIAS ELEMENTOS
+      this.estadoVacioContenedorPostres = this.querySelector('#phpm-vacio-extras-especiales-postres');
+      this.estadoItemsContenedorPostres = this.querySelector('#phpm-extras-especiales-postres');
+      this.anadirMasContenedorPostres = this.querySelector('#phpm-btn-anadir-extras-postres');
+
+      this.estadoVacioContenedorGaseosasCerversas = this.querySelector('#phpm-vacio-extras-especiales-gaseosasycervezas');
+      this.estadoItemsContenedorGaseosasCerversas = this.querySelector('#phpm-extras-especiales-gaseosasycervezas');
+      this.anadirMasContenedorGaseosasCerversas = this.querySelector('#phpm-btn-anadir-extras-gaseosasycervezas');
+
+      this.btnSeccionModalSalir = this.querySelector('#phppm-btn-salir');
+      this.btnSeccionModalGuardar = this.querySelector('#phppm-btn-guardar');
+
       this.seccionProductosRamaPrincipales = this.querySelectorAll('#pmph-seleccion-rama-principal');
       this.seccionProductosSubRama = this.querySelectorAll('#pmph-seleccion-subRama');
       this.btnsProductosRamaPrincipales = this.querySelectorAll('#pmp-item-rama-principal');
       this.btnsProductosSubRama = this.querySelectorAll('#pmp-item-subRama');
 
-      this.seccionExtrasPostres = this.querySelector('#phpp-modal-productos-postres');
-      this.seccionExtrasGaseosasCerversas = this.querySelector('#phpp-modal-productos-gaseosasycervezas');
+      this.seccionModalExtrasPostres = this.querySelector('#phpp-modal-productos-postres');
+      this.seccionModalExtrasGaseosasCerversas = this.querySelector('#phpp-modal-productos-gaseosasycervezas');
 
       // INICIALIZAR EVENTOS
       this.btnsProductosRamaPrincipales.forEach((btn) => {
@@ -987,11 +995,14 @@
       });
       this.btnsProductosSubRama.forEach((btn) => {
         btn.addEventListener('click', this.procesoItemSubRama.bind(this, btn));
-      }); 
-      
+      });
+      this.estadoVacioContenedorPostres.addEventListener('click', this.abrirSeccionModalExtras.bind(this, 'postres')); 
+      this.estadoVacioContenedorGaseosasCerversas.addEventListener('click', this.abrirSeccionModalExtras.bind(this, 'gaseosasycervezas'));
+      this.btnSeccionModalSalir.addEventListener('click', this.cerrarSeccionModalExtras.bind(this));
+      this.btnSeccionModalGuardar.addEventListener('click', this.procesarSeccionModal.bind(this));
       // INICIALIZAR ELEMENTOS Y PROCESOS CLAVES
-      this.seccionExtrasPostres.style.display = 'none';
-      this.seccionExtrasGaseosasCerversas.style.display = 'none';
+      this.seccionModalExtrasPostres.style.display = 'none';
+      this.seccionModalExtrasGaseosasCerversas.style.display = 'none';
     }
 
     dividirTitulo(titulo) {
@@ -1787,7 +1798,7 @@
 
     redireccionHazUnPedido() {
       window.location.href = '/pages/carrito';
-     }
+    }
 
     agregarCarrito() {
       const perra = AuxiliaresGlobal.sucursal;
@@ -2019,7 +2030,38 @@
       });
     }
 
-      // Hay que actualizar el valor de los botones inferiores
+    abrirSeccionModalExtras(tipoProductos){
+      if(tipoProductos == 'postres'){
+        this.seccionModalExtrasPostres.style.display = 'flex';
+        this.seccionModalExtrasGaseosasCerversas.style.display = 'none';
+        this.modalProductoExtras.style.display = 'flex';
+        this.cualSeccionExtrasEs = 'postres';
+      }
+      if(tipoProductos == 'gaseosasycervezas'){
+        this.seccionModalExtrasPostres.style.display = 'none';
+        this.seccionModalExtrasGaseosasCerversas.style.display = 'flex';
+        this.modalProductoExtras.style.display = 'flex';
+        this.cualSeccionExtrasEs = 'gaseosasycervezas';
+      }
+    }
+
+    cerrarSeccionModalExtras(){
+      this.seccionModalExtrasPostres.style.display = 'none';
+      this.seccionModalExtrasGaseosasCerversas.style.display = 'none';
+      this.modalProductoExtras.style.display = 'none';
+    }
+
+    procesarSeccionModal(){
+      this.cerrarSeccionModalExtras();
+
+      if(this.cualSeccionExtrasEs == 'postres'){
+      }
+
+      if(this.cualSeccionExtrasEs == 'gaseosasycervezas'){
+      }
+    }
+
+    // Hay que actualizar el valor de los botones inferiores
     }
   
 
