@@ -1930,9 +1930,14 @@
       const estaSeleccionado = btnElemento.classList.contains('seleccionado');
       // Aqui la cantidad seleccionados es mayor o igual al maximo permitido y el elemento no esta seleccionado 
       // entonces no se puede seleccionar
-      if(max == "1" && min == "1" && estaSeleccionado)return;
+      if(max == "1" && min == "1"){
+        if(estaSeleccionado){
+          return;
+        }
+      }else{
+        if (cantidadSeleccionados >= max && !estaSeleccionado) return;
+      }
       
-      if (cantidadSeleccionados >= max && !estaSeleccionado) return;
       if(estaSeleccionado){
         // Se procede a seleccionar el elemento
         btnElemento.classList.remove('seleccionado');
