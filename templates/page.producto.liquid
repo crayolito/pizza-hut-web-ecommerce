@@ -1975,6 +1975,8 @@
         const estaDesactivado = itemHTML.classList.contains('desactivado');
         const itemHTMLPerteneceElementoTrabajo = elementosTrabajo.find((producto) => producto.idShopify == idShopify);
 
+        if(itemHTML == btnElemento) return;
+
         if(itemHTMLPerteneceElementoTrabajo){
           if(cantidadSeleccionados >= max){
             itemHTML.classList.add('desactivado');
