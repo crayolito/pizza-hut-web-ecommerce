@@ -1917,9 +1917,6 @@
     }
 
     procesoItemSubRama(btnElemento){
-      const cantidadSeleccionados = contenedorPadreSeccion.querySelectorAll('.seleccionado').length;
-      if (cantidadSeleccionados >= max) return;
-
       // Busco al contenedor padre de la seccion con id="pmph-seleccion-subRama"
       // Obtengo su informacion max min codigo (tipo boton)
       const contenedorPadreSeccion = btnElemento.closest('#pmph-seleccion-subRama');
@@ -1929,12 +1926,12 @@
       const codigo = contenedorPadreSeccion.getAttribute('data-codigo');
       const tipoBoton = contenedorPadreSeccion.getAttribute('tipo-boton');
 
+      const cantidadSeleccionados = contenedorPadreSeccion.querySelectorAll('.seleccionado').length;
+      if (cantidadSeleccionados >= max) return;
+
       // El btnElemento tiene un atributo data-idtrabajo y data-idshopify
       const idTrabajo = btnElemento.getAttribute('data-idtrabajo');
       const idShopify = btnElemento.getAttribute('data-idshopify');
-
-      {% comment %} const cantidadSeleccionados = contenedorPadreSeccion.querySelectorAll('.seleccionado').length; {% endcomment %}
-      // Si estamos al mínimo, no permitir deseleccionarr
 
       // Son los elementos subRama sus productos del elemento seleccionado actual que es de una rama principal
       let elementosTrabajo = null;
@@ -1946,7 +1943,7 @@
       });
 
       // Se procede a seleccionar el elemento
-      btnElemento.classList.toggle('seleccionado');
+      btnElemento.classList.add('seleccionado');
       btnElemento.querySelector('.pmp-item-simple-escoger').innerHTML = tipoBoton == 'checkbox' ? this.iconos.iconCheckBoxOn : this.iconos.iconEstadoOn;
       cantidadSeleccionados++;
 
@@ -1959,7 +1956,7 @@
         const itemHTMLPerteneceElementoTrabajo = elementosTrabajo.find((producto) => producto.idShopify == idShopify);
 
         if(itemHTMLPerteneceElementoTrabajo){
-          if(seleccionadoActual >= max){
+          if(cantidadSeleccionados >= max){
             itemHTML.classList.add('desactivado');
             itemHTML.querySelector('.pmp-item-simple-escoger').innerHTML = tipoBoton == 'checkbox' ? this.iconos.iconCheckBoxOff : this.iconos.iconEstadoOff;
           }else {
