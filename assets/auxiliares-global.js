@@ -1,15 +1,5 @@
 class AuxiliaresGlobal {
-  static #sucursal = (()=>{
-    return  localStorage.getItem('sucursal-informacion') || '';
-  })();
 
-  static get sucursal() {
-    return this.#sucursal;
-  }
-
-  static set sucursal(valor) {
-    this.#sucursal = valor;
-  }
 
   static agregarCarrito(valor) {
     // Verificar que el valor sea un número válido mayor a 0
@@ -123,6 +113,33 @@ class AuxiliaresGlobal {
   static mensajeExito(){}
   static mensajeAlerta(){}
   static mensajeInformacion(){}
+
+
+  static obtenerCarritoShopify() {
+    return new Promise((resolve, reject) => {
+      fetch('/cart.js')
+        .then(response => response.json())
+        .then(cart => {
+          // Mostrar en consola la información completa del carrito
+          console.log('Información completa del carrito Shopify:', cart);
+          
+          // Crear un objeto con la información solicitada
+          const infoCarrito = {
+            informacionCompleta: cart, // Todo el objeto original del carrito
+            cantidadTotal: cart.item_count // Solo la cantidad total de productos
+          };
+          
+          // Mostrar en consola específicamente la cantidad total
+          console.log(`Cantidad total de productos: ${infoCarrito.cantidadTotal}`);
+          
+          resolve(infoCarrito);
+        })
+        .catch(error => {
+          console.error('Error al obtener el carrito de Shopify:', error);
+          reject(error);
+        });
+    });
+  }
 
 }
 
