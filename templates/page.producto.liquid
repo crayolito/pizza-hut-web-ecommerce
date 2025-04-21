@@ -1916,11 +1916,14 @@
 
     }
 
-    procesoItemSubRama(btnElemento){
+    procesoItemSubRama(btnElemento){  
+      const estaSeleccionado = btnElemento.classList.contains('seleccionado');
+
       // Busco al contenedor padre de la seccion con id="pmph-seleccion-subRama"
       // Obtengo su informacion max min codigo (tipo boton)
       const contenedorPadreSeccion = btnElemento.closest('#pmph-seleccion-subRama');
       const hermanosBtnElemento = contenedorPadreSeccion.querySelectorAll('#pmp-item-subRama');
+      console.log("Cantidad de hermanosBtnElemento ", hermanosBtnElemento.length);
       const max = contenedorPadreSeccion.getAttribute('data-max');
       const min = contenedorPadreSeccion.getAttribute('data-min');
       const codigo = contenedorPadreSeccion.getAttribute('data-codigo');
@@ -1948,10 +1951,18 @@
         }
       });
 
-      // Se procede a seleccionar el elemento
-      btnElemento.classList.add('seleccionado');
-      btnElemento.querySelector('.pmp-item-simple-escoger').innerHTML = tipoBoton == 'checkbox' ? this.iconos.iconCheckBoxOn : this.iconos.iconEstadoOn;
-      cantidadSeleccionados++;
+      if(estaSeleccionado){
+        // Se procede a seleccionar el elemento
+        btnElemento.classList.remove('seleccionado');
+        btnElemento.querySelector('.pmp-item-simple-escoger').innerHTML = tipoBoton == 'checkbox' ? this.iconos.iconCheckBoxOff : this.iconos.iconEstadoOff;
+        cantidadSeleccionados--;
+      
+      }else{
+        // Se procede a seleccionar el elemento
+        btnElemento.classList.add('seleccionado');
+        btnElemento.querySelector('.pmp-item-simple-escoger').innerHTML = tipoBoton == 'checkbox' ? this.iconos.iconCheckBoxOn : this.iconos.iconEstadoOn;
+        cantidadSeleccionados++;
+      }
 
       // Se evalua a sus hermanos
       hermanosBtnElemento.forEach((itemHTML) => {
