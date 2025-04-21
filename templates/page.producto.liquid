@@ -1928,7 +1928,15 @@
 
       var cantidadSeleccionados = contenedorPadreSeccion.querySelectorAll('.seleccionado').length;
       const estaSeleccionado = btnElemento.classList.contains('seleccionado');
-      if (cantidadSeleccionados >= max && !estaSeleccionado) return;
+      // Verificamos la condición de mínimo y máximo
+      // 1. Si intenta deseleccionar y ya está en el mínimo, no permitir
+      // 2. Si intenta seleccionar y ya está en el máximo, no permitir a menos que sea un cambio
+      if ((estaSeleccionado && cantidadSeleccionados <= min) || 
+        (!estaSeleccionado && cantidadSeleccionados >= max && max !== 1)) {
+      console.log("No se puede cambiar el estado: límites de selección alcanzados");
+      return;
+      }
+
       if(estaSeleccionado){
         // Se procede a seleccionar el elementoo
         btnElemento.classList.remove('seleccionado');
