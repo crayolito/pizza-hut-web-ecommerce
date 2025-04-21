@@ -1927,6 +1927,12 @@
       const tipoBoton = contenedorPadreSeccion.getAttribute('tipo-boton');
 
       var cantidadSeleccionados = contenedorPadreSeccion.querySelectorAll('.seleccionado').length;
+      console.log("Testeo pruebas",{
+        cantidadSeleccionados,
+        max,
+        min,
+        "condicion": cantidadSeleccionados >= max,
+      })
       if (cantidadSeleccionados >= max) return;
 
       // El btnElemento tiene un atributo data-idtrabajo y data-idshopify
