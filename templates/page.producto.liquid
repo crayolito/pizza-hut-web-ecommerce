@@ -1921,7 +1921,6 @@
       // Obtengo su informacion max min codigo (tipo boton)
       const contenedorPadreSeccion = btnElemento.closest('#pmph-seleccion-subRama');
       const hermanosBtnElemento = contenedorPadreSeccion.querySelectorAll('#pmp-item-subRama');
-      console.log("Cantidad de hermanosBtnElemento ", hermanosBtnElemento.length);
       const max = contenedorPadreSeccion.getAttribute('data-max');
       const min = contenedorPadreSeccion.getAttribute('data-min');
       const codigo = contenedorPadreSeccion.getAttribute('data-codigo');
@@ -1940,7 +1939,7 @@
         btnElemento.querySelector('.pmp-item-simple-escoger').innerHTML = tipoBoton == 'checkbox' ? this.iconos.iconCheckBoxOn : this.iconos.iconEstadoOn;
         cantidadSeleccionados++;
       }
-
+       
       if (cantidadSeleccionados >= max) return;
 
       // El btnElemento tiene un atributo data-idtrabajo y data-idshopify
