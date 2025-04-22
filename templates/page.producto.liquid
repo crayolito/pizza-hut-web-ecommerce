@@ -1143,6 +1143,8 @@
           <h3>${infoRamaPrincipal.titulo}</h3>
         `;
         infoRamaPrincipal.productos.forEach((producto) => {
+          console.log('producto :', producto);
+
           const precio = parseInt(producto.precio) == 0 ? '' : ` + ${producto.precio} Bs`;
           const {importante , mensaje} = this.dividirTitulo(producto.titulo+precio);
           if (auxProductoPreSeleccionado.titulo == producto.titulo) {
