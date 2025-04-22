@@ -1143,14 +1143,13 @@
           <h3>${infoRamaPrincipal.titulo}</h3>
         `;
         infoRamaPrincipal.productos.forEach((producto) => {
-          console.log('producto :', producto);
-
+          
           const precio = parseInt(producto.precio) == 0 ? '' : ` + ${producto.precio} Bs`;
           const {importante , mensaje} = this.dividirTitulo(producto.titulo+precio);
           if (auxProductoPreSeleccionado.titulo == producto.titulo) {
             detalleSubProductos += `
             <button
-            data-precio="${producto.estructura.precio}" 
+            data-precio="${producto.precio}" 
             data-idtrabajo="${producto.idTrabajo}"
             data-idshopify="${producto.idShopify}"
             id="pmp-item-rama-principal" class="pmp-item-simple seleccionado">
@@ -1204,13 +1203,11 @@
           data-min="${infoSubRama.min}"
           data-codigo="${subRama}"
           tipo-boton="${bptb ? 'checkbox' : 'circle'}"
-          id="pmph-seleccion-subRama" class="pmph-seleccion-especial">
+          id="pmph-seleccion-subRama" class="pmph-seleccion-especial ">
           <h3>${infoSubRama.titulo}</h3>
           `;
 
           infoSubRama.productos.forEach((producto,index) => {
-            console.log('producto :', producto);
-
             const tituloTrabajo = producto.titulo.startsWith("Extra ") ? producto.titulo.substring(6) : producto.titulo;
             const sePondraNombre = infoSubRama.titulo == "Masas y Bordes";
             // Verifica si el producto se encuentra dentro del categoria de ramas de la (Personal)
@@ -1221,7 +1218,7 @@
                 // Se auto preseleccionara el primer elemento
                 detalleSubProductos += `
                 <button 
-                data-precio="${producto.estructura.precio}"
+                data-precio="${producto.precio}"
                 data-idtrabajo="${producto.idTrabajo}"
                 data-idshopify="${producto.idShopify}"
                 id="pmp-item-subRama" class="pmp-item-complejo seleccionado">
