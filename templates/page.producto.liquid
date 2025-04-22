@@ -2338,7 +2338,7 @@
     }
 
     extraerPrecio(elementoHTML) {
-      console.log("Extraer precio", elementoHTML);
+      
       // Obtener el texto del párrafo que contiene el precio
       const elementoDetalle = elementoHTML.querySelector('.pmp-item-extra-detalle');
       const parrafoPrecio = elementoHTML.querySelector('.pmp-item-simple-info p') || 
@@ -2358,6 +2358,11 @@
           coincidencia = parrafoPrecio.textContent.match(regexPrecio);
       }
       
+      console.log("Extraer precio", {
+        coincidencia,
+        texto: parrafoPrecio.textContent,
+      });
+
       // Si se encuentra una coincidencia, devolver el precio como número
       if (coincidencia && coincidencia[1]) {
           return parseInt(coincidencia[1], 10);
