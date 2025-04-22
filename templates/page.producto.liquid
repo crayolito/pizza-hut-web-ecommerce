@@ -2265,7 +2265,7 @@
 
     }
 
-    async actualizarEstadoBotonesInferiores(){
+    actualizarEstadoBotonesInferiores(){
       var data = JSON.parse(localStorage.getItem('phpp-productoData'));
       var cumplenLasRamasPrincipales = false;
       var cumplenLasSubRamas = false;
@@ -2338,32 +2338,34 @@
     }
 
     extraerPrecio(elementoHTML) {
+      console.log("Extraer precio", elementoHTML);
       // Obtener el texto del párrafo que contiene el precio
+      const elementoDetalle = elementoHTML.querySelector('.pmp-item-extra-detalle');
       const parrafoPrecio = elementoHTML.querySelector('.pmp-item-simple-info p') || 
                             elementoHTML.querySelector('#pmp-item-info-precio') || 
-                            elementoHTML.querySelector('.pmp-item-extra-detalle').querySelectorAll('p')[2];
+                            (elementoDetalle ? elementoDetalle.querySelectorAll('p')[2] : null);
       
       if (!parrafoPrecio) return 0;
-    
+      
+      // Resto del código...
       // Expresión regular para coincidir con el patrón "+ X Bs"
       let regexPrecio = /\+ (\d+) Bs/;
       let coincidencia = parrafoPrecio.textContent.match(regexPrecio);
       
       // Si no encuentra ese patrón, probar con "X Bs"
       if (!coincidencia) {
-        regexPrecio = /(\d+) Bs/;
-        coincidencia = parrafoPrecio.textContent.match(regexPrecio);
+          regexPrecio = /(\d+) Bs/;
+          coincidencia = parrafoPrecio.textContent.match(regexPrecio);
       }
       
       // Si se encuentra una coincidencia, devolver el precio como número
       if (coincidencia && coincidencia[1]) {
-        return parseInt(coincidencia[1], 10);
+          return parseInt(coincidencia[1], 10);
       }
       
       // Si no se encuentra coincidencia, devolver 0
       return 0;
-    }
-
+  }
     async agregarAlCarrito(){}
 
     async hazUnPedido(){}
