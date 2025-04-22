@@ -1333,8 +1333,6 @@
       console.log('Obtener el objeto carrito',await AuxiliaresGlobal.obtenerCarritoShopify());
       console.log('Obtener cantidad productos en el carrito',await AuxiliaresGlobal.totalPrecioCarritoShopify());
 
-      
-
       // Seccion de la pizza Mitad y Mitad      
       
       // Declaracion referenciar - inicializar - eventos
@@ -1525,21 +1523,7 @@
                       variants(first: 1) {
                         edges {
                           node {
-                            inventoryItem {
-                              inventoryLevels(first: 100) {
-                                edges {
-                                  node {
-                                    location {
-                                      name
-                                    }
-                                    quantities(names: ["available"]) {
-                                      name
-                                      quantity
-                                    }
-                                  }
-                                }
-                              }
-                            }
+                            id
                           }
                         }
                       }
@@ -1597,6 +1581,14 @@
           // Obtener el inventario total del producto
           const stockGeneral = producto.totalInventory || 0;
           
+          // Obtener el ID de la variante (extraer solo la parte numérica)
+          let varianteId = '';
+          if (producto.variants && producto.variants.edges.length > 0) {
+            const varianteCompleta = producto.variants.edges[0].node.id;
+            // Extraer solo la parte numérica del ID de la variante
+            varianteId = varianteCompleta.split('/').pop();
+          }
+          
           // Obtener el inventario por sucursal
           const sucursales = [];
           if (producto.variants && producto.variants.edges.length > 0) {
@@ -1625,7 +1617,7 @@
     
           // Crear un objeto simplificado del producto
           const productoSimplificado = {
-            id: producto.id,
+            id: varianteId, // Usamos el ID de variante en lugar del ID de producto
             titulo: producto.title,
             handle: producto.handle,
             descripcion: producto.description,
@@ -1634,7 +1626,7 @@
             sucursales: sucursales,
             estructura: producto.metafield && producto.metafield.value ? JSON.parse(producto.metafield.value) : "",
           };
-
+    
           return productoSimplificado;
         });
     
@@ -1648,7 +1640,7 @@
           },
           productosColeccion: productosSimplificados
         };
-
+    
         console.log('Datos de la colección obtenidos:', resultado);
     
         return resultado;

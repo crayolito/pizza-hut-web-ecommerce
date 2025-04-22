@@ -1,4 +1,13 @@
 class AuxiliaresGlobal {
+  // METODOS PARA OBTENER INFORMACION DEL CARRITO (BACKEND SHOPIFY)
+  // METODOS LOCALES PARA ACTUALIZAR EL CARRITO
+  
+  // METODOS PARA MENSAJES GENERALES
+  static mensajeError(){}
+  static mensajeExito(){}
+  static mensajeAlerta(){}
+  static mensajeInformacion(){}
+
   static agregarCarrito(valor) {
     // Verificar que el valor sea un número válido mayor a 0
     if (typeof valor === 'number' && valor > 0) {
@@ -106,11 +115,6 @@ class AuxiliaresGlobal {
       });
     });
   }
-
-  static mensajeError(){}
-  static mensajeExito(){}
-  static mensajeAlerta(){}
-  static mensajeInformacion(){}
 
   static obtenerCarritoShopify() {
     return new Promise((resolve, reject) => {

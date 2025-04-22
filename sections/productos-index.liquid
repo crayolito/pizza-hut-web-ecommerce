@@ -1009,6 +1009,7 @@
                       variants(first: 1) {
                         edges {
                           node {
+                            id
                             inventoryItem {
                               inventoryLevels(first: 100) {
                                 edges {
@@ -1073,7 +1074,6 @@
           } 
         }
     
-        {% comment %} console.log('Estructura de la colección:', coleccion.products.edges); {% endcomment %}
         // Transformar los productos a un formato más simple
         const productosSimplificados = coleccion.products.edges.map(edge => {
           const producto = edge.node;
@@ -1081,6 +1081,14 @@
           
           // Obtener el inventario total del producto
           const stockGeneral = producto.totalInventory || 0;
+          
+          // Obtener el ID de la variante
+          let varianteId = '';
+          if (producto.variants && producto.variants.edges.length > 0) {
+            const varianteCompleta = producto.variants.edges[0].node.id;
+            // Extraer solo la parte numérica del ID de la variante
+            varianteId = varianteCompleta.split('/').pop();
+          }
           
           // Obtener el inventario por sucursal
           const sucursales = [];
@@ -1110,7 +1118,7 @@
     
           // Crear un objeto simplificado del producto
           const productoSimplificado = {
-            id: producto.id,
+            id: varianteId, // Usamos el ID de variante en lugar del ID de producto
             titulo: producto.title,
             handle: producto.handle,
             descripcion: producto.description,
@@ -1119,7 +1127,7 @@
             sucursales: sucursales,
             estructura: producto.metafield && producto.metafield.value ? JSON.parse(producto.metafield.value) : "",
           };
-
+    
           return productoSimplificado;
         });
     
@@ -1133,7 +1141,7 @@
           },
           productosColeccion: productosSimplificados
         };
-
+    
         console.log('Datos de la colección obtenidos:', resultado);
     
         return resultado;
@@ -1144,7 +1152,7 @@
         return [];
       }
     }
-
+    
     // Función para verificar si un producto de rama coincide con alguna clave de estructura
     filtrarProductosPorTitulo(productosArray, tituloReferencia) {
       // Validación rápida
