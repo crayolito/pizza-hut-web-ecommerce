@@ -44,8 +44,8 @@ cantidad-input {
 }
 
 carrito-shopify {
-  width: 100%;
-  height: auto;
+  width: max-content;
+  height: max-content;
 }
 
 /* =================================
