@@ -134,8 +134,7 @@
             </button>
           </div>
           <!-- CUANDO HAY SELECCIONADO UN EXTRA -->
-          <div id="phpm-extras-especiales-postres" class="pmp-items-extras-seleccionados">
-          </div>
+          <div id="phpm-extras-especiales-postres" class="pmp-items-extras-seleccionados"></div>
         </div>
         <div id="pmph-seleccion-extras-gaseosasycervezas" class="pmph-seleccion-basico">
           <div class="pmph-extras-header">
@@ -157,8 +156,7 @@
             </button>
           </div>
           <!-- CUANDO HAY SELECCIONADO UN EXTRA -->
-          <div id="phpm-extras-especiales-gaseosasycervezas" class="pmp-items-extras-seleccionados">
-          </div>
+          <div id="phpm-extras-especiales-gaseosasycervezas" class="pmp-items-extras-seleccionados"></div>
         </div>
         <section class="ph-opciones-mobile-footer">
           <button
@@ -412,6 +410,11 @@
       this.seccionModalExtrasGaseosasCerversas = this.querySelector('#phpp-modal-productos-gaseosasycervezas');
 
       this.cantidadProductoGeneralEtiqueta = this.querySelector('#phpd-cantidad-general');
+
+      this.btnsContenedorCantidad = this.querySelectorAll('.pmph-cantidad-selector-button');
+      this.btnsContenedorCantidad.forEach((btn) => {
+        btn.addEventListener('click', this.actualizarEstadoBotonesInferiores.bind(this));
+      });
 
       // INICIALIZAR EVENTOS
       this.btnsProductosRamaPrincipales.forEach((btn) => {
