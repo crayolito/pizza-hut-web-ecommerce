@@ -1143,7 +1143,7 @@
           <h3>${infoRamaPrincipal.titulo}</h3>
         `;
         infoRamaPrincipal.productos.forEach((producto) => {
-          
+
           const precio = parseInt(producto.precio) == 0 ? '' : ` + ${producto.precio} Bs`;
           const {importante , mensaje} = this.dividirTitulo(producto.titulo+precio);
           if (auxProductoPreSeleccionado.titulo == producto.titulo) {
@@ -1165,6 +1165,7 @@
           }else{
             detalleSubProductos += `
             <button 
+            data-precio="${producto.precio}" 
             data-idtrabajo="${producto.idTrabajo}"
             data-idshopify="${producto.idShopify}"
             id="pmp-item-rama-principal" class="pmp-item-simple">
@@ -1244,6 +1245,7 @@
                 detalleSubProductos += `
 
                 <button
+                data-precio="${producto.precio}" 
                 data-idtrabajo="${producto.idTrabajo}"
                 data-idshopify="${producto.idShopify}"
                 id="pmp-item-subRama" class="pmp-item-complejo ">
@@ -1268,6 +1270,7 @@
               // Aqui el producto no se encuentra se lo desactivaba
               detalleSubProductos += `
                 <button
+                data-precio="${producto.precio}" 
                 data-idtrabajo="${producto.idTrabajo}"
                 data-idshopify="${producto.idShopify}"
                 id="pmp-item-subRama" class="pmp-item-complejo desactivado">
