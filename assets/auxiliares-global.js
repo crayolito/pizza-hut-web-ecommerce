@@ -1,121 +1,37 @@
 class AuxiliaresGlobal {
-  // METODOS PARA OBTENER INFORMACION DEL CARRITO (BACKEND SHOPIFY)
 
-
-  // METODOS LOCALES PARA ACTUALIZAR EL CARRITO
-  static agregarCarrito(valor) {
-    // Verificar que el valor sea un número válido mayor a 0
-    if (typeof valor === 'number' && valor > 0) {
-      const contenedorPadre = document.querySelector('.h-ic-cantidad');
-      const mensaje = document.querySelector('.hicc-mensaje');
-      
-      // Verificar que los elementos existan
-      if (mensaje && contenedorPadre) {
-        // Obtener el valor actual (si existe)
-        let valorActual = 0;
-        if (mensaje.textContent.trim() !== '') {
-          valorActual = parseInt(mensaje.textContent, 10) || 0;
-        }
-        
-        // Sumar el nuevo valor al actual
-        const nuevoValor = valorActual + valor;
-        
-        // Actualizar el texto con el nuevo valor
-        mensaje.textContent = nuevoValor;
-        
-        // Quitar clases existentes de tamaños de dígitos
-        mensaje.classList.remove('digitos-2', 'digitos-3');
-        
-        // Convertir el valor a string para verificar su longitud
-        const valorStr = nuevoValor.toString();
-        
-        // Añadir clase según número de dígitos
-        if (valorStr.length === 2) {
-          mensaje.classList.add('digitos-2');
-        } else if (valorStr.length >= 3) {
-          mensaje.classList.add('digitos-3');
-        }
-
-        // Mostrar mensaje de éxito después de actualizar el carrito
-        this.mensajeExitoCarrito();
-      }
-    }
-  }
-  static limpiarCarrito(){}
-  static eliminarCarrito(){}
+  /**
+   * Muestra un mensaje de éxito para el carrito
+   */
   static mensajeExitoCarrito() {
-    const mensajeExito = document.getElementById('ph-mec');
-    
-    // Si ya está mostrando un mensaje, no hacer nada
-    if (mensajeExito && !mensajeExito.classList.contains('ph-mec-visible')) {
-      // Agregar clase para mostrar el mensaje
-      mensajeExito.classList.add('ph-mec-visible');
-      
-      // Remover la clase después de 3 segundos
-      setTimeout(() => {
-        mensajeExito.classList.remove('ph-mec-visible');
-      }, 3000);
-    }
-  }  
-
-  // METODOS PARA MENSAJES GENERALES
-  static mensajeError(){}
-  static mensajeExito(){}
-  static mensajeAlerta(){}
-  static mensajeInformacion(){}
-
-  // METODOS DE GOOGLE MAPS
-  static obtenerDireccionDesdeCoordenadas (lat,lng){
-    return new Promise((resolve, reject) => {
-      const geocoder = new google.maps.Geocoder();
-      const latlng = {
-        lat: parseFloat(lat),
-        lng: parseFloat(lng)
-      };
-      
-      geocoder.geocode({ 
-        location: latlng,
-        language: 'es' // Resultados en español
-      }, (results, status) => {
-        if (status === "OK" && results && results.length > 0) {
-          // Intentar extraer la información más útil para delivery
-          let direccionFinal = "";
-          let calleEncontrada = false;
-          
-          // Primero buscar el resultado que tenga más detalles de calle
-          for (const result of results) {
-            // Verificar si este resultado tiene componentes de dirección útiles
-            const tieneRuta = result.address_components.some(comp => 
-              comp.types.includes('route') || comp.types.includes('street_address'));
-            
-            if (tieneRuta) {
-              direccionFinal = result.formatted_address;
-              calleEncontrada = true;
-              break;
-            }
-          }
-          
-          // Si no se encontró información de calle, usar la dirección más detallada disponible
-          if (!calleEncontrada) {
-            direccionFinal = results[0].formatted_address;
-          }
-          
-          // Eliminar el código plus (si existe) de la dirección final
-          direccionFinal = direccionFinal.replace(/\b[0-9A-Z]{4}\+[0-9A-Z]{2,3}\b,?/g, '').trim();
-          
-          // Eliminar el país si está al final para hacerlo más conciso
-          const paisRegex = /, Bolivia$/;
-          if (paisRegex.test(direccionFinal)) {
-            direccionFinal = direccionFinal.replace(paisRegex, '');
-          }
-          
-          resolve(direccionFinal || "Dirección no disponible");
-        } else {
-          reject("No se pudo obtener una dirección detallada: " + status);
-        }
-      });
-    });
+    MensajeTemporal.mostrarMensaje('Se añadió tu orden al carrito con éxito.', 'exito');
   }
+
+  /**
+   * Muestra un mensaje de error
+   * @param {string} mensaje - Mensaje de error a mostrar
+   */
+  static mensajeError(mensaje = 'Ha ocurrido un error.') {
+    MensajeTemporal.mostrarMensaje(mensaje, 'error');
+  }
+
+  /**
+   * Muestra un mensaje informativo
+   * @param {string} mensaje - Mensaje informativo a mostrar
+   */
+  static mensajeInfo(mensaje = 'Información importante.') {
+    MensajeTemporal.mostrarMensaje(mensaje, 'info');
+  }
+
+  /**
+   * Muestra un mensaje de alerta
+   * @param {string} mensaje - Mensaje de alerta a mostrar
+   */
+  static mensajeAlerta(mensaje = 'Advertencia.') {
+    MensajeTemporal.mostrarMensaje(mensaje, 'alerta');
+  }
+
+  // MÉTODOS PARA OBTENER INFORMACIÓN DEL CARRITO (BACKEND SHOPIFY)
 
   static obtenerCarritoShopify() {
     return new Promise((resolve, reject) => {
@@ -232,7 +148,7 @@ class AuxiliaresGlobal {
         .then(response => response.json())
         .then(data => {
           // Actualizar el contador visual
-          this._actualizarContadorVisual(valor);
+          this.actualizarContadorVisual(valor);
           
           // Disparar evento personalizado
           document.dispatchEvent(new CustomEvent('product:added-to-cart', { 
@@ -247,13 +163,13 @@ class AuxiliaresGlobal {
         });
       } else {
         // Si no hay variantId, solo actualizar el contador visual
-        this._actualizarContadorVisual(valor);
+        this.actualizarContadorVisual(valor);
       }
     }
   }
   
   /**
-   * Método privado para actualizar el contador visual
+   * Método para actualizar el contador visual
    */
   static actualizarContadorVisual(valor) {
     const contenedorPadre = document.querySelector('.h-ic-cantidad');
@@ -335,7 +251,10 @@ class AuxiliaresGlobal {
         }
         
         // Actualizar los componentes CarritoShopify
-        this._actualizarComponentesCarrito();
+        this.actualizarComponentesCarrito();
+        
+        // Mostrar mensaje de éxito
+        this.mensajeInfo('El carrito ha sido vaciado');
         
         // Disparar evento personalizado
         document.dispatchEvent(new CustomEvent('cart:cleared'));
@@ -345,6 +264,7 @@ class AuxiliaresGlobal {
       })
       .catch(error => {
         console.error('Error al limpiar el carrito:', error);
+        this.mensajeError('No se pudo vaciar el carrito');
         reject(error);
       });
     });
@@ -370,7 +290,10 @@ class AuxiliaresGlobal {
       .then(response => response.json())
       .then(cart => {
         // Actualizar el contador visual y componentes
-        this._sincronizarContadorConCarrito(cart);
+        this.sincronizarContadorConCarrito(cart);
+        
+        // Mostrar mensaje de éxito
+        this.mensajeInfo('Producto eliminado del carrito');
         
         // Disparar evento personalizado
         document.dispatchEvent(new CustomEvent('cart:updated', {
@@ -382,6 +305,7 @@ class AuxiliaresGlobal {
       })
       .catch(error => {
         console.error('Error al eliminar ítem del carrito:', error);
+        this.mensajeError('No se pudo eliminar el producto del carrito');
         reject(error);
       });
     });
@@ -414,7 +338,10 @@ class AuxiliaresGlobal {
       .then(response => response.json())
       .then(cart => {
         // Actualizar el contador visual y componentes
-        this._sincronizarContadorConCarrito(cart);
+        this.sincronizarContadorConCarrito(cart);
+        
+        // Mostrar mensaje de éxito
+        this.mensajeInfo('Carrito actualizado');
         
         // Disparar evento personalizado
         document.dispatchEvent(new CustomEvent('cart:updated', {
@@ -426,6 +353,7 @@ class AuxiliaresGlobal {
       })
       .catch(error => {
         console.error('Error al actualizar el carrito:', error);
+        this.mensajeError('No se pudo actualizar el carrito');
         reject(error);
       });
     });
@@ -454,8 +382,60 @@ class AuxiliaresGlobal {
     // Actualizar componentes CarritoShopify
     this.actualizarComponentesCarrito();
   }
+  
+  // MÉTODOS DE GOOGLE MAPS
+  static obtenerDireccionDesdeCoordenadas(lat, lng) {
+    return new Promise((resolve, reject) => {
+      const geocoder = new google.maps.Geocoder();
+      const latlng = {
+        lat: parseFloat(lat),
+        lng: parseFloat(lng)
+      };
+      
+      geocoder.geocode({ 
+        location: latlng,
+        language: 'es' // Resultados en español
+      }, (results, status) => {
+        if (status === "OK" && results && results.length > 0) {
+          // Intentar extraer la información más útil para delivery
+          let direccionFinal = "";
+          let calleEncontrada = false;
+          
+          // Primero buscar el resultado que tenga más detalles de calle
+          for (const result of results) {
+            // Verificar si este resultado tiene componentes de dirección útiles
+            const tieneRuta = result.address_components.some(comp => 
+              comp.types.includes('route') || comp.types.includes('street_address'));
+            
+            if (tieneRuta) {
+              direccionFinal = result.formatted_address;
+              calleEncontrada = true;
+              break;
+            }
+          }
+          
+          // Si no se encontró información de calle, usar la dirección más detallada disponible
+          if (!calleEncontrada) {
+            direccionFinal = results[0].formatted_address;
+          }
+          
+          // Eliminar el código plus (si existe) de la dirección final
+          direccionFinal = direccionFinal.replace(/\b[0-9A-Z]{4}\+[0-9A-Z]{2,3}\b,?/g, '').trim();
+          
+          // Eliminar el país si está al final para hacerlo más conciso
+          const paisRegex = /, Bolivia$/;
+          if (paisRegex.test(direccionFinal)) {
+            direccionFinal = direccionFinal.replace(paisRegex, '');
+          }
+          
+          resolve(direccionFinal || "Dirección no disponible");
+        } else {
+          reject("No se pudo obtener una dirección detallada: " + status);
+        }
+      });
+    });
+  }
 }
-
 class CarritoShopify extends HTMLElement {
   constructor() {
     super();
@@ -488,7 +468,6 @@ class CarritoShopify extends HTMLElement {
   }
 }
 
-// Registrar el componente
 customElements.define('carrito-shopify', CarritoShopify);
 
 class CantidadInput extends HTMLElement {
@@ -571,3 +550,132 @@ class CantidadInput extends HTMLElement {
 }
 
 customElements.define('cantidad-input', CantidadInput);
+
+class MensajeTemporal extends HTMLElement {
+  // REFERENCIAS ELEMENTOS
+  contenedor = null;
+  etiquetaMensaje = null;
+  iconos = [];
+  tiempoEspera = null;
+
+  constructor() {
+    super();
+  }
+
+  connectedCallback() {
+    // Obtenemos referencias a los elementos internos
+    this.contenedor = this.querySelector('#ph-mec');
+    this.etiquetaMensaje = this.querySelector('#ph-mec-etiqueta-mensaje');
+    this.iconos = this.querySelectorAll('[id="ph-mec-icono-"]');
+
+    this.iconos.forEach((icono) => {
+      icono.classList.add('elemento-oculto');
+    });
+
+
+    // Verificamos que todos los elementos existan
+    if (!this.contenedor || !this.etiquetaMensaje){
+      console.error('No se encontraron todos los elementos necesarios para el componente MensajeTemporal');
+    }
+  }
+
+  /**
+   * Método para mostrar un mensaje
+   * @param {string} mensaje - El texto del mensaje a mostrar
+   * @param {string} tipo - El tipo de mensaje ('exito', 'error', 'info', 'alerta')
+   * @param {number} duracion - Duración en ms que se mostrará el mensaje
+  */
+  mostrar(mensaje, tipo="exito",duracion = 3000) {
+    // Verificar que las referencias esten disponibles
+    if (!this.contenedor || !this.etiquetaMensaje) {
+      console.error('No se encontraron todos los elementos necesarios para el componente MensajeTemporal');
+      return false;
+    }
+
+    // Ocultar todos los iconos
+    this.iconos.forEach((icono) => {
+      icono.classList.remove('elemento-visible');
+      icono.classList.add('elemento-oculto');
+    });
+
+    // Mostrar el icono correspondiente al tipo de mensaje
+    const iconoActual = this.querySelector(`.ph-mec-icono-${tipo}`);
+    if (iconoActual) {
+      iconoActual.classList.remove('elemento-oculto');
+      iconoActual.classList.add('elemento-visible');
+    }
+
+    // Esatblecer el texto del mensaje 
+    this.etiquetaMensaje.textContent = mensaje;
+
+    // Remove clases de tipo anteriores y aplicar la nueva
+    this.contenedor.classList.remove('exito', 'error', 'info', 'alerta');
+    this.contenedor.classList.add(tipo);
+
+    // Mostrar el mensaje
+    this.contenedor.style.opacity = '1';
+    this.contenedor.style.visibility = 'visible';
+
+    // Limpiar el timeout nterior si existe
+    if (this.tiempoEspera) {
+      clearTimeout(this.tiempoEspera);
+    }
+
+    // Establecer nuevo tiemout
+    this.tiempoEspera = setTimeout(() => {
+      this.ocultar();
+    },duracion);
+
+    return true;
+  }
+
+  ocultar(){
+    if(this.contenedor){
+      this.contenedor.style.opacity = '0';
+      this.contenedor.style.visibility = 'hidden';
+    }
+    
+    if(this.tiempoEspera) {
+      clearTimeout(this.tiempoEspera);
+      this.tiempoEspera = null;
+    }
+  }
+
+  disconnectedCallback() {
+    // Limpiamos cualquier timeout pendiente
+    if (this.tiempoEspera) {
+      clearTimeout(this.tiempoEspera);
+      this.tiempoEspera = null;
+    }
+  }
+
+   /**
+   * Método estático para mostrar un mensaje global
+   * Encuentra o crea una instancia del componente y muestra el mensaje
+   */
+  static mostrarMensaje(mensaje, tipo = 'exito', duracion = 3000) {
+    // Buscar si ya existe una instancia del componente
+    let mensajeElement = document.querySelector('mensaje-temporal');
+    
+    // Si no existe una instancia, mostrar error
+    if (!mensajeElement) {
+      console.error('No se encontró el componente mensaje-temporal en el DOM');
+      return false;
+    }
+    
+    // Llamar al método de instancia
+    return mensajeElement.mostrar(mensaje, tipo, duracion);
+  }
+  
+  /**
+   * Método estático para ocultar el mensaje global
+   */
+  static ocultarMensaje() {
+    const mensajeElement = document.querySelector('mensaje-temporal');
+    if (mensajeElement) {
+      mensajeElement.ocultar();
+    }
+  }
+}
+
+customElements.define('mensaje-temporal', MensajeTemporal);

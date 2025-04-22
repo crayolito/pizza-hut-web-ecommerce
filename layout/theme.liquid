@@ -495,10 +495,23 @@
     </modal-inicial>
 
     <!-- MENSAJE EXITO : CARRITO = MEC a -->
-    <section id="ph-mec" class="ph-mec-general">
-      {% render 'icon-check-verde' %}
-      <p>Se añadió tu orden al carrito con éxito.</p>
-    </section>
+    <mensaje-temporal>
+      <section id="ph-mec" class="ph-mec-general" style="opacity: 0; visibility: hidden;">
+        <div id="ph-mec-icono" class="ph-mec-icono-exito elemento-oculto">
+          {% render 'icon-check-verde' %}
+        </div>
+        <div id="ph-mec-icono" class="ph-mec-icono-error elemento-oculto">
+          {% render 'icon-check-verde' %}
+        </div>
+        <div id="ph-mec-icono" class="ph-mec-icono-info elemento-oculto">
+          {% render 'icon-check-verde' %}
+        </div>
+        <div id="ph-mec-icono" class="ph-mec-icono-alerta elemento-visible">
+          {% render 'icon-check-verde' %}
+        </div>
+        <p id="ph-mec-etiqueta-mensaje" class="ph-mec-mensaje">Se añadió tu orden al carrito con éxito.</p>
+      </section>
+    </mensaje-temporal>
   </body>
 </html>
 
@@ -512,26 +525,50 @@
     align-items: center;
     justify-content: start;
     gap: var(--espaciado-s);
-    background-color: #edf6ea;
-    border-left: 4px solid #aed5a5;
     border-radius: var(--espaciado-xs);
     height: 3.75rem;
     width: 43rem;
     padding: 0 var(--espaciado-xl);
     transform: translate(-50%, -50%);
-
     /* Propiedades para la animación */
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
   }
 
-  /* Clase para mostrar el mensaje */
+  .ph-mec-geeneral.exito {
+    border-left: 4px solid #aed5a5;
+    background-color: #edf6ea;
+  }
+
+  .ph-mec-geeneral.info {
+    border-left: 4px solid #a9b5f3;
+    background-color: #f4f7ff;
+  }
+
+  .ph-mec-geeneral.error {
+    border-left: 4px solid #ef9f8e;
+    background-color: #fff4f2;
+  }
+
+  .ph-mec-geeneral.alerta {
+    border-left: 4px solid #f7d8a3;
+    background-color: #fffbef;
+  }
+
   .ph-mec-visible {
     opacity: 1;
     visibility: visible;
   }
 
+
+
+
+
+
+
+
+  
   .modal-general-sme {
     position: fixed;
     top: 0;
