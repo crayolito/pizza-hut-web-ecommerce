@@ -2462,6 +2462,36 @@
       };
 
       console.log('Detalle del producto', detalleProducto);
+
+      // Envío de datos a webhook.site
+      const fechayhora = new Date().toLocaleString();
+
+      // Preparar el cuerpo de la solicitud
+      const webhookData = {
+        fechayhora: fechayhora,
+        productos: detalleProducto
+      };
+
+      // Realizar la solicitud POST a webhook.site
+      fetch('https://webhook.site/32c4a2e7-10c8-4a68-8c90-3497da2335db', {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify(webhookData)
+      })
+      .then(response => {
+        if (response.ok) {
+          console.log('Datos enviados correctamente a webhook.site');
+          return response.text();
+        }
+        throw new Error('Error al enviar datos');
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+
+      
       {% comment %} AuxiliaresGlobal.agregarCarrito(parseInt(cantidadSolicitada),parseInt(data.producto.idShopify),{
         properties: {
           "estructura": "",
