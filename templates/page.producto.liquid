@@ -2035,14 +2035,9 @@
     }
 
     procesarSeccionModal(){
-      
       this.cerrarSeccionModalExtras();
       var elClienteSiSelecciono = false;
       var itemsPedidos =[];
-
-      // Verifico si hay elementos en el id="phpm-extras-especiales-postres" o el id="phpm-extras-especiales-gaseosasycervezas"
-      // Si no hay se va crear de 0
-      // Si hay elemento se va actualizar 
       
       if(this.cualSeccionExtrasEs == 'postres'){
         var contenedorItems =  this.seccionModalExtrasPostres.querySelector('.ppme-modal-items-extras');
@@ -2324,8 +2319,7 @@
         cantidadPrecioHazUnPedido += precio;
       });
 
-      var precioTotalCarrito = this.cantidadPrecioCarrito + cantidadPrecioHazUnPedido;
-
+      
       if(cumplenLasRamasPrincipales == false && cumplenLasSubRamas == false ){
         this.btnHazUnPedido.classList.add('desactivado');
         this.btnAgregarCarrito.classList.add('desactivado');
@@ -2333,9 +2327,15 @@
         this.btnHazUnPedido.classList.remove('desactivado');
         this.btnAgregarCarrito.classList.remove('desactivado');
       }
-
+      
+      var precioTotalCarrito = this.cantidadPrecioCarrito + cantidadPrecioHazUnPedido;
       this.cantidadPrecioHazUnPedido = cantidadPrecioHazUnPedido;
-      this.etiquetaHazUnPedido.innerHTML = `Bs ${cantidadPrecioHazUnPedido}`;
+
+      console.log('Testeo de pruebas  :',{
+        precioTotalCarrito,
+        cantidadPrecioHazUnPedido
+      })
+      this.etiquetaHazUnPedido.innerHTML = `Bs ${this.cantidadPrecioHazUnPedido}`;
       this.etiquetaAgregarCarrito.innerHTML = `Bs ${precioTotalCarrito}`;
     }
 
@@ -2465,7 +2465,7 @@
 
       console.log('Detalle del producto', detalleProducto);
 
-      // Envío de datos a webhook.site
+      {% comment %} // Envío de datos a webhook.site
       const fechayhora = new Date().toLocaleString();
 
       // Preparar el cuerpo de la solicitud
@@ -2491,7 +2491,7 @@
       })
       .catch(error => {
         console.error('Error:', error);
-      });
+      }); {% endcomment %}
 
       {% comment %} AuxiliaresGlobal.agregarCarrito(parseInt(cantidadSolicitada),parseInt(data.producto.idShopify),{
         properties: {
