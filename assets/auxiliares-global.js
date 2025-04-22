@@ -1,13 +1,8 @@
 class AuxiliaresGlobal {
   // METODOS PARA OBTENER INFORMACION DEL CARRITO (BACKEND SHOPIFY)
-  // METODOS LOCALES PARA ACTUALIZAR EL CARRITO
-  
-  // METODOS PARA MENSAJES GENERALES
-  static mensajeError(){}
-  static mensajeExito(){}
-  static mensajeAlerta(){}
-  static mensajeInformacion(){}
 
+
+  // METODOS LOCALES PARA ACTUALIZAR EL CARRITO
   static agregarCarrito(valor) {
     // Verificar que el valor sea un número válido mayor a 0
     if (typeof valor === 'number' && valor > 0) {
@@ -48,7 +43,6 @@ class AuxiliaresGlobal {
   }
   static limpiarCarrito(){}
   static eliminarCarrito(){}
-
   static mensajeExitoCarrito() {
     const mensajeExito = document.getElementById('ph-mec');
     
@@ -62,8 +56,15 @@ class AuxiliaresGlobal {
         mensajeExito.classList.remove('ph-mec-visible');
       }, 3000);
     }
-  }
+  }  
 
+  // METODOS PARA MENSAJES GENERALES
+  static mensajeError(){}
+  static mensajeExito(){}
+  static mensajeAlerta(){}
+  static mensajeInformacion(){}
+
+  // METODOS DE GOOGLE MAPS
   static obtenerDireccionDesdeCoordenadas (lat,lng){
     return new Promise((resolve, reject) => {
       const geocoder = new google.maps.Geocoder();
@@ -254,7 +255,7 @@ class AuxiliaresGlobal {
   /**
    * Método privado para actualizar el contador visual
    */
-  static _actualizarContadorVisual(valor) {
+  static actualizarContadorVisual(valor) {
     const contenedorPadre = document.querySelector('.h-ic-cantidad');
     const mensaje = document.querySelector('.hicc-mensaje');
     
@@ -289,14 +290,14 @@ class AuxiliaresGlobal {
       this.mensajeExitoCarrito();
       
       // Actualizar también todos los componentes CarritoShopify
-      this._actualizarComponentesCarrito();
+      this.actualizarComponentesCarrito();
     }
   }
   
   /**
    * Actualiza todos los componentes CarritoShopify en la página
    */
-  static _actualizarComponentesCarrito() {
+  static actualizarComponentesCarrito() {
     // Si existe el método estático en CarritoShopify, usarlo
     if (typeof CarritoShopify !== 'undefined' && 
         typeof CarritoShopify.actualizarContador === 'function') {
@@ -434,7 +435,7 @@ class AuxiliaresGlobal {
    * Sincroniza el contador visual con el estado actual del carrito
    * @param {Object} cart - Objeto carrito devuelto por Shopify
    */
-  static _sincronizarContadorConCarrito(cart) {
+  static sincronizarContadorConCarrito(cart) {
     const mensaje = document.querySelector('.hicc-mensaje');
     if (mensaje) {
       const cantidadTotal = cart.item_count || 0;
@@ -451,7 +452,7 @@ class AuxiliaresGlobal {
     }
     
     // Actualizar componentes CarritoShopify
-    this._actualizarComponentesCarrito();
+    this.actualizarComponentesCarrito();
   }
 }
 
