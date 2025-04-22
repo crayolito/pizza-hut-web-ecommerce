@@ -2375,6 +2375,11 @@
       var productosOpciones = [];
       var productosComple = [];
 
+      if(parseInt(cantidadSolicitada) == 0){
+        MensajeTemporal.mostrarMensaje('Solicite una cantidad mayor a 0 por favor.', 'alerta');
+        return;
+      }
+
       this.seccionProductosRamaPrincipales.forEach((seccionHTML) => {
         const tituloSeccion = seccionHTML.querySelector(':scope > h3').innerHTML;
         const cantidadSeleccionados = seccionHTML.querySelectorAll('.seleccionado');
@@ -2458,8 +2463,18 @@
 
       console.log('Detalle del producto', detalleProducto);
 
+
+
+      {% comment %} AuxiliaresGlobal.agregarCarrito(parseInt(cantidadSolicitada),parseInt(data.producto.idShopify),{
+        properties: {
+          "estructura": JSON.stringify(detalleProducto),
+        }
+      ); {% endcomment %}
+
+      
+
       {% comment %} // Envío de datos a webhook.site
-      const fechayhora = new Date().toLocaleString();
+      const fechayhora = new Date().toLocaleString(); 
 
       // Preparar el cuerpo de la solicitud
       const webhookData = {
@@ -2486,10 +2501,7 @@
         console.error('Error:', error);
       }); {% endcomment %}
 
-      {% comment %} AuxiliaresGlobal.agregarCarrito(parseInt(cantidadSolicitada),parseInt(data.producto.idShopify),{
-        properties: {
-          "estructura": "",
-        }
+      {% comment %} 
       }); {% endcomment %}
 
       {% comment %} this.cantidadPrecioCarrito = await AuxiliaresGlobal.totalPrecioCarritoShopify();
@@ -2500,8 +2512,6 @@
         window.location.href = '/pages/carrito';
       } {% endcomment %}
     }
-
-
   }
 
   customElements.define('ph-producto', PizzaHutProducto);
