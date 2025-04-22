@@ -950,6 +950,8 @@
       this.seccionModalExtrasPostres = this.querySelector('#phpp-modal-productos-postres');
       this.seccionModalExtrasGaseosasCerversas = this.querySelector('#phpp-modal-productos-gaseosasycervezas');
 
+      this.cantidadProductoGeneralEtiqueta = this.querySelector('#phpd-cantidad-general');
+
       // INICIALIZAR EVENTOS
       this.btnsProductosRamaPrincipales.forEach((btn) => {
         btn.addEventListener('click', this.procesoItemRamaPrincipal.bind(this, btn));
@@ -965,6 +967,7 @@
       this.anadirMasContenedorGaseosasCerversas.addEventListener('click', this.abrirSeccionModalExtras.bind(this,'gaseosasycervezas'));
 
       // INICIALIZAR ELEMENTOS Y PROCESOS CLAVES
+      this.cantidadProductoGeneralEtiqueta.innerHTML = 1;
       this.seccionModalExtrasPostres.style.display = 'none';
       this.seccionModalExtrasGaseosasCerversas.style.display = 'none';
       this.anadirMasContenedorPostres.style.display = 'none';
@@ -2376,11 +2379,6 @@
       const cantidadSolicitada = this.querySelector('#phpd-cantidad-general').innerHTML;
       var productosOpciones = [];
       var productosComple = [];
-
-      if(parseInt(cantidadSolicitada) == 0){
-        MensajeTemporal.mostrarMensaje('Solicite una cantidad mayor a 0 por favor.', 'alerta');
-        return;
-      }
 
       this.seccionProductosRamaPrincipales.forEach((seccionHTML) => {
         const tituloSeccion = seccionHTML.querySelector(':scope > h3').innerHTML;
