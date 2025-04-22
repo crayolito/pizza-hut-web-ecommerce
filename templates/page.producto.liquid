@@ -902,27 +902,8 @@
       this.productoSeleccionadoRamaPrincipal = null;
       this.itemsSeleccionadoPostres = [];
       this.itemsSeleccionadoGaseosasyCervezas = [];
+      this.cantidadPrecioCarrito = null;
       // REFERENCIAS ELEMENTOSS
-      {% comment %} this.imgSimple = this.querySelector('#phmp-contenido-ver-producto-simple');
-      this.imgCompleja = this.querySelector('#phmp-contenido-ver-producto-complejo');
-      this.btnImgComplejaIzq = this.querySelector('#phpm-btn-complejo-izq');
-      this.btnImgComplejaDer = this.querySelector('#phpm-btn-complejo-der');
-      this.modalBodyExtras = this.querySelector('#phpp-modal-productos-extras');
-      this.modalBodyPizaaMitadyMitad = this.querySelector('#phpp-modal-productos-pizzamitadymitad');
-      this.contenedorImgProductoComplejoIzq = this.querySelector('#phpm-producto-complejo-img-izq');
-      this.contenedorImgProductoComplejoDer = this.querySelector('#phpm-producto-complejo-img-der');
-      this.elementosN1 = this.querySelectorAll('#pmp-item-n1');
-      this.elementosN2 = this.querySelectorAll('#pmp-item-n2');
-      this.elementosN3 = this.querySelectorAll('#pmp-item-n3');
-      this.itemsSeleccionComplejo = this.querySelectorAll('#phpm-item-pizzamitadymitad');
-      this.extrasVacioContenedorN1 = this.querySelector('#phpm-vacio-extras-especiales-n1');
-      this.extrasVacioContenedorN2 = this.querySelector('#phpm-vacio-extras-especiales-n2');
-      
-      this.btnModalGuardar = this.querySelector('#phppm-btn-guardar');
-      this.btnsElegirProductoComplejo = this.querySelectorAll('#phpm--modal-btn-elegir');
-      this.tituloModalExtras = this.querySelector('.phpp-modal-extras-titulo');
-       {% endcomment %}
-      
       this.btnHazUnPedido = this.querySelector('#phpm-btn-haz-un-pedido');
       this.btnAgregarCarrito = this.querySelector('#phpm-btn-agregar-carrito'); 
       this.etiquetaAgregarCarrito = this.querySelector('#phpp-etiqueta-agregarcarrito');
@@ -931,10 +912,6 @@
       
       this.modalProductoExtras = this.querySelector('#pmph-modal-productos-extras');
       this.contenedorItemsComplejos = this.querySelector('#pmph-seleccion-pizza-mitadymitad');
-      {% comment %} this.extrasContenedorN1 = this.querySelector('#phpm-extras-especiales-n1');
-      this.extrasContenedorN2 = this.querySelector('#phpm-extras-especiales-n2');
-      this.btnAnadirExtrasN1 = this.querySelector('#phpm-btn-anadir-extras-n1');
-      this.btnAnadirExtrasN2 = this.querySelector('#phpm-btn-anadir-extras-n2'); {% endcomment %}
     }
 
     connectedCallback() {
@@ -948,10 +925,6 @@
 
       // INICIALIZAR ELEMENTOS Y PROCESOS CLAVES
       this.contenedorItemsComplejos.style.display = 'none';
-      {% comment %} this.btnAnadirExtrasN1.style.display = 'none';
-      this.btnAnadirExtrasN2.style.display = 'none';
-      this.extrasContenedorN1.style.display = 'none';
-      this.extrasContenedorN2.style.display = 'none'; {% endcomment %}
       this.inicializarMedianteDataLocalStorage();
     }
 
@@ -1001,6 +974,7 @@
       this.anadirMasContenedorGaseosasCerversas.style.display = 'none';
       this.estadoItemsContenedorPostres.style.display = 'none';
       this.estadoItemsContenedorGaseosasCerversas.style.display = 'none';
+      this.actualizarEstadoBotonesInferiores();
     }
 
     dividirTitulo(titulo) {
@@ -1330,8 +1304,10 @@
       // Creacion de elementos de la coleccion Gaseosas y Postres
       await this.creacionHTMLGaseosasCervesas();
 
-      console.log('Obtener el objeto carrito',await AuxiliaresGlobal.obtenerCarritoShopify());
-      console.log('Obtener cantidad productos en el carrito',await AuxiliaresGlobal.totalPrecioCarritoShopify());
+      this.cantidadPrecioCarrito = await AuxiliaresGlobal.totalPrecioCarritoShopify();
+
+      {% comment %} console.log('Obtener el objeto carrito',await AuxiliaresGlobal.obtenerCarritoShopify());
+      console.log('Obtener cantidad productos en el carrito',await AuxiliaresGlobal.totalPrecioCarritoShopify()); {% endcomment %}
 
       // Seccion de la pizza Mitad y Mitad      
       
@@ -2290,16 +2266,67 @@
     }
 
     async actualizarEstadoBotonesInferiores(){
+      var data = JSON.parse(localStorage.getItem('phpp-productoData'));
       var cumplenLasRamasPrincipales = false;
       var cumplenLasSubRamas = false;
 
-      var cantidadHazUnPedido = 0;
-      var precioTotalCarrito = await AuxiliaresGlobal.obtenerCantidadCarrito();
+      var cantidadPrecioHazUnPedido = parseInt(data.producto.precio);
 
       console.log('Precio Total del carrito :', precioTotalCarrito);
 
-      this.seccionProductosRamaPrincipales = this.querySelectorAll('#pmph-seleccion-rama-principal');
-      this.seccionProductosSubRama = this.querySelectorAll('#pmph-seleccion-subRama');
+      this.seccionProductosRamaPrincipales.forEach((seccionHTML) => {
+        const cantidadSeleccionados = seccionHTML.querySelectorAll('.seleccionado');
+        const max = seccionHTML.getAttribute('data-max');
+        const min = seccionHTML.getAttribute('data-min');
+        const tipoBoton = seccionHTML.getAttribute('tipo-boton');
+
+        cantidadPrecioHazUnPedido.forEach((itemHTML) => {
+          const precio = extraerPrecio(itemHTML);
+          cantidadPrecioHazUnPedido += precio;
+        });
+
+        if(cantidadSeleccionados.length >= min && cantidadSeleccionados.length <= max){
+          cumplenLasRamasPrincipales = true;
+        }else{
+          cumplenLasRamasPrincipales = false;
+        }
+      });
+
+      this.seccionProductosSubRama.forEach((seccionHTML) => {
+        const cantidadSeleccionados = seccionHTML.querySelectorAll('.seleccionado');
+        const max = seccionHTML.getAttribute('data-max');
+        const min = seccionHTML.getAttribute('data-min');
+
+        const cantidadItems = seccionHTML.querySelectorAll('#pmp-item-subRama').length;
+        const cantidadDesactivados = seccionHTML.querySelectorAll('.desactivado').length;
+        if(cantidadItems == cantidadDesactivados){
+          cumplenLasSubRamas = true;
+          return;
+        }
+
+        cantidadSeleccionados.forEach((itemHTML) => {
+          const precio = extraerPrecio(itemHTML);
+          cantidadPrecioHazUnPedido += precio;
+        });
+ 
+        if(cantidadSeleccionados.length >= min && cantidadSeleccionados.length <= max){
+          cumplenLasSubRamas = true;
+        }else{
+          cumplenLasSubRamas = false;
+        }
+      });
+
+      this.estadoItemsContenedorPostres.querySelectorAll('#pmp-item-extra').forEach((itemHTML) => {
+        const precio = this.extraerPrecio(itemHTML);
+        cantidadPrecioHazUnPedido += precio;
+      });
+
+      this.estadoItemsContenedorGaseosasCerversas.querySelectorAll('#pmp-item-extra').forEach((itemHTML) => {
+        const precio = this.extraerPrecio(itemHTML);
+        cantidadPrecioHazUnPedido += precio;
+      });
+
+      var precioTotalCarrito = this.cantidadPrecioCarrito + cantidadPrecioHazUnPedido;
 
       if(cumplenLasRamasPrincipales == false && cumplenLasSubRamas == false ){
         this.btnHazUnPedido.classList.add('desactivado');
@@ -2310,6 +2337,34 @@
       }
 
 
+
+    }
+
+    extraerPrecio(elementoHTML) {
+      // Obtener el texto del párrafo que contiene el precio
+      const parrafoPrecio = elementoHTML.querySelector('.pmp-item-simple-info p') || 
+                            elementoHTML.querySelector('#pmp-item-info-precio') || 
+                            elementoHTML.querySelector('.pmp-item-extra-detalle').querySelectorAll('p')[2];
+      
+      if (!parrafoPrecio) return 0;
+    
+      // Expresión regular para coincidir con el patrón "+ X Bs"
+      let regexPrecio = /\+ (\d+) Bs/;
+      let coincidencia = parrafoPrecio.textContent.match(regexPrecio);
+      
+      // Si no encuentra ese patrón, probar con "X Bs"
+      if (!coincidencia) {
+        regexPrecio = /(\d+) Bs/;
+        coincidencia = parrafoPrecio.textContent.match(regexPrecio);
+      }
+      
+      // Si se encuentra una coincidencia, devolver el precio como número
+      if (coincidencia && coincidencia[1]) {
+        return parseInt(coincidencia[1], 10);
+      }
+      
+      // Si no se encuentra coincidencia, devolver 0
+      return 0;
     }
 
     async agregarAlCarrito(){}
