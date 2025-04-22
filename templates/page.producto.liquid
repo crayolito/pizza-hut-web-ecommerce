@@ -903,6 +903,7 @@
       this.itemsSeleccionadoPostres = [];
       this.itemsSeleccionadoGaseosasyCervezas = [];
       this.cantidadPrecioCarrito = null;
+      this.cantidadPrecioHazUnPedido = null;
       // REFERENCIAS ELEMENTOSS
       this.btnHazUnPedido = this.querySelector('#phpm-btn-haz-un-pedido');
       this.btnAgregarCarrito = this.querySelector('#phpm-btn-agregar-carrito'); 
@@ -920,8 +921,8 @@
       this.btnAgregarCarrito.addEventListener('click', this.agregarCarrito.bind(this));
 
       // INICIZAR EVENTOS
-      this.btnHazUnPedido.addEventListener('click', this.hazUnPedido.bind(this));
-      this.btnAgregarCarrito.addEventListener('click', this.agregarAlCarrito.bind(this));
+      this.btnHazUnPedido.addEventListener('click', this.procesoBotonesInferiores.bind(this, 'hazunpedido'));
+      this.btnAgregarCarrito.addEventListener('click', this.procesoBotonesInferiores.bind(this, 'agregarcarrito'));
 
       // INICIALIZAR ELEMENTOS Y PROCESOS CLAVES
       this.contenedorItemsComplejos.style.display = 'none';
@@ -942,8 +943,6 @@
 
       this.btnSeccionModalSalir = this.querySelector('#phppm-btn-salir');
       this.btnSeccionModalGuardar = this.querySelector('#phppm-btn-guardar');
-
-      
 
       this.seccionProductosRamaPrincipales = this.querySelectorAll('#pmph-seleccion-rama-principal');
       this.seccionProductosSubRama = this.querySelectorAll('#pmph-seleccion-subRama');
@@ -1150,7 +1149,8 @@
           const {importante , mensaje} = this.dividirTitulo(producto.titulo+precio);
           if (auxProductoPreSeleccionado.titulo == producto.titulo) {
             detalleSubProductos += `
-            <button 
+            <button
+            data-precio="${producto.precio}" 
             data-idtrabajo="${producto.idTrabajo}"
             data-idshopify="${producto.idShopify}"
             id="pmp-item-rama-principal" class="pmp-item-simple seleccionado">
@@ -1219,6 +1219,7 @@
                 // Se auto preseleccionara el primer elemento
                 detalleSubProductos += `
                 <button 
+                data-precio="${producto.precio}"
                 data-idtrabajo="${producto.idTrabajo}"
                 data-idshopify="${producto.idShopify}"
                 id="pmp-item-subRama" class="pmp-item-complejo seleccionado">
@@ -2335,6 +2336,7 @@
         this.btnAgregarCarrito.classList.remove('desactivado');
       }
 
+      this.cantidadPrecioHazUnPedido = cantidadPrecioHazUnPedido;
       this.etiquetaHazUnPedido.innerHTML = `Bs ${cantidadPrecioHazUnPedido}`;
       this.etiquetaAgregarCarrito.innerHTML = `Bs ${precioTotalCarrito}`;
     }
@@ -2375,15 +2377,109 @@
       return 0;
     }
     
-    async agregarAlCarrito(){
+    async procesoBotonesInferiores(tipoProceso){
       // Recorrer todo y generar un objeto para introducir al carrito
-      // Despues mantenerse en la ventana del producto
+      const data = JSON.parse(localStorage.getItem('phpp-productoData'));
+      const cantidadSolicitada = this.querySelector('#phpd-cantidad-general').innerHTML;
+      var productosOpciones = [];
+      var productosComple = [];
+
+      this.seccionProductosRamaPrincipales.forEach((seccionHTML) => {
+        const tituloSeccion = seccionHTML.querySelector(':scope > h3').innerHTML;
+        const cantidadSeleccionados = seccionHTML.querySelectorAll('.seleccionado');
+        cantidadSeleccionados.forEach((itemHTML) => {
+          var idTrabajo = itemHTML.getAttribute('data-idtrabajo');
+          var idShopify = itemHTML.getAttribute('data-idshopify');
+          var precio = itemHTML.getAttribute('data-precio');
+          var informacionTitulo = itemHTML.querySelector('.pmp-item-simple-info')
+          var titulo = informacionTitulo.querySelector('h3').innerHTML + informacionTitulo.querySelector('p').innerHTML.replace(/\s*\+\s*\d+\s*Bs.*$/, '').trim();
+          productosOpciones.push({
+            tituloSeccion,
+            idTrabajo: idTrabajo,
+            idShopify: idShopify,
+            precio: precio,
+            titulo
+          });
+        });
+      });
       
+      this.seccionProductosSubRama.forEach((seccionHTML) => {
+        const tituloSeccion = seccionHTML.querySelector(':scope > h3').innerHTML;
+        const cantidadSeleccionados = seccionHTML.querySelectorAll('.seleccionado');
+        cantidadSeleccionados.forEach((itemHTML) => {
+          var idTrabajo = itemHTML.getAttribute('data-idtrabajo');
+          var idShopify = itemHTML.getAttribute('data-idshopify');
+          var precio = itemHTML.querySelector('data-precio');
+          var titulo = itemHTML.querySelector('.pmp-item-complejo-info-detalle').querySelectorAll('p')[1].innerHTML;          
+          productosComple.push({
+            tituloSeccion,
+            idTrabajo: idTrabajo,
+            idShopify: idShopify,
+            cantidad: 1,
+            titulo,
+            precio: precio,
+          });
+        });
+      });
+
+      this.estadoItemsContenedorPostres.querySelectorAll('#pmp-item-extra').forEach((itemHTML) => {
+        const contenedorPadre = itemHTML.closest('#pmph-seleccion-extras-gaseosasycervezas');
+        const tituloSeccion = contenedorPadre.querySelector('.pmph-extras-header').querySelector(':scope > h3').innerHTML;
+
+        const idTrabajo = itemHTML.getAttribute('data-idtrabajo');
+        const idShopify = itemHTML.getAttribute('data-idshopify');
+        const cantidad = itemHTML.getAttribute('data-cantidad');
+        const titulo = itemHTML.getAttribute('data-titulo');
+        const precio = itemHTML.getAttribute('data-precio');
+        productosComple.push({
+          tituloSeccion,
+          idTrabajo: idTrabajo,
+          idShopify: idShopify,
+          cantidad: cantidad,
+          titulo: titulo,
+          precio: precio
+        });
+      });
+
+      this.estadoItemsContenedorGaseosasCerversas.querySelectorAll('#pmp-item-extra').forEach((itemHTML) => {
+      });
+
+      const detalleProducto = {
+        producto: {
+          idShopify: data.producto.idShopify,
+          idTrabajo: data.producto.idTrabajo,
+          handle: data.producto.handle,
+          titulo: data.producto.titulo,
+          precio: data.producto.precio,
+          imagen: data.producto.imagen,
+          cantidad: cantidadSolicitada,
+        },
+        opcionesPrincipales: {
+          titulo: "Opciones Principales",
+          productos: productosOpciones  
+        },
+        complementos: {
+          titulo: "Complementos",
+          productos: productosComple
+        }
+      };
+
+      console.log('Detalle del producto', detalleProducto);
+      {% comment %} AuxiliaresGlobal.agregarCarrito(parseInt(cantidadSolicitada),parseInt(data.producto.idShopify),{
+        properties: {
+          "estructura": "",
+        }
+      }); {% endcomment %}
+
+      {% comment %} this.cantidadPrecioCarrito = await AuxiliaresGlobal.totalPrecioCarritoShopify();
+      this.etiquetaAgregarCarrito.innerHTML = `Bs ${this.cantidadPrecioCarrito + this.cantidadPrecioHazUnPedido}`;
+      this.etiquetaHazUnPedido.innerHTML = `Bs ${this.cantidadPrecioHazUnPedido}`;
+
+      if(tipoProceso == 'hazUnPedido'){
+        window.location.href = '/pages/carrito';
+      } {% endcomment %}
     }
 
-    async hazUnPedido(){
-      // Agregar al carrito y redireccionar a la pagina de carrito
-    }
 
   }
 

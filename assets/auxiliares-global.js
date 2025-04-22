@@ -679,3 +679,14 @@ class MensajeTemporal extends HTMLElement {
 }
 
 customElements.define('mensaje-temporal', MensajeTemporal);
+
+class MensajeCargaDatos extends HTMLElement {
+  constructor() {
+    super();
+  }
+
+  connectedCallback() {
+  }
+}
+
+customElements.define('mensaje-carga-datos', MensajeCargaDatos);
