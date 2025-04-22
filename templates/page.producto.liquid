@@ -917,8 +917,6 @@
 
     connectedCallback() {
       // EVENTOS INICIALIZAR
-      this.btnHazUnPedido.addEventListener('click', this.redireccionHazUnPedido.bind(this));
-      this.btnAgregarCarrito.addEventListener('click', this.agregarCarrito.bind(this));
 
       // INICIZAR EVENTOS
       this.btnHazUnPedido.addEventListener('click', this.procesoBotonesInferiores.bind(this, 'hazunpedido'));
@@ -1778,9 +1776,7 @@
       }
     }
 
-    redireccionHazUnPedido() {
-      window.location.href = '/pages/carrito';
-    }
+    
 
     agregarCarrito() {
       const perra = AuxiliaresGlobal.sucursal;
