@@ -821,7 +821,7 @@
       contenedorProductos.innerHTML = contenidoHTML;
       this.inicializarEventos();  
     }
-    
+
     async segundaFaseConsulta(codigosColeccion) {
       // Validar que codigosColeccion sea un array
       if (!Array.isArray(codigosColeccion) || codigosColeccion.length === 0) {
@@ -858,6 +858,13 @@
                       }
                       metafield(namespace: "estructura", key: "json") {
                         value
+                      }
+                      variants(first: 1) {
+                        edges {
+                          node {
+                            id
+                          }
+                        }
                       }
                     }
                   }
@@ -921,6 +928,14 @@
               ? producto.images.edges[0].node.url 
               : '';
             
+            // Obtener el ID de la variante
+            let varianteId = '';
+            if (producto.variants && producto.variants.edges.length > 0) {
+              const varianteCompleta = producto.variants.edges[0].node.id;
+              // Extraer solo la parte numérica del ID de la variante
+              varianteId = varianteCompleta.split('/').pop();
+            }
+            
             // Procesar el metafield de estructura
             let estructura = {};
             if (producto.metafield && producto.metafield.value) {
@@ -932,7 +947,7 @@
             }
             
             return {
-              id: producto.id,
+              id: varianteId, // Usamos el ID de variante en lugar del ID de producto
               titulo: producto.title,
               handle: producto.handle,
               descripcion: producto.description,
@@ -975,7 +990,7 @@
         return resultado;
       }
     }
-
+    
     async primeraFaseConsulta() {
       const graphQLQuery = `
         query GetCollectionByFlexibleTitle {
@@ -1152,7 +1167,7 @@
         return [];
       }
     }
-    
+
     // Función para verificar si un producto de rama coincide con alguna clave de estructura
     filtrarProductosPorTitulo(productosArray, tituloReferencia) {
       // Validación rápida
