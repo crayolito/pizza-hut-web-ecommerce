@@ -2109,13 +2109,6 @@
         this.btnsEliminarExtrasPostres.forEach((btnEliminar) => {
           btnEliminar.addEventListener('click', this.eliminarItemExtras.bind(this,btnEliminar));
         });
-
-        // Si el contenedor de extras postres con el id="phpm-extras-especiales-postres" verificar si tiene elementos id="pmp-item-extra"
-        // this.estadoItemsContenedorPostres = this.querySelector('#phpm-extras-especiales-postres');
-
-        // Hago la actualizacion de los elementos seleccionados en el contenedor de extras postres
-
-        return;
       }
 
       if(this.cualSeccionExtrasEs == 'gaseosasycervezas'){
@@ -2188,7 +2181,6 @@
         this.btnsEliminarExtrasGaseosasCerversas.forEach((btnEliminar) => {
           btnEliminar.addEventListener('click', this.eliminarItemExtras.bind(this,btnEliminar));
         });
-        return;
       }
 
       this.actualizarEstadoBotonesInferiores();
@@ -2331,7 +2323,7 @@
       var precioTotalCarrito = this.cantidadPrecioCarrito + cantidadPrecioHazUnPedido;
       this.cantidadPrecioHazUnPedido = cantidadPrecioHazUnPedido;
 
-      console.log('Testeo de pruebas  :',{
+      console.log('Testeo de pruebas :',{
         precioTotalCarrito,
         cantidadPrecioHazUnPedido
       })
