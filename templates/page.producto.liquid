@@ -2278,7 +2278,7 @@
         const min = seccionHTML.getAttribute('data-min');
 
         cantidadSeleccionados.forEach((itemHTML) => {
-          const precio = extraerPrecio(itemHTML);
+          const precio = this.extraerPrecio(itemHTML);
           cantidadPrecioHazUnPedido += precio;
         });
 
@@ -2302,7 +2302,7 @@
         }
 
         cantidadSeleccionados.forEach((itemHTML) => {
-          const precio = extraerPrecio(itemHTML);
+          const precio = this.extraerPrecio(itemHTML);
           cantidadPrecioHazUnPedido += precio;
         });
  
