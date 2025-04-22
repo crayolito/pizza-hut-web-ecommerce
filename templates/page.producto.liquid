@@ -1148,7 +1148,7 @@
           if (auxProductoPreSeleccionado.titulo == producto.titulo) {
             detalleSubProductos += `
             <button
-            data-precio="${producto.precio}" 
+            data-precio="${producto.estructura.precio}" 
             data-idtrabajo="${producto.idTrabajo}"
             data-idshopify="${producto.idShopify}"
             id="pmp-item-rama-principal" class="pmp-item-simple seleccionado">
@@ -1217,7 +1217,7 @@
                 // Se auto preseleccionara el primer elemento
                 detalleSubProductos += `
                 <button 
-                data-precio="${producto.precio}"
+                data-precio="${producto.estructura.precio}"
                 data-idtrabajo="${producto.idTrabajo}"
                 data-idshopify="${producto.idShopify}"
                 id="pmp-item-subRama" class="pmp-item-complejo seleccionado">
@@ -1775,8 +1775,6 @@
         this.tituloModalExtras.innerHTML = 'GASEOSAS Y CERVEZAS';
       }
     }
-
-    
 
     agregarCarrito() {
       const perra = AuxiliaresGlobal.sucursal;
@@ -2491,7 +2489,7 @@
         console.error('Error:', error);
       });
 
-      
+
       {% comment %} AuxiliaresGlobal.agregarCarrito(parseInt(cantidadSolicitada),parseInt(data.producto.idShopify),{
         properties: {
           "estructura": "",
