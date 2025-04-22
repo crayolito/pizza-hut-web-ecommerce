@@ -1729,6 +1729,7 @@
       var cumplenLasSubRamas = false;
 
       var cantidadPrecioHazUnPedido = parseInt(data.producto.precio);
+      var cantidadPrecioTotalExtras = 0;
 
       this.seccionProductosRamaPrincipales.forEach((seccionHTML) => {
         const cantidadSeleccionados = seccionHTML.querySelectorAll('.seleccionado');
@@ -1773,12 +1774,12 @@
 
       this.estadoItemsContenedorPostres.querySelectorAll('#pmp-item-extra').forEach((itemHTML) => {
         const precio = this.extraerPrecio(itemHTML);
-        cantidadPrecioHazUnPedido += precio;
+        cantidadPrecioTotalExtras += precio;
       });
 
       this.estadoItemsContenedorGaseosasCerversas.querySelectorAll('#pmp-item-extra').forEach((itemHTML) => {
         const precio = this.extraerPrecio(itemHTML);
-        cantidadPrecioHazUnPedido += precio;
+        cantidadPrecioTotalExtras += precio;
       });
 
       
@@ -1790,8 +1791,8 @@
         this.btnAgregarCarrito.classList.remove('desactivado');
       }
       
-      var precioTotalCarrito = this.cantidadPrecioCarrito + (cantidadPrecioHazUnPedido * parseInt(cantidadSolicitada)); 
-      this.cantidadPrecioHazUnPedido = cantidadPrecioHazUnPedido * parseInt(cantidadSolicitada);
+      var precioTotalCarrito = this.cantidadPrecioCarrito + (cantidadPrecioHazUnPedido * parseInt(cantidadSolicitada)) + cantidadPrecioTotalExtras; 
+      this.cantidadPrecioHazUnPedido = cantidadPrecioHazUnPedido * parseInt(cantidadSolicitada) + cantidadPrecioTotalExtras;
 
       console.log('Testeo de pruebas :',{
         precioTotalCarrito,
