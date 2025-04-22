@@ -2256,6 +2256,8 @@
 
     actualizarEstadoBotonesInferiores(){
       var data = JSON.parse(localStorage.getItem('phpp-productoData'));
+      const cantidadSolicitada = this.querySelector('#phpd-cantidad-general').innerHTML;
+
       var cumplenLasRamasPrincipales = false;
       var cumplenLasSubRamas = false;
 
@@ -2321,8 +2323,8 @@
         this.btnAgregarCarrito.classList.remove('desactivado');
       }
       
-      var precioTotalCarrito = this.cantidadPrecioCarrito + cantidadPrecioHazUnPedido;
-      this.cantidadPrecioHazUnPedido = cantidadPrecioHazUnPedido;
+      var precioTotalCarrito = this.cantidadPrecioCarrito + (cantidadPrecioHazUnPedido * parseInt(cantidadSolicitada)); 
+      this.cantidadPrecioHazUnPedido = cantidadPrecioHazUnPedido * parseInt(cantidadSolicitada);
 
       console.log('Testeo de pruebas :',{
         precioTotalCarrito,
@@ -2463,13 +2465,13 @@
 
       console.log('Detalle del producto', detalleProducto);
 
-
-
-      {% comment %} AuxiliaresGlobal.agregarCarrito(parseInt(cantidadSolicitada),parseInt(data.producto.idShopify),{
+       AuxiliaresGlobal.agregarCarrito(parseInt(cantidadSolicitada),parseInt(data.producto.idShopify),{
         properties: {
           "estructura": JSON.stringify(detalleProducto),
         }
-      ); {% endcomment %}
+      );
+      
+      this.cantidadPrecioHazUnPedido = parseInt(data.producto.precio) 
 
       
 
