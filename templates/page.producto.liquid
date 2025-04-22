@@ -2335,6 +2335,9 @@
         this.btnHazUnPedido.classList.remove('desactivado');
         this.btnAgregarCarrito.classList.remove('desactivado');
       }
+
+      this.etiquetaPrecioHazUnPedido.innerHTML = `Bs ${cantidadPrecioHazUnPedido}`;
+      this.etiquetaPrecioCarrito.innerHTML = `Bs ${precioTotalCarrito}`;
     }
 
     extraerPrecio(elementoHTML) {
