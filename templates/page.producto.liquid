@@ -1207,6 +1207,8 @@
           `;
 
           infoSubRama.productos.forEach((producto,index) => {
+            console.log('producto :', producto);
+
             const tituloTrabajo = producto.titulo.startsWith("Extra ") ? producto.titulo.substring(6) : producto.titulo;
             const sePondraNombre = infoSubRama.titulo == "Masas y Bordes";
             // Verifica si el producto se encuentra dentro del categoria de ramas de la (Personal)
