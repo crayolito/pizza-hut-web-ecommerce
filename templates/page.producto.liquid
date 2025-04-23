@@ -1122,9 +1122,6 @@
       // Aqui se va a desactivar o deseleccionar deacuerdo a los max y min de la seccion
       
       hermanosSeccion.forEach((itemHTML)=>{
-        const idTrabajo = itemHTML.getAttribute('data-idtrabajo');
-        const idShopify = itemHTML.getAttribute('data-idshopify');
-        
         if(btnElemento == itemHTML)return;
 
         if(!(max == "1" && min == "1")){
