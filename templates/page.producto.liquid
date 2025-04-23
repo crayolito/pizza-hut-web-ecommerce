@@ -1754,9 +1754,7 @@
         }
       };
 
-      console.log('Detalle del producto', detalleProducto);
-
-      // Agregar al carrito de Shopify
+      {% comment %} // Agregar al carrito de Shopify
       AuxiliaresGlobal.agregarCarrito(parseInt(cantidadSolicitada),parseInt(data.producto.idShopify),{
         properties: {"estructura": JSON.stringify(detalleProducto),}
       });
@@ -1765,7 +1763,7 @@
         window.location.href = '/pages/carrito';
       } 
 
-      if(tipoProceso == 'agregarCarrito'){
+      if(tipoProceso == 'agregarcarrito'){
         // Actualizar las etiquetas del HAZ ME UN PEDIDO Y AGREGAR AL CARRITO 
         this.cantidadPrecioCarrito = await AuxiliaresGlobal.totalPrecioCarritoShopify();
         this.etiquetaAgregarCarrito.innerHTML = `Bs ${this.cantidadPrecioCarrito + (this.cantidadPrecioHazUnPedido * cantidadSolicitada) }`;
@@ -1777,9 +1775,9 @@
           totalCarrito : this.cantidadPrecioCarrito + (this.cantidadPrecioHazUnPedido * cantidadSolicitada),
           totalHazUnPedido : (this.cantidadPrecioHazUnPedido * cantidadSolicitada)
         })
-      } 
+      }  {% endcomment %}
 
-      {% comment %} AuxiliaresGlobal.limpiarCarrito(); {% endcomment %}
+      AuxiliaresGlobal.limpiarCarrito();
 
       {% comment %} // Envío de datos a webhook.site
       const fechayhora = new Date().toLocaleString(); 
