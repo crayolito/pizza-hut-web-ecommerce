@@ -557,8 +557,9 @@
         });
 
         // Se va optener el primer elemento sus sub elemento al primeor con precio 0
-        var auxProductoPreSeleccionado = productoRamaTrabajo.find((item) => item.idTrabajo == dataProducto.subProductoSeleccionado);
-        {% comment %} var auxProductoPreSeleccionado = productoRamaTrabajo.find((item) => parseInt(item.precio) == 0); {% endcomment %}
+        var auxProductoPreSeleccionado = productoRamaTrabajo.find((item) => item.idTrabajo == dataProducto.subProductoSeleccionado) || 
+                                                                      productoRamaTrabajo.find((item) => parseInt(item.precio) == 0) ||
+                                                                      productoRamaTrabajo[0];
 
         detalleSubProductos += `
         <div
@@ -1752,15 +1753,23 @@
 
       console.log('Detalle del producto', detalleProducto);
 
-       {% comment %} AuxiliaresGlobal.agregarCarrito(parseInt(cantidadSolicitada),parseInt(data.producto.idShopify),{
-        properties: {
-          "estructura": JSON.stringify(detalleProducto),
-        }
-      }
-      ); 
-      {% endcomment %}
-      AuxiliaresGlobal.limpiarCarrito();
+      // Agregar al carrito de Shopify
+      AuxiliaresGlobal.agregarCarrito(parseInt(cantidadSolicitada),parseInt(data.producto.idShopify),{
+        properties: {"estructura": JSON.stringify(detalleProducto),}
+      });
 
+      if(tipoProceso == 'hazUnPedido'){
+        window.location.href = '/pages/carrito';
+      } 
+
+      if(tipoProceso == 'agregarCarrito'){
+        // Actualizar las etiquetas del HAZ ME UN PEDIDO Y AGREGAR AL CARRITO 
+        this.cantidadPrecioCarrito = await AuxiliaresGlobal.totalPrecioCarritoShopify();
+        this.etiquetaAgregarCarrito.innerHTML = `Bs ${this.cantidadPrecioCarrito + (this.cantidadPrecioHazUnPedido * cantidadSolicitada) }`;
+        this.etiquetaHazUnPedido.innerHTML = `Bs ${(this.cantidadPrecioHazUnPedido * cantidadSolicitada)}`;
+      }
+
+      {% comment %} AuxiliaresGlobal.limpiarCarrito(); {% endcomment %}
 
       {% comment %} // Envío de datos a webhook.site
       const fechayhora = new Date().toLocaleString(); 
@@ -1793,13 +1802,7 @@
       {% comment %} 
       }); {% endcomment %}
 
-      {% comment %} this.cantidadPrecioCarrito = await AuxiliaresGlobal.totalPrecioCarritoShopify();
-      this.etiquetaAgregarCarrito.innerHTML = `Bs ${this.cantidadPrecioCarrito + this.cantidadPrecioHazUnPedido}`;
-      this.etiquetaHazUnPedido.innerHTML = `Bs ${this.cantidadPrecioHazUnPedido}`;
 
-      if(tipoProceso == 'hazUnPedido'){
-        window.location.href = '/pages/carrito';
-      } {% endcomment %}
     }
 
     extraerPrecio(elementoHTML) {
