@@ -436,6 +436,7 @@ class AuxiliaresGlobal {
     });
   }
 }
+
 class CarritoShopify extends HTMLElement {
   constructor() {
     super();

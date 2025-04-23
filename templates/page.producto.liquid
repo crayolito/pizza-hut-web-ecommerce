@@ -1658,10 +1658,6 @@
       var precioTotalCarrito = this.cantidadPrecioCarrito + (cantidadPrecioHazUnPedido * parseInt(cantidadSolicitada)) + cantidadPrecioTotalExtras; 
       this.cantidadPrecioHazUnPedido = cantidadPrecioHazUnPedido * parseInt(cantidadSolicitada) + cantidadPrecioTotalExtras;
 
-      console.log('Testeo de pruebas :',{
-        precioTotalCarrito,
-        cantidadPrecioHazUnPedido
-      })
       this.etiquetaHazUnPedido.innerHTML = `Bs ${this.cantidadPrecioHazUnPedido}`;
       this.etiquetaAgregarCarrito.innerHTML = `Bs ${precioTotalCarrito}`;
     }
@@ -1756,12 +1752,14 @@
 
       console.log('Detalle del producto', detalleProducto);
 
-       AuxiliaresGlobal.agregarCarrito(parseInt(cantidadSolicitada),parseInt(data.producto.idShopify),{
+       {% comment %} AuxiliaresGlobal.agregarCarrito(parseInt(cantidadSolicitada),parseInt(data.producto.idShopify),{
         properties: {
           "estructura": JSON.stringify(detalleProducto),
         }
       }
-      );
+      ); {% endcomment %}
+      AuxiliaresGlobal.limpiarCarrito();
+
 
       {% comment %} // Envío de datos a webhook.site
       const fechayhora = new Date().toLocaleString(); 
@@ -1804,7 +1802,6 @@
     }
 
     extraerPrecio(elementoHTML) {
-      
       // Obtener el texto del párrafo que contiene el precio
       const elementoDetalle = elementoHTML.querySelector('.pmp-item-extra-detalle');
       const parrafoPrecio = elementoHTML.querySelector('.pmp-item-simple-info p') || 
@@ -1823,12 +1820,6 @@
           regexPrecio = /(\d+) Bs/;
           coincidencia = parrafoPrecio.textContent.match(regexPrecio);
       }
-      
-      console.log("Extraer precio", {
-        coincidencia,
-        elementoHTML: elementoHTML,
-        texto: parrafoPrecio.textContent,
-      });
 
       // Si se encuentra una coincidencia, devolver el precio como número
       if (coincidencia && coincidencia[1]) {
