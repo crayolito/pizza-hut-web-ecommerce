@@ -1,7 +1,5 @@
 
-document.addEventListener('DOMContentLoaded', function () {
   class AuxiliaresGlobal {
-
     /**
      * Muestra un mensaje de éxito para el carrito
      */
@@ -438,7 +436,6 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     }
   }
-});
 
 class CarritoShopify extends HTMLElement {
   constructor() {
