@@ -1755,13 +1755,13 @@
       };
 
       // Agregar al carrito de Shopify
-      {% comment %} await AuxiliaresGlobal.agregarCarrito(parseInt(cantidadSolicitada),parseInt(data.producto.idShopify),{
+      await AuxiliaresGlobal.agregarCarrito(parseInt(cantidadSolicitada),parseInt(data.producto.idShopify),{
         properties: {"estructura": JSON.stringify(detalleProducto),}
-      }); {% endcomment %}
+      });
 
       if(tipoProceso == 'hazunpedido'){
-        {% comment %} window.location.href = '/pages/carrito'; {% endcomment %}
-        await AuxiliaresGlobal.limpiarCarrito();
+        window.location.href = '/pages/carrito';
+        {% comment %} await AuxiliaresGlobal.limpiarCarrito(); {% endcomment %}
       } 
 
       if(tipoProceso == 'agregarcarrito'){
