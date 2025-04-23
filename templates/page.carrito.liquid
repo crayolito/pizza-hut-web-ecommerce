@@ -26,7 +26,10 @@
                     <h1>Choclo y tocino</h1>
                     <ul class="color-letras-extra">
                       <li>
-                        <p>Extra: queso, tocino, cebolla</p>
+                        <p>
+                          Extra: <br>
+                          queso, tocino, cebolla
+                        </p>
                       </li>
                       <li>
                         <p>Borde Criollo</p>
@@ -194,24 +197,6 @@
         </div>
       </div>
       <div class="pcph-carrito-derecho">
-        <h1>TOTAL</h1>
-        <div class="pcph-item-info-pago">
-          <p>Subtotal</p>
-          <p>Bs. 136.05</p>
-        </div>
-        <div class="pcph-item-info-pago">
-          <p>Descuento</p>
-          <p>Bs. 00.000</p>
-        </div>
-        <div class="pcph-item-info-pago">
-          <p>Recojo en local</p>
-          <p>Bs. 00.000</p>
-        </div>
-        <hr>
-        <div class="pcph-item-info-total">
-          <p>Total</p>
-          <p>Bs. 136.05</p>
-        </div>
         <button id="phpc-btn-pagar" class="pcph-btn-pagar">
           <p>PAGAR</p>
           {% render 'icon-dolar' %}
@@ -258,14 +243,3 @@
     </section>
   </div>
 </page-carrito>
-
-<script>
-  {% comment %} // Registrar el componente cuando el DOM esté list
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-      customElements.define('page-carrito', PageCarrito);
-    });
-  } else {
-    customElements.define('page-carrito', PageCarrito);
-  } {% endcomment %}
-</script>

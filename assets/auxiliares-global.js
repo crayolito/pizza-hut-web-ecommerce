@@ -692,41 +692,152 @@ class MensajeCargaDatos extends HTMLElement {
 
 customElements.define('mensaje-carga-datos', MensajeCargaDatos);
 
-class PageCarrito extends HTMLElement {
-  constructor() {
-    super();
-  }
+// class PageCarrito extends HTMLElement {
+//   constructor() {
+//     super();
+//   }
 
-  connectedCallback() {
-    this.btnPagar = this.querySelector('#phpc-btn-pagar');
-    this.btnPagar.addEventListener('click', () => this.pagarBtnPrincipal());
-  }
+//   connectedCallback() {
+//     this.btnPagar = this.querySelector('#phpc-btn-pagar');
+//     this.contenedorItemsDetalle = this.querySelector('.pcph-items-carrito');
+//     this.contenedorDerecho = this.querySelector('.pcph-carrito-derecho');
+//     this.btnPagar.addEventListener('click', () => this.pagarBtnPrincipal());
+//   }
 
-  async inicializarDataShopify() {
-    try {
-      const infoCarrito = await AuxiliaresGlobal.obtenerCarritoShopify();
-      console.log('Información completa:', infoCarrito.informacionCompleta);
-      console.log('Cantidad total:', infoCarrito.cantidadTotal);
-      const precioTotal = infoCarrito.informacionCompleta.total_price / 100;
-      console.log('Precio total:', precioTotal);
-      this.cantidadPrecioCarrito = precioTotal;
+//   async inicializarDataShopify() {
+//     try {
+//       const infoCarrito = await AuxiliaresGlobal.obtenerCarritoShopify();
+//       console.log('Información completa:', infoCarrito.informacionCompleta);
+//       console.log('Cantidad total:', infoCarrito.cantidadTotal);
+//       const precioTotal = infoCarrito.informacionCompleta.total_price / 100;
+//       console.log('Precio total:', precioTotal);
+//       this.cantidadPrecioCarrito = precioTotal;
 
-      // Asegúrate de que este elemento exista
-      this.etiquetaAgregarCarrito = this.querySelector('.selector-del-precio'); // ajusta el selector
-      if (this.etiquetaAgregarCarrito) {
-        this.etiquetaAgregarCarrito.innerHTML = `Bs ${precioTotal}`;
-      }
-    } catch (error) {
-      console.error('Hubo un error:', error);
-    }
+//       // Asegúrate de que este elemento exista
+//       this.etiquetaAgregarCarrito = this.querySelector('.selector-del-precio'); // ajusta el selector
+//       if (this.etiquetaAgregarCarrito) {
+//         this.etiquetaAgregarCarrito.innerHTML = `Bs ${precioTotal}`;
+//       }
+//     } catch (error) {
+//       console.error('Hubo un error:', error);
+//     }
+
+//     let contenidoIzquierdoHTML = '';
 
 
+//     infoCarrito.informacionCompleta.items.forEach((item) => {
+//       if(!(item.properties && item.properties.estructura))return;
 
-    this.declararComponentesDespuesCreacion();
-  }
+//       const dataContruccion = JSON.parse(item.properties.estructura);
 
-  declararComponentesDespuesCreacion() {}
-  pagarBtnPrincipal() {}
-}
+//       contenidoIzquierdoHTML += `
+//       <div 
+//       data-idTrabajo="${dataContruccion.producto.idTrabajo}"
+//       data-idShopify="${dataContruccion.producto.idShopify}"
+//       data-handle="${dataContruccion.producto.handle}"
+//       data-precio="${dataContruccion.producto.precio}"
+//       class="pcph-item-carrito">
+//         <div class="pcph-itemc-detalle">
+//           <div class="pcph-itemc-imagen">
+//             ${dataContruccion.producto.imagen == null || dataContruccion.producto.imagen == '' 
+//               ? `<img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="${dataContruccion.producto.titulo}" width="100" height="100">`
+//               : `<img src="${dataContruccion.producto.imagen}" alt="${dataContruccion.producto.titulo}" width="100" height="100">`
+//             }
+//           </div>
+//           <div class="pcph-itemc-info">
+//             <div class="pcph-itemc_opcion1">
+//               <h2 class="color-letras-extra">Bs. ${dataContruccion.producto.precioTotalConjunto}</h2>
+//               <div class="pcph-itemc_editar">
+//                 {% render 'icon-editar' %}
+//                 <p class="color-letras-primary">Editar</p>
+//               </div>
+//             </div>
+//             <div class="pcph-itemc_opcion2">
+//               <div class="pcph-itemc-detalles-primarios">
+//                 <h1>${dataContruccion.producto.titulo}</h1>
+//                 <ul class="color-letras-extra">
+//                   <li>
+//                     <p>Extra: queso, tocino, cebolla</p>
+//                   </li>
+//                   <li>
+//                     <p>Borde Criollo</p>
+//                   </li>
+//                   <li>
+//                     <p>Mediana</p>
+//                   </li>
+//                 </ul>
+//               </div>
+//               <div class="pcph-itemc-detalles-secundarios">
+//                 <p>ADICIONALES</p>
+//                 <ul class="color-letras-extra">
+//                   <li>
+//                     <p>2x: Soda 350ml</p>
+//                   </li>
+//                   <li>
+//                     <p>2x: Sprite 350ml</p>
+//                   </li>
+//                   <li>
+//                     <p>2x: Dulce de leche</p>
+//                   </li>
+//                   <li>
+//                     <p>1x: Sprite 350ml</p>
+//                   </li>
+//                   <li>
+//                     <p>5x: Postres Maracuya</p>
+//                   </li>
+//                 </ul>
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//         <div class="pcph-itemc_cantidad">
+//           <button class="pcph-itemc_cantidad-btn">
+//             {% render 'icon-menos' %}
+//           </button>
+//           <p>1</p>
+//           <button class="pcph-itemc_cantidad-btn">
+//             {% render 'icon-mas' %}
+//           </button>
+//         </div>
+//       </div>
+//       `;
+      
+//     });
 
-customElements.define('page-carrito', PageCarrito);
+//     this.contenedorItemsDetalle.innerHTML = contenidoIzquierdoHTML;
+
+//     let contenidoDerechoHTML = '';
+//     contenidoDerechoHTML += `
+//         <h1>TOTAL</h1>
+//         <div class="pcph-item-info-pago">
+//           <p>Subtotal</p>
+//           <p>Bs. 136.05</p>
+//         </div>
+//         <div class="pcph-item-info-pago">
+//           <p>Descuento</p>
+//           <p>Bs. 00.000</p>
+//         </div>
+//         <div class="pcph-item-info-pago">
+//           <p>Recojo en local</p>
+//           <p>Bs. 00.000</p>
+//         </div>
+//         <hr>
+//         <div class="pcph-item-info-total">
+//           <p>Total</p>
+//           <p>Bs. 136.05</p>
+//         </div>
+//     `;
+
+//     this.contenedorDerecho.insertAdjacentHTML('afterbegin', contenidoDerechoHTML);
+
+//     this.declararComponentesDespuesCreacion();
+//   }
+
+//   declararComponentesDespuesCreacion() {
+
+//   }
+
+//   pagarBtnPrincipal() {}
+// }
+
+// customElements.define('page-carrito', PageCarrito);
