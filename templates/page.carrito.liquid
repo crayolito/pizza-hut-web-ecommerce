@@ -263,10 +263,10 @@
   class PageCarrito extends HTMLElement {
     constructor() {
       super();
-      this.btnPagar = this.querySelector('#phpc-btn-pagar');
     }
 
     connectedCallback() {
+      this.btnPagar = this.querySelector('#phpc-btn-pagar');
       this.btnPagar.addEventListener('click', () => this.pagarBtnPrincipal.bind(this));
       this.inicializarDataShopify();
     }
