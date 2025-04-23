@@ -1760,8 +1760,8 @@
       });
 
       if(tipoProceso == 'hazunpedido'){
-        window.location.href = '/pages/carrito';
-        {% comment %} await AuxiliaresGlobal.limpiarCarrito(); {% endcomment %}
+        {% comment %} window.location.href = '/pages/carrito'; {% endcomment %}
+        await AuxiliaresGlobal.limpiarCarrito();
       } 
 
       if(tipoProceso == 'agregarcarrito'){
