@@ -1754,7 +1754,7 @@
       console.log('Detalle del producto', detalleProducto);
 
       // Agregar al carrito de Shopify
-      AuxiliaresGlobal.agregarCarrito(parseInt(cantidadSolicitada),parseInt(data.producto.idShopify),{
+      {% comment %} AuxiliaresGlobal.agregarCarrito(parseInt(cantidadSolicitada),parseInt(data.producto.idShopify),{
         properties: {"estructura": JSON.stringify(detalleProducto),}
       });
 
@@ -1767,9 +1767,9 @@
         this.cantidadPrecioCarrito = await AuxiliaresGlobal.totalPrecioCarritoShopify();
         this.etiquetaAgregarCarrito.innerHTML = `Bs ${this.cantidadPrecioCarrito + (this.cantidadPrecioHazUnPedido * cantidadSolicitada) }`;
         this.etiquetaHazUnPedido.innerHTML = `Bs ${(this.cantidadPrecioHazUnPedido * cantidadSolicitada)}`;
-      }
+      } {% endcomment %}
 
-      {% comment %} AuxiliaresGlobal.limpiarCarrito();{% endcomment %}
+      AuxiliaresGlobal.limpiarCarrito();
 
       {% comment %} // Envío de datos a webhook.site
       const fechayhora = new Date().toLocaleString(); 
