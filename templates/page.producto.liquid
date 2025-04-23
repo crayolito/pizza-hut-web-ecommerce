@@ -442,6 +442,12 @@
     }
 
     async inicializarMedianteDataLocalStorage() {
+      // BUSCAR EN EL LOCALSTORAGE SI ES UN PRODUCTO INICIAL O EDITABLE 
+      // RECUERDA VERIFICAR QUE TIPO DE PRODUCTO ES SIMPLE O COMPLEJO
+      
+      // EDITAR LA PRODUCTO ESTRUCTURA DEL LOCALSTORAGE
+      this.editarEstructuraTrabajoLocalStorage(); 
+
       // Traer informacion para contruir el producto
       const dataProducto = JSON.parse(localStorage.getItem('phpp-productoData'));
       // Primero se crea la estructura generale productos del atributo => productoParaEstructuraTrabajo
@@ -1053,6 +1059,8 @@
         return [];
       }
     }
+
+    editarEstructuraTrabajoLocalStorage(){}
 
     procesoItemRamaPrincipal(btnElemento){
       // SIEMPE LA LOGICA DE LOS PRINCIPALES ES QUE SELECCIONA UNO SOLO Y SUS SUB PRODUCTOS SE ACTUALIZAN
