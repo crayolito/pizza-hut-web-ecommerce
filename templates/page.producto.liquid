@@ -557,7 +557,8 @@
         });
 
         // Se va optener el primer elemento sus sub elemento al primeor con precio 0
-        var auxProductoPreSeleccionado = productoRamaTrabajo.find((item) => parseInt(item.precio) == 0);
+        var auxProductoPreSeleccionado = productoRamaTrabajo.find((item) => item.idTrabajo == dataProducto.subProductoSeleccionado);
+        {% comment %} var auxProductoPreSeleccionado = productoRamaTrabajo.find((item) => parseInt(item.precio) == 0); {% endcomment %}
 
         detalleSubProductos += `
         <div

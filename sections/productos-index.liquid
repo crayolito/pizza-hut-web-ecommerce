@@ -559,6 +559,9 @@
           variantesHTML += `
             <div 
             data-id="${productoTrabajo.idTrabajo}"
+            data-idshopify="${productoTrabajo.idShopify}"
+            data-handle="${productoTrabajo.handle}"
+            data-precio="${productoTrabajo.precio}"
             class="variante-producto-item ${esSeleccionado}">
               <p>${tituloCorto}</p>
               <p class="color-letras-primary">${(productoTrabajo.precio !== "0") ? productoTrabajo.precio + ".00 BS" : ""}</p>
@@ -569,6 +572,9 @@
         contenidoHTML += `
           <div 
           data-id="${producto.idTrabajo}"
+          data-idshopify="${producto.idShopify}"
+          data-handle="${producto.handle}"
+          data-precio="${producto.precio}"
           data-seleccionado="${elementoSeleccionado.idTrabajo}"
           class="producto-item">
             <div class="producto-item-imagen">
