@@ -1677,8 +1677,9 @@
           var idTrabajo = itemHTML.getAttribute('data-idtrabajo');
           var idShopify = itemHTML.getAttribute('data-idshopify');
           var precio = itemHTML.getAttribute('data-precio');
-          var informacionTitulo = itemHTML.querySelector('.pmp-item-simple-info')
-          var titulo = informacionTitulo.querySelector('h3').innerHTML + informacionTitulo.querySelector('p').innerHTML.replace(/\s*\+\s*\d+\s*Bs.*$/, '').trim();
+          var titulo = itemHTML.getAttribute('data-titulo');
+          {% comment %} var informacionTitulo = itemHTML.querySelector('.pmp-item-simple-info') {% endcomment %}
+          {% comment %} var titulo = informacionTitulo.querySelector('h3').innerHTML + informacionTitulo.querySelector('p').innerHTML.replace(/\s*\+\s*\d+\s*Bs.*$/, '').trim(); {% endcomment %}
           productosOpciones.push({
             tituloSeccion,
             idTrabajo: idTrabajo,
@@ -1696,8 +1697,10 @@
         cantidadSeleccionados.forEach((itemHTML) => {
           var idTrabajo = itemHTML.getAttribute('data-idtrabajo');
           var idShopify = itemHTML.getAttribute('data-idshopify');
-          var precio = itemHTML.querySelector('data-precio');
-          var titulo = itemHTML.querySelector('.pmp-item-complejo-info-detalle').querySelectorAll('p')[1].innerHTML;          
+          var precio = itemHTML.getAttribute('data-precio');
+          var titulo = itemHTML.getAttribute('data-titulo');
+
+          {% comment %} var titulo = itemHTML.querySelector('.pmp-item-complejo-info-detalle').querySelectorAll('p')[1].innerHTML;           {% endcomment %}
           productosComple.push({
             tituloSeccion,
             idTrabajo: idTrabajo,
