@@ -1121,7 +1121,7 @@
       // Primero se procede a actualizar su seccion de sitio donde esta con sus hermanos (rama principal)
       // Aqui se va a desactivar o deseleccionar deacuerdo a los max y min de la seccion
       
-      hermanosSeccion.forEach((itemHTML)=>{
+      contenedorPadre.querySelectorAll('#pmp-item-rama-principal').forEach((itemHTML)=>{
         if(btnElemento == itemHTML)return;
 
         if(!(max == "1" && min == "1")){
