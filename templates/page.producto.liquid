@@ -1770,6 +1770,13 @@
         this.cantidadPrecioCarrito = await AuxiliaresGlobal.totalPrecioCarritoShopify();
         this.etiquetaAgregarCarrito.innerHTML = `Bs ${this.cantidadPrecioCarrito + (this.cantidadPrecioHazUnPedido * cantidadSolicitada) }`;
         this.etiquetaHazUnPedido.innerHTML = `Bs ${(this.cantidadPrecioHazUnPedido * cantidadSolicitada)}`;
+        console.log('Teste carrito :',{
+          cantidadPrecioCarrito: this.cantidadPrecioCarrito,
+          cantidadPrecioHazUnPedido: this.cantidadPrecioHazUnPedido,
+          cantidadSolicitada: cantidadSolicitada,
+          totalCarrito : this.cantidadPrecioCarrito + (this.cantidadPrecioHazUnPedido * cantidadSolicitada),
+          totalHazUnPedido : (this.cantidadPrecioHazUnPedido * cantidadSolicitada)
+        })
       } 
 
       {% comment %} AuxiliaresGlobal.limpiarCarrito(); {% endcomment %}
