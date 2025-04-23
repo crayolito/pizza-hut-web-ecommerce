@@ -522,7 +522,7 @@ class CantidadInput extends HTMLElement {
     const cantidad = this.cantidadEtiqueta;
     
     if (this.baseTrabajo == 'carrito') {
-      if (cantidad <= 0) {
+      if (cantidad <= 1) {
         this.btn[0].classList.remove('elemento-oculto');
         this.btn[1].classList.add('elemento-oculto');
       } else {
@@ -719,6 +719,9 @@ class PageCarrito extends HTMLElement {
     } catch (error) {
       console.error('Hubo un error:', error);
     }
+
+
+
     this.declararComponentesDespuesCreacion();
   }
 
