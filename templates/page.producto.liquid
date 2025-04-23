@@ -1766,7 +1766,7 @@
 
       if(tipoProceso == 'agregarcarrito'){
         // Actualizar las etiquetas del HAZ ME UN PEDIDO Y AGREGAR AL CARRIT
-        this.cantidadPrecioCarrito = await AuxiliaresGlobal.totalPrecioCarritoShopify();
+        this.cantidadPrecioCarrito = this.cantidadPrecioCarrito + (this.cantidadPrecioHazUnPedido * cantidadSolicitada);
         this.etiquetaAgregarCarrito.innerHTML = `Bs ${this.cantidadPrecioCarrito + (this.cantidadPrecioHazUnPedido * cantidadSolicitada) }`;
         this.etiquetaHazUnPedido.innerHTML = `Bs ${(this.cantidadPrecioHazUnPedido * cantidadSolicitada)}`;
         console.log('Teste carrito :',{
