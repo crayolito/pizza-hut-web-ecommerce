@@ -441,40 +441,6 @@
       this.actualizarEstadoBotonesInferiores();
     }
 
-    dividirTitulo(titulo) {
-      // Verificar si es el caso excepcional "Super Personal"
-      if (titulo.includes("Super personal")) {
-        return {
-          importante: "Super personal",
-          mensaje: titulo.replace("Super personal", "").trim()
-        };
-      }
-      
-      // Caso general: la primera palabra es la importante
-      const palabras = titulo.split(" ");
-      const importante = palabras[0];
-      const mensaje = palabras.slice(1).join(" ");
-      
-      return {
-        importante,
-        mensaje
-      };
-    }
-
-    obtenerStockGenericoTrabajo(productoTrabajo){
-      // Verificar si tenemos una sucursal seleccionada
-      const dataSucursal = JSON.parse(localStorage.getItem('sucursal-informacion'));
-      if(!dataSucursal || dataSucursal == "") return productoTrabajo.stockTotal;
-
-      const sucursalEncontrada = productoTrabajo.sucursales.find(
-        sucursal => sucursal.nombre == dataSucursal.name
-      );
-
-      return sucursalEncontrada 
-      ? parseInt(sucursalEncontrada.stock) 
-      : productoTrabajo.stockTotal;
-    }
-
     async inicializarMedianteDataLocalStorage() {
       // Traer informacion para contruir el producto
       const dataProducto = JSON.parse(localStorage.getItem('phpp-productoData'));
@@ -513,13 +479,6 @@
         }
         indice++;
       }
-
-      console.log('dataProducto :', {
-        estructura: estructuraContruccion,
-        producto: dataProducto.producto,
-        productoParaEstructuraTrabajo: dataProducto.productoParaEstructuraTrabajo,
-        subProductoSeleccionado: dataProducto.tamanoSeleccionado,
-      });
 
       var productoImagenHTML = '';
       const contenedorImg = this.querySelector('.pmph-imagen');
@@ -616,6 +575,8 @@
             detalleSubProductos += `
             <button
             data-precio="${producto.precio}" 
+            data-handle="${producto.handle}"
+            data-titulo="${producto.titulo}"
             data-idtrabajo="${producto.idTrabajo}"
             data-idshopify="${producto.idShopify}"
             id="pmp-item-rama-principal" class="pmp-item-simple seleccionado">
@@ -631,6 +592,8 @@
           }else{
             detalleSubProductos += `
             <button 
+            data-handle="${producto.handle}"
+            data-titulo="${producto.titulo}"
             data-precio="${producto.precio}" 
             data-idtrabajo="${producto.idTrabajo}"
             data-idshopify="${producto.idShopify}"
@@ -669,6 +632,7 @@
           data-max="${infoSubRama.max}"
           data-min="${infoSubRama.min}"
           data-codigo="${subRama}"
+          data-codigopadre="${ramaPrincipal}"
           tipo-boton="${bptb ? 'checkbox' : 'circle'}"
           id="pmph-seleccion-subRama" class="pmph-seleccion-especial ">
           <h3>${infoSubRama.titulo}</h3>
@@ -688,6 +652,8 @@
                 data-precio="${producto.precio}"
                 data-idtrabajo="${producto.idTrabajo}"
                 data-idshopify="${producto.idShopify}"
+                data-handle="${producto.handle}"
+                data-titulo="${producto.titulo}"
                 id="pmp-item-subRama" class="pmp-item-complejo seleccionado">
                   <div class="pmp-item-complejo-imagen ">
                   ${ producto.imagen == "" || producto.imagen == undefined || producto.imagen == null?
@@ -714,6 +680,8 @@
                 data-precio="${producto.precio}" 
                 data-idtrabajo="${producto.idTrabajo}"
                 data-idshopify="${producto.idShopify}"
+                data-handle="${producto.handle}"
+                data-titulo="${producto.titulo}"
                 id="pmp-item-subRama" class="pmp-item-complejo ">
                   <div class="pmp-item-complejo-imagen ">
                                       ${ producto.imagen == "" ?
@@ -739,6 +707,8 @@
                 data-precio="${producto.precio}" 
                 data-idtrabajo="${producto.idTrabajo}"
                 data-idshopify="${producto.idShopify}"
+                data-handle="${producto.handle}"
+                data-titulo="${producto.titulo}"
                 id="pmp-item-subRama" class="pmp-item-complejo desactivado">
                   <div class="pmp-item-complejo-imagen ">
                                       ${ producto.imagen == "" ?
@@ -1082,23 +1052,6 @@
       }
     }
 
-    optenerStockTrabajo() {
-      // Verificar si tenemos una sucursal seleccionada
-      const dataSucursal = JSON.parse(localStorage.getItem('sucursal-informacion'));
-      // Información del producto
-      const dataTrabajo = JSON.parse(localStorage.getItem('phpp-productoData'));
-      
-      if(!dataSucursal || dataSucursal == "") return dataTrabajo.producto.stockTotal;
-      
-      const sucursalEncontrada = dataTrabajo.producto.sucursales.find(
-        sucursal => sucursal.nombre == dataSucursal.name
-      );
-      
-      return sucursalEncontrada 
-        ? parseInt(sucursalEncontrada.stock) 
-        : dataTrabajo.producto.stockTotal;
-    }
-
     procesoItemRamaPrincipal(btnElemento){
       // SIEMPE LA LOGICA DE LOS PRINCIPALES ES QUE SELECCIONA UNO SOLO Y SUS SUB PRODUCTOS SE ACTUALIZAN
 
@@ -1113,14 +1066,29 @@
       const idTrabajo = btnElemento.getAttribute('data-idtrabajo');
       const idShopify = btnElemento.getAttribute('data-idshopify');
 
-      // Al ponerlo como seleccionado actualizar las sub ramas this.btnsProductosSubRama usando 
-      // la informacion estructura del localStorage data.productoParaEstructuraTrabajo y data.estructura
-      // 1. Mediante el codigo y el (idTrabajo o idShopify) se obtiene el productuctos trabajo
+      const estaSeleccionado = btnElemento.classList.contains('seleccionado');
+      if(max == "1" && min == "1"){
+        if(estaSeleccionado){
+          return;
+        }
+      }else{
+        // Si la cantidad de seleccionados es mayor o igual al maximo permitido y se verifica si el elemento esta seleccionado
+        // si este, lo esta se niega la seleccion y si no se lo selecciona
+        if (cantidadSeleccionados >= max && !estaSeleccionado) return;
+      }
+
+      // item Rama Principal = {codigo, productos}
+      // Aqui buscamos toda la informacion del elemento que fue seleccionado (item Rama Principal), donde buscamos la informacion
+      // En el localStorage, se encuentra dentro de la propiedad productoParaEstructuraTrabajo, primero se localiza entre multiples
+      // rama principal mediante el codigo, cuando se encuentra se busca entre sus productos, y se busca la coincidencia del idTrabajo o idShopify
+      // Se va obtener 2 cosas, la informacion especifica del elemento seleccionado y sus hermanos de rama
       const dataLocalStorage = JSON.parse(localStorage.getItem('phpp-productoData'));
       let elementoTrabajo = null;
+      let hermanosSeccion = null;
 
       dataLocalStorage.productoParaEstructuraTrabajo.some((objetoDetalle)=>{
         if (objetoDetalle.codigo == codigo) {
+          hermanosSeccion = objetoDetalle.productos;
           return objetoDetalle.productos.some((productoRamaPrincipal) => {
             if (productoRamaPrincipal.idTrabajo == idTrabajo || productoRamaPrincipal.idShopify == idShopify) {
               elementoTrabajo = productoRamaPrincipal;
@@ -1132,11 +1100,64 @@
         return false;
       });
 
+      // Aqui tenemos toda la informacion del elemento que se quiere seleccionar
       this.productoSeleccionadoRamaPrincipal = elementoTrabajo;
+
+      if(estaSeleccionado){
+        // Si el elemento ya estaba seleccionado se lo deselecciona y se lo desactiva
+        btnElemento.classList.remove('seleccionado');
+        btnElemento.querySelector('.pmp-item-simple-escoger').innerHTML = this.iconos.iconEstadoOff;
+        {% comment %} cantidadSeleccionados--; {% endcomment %}
+      }else{
+        // Si el elemento no estaba seleccionado se lo selecciona y se lo activa
+        btnElemento.classList.add('seleccionado');
+        btnElemento.querySelector('.pmp-item-simple-escoger').innerHTML = this.iconos.iconEstadoOn;
+        cantidadSeleccionados++;
+      }
+
+      // Detalle : los rama principal nunca tendra repetidos todos pertencen a una seccion unica 
+      // NO SE UNIFICAN CON OTROS ELEMENTOS REPETIDOS
+      // Primero se procede a actualizar su seccion de sitio donde esta con sus hermanos (rama principal)
+      // Aqui se va a desactivar o deseleccionar deacuerdo a los max y min de la seccion
       
-      // Actualuzar, preseleccionados subRamas y id del HTML de las subRamas tambien precios desactivar
-      // los que no son de esa rama principal
-      this.seccionProductosSubRama.forEach((elementoSeccion) => {
+      hermanosSeccion.forEach((itemHTML)=>{
+        const idTrabajo = itemHTML.getAttribute('data-idtrabajo');
+        const idShopify = itemHTML.getAttribute('data-idshopify');
+        
+        if(btnElemento == itemHTML)return;
+
+        if(!(max == "1" && min == "1")){
+          if(itemHTML.classList.contains('seleccionado')) return;
+        }
+
+        if((max == "1" && min == "1")){
+          itemHTML.classList.remove('seleccionado');
+          itemHTML.querySelector('.pmp-item-simple-escoger').innerHTML = this.iconos.iconEstadoOff;
+        }else {
+          if(cantidadSeleccionados >= max){
+            itemHTML.classList.add('desactivado');
+            itemHTML.querySelector('.pmp-item-simple-escoger').innerHTML = this.iconos.iconEstadoOff;
+          }else{
+            itemHTML.classList.remove('desactivado');
+            itemHTML.classList.remove('seleccionado');
+            itemHTML.querySelector('.pmp-item-simple-escoger').innerHTML = this.iconos.iconEstadoOff;
+          }
+        }
+      });
+
+
+      // Despues se procedera a buscar a la seccion que coincidan con el codigoPadre 
+      // Cuando se encuentre con la seccion que corresponda se procede a buscar a sus hijos
+      // Se va actualizar sus datos y desactivar a los elementos que no pertenezcan a la rama seleccionada
+
+
+      {% comment %} this.seccionProductosSubRama.forEach((elementoSeccion) => {
+        const codigoPadre = elementoSeccion.getAttribute('data-codigopadre');
+        if (codigoPadre != codigo) {
+          elementoSeccion.style.display = 'none';
+          return;
+        }
+
         const codigo = elementoSeccion.getAttribute('data-codigo');
         const max = elementoSeccion.getAttribute('data-max');
         const min = elementoSeccion.getAttribute('data-min');
@@ -1185,19 +1206,7 @@
             }
           }
         });
-      });
-
-      // Desactivar los botones y cambiar el icono excepto al btnElemento(activarlo y seleccionarlo)
-      this.btnsProductosRamaPrincipales.forEach((itemHTML) => {
-        if (itemHTML !== btnElemento) {
-          itemHTML.classList.remove('seleccionado');
-          itemHTML.querySelector('.pmp-item-simple-escoger').innerHTML = this.iconos.iconEstadoOff;
-        }else{
-          itemHTML.classList.remove('desactivado');
-          itemHTML.classList.add('seleccionado');
-          itemHTML.querySelector('.pmp-item-simple-escoger').innerHTML = this.iconos.iconEstadoOn;
-        }
-      });
+      }); {% endcomment %}
 
       // Hay que actualizar el valor de los botones inferiores
       this.actualizarEstadoBotonesInferiores();
@@ -1213,6 +1222,10 @@
       const codigo = contenedorPadreSeccion.getAttribute('data-codigo');
       const tipoBoton = contenedorPadreSeccion.getAttribute('tipo-boton');
 
+      // El btnElemento tiene un atributo data-idtrabajo y data-idshopifyy
+      const idTrabajo = btnElemento.getAttribute('data-idtrabajo');
+      const idShopify = btnElemento.getAttribute('data-idshopify');
+      
       var cantidadSeleccionados = contenedorPadreSeccion.querySelectorAll('.seleccionado').length;
       const estaSeleccionado = btnElemento.classList.contains('seleccionado');
       // Aqui la cantidad seleccionados es mayor o igual al maximo permitido y el elemento no esta seleccionado 
@@ -1229,7 +1242,7 @@
         // Se procede a seleccionar el elemento
         btnElemento.classList.remove('seleccionado');
         btnElemento.querySelector('.pmp-item-simple-escoger').innerHTML = tipoBoton == 'checkbox' ? this.iconos.iconCheckBoxOff : this.iconos.iconEstadoOff;
-        cantidadSeleccionados--;
+        {% comment %} cantidadSeleccionados--; {% endcomment %}
       }else{
         // Se procede a seleccionar el elemento
         btnElemento.classList.add('seleccionado');
@@ -1237,24 +1250,13 @@
         cantidadSeleccionados++;
       }
 
-      console.log("Testeo de area",{
-        cantidadSeleccionados: cantidadSeleccionados,
-        max: max,
-        min: min,
-        "condicion" : cantidadSeleccionados >= max,
-      })
-       
-
-      // El btnElemento tiene un atributo data-idtrabajo y data-idshopifyy
-      const idTrabajo = btnElemento.getAttribute('data-idtrabajo');
-      const idShopify = btnElemento.getAttribute('data-idshopify');
 
       // Son los elementos subRama sus productos del elemento seleccionado actual que es de una rama principal
       let elementosTrabajo = null;
 
       this.productoSeleccionadoRamaPrincipal.ramas.forEach((objetoDetalle)=>{
         if (objetoDetalle.codigo == codigo) {
-            elementosTrabajo =objetoDetalle.productos;
+            elementosTrabajo = objetoDetalle.productos;
         }
       });
 
@@ -1270,13 +1272,6 @@
           if(itemHTML.classList.contains('seleccionado')) return;
         }
         if(itemHTML == btnElemento ) return;
-
-        console.log("Testeo de area",{
-          elementosTrabajo,
-          itemHTMLPerteneceElementoTrabajo ,
-          max,
-          min,
-        });
 
         if((max == "1" && min == "1")){
           if(itemHTMLPerteneceElementoTrabajo){
@@ -1630,42 +1625,6 @@
       this.etiquetaHazUnPedido.innerHTML = `Bs ${this.cantidadPrecioHazUnPedido}`;
       this.etiquetaAgregarCarrito.innerHTML = `Bs ${precioTotalCarrito}`;
     }
-
-    extraerPrecio(elementoHTML) {
-      
-      // Obtener el texto del párrafo que contiene el precio
-      const elementoDetalle = elementoHTML.querySelector('.pmp-item-extra-detalle');
-      const parrafoPrecio = elementoHTML.querySelector('.pmp-item-simple-info p') || 
-                            elementoHTML.querySelector('#pmp-item-info-precio') || 
-                            (elementoDetalle ? elementoDetalle.querySelectorAll('p')[2] : null);
-      
-      if (!parrafoPrecio) return 0;
-      
-      // Resto del código...
-      // Expresión regular para coincidir con el patrón "+ X Bs"
-      let regexPrecio = /\+ (\d+) Bs/;
-      let coincidencia = parrafoPrecio.textContent.match(regexPrecio);
-      
-      // Si no encuentra ese patrón, probar con "X Bs"
-      if (!coincidencia) {
-          regexPrecio = /(\d+) Bs/;
-          coincidencia = parrafoPrecio.textContent.match(regexPrecio);
-      }
-      
-      console.log("Extraer precio", {
-        coincidencia,
-        elementoHTML: elementoHTML,
-        texto: parrafoPrecio.textContent,
-      });
-
-      // Si se encuentra una coincidencia, devolver el precio como número
-      if (coincidencia && coincidencia[1]) {
-          return parseInt(coincidencia[1], 10);
-      }
-      
-      // Si no se encuentra coincidencia, devolver 0
-      return 0;
-    }
     
     async procesoBotonesInferiores(tipoProceso){
       // Recorrer todo y generar un objeto para introducir al carrito
@@ -1763,7 +1722,6 @@
         }
       }
       );
-      
 
       {% comment %} // Envío de datos a webhook.site
       const fechayhora = new Date().toLocaleString(); 
@@ -1803,6 +1761,93 @@
       if(tipoProceso == 'hazUnPedido'){
         window.location.href = '/pages/carrito';
       } {% endcomment %}
+    }
+
+    extraerPrecio(elementoHTML) {
+      
+      // Obtener el texto del párrafo que contiene el precio
+      const elementoDetalle = elementoHTML.querySelector('.pmp-item-extra-detalle');
+      const parrafoPrecio = elementoHTML.querySelector('.pmp-item-simple-info p') || 
+                            elementoHTML.querySelector('#pmp-item-info-precio') || 
+                            (elementoDetalle ? elementoDetalle.querySelectorAll('p')[2] : null);
+      
+      if (!parrafoPrecio) return 0;
+      
+      // Resto del código...
+      // Expresión regular para coincidir con el patrón "+ X Bs"
+      let regexPrecio = /\+ (\d+) Bs/;
+      let coincidencia = parrafoPrecio.textContent.match(regexPrecio);
+      
+      // Si no encuentra ese patrón, probar con "X Bs"
+      if (!coincidencia) {
+          regexPrecio = /(\d+) Bs/;
+          coincidencia = parrafoPrecio.textContent.match(regexPrecio);
+      }
+      
+      console.log("Extraer precio", {
+        coincidencia,
+        elementoHTML: elementoHTML,
+        texto: parrafoPrecio.textContent,
+      });
+
+      // Si se encuentra una coincidencia, devolver el precio como número
+      if (coincidencia && coincidencia[1]) {
+          return parseInt(coincidencia[1], 10);
+      }
+      
+      // Si no se encuentra coincidencia, devolver 0
+      return 0;
+    }
+    
+    dividirTitulo(titulo) {
+      // Verificar si es el caso excepcional "Super Personal"
+      if (titulo.includes("Super personal")) {
+        return {
+          importante: "Super personal",
+          mensaje: titulo.replace("Super personal", "").trim()
+        };
+      }
+      
+      // Caso general: la primera palabra es la importante
+      const palabras = titulo.split(" ");
+      const importante = palabras[0];
+      const mensaje = palabras.slice(1).join(" ");
+      
+      return {
+        importante,
+        mensaje
+      };
+    }
+
+    obtenerStockGenericoTrabajo(productoTrabajo){
+      // Verificar si tenemos una sucursal seleccionada
+      const dataSucursal = JSON.parse(localStorage.getItem('sucursal-informacion'));
+      if(!dataSucursal || dataSucursal == "") return productoTrabajo.stockTotal;
+
+      const sucursalEncontrada = productoTrabajo.sucursales.find(
+        sucursal => sucursal.nombre == dataSucursal.name
+      );
+
+      return sucursalEncontrada 
+      ? parseInt(sucursalEncontrada.stock) 
+      : productoTrabajo.stockTotal;
+    }
+    
+    optenerStockTrabajo() {
+      // Verificar si tenemos una sucursal seleccionada
+      const dataSucursal = JSON.parse(localStorage.getItem('sucursal-informacion'));
+      // Información del producto
+      const dataTrabajo = JSON.parse(localStorage.getItem('phpp-productoData'));
+      
+      if(!dataSucursal || dataSucursal == "") return dataTrabajo.producto.stockTotal;
+      
+      const sucursalEncontrada = dataTrabajo.producto.sucursales.find(
+        sucursal => sucursal.nombre == dataSucursal.name
+      );
+      
+      return sucursalEncontrada 
+        ? parseInt(sucursalEncontrada.stock) 
+        : dataTrabajo.producto.stockTotal;
     }
   }
 
