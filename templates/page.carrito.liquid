@@ -268,30 +268,6 @@
     connectedCallback() {
       this.btnPagar = this.querySelector('#phpc-btn-pagar');
       this.btnPagar.addEventListener('click', () => this.pagarBtnPrincipal());
-
-      // Verificar si la biblioteca está disponible o esperar a que se cargue
-      {% comment %} if (typeof AuxiliaresGlobal !== 'undefined') {
-        this.inicializarDataShopify();
-        console.log('AuxiliaresGlobal ya está disponible');
-      } else {
-        // Intentar nuevamente cuando el DOM esté completamente cargad
-        console.log('Esperando a que AuxiliaresGlobal esté disponible...');
-        document.addEventListener('DOMContentLoaded', () => {
-          this.checkDependency();
-        });
-      } {% endcomment %}
-    }
-
-    // Método para verificar la dependencia con reintentos
-    checkDependency(attempts = 0) {
-      if (typeof AuxiliaresGlobal !== 'undefined') {
-        this.inicializarDataShopify();
-      } else if (attempts < 20) {
-        // Limitar reintentos para evitar bucles infinitos
-        setTimeout(() => this.checkDependency(attempts + 1), 100);
-      } else {
-        console.error('No se pudo cargar AuxiliaresGlobal después de varios intentos');
-      }
     }
 
     async inicializarDataShopify() {
