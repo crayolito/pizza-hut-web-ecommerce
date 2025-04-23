@@ -267,25 +267,50 @@
 
     connectedCallback() {
       this.btnPagar = this.querySelector('#phpc-btn-pagar');
-      this.btnPagar.addEventListener('click', () => this.pagarBtnPrincipal.bind(this));
-      this.inicializarDataShopify();
+      this.btnPagar.addEventListener('click', () => this.pagarBtnPrincipal());
+
+      // Verificar si la biblioteca está disponible o esperar a que se cargue
+      {% comment %} if (typeof AuxiliaresGlobal !== 'undefined') {
+        this.inicializarDataShopify();
+        console.log('AuxiliaresGlobal ya está disponible');
+      } else {
+        // Intentar nuevamente cuando el DOM esté completamente cargad
+        console.log('Esperando a que AuxiliaresGlobal esté disponible...');
+        document.addEventListener('DOMContentLoaded', () => {
+          this.checkDependency();
+        });
+      } {% endcomment %}
+    }
+
+    // Método para verificar la dependencia con reintentos
+    checkDependency(attempts = 0) {
+      if (typeof AuxiliaresGlobal !== 'undefined') {
+        this.inicializarDataShopify();
+      } else if (attempts < 20) {
+        // Limitar reintentos para evitar bucles infinitos
+        setTimeout(() => this.checkDependency(attempts + 1), 100);
+      } else {
+        console.error('No se pudo cargar AuxiliaresGlobal después de varios intentos');
+      }
     }
 
     async inicializarDataShopify() {
-      // Esperar a que se resuelva la promesa
-      const infoCarrito = await AuxiliaresGlobal.obtenerCarritoShopify();
+      try {
+        const infoCarrito = await AuxiliaresGlobal.obtenerCarritoShopify();
+        console.log('Información completa:', infoCarrito.informacionCompleta);
+        console.log('Cantidad total:', infoCarrito.cantidadTotal);
+        const precioTotal = infoCarrito.informacionCompleta.total_price / 100;
+        console.log('Precio total:', precioTotal);
+        this.cantidadPrecioCarrito = precioTotal;
 
-      // Acceder a la información del carrito
-      console.log('Información completa:', infoCarrito.informacionCompleta);
-      console.log('Cantidad total:', infoCarrito.cantidadTotal);
-
-      // Acceder al precio total
-      const precioTotal = infoCarrito.informacionCompleta.total_price / 100; // Si viene en centavos
-      console.log('Precio total:', precioTotal);
-
-      // Hacer algo con esta información
-      this.cantidadPrecioCarrito = precioTotal;
-      this.etiquetaAgregarCarrito.innerHTML = `Bs ${precioTotal}`;
+        // Asegúrate de que este elemento exista
+        this.etiquetaAgregarCarrito = this.querySelector('.selector-del-precio'); // ajusta el selector
+        if (this.etiquetaAgregarCarrito) {
+          this.etiquetaAgregarCarrito.innerHTML = `Bs ${precioTotal}`;
+        }
+      } catch (error) {
+        console.error('Hubo un error:', error);
+      }
       this.declararComponentesDespuesCreacion();
     }
 
@@ -293,5 +318,12 @@
     pagarBtnPrincipal() {}
   }
 
-  customElements.define('page-carrito', PageCarrito);
+  // Registrar el componente cuando el DOM esté listo
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      customElements.define('page-carrito', PageCarrito);
+    });
+  } else {
+    customElements.define('page-carrito', PageCarrito);
+  }
 </script>
