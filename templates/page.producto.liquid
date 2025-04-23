@@ -1150,12 +1150,12 @@
         if(elementoSeccion.getAttribute('data-codigopadre') != codigo) return;
         
         let seleccionaPrimero = false;
-        const codigo = elementoSeccion.getAttribute('data-codigo');
+        const codigoSeccion = elementoSeccion.getAttribute('data-codigo');
         const max = elementoSeccion.getAttribute('data-max');
         const min = elementoSeccion.getAttribute('data-min');
         const tipoBoton = elementoSeccion.getAttribute('tipo-boton');
 
-        const productosSubRamaTrabajo = elementoTrabajo.ramas.find((rama) => rama.codigo == codigo);
+        const productosSubRamaTrabajo = elementoTrabajo.ramas.find((rama) => rama.codigo == codigoSeccion);
         const hijosSeccion = elementoSeccion.querySelectorAll('#pmp-item-subRama');
 
 
