@@ -691,3 +691,39 @@ class MensajeCargaDatos extends HTMLElement {
 }
 
 customElements.define('mensaje-carga-datos', MensajeCargaDatos);
+
+class PageCarrito extends HTMLElement {
+  constructor() {
+    super();
+  }
+
+  connectedCallback() {
+    this.btnPagar = this.querySelector('#phpc-btn-pagar');
+    this.btnPagar.addEventListener('click', () => this.pagarBtnPrincipal());
+  }
+
+  async inicializarDataShopify() {
+    try {
+      const infoCarrito = await AuxiliaresGlobal.obtenerCarritoShopify();
+      console.log('Información completa:', infoCarrito.informacionCompleta);
+      console.log('Cantidad total:', infoCarrito.cantidadTotal);
+      const precioTotal = infoCarrito.informacionCompleta.total_price / 100;
+      console.log('Precio total:', precioTotal);
+      this.cantidadPrecioCarrito = precioTotal;
+
+      // Asegúrate de que este elemento exista
+      this.etiquetaAgregarCarrito = this.querySelector('.selector-del-precio'); // ajusta el selector
+      if (this.etiquetaAgregarCarrito) {
+        this.etiquetaAgregarCarrito.innerHTML = `Bs ${precioTotal}`;
+      }
+    } catch (error) {
+      console.error('Hubo un error:', error);
+    }
+    this.declararComponentesDespuesCreacion();
+  }
+
+  declararComponentesDespuesCreacion() {}
+  pagarBtnPrincipal() {}
+}
+
+customElements.define('page-carrito', PageCarrito);
