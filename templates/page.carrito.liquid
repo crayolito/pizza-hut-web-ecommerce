@@ -272,25 +272,20 @@
     }
 
     async inicializarDataShopify() {
-      try {
-        // Esperar a que se resuelva la promesa
-        const infoCarrito = await AuxiliaresGlobal.obtenerCarritoShopify();
+      // Esperar a que se resuelva la promesa
+      const infoCarrito = await AuxiliaresGlobal.obtenerCarritoShopify();
 
-        // Acceder a la información del carrito
-        console.log('Información completa:', infoCarrito.informacionCompleta);
-        console.log('Cantidad total:', infoCarrito.cantidadTotal);
+      // Acceder a la información del carrito
+      console.log('Información completa:', infoCarrito.informacionCompleta);
+      console.log('Cantidad total:', infoCarrito.cantidadTotal);
 
-        // Acceder al precio total
-        const precioTotal = infoCarrito.informacionCompleta.total_price / 100; // Si viene en centavos
-        console.log('Precio total:', precioTotal);
+      // Acceder al precio total
+      const precioTotal = infoCarrito.informacionCompleta.total_price / 100; // Si viene en centavos
+      console.log('Precio total:', precioTotal);
 
-        // Hacer algo con esta información
-        this.cantidadPrecioCarrito = precioTotal;
-        this.etiquetaAgregarCarrito.innerHTML = `Bs ${precioTotal}`;
-      } catch (error) {
-        console.error('Hubo un error:', error);
-      }
-
+      // Hacer algo con esta información
+      this.cantidadPrecioCarrito = precioTotal;
+      this.etiquetaAgregarCarrito.innerHTML = `Bs ${precioTotal}`;
       this.declararComponentesDespuesCreacion();
     }
 
