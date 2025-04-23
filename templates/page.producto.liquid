@@ -180,7 +180,7 @@
         </section>
       </div>
     </div>
-    <!-- MODAL INFORMACION EXTRAAA -->
+    <!-- MODAL INFORMACION EXTRA -->
     <div
       id="pmph-modal-productos-extras"
       class="pmph-modal-general"
@@ -548,7 +548,6 @@
 
       // Aqui se va definir si se usar el stockTodo o de alguna sucursal especifica
       var stockTrabajo = this.optenerStockTrabajo();
-      console.log('stockTrabajo :', stockTrabajo);
 
       var detalleSubProductos = '';
       detalleSubProductos += `
@@ -575,7 +574,7 @@
               >
                 {% render 'icon-menos' %}
               </button>
-              <p id="phpd-cantidad-general">0</p>
+              <p id="phpd-cantidad-general">1</p>
               <button
                 accion="incrementar"
                 class="pmph-cantidad-selector-button icon-color-tertiary"
@@ -774,28 +773,11 @@
       // Creacion de elementos de la coleccion Gaseosas y Postres
       await this.creacionHTMLGaseosasCervesas();
 
+      // Se inicializa el precio del carrito y haz un pedido
       this.cantidadPrecioCarrito = await AuxiliaresGlobal.totalPrecioCarritoShopify();
 
-      {% comment %} console.log('Obtener el objeto carrito',await AuxiliaresGlobal.obtenerCarritoShopify());
-      console.log('Obtener cantidad productos en el carrito',await AuxiliaresGlobal.totalPrecioCarritoShopify()); {% endcomment %}
-
-      // Seccion de la pizza Mitad y Mitad      
-      
       // Declaracion referenciar - inicializar - eventos
       this.declararComponentesDespuesCreacion();
-
-      // PRODUCTO SIMPLEE
-      {% comment %} const tipoProducto = localStorage.getItem('phpp-tipo-producto') || 'simple';
-      console.log(tipoProducto);
-      if (tipoProducto == 'simple') {
-        this.imgSimple.style.display = 'flex';
-        this.imgCompleja.style.display = 'none';
-      } else if (tipoProducto == 'complejo') {
-        this.imgSimple.style.display = 'none';
-        this.imgCompleja.style.display = 'flex';
-        this.contenedorItemsComplejos.style.display = 'flex';
-      } {% endcomment %}
-      // PRODUCTO COMPLEJOO
     }
 
     async creacionHTMLGaseosasCervesas(){
@@ -870,6 +852,8 @@
     async creacionHTMLPostres(){
       // Obtener coleccion de productos 
       const {informacionColeccion,  productosColeccion } = await this.obtenerColeccionShopify('Postres');
+      console.log('productosColeccion POSTRES:', productosColeccion);
+
       var contenidoHTML = `
         <div id="phpp-modal-productos-postres" class="ppme-modal-informacion-extras-body">
           <small class="phpp-modal-extras-titulo">POSTRES</small>
@@ -1096,161 +1080,6 @@
         console.error('Error al obtener los datos de la colección:', error);
         return [];
       }
-    }
-
-    procesoItemN1(elemento) {
-      const estaHabilitado = elemento.classList.contains('desactivado');
-      if (estaHabilitado) return;
-
-      const icono = elemento.querySelector('.pmp-item-simple-escoger');
-      const estaSeleccionado = elemento.classList.contains('seleccionado');
-
-      if (estaSeleccionado) {
-        elemento.classList.remove('seleccionado');
-        icono.innerHTML = this.iconos.iconEstadoOff;
-      } else {
-        elemento.classList.add('seleccionado');
-        icono.innerHTML = this.iconos.iconEstadoOn;
-      }
-
-      this.elementosN1.forEach((item) => {
-        if (item !== elemento) {
-          item.classList.remove('seleccionado');
-          const icono = item.querySelector('.pmp-item-simple-escoger');
-          icono.innerHTML = this.iconos.iconEstadoOff;
-        }
-      });
-    }
-
-    procesoItemN2(elemento) {
-      const estaHabilitado = elemento.classList.contains('desactivado');
-      if (estaHabilitado) return;
-
-      const icono = elemento.querySelector('.pmp-item-simple-escoger');
-      const estaSeleccionado = elemento.classList.contains('seleccionado');
-
-      if (estaSeleccionado) {
-        elemento.classList.remove('seleccionado');
-        icono.innerHTML = this.iconos.iconEstadoOff;
-      } else {
-        elemento.classList.add('seleccionado');
-        icono.innerHTML = this.iconos.iconEstadoOn;
-      }
-
-      this.elementosN2.forEach((item) => {
-        if (item !== elemento) {
-          item.classList.remove('seleccionado');
-          const icono = item.querySelector('.pmp-item-simple-escoger');
-          icono.innerHTML = this.iconos.iconEstadoOff;
-        }
-      });
-    }
-
-    procesoItemN3(elemento) {
-      const estaHabilitado = elemento.classList.contains('desactivado');
-      if (estaHabilitado) return;
-
-      const icono = elemento.querySelector('.pmp-item-simple-escoger');
-      const estaSeleccionado = elemento.classList.contains('seleccionado');
-
-      if (estaSeleccionado) {
-        elemento.classList.remove('seleccionado');
-        icono.innerHTML = this.iconos.iconCheckBoxOff;
-      } else {
-        elemento.classList.add('seleccionado');
-        icono.innerHTML = this.iconos.iconCheckBoxOn;
-      }
-
-      this.elementosN3.forEach((item) => {
-        if (item !== elemento) {
-          item.classList.remove('seleccionado');
-          const icono = item.querySelector('.pmp-item-simple-escoger');
-          icono.innerHTML = this.iconos.iconCheckBoxOff;
-        }
-      });
-    }
-
-    procesoItemComplejo(elemento) {
-      this.tipoProceso = 'pizzaMitadyMitad';
-      this.modalProductoExtras.style.display = 'flex';
-      this.modalBodyExtras.style.display = 'none';
-      this.modalBodyPizaaMitadyMitad.style.display = 'flex';
-
-      const data = elemento.getAttribute('lado-pizza') || elemento.getAttribute('lado-pizza-btn');
-      this.ladoPizza = data;
-    }
-
-    procesoAnadirProductos(tipoExtras) {
-      this.modalProductoExtras.style.display = 'flex';
-      this.modalBodyExtras.style.display = 'flex';
-      this.modalBodyPizaaMitadyMitad.style.display = 'none';
-    }
-
-    cerrarModal() {
-      this.modalProductoExtras.style.display = 'none';
-    }
-
-    procesarProductoModal() {
-      {% comment %} if (this.tipoProceso == 'extras') {
-        if (this.estadoTrabajoExtras == 'n1') {
-          this.extrasContenedorN1.style.display = 'flex';
-          this.extrasVacioContenedorN1.style.display = 'none';
-          this.btnAnadirExtrasN1.style.display = 'flex';
-        }
-
-        if (this.estadoTrabajoExtras == 'n2') {
-          this.extrasContenedorN2.style.display = 'flex';
-          this.extrasVacioContenedorN2.style.display = 'none';
-          this.btnAnadirExtrasN2.style.display = 'flex';
-        }
-      }
-
-      let elementoPizzaOrigen;
-      console.log('hola desde el test', this.ladoPizza);
-      if (this.tipoProceso == 'pizzaMitadyMitad') {
-        if (this.ladoPizza == 'izquierda') {
-          elementoPizzaOrigen = document.querySelector('[lado-pizza="izquierda"]');
-        }
-        if (this.ladoPizza == 'derecha') {
-          elementoPizzaOrigen = document.querySelector('[lado-pizza="derecha"]');
-        }
-        elementoPizzaOrigen.classList.add('seleccionado');
-        if (this.ladoPizza == 'izquierda') {
-          console.log('elemento Izquierdo', this.btnImgComplejaIzq);
-          this.btnImgComplejaIzq.classList.add('seleccionado');
-          const contenedorIcono = this.btnImgComplejaIzq.querySelector('.phmp-psm-icon');
-          contenedorIcono.innerHTML = this.iconos.iconEstadoOn;
-          this.contenedorImgProductoComplejoIzq.classList.add('seleccionado');
-        }
-
-        if (this.ladoPizza == 'derecha') {
-          console.log('elemento Derecho', this.btnImgComplejaDer);
-          this.btnImgComplejaDer.classList.add('seleccionado');
-          const contenedorIcono = this.btnImgComplejaDer.querySelector('.phmp-psm-icon');
-          contenedorIcono.innerHTML = this.iconos.iconEstadoOn;
-          this.contenedorImgProductoComplejoDer.classList.add('seleccionado');
-        }
-      }
-      this.modalProductoExtras.style.display = 'none'; {% endcomment %}
-    }
-
-    procesoItemExtrasAbrirModal(tipoExtras) {
-      this.tipoProceso = 'extras';
-      this.estadoTrabajoExtras = tipoExtras;
-      this.modalProductoExtras.style.display = 'flex';
-      this.modalBodyExtras.style.display = 'flex';
-      this.modalBodyPizaaMitadyMitad.style.display = 'none';
-      if (tipoExtras == 'n1') {
-        this.tituloModalExtras.innerHTML = 'POSTRES';
-      } else {
-        this.tituloModalExtras.innerHTML = 'GASEOSAS Y CERVEZAS';
-      }
-    }
-
-    agregarCarrito() {
-      const perra = AuxiliaresGlobal.sucursal;
-      console.log('sucursal', perra);
-      AuxiliaresGlobal.agregarCarrito(1);
     }
 
     optenerStockTrabajo() {

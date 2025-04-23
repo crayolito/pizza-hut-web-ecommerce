@@ -609,8 +609,6 @@
       // Primero va traer la informacion de la colecci  on PIZZA
       const {informacionColeccion,  productosColeccion } = await this.primeraFaseConsulta();
       
-      console.log("Informacion de la coleccion :", informacionColeccion);
-      console.log("Productos de la coleccion :", productosColeccion);
 
       let estructuraColeccionGeneral = [] ;
       // Ejemplo base de json
@@ -653,7 +651,9 @@
         }
       }
 
-      const todasColecciones = await this.segundaFaseConsulta(estructuraColeccionGeneral); 
+      // Esto es para traer la seccion meta fields que se requiere
+      const categoriaColeccion = informacionColeccion.titulo;
+      const todasColecciones = await this.segundaFaseConsulta(estructuraColeccionGeneral,categoriaColeccion); 
       console.log("Todas las colecciones :", todasColecciones);
 
       var listaProductos = [];
@@ -672,8 +672,6 @@
             var dataSubRama = dataRama.ramas[codigoSubRama];
             // Obtener la coleccion de productos de esta sub-rama de trabajo
             var productosDeSubRama = todasColecciones["coleccion"+codigoSubRama] || [];
-
-            console.log('Testeo de la creacion de coleccion SubRama :',productosDeSubRama);
 
             // Filtrar solo los productos que se va usar deacuerdo al titulo => producto.titulo
             var productosFiltrados = this.filtrarProductosPorTitulo(productosDeSubRama,producto.titulo );
@@ -822,7 +820,7 @@
       this.inicializarEventos();  
     }
 
-    async segundaFaseConsulta(codigosColeccion) {
+    async segundaFaseConsulta(codigosColeccion,categoriaColeccion) {
       // Validar que codigosColeccion sea un array
       if (!Array.isArray(codigosColeccion) || codigosColeccion.length === 0) {
         console.error("Error: codigosColeccion debe ser un array con al menos un elemento");
@@ -856,7 +854,7 @@
                           }
                         }
                       }
-                      metafield(namespace: "estructura", key: "json") {
+                      metafield(namespace: "estructura", key: "${categoriaColeccion.toLowerCase()}") {
                         value
                       }
                       variants(first: 1) {
@@ -994,7 +992,7 @@
     async primeraFaseConsulta() {
       const graphQLQuery = `
         query GetCollectionByFlexibleTitle {
-          collections(first: 1, query: "title:*PClasica*") {
+          collections(first: 1, query: "title:*Pizza Clasica*") {
             edges {
               node {
                 id
