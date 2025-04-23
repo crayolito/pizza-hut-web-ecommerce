@@ -1120,7 +1120,6 @@
       // NO SE UNIFICAN CON OTROS ELEMENTOS REPETIDOS
       // Primero se procede a actualizar su seccion de sitio donde esta con sus hermanos (rama principal)
       // Aqui se va a desactivar o deseleccionar deacuerdo a los max y min de la seccion
-      
       contenedorPadre.querySelectorAll('#pmp-item-rama-principal').forEach((itemHTML)=>{
         if(btnElemento == itemHTML)return;
 
@@ -1147,7 +1146,53 @@
       // Despues se procedera a buscar a la seccion que coincidan con el codigoPadre 
       // Cuando se encuentre con la seccion que corresponda se procede a buscar a sus hijos
       // Se va actualizar sus datos y desactivar a los elementos que no pertenezcan a la rama seleccionada
+      this.seccionProductosSubRama.forEach((elementoSeccion) => {
+        if(elementoSeccion.getAttribute('data-codigopadre') != codigo) return;
+        
+        let seleccionaPrimero = false;
+        const codigo = elementoSeccion.getAttribute('data-codigo');
+        const max = elementoSeccion.getAttribute('data-max');
+        const min = elementoSeccion.getAttribute('data-min');
+        const tipoBoton = elementoSeccion.getAttribute('tipo-boton');
 
+        const productosSubRamaTrabajo = elementoTrabajo.ramas.find((rama) => rama.codigo == codigo);
+        const hijosSeccion = elementoSeccion.querySelectorAll('#pmp-item-subRama');
+
+
+        hijosSeccion.forEach((itemHTML) => {
+          const idTrabajo = itemHTML.getAttribute('data-idtrabajo');
+          const idShopify = itemHTML.getAttribute('data-idshopify');
+          // El itemHTML tiene datos si esos datos se encuentran dentro de productosSubRamaTrabajo tons
+          // Es un hijo de la rama seleccionada y se lo activa 
+          const productoTrabajo = productosSubRamaTrabajo.productos.find((producto) => producto.idShopify == idShopify);
+
+          if(!productoTrabajo){
+            // Si no se encontro el itemHTML dentro de productosSubRamaTrabajo se lo desactiva
+            itemHTML.classList.remove('seleccionado');
+            itemHTML.classList.add('desactivado');
+            itemHTML.querySelector('.pmp-item-simple-escoger').innerHTML = tipoBoton == 'checkbox' ? this.iconos.iconCheckBoxOff : this.iconos.iconEstadoOff; 
+          }else{
+            if(min == "1"  && parseInt(productoTrabajo.precio) == 0 && seleccionaPrimero == false){
+              // Si el min es 1 y el elemento productoTrabajo es 0 (se va preseleccionar) unicamente solo a este
+              itemHTML.classList.remove('desactivado');
+              itemHTML.classList.add('seleccionado');
+              itemHTML.querySelector('.pmp-item-simple-escoger').innerHTML = tipoBoton == 'checkbox' ? this.iconos.iconCheckBoxOn : this.iconos.iconEstadoOn;
+              seleccionaPrimero = true;
+            }else{
+              itemHTML.classList.remove('desactivado');
+              itemHTML.classList.remove('seleccionado');
+              itemHTML.querySelector('.pmp-item-simple-escoger').innerHTML = tipoBoton == 'checkbox' ? this.iconos.iconCheckBoxOff : this.iconos.iconEstadoOff;
+            }
+            itemHTML.setAttribute('data-idShopify', productoTrabajo.idShopify);           
+            itemHTML.setAttribute('data-idtrabajo', productoTrabajo.idTrabajo);
+            itemHTML.setAttribute('data-precio', productoTrabajo.precio);
+            itemHTML.setAttribute('data-handle', productoTrabajo.handle);
+            if(itemHTML.querySelectorAll('p').length == 2){
+              itemHTML.querySelectorAll('p')[1].innerHTML = `+ ${productoTrabajo.precio} Bs`;
+            }
+          }
+        });
+      });
 
       {% comment %} this.seccionProductosSubRama.forEach((elementoSeccion) => {
         const codigoPadre = elementoSeccion.getAttribute('data-codigopadre');
@@ -1155,15 +1200,12 @@
           elementoSeccion.style.display = 'none';
           return;
         }
-
         const codigo = elementoSeccion.getAttribute('data-codigo');
         const max = elementoSeccion.getAttribute('data-max');
         const min = elementoSeccion.getAttribute('data-min');
         const tipoBoton = elementoSeccion.getAttribute('tipo-boton');
-
         let productosTrabajo = elementoTrabajo.ramas.find((rama) => rama.codigo == codigo);
         const hijosSeccion = elementoSeccion.querySelectorAll('#pmp-item-subRama');
-
         if (!productosTrabajo) {
           console.log(`No se encontró rama con código ${codigo} para este elemento`);
           return;
