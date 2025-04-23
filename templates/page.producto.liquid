@@ -1713,7 +1713,7 @@
       });
 
       this.estadoItemsContenedorPostres.querySelectorAll('#pmp-item-extra').forEach((itemHTML) => {
-        const contenedorPadre = itemHTML.closest('#pmph-seleccion-extras-gaseosasycervezas');
+        const contenedorPadre = itemHTML.closest('#pid="pmph-seleccion-extras-postres');
         const tituloSeccion = contenedorPadre.querySelector('.pmph-extras-header').querySelector(':scope > h3').innerHTML;
 
         const idTrabajo = itemHTML.getAttribute('data-idtrabajo');
@@ -1732,6 +1732,22 @@
       });
 
       this.estadoItemsContenedorGaseosasCerversas.querySelectorAll('#pmp-item-extra').forEach((itemHTML) => {
+        const contenedorPadre = itemHTML.closest('#pid="pmph-seleccion-extras-gaseosas');
+        const tituloSeccion = contenedorPadre.querySelector('.pmph-extras-header').querySelector(':scope > h3').innerHTML;
+
+        const idTrabajo = itemHTML.getAttribute('data-idtrabajo');
+        const idShopify = itemHTML.getAttribute('data-idshopify');
+        const cantidad = itemHTML.getAttribute('data-cantidad');
+        const titulo = itemHTML.getAttribute('data-titulo');
+        const precio = itemHTML.getAttribute('data-precio');
+        productosComple.push({
+          tituloSeccion,
+          idTrabajo: idTrabajo,
+          idShopify: idShopify,
+          cantidad: cantidad,
+          titulo: titulo,
+          precio: precio
+        });
       });
 
       const detalleProducto = {
