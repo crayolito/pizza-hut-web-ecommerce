@@ -928,8 +928,8 @@ class PageCarrito extends HTMLElement {
         `;
       });
   
-      // this.contenedorItemsDetalle.innerHTML = contenidoIzquierdoHTML;
-      let contenidoDerechoHTML = '';
+      this.contenedorItemsDetalle.innerHTML = contenidoIzquierdoHTML;
+      // let contenidoDerechoHTML = '';
       // contenidoDerechoHTML += `
       //     <h1>TOTAL</h1>
       //     <div class="pcph-item-info-pago">
@@ -953,7 +953,7 @@ class PageCarrito extends HTMLElement {
       this.etiquetaSubtotal.textContent = `Bs. ${precioTotal}`;
       this.etiquetaTotal.textContent = `Bs. ${precioTotal}`;
   
-      // this.contenedorDerecho.insertAdjacentHTML('afterbegin', contenidoDerechoHTML);
+      this.contenedorDerecho.insertAdjacentHTML('afterbegin', contenidoDerechoHTML);
 
       // DIBUJAR LA SECCION DE POSTRES
       await this.crearSecciondeAcompanamiento();
