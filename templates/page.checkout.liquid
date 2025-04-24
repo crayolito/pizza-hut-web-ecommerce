@@ -559,7 +559,7 @@
         </div>
       </div>
       <!-- 3re MODAL : DETALLE DE LOCAL SELECCIONADO -->
-      <div id="phpc-modal-body-local-seleccionado" class="psme-modal-contenedor-base">
+      <div id="phpc-modal-body-local-seleccionado" class="psme-modal-contenedor-base" style="display: none;">
         <div class="psme-modal-header">
           <div class="psme-modal-mensaje">
             {% render 'icon-info' %}
@@ -569,7 +569,7 @@
             {% render 'icon-close-rojo' %}
           </button>
         </div>
-        <div class="psme-modal-body"></div>
+        <div id="phpc-localSeleccionado-mapa" class="psme-modal-body"></div>
         {% comment %}
           <div class="psme-modal-footer">
             <button class="psme-modal-boton-confirmar" id="p-sme-boton-confirmar-modal">
