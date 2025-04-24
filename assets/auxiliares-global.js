@@ -1036,7 +1036,7 @@ class PageCarrito extends HTMLElement {
       btn.addEventListener('click', this.agregarProductoAcompanamiento.bind(this, btn));
     });
 
-    // INICIALIZAR ELEMENTOS Y CARGA DE DATOS
+    // INICIALIZAR ELEMENTOS Y CARGA DE DATOSS
   }
 
   async crearSecciondeAcompanamiento() {
