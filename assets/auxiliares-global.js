@@ -801,7 +801,6 @@ class PageCarrito extends HTMLElement {
 
       infoCarrito.informacionCompleta.items.forEach((item) => {
         if(!(item.properties && item.properties.estructura))return;
-
         
         const dataContruccion = JSON.parse(item.properties.estructura);
         precioTotal += parseFloat(dataContruccion.producto.precioTotalConjunto);
@@ -843,7 +842,7 @@ class PageCarrito extends HTMLElement {
         dataContruccion.opcionesPrincipales.productos.forEach((producto) => {
           contenidoIzquierdoHTML += `
               <li>
-                <p>${producto.tituloSeccion} : <br> ${producto.titulo}</p>
+                <p>${"x" + producto.cantidad + producto.tituloSeccion} : <br> ${producto.titulo}</p>
               </li>
           `;
         });
@@ -951,6 +950,9 @@ class PageCarrito extends HTMLElement {
       `;
   
       this.contenedorDerecho.insertAdjacentHTML('afterbegin', contenidoDerechoHTML);
+
+      // DIBUJAR LA SECCION DE POSTRES
+      await this.crearSecciondeAcompanamiento();
       
       this.declararComponentesDespuesCreacion();
 
@@ -977,6 +979,8 @@ class PageCarrito extends HTMLElement {
     // INICIALIZAR ELEMENTOS Y CARGA DE DATOS
 
   }
+
+  async crearSecciondeAcompanamiento() {}
 
   actualizarProductoCarrito(btnElemento){}
 
