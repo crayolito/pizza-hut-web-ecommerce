@@ -1639,12 +1639,12 @@ class PageCheckoutPH extends HTMLElement {
   async inicializarDataContruccion(){
     MensajeCargaDatos.mostrar('Cargando información del pagina ...');
 
-    if(estadoPagina == "domicilio"){
-      
+    if(this.estadoPagina == "domicilio"){
+
 
     }
 
-    if(estadoPagina == "local"){}
+    if(this.estadoPagina == "local"){}
 
 
     this.infoCarrito = await AuxiliaresGlobal.obtenerCarritoShopify();
