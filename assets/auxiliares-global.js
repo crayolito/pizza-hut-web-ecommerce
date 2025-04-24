@@ -1282,7 +1282,7 @@ class PageCarrito extends HTMLElement {
       MensajeCargaDatos.mostrar('Eliminando producto del carrito...');
       await AuxiliaresGlobal.eliminarItemCarritoPorKey(keyCarrito, 0);
     }else{
-      if(informacionCompleta.opcionesPrincipales == [] && informacionCompleta.complementos == []){
+      if(informacionCompleta.opcionesPrincipales.productos.length == 0 && informacionCompleta.complementos.productos.length == 0){
         informacionCompleta.producto.precioTotalConjunto = informacionCompleta.producto.precio * cantidadElemento;
       }else {
         let cantidadProductoBaseNuevo = parseInt(informacionCompleta.producto.precioProducto) * cantidadElemento;
