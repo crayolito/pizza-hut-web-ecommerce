@@ -1068,7 +1068,7 @@ class PageCarrito extends HTMLElement {
         "cantidadPrecioTotalAntiguo": cantidadPrecioTotalAntiguo,
         "cantidadOpcionesPrincipalesAntiguo": cantidadOpcionesPrincipalesAntiguo,
         "cantidadOpcionesPrincipalesNueva": cantidadOpcionesPrincipalesNueva,
-        "cantidadSolamenteComplementosAntiguo": cantidadSolamenteComplementosAntiguos,
+        "cantidadSolamenteComplementosAntiguo": cantidadSolamenteComplementosAntiguo,
         "cantidadElemento": cantidadElemento,
         "productp Base" : parseInt(informacionCompleta.producto.precio) * cantidadElemento,
 
