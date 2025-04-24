@@ -1066,7 +1066,7 @@ class PageCarrito extends HTMLElement {
           </div>
           <div class="cardph-itemp-info">
             <h3>${producto.titulo}</h3>
-            <h3 class="color-letras-primary">Bs. ${producto.estructura}</h3>
+            <h3 class="color-letras-primary">Bs. ${producto.estructura.precio}</h3>
             <button id="phpc-btn-agregar-acompanamiento" class="boton-producto-agregar icon-color-secondary ">
               <p class="color-letras-secondary">AGREGAR</p>
               ${window.shopIcons.icon_carrito}
@@ -1163,6 +1163,8 @@ class PageCarrito extends HTMLElement {
 
       // Obtener los datos de la respuesta
       const datosRespuesta = await respuesta.json();
+
+      console.log('Datos de la respuesta Postres:', datosRespuesta);
 
       // Verificar si tenemos datos
       if (!datosRespuesta.data || !datosRespuesta.data.collections.edges.length || !datosRespuesta.data.collections.edges[0].node.products.edges.length) {
