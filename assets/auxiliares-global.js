@@ -437,6 +437,57 @@ class AuxiliaresGlobal {
       });
     });
   }
+
+  /**
+  * Agrega productos al carrito y actualiza la visualización
+  * @param {number} valor - Cantidad de productos a agregar
+  * @param {number} variantId - ID de la variante del producto (opcional)
+  * @param {Object} opciones - Opciones adicionales para el producto (opcional)
+  */
+  static agregarCarrito(valor, variantId = null, opciones = {}) {
+    // Verificar que el valor sea un número válido mayor a 0
+    if (typeof valor === 'number' && valor > 0) {
+      // Si se proporciona un variantId, agregar al carrito de Shopify
+      if (variantId) {
+        // Datos para enviar a la API de Shopify
+        const datos = {
+          items: [{
+            id: variantId,
+            quantity: valor,
+            ...opciones // Propiedades adicionales (como propiedades de línea)
+          }]
+        };
+        
+        // Realizar la petición para añadir al carrito
+        fetch('/cart/add.js', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(datos)
+        })
+        .then(response => response.json())
+        .then(data => {
+          // Actualizar el contador visual
+          this.actualizarContadorVisual(valor);
+          
+          // Disparar evento personalizado
+          document.dispatchEvent(new CustomEvent('product:added-to-cart', { 
+            detail: { product: data }
+          }));
+          
+          console.log('Producto agregado al carrito:', data);
+        })
+        .catch(error => {
+          console.error('Error al agregar al carrito:', error);
+          this.mensajeError('No se pudo agregar el producto al carrito');
+        });
+      } else {
+        // Si no hay variantId, solo actualizar el contador visual
+        this.actualizarContadorVisual(valor);
+      }
+    }
+  }
 }
 
 class CarritoShopify extends HTMLElement {
