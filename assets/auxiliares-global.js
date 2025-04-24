@@ -1836,6 +1836,7 @@ class PageCheckoutPH extends HTMLElement {
     console.log("Testeo de que local fue selecionado", location);
 
     this.localSeleccionado = location;
+    this.coordenadas = { lat: location.lat, lng: location.lng };
 
     // Actualizar el input con el nombre del local seleccionadoo
     this.inputSeleccionarLocal.value = location.name;
@@ -1851,14 +1852,13 @@ class PageCheckoutPH extends HTMLElement {
     const infoLocal = this.querySelector('.pcktph-seleccion-local-detalle-info');
     infoLocal.innerHTML = `
       <p>${location.name.toUpperCase()}</p>
-      <p>+591 ${location.telefono}</p>
+      <p>+591 ${location.telefono} - ${this.calcularDistancia({lat : location.lat, lng : location.lng},this.coordenadas)} Km</p>
     `;
     
     // Guardar el local seleccionado
     localStorage.setItem('phpc-local-seleccionado', JSON.stringify(location));
     
     // Actualizar coordenadas
-    this.coordenadas = { lat: location.lat, lng: location.lng };
   }
 
   verDireccionEnMapaLocalSeleccionado(){}
@@ -1921,6 +1921,18 @@ class PageCheckoutPH extends HTMLElement {
       // Solicitar la geolocalización
       navigator.geolocation.getCurrentPosition(success, error, options);
     });
+  }
+
+  calcularDistancia(coordenadas1, coordenadas2) {
+    const radioTierra = 6371; // Radio de la Tierra en kilómetros
+    const dLat = (coordenadas2.lat - coordenadas1.lat) * (Math.PI / 180);
+    const dLng = (coordenadas2.lng - coordenadas1.lng) * (Math.PI / 180);
+
+    const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(coordenadas1.lat * (Math.PI / 180)) * Math.cos(coordenadas2.lat * (Math.PI / 180)) *
+    Math.sin(dLng / 2) * Math.sin(dLng / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return radioTierra * c; // Distancia en kilómetros
   }
 }
 
