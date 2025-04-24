@@ -1279,54 +1279,57 @@ class PageCarrito extends HTMLElement {
     // Verificar si el botón es de incrementar o decrementar
     const accionBtn = btnElemento.getAttribute('accion');
 
-    if(accionBtn == "decrementar" && cantidadElemento == 0){
-      // Se procede a eliminar del carrito
-      MensajeCargaDatos.mostrar('Eliminando producto del carrito...');
-      await AuxiliaresGlobal.eliminarItemCarritoPorKey(keyCarrito, 0);
-    }else{
-      if(informacionCompleta.opcionesPrincipales.productos.length == 0 && informacionCompleta.complementos.productos.length == 0){
-        informacionCompleta.producto.precioTotalConjunto = informacionCompleta.producto.precio * cantidadElemento;
-      }else {
-        let cantidadProductoBaseNuevo = parseInt(informacionCompleta.producto.precioProducto) * cantidadElemento;
-        let cantidadProductoBaseAntiguo = parseInt(informacionCompleta.producto.precioProducto) * parseInt(informacionCompleta.producto.cantidad);
-        let cantidadPrecioTotalAntiguo = parseFloat(informacionCompleta.producto.precioTotalConjunto);
-        let cantidadOpcionesPrincipalesAntiguo = 0; 
-        let cantidadOpcionesPrincipalesNueva = 0;
-        informacionCompleta.opcionesPrincipales.productos.forEach((producto) => {
-          cantidadOpcionesPrincipalesNueva  += (cantidadElemento * parseInt(producto.precio));
-          cantidadOpcionesPrincipalesAntiguo += (producto.cantidad * parseInt(producto.precio));
-        });
-        let cantidadSolamenteComplementosAntiguo = cantidadPrecioTotalAntiguo - cantidadOpcionesPrincipalesAntiguo - cantidadProductoBaseAntiguo;
-        informacionCompleta.producto.precioTotalConjunto = cantidadOpcionesPrincipalesNueva + cantidadSolamenteComplementosAntiguo + cantidadProductoBaseNuevo;
-  
-        console.log("Testeo completo :",{
-          "cantidadPrecioTotalAntiguo": cantidadPrecioTotalAntiguo,
-          "cantidadOpcionesPrincipalesAntiguo": cantidadOpcionesPrincipalesAntiguo,
-          "cantidadOpcionesPrincipalesNueva": cantidadOpcionesPrincipalesNueva,
-          "cantidadSolamenteComplementosAntiguo": cantidadSolamenteComplementosAntiguo,
-          "cantidadProductoBaseNuevo": cantidadProductoBaseNuevo,
-          "cantidadProductoBaseAntiguo": cantidadProductoBaseAntiguo,
-          "total nuevo : ": informacionCompleta.producto.precioTotalConjunto
-        })
+    if(accionBtn == "decrementar" ){
+      cantidadElemento--;
+      if(cantidadElemento == 0){
+        // Se procede a eliminar del carrito
+        MensajeCargaDatos.mostrar('Eliminando producto del carrito...');
+        await AuxiliaresGlobal.eliminarItemCarritoPorKey(keyCarrito, 0);
+        await this.actualizarSoloContenidoCarrito();
+        MensajeCargaDatos.ocultar();
+        return;
       }
+    }
 
+    if(informacionCompleta.opcionesPrincipales.productos.length == 0 && informacionCompleta.complementos.productos.length == 0){
+      informacionCompleta.producto.precioTotalConjunto = informacionCompleta.producto.precio * cantidadElemento;
+    }else {
+      let cantidadProductoBaseNuevo = parseInt(informacionCompleta.producto.precioProducto) * cantidadElemento;
+      let cantidadProductoBaseAntiguo = parseInt(informacionCompleta.producto.precioProducto) * parseInt(informacionCompleta.producto.cantidad);
+      let cantidadPrecioTotalAntiguo = parseFloat(informacionCompleta.producto.precioTotalConjunto);
+      let cantidadOpcionesPrincipalesAntiguo = 0; 
+      let cantidadOpcionesPrincipalesNueva = 0;
+      informacionCompleta.opcionesPrincipales.productos.forEach((producto) => {
+        cantidadOpcionesPrincipalesNueva  += (cantidadElemento * parseInt(producto.precio));
+        cantidadOpcionesPrincipalesAntiguo += (producto.cantidad * parseInt(producto.precio));
+      });
+      let cantidadSolamenteComplementosAntiguo = cantidadPrecioTotalAntiguo - cantidadOpcionesPrincipalesAntiguo - cantidadProductoBaseAntiguo;
+      informacionCompleta.producto.precioTotalConjunto = cantidadOpcionesPrincipalesNueva + cantidadSolamenteComplementosAntiguo + cantidadProductoBaseNuevo;
 
-  
-      if(accionBtn == "decrementar"){
-        // Se procede a decrementar la cantidad
-        MensajeCargaDatos.mostrar('Actualizando producto en el carrito...');
-        await AuxiliaresGlobal.actualizarItemCarrito(keyCarrito,itemCarrito.id, cantidadElemento,{
-          "estructura": JSON.stringify(informacionCompleta)
-        });
-      }
-  
-      if(accionBtn == "incrementar"){
-        // Se procede a incrementar la cantidad
-        MensajeCargaDatos.mostrar('Actualizando producto en el carrito...');
-        await AuxiliaresGlobal.actualizarItemCarrito(keyCarrito,itemCarrito.id, cantidadElemento,{
-          "estructura": JSON.stringify(informacionCompleta)
-        });
-      }
+      console.log("Testeo completo :",{
+        "cantidadPrecioTotalAntiguo": cantidadPrecioTotalAntiguo,
+        "cantidadOpcionesPrincipalesAntiguo": cantidadOpcionesPrincipalesAntiguo,
+        "cantidadOpcionesPrincipalesNueva": cantidadOpcionesPrincipalesNueva,
+        "cantidadSolamenteComplementosAntiguo": cantidadSolamenteComplementosAntiguo,
+        "cantidadProductoBaseNuevo": cantidadProductoBaseNuevo,
+        "cantidadProductoBaseAntiguo": cantidadProductoBaseAntiguo,
+        "total nuevo : ": informacionCompleta.producto.precioTotalConjunto
+      })
+    }
+    if(accionBtn == "decrementar"){
+      // Se procede a decrementar la cantidad
+      MensajeCargaDatos.mostrar('Actualizando producto en el carrito...');
+      await AuxiliaresGlobal.actualizarItemCarrito(keyCarrito,itemCarrito.id, cantidadElemento,{
+        "estructura": JSON.stringify(informacionCompleta)
+      });
+    }
+
+    if(accionBtn == "incrementar"){
+      // Se procede a incrementar la cantidad
+      MensajeCargaDatos.mostrar('Actualizando producto en el carrito...');
+      await AuxiliaresGlobal.actualizarItemCarrito(keyCarrito,itemCarrito.id, cantidadElemento,{
+        "estructura": JSON.stringify(informacionCompleta)
+      });
     }
 
     await this.actualizarSoloContenidoCarrito();
