@@ -271,10 +271,11 @@ class AuxiliaresGlobal {
   }
 
   /**
-   * Elimina un ítem específico del carrito
-    * @param {number} lineId - ID de línea del ítem a eliminar (1-based, no 0-based)
-    */
-  static eliminarItemCarrito(lineId) {
+   * Elimina un ítem específico del carrito usando su key
+   * @param {string} key - Key única del ítem a eliminar
+   * @param {number} quantity - Nueva cantidad (0 para eliminar)
+   */
+  static eliminarItemCarritoPorKey(key, quantity) {
     return new Promise((resolve, reject) => {
       // Usar la API de Shopify para actualizar el carrito
       fetch('/cart/change.js', {
@@ -283,8 +284,8 @@ class AuxiliaresGlobal {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          line: lineId,
-          quantity: 0 // Cantidad 0 elimina el ítem
+          id: key,  // Usamos la key como id
+          quantity: quantity // 0 para eliminar, otro valor para actualizar
         })
       })
       .then(response => response.json())
@@ -293,30 +294,31 @@ class AuxiliaresGlobal {
         this.sincronizarContadorConCarrito(cart);
         
         // Mostrar mensaje de éxito
-        this.mensajeInfo('Producto eliminado del carrito');
+        const mensaje = quantity === 0 ? 'Producto eliminado del carrito' : 'Carrito actualizado';
+        this.mensajeInfo(mensaje);
         
         // Disparar evento personalizado
         document.dispatchEvent(new CustomEvent('cart:updated', {
           detail: { cart }
         }));
         
-        console.log('Ítem eliminado del carrito:', cart);
+        console.log('Carrito actualizado:', cart);
         resolve(cart);
       })
       .catch(error => {
-        console.error('Error al eliminar ítem del carrito:', error);
-        this.mensajeError('No se pudo eliminar el producto del carrito');
+        console.error('Error al actualizar el carrito:', error);
+        this.mensajeError('No se pudo actualizar el carrito');
         reject(error);
       });
     });
   }
 
   /**
-   * Actualiza la cantidad de un ítem en el carrito
-    * @param {number} lineId - ID de línea del ítem a actualizar (1-based, no 0-based)
-    * @param {number} cantidad - Nueva cantidad
-    */
-  static actualizarCantidadItem(lineId, cantidad) {
+   * Actualiza la cantidad de un ítem en el carrito usando su key
+   * @param {string} key - Key única del ítem a actualizar
+   * @param {number} cantidad - Nueva cantidad
+   */
+  static actualizarCantidadItemPorKey(key, cantidad) {
     return new Promise((resolve, reject) => {
       // Validar cantidad
       if (typeof cantidad !== 'number' || cantidad < 0) {
@@ -331,7 +333,7 @@ class AuxiliaresGlobal {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          line: lineId,
+          id: key,  // Usamos key en lugar de line
           quantity: cantidad
         })
       })
@@ -692,152 +694,210 @@ class MensajeCargaDatos extends HTMLElement {
 
 customElements.define('mensaje-carga-datos', MensajeCargaDatos);
 
-// class PageCarrito extends HTMLElement {
-//   constructor() {
-//     super();
-//   }
+class PageCarrito extends HTMLElement {
+  constructor() {
+    super();
+  }
 
-//   connectedCallback() {
-//     this.btnPagar = this.querySelector('#phpc-btn-pagar');
-//     this.contenedorItemsDetalle = this.querySelector('.pcph-items-carrito');
-//     this.contenedorDerecho = this.querySelector('.pcph-carrito-derecho');
-//     this.btnPagar.addEventListener('click', () => this.pagarBtnPrincipal());
-//   }
+  connectedCallback() {
+    this.btnPagar = this.querySelector('#phpc-btn-pagar');
+    this.contenedorItemsDetalle = this.querySelector('.pcph-items-carrito');
+    this.contenedorDerecho = this.querySelector('.pcph-carrito-derecho');
+    this.btnPagar.addEventListener('click', () => this.pagarBtnPrincipal());
+  }
 
-//   async inicializarDataShopify() {
-//     try {
-//       const infoCarrito = await AuxiliaresGlobal.obtenerCarritoShopify();
-//       console.log('Información completa:', infoCarrito.informacionCompleta);
-//       console.log('Cantidad total:', infoCarrito.cantidadTotal);
-//       const precioTotal = infoCarrito.informacionCompleta.total_price / 100;
-//       console.log('Precio total:', precioTotal);
-//       this.cantidadPrecioCarrito = precioTotal;
+  async inicializarDataShopify() {
+    try {
+      const infoCarrito = await AuxiliaresGlobal.obtenerCarritoShopify();
+      console.log('Información completa:', infoCarrito.informacionCompleta);
+      console.log('Cantidad total:', infoCarrito.cantidadTotal);
+      const precioTotal = infoCarrito.informacionCompleta.total_price / 100;
+      console.log('Precio total:', precioTotal);
+      this.cantidadPrecioCarrito = precioTotal;
 
-//       // Asegúrate de que este elemento exista
-//       this.etiquetaAgregarCarrito = this.querySelector('.selector-del-precio'); // ajusta el selector
-//       if (this.etiquetaAgregarCarrito) {
-//         this.etiquetaAgregarCarrito.innerHTML = `Bs ${precioTotal}`;
-//       }
-//     } catch (error) {
-//       console.error('Hubo un error:', error);
-//     }
+      // Asegúrate de que este elemento exista
+      this.etiquetaAgregarCarrito = this.querySelector('.selector-del-precio'); // ajusta el selector
+      if (this.etiquetaAgregarCarrito) {
+        this.etiquetaAgregarCarrito.innerHTML = `Bs ${precioTotal}`;
+      }
+    } catch (error) {
+      console.error('Hubo un error:', error);
+    }
 
-//     let contenidoIzquierdoHTML = '';
+    let contenidoIzquierdoHTML = '';
 
 
-//     infoCarrito.informacionCompleta.items.forEach((item) => {
-//       if(!(item.properties && item.properties.estructura))return;
+    infoCarrito.informacionCompleta.items.forEach((item) => {
+      if(!(item.properties && item.properties.estructura))return;
 
-//       const dataContruccion = JSON.parse(item.properties.estructura);
+      const dataContruccion = JSON.parse(item.properties.estructura);
 
-//       contenidoIzquierdoHTML += `
-//       <div 
-//       data-idTrabajo="${dataContruccion.producto.idTrabajo}"
-//       data-idShopify="${dataContruccion.producto.idShopify}"
-//       data-handle="${dataContruccion.producto.handle}"
-//       data-precio="${dataContruccion.producto.precio}"
-//       class="pcph-item-carrito">
-//         <div class="pcph-itemc-detalle">
-//           <div class="pcph-itemc-imagen">
-//             ${dataContruccion.producto.imagen == null || dataContruccion.producto.imagen == '' 
-//               ? `<img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="${dataContruccion.producto.titulo}" width="100" height="100">`
-//               : `<img src="${dataContruccion.producto.imagen}" alt="${dataContruccion.producto.titulo}" width="100" height="100">`
-//             }
-//           </div>
-//           <div class="pcph-itemc-info">
-//             <div class="pcph-itemc_opcion1">
-//               <h2 class="color-letras-extra">Bs. ${dataContruccion.producto.precioTotalConjunto}</h2>
-//               <div class="pcph-itemc_editar">
-//                 {% render 'icon-editar' %}
-//                 <p class="color-letras-primary">Editar</p>
-//               </div>
-//             </div>
-//             <div class="pcph-itemc_opcion2">
-//               <div class="pcph-itemc-detalles-primarios">
-//                 <h1>${dataContruccion.producto.titulo}</h1>
-//                 <ul class="color-letras-extra">
-//                   <li>
-//                     <p>Extra: queso, tocino, cebolla</p>
-//                   </li>
-//                   <li>
-//                     <p>Borde Criollo</p>
-//                   </li>
-//                   <li>
-//                     <p>Mediana</p>
-//                   </li>
-//                 </ul>
-//               </div>
-//               <div class="pcph-itemc-detalles-secundarios">
-//                 <p>ADICIONALES</p>
-//                 <ul class="color-letras-extra">
-//                   <li>
-//                     <p>2x: Soda 350ml</p>
-//                   </li>
-//                   <li>
-//                     <p>2x: Sprite 350ml</p>
-//                   </li>
-//                   <li>
-//                     <p>2x: Dulce de leche</p>
-//                   </li>
-//                   <li>
-//                     <p>1x: Sprite 350ml</p>
-//                   </li>
-//                   <li>
-//                     <p>5x: Postres Maracuya</p>
-//                   </li>
-//                 </ul>
-//               </div>
-//             </div>
-//           </div>
-//         </div>
-//         <div class="pcph-itemc_cantidad">
-//           <button class="pcph-itemc_cantidad-btn">
-//             {% render 'icon-menos' %}
-//           </button>
-//           <p>1</p>
-//           <button class="pcph-itemc_cantidad-btn">
-//             {% render 'icon-mas' %}
-//           </button>
-//         </div>
-//       </div>
-//       `;
-      
-//     });
+      contenidoIzquierdoHTML += `
+      <div 
+      data-idTrabajo="${dataContruccion.producto.idTrabajo}"
+      data-idShopify="${dataContruccion.producto.idShopify}"
+      data-handle="${dataContruccion.producto.handle}"
+      data-precio="${dataContruccion.producto.precio}"
+      data-keycarrito="${item.key}"
+      class="pcph-item-carrito">
+        <div class="pcph-itemc-detalle">
+          <div class="pcph-itemc-imagen">
+            ${dataContruccion.producto.imagen == null || dataContruccion.producto.imagen == '' 
+              ? `<img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="${dataContruccion.producto.titulo}" width="100" height="100">`
+              : `<img src="${dataContruccion.producto.imagen}" alt="${dataContruccion.producto.titulo}" width="100" height="100">`
+            }
+          </div>
+          <div class="pcph-itemc-info">
+            <div class="pcph-itemc_opcion1">
+              <h2 class="color-letras-extra">Bs. ${dataContruccion.producto.precioTotalConjunto}</h2>
+              <div class="pcph-itemc_editar">
+                {% render 'icon-editar' %}
+                <p class="color-letras-primary">Editar</p>
+              </div>
+            </div>
+            <div class="pcph-itemc_opcion2">
+              <div class="pcph-itemc-detalles-primarios">
+                <h1>${dataContruccion.producto.titulo}</h1>
+                <p>${dataContruccion.opcionesPrincipales.titulo}</p>
+                <ul class="color-letras-extra">
+      `;
 
-//     this.contenedorItemsDetalle.innerHTML = contenidoIzquierdoHTML;
+      dataContruccion.opcionesPrincipales.productos.forEach((producto) => {
+        contenidoIzquierdoHTML += `
+            <li>
+              <p>${producto.tituloSeccion} : <br> ${producto.titulo}</p>
+            </li>
+        `;
+      });
 
-//     let contenidoDerechoHTML = '';
-//     contenidoDerechoHTML += `
-//         <h1>TOTAL</h1>
-//         <div class="pcph-item-info-pago">
-//           <p>Subtotal</p>
-//           <p>Bs. 136.05</p>
-//         </div>
-//         <div class="pcph-item-info-pago">
-//           <p>Descuento</p>
-//           <p>Bs. 00.000</p>
-//         </div>
-//         <div class="pcph-item-info-pago">
-//           <p>Recojo en local</p>
-//           <p>Bs. 00.000</p>
-//         </div>
-//         <hr>
-//         <div class="pcph-item-info-total">
-//           <p>Total</p>
-//           <p>Bs. 136.05</p>
-//         </div>
-//     `;
+      contenidoIzquierdoHTML += `
+                </ul>
+              </div>
+              <div class="pcph-itemc-detalles-secundarios">
+                <p>${dataContruccion.complementos.titulo}</p>
+                <ul class="color-letras-extra">
+      `;
 
-//     this.contenedorDerecho.insertAdjacentHTML('afterbegin', contenidoDerechoHTML);
+      dataContruccion.complementos.productos.forEach((producto) => {
+        contenidoIzquierdoHTML += `
+            <li>
+              <p>${producto.tituloSeccion} : <br> ${producto.titulo}</p>
+            </li>
+        `;
+      });
 
-//     this.declararComponentesDespuesCreacion();
-//   }
+      contenidoIzquierdoHTML += `
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
 
-//   declararComponentesDespuesCreacion() {
+      // <div class="pcph-itemc_cantidad">
+      //   <button class="pcph-itemc_cantidad-btn">
+      //     {% render 'icon-menos' %}
+      //   </button>
+      //   <p>1</p>
+      //   <button class="pcph-itemc_cantidad-btn">
+      //     {% render 'icon-mas' %}
+      //   </button>
+      // </div>
+      contenidoIzquierdoHTML += `
+          <cantidad-input>
+            <div
+              origen-trabajo="producto"
+              min="1"
+              max="${this.obtenerStockGenericoTrabajo(dataContruccion.producto)}"
+              id="producto-id"
+              handle="producto-handle"
+              class="pmph-cantidad-selector"
+            >
+              <button
+                accion="decrementar"
+                class="pmph-cantidad-selector-button elemento-oculto icon-color-tertiary"
+              >
+                {% render 'icon-basura' %}
+              </button>
+              <button
+                accion="decrementar"
+                class="pmph-cantidad-selector-button  elemento-oculto icon-color-tertiary"
+              >
+                {% render 'icon-menos' %}
+              </button>
+              <p id="phpp-cantidad-general">${item.quantity}</p>
+              <button
+                accion="incrementar"
+                class="pmph-cantidad-selector-button icon-color-tertiary"
+              >
+                {% render 'icon-mas' %}
+              </button>
+            </div>
+          </cantidad-input>
+      </div>
+      `;
+    });
 
-//   }
+    this.contenedorItemsDetalle.innerHTML = contenidoIzquierdoHTML;
 
-//   pagarBtnPrincipal() {}
-// }
+    let contenidoDerechoHTML = '';
+    contenidoDerechoHTML += `
+        <h1>TOTAL</h1>
+        <div class="pcph-item-info-pago">
+          <p>Subtotal</p>
+          <p>Bs. ${precioTotal}</p>
+        </div>
+        <div class="pcph-item-info-pago">
+          <p>Descuento</p>
+          <p>Bs. 00.000</p>
+        </div>
+        <div class="pcph-item-info-pago">
+          <p>Recojo en local</p>
+          <p>Bs. 00.000</p>
+        </div>
+        <hr>
+        <div class="pcph-item-info-total">
+          <p>Total</p>
+          <p>Bs. ${precioTotal}</p>
+        </div>
+    `;
 
-// customElements.define('page-carrito', PageCarrito);
+    this.contenedorDerecho.insertAdjacentHTML('afterbegin', contenidoDerechoHTML);
+    
+    this.declararComponentesDespuesCreacion();
+    
+    this.btnsEditar = this.querySelectorAll('.pcph-itemc_editar');
+    this.btnsEditar.forEach((btn) => {
+      btn.addEventListener('click', this.procedoEditarItem.bind(this, btn));
+    }); 
+    this.btnsCantidadDecrementar = this.querySelectorAll('.pmph-cantidad-selector-button'); 
+    this.btnsCantidadDecrementar.forEach((btn) => {
+      btn.addEventListener('click', this.actualizarProductoCarrito.bind(this, btn));
+    });
+
+  }
+
+  declararComponentesDespuesCreacion() {}
+
+  actualizarProductoCarrito(btnElemento){}
+
+  procedoEditarItem(btnElemento) {}
+
+  obtenerStockGenericoTrabajo(productoTrabajo){
+    // Verificar si tenemos una sucursal seleccionada
+    const dataSucursal = JSON.parse(localStorage.getItem('sucursal-informacion'));
+    if(!dataSucursal || dataSucursal == "") return productoTrabajo.stockTotal;
+
+    const sucursalEncontrada = productoTrabajo.sucursales.find(
+      sucursal => sucursal.nombre == dataSucursal.name
+    );
+
+    return sucursalEncontrada 
+    ? parseInt(sucursalEncontrada.stock) 
+    : productoTrabajo.stockTotal;
+  }
+
+  pagarBtnPrincipal() {}
+}
+
+customElements.define('page-carrito', PageCarrito);
