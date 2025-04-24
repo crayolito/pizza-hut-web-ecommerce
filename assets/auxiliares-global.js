@@ -843,6 +843,7 @@ class PageCarrito extends HTMLElement {
   constructor() {
     super();
     this.dataCarrito = null;
+    this.productosAcompanamiento = null;
   }
 
   connectedCallback() {
@@ -851,6 +852,7 @@ class PageCarrito extends HTMLElement {
     this.contenedorDerecho = this.querySelector('.pcph-carrito-derecho');
     this.etiquetaSubtotal = this.querySelector('#phpc-etiqueta-subTotal');
     this.etiquetaTotal = this.querySelector('#phpc-etiqueta-total');
+    this.contenedorProductosAcompanamientos = this.querySelector('.pcph-productos-items');
     this.btnPagar.addEventListener('click', () => this.pagarBtnPrincipal());
     this.inicializarDataShopify();
   }
@@ -1021,6 +1023,7 @@ class PageCarrito extends HTMLElement {
     // DECLARAR ELEMENTOS
     this.btnsEditar = this.querySelectorAll('.pcph-itemc_editar');
     this.btnsEditarCantidadItem = this.querySelectorAll('.pcph-itemc_cantidad-btn'); 
+    this.btnsAgregarAcompanamiento = this.querySelectorAll('#phpc-btn-agregar-acompanamiento');
 
     // INICIALIZAR EVENTOS
     this.btnsEditar.forEach((btn) => {
@@ -1029,11 +1032,225 @@ class PageCarrito extends HTMLElement {
     this.btnsEditarCantidadItem.forEach((btn) => {
       btn.addEventListener('click', this.actualizarProductoCarrito.bind(this, btn));
     });
-    // INICIALIZAR ELEMENTOS Y CARGA DE DATOS
+    this.btnsAgregarAcompanamiento.forEach((btn) => {
+      btn.addEventListener('click', this.agregarProductoAcompanamiento.bind(this, btn));
+    });
 
+    // INICIALIZAR ELEMENTOS Y CARGA DE DATOS
   }
 
   async crearSecciondeAcompanamiento() {
+    const {informacionColeccion,  productosColeccion } = await this.traerProductoAcompanamiento();
+    
+    this.productosAcompanamiento = productosColeccion;
+
+    var contenidoHTML = '';
+    productosColeccion.forEach((producto) => {
+      contenidoHTML += `
+        <div 
+        data-idTrabajo="${producto.idTrabajo}"
+        data-idShopify="${producto.idShopify}"
+        data-handle="${producto.handle}"
+        data-precio="${producto.precio}"
+        data-titulo="${producto.titulo}"
+        data-stock="${this.obtenerStockGenericoTrabajo(producto)}"
+        class="cardph-item-producto">
+          <div class="cardph-itemp-imagen">
+          ${producto.imagen == null || producto.imagen == ''
+            ? `<img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="${producto.titulo}" width="100" height="100">`
+            : `<img src="${producto.imagen}" alt="${producto.titulo}" width="100" height="100">`
+          }
+          </div>
+          <div class="cardph-itemp-info">
+            <h3>${producto.titulo}</h3>
+            <h3 class="color-letras-primary">Bs. ${producto.estructura}</h3>
+            <button id="phpc-btn-agregar-acompanamiento" class="boton-producto-agregar icon-color-secondary ">
+              <p class="color-letras-secondary">AGREGAR</p>
+              ${window.shopIcons.icon_carrito}
+              </button>
+          </div>
+        </div>
+      `;
+    });
+
+    this.contenedorProductosAcompanamientos.innerHTML = contenidoHTML;
+  }
+
+  async traerProductoAcompanamiento() {
+    const graphQLQuery = `
+    query GetCollectionByFlexibleTitle {
+      collections(first: 1, query: "title:*Postres*") {
+        edges {
+          node {
+            id
+            title
+            handle
+            metafield(namespace: "estructura", key: "json") {
+              value
+            }
+            products(first: 50) {
+              edges {
+                node {
+                  id
+                  title
+                  handle
+                  description
+                  totalInventory
+                  images(first: 1) {
+                    edges {
+                      node {
+                        url
+                      }
+                    }
+                  }
+                  metafield(namespace: "estructura", key: "json") {
+                    value
+                  }
+                  variants(first: 1) {
+                    edges {
+                      node {
+                        id
+                        inventoryItem {
+                          inventoryLevels(first: 100) {
+                            edges {
+                              node {
+                                location {
+                                  name
+                                }
+                                quantities(names: ["available"]) {
+                                  name
+                                  quantity
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    `;
+
+    try {
+      // Realiza la solicitud a la API de Shopify
+      const myTest = 'shpat_' + '45f4a7476152f4881d058f87ce063698';
+      const respuesta = await fetch(this.urlConsulta, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Shopify-Access-Token': myTest,
+        },
+        body: JSON.stringify({ query: graphQLQuery }),
+      });
+
+      if (!respuesta.ok) {
+        throw new Error(`Error de red: ${respuesta.status} ${respuesta.statusText}`);
+      }
+
+      // Obtener los datos de la respuesta
+      const datosRespuesta = await respuesta.json();
+
+      // Verificar si tenemos datos
+      if (!datosRespuesta.data || !datosRespuesta.data.collections.edges.length || !datosRespuesta.data.collections.edges[0].node.products.edges.length) {
+        console.log("No se encontraron productos en la colección PIZZA");
+        return [];
+      }
+
+      // Extraer la información de la colección 
+      const coleccion = datosRespuesta.data.collections.edges[0].node;
+      var estructuraColeccion = null;
+      if (coleccion.metafield && coleccion.metafield.value) {
+        try {
+          estructuraColeccion = JSON.parse(coleccion.metafield.value);
+        } catch (e) {
+          estructuraColeccion = null;
+          console.error('Error al parsear la estructura de la colección:', e);
+        } 
+      }
+
+      // Transformar los productos a un formato más simple
+      const productosSimplificados = coleccion.products.edges.map(edge => {
+        const producto = edge.node;
+        const imagenURL = producto.images.edges.length > 0 ? producto.images.edges[0].node.url : '';
+        
+        // Obtener el inventario total del producto
+        const stockGeneral = producto.totalInventory || 0;
+        
+        // Obtener el ID de la variante
+        let varianteId = '';
+        if (producto.variants && producto.variants.edges.length > 0) {
+          const varianteCompleta = producto.variants.edges[0].node.id;
+          // Extraer solo la parte numérica del ID de la variante
+          varianteId = varianteCompleta.split('/').pop();
+        }
+        
+        // Obtener el inventario por sucursal
+        const sucursales = [];
+        if (producto.variants && producto.variants.edges.length > 0) {
+          const variante = producto.variants.edges[0].node;
+          if (variante.inventoryItem && variante.inventoryItem.inventoryLevels.edges.length > 0) {
+            variante.inventoryItem.inventoryLevels.edges.forEach(levelEdge => {
+              const level = levelEdge.node;
+              const nombreSucursal = level.location.name;
+              let stockSucursal = 0;
+              
+              // Buscar la cantidad disponible
+              if (level.quantities && level.quantities.length > 0) {
+                const availableQuantity = level.quantities.find(q => q.name === "available");
+                if (availableQuantity) {
+                  stockSucursal = availableQuantity.quantity;
+                }
+              }
+              
+              sucursales.push({
+                nombre: nombreSucursal,
+                stock: stockSucursal
+              });
+            });
+          }
+        }
+
+        // Crear un objeto simplificado del producto
+        const productoSimplificado = {
+          id: varianteId, // Usamos el ID de variante en lugar del ID de producto
+          titulo: producto.title,
+          handle: producto.handle,
+          descripcion: producto.description,
+          imagen: imagenURL,
+          stockGeneral: stockGeneral,
+          sucursales: sucursales,
+          estructura: producto.metafield && producto.metafield.value ? JSON.parse(producto.metafield.value) : "",
+        };
+
+        return productoSimplificado;
+      });
+
+      // Crear un objeto con información de la colección y los productos
+      const resultado = {
+        informacionColeccion: {
+          id: coleccion.id,
+          titulo: coleccion.title,
+          handle: coleccion.handle,
+          estructura: estructuraColeccion
+        },
+        productosColeccion: productosSimplificados
+      };
+
+      console.log('Datos de la colección obtenidos:', resultado);
+
+      return resultado;
+
+    } catch (error) {
+      // Errores al traer los datos
+      console.error('Error al obtener los datos de la colección:', error);
+      return [];
+    }
   }
 
   async actualizarProductoCarrito(btnElemento){
@@ -1107,159 +1324,129 @@ class PageCarrito extends HTMLElement {
       let precioTotal = 0;
 
       infoCarrito.informacionCompleta.items.forEach((item) => {
-        if(!(item.properties && item.properties.estructura))return;
-        
-        const dataContruccion = JSON.parse(item.properties.estructura);
-        precioTotal += parseFloat(dataContruccion.producto.precioTotalConjunto);
-        console.log('Data de construcción:', dataContruccion);
-
-        contenidoIzquierdoHTML += `
-        <div 
-        data-idTrabajo="${dataContruccion.producto.idTrabajo}"
-        data-idShopify="${dataContruccion.producto.idShopify}"
-        data-handle="${dataContruccion.producto.handle}"
-        data-precio="${dataContruccion.producto.precio}"
-        data-keycarrito="${item.key}"
-        class="pcph-item-carrito">
-          <div class="pcph-itemc-detalle">
-            <div class="pcph-itemc-imagen">
-              ${dataContruccion.producto.imagen == null || dataContruccion.producto.imagen == '' 
-                ? `<img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="${dataContruccion.producto.titulo}" width="100" height="100">`
-                : `<img src="${dataContruccion.producto.imagen}" alt="${dataContruccion.producto.titulo}" width="100" height="100">`
-              }
-            </div>
-            <div class="pcph-itemc-info">
-              <div class="pcph-itemc_opcion1">
-                <h2 class="color-letras-extra">Bs. ${dataContruccion.producto.precioTotalConjunto}</h2>
-                <div class="pcph-itemc_editar">
-                  ${window.shopIcons.icon_editar}
-                  <p class="color-letras-primary">Editar</p>
+        if(item.properties && item.properties.estructura) {
+          const dataContruccion = JSON.parse(item.properties.estructura);
+          precioTotal += parseFloat(dataContruccion.producto.precioTotalConjunto);
+  
+          contenidoIzquierdoHTML += `
+          <div 
+          data-idTrabajo="${dataContruccion.producto.idTrabajo}"
+          data-idShopify="${dataContruccion.producto.idShopify}"
+          data-handle="${dataContruccion.producto.handle}"
+          data-precio="${dataContruccion.producto.precio}"
+          data-keycarrito="${item.key}"
+          class="pcph-item-carrito">
+            <div class="pcph-itemc-detalle">
+              <div class="pcph-itemc-imagen">
+                ${dataContruccion.producto.imagen == null || dataContruccion.producto.imagen == '' 
+                  ? `<img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="${dataContruccion.producto.titulo}" width="100" height="100">`
+                  : `<img src="${dataContruccion.producto.imagen}" alt="${dataContruccion.producto.titulo}" width="100" height="100">`
+                }
+              </div>
+              <div class="pcph-itemc-info">
+                <div class="pcph-itemc_opcion1">
+                  <h2 class="color-letras-extra">Bs. ${dataContruccion.producto.precioTotalConjunto}</h2>
+                  <div class="pcph-itemc_editar">
+                    ${window.shopIcons.icon_editar}
+                    <p class="color-letras-primary">Editar</p>
+                  </div>
+                </div>
+                <div class="pcph-itemc_opcion2">
+                  <div class="pcph-itemc-detalles-primarios">
+                    <h1>${dataContruccion.producto.titulo}</h1>
+                    ${dataContruccion.opcionesPrincipales.productos.length > 0
+                      ? `<p>${dataContruccion.opcionesPrincipales.titulo}</p>
+                          <ul class="color-letras-extra">`
+                      : ''
+                    }
+          `;
+    
+          dataContruccion.opcionesPrincipales.productos.forEach((producto) => {
+            contenidoIzquierdoHTML += `
+                <li>
+                  <p>${producto.tituloSeccion} : <br> ${producto.titulo}</p>
+                </li>
+            `;
+          });
+    
+          contenidoIzquierdoHTML += `
+                    </ul>
+                  </div>
+                  <div class="pcph-itemc-detalles-secundarios">
+                  ${
+                    dataContruccion.complementos.productos.length > 0
+                      ? `<p>${dataContruccion.complementos.titulo}</p>
+                          <ul class="color-letras-extra">`
+                      : ''
+                   }
+  
+          `;
+    
+          dataContruccion.complementos.productos.forEach((producto) => {
+            contenidoIzquierdoHTML += `
+                <li>
+                  <p>${"x" + producto.cantidad +" "+  producto.tituloSeccion} : <br> ${producto.titulo}</p>
+                </li>
+            `;
+          });
+    
+          contenidoIzquierdoHTML += `
+                  ${
+                    dataContruccion.complementos.productos.length > 0
+                      ? `</ul>`
+                      : ''
+                   }
+                    </ul>
+                  </div>
                 </div>
               </div>
-              <div class="pcph-itemc_opcion2">
-                <div class="pcph-itemc-detalles-primarios">
-                  <h1>${dataContruccion.producto.titulo}</h1>
-                  ${dataContruccion.opcionesPrincipales.productos.length > 0
-                    ? `<p>${dataContruccion.opcionesPrincipales.titulo}</p>
-                        <ul class="color-letras-extra">`
-                    : ''
-                  }
-        `;
-  
-        dataContruccion.opcionesPrincipales.productos.forEach((producto) => {
-          contenidoIzquierdoHTML += `
-              <li>
-                <p>${producto.tituloSeccion} : <br> ${producto.titulo}</p>
-              </li>
-          `;
-        });
-  
-        contenidoIzquierdoHTML += `
-                  </ul>
-                </div>
-                <div class="pcph-itemc-detalles-secundarios">
-                ${
-                  dataContruccion.complementos.productos.length > 0
-                    ? `<p>${dataContruccion.complementos.titulo}</p>
-                        <ul class="color-letras-extra">`
-                    : ''
-                 }
-
-        `;
-  
-        dataContruccion.complementos.productos.forEach((producto) => {
-          contenidoIzquierdoHTML += `
-              <li>
-                <p>${"x" + producto.cantidad +" "+  producto.tituloSeccion} : <br> ${producto.titulo}</p>
-              </li>
-          `;
-        });
-  
-        contenidoIzquierdoHTML += `
-                ${
-                  dataContruccion.complementos.productos.length > 0
-                    ? `</ul>`
-                    : ''
-                 }
-                  </ul>
-                </div>
-              </div>
             </div>
+          `;
+  
+          contenidoIzquierdoHTML += `
+              <cantidad-input>
+                <div
+                  origen-trabajo="carrito"
+                  min="1"
+                  max="${this.obtenerStockGenericoTrabajo(dataContruccion.producto)}"
+                  id="producto-id"
+                  handle="producto-handle"
+                  class="pcph-itemc_cantidad"
+                >
+                  <button
+                    accion="decrementar"
+                    class="pcph-itemc_cantidad-btn elemento-oculto icon-color-tertiary"
+                  >
+                  ${window.shopIcons.icon_basura}
+                  </button>
+                  <button
+                    accion="decrementar"
+                    class="pcph-itemc_cantidad-btn  elemento-oculto icon-color-tertiary"
+                  >
+                   ${window.shopIcons.icon_menos}
+                  </button>
+                  <p id="phpp-cantidad-general">${item.quantity}</p>
+                  <button
+                    accion="incrementar"
+                    class="pcph-itemc_cantidad-btn icon-color-tertiary"
+                  >
+                    ${window.shopIcons.icon_mas}  
+                  </button>
+                </div>
+              </cantidad-input>
           </div>
-        `;
-  
-        // <div class="pcph-itemc_cantidad">
-        //   <button class="pcph-itemc_cantidad-btn">
-        //     {% render 'icon-menos' %}
-        //   </button>
-        //   <p>1</p>
-        //   <button class="pcph-itemc_cantidad-btn">
-        //     {% render 'icon-mas' %}
-        //   </button>
-        // </div>
-        contenidoIzquierdoHTML += `
-            <cantidad-input>
-              <div
-                origen-trabajo="carrito"
-                min="1"
-                max="${this.obtenerStockGenericoTrabajo(dataContruccion.producto)}"
-                id="producto-id"
-                handle="producto-handle"
-                class="pcph-itemc_cantidad"
-              >
-                <button
-                  accion="decrementar"
-                  class="pcph-itemc_cantidad-btn elemento-oculto icon-color-tertiary"
-                >
-                ${window.shopIcons.icon_basura}
-                </button>
-                <button
-                  accion="decrementar"
-                  class="pcph-itemc_cantidad-btn  elemento-oculto icon-color-tertiary"
-                >
-                 ${window.shopIcons.icon_menos}
-                </button>
-                <p id="phpp-cantidad-general">${item.quantity}</p>
-                <button
-                  accion="incrementar"
-                  class="pcph-itemc_cantidad-btn icon-color-tertiary"
-                >
-                  ${window.shopIcons.icon_mas}  
-                </button>
-              </div>
-            </cantidad-input>
-        </div>
-        `;
+          `;
+
+        }else{
+
+
+        };
       });
-  
 
       this.contenedorItemsDetalle.innerHTML = contenidoIzquierdoHTML;
-  
-      // let contenidoDerechoHTML = '';
-      // contenidoDerechoHTML += `
-      //     <h1>TOTAL</h1>
-      //     <div class="pcph-item-info-pago">
-      //       <p>Subtotal</p>
-      //       <p>Bs. ${precioTotal}</p>
-      //     </div>
-      //     <div class="pcph-item-info-pago">
-      //       <p>Descuento</p>
-      //       <p>Bs. 00.000</p>
-      //     </div>
-      //     <div class="pcph-item-info-pago">
-      //       <p>Recojo en local</p>
-      //       <p>Bs. 00.000</p>
-      //     </div>
-      //     <hr>
-      //     <div class="pcph-item-info-total">
-      //       <p>Total</p>
-      //       <p>Bs. ${precioTotal}</p>
-      //     </div>
-      // `;
+
       this.etiquetaSubtotal.textContent = `Bs. ${precioTotal}`;
       this.etiquetaTotal.textContent = `Bs. ${precioTotal}`;
-  
-      // this.contenedorDerecho.insertAdjacentHTML('afterbegin', contenidoDerechoHTML);
       
       this.declararComponentesDespuesCreacion();
     } catch (error) {
@@ -1281,6 +1468,48 @@ class PageCarrito extends HTMLElement {
     return sucursalEncontrada 
     ? parseInt(sucursalEncontrada.stock) 
     : productoTrabajo.stockTotal;
+  }
+
+  async agregarProductoAcompanamiento(btnElemento){
+    const contenedorPadre = btnElemento.closest('.cardph-item-producto');
+    const idTrabajo = contenedorPadre.dataset.idtrabajo;
+    const idShopify = contenedorPadre.dataset.idshopify;
+
+    const productoTrabajo = this.productosAcompanamiento.find(
+      producto => producto.idTrabajo == idTrabajo && producto.idShopify == idShopify
+    );
+
+    const detalleProducto = {
+      producto: {
+        idTrabajo: productoTrabajo.idTrabajo,
+        idShopify: productoTrabajo.idShopify,
+        handle: productoTrabajo.handle,
+        titulo: productoTrabajo.titulo,
+        precio: parseInt(productoTrabajo.precio),
+        imagen: productoTrabajo.imagen,
+        cantidad: 1,
+        sucursal: productoTrabajo.sucursal,
+        stockTotal : parseInt(productoTrabajo.stockTotal),
+        precioTotalConjunto: parseInt(productoTrabajo.precio) * 1,
+      },
+      opcionesPrincipales: {
+        titulo: "Opciones Principales",
+        productos: []  
+      },
+      complementos: {
+        titulo: "Complementos",
+        productos: []
+      }
+    };
+
+    // Se procede a agregar al carrito
+    MensajeCargaDatos.mostrar('Agregando producto al carrito...');
+    await AuxiliaresGlobal.agregarCarrito(1, parseInt(idShopify), precio, 1, {
+      "estructura": JSON.stringify(detalleProducto)
+    });
+
+    await this.actualizarSoloContenidoCarrito();
+    MensajeCargaDatos.ocultar();
   }
 
   async pagarBtnPrincipal() {
