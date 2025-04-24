@@ -1616,6 +1616,8 @@ class PageCheckoutPH extends HTMLElement {
       }
     ];
     this.infoCarrito = null;
+
+    this.localSeleccionado = null;
   }
 
   connectedCallback() {
@@ -1767,7 +1769,7 @@ class PageCheckoutPH extends HTMLElement {
     // para mostrar todos los locales
     this.buscarSugerenciasSeleccionLocal('', null);
   }
-
+  
   buscarSugerenciasSeleccionLocal(query, limite = null) {
     // Filtrar las ubicaciones basadas en la consulta
     let resultados = this.pizzaLocations.filter(location => 
@@ -1791,28 +1793,33 @@ class PageCheckoutPH extends HTMLElement {
     }
   
     // Limpiar resultados anteriores
-    this.contenedorResultadosBuquedaLocal.innerHTML = '';
+    this.contenedorReultadosBusquedaLocal.innerHTML = '';
     
     // Si hay resultados, mostrar el contenedor
     if (resultados.length > 0) {
-      this.contenedorResultadosBuquedaLocal.style.display = "block";
+      this.contenedorReultadosBusquedaLocal.style.display = "block";
       
       // Crear y añadir elementos para cada resultado
       resultados.forEach(location => {
         const resultadoItem = document.createElement('div');
         resultadoItem.className = 'smecph-pc-resultado-item';
         
-        // Crear elemento para el nombre en negrita
+        // Crear elemento para el nombre
         const nombreLocal = document.createElement('p');
-        nombreLocal.innerHTML = `<strong>${location.name}</strong>`;
+        nombreLocal.textContent = location.name;
         
-        // Crear elemento para el teléfono
-        const telefonoLocal = document.createElement('p');
-        telefonoLocal.textContent = `Tel: ${location.telefono}`;
+        // Crear elemento para la dirección
+        const direccionLocal = document.createElement('p');
+        direccionLocal.textContent = location.localizacion;
+        
+        // Crear elemento para el tiempo de entrega
+        const tiempoEntrega = document.createElement('p');
+        tiempoEntrega.textContent = 'Listo para retirar en 30 minutos';
         
         // Añadir elementos al item
         resultadoItem.appendChild(nombreLocal);
-        resultadoItem.appendChild(telefonoLocal);
+        resultadoItem.appendChild(direccionLocal);
+        resultadoItem.appendChild(tiempoEntrega);
         
         // Añadir evento de clic para seleccionar este local
         resultadoItem.addEventListener('click', () => {
@@ -1820,11 +1827,11 @@ class PageCheckoutPH extends HTMLElement {
         });
         
         // Añadir el item al contenedor de resultados
-        this.contenedorResultadosBuquedaLocal.appendChild(resultadoItem);
+        this.contenedorReultadosBusquedaLocal.appendChild(resultadoItem);
       });
     } else {
       // Si no hay resultados, ocultar el contenedor
-      this.contenedorResultadosBuquedaLocal.style.display = "none";
+      this.contenedorReultadosBusquedaLocal.style.display = "none";
     }
   }
 
@@ -1835,7 +1842,7 @@ class PageCheckoutPH extends HTMLElement {
     // Ocultar sugerencias
     this.contenedorResultadosBuquedaLocal.style.display = "none";
     
-    // Mostrar detalles del local seleccionado
+    // Mostrar detalles del local seleccionadoo
     const detalleLocal = this.querySelector('.pcktph-seleccion-local-detalle');
     detalleLocal.style.display = "flex";
     
