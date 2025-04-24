@@ -1763,19 +1763,19 @@
       });
 
       if(tipoProceso == 'hazunpedido'){
-        window.location.href = '/pages/carrito';
-        {% comment %} await AuxiliaresGlobal.limpiarCarrito(); {% endcomment %}
+        {% comment %} window.location.href = '/pages/carrito'; {% endcomment %}
+        await AuxiliaresGlobal.limpiarCarrito();
       } 
 
       if(tipoProceso == 'agregarcarrito'){
         // Actualizar las etiquetas del HAZ ME UN PEDIDO Y AGREGAR AL CARRIT
-        this.cantidadPrecioCarrito = this.cantidadPrecioCarrito + (this.cantidadPrecioHazUnPedido * cantidadSolicitada);
-        this.etiquetaAgregarCarrito.innerHTML = `Bs ${this.cantidadPrecioCarrito + (this.cantidadPrecioHazUnPedido * cantidadSolicitada) }`;
-        this.etiquetaHazUnPedido.innerHTML = `Bs ${(this.cantidadPrecioHazUnPedido * cantidadSolicitada)}`;
+        // this.cantidadPrecioCarrito = this.cantidadPrecioCarrito + (this.cantidadPrecioHazUnPedido * cantidadSolicitada);
+        // this.etiquetaAgregarCarrito.innerHTML = `Bs ${this.cantidadPrecioCarrito + (this.cantidadPrecioHazUnPedido * cantidadSolicitada) }`;
+        // this.etiquetaHazUnPedido.innerHTML = `Bs ${(this.cantidadPrecioHazUnPedido * cantidadSolicitada)}`;
       } 
 
       // Agregar al carrito de Shopify
-      const detalleProducto = {
+      {% comment %} const detalleProducto = {
         producto: {
           idShopify: data.producto.idShopify,
           idTrabajo: data.producto.idTrabajo,
@@ -1796,11 +1796,11 @@
           titulo: "Complementos",
           productos: productosComple
         }
-      };
+      }; {% endcomment %}
 
-      await AuxiliaresGlobal.agregarCarrito(parseInt(cantidadSolicitada),parseInt(data.producto.idShopify),{
+      {% comment %} await AuxiliaresGlobal.agregarCarrito(parseInt(cantidadSolicitada),parseInt(data.producto.idShopify),{
         properties: {"estructura": JSON.stringify(detalleProducto),}
-      }); 
+      });  {% endcomment %}
 
       {% comment %} AuxiliaresGlobal.limpiarCarrito(); {% endcomment %}
 
