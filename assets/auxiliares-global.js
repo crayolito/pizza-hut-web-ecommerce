@@ -1492,16 +1492,16 @@ class PageCarrito extends HTMLElement {
 
     const detalleProducto = {
       producto: {
-        idTrabajo: productoTrabajo.idTrabajo,
-        idShopify: productoTrabajo.idShopify,
+        idTrabajo: idTrabajo,
+        idShopify: idShopify,
         handle: productoTrabajo.handle,
         titulo: productoTrabajo.titulo,
-        precio: parseInt(productoTrabajo.precio),
+        precio: parseInt(productoTrabajo.estructura.precio),
         imagen: productoTrabajo.imagen,
         cantidad: 1,
         sucursal: productoTrabajo.sucursal,
         stockTotal : parseInt(productoTrabajo.stockTotal),
-        precioTotalConjunto: parseInt(productoTrabajo.precio) * 1,
+        precioTotalConjunto: parseInt(productoTrabajo.estructura.precio) * 1,
       },
       opcionesPrincipales: {
         titulo: "Opciones Principales",
