@@ -847,6 +847,12 @@ input[type="number"] {
 /* =================================
   10. MEDIA QUERIES
 ================================= */
+
+.ph-opciones-mobile-footer {
+  width: 100% !important;
+  max-width: 40.25rem !important;
+}
+
 @media (min-width: 768px) {
   .ph-modal-main-mensajes {
     /* width: max-content; */
@@ -872,6 +878,26 @@ input[type="number"] {
   .pcktpch-modal-footer {
     flex-direction: row;
     justify-content: space-between;
+  }
+
+  .pcktph-seleccion-local-detalle {
+    flex-direction: row;
+    height: max-content;
+    border-right: 1px solid #dedede;
+  }
+
+  .pcktph-seleccion-local-detalle-info {
+    border: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .pcktpch-modal-body-fase1 {
+    width: 40.25rem;
+  }
+
+  .pcktpch-modal-header-opciones {
+    width: 40.25rem;
   }
 
   .pcktph-seleccion-local-detalle {
