@@ -1065,6 +1065,8 @@ class PageCarrito extends HTMLElement {
       informacionCompleta.producto.precioTotalConjunto = cantidadOpcionesPrincipalesNueva + cantidadSolamenteComplementosAntiguo;
 
       console.log("Testeo completo :",{
+        "cantidadElemento": cantidadElemento,
+        "cantidadAntigua" : informacionCompleta.producto.cantidad,
         "cantidadPrecioTotalAntiguo": cantidadPrecioTotalAntiguo,
         "cantidadOpcionesPrincipalesAntiguo": cantidadOpcionesPrincipalesAntiguo,
         "cantidadOpcionesPrincipalesNueva": cantidadOpcionesPrincipalesNueva,
