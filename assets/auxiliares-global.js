@@ -1269,6 +1269,8 @@ class PageCarrito extends HTMLElement {
     const keyCarrito = contenedorPadre.dataset.keycarrito;
     let cantidadElemento = parseInt(contenedorPadre.querySelector('#phpp-cantidad-general').textContent);
 
+    console.log('Key del carrito cantidadElemento:', cantidadElemento);
+
     const itemCarrito = this.dataCarrito.items.find(item => item.key === keyCarrito);
 
     const informacionCompleta = JSON.parse(itemCarrito.properties.estructura);
