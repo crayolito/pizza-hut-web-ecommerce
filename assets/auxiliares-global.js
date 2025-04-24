@@ -1623,6 +1623,14 @@ class PageCheckoutPH extends HTMLElement {
     this.btnMetodoLocal = this.querySelector('#phpc-metodo-local');
     this.btnMetodoDomicilio = this.querySelector('#phpc-metodo-domicilio');
 
+    this.bodyModalLocalSeleccionado = this.querySelector('#phpc-modal-body-local-seleccionado');
+    this.etiquetaModalLocalSeleccionado = this.querySelector('#phpc-etiqueta-informacion-modal-local-seleccionado');
+    this.etiquetaLocalSeleccionado = this.querySelector('#pcktph-seleccion-local-detalle-info'); 
+    this.btnVerDireccionEnMapa = this.querySelector('#phpc-btn-ver-direccion-mapa');
+    this.inputSeleccionarLocal = this.querySelector('#phpc-input-buscar-local');
+    this.contenedorReultadosBusquedaLocal = this.querySelector('#smecph-pc-resultados-input');
+    this.btnIconoMostrarTodosLocales = this.querySelector('#phpc-mostrar-todos-locales');
+
     this.contenedorBaseModal = this.querySelector('.ph-background-container-modal');
     this.btnsSeleccionMetodoEntrega = this.querySelectorAll('.smecph-opcion-metodo');
     this.contenedorBaseSeleccionLocal = this.querySelector('#pcktph-seleccion-local');
@@ -1691,6 +1699,133 @@ class PageCheckoutPH extends HTMLElement {
     const iconoDesSeleccionado = this.btnMetodoLocal.querySelector('.smecph-opcion-icono');
     iconoDesSeleccionado.innerHTML = window.shopIcons.icon_estado_off;
   }
+
+  configuracionAutoCompletadoSeleccionLocal() {
+    // Verificar que el input existe
+    if (!this.inputSeleccionarLocal) return;
+    
+    // Variable para almacenar el timer del debounce
+    let timeoutId = null;
+    
+    // Configurar evento de entrada en el input
+    this.inputSeleccionarLocal.addEventListener('input', (event) => {
+      // Limpiar el timer anterior si existe
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+      
+      const query = event.target.value;
+      
+      // Si el input está vacío, ocultar sugerencias
+      if (!query) {
+        this.contenedorReultadosBusquedaLocal.style.display = "none"; 
+        return;
+      }
+      
+      // Configurar debounce (500ms)
+      timeoutId = setTimeout(() => {
+        // Solo mostrar los 3 primeros resultados más relevantes
+        this.buscarSugerenciasSeleccionLocal(query, 3);
+      }, 500);
+    });
+    
+    // Configurar evento para el botón de mostrar/ocultar
+    this.btnIconoMostrarTodosLocales.addEventListener('click', () => {
+      // Si el contenedor ya está visible, ocultarlo
+      if (this.contenedorReultadosBusquedaLocal.style.display === "block") {
+        this.contenedorReultadosBusquedaLocal.style.display = "none";
+        return;
+      }
+      
+      const query = this.inputSeleccionarLocal.value;
+      
+      // Si el input está vacío, mostrar todos los locales
+      if (!query) {
+        this.mostrarTodosLosLocales();
+      } else {
+        // Si hay texto en el input, mostrar los 3 resultados más asertados
+        this.buscarSugerenciasSeleccionLocal(query, 3);
+      }
+    });
+    
+    // Cerrar sugerencias al hacer clic fuera
+    document.addEventListener('click', (e) => {
+      if (!this.inputSeleccionarLocal.contains(e.target) && 
+          !this.contenedorReultadosBusquedaLocal.contains(e.target) &&
+          !this.btnIconoMostrarTodosLocales.contains(e.target)) {
+        this.contenedorReultadosBusquedaLocal.style.display = 'none';
+      }
+    });
+  }
+
+  // Método para mostrar todos los locales
+  mostrarTodosLosLocales() {
+    // Simplemente llamamos a buscarSugerenciasSeleccionLocal sin límite
+    // para mostrar todos los locales
+    this.buscarSugerenciasSeleccionLocal('', null);
+  }
+
+  buscarSugerenciasSeleccionLocal(query, limite = null) {
+    // Filtrar las ubicaciones basadas en la consulta
+    let resultados = this.pizzaLocations.filter(location => 
+      location.name.toLowerCase().includes(query.toLowerCase()) ||
+      location.localizacion.toLowerCase().includes(query.toLowerCase())
+    );
+    
+    // Ordenar por relevancia (priorizar coincidencias en el nombre)
+    resultados.sort((a, b) => {
+      const aInName = a.name.toLowerCase().includes(query.toLowerCase());
+      const bInName = b.name.toLowerCase().includes(query.toLowerCase());
+      
+      if (aInName && !bInName) return -1;
+      if (!aInName && bInName) return 1;
+      return 0;
+    });
+    
+    // Limitar resultados si se especifica un límite
+    if (limite && resultados.length > limite) {
+      resultados = resultados.slice(0, limite);
+    }
+  
+    // Limpiar resultados anteriores
+    this.contenedorReultadosBusquedaLocal.innerHTML = '';
+    
+    // Si hay resultados, mostrar el contenedor
+    if (resultados.length > 0) {
+      this.contenedorReultadosBusquedaLocal.style.display = "block";
+      
+      // Crear y añadir elementos para cada resultado
+      resultados.forEach(location => {
+        const resultadoItem = document.createElement('div');
+        resultadoItem.className = 'smecph-pc-resultado-item';
+        
+        // Crear elemento para el nombre en negrita
+        const nombreLocal = document.createElement('p');
+        nombreLocal.innerHTML = `<strong>${location.name}</strong>`;
+        
+        // Crear elemento para el teléfono
+        const telefonoLocal = document.createElement('p');
+        telefonoLocal.textContent = `Tel: ${location.telefono}`;
+        
+        // Añadir elementos al item
+        resultadoItem.appendChild(nombreLocal);
+        resultadoItem.appendChild(telefonoLocal);
+        
+        // Añadir evento de clic para seleccionar este local
+        resultadoItem.addEventListener('click', () => {
+          this.seleccionarLocal(location);
+        });
+        
+        // Añadir el item al contenedor de resultados
+        this.contenedorReultadosBusquedaLocal.appendChild(resultadoItem);
+      });
+    } else {
+      // Si no hay resultados, ocultar el contenedor
+      this.contenedorReultadosBusquedaLocal.style.display = "none";
+    }
+  }
+
+  configuracionAutoCompletadoDireccionEnvio(){}
 
 }
 

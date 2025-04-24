@@ -369,6 +369,11 @@
     <!-- Hojas de estilos css -->
     {{ 'estilos-generales.css' | asset_url | stylesheet_tag }}
 
+
+    <script
+      defer
+      src="https://maps.googleapis.com/maps/api/js?key={{settings.keyGoogleMap}}&libraries=places"
+    ></script>
     <script>
       // Verificar si la URL actual contiene /pages/perfil
       if (window.location.pathname.includes('/pages/perfil')) {
@@ -396,10 +401,7 @@
     <script src="{{ 'cambios-estandar.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'auxiliares-global.js' | asset_url }}" defer="defer"></script>
 
-    <script
-      defer
-      src="https://maps.googleapis.com/maps/api/js?key={{settings.keyGoogleMap}}&libraries=places"
-    ></script>
+
   </head>
 
   <body>
