@@ -687,8 +687,88 @@ class MensajeCargaDatos extends HTMLElement {
   constructor() {
     super();
   }
-
+  
   connectedCallback() {
+    // Se ejecuta cuando el componente se añade al DOM
+    // No necesitamos inicializar nada especial aquí
+  }
+  
+  /**
+   * Método estático para mostrar el mensaje de carga
+   * @param {string} mensaje - El mensaje a mostrar durante la carga
+   * @param {boolean} bloquearPantalla - Si debe bloquear interacciones con la pantalla (opcional, por defecto true)
+   */
+  static mostrar(mensaje = 'Cargando datos...', bloquearPantalla = true) {
+    // Buscar la instancia del componente
+    const mensajeCarga = document.querySelector('mensaje-carga-datos');
+    
+    if (!mensajeCarga) {
+      console.error('No se encontró el componente mensaje-carga-datos en el DOM');
+      return false;
+    }
+    
+    // Obtener el contenedor modal y el elemento para el mensaje
+    const containerModal = mensajeCarga.querySelector('#ph-container-modal');
+    const mensajeElement = mensajeCarga.querySelector('#ph-mensaje-carga-datos');
+    
+    if (!containerModal || !mensajeElement) {
+      console.error('No se encontraron los elementos necesarios dentro del componente');
+      return false;
+    }
+    
+    // Establecer el mensaje
+    mensajeElement.textContent = mensaje;
+    
+    // Mostrar el modal
+    containerModal.style.display = 'flex';
+    
+    // Si debe bloquear la pantalla, añadir clase o estilo apropiado
+    if (bloquearPantalla) {
+      document.body.style.overflow = 'hidden'; // Evita el scroll
+      containerModal.style.pointerEvents = 'all'; // Captura todos los clicks
+    }
+    
+    return true;
+  }
+  
+  /**
+   * Método estático para ocultar el mensaje de carga
+   * @param {number} retraso - Milisegundos de retraso antes de ocultar (opcional)
+   */
+  static ocultar(retraso = 0) {
+    const ocultar = () => {
+      // Buscar la instancia del componente
+      const mensajeCarga = document.querySelector('mensaje-carga-datos');
+      
+      if (!mensajeCarga) {
+        console.error('No se encontró el componente mensaje-carga-datos en el DOM');
+        return false;
+      }
+      
+      // Obtener el contenedor modal
+      const containerModal = mensajeCarga.querySelector('#ph-container-modal');
+      
+      if (!containerModal) {
+        console.error('No se encontró el contenedor modal dentro del componente');
+        return false;
+      }
+      
+      // Ocultar el modal
+      containerModal.style.display = 'none';
+      
+      // Restaurar comportamiento del body
+      document.body.style.overflow = '';
+      containerModal.style.pointerEvents = '';
+      
+      return true;
+    };
+    
+    // Si hay retraso, usar setTimeout
+    if (retraso > 0) {
+      setTimeout(ocultar, retraso);
+    } else {
+      ocultar();
+    }
   }
 }
 
@@ -712,22 +792,16 @@ class PageCarrito extends HTMLElement {
       const infoCarrito = await AuxiliaresGlobal.obtenerCarritoShopify();
       console.log('Información completa:', infoCarrito.informacionCompleta);
       console.log('Cantidad total:', infoCarrito.cantidadTotal);
-      const precioTotal = infoCarrito.informacionCompleta.total_price / 100;
-      console.log('Precio total:', precioTotal);
-      this.cantidadPrecioCarrito = precioTotal;
-
-      // // Asegúrate de que este elemento exista
-      // this.etiquetaAgregarCarrito = this.querySelector('.selector-del-precio'); // ajusta el selector
-      // if (this.etiquetaAgregarCarrito) {
-      //   this.etiquetaAgregarCarrito.innerHTML = `Bs ${precioTotal}`;
-      // }
 
       let contenidoIzquierdoHTML = '';
+      let precioTotal = 0;
 
       infoCarrito.informacionCompleta.items.forEach((item) => {
         if(!(item.properties && item.properties.estructura))return;
-  
+
+        
         const dataContruccion = JSON.parse(item.properties.estructura);
+        precioTotal += parseFloat(dataContruccion.producto.precioTotalConjunto);
         console.log('Data de construcción:', dataContruccion);
 
         contenidoIzquierdoHTML += `
@@ -756,8 +830,11 @@ class PageCarrito extends HTMLElement {
               <div class="pcph-itemc_opcion2">
                 <div class="pcph-itemc-detalles-primarios">
                   <h1>${dataContruccion.producto.titulo}</h1>
-                  <p>${dataContruccion.opcionesPrincipales.titulo}</p>
-                  <ul class="color-letras-extra">
+                  ${dataContruccion.opcionesPrincipales.productos.length > 0
+                    ? `<p>${dataContruccion.opcionesPrincipales.titulo}</p>
+                        <ul class="color-letras-extra">`
+                    : ''
+                  }
         `;
   
         dataContruccion.opcionesPrincipales.productos.forEach((producto) => {
@@ -772,8 +849,13 @@ class PageCarrito extends HTMLElement {
                   </ul>
                 </div>
                 <div class="pcph-itemc-detalles-secundarios">
-                  <p>${dataContruccion.complementos.titulo}</p>
-                  <ul class="color-letras-extra">
+                ${
+                  dataContruccion.complementos.productos.length > 0
+                    ? `<p>${dataContruccion.complementos.titulo}</p>
+                        <ul class="color-letras-extra">`
+                    : ''
+                 }
+
         `;
   
         dataContruccion.complementos.productos.forEach((producto) => {
@@ -785,6 +867,11 @@ class PageCarrito extends HTMLElement {
         });
   
         contenidoIzquierdoHTML += `
+                ${
+                  dataContruccion.complementos.productos.length > 0
+                    ? `</ul>`
+                    : ''
+                 }
                   </ul>
                 </div>
               </div>

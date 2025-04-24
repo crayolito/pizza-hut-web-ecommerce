@@ -151,6 +151,11 @@
   text-overflow: ellipsis;
 }
 
+.pcph-itemc-detalles-primarios > p:first-child {
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
 .pcph-itemc-detalles-secundarios > p:first-child {
   font-weight: 600;
   text-transform: uppercase;
