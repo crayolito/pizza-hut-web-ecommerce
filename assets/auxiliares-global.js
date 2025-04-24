@@ -1627,7 +1627,7 @@ class PageCheckoutPH extends HTMLElement {
     this.etiquetaModalLocalSeleccionado = this.querySelector('#phpc-etiqueta-informacion-modal-local-seleccionado');
     this.etiquetaLocalSeleccionado = this.querySelector('#pcktph-seleccion-local-detalle-info'); 
     this.btnVerDireccionEnMapa = this.querySelector('#phpc-btn-ver-direccion-mapa');
-    this.inputSeleccionarLocal = this.querySelector('#phpc-input-buscar-local');
+    this.inputSeleccionarLocal = this.querySelector('#phpc-input-seleccionar-local');
     this.contenedorReultadosBusquedaLocal = this.querySelector('#smecph-pc-resultados-input');
     this.btnIconoMostrarTodosLocales = this.querySelector('#phpc-mostrar-todos-locales');
 
@@ -1827,9 +1827,6 @@ class PageCheckoutPH extends HTMLElement {
       this.contenedorReultadosBusquedaLocal.style.display = "none";
     }
   }
-
-  configuracionAutoCompletadoDireccionEnvio(){}
-
 }
 
 customElements.define('page-checkout-ph', PageCheckoutPH);
