@@ -1901,7 +1901,7 @@ class PageCheckoutPH extends HTMLElement {
     
     // Crear icono personalizado
     const iconoPersonalizado = {
-      url: '{{ "logo-primario.png" | asset_url }}',
+      url: window.assets.logo_primario,
       scaledSize: new google.maps.Size(40, 40),
       origin: new google.maps.Point(0, 0),
       anchor: new google.maps.Point(20, 40) 

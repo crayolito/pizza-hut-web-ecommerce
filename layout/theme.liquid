@@ -369,7 +369,6 @@
     <!-- Hojas de estilos css -->
     {{ 'estilos-generales.css' | asset_url | stylesheet_tag }}
 
-
     <script
       defer
       src="https://maps.googleapis.com/maps/api/js?key={{settings.keyGoogleMap}}&libraries=places"
@@ -395,13 +394,15 @@
         icon_estado_on: `{% render 'icon-estado-on' %}`,
         icon_estado_off: `{% render 'icon-estado-off' %}`,
       };
+
+      window.assets = {
+        logo_primario: '{{ 'logo-primario.png' | asset_url }}',
+      }
     </script>
 
     <!-- Hojas de estilos js -->
     <script src="{{ 'cambios-estandar.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'auxiliares-global.js' | asset_url }}" defer="defer"></script>
-
-
   </head>
 
   <body>
