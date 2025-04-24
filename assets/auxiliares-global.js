@@ -1022,7 +1022,7 @@ class PageCarrito extends HTMLElement {
       if(accionBtn == "decrementar"){
         // Se procede a decrementar la cantidad
         MensajeCargaDatos.mostrar('Actualizando producto en el carrito...');
-        await AuxiliaresGlobal.actualizarCantidadItemPorKey(keyCarrito,itemCarrito.id, cantidadElemento,{
+        await AuxiliaresGlobal.actualizarItemCarrito(keyCarrito,itemCarrito.id, cantidadElemento,{
           properties: {"estructura": JSON.stringify(informacionCompleta)}
         });
       }
@@ -1030,7 +1030,7 @@ class PageCarrito extends HTMLElement {
       if(accionBtn == "incrementar"){
         // Se procede a incrementar la cantidad
         MensajeCargaDatos.mostrar('Actualizando producto en el carrito...');
-        await AuxiliaresGlobal.actualizarCantidadItemPorKey(keyCarrito,itemCarrito.id, cantidadElemento,{
+        await AuxiliaresGlobal.actualizarItemCarrito(keyCarrito,itemCarrito.id, cantidadElemento,{
           properties: {"estructura": JSON.stringify(informacionCompleta)}
         });
       }
