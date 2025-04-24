@@ -1049,7 +1049,7 @@ class PageCarrito extends HTMLElement {
     // Verificar si el botón es de incrementar o decrementar
     const accionBtn = btnElemento.getAttribute('accion');
 
-    if(accionBtn == "decrementar" && cantidadElemento == 1){
+    if(accionBtn == "decrementar" && cantidadElemento == 0){
       // Se procede a eliminar del carrito
       MensajeCargaDatos.mostrar('Eliminando producto del carrito...');
       await AuxiliaresGlobal.eliminarItemCarritoPorKey(keyCarrito, 0);
