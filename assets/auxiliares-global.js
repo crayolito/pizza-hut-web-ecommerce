@@ -1063,6 +1063,14 @@ class PageCarrito extends HTMLElement {
       });
       let cantidadSolamenteComplementosAntiguo = cantidadPrecioTotalAntiguo - cantidadOpcionesPrincipalesAntiguo;
       informacionCompleta.producto.precioTotalConjunto = cantidadOpcionesPrincipalesNueva + cantidadSolamenteComplementosAntiguo;
+
+      console.log("Testeo completo :",{
+        "cantidadPrecioTotalAntiguo": cantidadPrecioTotalAntiguo,
+        "cantidadOpcionesPrincipalesAntiguo": cantidadOpcionesPrincipalesAntiguo,
+        "cantidadOpcionesPrincipalesNueva": cantidadOpcionesPrincipalesNueva,
+        "informacionCompleta": informacionCompleta,
+      })
+
   
       if(accionBtn == "decrementar"){
         // Se procede a decrementar la cantidad
