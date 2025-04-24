@@ -1070,6 +1070,7 @@ class PageCarrito extends HTMLElement {
         "cantidadPrecioTotalAntiguo": cantidadPrecioTotalAntiguo,
         "cantidadOpcionesPrincipalesAntiguo": cantidadOpcionesPrincipalesAntiguo,
         "cantidadOpcionesPrincipalesNueva": cantidadOpcionesPrincipalesNueva,
+        "cantidadSolamenteComplementosAntiguo": cantidadSolamenteComplementosAntiguo,
         "informacionCompleta": informacionCompleta,
       })
 
