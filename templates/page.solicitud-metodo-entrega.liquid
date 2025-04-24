@@ -1166,7 +1166,7 @@
       ); {% endcomment %}
       localStorage.setItem('direccion-cliente', JSON.stringify(direccion));
       localStorage.setItem('ubicacion-cliente', JSON.stringify(this.coordenadas));
-      localStorage.setItem('ph-metodo-entrega', 'no');
+      {% comment %} localStorage.setItem('ph-metodo-entrega', 'no'); {% endcomment %}
       window.location.href = '/';
       // Navegar a la siguiente pagina que corresponde
       console.log('Se presiono el boton omitir procede ir a la siguiente pagina');

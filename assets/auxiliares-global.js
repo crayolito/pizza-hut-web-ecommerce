@@ -1554,3 +1554,100 @@ class PageCarrito extends HTMLElement {
 }
 
 customElements.define('page-carrito', PageCarrito);
+
+class PageCheckoutPH extends HTMLElement {
+  constructor() {
+    super();
+    this.dataCarrito = null;
+    this.urlConsulta = "https://pizza-hut-bo.myshopify.com/admin/api/2025-01/graphql.json";
+    this.estadoPagina = "domicilio";
+    this.estadoProcesoDireccion = "";
+    this.coordenadas = { lat: -17.783315017953004, lng: -63.18214577296119 };
+    this.pizzaLocations = [
+      { 
+        lat: -17.757619, 
+        lng: -63.178738, 
+        name: 'BANZER 3ER ANILLO', 
+        localizacion: 'Tercer Anillo Externo', 
+        telefono: '78452415', 
+        dias : 'Lunes a Viernes', 
+        horario: '8:00 a 23:00',
+        servicios: ['Envío a domicilio', 'Recoger en local']
+      },
+      { 
+        lat: -17.70001, 
+        lng: -63.160219, 
+        name: 'BANZER KM 8.5', 
+        localizacion: '8R2Q+2XH', 
+        telefono: '78452415', 
+        dias : 'Lunes a Viernes', 
+        horario: '8:00 a 23:00',
+        servicios: ['Envío a domicilio', 'Recoger en local']
+      },
+      { 
+        lat: -17.807739, 
+        lng: -63.204363, 
+        name: 'LAS PALMAS', 
+        localizacion: 'Doble vía La Guardia', 
+        telefono: '78452415', 
+        dias : 'Lunes a Viernes', 
+        horario: '8:00 a 23:00',
+        servicios: ['Envío a domicilio', 'Recoger en local']
+      },
+      { 
+        lat: -17.758879, 
+        lng: -63.19948, 
+        name: 'SAN MARTIN', 
+        localizacion: 'Av. San Martin 2200', 
+        telefono: '78452415', 
+        dias : 'Lunes a Viernes', 
+        horario: '8:00 a 23:00',
+        servicios: ['Envío a domicilio', 'Recoger en local']
+      },
+      { 
+        lat: -17.820341, 
+        lng: -63.184337, 
+        name: 'SANTOS DUMONT', 
+        localizacion: 'Av Santos Dumont 3228', 
+        telefono: '78452415', 
+        dias : 'Lunes a Viernes', 
+        horario: '8:00 a 23:00',
+        servicios: ['Envío a domicilio', 'Recoger en local']
+      }
+    ];
+    this.infoCarrito = null;
+  }
+
+  connectedCallback() {
+    // DECLARAR ELEMENTOS
+    this.contenedorBaseModal = this.querySelector('.ph-background-container-modal');
+    this.btnsSeleccionMetodoEntrega = this.querySelectorAll('.smecph-opcion-metodo');
+    this.contenedorBaseSeleccionLocal = this.querySelector('#pcktph-seleccion-local');
+    this.contenedorBaseSeleccionDireccionEnvio = this.querySelector('#pcktph-direccion-envio');
+    this.contenedorDatosContactoInputsForm = this.querySelector('.smecph-formulario-datos-contacto');
+    this.contenedorDatosContactoConsolidados = this.querySelector('.smecph-datos-contacto-consolidados');
+    this.mensajeAlertaSeleccionMetodoPago = this.querySelector('.smecph-mensaje-alerta');
+    this.btnsMetodosPagos = this.querySelectorAll('.smecph-pc-dp-item');
+    // INICIALIZAR EVENTOS
+    // INICIALIZAR ELEMENTOS Y PROCESOS BASICOS
+
+    // local y domicilio
+    this.estadoPagina = localStorage.getItem('ph-metodo-entrega');
+    this.inicializarDataContruccion();
+  }
+
+  async inicializarDataContruccion(){
+    MensajeCargaDatos.mostrar('Cargando información del pagina ...');
+
+    if(estadoPagina == "domicilio"){}
+
+    if(estadoPagina == "local"){}
+
+
+    this.infoCarrito = await AuxiliaresGlobal.obtenerCarritoShopify();
+    MensajeCargaDatos.oculta();
+  }
+
+}
+
+customElements.define('page-checkout-ph', PageCheckoutPH);

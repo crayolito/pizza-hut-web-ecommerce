@@ -851,6 +851,7 @@ input[type="number"] {
 .ph-opciones-mobile-footer {
   width: 100% !important;
   max-width: 40.25rem !important;
+  min-width: 40.25rem !important;
 }
 
 @media (min-width: 768px) {
