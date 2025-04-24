@@ -1045,6 +1045,10 @@ class PageCarrito extends HTMLElement {
 
     this.productosAcompanamiento = productosColeccion;
 
+    if (productosColeccion.length == 0 || productosColeccion == null || productosColeccion == undefined) {
+      return;
+    }
+
     var contenidoHTML = '';
     productosColeccion.forEach((producto) => {
       contenidoHTML += `
