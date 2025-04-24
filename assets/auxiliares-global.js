@@ -1628,7 +1628,7 @@ class PageCheckoutPH extends HTMLElement {
     this.etiquetaLocalSeleccionado = this.querySelector('#pcktph-seleccion-local-detalle-info'); 
     this.btnVerDireccionEnMapa = this.querySelector('#phpc-btn-ver-direccion-mapa');
     this.inputSeleccionarLocal = this.querySelector('#phpc-input-seleccionar-local');
-    this.contenedorReultadosBusquedaLocal = this.querySelector('.smecph-pc-resultados-input');
+    this.contenedorResultadosBuquedaLocal = this.querySelector('#phpc-resultados-seleccion-local');
     this.btnIconoMostrarTodosLocales = this.querySelector('#phpc-mostrar-todos-locales');
 
     this.contenedorBaseModal = this.querySelector('.ph-background-container-modal');
@@ -1721,7 +1721,7 @@ class PageCheckoutPH extends HTMLElement {
       
       // Si el input está vacío, ocultar sugerencias
       if (!query) {
-        this.contenedorReultadosBusquedaLocal.style.display = "none"; 
+        this.contenedorResultadosBuquedaLocal.style.display = "none"; 
         return;
       }
       
@@ -1735,8 +1735,8 @@ class PageCheckoutPH extends HTMLElement {
     // Configurar evento para el botón de mostrar/ocultar
     this.btnIconoMostrarTodosLocales.addEventListener('click', () => {
       // Si el contenedor ya está visible, ocultarlo
-      if (this.contenedorReultadosBusquedaLocal.style.display === "block") {
-        this.contenedorReultadosBusquedaLocal.style.display = "none";
+      if (this.contenedorResultadosBuquedaLocal.style.display === "block") {
+        this.contenedorResultadosBuquedaLocal.style.display = "none";
         return;
       }
       
@@ -1754,9 +1754,9 @@ class PageCheckoutPH extends HTMLElement {
     // Cerrar sugerencias al hacer clic fuera
     document.addEventListener('click', (e) => {
       if (!this.inputSeleccionarLocal.contains(e.target) && 
-          !this.contenedorReultadosBusquedaLocal.contains(e.target) &&
+          !this.contenedorResultadosBuquedaLocal.contains(e.target) &&
           !this.btnIconoMostrarTodosLocales.contains(e.target)) {
-        this.contenedorReultadosBusquedaLocal.style.display = 'none';
+        this.contenedorResultadosBuquedaLocal.style.display = 'none';
       }
     });
   }
@@ -1791,11 +1791,11 @@ class PageCheckoutPH extends HTMLElement {
     }
   
     // Limpiar resultados anteriores
-    this.contenedorReultadosBusquedaLocal.innerHTML = '';
+    this.contenedorResultadosBuquedaLocal.innerHTML = '';
     
     // Si hay resultados, mostrar el contenedor
     if (resultados.length > 0) {
-      this.contenedorReultadosBusquedaLocal.style.display = "block";
+      this.contenedorResultadosBuquedaLocal.style.display = "block";
       
       // Crear y añadir elementos para cada resultado
       resultados.forEach(location => {
@@ -1820,11 +1820,11 @@ class PageCheckoutPH extends HTMLElement {
         });
         
         // Añadir el item al contenedor de resultados
-        this.contenedorReultadosBusquedaLocal.appendChild(resultadoItem);
+        this.contenedorResultadosBuquedaLocal.appendChild(resultadoItem);
       });
     } else {
       // Si no hay resultados, ocultar el contenedor
-      this.contenedorReultadosBusquedaLocal.style.display = "none";
+      this.contenedorResultadosBuquedaLocal.style.display = "none";
     }
   }
 }
