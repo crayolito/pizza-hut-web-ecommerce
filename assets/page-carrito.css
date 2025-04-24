@@ -260,7 +260,14 @@
   height: max-content;
   display: flex;
   gap: var(--espaciado-m);
-  overflow: hidden;
+  /* overflow: hidden; */
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.pcph-productos-items::-webkit-scrollbar {
+  width: 0;
+  height: 0;
 }
 
 .pcph-productos-adicionales small {
