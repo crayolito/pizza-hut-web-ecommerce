@@ -1628,7 +1628,7 @@ class PageCheckoutPH extends HTMLElement {
     this.etiquetaLocalSeleccionado = this.querySelector('#pcktph-seleccion-local-detalle-info'); 
     this.btnVerDireccionEnMapa = this.querySelector('#phpc-btn-ver-direccion-mapa');
     this.inputSeleccionarLocal = this.querySelector('#phpc-input-seleccionar-local');
-    this.contenedorReultadosBusquedaLocal = this.querySelector('#smecph-pc-resultados-input');
+    this.contenedorReultadosBusquedaLocal = this.querySelector('.smecph-pc-resultados-input');
     this.btnIconoMostrarTodosLocales = this.querySelector('#phpc-mostrar-todos-locales');
 
     this.contenedorBaseModal = this.querySelector('.ph-background-container-modal');
