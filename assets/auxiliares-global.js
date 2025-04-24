@@ -1645,6 +1645,7 @@ class PageCheckoutPH extends HTMLElement {
 
     this.btnMetodoLocal.addEventListener('click', this.seleccionarMetodoLocal.bind(this));
     this.btnMetodoDomicilio.addEventListener('click', this.seleccionarMetodoDomicilio.bind(this));
+    this.btnVerDireccionEnMapa.addEventListener('click', this.verDireccionEnMapaLocalSeleccionado.bind(this));
 
     // INICIALIZAR ELEMENTOS Y PROCESOS BASICOS
 
@@ -1831,6 +1832,10 @@ class PageCheckoutPH extends HTMLElement {
   }
 
   seleccionarLocal(location) {
+    console.log("Testeo de que local fue selecionado", location);
+
+    this.localSeleccionado = location;
+
     // Actualizar el input con el nombre del local seleccionadoo
     this.inputSeleccionarLocal.value = location.name;
     
@@ -1845,15 +1850,17 @@ class PageCheckoutPH extends HTMLElement {
     const infoLocal = this.querySelector('.pcktph-seleccion-local-detalle-info');
     infoLocal.innerHTML = `
       <p>${location.name.toUpperCase()}</p>
-      <p>Listo para retirar en 30 minutos</p>
+      <p>+591 ${location.telefono}</p>
     `;
     
     // Guardar el local seleccionado
-    localStorage.setItem('ph-local-seleccionado', JSON.stringify(location));
+    localStorage.setItem('phpc-local-seleccionado', JSON.stringify(location));
     
     // Actualizar coordenadas
     this.coordenadas = { lat: location.lat, lng: location.lng };
   }
+
+  verDireccionEnMapaLocalSeleccionado(){}
 }
 
 customElements.define('page-checkout-ph', PageCheckoutPH);

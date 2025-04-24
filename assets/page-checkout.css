@@ -116,8 +116,9 @@ input[type="number"] {
 
 .smecph-pc-resultado-item {
   width: 100%;
+  flex-direction: column;
   display: flex;
-  align-items: center;
+  align-items: start;
   justify-content: start;
   cursor: pointer;
 }
