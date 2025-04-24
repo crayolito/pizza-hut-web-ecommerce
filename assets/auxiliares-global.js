@@ -1676,6 +1676,7 @@ class PageCheckoutPH extends HTMLElement {
     this.infoCarrito = await AuxiliaresGlobal.obtenerCarritoShopify();
     
     this.configuracionAutoCompletadoSeleccionLocal();
+    await this.solicitarPermisosDelUsoGPSDispositivo();
     
     MensajeCargaDatos.ocultar();
   }
@@ -1861,6 +1862,66 @@ class PageCheckoutPH extends HTMLElement {
   }
 
   verDireccionEnMapaLocalSeleccionado(){}
+
+  solicitarPermisosDelUsoGPSDispositivo() {
+    return new Promise((resolve, reject) => {
+      // Verificar si la geolocalización está disponible en el navegador
+      if (!navigator.geolocation) {
+        const mensaje = 'La geolocalización no está disponible en este navegador.';
+        alert(mensaje);
+        console.error(mensaje);
+        reject(mensaje);
+        return;
+      }
+  
+      // Opciones de geolocalización
+      const options = {
+        enableHighAccuracy: true, // Alta precisión
+        timeout: 10000,          // 10 segundos de timeout
+        maximumAge: 0            // No usar cache
+      };
+  
+      // Función de éxito
+      const success = (position) => {
+        // Actualizar las coordenadas con la ubicación actual
+        this.coordenadas = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+        
+        console.log('Ubicación obtenida:', this.coordenadas);
+        resolve(this.coordenadas);
+      };
+  
+      // Función de error
+      const error = (err) => {
+        let mensaje = '';
+        
+        switch (err.code) {
+          case err.PERMISSION_DENIED:
+            mensaje = 'Has denegado el permiso para acceder a tu ubicación. No podremos mostrarte los locales más cercanos.';
+            break;
+          case err.POSITION_UNAVAILABLE:
+            mensaje = 'La información de ubicación no está disponible en este momento.';
+            break;
+          case err.TIMEOUT:
+            mensaje = 'Se agotó el tiempo para obtener tu ubicación.';
+            break;
+          default:
+            mensaje = 'Ocurrió un error desconocido al obtener tu ubicación.';
+            break;
+        }
+        
+        // Mostrar alerta al usuario
+        alert(mensaje);
+        console.error('Error de geolocalización:', mensaje);
+        reject(mensaje);
+      };
+  
+      // Solicitar la geolocalización
+      navigator.geolocation.getCurrentPosition(success, error, options);
+    });
+  }
 }
 
 customElements.define('page-checkout-ph', PageCheckoutPH);
