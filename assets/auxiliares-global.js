@@ -1040,8 +1040,6 @@ class PageCarrito extends HTMLElement {
       MensajeCargaDatos.mostrar('Eliminando producto del carrito...');
       await AuxiliaresGlobal.eliminarItemCarritoPorKey(keyCarrito, 0);
     }else{
-      accionBtn == "incrementar" ? cantidadElemento++ : cantidadElemento--;
-
       let cantidadPrecioTotalAntiguo = parseFloat(informacionCompleta.producto.precioTotalConjunto);
       let cantidadOpcionesPrincipalesAntiguo = 0; 
       let cantidadOpcionesPrincipalesNueva = 0;
