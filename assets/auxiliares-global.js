@@ -784,6 +784,8 @@ class PageCarrito extends HTMLElement {
     this.btnPagar = this.querySelector('#phpc-btn-pagar');
     this.contenedorItemsDetalle = this.querySelector('.pcph-items-carrito');
     this.contenedorDerecho = this.querySelector('.pcph-carrito-derecho');
+    this.etiquetaSubtotal = this.querySelector('#phpc-etiqueta-subTotal');
+    this.etiquetaTotal = this.querySelector('#phpc-etiqueta-total');
     this.btnPagar.addEventListener('click', () => this.pagarBtnPrincipal());
     this.inicializarDataShopify();
   }
@@ -926,31 +928,32 @@ class PageCarrito extends HTMLElement {
         `;
       });
   
-      this.contenedorItemsDetalle.innerHTML = contenidoIzquierdoHTML;
-  
+      // this.contenedorItemsDetalle.innerHTML = contenidoIzquierdoHTML;
       let contenidoDerechoHTML = '';
-      contenidoDerechoHTML += `
-          <h1>TOTAL</h1>
-          <div class="pcph-item-info-pago">
-            <p>Subtotal</p>
-            <p>Bs. ${precioTotal}</p>
-          </div>
-          <div class="pcph-item-info-pago">
-            <p>Descuento</p>
-            <p>Bs. 00.000</p>
-          </div>
-          <div class="pcph-item-info-pago">
-            <p>Recojo en local</p>
-            <p>Bs. 00.000</p>
-          </div>
-          <hr>
-          <div class="pcph-item-info-total">
-            <p>Total</p>
-            <p>Bs. ${precioTotal}</p>
-          </div>
-      `;
+      // contenidoDerechoHTML += `
+      //     <h1>TOTAL</h1>
+      //     <div class="pcph-item-info-pago">
+      //       <p>Subtotal</p>
+      //       <p>Bs. ${precioTotal}</p>
+      //     </div>
+      //     <div class="pcph-item-info-pago">
+      //       <p>Descuento</p>
+      //       <p>Bs. 00.000</p>
+      //     </div>
+      //     <div class="pcph-item-info-pago">
+      //       <p>Recojo en local</p>
+      //       <p>Bs. 00.000</p>
+      //     </div>
+      //     <hr>
+      //     <div class="pcph-item-info-total">
+      //       <p>Total</p>
+      //       <p>Bs. ${precioTotal}</p>
+      //     </div>
+      // `;
+      this.etiquetaSubtotal.textContent = `Bs. ${precioTotal}`;
+      this.etiquetaTotal.textContent = `Bs. ${precioTotal}`;
   
-      this.contenedorDerecho.insertAdjacentHTML('afterbegin', contenidoDerechoHTML);
+      // this.contenedorDerecho.insertAdjacentHTML('afterbegin', contenidoDerechoHTML);
 
       // DIBUJAR LA SECCION DE POSTRES
       await this.crearSecciondeAcompanamiento();
@@ -997,36 +1000,212 @@ class PageCarrito extends HTMLElement {
     // Verificar si el botón es de incrementar o decrementar
     // const accionBtn = btnElemento.getAttribute('accion');
 
-    // if(accionBtn == "decrementar" && cantidadElemento ==1){
-    //   // Se procede a eliminar del carrito
-    //   MensajeCargaDatos.mostrar('Eliminando producto del carrito...');
-    //   await AuxiliaresGlobal.eliminarItemCarritoPorKey(keyCarrito, 0);
-    //   MensajeCargaDatos.ocultar();
-    // }
+    if(accionBtn == "decrementar" && cantidadElemento ==1){
+      // Se procede a eliminar del carrito
+      MensajeCargaDatos.mostrar('Eliminando producto del carrito...');
+      await AuxiliaresGlobal.eliminarItemCarritoPorKey(keyCarrito, 0);
+      MensajeCargaDatos.ocultar();
+    }
 
-    // if(accionBtn == "decrementar"){
-    //   // Se procede a decrementar la cantidad
-    //   MensajeCargaDatos.mostrar('Actualizando producto en el carrito...');
+    let cantidadPrecioTotalAntiguo = parseFloat(informacionCompleta.producto.precioTotalConjunto);
+    let cantidadOpcionesPrincipalesAntiguo = 0; 
+    let cantidadOpcionesPrincipalesNueva = 0;
+    informacionCompleta.opcionesPrincipales.productos.forEach((producto) => {
+      cantidadOpcionesPrincipalesNueva  += (cantidadElemento * parseInt(producto.precio));
+      cantidadOpcionesPrincipalesAntiguo += (producto.cantidad * parseInt(producto.precio));
+    });
+    let cantidadSolamenteComplementosAntiguo = cantidadPrecioTotalAntiguo - cantidadOpcionesPrincipalesAntiguo;
+    informacionCompleta.producto.precioTotalConjunto = cantidadOpcionesPrincipalesNueva + cantidadSolamenteComplementosAntiguo;
 
 
-    //   await AuxiliaresGlobal.actualizarCantidadItemPorKey(keyCarrito,itemCarrito.id, cantidadElemento - 1,{
-    //     "estructura": JSON.stringify(informacionCompleta)
-    //   };
-    //   MensajeCargaDatos.ocultar();
-    // }
+    if(accionBtn == "decrementar"){
+      // Se procede a decrementar la cantidad
+      MensajeCargaDatos.mostrar('Actualizando producto en el carrito...');
+      await AuxiliaresGlobal.actualizarCantidadItemPorKey(keyCarrito,itemCarrito.id, cantidadElemento - 1,{
+        properties: {"estructura": JSON.stringify(informacionCompleta)}
+      });
+    }
 
-    // if(accionBtn == "incrementar"){
-    //   // Se procede a incrementar la cantidad
-    //   MensajeCargaDatos.mostrar('Actualizando producto en el carrito...');
-    //   await AuxiliaresGlobal.actualizarCantidadItemPorKey(keyCarrito, cantidadElemento + 1);
-    //   MensajeCargaDatos.ocultar();
-    // }
+    if(accionBtn == "incrementar"){
+      // Se procede a incrementar la cantidad
+      MensajeCargaDatos.mostrar('Actualizando producto en el carrito...');
+      await AuxiliaresGlobal.actualizarCantidadItemPorKey(keyCarrito,itemCarrito.id, cantidadElemento - 1,{
+        properties: {"estructura": JSON.stringify(informacionCompleta)}
+      });
+    }
 
-    // await this.actualizarSoloContenidoCarrito();
+    await this.actualizarSoloContenidoCarrito();
+    MensajeCargaDatos.ocultar();
   }
 
   async actualizarSoloContenidoCarrito(){
-    this.declararComponentesDespuesCreacion();
+    try {
+
+      const infoCarrito = await AuxiliaresGlobal.obtenerCarritoShopify();
+      this.dataCarrito = infoCarrito.informacionCompleta;
+      console.log('Información completa:', infoCarrito.informacionCompleta);
+
+      let contenidoIzquierdoHTML = '';
+      let precioTotal = 0;
+
+      infoCarrito.informacionCompleta.items.forEach((item) => {
+        if(!(item.properties && item.properties.estructura))return;
+        
+        const dataContruccion = JSON.parse(item.properties.estructura);
+        precioTotal += parseFloat(dataContruccion.producto.precioTotalConjunto);
+        console.log('Data de construcción:', dataContruccion);
+
+        contenidoIzquierdoHTML += `
+        <div 
+        data-idTrabajo="${dataContruccion.producto.idTrabajo}"
+        data-idShopify="${dataContruccion.producto.idShopify}"
+        data-handle="${dataContruccion.producto.handle}"
+        data-precio="${dataContruccion.producto.precio}"
+        data-keycarrito="${item.key}"
+        class="pcph-item-carrito">
+          <div class="pcph-itemc-detalle">
+            <div class="pcph-itemc-imagen">
+              ${dataContruccion.producto.imagen == null || dataContruccion.producto.imagen == '' 
+                ? `<img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="${dataContruccion.producto.titulo}" width="100" height="100">`
+                : `<img src="${dataContruccion.producto.imagen}" alt="${dataContruccion.producto.titulo}" width="100" height="100">`
+              }
+            </div>
+            <div class="pcph-itemc-info">
+              <div class="pcph-itemc_opcion1">
+                <h2 class="color-letras-extra">Bs. ${dataContruccion.producto.precioTotalConjunto}</h2>
+                <div class="pcph-itemc_editar">
+                  ${window.shopIcons.icon_editar}
+                  <p class="color-letras-primary">Editar</p>
+                </div>
+              </div>
+              <div class="pcph-itemc_opcion2">
+                <div class="pcph-itemc-detalles-primarios">
+                  <h1>${dataContruccion.producto.titulo}</h1>
+                  ${dataContruccion.opcionesPrincipales.productos.length > 0
+                    ? `<p>${dataContruccion.opcionesPrincipales.titulo}</p>
+                        <ul class="color-letras-extra">`
+                    : ''
+                  }
+        `;
+  
+        dataContruccion.opcionesPrincipales.productos.forEach((producto) => {
+          contenidoIzquierdoHTML += `
+              <li>
+                <p>${producto.tituloSeccion} : <br> ${producto.titulo}</p>
+              </li>
+          `;
+        });
+  
+        contenidoIzquierdoHTML += `
+                  </ul>
+                </div>
+                <div class="pcph-itemc-detalles-secundarios">
+                ${
+                  dataContruccion.complementos.productos.length > 0
+                    ? `<p>${dataContruccion.complementos.titulo}</p>
+                        <ul class="color-letras-extra">`
+                    : ''
+                 }
+
+        `;
+  
+        dataContruccion.complementos.productos.forEach((producto) => {
+          contenidoIzquierdoHTML += `
+              <li>
+                <p>${"x" + producto.cantidad +" "+  producto.tituloSeccion} : <br> ${producto.titulo}</p>
+              </li>
+          `;
+        });
+  
+        contenidoIzquierdoHTML += `
+                ${
+                  dataContruccion.complementos.productos.length > 0
+                    ? `</ul>`
+                    : ''
+                 }
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+  
+        // <div class="pcph-itemc_cantidad">
+        //   <button class="pcph-itemc_cantidad-btn">
+        //     {% render 'icon-menos' %}
+        //   </button>
+        //   <p>1</p>
+        //   <button class="pcph-itemc_cantidad-btn">
+        //     {% render 'icon-mas' %}
+        //   </button>
+        // </div>
+        contenidoIzquierdoHTML += `
+            <cantidad-input>
+              <div
+                origen-trabajo="carrito"
+                min="1"
+                max="${this.obtenerStockGenericoTrabajo(dataContruccion.producto)}"
+                id="producto-id"
+                handle="producto-handle"
+                class="pcph-itemc_cantidad"
+              >
+                <button
+                  accion="decrementar"
+                  class="pcph-itemc_cantidad-btn elemento-oculto icon-color-tertiary"
+                >
+                ${window.shopIcons.icon_basura}
+                </button>
+                <button
+                  accion="decrementar"
+                  class="pcph-itemc_cantidad-btn  elemento-oculto icon-color-tertiary"
+                >
+                 ${window.shopIcons.icon_menos}
+                </button>
+                <p id="phpp-cantidad-general">${item.quantity}</p>
+                <button
+                  accion="incrementar"
+                  class="pcph-itemc_cantidad-btn icon-color-tertiary"
+                >
+                  ${window.shopIcons.icon_mas}  
+                </button>
+              </div>
+            </cantidad-input>
+        </div>
+        `;
+      });
+  
+      this.contenedorItemsDetalle.innerHTML = contenidoIzquierdoHTML;
+  
+      // let contenidoDerechoHTML = '';
+      // contenidoDerechoHTML += `
+      //     <h1>TOTAL</h1>
+      //     <div class="pcph-item-info-pago">
+      //       <p>Subtotal</p>
+      //       <p>Bs. ${precioTotal}</p>
+      //     </div>
+      //     <div class="pcph-item-info-pago">
+      //       <p>Descuento</p>
+      //       <p>Bs. 00.000</p>
+      //     </div>
+      //     <div class="pcph-item-info-pago">
+      //       <p>Recojo en local</p>
+      //       <p>Bs. 00.000</p>
+      //     </div>
+      //     <hr>
+      //     <div class="pcph-item-info-total">
+      //       <p>Total</p>
+      //       <p>Bs. ${precioTotal}</p>
+      //     </div>
+      // `;
+      this.etiquetaSubtotal.textContent = `Bs. ${precioTotal}`;
+      this.etiquetaTotal.textContent = `Bs. ${precioTotal}`;
+  
+      // this.contenedorDerecho.insertAdjacentHTML('afterbegin', contenidoDerechoHTML);
+      
+      this.declararComponentesDespuesCreacion();
+    } catch (error) {
+      console.error('Hubo un error:', error);
+    }
   }
 
   procedoEditarItem(btnElemento) {}
