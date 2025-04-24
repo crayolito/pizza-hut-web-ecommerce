@@ -1850,7 +1850,7 @@ class PageCheckoutPH extends HTMLElement {
     detalleLocal.style.display = "flex";
 
     const distancia = this.calcularDistancia(this.coordenadas, {lat: location.lat, lng: location.lng});
-    this.etiquetaModalLocalSeleccionado.textContent = `Local Seleccionado: ${location.name} (${distancia.toFixed(2)} Km) de tu ubicación`;
+    this.etiquetaModalLocalSeleccionado.textContent = `Local : ${location.name} (${distancia.toFixed(2)} Km) de tu ubicación`;
 
     // Actualizar información del local seleccionado
     const infoLocal = this.querySelector('.pcktph-seleccion-local-detalle-info');
