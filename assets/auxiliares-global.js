@@ -1812,14 +1812,9 @@ class PageCheckoutPH extends HTMLElement {
         const direccionLocal = document.createElement('p');
         direccionLocal.textContent = location.localizacion;
         
-        // Crear elemento para el tiempo de entrega
-        const tiempoEntrega = document.createElement('p');
-        tiempoEntrega.textContent = 'Listo para retirar en 30 minutos';
-        
         // Añadir elementos al item
         resultadoItem.appendChild(nombreLocal);
         resultadoItem.appendChild(direccionLocal);
-        resultadoItem.appendChild(tiempoEntrega);
         
         // Añadir evento de clic para seleccionar este local
         resultadoItem.addEventListener('click', () => {
