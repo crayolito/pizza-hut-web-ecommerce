@@ -998,40 +998,40 @@ class PageCarrito extends HTMLElement {
     console.log('Información completa del item:', informacionCompleta);
 
     // Verificar si el botón es de incrementar o decrementar
-    // const accionBtn = btnElemento.getAttribute('accion');
+    const accionBtn = btnElemento.getAttribute('accion');
 
-    if(accionBtn == "decrementar" && cantidadElemento ==1){
+    if(accionBtn == "decrementar" && cantidadElemento == 1){
       // Se procede a eliminar del carrito
       MensajeCargaDatos.mostrar('Eliminando producto del carrito...');
       await AuxiliaresGlobal.eliminarItemCarritoPorKey(keyCarrito, 0);
-      MensajeCargaDatos.ocultar();
-    }
+    }else{
+      accionBtn == "incrementar" ? cantidadElemento++ : cantidadElemento--;
 
-    let cantidadPrecioTotalAntiguo = parseFloat(informacionCompleta.producto.precioTotalConjunto);
-    let cantidadOpcionesPrincipalesAntiguo = 0; 
-    let cantidadOpcionesPrincipalesNueva = 0;
-    informacionCompleta.opcionesPrincipales.productos.forEach((producto) => {
-      cantidadOpcionesPrincipalesNueva  += (cantidadElemento * parseInt(producto.precio));
-      cantidadOpcionesPrincipalesAntiguo += (producto.cantidad * parseInt(producto.precio));
-    });
-    let cantidadSolamenteComplementosAntiguo = cantidadPrecioTotalAntiguo - cantidadOpcionesPrincipalesAntiguo;
-    informacionCompleta.producto.precioTotalConjunto = cantidadOpcionesPrincipalesNueva + cantidadSolamenteComplementosAntiguo;
-
-
-    if(accionBtn == "decrementar"){
-      // Se procede a decrementar la cantidad
-      MensajeCargaDatos.mostrar('Actualizando producto en el carrito...');
-      await AuxiliaresGlobal.actualizarCantidadItemPorKey(keyCarrito,itemCarrito.id, cantidadElemento - 1,{
-        properties: {"estructura": JSON.stringify(informacionCompleta)}
+      let cantidadPrecioTotalAntiguo = parseFloat(informacionCompleta.producto.precioTotalConjunto);
+      let cantidadOpcionesPrincipalesAntiguo = 0; 
+      let cantidadOpcionesPrincipalesNueva = 0;
+      informacionCompleta.opcionesPrincipales.productos.forEach((producto) => {
+        cantidadOpcionesPrincipalesNueva  += (cantidadElemento * parseInt(producto.precio));
+        cantidadOpcionesPrincipalesAntiguo += (producto.cantidad * parseInt(producto.precio));
       });
-    }
-
-    if(accionBtn == "incrementar"){
-      // Se procede a incrementar la cantidad
-      MensajeCargaDatos.mostrar('Actualizando producto en el carrito...');
-      await AuxiliaresGlobal.actualizarCantidadItemPorKey(keyCarrito,itemCarrito.id, cantidadElemento - 1,{
-        properties: {"estructura": JSON.stringify(informacionCompleta)}
-      });
+      let cantidadSolamenteComplementosAntiguo = cantidadPrecioTotalAntiguo - cantidadOpcionesPrincipalesAntiguo;
+      informacionCompleta.producto.precioTotalConjunto = cantidadOpcionesPrincipalesNueva + cantidadSolamenteComplementosAntiguo;
+  
+      if(accionBtn == "decrementar"){
+        // Se procede a decrementar la cantidad
+        MensajeCargaDatos.mostrar('Actualizando producto en el carrito...');
+        await AuxiliaresGlobal.actualizarCantidadItemPorKey(keyCarrito,itemCarrito.id, cantidadElemento,{
+          properties: {"estructura": JSON.stringify(informacionCompleta)}
+        });
+      }
+  
+      if(accionBtn == "incrementar"){
+        // Se procede a incrementar la cantidad
+        MensajeCargaDatos.mostrar('Actualizando producto en el carrito...');
+        await AuxiliaresGlobal.actualizarCantidadItemPorKey(keyCarrito,itemCarrito.id, cantidadElemento,{
+          properties: {"estructura": JSON.stringify(informacionCompleta)}
+        });
+      }
     }
 
     await this.actualizarSoloContenidoCarrito();
