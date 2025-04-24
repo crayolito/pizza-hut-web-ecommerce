@@ -844,6 +844,7 @@ class PageCarrito extends HTMLElement {
     super();
     this.dataCarrito = null;
     this.productosAcompanamiento = null;
+    this.urlConsulta = "https://pizza-hut-bo.myshopify.com/admin/api/2025-01/graphql.json";
   }
 
   connectedCallback() {
