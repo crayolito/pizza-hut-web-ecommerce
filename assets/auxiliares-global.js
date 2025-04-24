@@ -1836,7 +1836,7 @@ class PageCheckoutPH extends HTMLElement {
     console.log("Testeo de que local fue selecionado", location);
 
     this.localSeleccionado = location;
-    this.coordenadas = { lat: location.lat, lng: location.lng };
+    // this.coordenadas = { lat: location.lat, lng: location.lng };
 
     // Actualizar el input con el nombre del local seleccionadoo
     this.inputSeleccionarLocal.value = location.name;
