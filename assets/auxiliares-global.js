@@ -1525,7 +1525,7 @@ class PageCarrito extends HTMLElement {
       }
     };
 
-    // Se procede a agregar al carrito
+    // Se procede a agregar al carritoo
     MensajeCargaDatos.mostrar('Agregando producto al carrito...');
     await AuxiliaresGlobal.agregarCarrito(1, parseInt(idShopify), parseInt(productoTrabajo.estructura.precio), 1, {
       "estructura": JSON.stringify(detalleProducto)
