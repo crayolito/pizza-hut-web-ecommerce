@@ -1627,6 +1627,7 @@ class PageCheckoutPH extends HTMLElement {
 
     this.bodyModalLocalSeleccionado = this.querySelector('#phpc-modal-body-local-seleccionado');
     this.modalBodyContenedorMapa = this.querySelector('#phpc-localSeleccionado-mapa');
+    this.btnCerrarModalContenedorLocalSeleccionado = this.querySelector('#phpc-btn-cerrar-modal');
     this.etiquetaModalLocalSeleccionado = this.querySelector('#phpc-etiqueta-informacion-modal-local-seleccionado');
     this.etiquetaLocalSeleccionado = this.querySelector('#pcktph-seleccion-local-detalle-info'); 
     this.btnVerDireccionEnMapa = this.querySelector('#phpc-btn-ver-direccion-mapa');
@@ -1647,7 +1648,7 @@ class PageCheckoutPH extends HTMLElement {
     this.btnMetodoLocal.addEventListener('click', this.seleccionarMetodoLocal.bind(this));
     this.btnMetodoDomicilio.addEventListener('click', this.seleccionarMetodoDomicilio.bind(this));
     this.btnVerDireccionEnMapa.addEventListener('click', this.verDireccionEnMapaLocalSeleccionado.bind(this));
-
+    this.btnCerrarModalContenedorLocalSeleccionado.addEventListener('click', this.cerrarModalLocalSeleccionado.bind(this));
     // INICIALIZAR ELEMENTOS Y PROCESOS BASICOS
 
     // local y domicilio
@@ -2000,6 +2001,11 @@ class PageCheckoutPH extends HTMLElement {
       // Solicitar la geolocalización
       navigator.geolocation.getCurrentPosition(success, error, options);
     });
+  }
+
+  cerrarModalLocalSeleccionado(){
+    this.contenedorBaseModal.style.display = 'none';
+    this.bodyModalLocalSeleccionado.style.display = 'none';
   }
 
   calcularDistancia(coordenadas1, coordenadas2) {
