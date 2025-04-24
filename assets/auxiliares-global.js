@@ -1016,6 +1016,7 @@ class PageCarrito extends HTMLElement {
       MensajeCargaDatos.ocultar();
     } catch (error) {
       console.error('Hubo un error:', error);
+      MensajeCargaDatos.ocultar();
     }
   }
 
