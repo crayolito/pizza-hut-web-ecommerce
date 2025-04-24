@@ -930,6 +930,7 @@ class PageCarrito extends HTMLElement {
   
       this.contenedorItemsDetalle.innerHTML = contenidoIzquierdoHTML;
       // let contenidoDerechoHTML = '';
+      
       // contenidoDerechoHTML += `
       //     <h1>TOTAL</h1>
       //     <div class="pcph-item-info-pago">
