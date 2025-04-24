@@ -1548,7 +1548,8 @@ class PageCarrito extends HTMLElement {
   }
 
   async pagarBtnPrincipal() {
-   await AuxiliaresGlobal.limpiarCarrito();
+    //  await AuxiliaresGlobal.limpiarCarrito();
+    window.location.href = "/pages/checkout-ph";
   }
 }
 
