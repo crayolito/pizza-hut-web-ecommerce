@@ -1855,10 +1855,6 @@ class PageCheckoutPH extends HTMLElement {
       <p>+591 ${location.telefono} - ${this.calcularDistancia(this.coordenadas,{lat : location.lat, lng : location.lng})} Km</p>
     `;
     
-    // Guardar el local seleccionado
-    localStorage.setItem('phpc-local-seleccionado', JSON.stringify(location));
-    
-    // Actualizar coordenadas
   }
 
   verDireccionEnMapaLocalSeleccionado(){}
