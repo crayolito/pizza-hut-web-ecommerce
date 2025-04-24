@@ -1041,7 +1041,8 @@ class PageCarrito extends HTMLElement {
 
   async crearSecciondeAcompanamiento() {
     const {informacionColeccion,  productosColeccion } = await this.traerProductoAcompanamiento();
-    
+    console.log("Testeo de productos acompanamiento", productosColeccion);
+
     this.productosAcompanamiento = productosColeccion;
 
     var contenidoHTML = '';
