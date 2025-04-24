@@ -56,6 +56,8 @@ carrito-shopify {
 
 .cardph-item-producto {
   width: 21.25rem;
+  min-width: 21.25rem;
+  max-width: 21.25rem;
   height: max-content;
   display: flex;
   background-color: var(--colorp-secondary);
@@ -1282,6 +1284,8 @@ carrito-shopify {
 
   .cardph-item-producto {
     width: 14.82rem;
+    max-width: 14.82rem;
+    min-width: 14.82rem;
     height: max-content;
     display: flex;
     flex-direction: column;
@@ -1339,6 +1343,8 @@ carrito-shopify {
 
   .cardph-item-producto {
     width: 19rem;
+    max-width: 19rem;
+    min-width: 19rem;
     gap: var(--espaciado-xl);
   }
 
