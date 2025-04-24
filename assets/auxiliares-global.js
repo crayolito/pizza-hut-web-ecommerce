@@ -797,7 +797,7 @@ class PageCarrito extends HTMLElement {
 
       const infoCarrito = await AuxiliaresGlobal.obtenerCarritoShopify();
       this.dataCarrito = infoCarrito.informacionCompleta;
-      console.log('Información completa:', infoCarrito.informacionCompleta);
+      console.log('Información completa inicializarDataShopify :', infoCarrito.informacionCompleta);
 
       let contenidoIzquierdoHTML = '';
       let precioTotal = 0;
@@ -1042,7 +1042,6 @@ class PageCarrito extends HTMLElement {
 
   async actualizarSoloContenidoCarrito(){
     try {
-
       const infoCarrito = await AuxiliaresGlobal.obtenerCarritoShopify();
       this.dataCarrito = infoCarrito.informacionCompleta;
       console.log('Información completa:', infoCarrito.informacionCompleta);
