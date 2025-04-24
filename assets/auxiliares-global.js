@@ -1009,7 +1009,7 @@ class PageCarrito extends HTMLElement {
         // Se procede a decrementar la cantidad
         MensajeCargaDatos.mostrar('Actualizando producto en el carrito...');
         await AuxiliaresGlobal.actualizarItemCarrito(keyCarrito,itemCarrito.id, cantidadElemento,{
-          properties: {"estructura": JSON.stringify(informacionCompleta)}
+          "estructura": JSON.stringify(informacionCompleta)
         });
       }
   
@@ -1017,7 +1017,7 @@ class PageCarrito extends HTMLElement {
         // Se procede a incrementar la cantidad
         MensajeCargaDatos.mostrar('Actualizando producto en el carrito...');
         await AuxiliaresGlobal.actualizarItemCarrito(keyCarrito,itemCarrito.id, cantidadElemento,{
-          properties: {"estructura": JSON.stringify(informacionCompleta)}
+          "estructura": JSON.stringify(informacionCompleta)
         });
       }
     }
@@ -1212,7 +1212,9 @@ class PageCarrito extends HTMLElement {
     : productoTrabajo.stockTotal;
   }
 
-  pagarBtnPrincipal() {}
+  async pagarBtnPrincipal() {
+   await AuxiliaresGlobal.limpiarCarrito();
+  }
 }
 
 customElements.define('page-carrito', PageCarrito);
