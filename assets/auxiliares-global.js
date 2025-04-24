@@ -1052,8 +1052,8 @@ class PageCarrito extends HTMLElement {
     productosColeccion.forEach((producto) => {
       contenidoHTML += `
         <div 
-        data-idTrabajo="${producto.idTrabajo}"
-        data-idShopify="${producto.idShopify}"
+        data-idTrabajo="${producto.estructura.id}"
+        data-idShopify="${producto.id}"
         data-handle="${producto.handle}"
         data-precio="${producto.precio}"
         data-titulo="${producto.titulo}"
@@ -1470,7 +1470,7 @@ class PageCarrito extends HTMLElement {
   obtenerStockGenericoTrabajo(productoTrabajo){
     // Verificar si tenemos una sucursal seleccionada
     const dataSucursal = JSON.parse(localStorage.getItem('sucursal-informacion'));
-    if(!dataSucursal || dataSucursal == "") return productoTrabajo.stockTotal;
+    if(!dataSucursal || dataSucursal == "") return productoTrabajo.stockTotal || productoTrabajo.stockGeneral;
 
     const sucursalEncontrada = productoTrabajo.sucursales.find(
       sucursal => sucursal.nombre == dataSucursal.name
