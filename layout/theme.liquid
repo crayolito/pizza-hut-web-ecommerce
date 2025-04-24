@@ -22,9 +22,6 @@
       {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
     </title>
 
-    <script src="{{ 'cambios-estandar.js' | asset_url }}" defer="defer"></script>
-    <script src="{{ 'auxiliares-global.js' | asset_url }}" defer="defer"></script>
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -382,21 +379,20 @@
       }
 
       window.shopIcons = {
-        close: `{% render 'icon-close' %}`,
-        cart: `{% render 'icon-cart' %}`,
-        search: `{% render 'icon-search' %}`,
-        user: `{% render 'icon-user' %}`,
-        menu: `{% render 'icon-menu' %}`,
-        home: `{% render 'icon-home' %}`,
-        heart: `{% render 'icon-heart' %}`,
-        plus: `{% render 'icon-plus' %}`,
-        minus: `{% render 'icon-minus' %}`,
-        arrow: `{% render 'icon-arrow' %}`,
+        icon_editar: `{% render 'icon-editar' %}`,
+        icon_menos: `{% render 'icon-menos' %}`,
+        icon_mas: `{% render 'icon-mas' %}`,
+        icon_basura: `{% render 'icon-basura' %}`,
       };
     </script>
 
+    <!-- Hojas de estilos js -->
+    <script src="{{ 'cambios-estandar.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'auxiliares-global.js' | asset_url }}" defer="defer"></script>
+
     <!-- Hojas de estilos css -->
     {{ 'estilos-generales.css' | asset_url | stylesheet_tag }}
+
     <script
       defer
       src="https://maps.googleapis.com/maps/api/js?key={{settings.keyGoogleMap}}&libraries=places"
