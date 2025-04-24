@@ -1490,21 +1490,12 @@ class PageCarrito extends HTMLElement {
     const idTrabajo = contenedorPadre.dataset.idtrabajo;
     const idShopify = contenedorPadre.dataset.idshopify;
 
-    console.log("Testeo de idTrabajo", idTrabajo);
-    console.log("Testeo de idShopify", idShopify);
-
     const productoTrabajo = this.productosAcompanamiento.find(
       producto =>{
-        console.log("Testeo de producto", {
-          "producto": producto,
-          "idShopify": producto.id,
-          "idTrabajo": producto.estructura.id
-        });
+
         return producto.id == idShopify && producto.estructura.id == idTrabajo
       }
     );
-
-    console.log("Testeo de producto a agregar", productoTrabajo);
 
     const detalleProducto = {
       producto: {
