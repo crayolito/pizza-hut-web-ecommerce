@@ -265,6 +265,7 @@ carrito-shopify {
   border-radius: var(--espaciado-s);
   background-color: var(--colorp-secondary);
   border: 1.5px solid #969696;
+  cursor: pointer;
 }
 
 .smecph-opcion-info {
