@@ -1769,7 +1769,7 @@ class PageCheckoutPH extends HTMLElement {
     // para mostrar todos los locales
     this.buscarSugerenciasSeleccionLocal('', null);
   }
-  
+
   buscarSugerenciasSeleccionLocal(query, limite = null) {
     // Filtrar las ubicaciones basadas en la consulta
     let resultados = this.pizzaLocations.filter(location => 
@@ -1793,11 +1793,11 @@ class PageCheckoutPH extends HTMLElement {
     }
   
     // Limpiar resultados anteriores
-    this.contenedorReultadosBusquedaLocal.innerHTML = '';
+    this.contenedorResultadosBuquedaLocal.innerHTML = '';
     
     // Si hay resultados, mostrar el contenedor
     if (resultados.length > 0) {
-      this.contenedorReultadosBusquedaLocal.style.display = "block";
+      this.contenedorResultadosBuquedaLocal.style.display = "block";
       
       // Crear y añadir elementos para cada resultado
       resultados.forEach(location => {
@@ -1827,11 +1827,11 @@ class PageCheckoutPH extends HTMLElement {
         });
         
         // Añadir el item al contenedor de resultados
-        this.contenedorReultadosBusquedaLocal.appendChild(resultadoItem);
+        this.contenedorResultadosBuquedaLocal.appendChild(resultadoItem);
       });
     } else {
       // Si no hay resultados, ocultar el contenedor
-      this.contenedorReultadosBusquedaLocal.style.display = "none";
+      this.contenedorResultadosBuquedaLocal.style.display = "none";
     }
   }
 
