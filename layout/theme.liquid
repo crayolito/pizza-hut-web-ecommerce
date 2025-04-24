@@ -369,13 +369,6 @@
        */
     {% endstyle %}
 
-    <!-- Hojas de estilos css -->
-    {{ 'estilos-generales.css' | asset_url | stylesheet_tag }}
-    <script
-      defer
-      src="https://maps.googleapis.com/maps/api/js?key={{settings.keyGoogleMap}}&libraries=places"
-    ></script>
-
     <script>
       // Verificar si la URL actual contiene /pages/perfil
       if (window.location.pathname.includes('/pages/perfil')) {
@@ -387,7 +380,27 @@
           window.location.href = '/pages/inicio-sesion';
         }
       }
+
+      window.shopIcons = {
+        close: `{% render 'icon-close' %}`,
+        cart: `{% render 'icon-cart' %}`,
+        search: `{% render 'icon-search' %}`,
+        user: `{% render 'icon-user' %}`,
+        menu: `{% render 'icon-menu' %}`,
+        home: `{% render 'icon-home' %}`,
+        heart: `{% render 'icon-heart' %}`,
+        plus: `{% render 'icon-plus' %}`,
+        minus: `{% render 'icon-minus' %}`,
+        arrow: `{% render 'icon-arrow' %}`,
+      };
     </script>
+
+    <!-- Hojas de estilos css -->
+    {{ 'estilos-generales.css' | asset_url | stylesheet_tag }}
+    <script
+      defer
+      src="https://maps.googleapis.com/maps/api/js?key={{settings.keyGoogleMap}}&libraries=places"
+    ></script>
   </head>
 
   <body>

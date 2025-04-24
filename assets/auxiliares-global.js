@@ -728,7 +728,8 @@ class PageCarrito extends HTMLElement {
         if(!(item.properties && item.properties.estructura))return;
   
         const dataContruccion = JSON.parse(item.properties.estructura);
-  
+        console.log('Data de construcción:', dataContruccion);
+
         contenidoIzquierdoHTML += `
         <div 
         data-idTrabajo="${dataContruccion.producto.idTrabajo}"
@@ -748,7 +749,7 @@ class PageCarrito extends HTMLElement {
               <div class="pcph-itemc_opcion1">
                 <h2 class="color-letras-extra">Bs. ${dataContruccion.producto.precioTotalConjunto}</h2>
                 <div class="pcph-itemc_editar">
-                  {% render 'icon-editar' %}
+                  ${window.shopIcons.icon_editar}
                   <p class="color-letras-primary">Editar</p>
                 </div>
               </div>
@@ -814,20 +815,20 @@ class PageCarrito extends HTMLElement {
                   accion="decrementar"
                   class="pmph-cantidad-selector-button elemento-oculto icon-color-tertiary"
                 >
-                  {% render 'icon-basura' %}
+                ${window.shopIcons.icon_basura}
                 </button>
                 <button
                   accion="decrementar"
                   class="pmph-cantidad-selector-button  elemento-oculto icon-color-tertiary"
                 >
-                  {% render 'icon-menos' %}
+                 ${window.shopIcons.icon_menos}
                 </button>
                 <p id="phpp-cantidad-general">${item.quantity}</p>
                 <button
                   accion="incrementar"
                   class="pmph-cantidad-selector-button icon-color-tertiary"
                 >
-                  {% render 'icon-mas' %}
+                  ${window.shopIcons.icon_mas}  
                 </button>
               </div>
             </cantidad-input>
