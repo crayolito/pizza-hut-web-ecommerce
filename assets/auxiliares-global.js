@@ -1675,8 +1675,6 @@ class PageCheckoutPH extends HTMLElement {
     this.configuracionAutoCompletadoSeleccionLocal();
     
     MensajeCargaDatos.ocultar();
-
-
   }
 
   seleccionarMetodoLocal(){
