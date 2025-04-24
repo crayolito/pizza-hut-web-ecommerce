@@ -1847,12 +1847,14 @@ class PageCheckoutPH extends HTMLElement {
     // Mostrar detalles del local seleccionadoo
     const detalleLocal = this.querySelector('.pcktph-seleccion-local-detalle');
     detalleLocal.style.display = "flex";
+
+    const distancia = this.calcularDistancia(this.coordenadas, {lat: location.lat, lng: location.lng});
     
     // Actualizar información del local seleccionado
     const infoLocal = this.querySelector('.pcktph-seleccion-local-detalle-info');
     infoLocal.innerHTML = `
       <p>${location.name.toUpperCase()}</p>
-      <p>+591 ${location.telefono} - ${this.calcularDistancia(this.coordenadas,{lat : location.lat, lng : location.lng})} Km</p>
+      <p>+591 ${location.telefono} - ${parseFloat(distancia).toFixed(2)} Km</p>
     `;
     
   }
