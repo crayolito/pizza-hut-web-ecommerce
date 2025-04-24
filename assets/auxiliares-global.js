@@ -1490,6 +1490,8 @@ class PageCarrito extends HTMLElement {
       producto => producto.id == idTrabajo && producto.estructura.id == idShopify
     );
 
+    console.log("Testeo de producto a agregar", productoTrabajo);
+
     const detalleProducto = {
       producto: {
         idTrabajo: idTrabajo,
