@@ -254,7 +254,7 @@ class AuxiliaresGlobal {
         this.actualizarComponentesCarrito();
         
         // Mostrar mensaje de éxito
-        this.mensajeInfo('El carrito ha sido vaciado');
+        // this.mensajeInfo('El carrito ha sido vaciado');
         
         // Disparar evento personalizado
         document.dispatchEvent(new CustomEvent('cart:cleared'));
