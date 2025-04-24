@@ -809,24 +809,24 @@ class PageCarrito extends HTMLElement {
                 max="${this.obtenerStockGenericoTrabajo(dataContruccion.producto)}"
                 id="producto-id"
                 handle="producto-handle"
-                class="pmph-cantidad-selector"
+                class="pcph-itemc_cantidad"
               >
                 <button
                   accion="decrementar"
-                  class="pmph-cantidad-selector-button elemento-oculto icon-color-tertiary"
+                  class="pcph-itemc_cantidad-btn elemento-oculto icon-color-tertiary"
                 >
                 ${window.shopIcons.icon_basura}
                 </button>
                 <button
                   accion="decrementar"
-                  class="pmph-cantidad-selector-button  elemento-oculto icon-color-tertiary"
+                  class="pcph-itemc_cantidad-btn  elemento-oculto icon-color-tertiary"
                 >
                  ${window.shopIcons.icon_menos}
                 </button>
                 <p id="phpp-cantidad-general">${item.quantity}</p>
                 <button
                   accion="incrementar"
-                  class="pmph-cantidad-selector-button icon-color-tertiary"
+                  class="pcph-itemc_cantidad-btn icon-color-tertiary"
                 >
                   ${window.shopIcons.icon_mas}  
                 </button>
