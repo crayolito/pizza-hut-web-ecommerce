@@ -1671,7 +1671,12 @@ class PageCheckoutPH extends HTMLElement {
     }
 
     this.infoCarrito = await AuxiliaresGlobal.obtenerCarritoShopify();
+    
+    this.configuracionAutoCompletadoSeleccionLocal();
+    
     MensajeCargaDatos.ocultar();
+
+
   }
 
   seleccionarMetodoLocal(){
