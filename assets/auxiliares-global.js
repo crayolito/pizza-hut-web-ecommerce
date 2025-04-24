@@ -468,6 +468,20 @@ class AuxiliaresGlobal {
         })
         .then(response => response.json())
         .then(data => {
+          // Verificar si hay un mensaje de error (status 422)
+          if (data.status === 422 || data.message) {
+            // Verificar si el mensaje contiene la palabra "agotado"
+            if (data.message && data.message.toLowerCase().includes('agotado')) {
+              this.mensajeError('Este producto está agotado');
+            } else {
+              // Mostrar mensaje de error genérico o el específico que viene del servidor
+              this.mensajeError(data.message || 'No se pudo agregar el producto al carrito');
+            }
+            console.error('Error al agregar al carrito:', data);
+            return; // Salir de la función para no continuar con el flujo de éxito
+          }
+          
+          // Si llegamos aquí, es porque la operación fue exitosa
           // Actualizar el contador visual
           this.actualizarContadorVisual(valor);
           
