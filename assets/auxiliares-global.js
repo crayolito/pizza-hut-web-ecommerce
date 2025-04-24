@@ -1626,6 +1626,7 @@ class PageCheckoutPH extends HTMLElement {
     this.btnMetodoDomicilio = this.querySelector('#phpc-metodo-domicilio');
 
     this.bodyModalLocalSeleccionado = this.querySelector('#phpc-modal-body-local-seleccionado');
+    this.modalBodyContenedorMapa = this.querySelector('#phpc-localSeleccionado-mapa');
     this.etiquetaModalLocalSeleccionado = this.querySelector('#phpc-etiqueta-informacion-modal-local-seleccionado');
     this.etiquetaLocalSeleccionado = this.querySelector('#pcktph-seleccion-local-detalle-info'); 
     this.btnVerDireccionEnMapa = this.querySelector('#phpc-btn-ver-direccion-mapa');
@@ -1849,7 +1850,8 @@ class PageCheckoutPH extends HTMLElement {
     detalleLocal.style.display = "flex";
 
     const distancia = this.calcularDistancia(this.coordenadas, {lat: location.lat, lng: location.lng});
-    
+    this.etiquetaModalLocalSeleccionado.textContent = `Local Seleccionado: ${location.name} (${distancia.toFixed(2)} Km) de tu ubicación`;
+
     // Actualizar información del local seleccionado
     const infoLocal = this.querySelector('.pcktph-seleccion-local-detalle-info');
     infoLocal.innerHTML = `
@@ -1859,7 +1861,86 @@ class PageCheckoutPH extends HTMLElement {
     
   }
 
-  verDireccionEnMapaLocalSeleccionado(){}
+  verDireccionEnMapaLocalSeleccionado() {
+    // Verificar que existe el contenedor para el mapa
+    this.modalBodyContenedorMapa = this.querySelector('#phpc-localSeleccionado-mapa');
+    
+    if (!this.modalBodyContenedorMapa) {
+      console.error('No se encontró el contenedor del mapa');
+      return;
+    }
+    
+    // Verificar que tenemos un local seleccionado
+    if (!this.localSeleccionado) {
+      console.error('No hay un local seleccionado');
+      return;
+    }
+    
+    // Asegurarse de que el contenedor del mapa sea visible
+    // this.modalBodyContenedorMapa.style.display = 'flex';
+    this.contenedorBaseModal.style.display = 'flex';
+    this.bodyModalLocalSeleccionado.style.display = 'flex';
+
+    // Coordenadas del local seleccionado
+    const posicion = {
+      lat: this.localSeleccionado.lat,
+      lng: this.localSeleccionado.lng
+    };
+    
+    // Opciones del mapa
+    const opcionesMapa = {
+      center: posicion,
+      zoom: 15,
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      mapTypeControl: false,
+      streetViewControl: false
+    };
+    
+    // Crear el mapa
+    const mapa = new google.maps.Map(this.modalBodyContenedorMapa, opcionesMapa);
+    
+    // Crear icono personalizado
+    const iconoPersonalizado = {
+      url: '{{ "logo-primario.png" | asset_url }}',
+      scaledSize: new google.maps.Size(40, 40),
+      origin: new google.maps.Point(0, 0),
+      anchor: new google.maps.Point(20, 40) 
+    };
+    
+    // Crear marcador
+    const marcador = new google.maps.Marker({
+      position: posicion,
+      map: mapa,
+      icon: iconoPersonalizado,
+      title: this.localSeleccionado.name
+    });
+    
+    // // Crear ventana de información
+    // const contenidoInfo = `
+    //   <div class="info-window-content">
+    //     <h4>${this.localSeleccionado.name}</h4>
+    //     <p>${this.localSeleccionado.localizacion}</p>
+    //     <p>Tel: +591 ${this.localSeleccionado.telefono}</p>
+    //     <p>Horario: ${this.localSeleccionado.horario}</p>
+    //   </div>
+    // `;
+    
+    // const infoWindow = new google.maps.InfoWindow({
+    //   content: contenidoInfo
+    // });
+    
+    // // Abrir ventana de información al hacer clic en el marcador
+    // marcador.addListener('click', () => {
+    //   infoWindow.open(mapa, marcador);
+    // });
+    
+    // Abrir la ventana de información por defecto
+    // infoWindow.open(mapa, marcador);
+    
+    // Guardar referencias por si necesitamos modificar el mapa después
+    // this.mapaActual = mapa;
+    // this.marcadorActual = marcador;
+  }
 
   solicitarPermisosDelUsoGPSDispositivo() {
     return new Promise((resolve, reject) => {
