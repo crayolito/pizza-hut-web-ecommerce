@@ -927,35 +927,15 @@ class PageCarrito extends HTMLElement {
         </div>
         `;
       });
+
+      console.log('Contenido HTML:', {
+        contenedorItemsDetalle,
+        contenidoIzquierdoHTML,
+      });
   
       this.contenedorItemsDetalle.innerHTML = contenidoIzquierdoHTML;
-      // let contenidoDerechoHTML = '';
-
-      // contenidoDerechoHTML += `
-      //     <h1>TOTAL</h1>
-      //     <div class="pcph-item-info-pago">
-      //       <p>Subtotal</p>
-      //       <p>Bs. ${precioTotal}</p>
-      //     </div>
-      //     <div class="pcph-item-info-pago">
-      //       <p>Descuento</p>
-      //       <p>Bs. 00.000</p>
-      //     </div>
-      //     <div class="pcph-item-info-pago">
-      //       <p>Recojo en local</p>
-      //       <p>Bs. 00.000</p>
-      //     </div>
-      //     <hr>
-      //     <div class="pcph-item-info-total">
-      //       <p>Total</p>
-      //       <p>Bs. ${precioTotal}</p>
-      //     </div>
-
-      // `;
       this.etiquetaSubtotal.textContent = `Bs. ${precioTotal}`;
       this.etiquetaTotal.textContent = `Bs. ${precioTotal}`;
-  
-      // this.contenedorDerecho.insertAdjacentHTML('afterbegin', contenidoDerechoHTML);
 
       // DIBUJAR LA SECCION DE POSTRES
       await this.crearSecciondeAcompanamiento();
@@ -1175,6 +1155,7 @@ class PageCarrito extends HTMLElement {
         `;
       });
   
+
       this.contenedorItemsDetalle.innerHTML = contenidoIzquierdoHTML;
   
       // let contenidoDerechoHTML = '';
