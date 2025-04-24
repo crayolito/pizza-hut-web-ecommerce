@@ -1058,7 +1058,7 @@ class PageCarrito extends HTMLElement {
       let cantidadOpcionesPrincipalesAntiguo = 0; 
       let cantidadOpcionesPrincipalesNueva = 0;
       informacionCompleta.opcionesPrincipales.productos.forEach((producto) => {
-        cantidadOpcionesPrincipalesNueva  += (cantidadElemento * parseInt(producto.precio));
+        cantidadOpcionesPrincipalesNueva  += (cantidadElemento * producto.precio == 0 ? parseInt(informacionCompleta.producto.precioProducto) : parseInt(producto.precio));
         cantidadOpcionesPrincipalesAntiguo += (parseInt(informacionCompleta.producto.cantidad) * parseInt(producto.precio));
       });
       let cantidadSolamenteComplementosAntiguo = cantidadPrecioTotalAntiguo - cantidadOpcionesPrincipalesAntiguo;
