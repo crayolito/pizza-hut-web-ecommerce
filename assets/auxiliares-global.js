@@ -1844,7 +1844,7 @@ class PageCheckoutPH extends HTMLElement {
     // Actualizar información del local seleccionado
     const infoLocal = this.querySelector('.pcktph-seleccion-local-detalle-info');
     infoLocal.innerHTML = `
-      <p><strong>${location.name}</strong></p>
+      <p>${location.name.toUpperCase()}</p>
       <p>Listo para retirar en 30 minutos</p>
     `;
     
