@@ -929,11 +929,6 @@ class PageCarrito extends HTMLElement {
         </div>
         `;
       });
-
-      console.log('Contenido HTML:', {
-        contenedorItemsDetalle,
-        contenidoIzquierdoHTML,
-      });
   
       this.contenedorItemsDetalle.innerHTML = contenidoIzquierdoHTML;
       this.etiquetaSubtotal.textContent = `Bs. ${precioTotal}`;
