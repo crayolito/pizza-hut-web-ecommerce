@@ -804,7 +804,12 @@ class PageCarrito extends HTMLElement {
 
       infoCarrito.informacionCompleta.items.forEach((item) => {
         if(!(item.properties && item.properties.estructura)){
-          console.log;('No se encontró la propiedad estructura en el item:', item);
+          console.log('No se encontró la propiedad estructura en el item:', item);
+          console.log('Item sin estructura:', {
+            "teste1" : item.properties,
+            "teste2" : item.properties.estructura,
+            "teste3" : item.properties.proproperties.estructura,
+          });
           return;
         };
         
