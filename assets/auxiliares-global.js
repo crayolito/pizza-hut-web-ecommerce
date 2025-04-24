@@ -949,6 +949,7 @@ class PageCarrito extends HTMLElement {
       //       <p>Total</p>
       //       <p>Bs. ${precioTotal}</p>
       //     </div>
+      
       // `;
       this.etiquetaSubtotal.textContent = `Bs. ${precioTotal}`;
       this.etiquetaTotal.textContent = `Bs. ${precioTotal}`;
