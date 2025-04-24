@@ -1327,12 +1327,16 @@ class PageCarrito extends HTMLElement {
 
   async actualizarSoloContenidoCarrito(){
     try {
+      console.log('Actualizando solo contenido del carrito...');
+
       const infoCarrito = await AuxiliaresGlobal.obtenerCarritoShopify();
       this.dataCarrito = infoCarrito.informacionCompleta;
       console.log('Información completa:', infoCarrito.informacionCompleta);
 
       let contenidoIzquierdoHTML = '';
       let precioTotal = 0;
+
+      console.log('Items del carrito:', infoCarrito.informacionCompleta.items);
 
       infoCarrito.informacionCompleta.items.forEach((item) => {
         if(item.properties && item.properties.estructura) {
