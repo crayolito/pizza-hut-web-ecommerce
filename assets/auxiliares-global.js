@@ -1816,7 +1816,7 @@ class PageCheckoutPH extends HTMLElement {
         resultadoItem.appendChild(nombreLocal);
         resultadoItem.appendChild(direccionLocal);
         
-        // Añadir evento de clic para seleccionar este local
+        // Añadir evento de clic para seleccionar este locall
         resultadoItem.addEventListener('click', () => {
           this.seleccionarLocal(location);
         });
