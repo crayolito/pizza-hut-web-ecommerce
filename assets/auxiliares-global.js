@@ -803,7 +803,10 @@ class PageCarrito extends HTMLElement {
       let precioTotal = 0;
 
       infoCarrito.informacionCompleta.items.forEach((item) => {
-        if(!(item.properties && item.properties.estructura))return;
+        if(!(item.properties && item.properties.estructura)){
+          console.log;('No se encontró la propiedad estructura en el item:', item);
+          return;
+        };
         
         const dataContruccion = JSON.parse(item.properties.estructura);
         precioTotal += parseFloat(dataContruccion.producto.precioTotalConjunto);
@@ -942,8 +945,6 @@ class PageCarrito extends HTMLElement {
       
       this.declararComponentesDespuesCreacion();
 
-      // Actualizar mensaje mientras se procesa la información
-      // MensajeCargaDatos.mostrar('Procesando items del carrito...');
       MensajeCargaDatos.ocultar();
     } catch (error) {
       console.error('Hubo un error:', error);
