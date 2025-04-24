@@ -842,7 +842,7 @@ class PageCarrito extends HTMLElement {
         dataContruccion.opcionesPrincipales.productos.forEach((producto) => {
           contenidoIzquierdoHTML += `
               <li>
-                <p>${"x" + producto.cantidad + producto.tituloSeccion} : <br> ${producto.titulo}</p>
+                <p>${producto.tituloSeccion} : <br> ${producto.titulo}</p>
               </li>
           `;
         });
@@ -863,7 +863,7 @@ class PageCarrito extends HTMLElement {
         dataContruccion.complementos.productos.forEach((producto) => {
           contenidoIzquierdoHTML += `
               <li>
-                <p>${producto.tituloSeccion} : <br> ${producto.titulo}</p>
+                <p>${"x" + producto.cantidad +" "+  producto.tituloSeccion} : <br> ${producto.titulo}</p>
               </li>
           `;
         });
