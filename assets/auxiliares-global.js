@@ -1023,7 +1023,6 @@ class PageCarrito extends HTMLElement {
     // DECLARAR ELEMENTOS
     this.btnsEditar = this.querySelectorAll('.pcph-itemc_editar');
     this.btnsEditarCantidadItem = this.querySelectorAll('.pcph-itemc_cantidad-btn'); 
-    this.btnsAgregarAcompanamiento = this.querySelectorAll('#phpc-btn-agregar-acompanamiento');
 
     // INICIALIZAR EVENTOS
     this.btnsEditar.forEach((btn) => {
@@ -1032,9 +1031,7 @@ class PageCarrito extends HTMLElement {
     this.btnsEditarCantidadItem.forEach((btn) => {
       btn.addEventListener('click', this.actualizarProductoCarrito.bind(this, btn));
     });
-    this.btnsAgregarAcompanamiento.forEach((btn) => {
-      btn.addEventListener('click', this.agregarProductoAcompanamiento.bind(this, btn));
-    });
+
 
     // INICIALIZAR ELEMENTOS Y CARGA DE DATOSS
   }
@@ -1079,6 +1076,11 @@ class PageCarrito extends HTMLElement {
     });
 
     this.contenedorProductosAcompanamientos.innerHTML = contenidoHTML;
+
+    this.btnsAgregarAcompanamiento = this.querySelectorAll('#phpc-btn-agregar-acompanamiento');
+    this.btnsAgregarAcompanamiento.forEach((btn) => {
+      btn.addEventListener('click', this.agregarProductoAcompanamiento.bind(this, btn));
+    });
   }
 
   async traerProductoAcompanamiento() {
