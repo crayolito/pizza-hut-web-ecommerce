@@ -1827,6 +1827,31 @@ class PageCheckoutPH extends HTMLElement {
       this.contenedorResultadosBuquedaLocal.style.display = "none";
     }
   }
+
+  seleccionarLocal(location) {
+    // Actualizar el input con el nombre del local seleccionado
+    this.inputSeleccionarLocal.value = location.name;
+    
+    // Ocultar sugerencias
+    this.contenedorReultadosBusquedaLocal.style.display = "none";
+    
+    // Mostrar detalles del local seleccionado
+    const detalleLocal = this.querySelector('.pcktph-seleccion-local-detalle');
+    detalleLocal.style.display = "flex";
+    
+    // Actualizar información del local seleccionado
+    const infoLocal = this.querySelector('.pcktph-seleccion-local-detalle-info');
+    infoLocal.innerHTML = `
+      <p><strong>${location.name}</strong></p>
+      <p>Listo para retirar en 30 minutos</p>
+    `;
+    
+    // Guardar el local seleccionado
+    localStorage.setItem('ph-local-seleccionado', JSON.stringify(location));
+    
+    // Actualizar coordenadas
+    this.coordenadas = { lat: location.lat, lng: location.lng };
+  }
 }
 
 customElements.define('page-checkout-ph', PageCheckoutPH);
