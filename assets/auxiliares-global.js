@@ -1797,7 +1797,7 @@ class PageCheckoutPH extends HTMLElement {
     
     // Si hay resultados, mostrar el contenedor
     if (resultados.length > 0) {
-      this.contenedorResultadosBuquedaLocal.style.display = "block";
+      this.contenedorResultadosBuquedaLocal.style.display = "flex";
       
       // Crear y añadir elementos para cada resultado
       resultados.forEach(location => {
