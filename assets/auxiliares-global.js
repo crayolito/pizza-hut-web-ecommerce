@@ -968,13 +968,13 @@ class PageCarrito extends HTMLElement {
   declararComponentesDespuesCreacion() {
     // DECLARAR ELEMENTOS
     this.btnsEditar = this.querySelectorAll('.pcph-itemc_editar');
-    this.btnsCantidadDecrementar = this.querySelectorAll('.pmph-cantidad-selector-button'); 
+    this.btnsEditarCantidadItem = this.querySelectorAll('.pcph-itemc_cantidad-btn'); 
 
     // INICIALIZAR EVENTOS
     this.btnsEditar.forEach((btn) => {
       btn.addEventListener('click', this.procedoEditarItem.bind(this, btn));
     }); 
-    this.btnsCantidadDecrementar.forEach((btn) => {
+    this.btnsEditarCantidadItem.forEach((btn) => {
       btn.addEventListener('click', this.actualizarProductoCarrito.bind(this, btn));
     });
     // INICIALIZAR ELEMENTOS Y CARGA DE DATOS
