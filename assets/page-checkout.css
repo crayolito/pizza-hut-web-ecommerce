@@ -894,7 +894,8 @@ input[type="number"] {
 
 @media (min-width: 1024px) {
   .pcktpch-modal-body-fase1 {
-    width: 40.25rem;
+    /* width: 40.25rem; */
+    width: 100%;
   }
 
   .pcktpch-modal-header-opciones {
