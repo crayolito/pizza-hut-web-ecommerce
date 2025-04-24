@@ -1487,7 +1487,7 @@ class PageCarrito extends HTMLElement {
     const idShopify = contenedorPadre.dataset.idshopify;
 
     const productoTrabajo = this.productosAcompanamiento.find(
-      producto => producto.idTrabajo == idTrabajo && producto.idShopify == idShopify
+      producto => producto.id == idTrabajo && producto.estructura.id == idShopify
     );
 
     const detalleProducto = {
