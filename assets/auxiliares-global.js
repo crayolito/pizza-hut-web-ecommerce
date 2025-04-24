@@ -1852,7 +1852,7 @@ class PageCheckoutPH extends HTMLElement {
     const infoLocal = this.querySelector('.pcktph-seleccion-local-detalle-info');
     infoLocal.innerHTML = `
       <p>${location.name.toUpperCase()}</p>
-      <p>+591 ${location.telefono} - ${this.calcularDistancia({lat : location.lat, lng : location.lng},this.coordenadas)} Km</p>
+      <p>+591 ${location.telefono} - ${this.calcularDistancia(this.coordenadas,{lat : location.lat, lng : location.lng})} Km</p>
     `;
     
     // Guardar el local seleccionado
