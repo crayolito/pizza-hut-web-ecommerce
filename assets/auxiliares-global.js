@@ -1620,6 +1620,9 @@ class PageCheckoutPH extends HTMLElement {
 
   connectedCallback() {
     // DECLARAR ELEMENTOS
+    this.btnMetodoLocal = this.querySelector('#phpc-metodo-local');
+    this.btnMetodoDomicilio = this.querySelector('#phpc-metodo-domicilio');
+
     this.contenedorBaseModal = this.querySelector('.ph-background-container-modal');
     this.btnsSeleccionMetodoEntrega = this.querySelectorAll('.smecph-opcion-metodo');
     this.contenedorBaseSeleccionLocal = this.querySelector('#pcktph-seleccion-local');
@@ -1629,6 +1632,10 @@ class PageCheckoutPH extends HTMLElement {
     this.mensajeAlertaSeleccionMetodoPago = this.querySelector('.smecph-mensaje-alerta');
     this.btnsMetodosPagos = this.querySelectorAll('.smecph-pc-dp-item');
     // INICIALIZAR EVENTOS
+
+    this.btnMetodoLocal.addEventListener('click', this.seleccionarMetodoLocal.bind(this));
+    this.btnMetodoDomicilio.addEventListener('click', this.seleccionarMetodoDomicilio.bind(this));
+
     // INICIALIZAR ELEMENTOS Y PROCESOS BASICOS
 
     // local y domicilio
@@ -1640,15 +1647,49 @@ class PageCheckoutPH extends HTMLElement {
     MensajeCargaDatos.mostrar('Cargando información del pagina ...');
 
     if(this.estadoPagina == "domicilio"){
-
-
+      this.contenedorBaseSeleccionDireccionEnvio.style.display = "flex";
+      this.contenedorBaseSeleccionLocal.style.display = "none";
+      this.btnMetodoDomicilio.classList.add('seleccionado');
+      const iconoSeleccionado = this.btnMetodoDomicilio.querySelector('.smecph-opcion-icono'); 
+      iconoSeleccionado.innerHTML = window.shopIcons.icon_estado_on;
     }
 
-    if(this.estadoPagina == "local"){}
-
+    if(this.estadoPagina == "local"){
+      this.contenedorBaseSeleccionDireccionEnvio.style.display = "none";
+      this.contenedorBaseSeleccionLocal.style.display = "flex";
+      this.btnMetodoLocal.classList.add('seleccionado');
+      const iconoSeleccionado = this.btnMetodoLocal.querySelector('.smecph-opcion-icono');
+      iconoSeleccionado.innerHTML = window.shopIcons.icon_estado_on;
+    }
 
     this.infoCarrito = await AuxiliaresGlobal.obtenerCarritoShopify();
     MensajeCargaDatos.ocultar();
+  }
+
+  seleccionarMetodoLocal(){
+    this.estadoPagina = "local";
+    this.contenedorBaseSeleccionDireccionEnvio.style.display = "none";
+    this.contenedorBaseSeleccionLocal.style.display = "flex";
+    this.btnMetodoLocal.classList.add('seleccionado');
+    const iconoSeleccionado = this.btnMetodoLocal.querySelector('.smecph-opcion-icono');
+    iconoSeleccionado.innerHTML = window.shopIcons.icon_estado_on;
+
+    this.btnMetodoDomicilio.classList.remove('seleccionado');
+    const iconoDesSeleccionado = this.btnMetodoDomicilio.querySelector('.smecph-opcion-icono');
+    iconoDesSeleccionado.innerHTML = window.shopIcons.icon_estado_off;
+  }
+
+  seleccionarMetodoDomicilio(){
+    this.estadoPagina = "domicilio";
+    this.contenedorBaseSeleccionDireccionEnvio.style.display = "flex";
+    this.contenedorBaseSeleccionLocal.style.display = "none";
+    this.btnMetodoDomicilio.classList.add('seleccionado');
+    const iconoSeleccionado = this.btnMetodoDomicilio.querySelector('.smecph-opcion-icono');
+    iconoSeleccionado.innerHTML = window.shopIcons.icon_estado_on;
+
+    this.btnMetodoLocal.classList.remove('seleccionado');
+    const iconoDesSeleccionado = this.btnMetodoLocal.querySelector('.smecph-opcion-icono');
+    iconoDesSeleccionado.innerHTML = window.shopIcons.icon_estado_off;
   }
 
 }

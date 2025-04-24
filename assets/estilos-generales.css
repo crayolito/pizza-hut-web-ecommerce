@@ -194,7 +194,7 @@ carrito-shopify {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  gap: var(--espaciado-xxxl);
+  gap: var(--espaciado-xl);
   padding: var(--espaciado-xxxl) var(--espaciado-xl) var(--espaciado-xxxl)
     var(--espaciado-xl);
   position: relative;
@@ -1319,6 +1319,10 @@ carrito-shopify {
 }
 
 @media screen and (min-width: 1024px) {
+  .container-main-smecph {
+    gap: var(--espaciado-xxxl);
+  }
+
   .producto2-item {
     height: 26rem;
   }

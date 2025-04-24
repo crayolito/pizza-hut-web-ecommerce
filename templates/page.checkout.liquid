@@ -6,7 +6,7 @@
   <div class="container-main-smecph container-base">
     <h1>¿Cómo deseas recibir tu pedido?</h1>
     <section class="smecph-opciones-metodos" id="pcktph-seleccion-metodo">
-      <div class="smecph-opcion-metodo seleccionado">
+      <div id="phpc-metodo-local" class="smecph-opcion-metodo">
         <div class="smecph-opcion-info">
           {% render 'icon-recogo-local' %}
           <div class="smecph-opcion-mensaje">
@@ -15,10 +15,10 @@
           </div>
         </div>
         <div class="smecph-opcion-icono">
-          {% render 'icon-estado-on' %}
+          {% render 'icon-estado-off' %}
         </div>
       </div>
-      <div class="smecph-opcion-metodo">
+      <div id="phpc-metodo-domicilio" class="smecph-opcion-metodo">
         <div class="smecph-opcion-info">
           {% render 'icon-recogo-delivery' %}
           <div class="smecph-opcion-mensaje">
