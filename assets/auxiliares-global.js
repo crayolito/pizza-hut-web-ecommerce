@@ -1831,7 +1831,7 @@ class PageCheckoutPH extends HTMLElement {
   }
 
   seleccionarLocal(location) {
-    // Actualizar el input con el nombre del local seleccionado
+    // Actualizar el input con el nombre del local seleccionadoo
     this.inputSeleccionarLocal.value = location.name;
     
     // Ocultar sugerencias
