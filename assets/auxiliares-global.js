@@ -1833,7 +1833,7 @@ class PageCheckoutPH extends HTMLElement {
     this.inputSeleccionarLocal.value = location.name;
     
     // Ocultar sugerencias
-    this.contenedorReultadosBusquedaLocal.style.display = "none";
+    this.contenedorResultadosBuquedaLocal.style.display = "none";
     
     // Mostrar detalles del local seleccionado
     const detalleLocal = this.querySelector('.pcktph-seleccion-local-detalle');
