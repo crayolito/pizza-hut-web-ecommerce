@@ -566,6 +566,7 @@
         var auxProductoPreSeleccionado = productoRamaTrabajo.find((item) => item.idTrabajo == dataProducto.subProductoSeleccionado) || 
                                                                       productoRamaTrabajo.find((item) => parseInt(item.precio) == 0) ||
                                                                       productoRamaTrabajo[0];
+        this.productoSeleccionadoRamaPrincipal = auxProductoPreSeleccionado;
 
         detalleSubProductos += `
         <div
@@ -1259,6 +1260,9 @@
 
       // Hay que actualizar el valor de los botones inferiores
       this.actualizarEstadoBotonesInferiores();
+    }
+
+    predefinirItemSeleccionado(){
     }
 
     procesoItemSubRama(btnElemento){  
