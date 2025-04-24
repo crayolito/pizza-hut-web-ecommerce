@@ -855,8 +855,15 @@ class PageCarrito extends HTMLElement {
 
       infoCarrito.informacionCompleta.items.forEach((item) => {
         if(!(item.properties && item.properties.estructura)){
+          console.log("Testep Pruebas", {
+            "testeo 1": item.properties,
+            "testeo 2": item.properties?.estructura,
+            "testeo 3": item.properties?.estructura == null,
+            "testeo 4": item.properties?.estructura == undefined,
+            "testeo 5": item.properties?.properties?.estructura,
+          });
           return;
-        };
+        }
         
         const dataContruccion = JSON.parse(item.properties.estructura);
         precioTotal += parseFloat(dataContruccion.producto.precioTotalConjunto);
