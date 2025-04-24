@@ -808,7 +808,7 @@ class PageCarrito extends HTMLElement {
           console.log('Item sin estructura:', {
             "teste1" : item.properties,
             "teste2" : item.properties.estructura,
-            "teste3" : item.properties.proproperties.estructura,
+            "teste3" : item.properties.properties.estructura,
           });
           return;
         };
