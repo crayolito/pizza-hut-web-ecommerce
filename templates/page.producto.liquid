@@ -1762,23 +1762,6 @@
         });
       });
 
-      if(tipoProceso == 'hazunpedido'){
-        MensajeCargaDatos.mostrar('Procesando pedido ...');
-        await AuxiliaresGlobal.limpiarCarrito();
-        await AuxiliaresGlobal.agregarCarrito(parseInt(cantidadSolicitada),parseInt(data.producto.idShopify),{
-          properties: {"estructura": JSON.stringify(detalleProducto),}
-        });
-        MensajeCargaDatos.ocultar();
-        window.location.href = '/pages/carrito';
-      } 
-
-      if(tipoProceso == 'agregarcarrito'){
-        // Actualizar las etiquetas del HAAZ ME UN PEDIDO Y AGREGAR AL CARRIT
-        this.cantidadPrecioCarrito = this.cantidadPrecioCarrito + (this.cantidadPrecioHazUnPedido * cantidadSolicitada);
-        this.etiquetaAgregarCarrito.innerHTML = `Bs ${this.cantidadPrecioCarrito + (this.cantidadPrecioHazUnPedido * cantidadSolicitada) }`;
-        this.etiquetaHazUnPedido.innerHTML = `Bs ${(this.cantidadPrecioHazUnPedido * cantidadSolicitada)}`;
-      } 
-
       // Agregar al carrito de Shopifyy
       const detalleProducto = {
         producto: {
@@ -1802,6 +1785,25 @@
           productos: productosComple
         }
       };
+      
+
+      if(tipoProceso == 'hazunpedido'){
+        MensajeCargaDatos.mostrar('Procesando pedido ...');
+        await AuxiliaresGlobal.limpiarCarrito();
+        await AuxiliaresGlobal.agregarCarrito(parseInt(cantidadSolicitada),parseInt(data.producto.idShopify),{
+          properties: {"estructura": JSON.stringify(detalleProducto),}
+        });
+        MensajeCargaDatos.ocultar();
+        window.location.href = '/pages/carrito';
+      } 
+
+      if(tipoProceso == 'agregarcarrito'){
+        // Actualizar las etiquetas del HAAZ ME UN PEDIDO Y AGREGAR AL CARRIT
+        this.cantidadPrecioCarrito = this.cantidadPrecioCarrito + (this.cantidadPrecioHazUnPedido * cantidadSolicitada);
+        this.etiquetaAgregarCarrito.innerHTML = `Bs ${this.cantidadPrecioCarrito + (this.cantidadPrecioHazUnPedido * cantidadSolicitada) }`;
+        this.etiquetaHazUnPedido.innerHTML = `Bs ${(this.cantidadPrecioHazUnPedido * cantidadSolicitada)}`;
+      } 
+
 
       await AuxiliaresGlobal.agregarCarrito(parseInt(cantidadSolicitada),parseInt(data.producto.idShopify),{
         properties: {"estructura": JSON.stringify(detalleProducto),}
