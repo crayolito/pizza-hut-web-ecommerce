@@ -804,7 +804,7 @@ class PageCarrito extends HTMLElement {
         contenidoIzquierdoHTML += `
             <cantidad-input>
               <div
-                origen-trabajo="producto"
+                origen-trabajo="carrito"
                 min="1"
                 max="${this.obtenerStockGenericoTrabajo(dataContruccion.producto)}"
                 id="producto-id"
