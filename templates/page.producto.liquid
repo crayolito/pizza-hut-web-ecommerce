@@ -1763,8 +1763,13 @@
       });
 
       if(tipoProceso == 'hazunpedido'){
+        MensajeCargaDatos.mostrar('Procesando pedido ...');
+        await AuxiliaresGlobal.limpiarCarrito();
+        await AuxiliaresGlobal.agregarCarrito(parseInt(cantidadSolicitada),parseInt(data.producto.idShopify),{
+          properties: {"estructura": JSON.stringify(detalleProducto),}
+        });
+        MensajeCargaDatos.ocultar();
         window.location.href = '/pages/carrito';
-        {% comment %} await AuxiliaresGlobal.limpiarCarrito(); {% endcomment %}
       } 
 
       if(tipoProceso == 'agregarcarrito'){
