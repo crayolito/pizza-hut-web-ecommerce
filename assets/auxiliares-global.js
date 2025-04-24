@@ -118,54 +118,54 @@ class AuxiliaresGlobal {
   }
 
   /**
-  * Agrega productos al carrito y actualiza la visualización
-  * @param {number} valor - Cantidad de productos a agregar
-  * @param {number} variantId - ID de la variante del producto (opcional)
-  * @param {Object} opciones - Opciones adicionales para el producto (opcional)
-  */
-  static agregarCarrito(valor, variantId = null, opciones = {}) {
-    // Verificar que el valor sea un número válido mayor a 0
-    if (typeof valor === 'number' && valor > 0) {
-      // Si se proporciona un variantId, agregar al carrito de Shopify
-      if (variantId) {
-        // Datos para enviar a la API de Shopify
-        const datos = {
-          items: [{
-            id: variantId,
-            quantity: valor,
-            ...opciones // Propiedades adicionales (como propiedades de línea)
-          }]
-        };
-        
-        // Realizar la petición para añadir al carrito
-        fetch('/cart/add.js', {
+   * Actualiza un ítem en el carrito
+   * @param {string} key - Key del ítem a eliminar
+   * @param {number} variante - ID de la variante para el nuevo ítem
+   * @param {number} cantidad - Cantidad del nuevo ítem
+   * @param {Object} propiedades - Propiedades del nuevo ítem
+   * @returns {Promise} - Carrito actualizado
+   */
+  static actualizarItemCarrito(key, variante, cantidad, propiedades = {}) {
+    return new Promise((resolve, reject) => {
+      // Eliminar el ítem actual usando su key
+      fetch('/cart/change.js', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: key, quantity: 0 })
+      })
+      .then(response => response.json())
+      .then(() => {
+        // Agregar el nuevo ítem con la variante, cantidad y propiedades
+        return fetch('/cart/add.js', {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(datos)
-        })
-        .then(response => response.json())
-        .then(data => {
-          // Actualizar el contador visual
-          this.actualizarContadorVisual(valor);
-          
-          // Disparar evento personalizado
-          document.dispatchEvent(new CustomEvent('product:added-to-cart', { 
-            detail: { product: data }
-          }));
-          
-          console.log('Producto agregado al carrito:', data);
-        })
-        .catch(error => {
-          console.error('Error al agregar al carrito:', error);
-          this.mensajeError('No se pudo agregar el producto al carrito');
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            items: [{
+              id: variante,
+              quantity: cantidad,
+              properties: propiedades
+            }]
+          })
         });
-      } else {
-        // Si no hay variantId, solo actualizar el contador visual
-        this.actualizarContadorVisual(valor);
-      }
-    }
+      })
+      .then(response => response.json())
+      .then(() => {
+        // Obtener carrito actualizado
+        return fetch('/cart.js');
+      })
+      .then(response => response.json())
+      .then(carrito => {
+        // Sincronizar el contador con el carrito actualizado
+        this.sincronizarContadorConCarrito(carrito);
+        
+        // Devolver el carrito actualizado
+        resolve(carrito);
+      })
+      .catch(error => {
+        console.error('Error al actualizar ítem:', error);
+        reject(error);
+      });
+    });
   }
   
   /**
@@ -212,7 +212,7 @@ class AuxiliaresGlobal {
   
   /**
    * Actualiza todos los componentes CarritoShopify en la página
-    */
+  */
   static actualizarComponentesCarrito() {
     // Si existe el método estático en CarritoShopify, usarlo
     if (typeof CarritoShopify !== 'undefined' && 
@@ -294,8 +294,8 @@ class AuxiliaresGlobal {
         this.sincronizarContadorConCarrito(cart);
         
         // Mostrar mensaje de éxito
-        const mensaje = quantity === 0 ? 'Producto eliminado del carrito' : 'Carrito actualizado';
-        this.mensajeInfo(mensaje);
+        // const mensaje = quantity === 0 ? 'Producto eliminado del carrito' : 'Carrito actualizado';
+        // this.mensajeInfo(mensaje);
         
         // Disparar evento personalizado
         document.dispatchEvent(new CustomEvent('cart:updated', {
@@ -777,6 +777,7 @@ customElements.define('mensaje-carga-datos', MensajeCargaDatos);
 class PageCarrito extends HTMLElement {
   constructor() {
     super();
+    this.dataCarrito = null;
   }
 
   connectedCallback() {
@@ -793,8 +794,8 @@ class PageCarrito extends HTMLElement {
       MensajeCargaDatos.mostrar('Cargando información del carrito...');
 
       const infoCarrito = await AuxiliaresGlobal.obtenerCarritoShopify();
+      this.dataCarrito = infoCarrito.informacionCompleta;
       console.log('Información completa:', infoCarrito.informacionCompleta);
-      console.log('Cantidad total:', infoCarrito.cantidadTotal);
 
       let contenidoIzquierdoHTML = '';
       let precioTotal = 0;
@@ -980,9 +981,53 @@ class PageCarrito extends HTMLElement {
 
   }
 
-  async crearSecciondeAcompanamiento() {}
+  async crearSecciondeAcompanamiento() {
+  }
 
-  actualizarProductoCarrito(btnElemento){}
+  async actualizarProductoCarrito(btnElemento){
+    const contenedorPadre = btnElemento.closest('.pcph-item-carrito');
+    const keyCarrito = contenedorPadre.dataset.keycarrito;
+    const cantidadElemento = parseInt(contenedorPadre.querySelector('#phpp-cantidad-general').textContent);
+
+    const itemCarrito = this.dataCarrito.items.find(item => item.key === keyCarrito);
+
+    const informacionCompleta = JSON.parse(itemCarrito.properties.estructura);
+    console.log('Información completa del item:', informacionCompleta);
+
+    // Verificar si el botón es de incrementar o decrementar
+    // const accionBtn = btnElemento.getAttribute('accion');
+
+    // if(accionBtn == "decrementar" && cantidadElemento ==1){
+    //   // Se procede a eliminar del carrito
+    //   MensajeCargaDatos.mostrar('Eliminando producto del carrito...');
+    //   await AuxiliaresGlobal.eliminarItemCarritoPorKey(keyCarrito, 0);
+    //   MensajeCargaDatos.ocultar();
+    // }
+
+    // if(accionBtn == "decrementar"){
+    //   // Se procede a decrementar la cantidad
+    //   MensajeCargaDatos.mostrar('Actualizando producto en el carrito...');
+
+
+    //   await AuxiliaresGlobal.actualizarCantidadItemPorKey(keyCarrito,itemCarrito.id, cantidadElemento - 1,{
+    //     "estructura": JSON.stringify(informacionCompleta)
+    //   };
+    //   MensajeCargaDatos.ocultar();
+    // }
+
+    // if(accionBtn == "incrementar"){
+    //   // Se procede a incrementar la cantidad
+    //   MensajeCargaDatos.mostrar('Actualizando producto en el carrito...');
+    //   await AuxiliaresGlobal.actualizarCantidadItemPorKey(keyCarrito, cantidadElemento + 1);
+    //   MensajeCargaDatos.ocultar();
+    // }
+
+    // await this.actualizarSoloContenidoCarrito();
+  }
+
+  async actualizarSoloContenidoCarrito(){
+    this.declararComponentesDespuesCreacion();
+  }
 
   procedoEditarItem(btnElemento) {}
 
