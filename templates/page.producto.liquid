@@ -1759,18 +1759,18 @@
       });
 
       if(tipoProceso == 'hazunpedido'){
-        {% comment %} window.location.href = '/pages/carrito'; {% endcomment %}
-        await AuxiliaresGlobal.limpiarCarrito();
+        window.location.href = '/pages/carrito';
+        {% comment %} await AuxiliaresGlobal.limpiarCarrito(); {% endcomment %}
       } 
 
       if(tipoProceso == 'agregarcarrito'){
         // Actualizar las etiquetas del HAZ ME UN PEDIDO Y AGREGAR AL CARRIT
-        {% comment %} this.cantidadPrecioCarrito = this.cantidadPrecioCarrito + (this.cantidadPrecioHazUnPedido * cantidadSolicitada);
+        this.cantidadPrecioCarrito = this.cantidadPrecioCarrito + (this.cantidadPrecioHazUnPedido * cantidadSolicitada);
         this.etiquetaAgregarCarrito.innerHTML = `Bs ${this.cantidadPrecioCarrito + (this.cantidadPrecioHazUnPedido * cantidadSolicitada) }`;
-        this.etiquetaHazUnPedido.innerHTML = `Bs ${(this.cantidadPrecioHazUnPedido * cantidadSolicitada)}`; {% endcomment %}
+        this.etiquetaHazUnPedido.innerHTML = `Bs ${(this.cantidadPrecioHazUnPedido * cantidadSolicitada)}`;
       } 
 
-      {% comment %} // Agregar al carrito de Shopify
+      // Agregar al carrito de Shopify
       const detalleProducto = {
         producto: {
           idShopify: data.producto.idShopify,
@@ -1796,7 +1796,7 @@
 
       await AuxiliaresGlobal.agregarCarrito(parseInt(cantidadSolicitada),parseInt(data.producto.idShopify),{
         properties: {"estructura": JSON.stringify(detalleProducto),}
-      });  {% endcomment %}
+      }); 
 
       {% comment %} AuxiliaresGlobal.limpiarCarrito(); {% endcomment %}
 
