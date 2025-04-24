@@ -704,6 +704,7 @@ class PageCarrito extends HTMLElement {
     this.contenedorItemsDetalle = this.querySelector('.pcph-items-carrito');
     this.contenedorDerecho = this.querySelector('.pcph-carrito-derecho');
     this.btnPagar.addEventListener('click', () => this.pagarBtnPrincipal());
+    this.inicializarDataShopify();
   }
 
   async inicializarDataShopify() {
@@ -865,19 +866,23 @@ class PageCarrito extends HTMLElement {
     this.contenedorDerecho.insertAdjacentHTML('afterbegin', contenidoDerechoHTML);
     
     this.declararComponentesDespuesCreacion();
-    
+  }
+
+  declararComponentesDespuesCreacion() {
+    // DECLARAR ELEMENTOS
     this.btnsEditar = this.querySelectorAll('.pcph-itemc_editar');
+    this.btnsCantidadDecrementar = this.querySelectorAll('.pmph-cantidad-selector-button'); 
+
+    // INICIALIZAR EVENTOS
     this.btnsEditar.forEach((btn) => {
       btn.addEventListener('click', this.procedoEditarItem.bind(this, btn));
     }); 
-    this.btnsCantidadDecrementar = this.querySelectorAll('.pmph-cantidad-selector-button'); 
     this.btnsCantidadDecrementar.forEach((btn) => {
       btn.addEventListener('click', this.actualizarProductoCarrito.bind(this, btn));
     });
+    // INICIALIZAR ELEMENTOS Y CARGA DE DATOS
 
   }
-
-  declararComponentesDespuesCreacion() {}
 
   actualizarProductoCarrito(btnElemento){}
 
