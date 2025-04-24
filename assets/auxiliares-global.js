@@ -1282,27 +1282,33 @@ class PageCarrito extends HTMLElement {
       MensajeCargaDatos.mostrar('Eliminando producto del carrito...');
       await AuxiliaresGlobal.eliminarItemCarritoPorKey(keyCarrito, 0);
     }else{
-      let cantidadProductoBaseNuevo = parseInt(informacionCompleta.producto.precioProducto) * cantidadElemento;
-      let cantidadProductoBaseAntiguo = parseInt(informacionCompleta.producto.precioProducto) * parseInt(informacionCompleta.producto.cantidad);
-      let cantidadPrecioTotalAntiguo = parseFloat(informacionCompleta.producto.precioTotalConjunto);
-      let cantidadOpcionesPrincipalesAntiguo = 0; 
-      let cantidadOpcionesPrincipalesNueva = 0;
-      informacionCompleta.opcionesPrincipales.productos.forEach((producto) => {
-        cantidadOpcionesPrincipalesNueva  += (cantidadElemento * parseInt(producto.precio));
-        cantidadOpcionesPrincipalesAntiguo += (producto.cantidad * parseInt(producto.precio));
-      });
-      let cantidadSolamenteComplementosAntiguo = cantidadPrecioTotalAntiguo - cantidadOpcionesPrincipalesAntiguo - cantidadProductoBaseAntiguo;
-      informacionCompleta.producto.precioTotalConjunto = cantidadOpcionesPrincipalesNueva + cantidadSolamenteComplementosAntiguo + cantidadProductoBaseNuevo;
+      if(informacionCompleta.opcionesPrincipales == [] && informacionCompleta.complementos == []){
+        informacionCompleta.producto.precioTotalConjunto = informacionCompleta.producto.precio * cantidadElemento;
+      }else {
+        let cantidadProductoBaseNuevo = parseInt(informacionCompleta.producto.precioProducto) * cantidadElemento;
+        let cantidadProductoBaseAntiguo = parseInt(informacionCompleta.producto.precioProducto) * parseInt(informacionCompleta.producto.cantidad);
+        let cantidadPrecioTotalAntiguo = parseFloat(informacionCompleta.producto.precioTotalConjunto);
+        let cantidadOpcionesPrincipalesAntiguo = 0; 
+        let cantidadOpcionesPrincipalesNueva = 0;
+        informacionCompleta.opcionesPrincipales.productos.forEach((producto) => {
+          cantidadOpcionesPrincipalesNueva  += (cantidadElemento * parseInt(producto.precio));
+          cantidadOpcionesPrincipalesAntiguo += (producto.cantidad * parseInt(producto.precio));
+        });
+        let cantidadSolamenteComplementosAntiguo = cantidadPrecioTotalAntiguo - cantidadOpcionesPrincipalesAntiguo - cantidadProductoBaseAntiguo;
+        informacionCompleta.producto.precioTotalConjunto = cantidadOpcionesPrincipalesNueva + cantidadSolamenteComplementosAntiguo + cantidadProductoBaseNuevo;
+  
+        console.log("Testeo completo :",{
+          "cantidadPrecioTotalAntiguo": cantidadPrecioTotalAntiguo,
+          "cantidadOpcionesPrincipalesAntiguo": cantidadOpcionesPrincipalesAntiguo,
+          "cantidadOpcionesPrincipalesNueva": cantidadOpcionesPrincipalesNueva,
+          "cantidadSolamenteComplementosAntiguo": cantidadSolamenteComplementosAntiguo,
+          "cantidadProductoBaseNuevo": cantidadProductoBaseNuevo,
+          "cantidadProductoBaseAntiguo": cantidadProductoBaseAntiguo,
+          "total nuevo : ": informacionCompleta.producto.precioTotalConjunto
+        })
+      }
 
-      console.log("Testeo completo :",{
-        "cantidadPrecioTotalAntiguo": cantidadPrecioTotalAntiguo,
-        "cantidadOpcionesPrincipalesAntiguo": cantidadOpcionesPrincipalesAntiguo,
-        "cantidadOpcionesPrincipalesNueva": cantidadOpcionesPrincipalesNueva,
-        "cantidadSolamenteComplementosAntiguo": cantidadSolamenteComplementosAntiguo,
-        "cantidadProductoBaseNuevo": cantidadProductoBaseNuevo,
-        "cantidadProductoBaseAntiguo": cantidadProductoBaseAntiguo,
-        "total nuevo : ": informacionCompleta.producto.precioTotalConjunto
-      })
+
   
       if(accionBtn == "decrementar"){
         // Se procede a decrementar la cantidad
