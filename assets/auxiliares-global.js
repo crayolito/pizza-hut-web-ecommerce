@@ -1648,7 +1648,7 @@ class PageCheckoutPH extends HTMLElement {
 
 
     this.infoCarrito = await AuxiliaresGlobal.obtenerCarritoShopify();
-    MensajeCargaDatos.oculta();
+    MensajeCargaDatos.ocultar();
   }
 
 }
