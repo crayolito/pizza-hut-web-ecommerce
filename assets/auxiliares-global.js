@@ -1526,8 +1526,13 @@ class PageCarrito extends HTMLElement {
       "estructura": JSON.stringify(detalleProducto)
     });
 
-    await this.actualizarSoloContenidoCarrito();
-    MensajeCargaDatos.ocultar();
+    // Hacer un setTiempo de 3 segundos
+    setTimeout(async() => {
+      await this.actualizarSoloContenidoCarrito();
+      MensajeCargaDatos.ocultar();
+    }, 3000);
+
+    // MensajeCargaDatos.ocultar();
   }
 
   async pagarBtnPrincipal() {
