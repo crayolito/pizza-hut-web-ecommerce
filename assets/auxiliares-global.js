@@ -789,6 +789,9 @@ class PageCarrito extends HTMLElement {
 
   async inicializarDataShopify() {
     try {
+      // Mostrar mensaje de carga al iniciar
+      MensajeCargaDatos.mostrar('Cargando información del carrito...');
+
       const infoCarrito = await AuxiliaresGlobal.obtenerCarritoShopify();
       console.log('Información completa:', infoCarrito.informacionCompleta);
       console.log('Cantidad total:', infoCarrito.cantidadTotal);
@@ -950,6 +953,10 @@ class PageCarrito extends HTMLElement {
       this.contenedorDerecho.insertAdjacentHTML('afterbegin', contenidoDerechoHTML);
       
       this.declararComponentesDespuesCreacion();
+
+      // Actualizar mensaje mientras se procesa la información
+      // MensajeCargaDatos.mostrar('Procesando items del carrito...');
+      MensajeCargaDatos.ocultar();
     } catch (error) {
       console.error('Hubo un error:', error);
     }
