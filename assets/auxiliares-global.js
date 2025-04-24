@@ -1062,7 +1062,7 @@ class PageCarrito extends HTMLElement {
         cantidadOpcionesPrincipalesAntiguo += (producto.cantidad * parseInt(producto.precio));
       });
       let cantidadSolamenteComplementosAntiguo = cantidadPrecioTotalAntiguo - cantidadOpcionesPrincipalesAntiguo;
-      informacionCompleta.producto.precioTotalConjunto = cantidadOpcionesPrincipalesNueva + cantidadSolamenteComplementosAntiguo + (parseInt(informacionCompleta.producto.precio) * cantidadElemento);
+      informacionCompleta.producto.precioTotalConjunto = cantidadOpcionesPrincipalesNueva + cantidadSolamenteComplementosAntiguo + (parseInt(informacionCompleta.producto.precioProducto) * cantidadElemento);
 
       console.log("Testeo completo :",{
         "cantidadPrecioTotalAntiguo": cantidadPrecioTotalAntiguo,
@@ -1070,7 +1070,7 @@ class PageCarrito extends HTMLElement {
         "cantidadOpcionesPrincipalesNueva": cantidadOpcionesPrincipalesNueva,
         "cantidadSolamenteComplementosAntiguo": cantidadSolamenteComplementosAntiguo,
         "cantidadElemento": cantidadElemento,
-        "productp Base" : parseInt(informacionCompleta.producto.precio) * cantidadElemento,
+        "productp Base" : parseInt(informacionCompleta.producto.precioProducto) * cantidadElemento,
 
       })
 
