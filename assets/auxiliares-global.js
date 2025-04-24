@@ -1499,7 +1499,7 @@ class PageCarrito extends HTMLElement {
         precio: parseInt(productoTrabajo.estructura.precio),
         imagen: productoTrabajo.imagen,
         cantidad: 1,
-        sucursal: productoTrabajo.sucursal,
+        sucursales: productoTrabajo.sucursales,
         stockTotal : parseInt(productoTrabajo.stockTotal),
         precioTotalConjunto: parseInt(productoTrabajo.estructura.precio) * 1,
       },
