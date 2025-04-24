@@ -366,6 +366,9 @@
        */
     {% endstyle %}
 
+    <!-- Hojas de estilos css -->
+    {{ 'estilos-generales.css' | asset_url | stylesheet_tag }}
+
     <script>
       // Verificar si la URL actual contiene /pages/perfil
       if (window.location.pathname.includes('/pages/perfil')) {
@@ -389,9 +392,6 @@
     <!-- Hojas de estilos js -->
     <script src="{{ 'cambios-estandar.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'auxiliares-global.js' | asset_url }}" defer="defer"></script>
-
-    <!-- Hojas de estilos css -->
-    {{ 'estilos-generales.css' | asset_url | stylesheet_tag }}
 
     <script
       defer
