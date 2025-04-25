@@ -2052,7 +2052,7 @@ class PageCheckoutPH extends HTMLElement {
         
         // Crear elemento para la dirección
         const direccionIndicacion = document.createElement('p');
-        direccionIndicacion.textContent = location.indicaciones;
+        direccionIndicacion.textContent = direccion.indicaciones;
         
         // Añadir elementos al item
         resultadoItem.appendChild(nombreAlias);
