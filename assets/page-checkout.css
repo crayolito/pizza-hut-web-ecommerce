@@ -114,6 +114,16 @@ input[type="number"] {
   z-index: 2;
 }
 
+.smecph-pc-resultados-input > *:not(:last-child) {
+  padding-bottom: var(--espaciado-m);
+  border-bottom: 1px solid #f1f1f1;
+}
+
+.smecph-pc-resultados-input putl > :last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
 .smecph-pc-resultado-item {
   width: 100%;
   flex-direction: column;
