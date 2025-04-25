@@ -1708,6 +1708,8 @@ class PageCheckoutPH extends HTMLElement {
     this.modalContenidoF3NuevaDireccion = this.querySelector('#phpc-modal-nd-fase3');
     this.etiquetaBtnModalNuevaDireccion = this.querySelector('#phpc-etiqueta-btn-acciones');
     this.footerModalNuevaDireccion = this.querySelector('#phpc-modal-footer-nd');
+    this.btnProcesoPrincipalNd = this.querySelector('#phpc-btn-proceso-principal-nd');
+    this.btnCancelarNd  = this.querySelector('#phpc-btn-cancelar-nd');
 
     this.contenedorBaseModal = this.querySelector('.ph-background-container-modal');
     this.btnsSeleccionMetodoEntrega = this.querySelectorAll('.smecph-opcion-metodo');
