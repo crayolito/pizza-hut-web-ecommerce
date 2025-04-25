@@ -1728,7 +1728,7 @@ class PageCheckoutPH extends HTMLElement {
     this.btnCerrarModalNuevaDireccion.addEventListener('click', this.cerrarModalNuevaDireccion.bind(this));
     this.btnVolverAtrasNuevaDireccion.addEventListener('click', this.procesoVolverAtrasNuevaDireccion.bind(this));
     this.btnMiUbicacionActualF1.addEventListener('click', this.procesoMiUbicacionActualF1.bind(this));
-    // INICIALIZAR ELEMENTOS Y PROCESOS BASICOS
+    // INICIALIZAR ELEMENTOS Y PROCESOS BASICOSS
 
     // local y domicilio
     this.estadoPagina = localStorage.getItem('ph-metodo-entrega');
