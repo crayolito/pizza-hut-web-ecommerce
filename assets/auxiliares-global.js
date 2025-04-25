@@ -1287,7 +1287,7 @@ class PageCarrito extends HTMLElement {
       MensajeCargaDatos.mostrar('Eliminando producto del carrito...');
       await AuxiliaresGlobal.eliminarItemCarritoPorKey(keyCarrito, 0);
     }else{
-      accionBtn == "incrementar" ? cantidadElemento++ : cantidadElemento--;
+      // accionBtn == "incrementar" ? cantidadElemento++ : cantidadElemento--;
 
       if(informacionCompleta.opcionesPrincipales.productos.length == 0 && informacionCompleta.complementos.productos.length == 0){
         informacionCompleta.producto.precioTotalConjunto = informacionCompleta.producto.precio * cantidadElemento;
