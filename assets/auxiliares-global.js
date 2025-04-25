@@ -1289,7 +1289,7 @@ class PageCarrito extends HTMLElement {
     }else{
       // accionBtn == "incrementar" ? cantidadElemento++ : cantidadElemento--;
       var cantidadAntiguaTrabajo = accionBtn == "incrementar" ? cantidadElemento - 1 : cantidadElemento + 1;
-      var cantidadNuevaTrabajo = parseInt(informacionCompleta.producto.cantidad);
+      var cantidadNuevaTrabajo = cantidadElemento;
 
       if(informacionCompleta.opcionesPrincipales.productos.length == 0 && informacionCompleta.complementos.productos.length == 0){
         console.log("Testeo de cantidadElemento", cantidadElemento);
