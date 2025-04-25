@@ -124,6 +124,27 @@ input[type="number"] {
   border-bottom: 0;
 }
 
+.phpc-input-simulacion {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espaciado-xs);
+}
+
+.phpc-info-input {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  gap: var(--espaciado-xs);
+}
+
+.phpc-info-input > p:first-of-type {
+  font-weight: 600;
+}
+
 .smecph-pc-resultado-item {
   width: 100%;
   flex-direction: column;

@@ -382,20 +382,6 @@ carrito-shopify {
   cursor: pointer;
 }
 
-.ph-container-input-especial > *:not(:last-child),
-.ph-container-inputl > *:not(:last-child) {
-  padding-bottom: var(--espaciado-m);
-  border-bottom: 1px solid #f1f1f1;
-}
-
-.ph-container-input-especial > :last-child,
-.ph-container-inputl > :last-child {
-  padding-bottom: var(--espaciado-m);
-  border-bottom: 1px solid #f1f1f1;
-  padding-bottom: 0;
-  border-bottom: 0;
-}
-
 .ph-container-mensaje {
   display: flex;
   justify-content: center;

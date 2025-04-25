@@ -70,18 +70,26 @@
             class="smecph-pc-resultados-input"
             style="display: none;"
           ></div>
-          <input
-            id="phpc-input-seleccionar-direccion"
-            type="text"
-            placeholder="Direcciones"
-            autocomplete="off"
-            autocorrect="off"
-            autocapitalize="off"
-            spellcheck="false"
-          >
-          <button id="phpc-btn-ver-direcciones-todas" class="smecph-pc-input-icono">
-            {% render 'icon-flecha-abajo' %}
-          </button>
+          <div class="phpc-input-simulacion">
+            <div class="phpc-info-input">
+              <p>Casa del Abuelo</p>
+              <p>Santa Cruz, Ficct 1 Nacional Florida, Bolivia</p>
+            </div>
+            {% comment %}
+              <input
+                id="phpc-input-seleccionar-direccion"
+                type="text"
+                placeholder="Direcciones"
+                autocomplete="off"
+                autocorrect="off"
+                autocapitalize="off"
+                spellcheck="false"
+              >
+            {% endcomment %}
+            <button id="phpc-btn-ver-direcciones-todas" class="smecph-pc-input-icono">
+              {% render 'icon-flecha-abajo' %}
+            </button>
+          </div>
         </div>
       </div>
       <button id="phpc-btn-anadir-nueva-direccion" class="pcktpch-btn-secundario icon-color-primary">
