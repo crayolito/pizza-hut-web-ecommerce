@@ -1699,6 +1699,7 @@ class PageCheckoutPH extends HTMLElement {
     this.contenedorResultadosBuquedaLocal = this.querySelector('#phpc-resultados-seleccion-local');
     this.btnIconoMostrarTodosLocales = this.querySelector('#phpc-mostrar-todos-locales');
 
+    this.contenedorModalMapaNuevaDireccion = this.querySelector('#phpc-modal-nd-mapa');
     this.btnAnadirNuevaDireccion = this.querySelector('#phpc-btn-anadir-nueva-direccion');
     this.btnVolverAtrasNuevaDireccion = this.querySelector('#phpc-btn-modal-volver-atras');
     this.contenedorResultadosBusquedaDireccion = this.querySelector('#phpc-resultados-seleccion-direccion-envio');
@@ -2078,6 +2079,8 @@ class PageCheckoutPH extends HTMLElement {
 
     // Actualizar el input con el nombre del direccion seleccionadoo
     this.inputSeleccionarDireccion.value = direccion.alias;
+
+    this.coordenadas = { lat: direccion.lat, lng: direccion.lng };
     
     // Ocultar sugerencias
     this.contenedorResultadosBusquedaDireccion.style.display = "none";
@@ -2288,15 +2291,121 @@ class PageCheckoutPH extends HTMLElement {
     }
   }
 
-  procesoMiUbicacionActualF1(){
+  procesoMiUbicacionActualF1() {
     this.estadoFaseNuevaDireccion = 2;
     this.modalContenidoF1NuevaDireccion.style.display = 'none';
     this.modalContenidoF2NuevaDireccion.style.display = 'flex';
     this.footerModalNuevaDireccion.style.display = 'flex';
     this.etiquetaBtnModalNuevaDireccion.textContent = "Confirmar dirección";
 
-    // Procede a generar el mapa en el contenedor
-  }
+    // Inicializar el mapa en el contenedor
+    const map = new google.maps.Map(this.contenedorModalMapaNuevaDireccion, {
+        zoom: 15,
+        center: this.coordenadas, // Usa las coordenadas por defecto inicialmente
+        mapTypeControl: false,
+        streetViewControl: false,
+        fullscreenControl: false,
+        zoomControl: true
+    });
+    
+    // Activar el botón de "Mi ubicación" y el "blue dot" nativos
+    // Esta es la manera correcta de activar estas funciones en Google Maps
+    map.setMyLocationEnabled(true);
+    map.setLocationSource(google.maps.LocationSource.DEVICE_LOCATION);
+    map.getUiSettings().setMyLocationButtonEnabled(true);
+
+    // Crear marcador movible
+    const marker = new google.maps.Marker({
+        position: this.coordenadas,
+        map: map,
+        draggable: true,
+        animation: google.maps.Animation.DROP,
+        title: 'Tu ubicación'
+    });
+
+    // Actualizar this.coordenadas cuando el marcador se mueve
+    google.maps.event.addListener(marker, 'dragend', (event) => {
+        this.coordenadas = {
+            lat: event.latLng.lat(),
+            lng: event.latLng.lng()
+        };
+        console.log('Nueva ubicación:', this.coordenadas);
+    });
+
+    // Intentar obtener la ubicación actual del usuario
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            // Éxito al obtener la ubicación
+            (position) => {
+                const userLocation = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+                
+                // Actualizar coordenadas
+                this.coordenadas = userLocation;
+                
+                // Centrar el mapa en la ubicación del usuario
+                map.setCenter(userLocation);
+                marker.setPosition(userLocation);
+                
+                console.log('GPS activado, ubicación obtenida:', userLocation);
+            },
+            // Error al obtener la ubicación
+            (error) => {
+                console.warn('Error al obtener la ubicación:', error.message);
+                // Usar las coordenadas por defecto (this.coordenadas ya está configurado)
+                alert('No se pudo acceder a tu ubicación. Utilizando ubicación predeterminada.');
+            },
+            // Opciones
+            {
+                enableHighAccuracy: true,
+                timeout: 5000,
+                maximumAge: 0
+            }
+        );
+    } else {
+        console.warn('Geolocalización no soportada por este navegador');
+        alert('Tu navegador no soporta geolocalización. Utilizando ubicación predeterminada.');
+    }
+
+    // Intentar obtener la ubicación actual del usuario
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            // Éxito al obtener la ubicación
+            (position) => {
+                const userLocation = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+                
+                // Actualizar coordenadas
+                this.coordenadas = userLocation;
+                
+                // Centrar el mapa en la ubicación del usuario
+                map.setCenter(userLocation);
+                marker.setPosition(userLocation);
+                
+                console.log('GPS activado, ubicación obtenida:', userLocation);
+            },
+            // Error al obtener la ubicación
+            (error) => {
+                console.warn('Error al obtener la ubicación:', error.message);
+                // Usar las coordenadas por defecto (this.coordenadas ya está configurado)
+                alert('No se pudo acceder a tu ubicación. Utilizando ubicación predeterminada.');
+            },
+            // Opciones
+            {
+                enableHighAccuracy: true,
+                timeout: 5000,
+                maximumAge: 0
+            }
+        );
+    } else {
+        console.warn('Geolocalización no soportada por este navegador');
+        alert('Tu navegador no soporta geolocalización. Utilizando ubicación predeterminada.');
+    }
+}
 
   procesoPrincipalNuevaDireccion(){
     if(this.estadoFaseNuevaDireccion == 2){
