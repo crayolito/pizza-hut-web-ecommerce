@@ -2022,7 +2022,7 @@ class PageCheckoutPH extends HTMLElement {
         document.addEventListener('click', (e) => {
           if (!this.inputSeleccionarDireccion.contains(e.target) && 
               !this.contenedorResultadosBusquedaDireccion.contains(e.target) &&
-              !this.btnVerTodasDirecciones.contains(e.target)) {
+              !this.contenedorDireccionEnvioSeleccionado.contains(e.target)) {
             this.contenedorResultadosBusquedaDireccion.style.display = 'none';
           }
         });
