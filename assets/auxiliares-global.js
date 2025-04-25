@@ -1653,6 +1653,7 @@ class PageCheckoutPH extends HTMLElement {
     //   "alias" : "Este es el que se vera primero si o si",
     // }
 
+    this.estadoFaseNuevaDireccion = 1;
     this.listaDireccionPrueba = [
       {
         "lat" : -17.783315017953004,
@@ -1698,6 +1699,9 @@ class PageCheckoutPH extends HTMLElement {
 
     this.btnAnadirNuevaDireccion = this.querySelector('#phpc-btn-anadir-nueva-direccion');
     this.modalBodyNuevaDireccion = this.querySelector('#phpc-modal-body-nueva-direccion');
+    this.modalContenidoF1NuevaDireccion = this.querySelector('#phpc-modal-nd-fase1');
+    this.modalContenidoF2NuevaDireccion = this.querySelector('#phpc-modal-nd-fase2');
+    this.modalContenidoF3NuevaDireccion = this.querySelector('#phpc-modal-nd-fase3');
 
     this.contenedorBaseModal = this.querySelector('.ph-background-container-modal');
     this.btnsSeleccionMetodoEntrega = this.querySelectorAll('.smecph-opcion-metodo');
@@ -2089,7 +2093,8 @@ class PageCheckoutPH extends HTMLElement {
   procesoParaAnadirNuevaDireccion(){
     this.contenedorBaseModal.style.display = 'flex';
     this.modalBodyNuevaDireccion.style.display = 'flex';
-    
+    this.estadoFaseNuevaDireccion = 1;
+    this.modalContenidoF1NuevaDireccion.style.display = 'flex';
   }
 }
 

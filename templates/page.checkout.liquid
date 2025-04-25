@@ -434,7 +434,7 @@
             {% render 'icon-close-custom' %}
           </button>
         </div>
-        <div class="pcktpch-modal-body-fase1">
+        <div id="phpc-modal-nd-fase1" class="pcktpch-modal-body-fase1" style="display: none;">
           <p>Ingresa tu dirección o usa tu ubicación actual.</p>
           <button class="pcktpch-btn-secundario">
             {% render 'icon-gps-rojo' %}
@@ -450,14 +450,14 @@
             <input type="text" placeholder="Ingresar dirección o punto de referencia">
           </div>
         </div>
-        <div class="pcktpch-modal-body-fase2">
+        <div id="phpc-modal-nd-fase2" class="pcktpch-modal-body-fase2" style="display: none;">
           <div class="smecph-mensaje-informacion">
             {% render 'icon-info' %}
             <p>Si es necesario, cambia la ubicación del pin en el mapa.</p>
           </div>
           <div class="pcktpch-modal-mapa"></div>
         </div>
-        <div class="pcktpch-modal-body-fase3">
+        <div id="phpc-modal-nd-fase3" class="pcktpch-modal-body-fase3" style="display: none;">
           <div class="smecph-pc-info-input">
             <p>Indicaciones acerca de tu dirección</p>
             <div class="ph-container-input">
