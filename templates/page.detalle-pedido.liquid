@@ -201,8 +201,9 @@
     }
 
     inicializarDataLocalStorage() {
-      {% comment %} const estadoDetallePedido = localStorage.getItem('ph-estadoDP'); {% endcomment %}
-      const estadoDetallePedido = "etapa-1";
+      localStorage.setItem('ph-estadoDP', 'etapa-1');
+      const estadoDetallePedido = localStorage.getItem('ph-estadoDP');
+      {% comment %} const estadoDetallePedido = "etapa-1"; {% endcomment %}
 
       const origenHistorial = localStorage.getItem('ph-origenHistorial');
       
