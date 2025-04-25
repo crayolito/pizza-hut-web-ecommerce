@@ -2421,7 +2421,7 @@ class PageCheckoutPH extends HTMLElement {
       this.footerModalNuevaDireccion.style.display = 'flex';
       this.etiquetaBtnModalNuevaDireccion.textContent = "GUARDAR DIRECCION";
       this.btnProcesoPrincipalNd.classList.add('desactivado');
-      
+      return;
     }
 
     if(this.estadoFaseNuevaDireccion == 3){
@@ -2437,6 +2437,7 @@ class PageCheckoutPH extends HTMLElement {
         this.contenedorBaseModal.style.display = 'none';
         this.modalBodyNuevaDireccion.style.display = 'none';
       }, 3000);
+      return;
     }
   }
 }
