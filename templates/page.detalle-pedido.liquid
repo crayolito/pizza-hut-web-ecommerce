@@ -201,12 +201,15 @@
     }
 
     inicializarDataLocalStorage() {
-      const estadoDetallePedido = localStorage.getItem('ph-estadoDP');
-      const origenHistorial = localStorage.getItem('ph-origenHistorial');
+      {% comment %} const estadoDetallePedido = localStorage.getItem('ph-estadoDP'); {% endcomment %}
+      const estadoDetallePedido = "etapa-1";
 
-      if (estadoDetallePedido == null) {
+      const origenHistorial = localStorage.getItem('ph-origenHistorial');
+      
+
+      {% comment %} if (estadoDetallePedido == null) {
         window.location.href = '/';
-      }
+      } {% endcomment %}
 
       if (estadoDetallePedido == 'etapa-1') {
         this.detallaPedidof1.style.display = 'flex';
