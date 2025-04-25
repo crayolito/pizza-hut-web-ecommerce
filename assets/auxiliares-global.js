@@ -1703,6 +1703,7 @@ class PageCheckoutPH extends HTMLElement {
     this.btnCerrarModalNuevaDireccion = this.querySelector('#phpc-btn-cerrar-modal-nuevadireccion');
     this.modalBodyNuevaDireccion = this.querySelector('#phpc-modal-body-nueva-direccion');
     this.modalContenidoF1NuevaDireccion = this.querySelector('#phpc-modal-nd-fase1');
+    this.btnMiUbicacionActualF1 = this.querySelector('#phpc-btn-miubicacionactual-nd');
     this.modalContenidoF2NuevaDireccion = this.querySelector('#phpc-modal-nd-fase2');
     this.modalContenidoF3NuevaDireccion = this.querySelector('#phpc-modal-nd-fase3');
     this.etiquetaBtnModalNuevaDireccion = this.querySelector('#phpc-etiqueta-btn-acciones');
@@ -1726,6 +1727,7 @@ class PageCheckoutPH extends HTMLElement {
     this.btnAnadirNuevaDireccion.addEventListener('click', this.procesoParaAnadirNuevaDireccion.bind(this));
     this.btnCerrarModalNuevaDireccion.addEventListener('click', this.cerrarModalNuevaDireccion.bind(this));
     this.btnVolverAtrasNuevaDireccion.addEventListener('click', this.procesoVolverAtrasNuevaDireccion.bind(this));
+    this.btnMiUbicacionActualF1.addEventListener('click', this.procesoMiUbicacionActualF1.bind(this));
     // INICIALIZAR ELEMENTOS Y PROCESOS BASICOS
 
     // local y domicilio
@@ -2132,6 +2134,14 @@ class PageCheckoutPH extends HTMLElement {
       this.modalContenidoF3NuevaDireccion.style.display = 'none';
       this.estadoFaseNuevaDireccion = 2;
     }
+  }
+
+  procesoMiUbicacionActualF1(){
+    this.estadoFaseNuevaDireccion = 2;
+    this.modalContenidoF1NuevaDireccion.style.display = 'none';
+    this.modalContenidoF2NuevaDireccion.style.display = 'flex';
+    this.footerModalNuevaDireccion.style.display = 'flex';
+    this.etiquetaBtnModalNuevaDireccion.textContent = "Confirmar dirección";
   }
 }
 
