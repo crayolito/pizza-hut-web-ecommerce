@@ -1287,6 +1287,8 @@ class PageCarrito extends HTMLElement {
       MensajeCargaDatos.mostrar('Eliminando producto del carrito...');
       await AuxiliaresGlobal.eliminarItemCarritoPorKey(keyCarrito, 0);
     }else{
+      accionBtn == "incrementar" ? cantidadElemento++ : cantidadElemento--;
+
       if(informacionCompleta.opcionesPrincipales.productos.length == 0 && informacionCompleta.complementos.productos.length == 0){
         informacionCompleta.producto.precioTotalConjunto = informacionCompleta.producto.precio * cantidadElemento;
       }else {
@@ -1301,19 +1303,18 @@ class PageCarrito extends HTMLElement {
         });
         let cantidadSolamenteComplementosAntiguo = cantidadPrecioTotalAntiguo - cantidadOpcionesPrincipalesAntiguo - cantidadProductoBaseAntiguo;
         informacionCompleta.producto.precioTotalConjunto = cantidadOpcionesPrincipalesNueva + cantidadSolamenteComplementosAntiguo + cantidadProductoBaseNuevo;
-  
-        console.log("Testeo completo :",{
-          "cantidadPrecioTotalAntiguo": cantidadPrecioTotalAntiguo,
-          "cantidadOpcionesPrincipalesAntiguo": cantidadOpcionesPrincipalesAntiguo,
-          "cantidadOpcionesPrincipalesNueva": cantidadOpcionesPrincipalesNueva,
-          "cantidadSolamenteComplementosAntiguo": cantidadSolamenteComplementosAntiguo,
-          "cantidadProductoBaseNuevo": cantidadProductoBaseNuevo,
-          "cantidadProductoBaseAntiguo": cantidadProductoBaseAntiguo,
-          "total nuevo : ": informacionCompleta.producto.precioTotalConjunto
-        })
+
       }
 
-
+        // console.log("Testeo completo :",{
+        //   "cantidadPrecioTotalAntiguo": cantidadPrecioTotalAntiguo,
+        //   "cantidadOpcionesPrincipalesAntiguo": cantidadOpcionesPrincipalesAntiguo,
+        //   "cantidadOpcionesPrincipalesNueva": cantidadOpcionesPrincipalesNueva,
+        //   "cantidadSolamenteComplementosAntiguo": cantidadSolamenteComplementosAntiguo,
+        //   "cantidadProductoBaseNuevo": cantidadProductoBaseNuevo,
+        //   "cantidadProductoBaseAntiguo": cantidadProductoBaseAntiguo,
+        //   "total nuevo : ": informacionCompleta.producto.precioTotalConjunto
+        // })
   
       if(accionBtn == "decrementar"){
         // Se procede a decrementar la cantidad
@@ -1618,6 +1619,12 @@ class PageCheckoutPH extends HTMLElement {
     this.infoCarrito = null;
 
     this.localSeleccionado = null;
+
+    this.listaDireccionPrueba = [
+      {
+        
+      }
+    ]
   }
 
   connectedCallback() {
@@ -1634,6 +1641,8 @@ class PageCheckoutPH extends HTMLElement {
     this.inputSeleccionarLocal = this.querySelector('#phpc-input-seleccionar-local');
     this.contenedorResultadosBuquedaLocal = this.querySelector('#phpc-resultados-seleccion-local');
     this.btnIconoMostrarTodosLocales = this.querySelector('#phpc-mostrar-todos-locales');
+
+
 
     this.contenedorBaseModal = this.querySelector('.ph-background-container-modal');
     this.btnsSeleccionMetodoEntrega = this.querySelectorAll('.smecph-opcion-metodo');
