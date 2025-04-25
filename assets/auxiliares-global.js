@@ -2024,9 +2024,10 @@ class PageCheckoutPH extends HTMLElement {
   }
 
   mostrarTodasDirecciones(){
-    if(this.contenedorResultadosBusquedaDireccion.style.display === "flex"){
+    
+    if(this.contenedorResultadosBusquedaDireccion.style.display == "flex"){
+      console.log("ocultar contenedorResultadosBusquedaDireccion");
       this.contenedorResultadosBusquedaDireccion.style.display = "none";
-      return;
     }else {
       this.buscarSugerenciasSeleccionDireccion('', null);
       this.contenedorResultadosBusquedaDireccion.style.display = "flex";
