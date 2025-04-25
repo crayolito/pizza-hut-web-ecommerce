@@ -2287,6 +2287,7 @@ class PageCheckoutPH extends HTMLElement {
       this.modalContenidoF2NuevaDireccion.style.display = 'flex';
       this.footerModalNuevaDireccion.style.display = 'flex';
       this.modalContenidoF3NuevaDireccion.style.display = 'none';
+      this.etiquetaBtnModalNuevaDireccion.textContent = "CONFIRMAR DIRECCION";
       this.estadoFaseNuevaDireccion = 2;
     }
   }
@@ -2307,12 +2308,6 @@ class PageCheckoutPH extends HTMLElement {
         fullscreenControl: false,
         zoomControl: true
     });
-    
-    // Activar el botón de "Mi ubicación" y el "blue dot" nativos
-    // Esta es la manera correcta de activar estas funciones en Google Maps
-    // map.setMyLocationEnabled(true);
-    // map.setLocationSource(google.maps.LocationSource.DEVICE_LOCATION);
-    // map.getUiSettings().setMyLocationButtonEnabled(true);
 
     // Crear marcador movible
     const marker = new google.maps.Marker({
@@ -2369,51 +2364,53 @@ class PageCheckoutPH extends HTMLElement {
         alert('Tu navegador no soporta geolocalización. Utilizando ubicación predeterminada.');
     }
 
-    // Intentar obtener la ubicación actual del usuario
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-            // Éxito al obtener la ubicación
-            (position) => {
-                const userLocation = {
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude
-                };
+    // // Intentar obtener la ubicación actual del usuario
+    // if (navigator.geolocation) {
+    //     navigator.geolocation.getCurrentPosition(
+    //         // Éxito al obtener la ubicación
+    //         (position) => {
+    //             const userLocation = {
+    //                 lat: position.coords.latitude,
+    //                 lng: position.coords.longitude
+    //             };
                 
-                // Actualizar coordenadas
-                this.coordenadas = userLocation;
+    //             // Actualizar coordenadas
+    //             this.coordenadas = userLocation;
                 
-                // Centrar el mapa en la ubicación del usuario
-                map.setCenter(userLocation);
-                marker.setPosition(userLocation);
+    //             // Centrar el mapa en la ubicación del usuario
+    //             map.setCenter(userLocation);
+    //             marker.setPosition(userLocation);
                 
-                console.log('GPS activado, ubicación obtenida:', userLocation);
-            },
-            // Error al obtener la ubicación
-            (error) => {
-                console.warn('Error al obtener la ubicación:', error.message);
-                // Usar las coordenadas por defecto (this.coordenadas ya está configurado)
-                alert('No se pudo acceder a tu ubicación. Utilizando ubicación predeterminada.');
-            },
-            // Opciones
-            {
-                enableHighAccuracy: true,
-                timeout: 5000,
-                maximumAge: 0
-            }
-        );
-    } else {
-        console.warn('Geolocalización no soportada por este navegador');
-        alert('Tu navegador no soporta geolocalización. Utilizando ubicación predeterminada.');
-    }
-}
+    //             console.log('GPS activado, ubicación obtenida:', userLocation);
+    //         },
+    //         // Error al obtener la ubicación
+    //         (error) => {
+    //             console.warn('Error al obtener la ubicación:', error.message);
+    //             // Usar las coordenadas por defecto (this.coordenadas ya está configurado)
+    //             alert('No se pudo acceder a tu ubicación. Utilizando ubicación predeterminada.');
+    //         },
+    //         // Opciones
+    //         {
+    //             enableHighAccuracy: true,
+    //             timeout: 5000,
+    //             maximumAge: 0
+    //         }
+    //     );
+    // } else {
+    //     console.warn('Geolocalización no soportada por este navegador');
+    //     alert('Tu navegador no soporta geolocalización. Utilizando ubicación predeterminada.');
+    // }
+  }
 
   procesoPrincipalNuevaDireccion(){
     if(this.estadoFaseNuevaDireccion == 2){
+      this.estadoFaseNuevaDireccion = 3;
       this.modalContenidoF2NuevaDireccion.style.display = 'none';
       this.modalContenidoF3NuevaDireccion.style.display = 'flex';
-      this.footerModalNuevaDireccion.style.display = 'none';
-      this.estadoFaseNuevaDireccion = 3;
-      this.etiquetaBtnModalNuevaDireccion.textContent = "Guardar dirección";
+      this.footerModalNuevaDireccion.style.display = 'flex';
+      this.etiquetaBtnModalNuevaDireccion.textContent = "GUARDAR DIRECCION";
+      this.btnProcesoPrincipalNd.classList.add('desactivado');
+      
     }
 
     if(this.estadoFaseNuevaDireccion == 3){

@@ -144,6 +144,20 @@ input[type="number"] {
   font-weight: 600;
 }
 
+.pcktpch-btn-general.desactivado {
+  background-color: #efefef;
+  pointer-events: none;
+  cursor: not-allowed;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.pcktpch-btn-general.desactivado p {
+  color: #717171;
+  font-weight: 600;
+  text-align: center;
+}
+
 .pcktpch-btn-primario {
   width: 100%;
   height: 3rem;
