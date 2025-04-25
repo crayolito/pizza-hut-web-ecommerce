@@ -1288,22 +1288,27 @@ class PageCarrito extends HTMLElement {
       await AuxiliaresGlobal.eliminarItemCarritoPorKey(keyCarrito, 0);
     }else{
       // accionBtn == "incrementar" ? cantidadElemento++ : cantidadElemento--;
+      var cantidadAntiguaTrabajo = accionBtn == "incrementar" ? cantidadElemento - 1 : cantidadElemento + 1;
+      var cantidadNuevaTrabajo = parseInt(informacionCompleta.producto.cantidad);
 
       if(informacionCompleta.opcionesPrincipales.productos.length == 0 && informacionCompleta.complementos.productos.length == 0){
         console.log("Testeo de cantidadElemento", cantidadElemento);
         informacionCompleta.producto.precioTotalConjunto = informacionCompleta.producto.precio * cantidadElemento;
       }else {
-        let cantidadProductoBaseNuevo = parseInt(informacionCompleta.producto.precioProducto) * cantidadElemento;
-        let cantidadProductoBaseAntiguo = parseInt(informacionCompleta.producto.precioProducto) * parseInt(informacionCompleta.producto.cantidad);
+        let cantidadProductoBaseNuevo = parseInt(informacionCompleta.producto.precioProducto) * cantidadNuevaTrabajo;
+        let cantidadProductoBaseAntiguo = parseInt(informacionCompleta.producto.precioProducto) * cantidadAntiguaTrabajo;
         let cantidadPrecioTotalAntiguo = parseFloat(informacionCompleta.producto.precioTotalConjunto);
         let cantidadOpcionesPrincipalesAntiguo = 0; 
         let cantidadOpcionesPrincipalesNueva = 0;
         informacionCompleta.opcionesPrincipales.productos.forEach((producto) => {
-          cantidadOpcionesPrincipalesNueva  += (cantidadElemento * parseInt(producto.precio));
+          cantidadOpcionesPrincipalesNueva  += (cantidadNuevaTrabajo * parseInt(producto.precio));
           cantidadOpcionesPrincipalesAntiguo += (producto.cantidad * parseInt(producto.precio));
         });
         let cantidadSolamenteComplementosAntiguo = cantidadPrecioTotalAntiguo - cantidadOpcionesPrincipalesAntiguo - cantidadProductoBaseAntiguo;
-        console.log("Testeo de cantidadElemento", cantidadElemento);
+        console.log("Testeo de cantidadElemento", {
+          cantidadAntiguaTrabajo,
+          cantidadNuevaTrabajo,
+        });
         informacionCompleta.producto.precioTotalConjunto = cantidadOpcionesPrincipalesNueva + cantidadSolamenteComplementosAntiguo + cantidadProductoBaseNuevo;
 
       }
