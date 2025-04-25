@@ -1925,8 +1925,8 @@ class PageCheckoutPH extends HTMLElement {
     }
   }
 
-  seleccionarLocal(direccion) {
-    this.localSeleccionado = direccion;
+  seleccionarLocal(location) {
+    this.localSeleccionado = location;
     // this.coordenadas = { lat: location.lat, lng: location.lng };
 
     // Actualizar el input con el nombre del local seleccionadoo
@@ -2080,7 +2080,7 @@ class PageCheckoutPH extends HTMLElement {
     this.inputSeleccionarDireccion.value = direccion.alias;
     
     // Ocultar sugerencias
-    this.contenedorResultadosBuquedaLocal.style.display = "none";
+    this.contenedorResultadosBusquedaDireccion.style.display = "none";
 
     // Actualizar información del local seleccionado
     const infoDireccion = this.querySelector('.pcktph-seleccion-local-detalle-info');
