@@ -2021,11 +2021,11 @@ class PageCheckoutPH extends HTMLElement {
     
     // Ordenar por relevancia (priorizar coincidencias en el nombre)
     resultados.sort((a, b) => {
-      const aInName = a.name.toLowerCase().includes(query.toLowerCase());
-      const bInName = b.name.toLowerCase().includes(query.toLowerCase());
+      const aInAlias = a.alias.toLowerCase().includes(query.toLowerCase());
+      const bInAlias = b.alias.toLowerCase().includes(query.toLowerCase());
       
-      if (aInName && !bInName) return -1;
-      if (!aInName && bInName) return 1;
+      if (aInAlias && !bInAlias) return -1;
+      if (!aInAlias && bInAlias) return 1;
       return 0;
     });
     
