@@ -1321,17 +1321,24 @@ class PageCarrito extends HTMLElement {
 
         // El nuevo precio del conjunto se calcula (cantidadProductoBaseNuevo + cantidadOpcionesPrincipalesNueva + cantidadSolamenteComplementos)
         informacionCompleta.producto.precioTotalConjunto = cantidadProductoBaseNuevo + cantidadOpcionesPrincipalesNueva + cantidadSolamenteComplementos;
+        console.log("Testeo completo :",{
+          cantidadElemento,
+          cantidadAntiguaTrabajo,
+          cantidadNuevaTrabajo,
+          cantidadOpcionesPrincipalesNueva,
+          cantidadOpcionesPrincipalesAntiguo,
+          cantidadSolamenteComplementos,
+          "Objeto actualizado" : informacionCompleta.producto.precioTotalConjunto
+        })
       }
 
-        // console.log("Testeo completo :",{
-        //   "cantidadPrecioTotalAntiguo": cantidadPrecioTotalAntiguo,
-        //   "cantidadOpcionesPrincipalesAntiguo": cantidadOpcionesPrincipalesAntiguo,
-        //   "cantidadOpcionesPrincipalesNueva": cantidadOpcionesPrincipalesNueva,
-        //   "cantidadSolamenteComplementosAntiguo": cantidadSolamenteComplementosAntiguo,
-        //   "cantidadProductoBaseNuevo": cantidadProductoBaseNuevo,
-        //   "cantidadProductoBaseAntiguo": cantidadProductoBaseAntiguo,
-        //   "total nuevo : ": informacionCompleta.producto.precioTotalConjunto
-        // })
+        console.log("Testeo completo :",{
+        cantidadElemento,
+        cantidadAntiguaTrabajo,
+        cantidadNuevaTrabajo,
+
+
+        })
   
       if(accionBtn == "decrementar"){
         // Se procede a decrementar la cantidad
