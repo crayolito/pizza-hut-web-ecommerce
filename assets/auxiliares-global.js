@@ -1738,7 +1738,7 @@ class PageCheckoutPH extends HTMLElement {
     this.btnMiUbicacionActualF1.addEventListener('click', this.procesoMiUbicacionActualF1.bind(this));
     this.btnProcesoPrincipalNd.addEventListener('click', this.procesoPrincipalNuevaDireccion.bind(this));
     this.btnCancelarNd.addEventListener('click', this.procesoVolverAtrasNuevaDireccion.bind(this));
-    this.btnVerTodasDirecciones.addEventListener('click', this.mostrarTodasDirecciones.bind(this));
+    // this.btnVerTodasDirecciones.addEventListener('click', this.mostrarTodasDirecciones.bind(this));
     // INICIALIZAR ELEMENTOS Y PROCESOS BASICOSS
 
     // local y domicilio
@@ -1976,12 +1976,12 @@ class PageCheckoutPH extends HTMLElement {
           // Configurar debounce (500ms)
           timeoutId = setTimeout(() => {
             // Solo mostrar los 3 primeros resultados más relevantes
-            this.buscarSugerenciasSeleccionLocal(query, 3);
+            this.buscarSugerenciasSeleccionDireccion(query, 3);
           }, 500);
         });
         
         // Configurar evento para el botón de mostrar/ocultar
-        this.btnIconoMostrarTodosLocales.addEventListener('click', () => {
+        this.btnVerTodasDirecciones.addEventListener('click', () => {
           // Si el contenedor ya está visible, ocultarlo
           if (this.contenedorResultadosBuquedaLocal.style.display === "block") {
             this.contenedorResultadosBuquedaLocal.style.display = "none";
@@ -1992,10 +1992,10 @@ class PageCheckoutPH extends HTMLElement {
           
           // Si el input está vacío, mostrar todos los locales
           if (!query) {
-            this.mostrarTodosLosLocales();
+            this.mostrarTodasDirecciones();
           } else {
             // Si hay texto en el input, mostrar los 3 resultados más asertados
-            this.buscarSugerenciasSeleccionLocal(query, 3);
+            this.buscarSugerenciasSeleccionDireccion(query, 3);
           }
         });
         
