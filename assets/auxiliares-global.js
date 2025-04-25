@@ -1951,7 +1951,7 @@ class PageCheckoutPH extends HTMLElement {
   }
 
   // PROCESO DE CONTENEDOR SUGERENCIAS DIRECCION DE ENVIO
-  configuracionAutoCompletadoDireccionEn(){
+  configuracionAutoCompletadoSeleccionDireccion(){
         // Verificar que el input existe
         if (!this.inputSeleccionarDireccion) return;
     
