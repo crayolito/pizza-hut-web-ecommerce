@@ -1645,9 +1645,38 @@ class PageCheckoutPH extends HTMLElement {
 
     this.localSeleccionado = null;
 
+    // {
+    //   "lat" : -17.783315017953004,
+    //   "lng" : -63.18214577296119,
+    //   "indicaciones referencias para tu direccion" : "Poner si o si (Santa Cruz), 
+    //    (Si no se pone nada en indicicaciones usar las indicaciones de google)",
+    //   "alias" : "Este es el que se vera primero si o si",
+    // }
+
     this.listaDireccionPrueba = [
       {
-        
+        "lat" : -17.783315017953004,
+        "lng" : -63.18214577296119,
+        "indicaciones" : "Santa Cruz, Preguntar por habitacion #45, Bolivia",
+        "alias" : "Condominio de la amante",
+      },
+      {
+        "lat" : -17.783315017953004,
+        "lng" : -63.18214577296119,
+        "indicaciones" : "Santa Cruz, San Martin 2200, Bolivia",
+        "alias" : "Casa del abuelo",
+      },
+      {
+        "lat" : -17.783315017953004,
+        "lng" : -63.18214577296119,
+        "indicaciones" : "Santa Cruz, Av. Santos Dumont 3228, Bolivia",
+        "alias" : "Casa por mi suegra",
+      },
+      {
+        "lat" : -17.783315017953004,
+        "lng" : -63.18214577296119,
+        "indicaciones" : "Santa Cruz, Av. Banzer 3er Anillo, Bolivia",
+        "alias" : "Trabajo",
       }
     ]
   }
@@ -1667,7 +1696,8 @@ class PageCheckoutPH extends HTMLElement {
     this.contenedorResultadosBuquedaLocal = this.querySelector('#phpc-resultados-seleccion-local');
     this.btnIconoMostrarTodosLocales = this.querySelector('#phpc-mostrar-todos-locales');
 
-
+    this.btnAnadirNuevaDireccion = this.querySelector('#phpc-btn-anadir-nueva-direccion');
+    this.modalBodyNuevaDireccion = this.querySelector('#phpc-modal-body-nueva-direccion');
 
     this.contenedorBaseModal = this.querySelector('.ph-background-container-modal');
     this.btnsSeleccionMetodoEntrega = this.querySelectorAll('.smecph-opcion-metodo');
@@ -1683,6 +1713,8 @@ class PageCheckoutPH extends HTMLElement {
     this.btnMetodoDomicilio.addEventListener('click', this.seleccionarMetodoDomicilio.bind(this));
     this.btnVerDireccionEnMapa.addEventListener('click', this.verDireccionEnMapaLocalSeleccionado.bind(this));
     this.btnCerrarModalContenedorLocalSeleccionado.addEventListener('click', this.cerrarModalLocalSeleccionado.bind(this));
+    this.btnAnadirNuevaDireccion.addEventListener('click', this.procesoParaAnadirNuevaDireccion.bind(this));
+    
     // INICIALIZAR ELEMENTOS Y PROCESOS BASICOS
 
     // local y domicilio
@@ -2052,6 +2084,12 @@ class PageCheckoutPH extends HTMLElement {
     Math.sin(dLng / 2) * Math.sin(dLng / 2);
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     return radioTierra * c; // Distancia en kilómetros
+  }
+
+  procesoParaAnadirNuevaDireccion(){
+    this.contenedorBaseModal.style.display = 'flex';
+    this.modalBodyNuevaDireccion.style.display = 'flex';
+    
   }
 }
 

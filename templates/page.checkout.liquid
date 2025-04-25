@@ -65,15 +65,15 @@
       <div class="smecph-pc-info-input">
         <p>Direcciónes</p>
         <div class="ph-container-input">
-          <div class="smecph-pc-resultados-input"></div>
+          <div class="smecph-pc-resultados-input" style="display: none;"></div>
           {% render 'icon-search' %}
-          <input type="text" placeholder="Buscar sucursal">
+          <input type="text" placeholder="Direcciones">
           <div class="smecph-pc-input-icono">
             {% render 'icon-flecha-abajo' %}
           </div>
         </div>
       </div>
-      <button class="pcktpch-btn-secundario icon-color-primary">
+      <button id="phpc-btn-anadir-nueva-direccion" class="pcktpch-btn-secundario icon-color-primary">
         {% render 'icon-mas' %}
         <p class="color-letras-primary">AÑADIR NUEVA DIRECCIÓN</p>
       </button>
@@ -422,7 +422,7 @@
     </section>
     <section class="ph-background-container-modal" style="display: none;">
       <!-- 1re MODAL : NUEVA DIRECCION -->
-      <div class="ph-mmdi-modal-main" style="display: none;">
+      <div id="phpc-modal-body-nueva-direccion" class="ph-mmdi-modal-main" style="display: none;">
         <div class="pcktpch-modal-header">
           <div class="pcktpch-modal-header-opciones">
             <button class="pcktpch-modal-volver-atras icon-color-tertiary">
