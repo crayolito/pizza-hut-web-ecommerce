@@ -71,7 +71,15 @@
             style="display: none;"
           ></div>
           {% render 'icon-search' %}
-          <input autocomplete="off" id="phpc-input-seleccionar-direccion" type="text" placeholder="Direcciones">
+          <input
+            id="phpc-input-seleccionar-direccion"
+            type="text"
+            placeholder="Direcciones"
+            autocomplete="off"
+            autocorrect="off"
+            autocapitalize="off"
+            spellcheck="false"
+          >
           <button id="phpc-btn-ver-direcciones-todas" class="smecph-pc-input-icono">
             {% render 'icon-flecha-abajo' %}
           </button>
