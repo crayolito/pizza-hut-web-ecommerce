@@ -1739,7 +1739,7 @@ class PageCheckoutPH extends HTMLElement {
     this.btnMiUbicacionActualF1.addEventListener('click', this.procesoMiUbicacionActualF1.bind(this));
     this.btnProcesoPrincipalNd.addEventListener('click', this.procesoPrincipalNuevaDireccion.bind(this));
     this.btnCancelarNd.addEventListener('click', this.procesoVolverAtrasNuevaDireccion.bind(this));
-    // this.btnVerTodasDirecciones.addEventListener('click', this.mostrarTodasDirecciones.bind(this));
+    this.btnVerTodasDirecciones.addEventListener('click', this.mostrarTodasDirecciones.bind(this));
     // INICIALIZAR ELEMENTOS Y PROCESOS BASICOSS
 
     // local y domicilio
@@ -1863,7 +1863,12 @@ class PageCheckoutPH extends HTMLElement {
   mostrarTodosLosLocales() {
     // Simplemente llamamos a buscarSugerenciasSeleccionLocal sin límite
     // para mostrar todos los locales
-    this.buscarSugerenciasSeleccionLocal('', null);
+    if (this.contenedorResultadosBuquedaLocal.style.display === "none") {
+      this.buscarSugerenciasSeleccionLocal('', null);
+      this.contenedorResultadosBuquedaLocal.style.display = "flex";
+    }else{
+      this.contenedorResultadosBuquedaLocal.style.display = "none";
+    }
   }
 
   buscarSugerenciasSeleccionLocal(query, limite = null) {
@@ -2011,7 +2016,13 @@ class PageCheckoutPH extends HTMLElement {
   }
 
   mostrarTodasDirecciones(){
-    this.buscarSugerenciasSeleccionDireccion('', null);
+    if(this.contenedorResultadosBusquedaDireccion.style.display === "flex"){
+      this.contenedorResultadosBusquedaDireccion.style.display = "none";
+      return;
+    }else {
+      this.buscarSugerenciasSeleccionDireccion('', null);
+      this.contenedorResultadosBusquedaDireccion.style.display = "flex";
+    }
   }
 
   buscarSugerenciasSeleccionDireccion(query, limite = null) {
@@ -2297,7 +2308,7 @@ class PageCheckoutPH extends HTMLElement {
     this.modalContenidoF1NuevaDireccion.style.display = 'none';
     this.modalContenidoF2NuevaDireccion.style.display = 'flex';
     this.footerModalNuevaDireccion.style.display = 'flex';
-    this.etiquetaBtnModalNuevaDireccion.textContent = "Confirmar dirección";
+    this.etiquetaBtnModalNuevaDireccion.textContent = "CONFIRMAR DIRECCION";
 
     // Inicializar el mapa en el contenedor
     const map = new google.maps.Map(this.contenedorModalMapaNuevaDireccion, {
@@ -2414,6 +2425,18 @@ class PageCheckoutPH extends HTMLElement {
     }
 
     if(this.estadoFaseNuevaDireccion == 3){
+      this.etiquetaBtnModalNuevaDireccion.textContent = "CONFIRMAR DIRECCION";
+      this.btnProcesoPrincipalNd.classList.remove('desactivado');
+
+      MensajeCargaDatos.mostrar('Guardando dirección ...');
+      setTimeout(() => {
+        MensajeCargaDatos.ocultar();
+        this.cerrarModalNuevaDireccion();
+        
+        // Cerrar todo y ocultarlo 
+        this.contenedorBaseModal.style.display = 'none';
+        this.modalBodyNuevaDireccion.style.display = 'none';
+      }, 3000);
     }
   }
 }
