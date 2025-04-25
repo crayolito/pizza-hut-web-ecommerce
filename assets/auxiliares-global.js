@@ -1698,13 +1698,18 @@ class PageCheckoutPH extends HTMLElement {
     this.btnIconoMostrarTodosLocales = this.querySelector('#phpc-mostrar-todos-locales');
 
     this.btnAnadirNuevaDireccion = this.querySelector('#phpc-btn-anadir-nueva-direccion');
+    this.btnVolverAtrasNuevaDireccion = this.querySelector('#phpc-btn-modal-volver-atras');
+    this.btnCerrarModalNuevaDireccion = this.querySelector('#phpc-btn-cerrar-modal-nuevadireccion');
     this.modalBodyNuevaDireccion = this.querySelector('#phpc-modal-body-nueva-direccion');
     this.modalContenidoF1NuevaDireccion = this.querySelector('#phpc-modal-nd-fase1');
     this.modalContenidoF2NuevaDireccion = this.querySelector('#phpc-modal-nd-fase2');
     this.modalContenidoF3NuevaDireccion = this.querySelector('#phpc-modal-nd-fase3');
+    this.etiquetaBtnModalNuevaDireccion = this.querySelector('#phpc-etiqueta-btn-acciones');
+    this.footerModalNuevaDireccion = this.querySelector('#phpc-modal-footer-nd');
 
     this.contenedorBaseModal = this.querySelector('.ph-background-container-modal');
     this.btnsSeleccionMetodoEntrega = this.querySelectorAll('.smecph-opcion-metodo');
+    
     this.contenedorBaseSeleccionLocal = this.querySelector('#pcktph-seleccion-local');
     this.contenedorBaseSeleccionDireccionEnvio = this.querySelector('#pcktph-direccion-envio');
     this.contenedorDatosContactoInputsForm = this.querySelector('.smecph-formulario-datos-contacto');
@@ -1718,7 +1723,8 @@ class PageCheckoutPH extends HTMLElement {
     this.btnVerDireccionEnMapa.addEventListener('click', this.verDireccionEnMapaLocalSeleccionado.bind(this));
     this.btnCerrarModalContenedorLocalSeleccionado.addEventListener('click', this.cerrarModalLocalSeleccionado.bind(this));
     this.btnAnadirNuevaDireccion.addEventListener('click', this.procesoParaAnadirNuevaDireccion.bind(this));
-    
+    this.btnCerrarModalNuevaDireccion.addEventListener('click', this.cerrarModalNuevaDireccion.bind(this));
+    this.btnVolverAtrasNuevaDireccion.addEventListener('click', this.procesoVolverAtrasNuevaDireccion.bind(this));
     // INICIALIZAR ELEMENTOS Y PROCESOS BASICOS
 
     // local y domicilio
@@ -2095,6 +2101,36 @@ class PageCheckoutPH extends HTMLElement {
     this.modalBodyNuevaDireccion.style.display = 'flex';
     this.estadoFaseNuevaDireccion = 1;
     this.modalContenidoF1NuevaDireccion.style.display = 'flex';
+  }
+
+  cerrarModalNuevaDireccion(){
+    this.contenedorBaseModal.style.display = 'none';
+    this.modalBodyNuevaDireccion.style.display = 'none';
+    this.estadoFaseNuevaDireccion = 1;
+    this.modalContenidoF1NuevaDireccion.style.display = 'none';
+    this.modalContenidoF2NuevaDireccion.style.display = 'none';
+    this.modalContenidoF3NuevaDireccion.style.display = 'none';
+    this.footerModalNuevaDireccion.style.display = 'none';
+  }
+
+  procesoVolverAtrasNuevaDireccion(){
+    if(this.estadoFaseNuevaDireccion == 1){
+      this.cerrarModalNuevaDireccion();
+    }
+
+    if(this.estadoFaseNuevaDireccion == 2){
+      this.modalContenidoF1NuevaDireccion.style.display = 'flex';
+      this.footerModalNuevaDireccion.style.display = 'none';
+      this.modalContenidoF2NuevaDireccion.style.display = 'none';
+      this.estadoFaseNuevaDireccion = 1;
+    }
+
+    if(this.estadoFaseNuevaDireccion == 3){
+      this.modalContenidoF2NuevaDireccion.style.display = 'flex';
+      this.footerModalNuevaDireccion.style.display = 'flex';
+      this.modalContenidoF3NuevaDireccion.style.display = 'none';
+      this.estadoFaseNuevaDireccion = 2;
+    }
   }
 }
 
