@@ -1290,6 +1290,7 @@ class PageCarrito extends HTMLElement {
       // accionBtn == "incrementar" ? cantidadElemento++ : cantidadElemento--;
 
       if(informacionCompleta.opcionesPrincipales.productos.length == 0 && informacionCompleta.complementos.productos.length == 0){
+        console.log("Testeo de cantidadElemento", cantidadElemento);
         informacionCompleta.producto.precioTotalConjunto = informacionCompleta.producto.precio * cantidadElemento;
       }else {
         let cantidadProductoBaseNuevo = parseInt(informacionCompleta.producto.precioProducto) * cantidadElemento;
@@ -1302,6 +1303,7 @@ class PageCarrito extends HTMLElement {
           cantidadOpcionesPrincipalesAntiguo += (producto.cantidad * parseInt(producto.precio));
         });
         let cantidadSolamenteComplementosAntiguo = cantidadPrecioTotalAntiguo - cantidadOpcionesPrincipalesAntiguo - cantidadProductoBaseAntiguo;
+        console.log("Testeo de cantidadElemento", cantidadElemento);
         informacionCompleta.producto.precioTotalConjunto = cantidadOpcionesPrincipalesNueva + cantidadSolamenteComplementosAntiguo + cantidadProductoBaseNuevo;
 
       }
