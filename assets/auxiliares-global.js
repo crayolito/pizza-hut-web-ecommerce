@@ -2000,10 +2000,10 @@ class PageCheckoutPH extends HTMLElement {
         
         // Cerrar sugerencias al hacer clic fuera
         document.addEventListener('click', (e) => {
-          if (!this.inputSeleccionarLocal.contains(e.target) && 
-              !this.contenedorResultadosBuquedaLocal.contains(e.target) &&
-              !this.btnIconoMostrarTodosLocales.contains(e.target)) {
-            this.contenedorResultadosBuquedaLocal.style.display = 'none';
+          if (!this.inputSeleccionarDireccion.contains(e.target) && 
+              !this.contenedorResultadosBusquedaDireccion.contains(e.target) &&
+              !this.btnVerTodasDirecciones.contains(e.target)) {
+            this.contenedorResultadosBusquedaDireccion.style.display = 'none';
           }
         });
   }
