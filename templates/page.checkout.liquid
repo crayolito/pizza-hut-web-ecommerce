@@ -65,9 +65,13 @@
       <div class="smecph-pc-info-input">
         <p>Direcciónes</p>
         <div class="ph-container-input">
-          <div class="smecph-pc-resultados-input" style="display: none;"></div>
+          <div
+            id="phpc-resultados-seleccion-direccion-envio"
+            class="smecph-pc-resultados-input"
+            style="display: none;"
+          ></div>
           {% render 'icon-search' %}
-          <input type="text" placeholder="Direcciones">
+          <input id="phpc-input-seleccionar-direccion" type="text" placeholder="Direcciones">
           <div class="smecph-pc-input-icono">
             {% render 'icon-flecha-abajo' %}
           </div>
@@ -446,8 +450,17 @@
             <div class="pcktpch-modal-separador-linea"></div>
           </div>
           <div class="ph-container-input icon-color-tertiary">
+            <div
+              id="phpc-resultados-sugerencias-referencia"
+              class="smecph-pc-resultados-input"
+              style="display: none;"
+            ></div>
             {% render 'icon-location-on' %}
-            <input type="text" placeholder="Ingresar dirección o punto de referencia">
+            <input
+              id="phpc-input-punto-referencia-nd"
+              type="text"
+              placeholder="Ingresar dirección o punto de referencia"
+            >
           </div>
         </div>
         <div id="phpc-modal-nd-fase2" class="pcktpch-modal-body-fase2" style="display: none;">

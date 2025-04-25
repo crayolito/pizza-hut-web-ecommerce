@@ -1644,6 +1644,7 @@ class PageCheckoutPH extends HTMLElement {
     this.infoCarrito = null;
 
     this.localSeleccionado = null;
+    this.direccionSeleccionada = null;
 
     // {
     //   "lat" : -17.783315017953004,
@@ -1700,10 +1701,15 @@ class PageCheckoutPH extends HTMLElement {
 
     this.btnAnadirNuevaDireccion = this.querySelector('#phpc-btn-anadir-nueva-direccion');
     this.btnVolverAtrasNuevaDireccion = this.querySelector('#phpc-btn-modal-volver-atras');
+    this.contenedorResultadosBusquedaDireccion = this.querySelector('#phpc-resultados-seleccion-direccion-envio');
+    this.inputSeleccionarDireccion = this.querySelector('#phpc-input-seleccionar-direccion');
+    this.btnVerTodasDirecciones = this.querySelector('#phpc-btn-ver-direcciones-todas');
     this.btnCerrarModalNuevaDireccion = this.querySelector('#phpc-btn-cerrar-modal-nuevadireccion');
     this.modalBodyNuevaDireccion = this.querySelector('#phpc-modal-body-nueva-direccion');
     this.modalContenidoF1NuevaDireccion = this.querySelector('#phpc-modal-nd-fase1');
     this.btnMiUbicacionActualF1 = this.querySelector('#phpc-btn-miubicacionactual-nd');
+    this.inputPuntoReferenciaF1 = this.querySelector('#phpc-input-punto-referencia-nd');
+    this.contenedorResultadosBusquedaReferenciasF1 = this.querySelector('#phpc-resultados-sugerencias-referencia');
     this.modalContenidoF2NuevaDireccion = this.querySelector('#phpc-modal-nd-fase2');
     this.modalContenidoF3NuevaDireccion = this.querySelector('#phpc-modal-nd-fase3');
     this.etiquetaBtnModalNuevaDireccion = this.querySelector('#phpc-etiqueta-btn-acciones');
@@ -1720,8 +1726,8 @@ class PageCheckoutPH extends HTMLElement {
     this.contenedorDatosContactoConsolidados = this.querySelector('.smecph-datos-contacto-consolidados');
     this.mensajeAlertaSeleccionMetodoPago = this.querySelector('.smecph-mensaje-alerta');
     this.btnsMetodosPagos = this.querySelectorAll('.smecph-pc-dp-item');
-    // INICIALIZAR EVENTOS
 
+    // INICIALIZAR EVENTOS
     this.btnMetodoLocal.addEventListener('click', this.seleccionarMetodoLocal.bind(this));
     this.btnMetodoDomicilio.addEventListener('click', this.seleccionarMetodoDomicilio.bind(this));
     this.btnVerDireccionEnMapa.addEventListener('click', this.verDireccionEnMapaLocalSeleccionado.bind(this));
@@ -1732,6 +1738,7 @@ class PageCheckoutPH extends HTMLElement {
     this.btnMiUbicacionActualF1.addEventListener('click', this.procesoMiUbicacionActualF1.bind(this));
     this.btnProcesoPrincipalNd.addEventListener('click', this.procesoPrincipalNuevaDireccion.bind(this));
     this.btnCancelarNd.addEventListener('click', this.procesoVolverAtrasNuevaDireccion.bind(this));
+    this.btnVerTodasDirecciones.addEventListener('click', this.mostrarTodasDirecciones.bind(this));
     // INICIALIZAR ELEMENTOS Y PROCESOS BASICOSS
 
     // local y domicilio
@@ -1761,7 +1768,6 @@ class PageCheckoutPH extends HTMLElement {
     this.infoCarrito = await AuxiliaresGlobal.obtenerCarritoShopify();
     
     this.configuracionAutoCompletadoSeleccionLocal();
-    await this.solicitarPermisosDelUsoGPSDispositivo();
     
     MensajeCargaDatos.ocultar();
   }
@@ -1792,6 +1798,7 @@ class PageCheckoutPH extends HTMLElement {
     iconoDesSeleccionado.innerHTML = window.shopIcons.icon_estado_off;
   }
 
+  // PROCESO DE CONTENEDOR SUGERENCIAS BUSQUEDA LOCAL
   configuracionAutoCompletadoSeleccionLocal() {
     // Verificar que el input existe
     if (!this.inputSeleccionarLocal) return;
@@ -1917,10 +1924,8 @@ class PageCheckoutPH extends HTMLElement {
     }
   }
 
-  seleccionarLocal(location) {
-    console.log("Testeo de que local fue selecionado", location);
-
-    this.localSeleccionado = location;
+  seleccionarLocal(direccion) {
+    this.localSeleccionado = direccion;
     // this.coordenadas = { lat: location.lat, lng: location.lng };
 
     // Actualizar el input con el nombre del local seleccionadoo
@@ -1942,8 +1947,150 @@ class PageCheckoutPH extends HTMLElement {
       <p>${location.name.toUpperCase()}</p>
       <p>+591 ${location.telefono} - ${parseFloat(distancia).toFixed(2)} Km</p>
     `;
-    
   }
+
+  // PROCESO DE CONTENEDOR SUGERENCIAS DIRECCION DE ENVIO
+  configuracionAutoCompletadoDireccionEn(){
+        // Verificar que el input existe
+        if (!this.inputSeleccionarDireccion) return;
+    
+        // Variable para almacenar el timer del debounce
+        let timeoutId = null;
+        
+        // Configurar evento de entrada en el input
+        this.inputSeleccionarDireccion.addEventListener('input', (event) => {
+          // Limpiar el timer anterior si existe
+          if (timeoutId) {
+            clearTimeout(timeoutId);
+          }
+          
+          const query = event.target.value;
+          
+          // Si el input está vacío, ocultar sugerencias
+          if (!query) {
+            this.contenedorResultadosBusquedaDireccion.style.display = "none"; 
+            return;
+          }
+          
+          // Configurar debounce (500ms)
+          timeoutId = setTimeout(() => {
+            // Solo mostrar los 3 primeros resultados más relevantes
+            this.buscarSugerenciasSeleccionLocal(query, 3);
+          }, 500);
+        });
+        
+        // Configurar evento para el botón de mostrar/ocultar
+        this.btnIconoMostrarTodosLocales.addEventListener('click', () => {
+          // Si el contenedor ya está visible, ocultarlo
+          if (this.contenedorResultadosBuquedaLocal.style.display === "block") {
+            this.contenedorResultadosBuquedaLocal.style.display = "none";
+            return;
+          }
+          
+          const query = this.inputSeleccionarLocal.value;
+          
+          // Si el input está vacío, mostrar todos los locales
+          if (!query) {
+            this.mostrarTodosLosLocales();
+          } else {
+            // Si hay texto en el input, mostrar los 3 resultados más asertados
+            this.buscarSugerenciasSeleccionLocal(query, 3);
+          }
+        });
+        
+        // Cerrar sugerencias al hacer clic fuera
+        document.addEventListener('click', (e) => {
+          if (!this.inputSeleccionarLocal.contains(e.target) && 
+              !this.contenedorResultadosBuquedaLocal.contains(e.target) &&
+              !this.btnIconoMostrarTodosLocales.contains(e.target)) {
+            this.contenedorResultadosBuquedaLocal.style.display = 'none';
+          }
+        });
+  }
+
+  mostrarTodasDirecciones(){
+    this.buscarSugerenciasSeleccionDireccion('', null);
+  }
+
+  buscarSugerenciasSeleccionDireccion(query, limite = null) {
+    // Filtrar las ubicaciones basadas en la consulta
+    let resultados = this.listaDireccionPrueba.filter(direccion => 
+      direccion.indicaciones.toLowerCase().includes(query.toLowerCase()) ||
+      direccion.alias.toLowerCase().includes(query.toLowerCase())
+    );
+    
+    // Ordenar por relevancia (priorizar coincidencias en el nombre)
+    resultados.sort((a, b) => {
+      const aInName = a.name.toLowerCase().includes(query.toLowerCase());
+      const bInName = b.name.toLowerCase().includes(query.toLowerCase());
+      
+      if (aInName && !bInName) return -1;
+      if (!aInName && bInName) return 1;
+      return 0;
+    });
+    
+    // Limitar resultados si se especifica un límite
+    if (limite && resultados.length > limite) {
+      resultados = resultados.slice(0, limite);
+    }
+  
+    // Limpiar resultados anteriores
+    this.contenedorResultadosBusquedaDireccion.innerHTML = '';
+    
+    // Si hay resultados, mostrar el contenedor
+    if (resultados.length > 0) {
+      this.contenedorResultadosBusquedaDireccion.style.display = "flex";
+      
+      // Crear y añadir elementos para cada resultado
+      resultados.forEach(direccion => {
+        const resultadoItem = document.createElement('div');
+        resultadoItem.className = 'smecph-pc-resultado-item';
+        
+        // Crear elemento para el nombre
+        const nombreAlias = document.createElement('p');
+        nombreAlias.textContent = direccion.alias;
+        
+        // Crear elemento para la dirección
+        const direccionIndicacion = document.createElement('p');
+        direccionIndicacion.textContent = location.indicaciones;
+        
+        // Añadir elementos al item
+        resultadoItem.appendChild(nombreAlias);
+        resultadoItem.appendChild(direccionIndicacion);
+        
+        // Añadir evento de clic para seleccionar este locall
+        resultadoItem.addEventListener('click', () => {
+          this.seleccionarLocal(direccion);
+        });
+        
+        // Añadir el item al contenedor de resultados
+        this.contenedorResultadosBusquedaDireccion.appendChild(resultadoItem);
+      });
+    } else {
+      // Si no hay resultados, ocultar el contenedor
+      this.contenedorResultadosBusquedaDireccion.style.display = "none";
+    }
+  }
+
+  seleccionarDireccio(direccion){
+    this.direccionSeleccionada = direccion;
+
+    // Actualizar el input con el nombre del direccion seleccionadoo
+    this.inputSeleccionarDireccion.value = direccion.alias;
+    
+    // Ocultar sugerencias
+    this.contenedorResultadosBuquedaLocal.style.display = "none";
+
+    // Actualizar información del local seleccionado
+    const infoDireccion = this.querySelector('.pcktph-seleccion-local-detalle-info');
+    infoDireccion.innerHTML = `
+      <p>${direccion.alias}</p>
+      <p>${direccion.referencias}</p>
+    `;
+  }
+
+  // PROCESO DE CONTENEDOR SUGERENCIAS PUNTOS DE REFERENCIAS
+  configuracionAutoCompletadoPuntosReferencia() {}
 
   verDireccionEnMapaLocalSeleccionado() {
     // Verificar que existe el contenedor para el mapaa
@@ -2146,9 +2293,22 @@ class PageCheckoutPH extends HTMLElement {
     this.modalContenidoF2NuevaDireccion.style.display = 'flex';
     this.footerModalNuevaDireccion.style.display = 'flex';
     this.etiquetaBtnModalNuevaDireccion.textContent = "Confirmar dirección";
+
+    // Procede a generar el mapa en el contenedor
   }
 
-  procesoPrincipalNuevaDireccion(){}
+  procesoPrincipalNuevaDireccion(){
+    if(this.estadoFaseNuevaDireccion == 2){
+      this.modalContenidoF2NuevaDireccion.style.display = 'none';
+      this.modalContenidoF3NuevaDireccion.style.display = 'flex';
+      this.footerModalNuevaDireccion.style.display = 'none';
+      this.estadoFaseNuevaDireccion = 3;
+      this.etiquetaBtnModalNuevaDireccion.textContent = "Guardar dirección";
+    }
+
+    if(this.estadoFaseNuevaDireccion == 3){
+    }
+  }
 }
 
 customElements.define('page-checkout-ph', PageCheckoutPH);
