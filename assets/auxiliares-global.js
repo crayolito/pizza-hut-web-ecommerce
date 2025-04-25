@@ -1653,6 +1653,7 @@ class PageCheckoutPH extends HTMLElement {
     //   "alias" : "Este es el que se vera primero si o si",
     // }
 
+    this.coordenadasProcesoNuevaDireccion = { lat: -17.783315017953004, lng: -63.18214577296119 };;
     this.estadoFaseNuevaDireccion = 1;
     this.listaDireccionPrueba = [
       {
