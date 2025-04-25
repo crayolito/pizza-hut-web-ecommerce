@@ -2024,7 +2024,9 @@ class PageCheckoutPH extends HTMLElement {
   }
 
   mostrarTodasDirecciones(){
-    console.log("mostrar todas direcciones");
+    console.log("mostrar todas direcciones",{
+      "prueba" : this.contenedorResultadosBusquedaDireccion.style.display == "flex"
+    });
     if(this.contenedorResultadosBusquedaDireccion.style.display == "flex"){
       console.log("ocultar contenedorResultadosBusquedaDireccion");
       this.contenedorResultadosBusquedaDireccion.style.display = "none";
