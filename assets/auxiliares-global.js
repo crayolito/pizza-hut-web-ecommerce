@@ -1741,7 +1741,6 @@ class PageCheckoutPH extends HTMLElement {
     this.btnMiUbicacionActualF1.addEventListener('click', this.procesoMiUbicacionActualF1.bind(this));
     this.btnProcesoPrincipalNd.addEventListener('click', this.procesoPrincipalNuevaDireccion.bind(this));
     this.btnCancelarNd.addEventListener('click', this.procesoVolverAtrasNuevaDireccion.bind(this));
-    this.btnVerTodasDirecciones.addEventListener('click', this.mostrarTodasDirecciones.bind(this));
     this.inputIndicacionesDireccionF3.addEventListener('input',(event)=>{
       const query = event.target.value.trim();
       if(query == ""){
@@ -1997,7 +1996,7 @@ class PageCheckoutPH extends HTMLElement {
         // Configurar evento para el botón de mostrar/ocultar
         this.btnVerTodasDirecciones.addEventListener('click', () => {
           // Si el contenedor ya está visible, ocultarlo
-          if (this.contenedorResultadosBuquedaLocal.style.display === "block") {
+          if (this.contenedorResultadosBuquedaLocal.style.display === "flex") {
             this.contenedorResultadosBuquedaLocal.style.display = "none";
             return;
           }
