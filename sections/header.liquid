@@ -58,13 +58,14 @@
             {% render 'icon-flecha-abajo' %}
           </button>
         </a>
-        <a
-          href="/pages/carrito"
-          id="h-btn-carrito-mobile"
-          class="h-boton-carrito"
-        >
-          {% render 'icon-carrito' %}
-        </a>
+        <carrito-shopify>
+          <a href="/pages/carrito" class="h-icono-carrito">
+            {% render 'icon-carrito' %}
+            <div class="h-ic-cantidad">
+              <p class="hicc-mensaje" id="contador-carrito">0</p>
+            </div>
+          </a>
+        </carrito-shopify>
       </div>
       <button
         id="h-btn-menu-mobile"
