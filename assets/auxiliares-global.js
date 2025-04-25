@@ -1709,7 +1709,7 @@ class PageCheckoutPH extends HTMLElement {
     this.etiquetaBtnModalNuevaDireccion = this.querySelector('#phpc-etiqueta-btn-acciones');
     this.footerModalNuevaDireccion = this.querySelector('#phpc-modal-footer-nd');
     this.btnProcesoPrincipalNd = this.querySelector('#phpc-btn-proceso-principal-nd');
-    this.btnCancelarNd  = this.querySelector('#phpc-btn-cancelar-nd');
+    this.btnCancelarNd = this.querySelector('#phpc-btn-cancelar-nd');
 
     this.contenedorBaseModal = this.querySelector('.ph-background-container-modal');
     this.btnsSeleccionMetodoEntrega = this.querySelectorAll('.smecph-opcion-metodo');
@@ -1730,6 +1730,8 @@ class PageCheckoutPH extends HTMLElement {
     this.btnCerrarModalNuevaDireccion.addEventListener('click', this.cerrarModalNuevaDireccion.bind(this));
     this.btnVolverAtrasNuevaDireccion.addEventListener('click', this.procesoVolverAtrasNuevaDireccion.bind(this));
     this.btnMiUbicacionActualF1.addEventListener('click', this.procesoMiUbicacionActualF1.bind(this));
+    this.btnProcesoPrincipalNd.addEventListener('click', this.procesoPrincipalNuevaDireccion.bind(this));
+    this.btnCancelarNd.addEventListener('click', this.procesoVolverAtrasNuevaDireccion.bind(this));
     // INICIALIZAR ELEMENTOS Y PROCESOS BASICOSS
 
     // local y domicilio
@@ -2145,6 +2147,8 @@ class PageCheckoutPH extends HTMLElement {
     this.footerModalNuevaDireccion.style.display = 'flex';
     this.etiquetaBtnModalNuevaDireccion.textContent = "Confirmar dirección";
   }
+
+  procesoPrincipalNuevaDireccion(){}
 }
 
 customElements.define('page-checkout-ph', PageCheckoutPH);
