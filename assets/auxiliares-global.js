@@ -2060,7 +2060,7 @@ class PageCheckoutPH extends HTMLElement {
         
         // Añadir evento de clic para seleccionar este locall
         resultadoItem.addEventListener('click', () => {
-          this.seleccionarLocal(direccion);
+          this.seleccionarDireccion(direccion);
         });
         
         // Añadir el item al contenedor de resultados
@@ -2072,7 +2072,7 @@ class PageCheckoutPH extends HTMLElement {
     }
   }
 
-  seleccionarDireccio(direccion){
+  seleccionarDireccion(direccion){
     this.direccionSeleccionada = direccion;
 
     // Actualizar el input con el nombre del direccion seleccionadoo
