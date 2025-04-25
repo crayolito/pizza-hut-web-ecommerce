@@ -1300,18 +1300,27 @@ class PageCarrito extends HTMLElement {
       if(informacionCompleta.opcionesPrincipales.productos.length == 0 && informacionCompleta.complementos.productos.length == 0){
         informacionCompleta.producto.precioTotalConjunto = informacionCompleta.producto.precio * cantidadElemento;
       }else {
+        // 1. Primero se optiene el precio del producto base y se lo multiplica por la cantidad actual
         let cantidadProductoBaseNuevo = parseInt(informacionCompleta.producto.precioProducto) * cantidadNuevaTrabajo;
+        // 2. Se optiene el precio del producto base y se lo multiplica por la cantidad antigua
         let cantidadProductoBaseAntiguo = parseInt(informacionCompleta.producto.precioProducto) * cantidadAntiguaTrabajo;
+        // 3. Se optiene el precio total del conjunto (producto base + complementos + opciones principales) 
         let cantidadPrecioTotalAntiguo = parseFloat(informacionCompleta.producto.precioTotalConjunto);
-        let cantidadOpcionesPrincipalesAntiguo = 0; 
+        
+        let cantidadOpcionesPrincipalesAntiguo = 0;
         let cantidadOpcionesPrincipalesNueva = 0;
-        informacionCompleta.opcionesPrincipales.productos.forEach((producto) => {
-          cantidadOpcionesPrincipalesNueva  += (cantidadNuevaTrabajo * parseInt(producto.precio));
-          cantidadOpcionesPrincipalesAntiguo += (producto.cantidad * parseInt(producto.precio));
-        });
-        let cantidadSolamenteComplementosAntiguo = cantidadPrecioTotalAntiguo - cantidadOpcionesPrincipalesAntiguo - cantidadProductoBaseAntiguo;
 
-        informacionCompleta.producto.precioTotalConjunto = cantidadOpcionesPrincipalesNueva + cantidadSolamenteComplementosAntiguo + cantidadProductoBaseNuevo;
+        // 4. Se va recorrer las opciones principales
+        informacionCompleta.opcionesPrincipales.productos.forEach((producto) => {
+          // 5. Se optiene el precio
+          cantidadOpcionesPrincipalesNueva  += (cantidadNuevaTrabajo * parseInt(producto.precio));
+          cantidadOpcionesPrincipalesAntiguo += (cantidadAntiguaTrabajo * parseInt(producto.precio));
+          producto.cantidad = cantidadNuevaTrabajo;
+        });
+        let cantidadSolamenteComplementos = cantidadPrecioTotalAntiguo - (cantidadProductoBaseAntiguo - cantidadOpcionesPrincipalesAntiguo);
+
+        // El nuevo precio del conjunto se calcula (cantidadProductoBaseNuevo + cantidadOpcionesPrincipalesNueva + cantidadSolamenteComplementos)
+        informacionCompleta.producto.precioTotalConjunto = cantidadProductoBaseNuevo + cantidadOpcionesPrincipalesNueva + cantidadSolamenteComplementos;
       }
 
         // console.log("Testeo completo :",{
