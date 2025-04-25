@@ -1288,11 +1288,16 @@ class PageCarrito extends HTMLElement {
       await AuxiliaresGlobal.eliminarItemCarritoPorKey(keyCarrito, 0);
     }else{
       // accionBtn == "incrementar" ? cantidadElemento++ : cantidadElemento--;
-      var cantidadAntiguaTrabajo = accionBtn == "incrementar" ? cantidadElemento - 1 : cantidadElemento + 1;
       var cantidadNuevaTrabajo = cantidadElemento;
+      var cantidadAntiguaTrabajo = accionBtn == "incrementar" ? cantidadElemento - 1 : cantidadElemento + 1;
+
+      console.log("Testeo de cantidadElemento", {
+        cantidadElemento,
+        cantidadAntiguaTrabajo,
+        cantidadNuevaTrabajo,
+      });
 
       if(informacionCompleta.opcionesPrincipales.productos.length == 0 && informacionCompleta.complementos.productos.length == 0){
-        console.log("Testeo de cantidadElemento", cantidadElemento);
         informacionCompleta.producto.precioTotalConjunto = informacionCompleta.producto.precio * cantidadElemento;
       }else {
         let cantidadProductoBaseNuevo = parseInt(informacionCompleta.producto.precioProducto) * cantidadNuevaTrabajo;
@@ -1305,10 +1310,7 @@ class PageCarrito extends HTMLElement {
           cantidadOpcionesPrincipalesAntiguo += (producto.cantidad * parseInt(producto.precio));
         });
         let cantidadSolamenteComplementosAntiguo = cantidadPrecioTotalAntiguo - cantidadOpcionesPrincipalesAntiguo - cantidadProductoBaseAntiguo;
-        console.log("Testeo de cantidadElemento", {
-          cantidadAntiguaTrabajo,
-          cantidadNuevaTrabajo,
-        });
+
         informacionCompleta.producto.precioTotalConjunto = cantidadOpcionesPrincipalesNueva + cantidadSolamenteComplementosAntiguo + cantidadProductoBaseNuevo;
       }
 
