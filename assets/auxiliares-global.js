@@ -1703,8 +1703,7 @@ class PageCheckoutPH extends HTMLElement {
     this.btnAnadirNuevaDireccion = this.querySelector('#phpc-btn-anadir-nueva-direccion');
     this.btnVolverAtrasNuevaDireccion = this.querySelector('#phpc-btn-modal-volver-atras');
     this.contenedorResultadosBusquedaDireccion = this.querySelector('#phpc-resultados-seleccion-direccion-envio');
-    this.inputSeleccionarDireccion = this.querySelector('#phpc-input-seleccionar-direccion');
-    this.btnVerTodasDirecciones = this.querySelector('#phpc-btn-ver-direcciones-todas');
+    // this.inputSeleccionarDireccion = this.querySelector('#phpc-input-seleccionar-direccion');
     this.btnCerrarModalNuevaDireccion = this.querySelector('#phpc-btn-cerrar-modal-nuevadireccion');
     this.modalBodyNuevaDireccion = this.querySelector('#phpc-modal-body-nueva-direccion');
     this.modalContenidoF1NuevaDireccion = this.querySelector('#phpc-modal-nd-fase1');
@@ -1972,32 +1971,32 @@ class PageCheckoutPH extends HTMLElement {
   // PROCESO DE CONTENEDOR SUGERENCIAS DIRECCION DE ENVI
   configuracionAutoCompletadoSeleccionDireccion(){
         // Verificar que el input existe
-        if (!this.inputSeleccionarDireccion) return;
+        // if (!this.inputSeleccionarDireccion) return;
     
         // Variable para almacenar el timer del debounce
         let timeoutId = null;
         
         // Configurar evento de entrada en el input
-        this.inputSeleccionarDireccion.addEventListener('input', (event) => {
-          // Limpiar el timer anterior si existe
-          if (timeoutId) {
-            clearTimeout(timeoutId);
-          }
+        // this.inputSeleccionarDireccion.addEventListener('input', (event) => {
+        //   // Limpiar el timer anterior si existe
+        //   if (timeoutId) {
+        //     clearTimeout(timeoutId);
+        //   }
           
-          const query = event.target.value;
+        //   const query = event.target.value;
           
-          // Si el input está vacío, ocultar sugerencias
-          if (!query) {
-            this.contenedorResultadosBusquedaDireccion.style.display = "none"; 
-            return;
-          }
+        //   // Si el input está vacío, ocultar sugerencias
+        //   if (!query) {
+        //     this.contenedorResultadosBusquedaDireccion.style.display = "none"; 
+        //     return;
+        //   }
           
-          // Configurar debounce (500ms)
-          timeoutId = setTimeout(() => {
-            // Solo mostrar los 3 primeros resultados más relevantes
-            this.buscarSugerenciasSeleccionDireccion(query, 3);
-          }, 500);
-        });
+        //   // Configurar debounce (500ms)
+        //   timeoutId = setTimeout(() => {
+        //     // Solo mostrar los 3 primeros resultados más relevantes
+        //     this.buscarSugerenciasSeleccionDireccion(query, 3);
+        //   }, 500);
+        // });
         
         // Configurar evento para el botón de mostrar/ocultar
         this.contenedorDireccionEnvioSeleccionado.addEventListener('click', () => {
@@ -2020,8 +2019,7 @@ class PageCheckoutPH extends HTMLElement {
         
         // Cerrar sugerencias al hacer clic fueraaa
         document.addEventListener('click', (e) => {
-          if (!this.inputSeleccionarDireccion.contains(e.target) && 
-              !this.contenedorResultadosBusquedaDireccion.contains(e.target) &&
+          if (!this.contenedorResultadosBusquedaDireccion.contains(e.target) &&
               !this.contenedorDireccionEnvioSeleccionado.contains(e.target)) {
             this.contenedorResultadosBusquedaDireccion.style.display = 'none';
           }
@@ -2101,7 +2099,7 @@ class PageCheckoutPH extends HTMLElement {
     this.direccionSeleccionada = direccion;
 
     // Actualizar el input con el nombre del direccion seleccionadoo
-    this.inputSeleccionarDireccion.value = direccion.alias;
+    // this.inputSeleccionarDireccion.value = direccion.alias;
 
     this.coordenadas = { lat: direccion.lat, lng: direccion.lng };
     
