@@ -2310,9 +2310,9 @@ class PageCheckoutPH extends HTMLElement {
     
     // Activar el botón de "Mi ubicación" y el "blue dot" nativos
     // Esta es la manera correcta de activar estas funciones en Google Maps
-    map.setMyLocationEnabled(true);
-    map.setLocationSource(google.maps.LocationSource.DEVICE_LOCATION);
-    map.getUiSettings().setMyLocationButtonEnabled(true);
+    // map.setMyLocationEnabled(true);
+    // map.setLocationSource(google.maps.LocationSource.DEVICE_LOCATION);
+    // map.getUiSettings().setMyLocationButtonEnabled(true);
 
     // Crear marcador movible
     const marker = new google.maps.Marker({
