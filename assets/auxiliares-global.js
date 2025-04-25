@@ -1310,7 +1310,6 @@ class PageCarrito extends HTMLElement {
           cantidadNuevaTrabajo,
         });
         informacionCompleta.producto.precioTotalConjunto = cantidadOpcionesPrincipalesNueva + cantidadSolamenteComplementosAntiguo + cantidadProductoBaseNuevo;
-
       }
 
         // console.log("Testeo completo :",{
