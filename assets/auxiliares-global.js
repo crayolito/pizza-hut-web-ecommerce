@@ -1964,7 +1964,7 @@ class PageCheckoutPH extends HTMLElement {
     `;
   }
 
-  // PROCESO DE CONTENEDOR SUGERENCIAS DIRECCION DE ENVIO
+  // PROCESO DE CONTENEDOR SUGERENCIAS DIRECCION DE ENVI
   configuracionAutoCompletadoSeleccionDireccion(){
         // Verificar que el input existe
         if (!this.inputSeleccionarDireccion) return;
