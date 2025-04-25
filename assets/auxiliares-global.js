@@ -1998,7 +1998,7 @@ class PageCheckoutPH extends HTMLElement {
           }
         });
         
-        // Cerrar sugerencias al hacer clic fuera
+        // Cerrar sugerencias al hacer clic fueraa
         document.addEventListener('click', (e) => {
           if (!this.inputSeleccionarDireccion.contains(e.target) && 
               !this.contenedorResultadosBusquedaDireccion.contains(e.target) &&
