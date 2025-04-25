@@ -2013,7 +2013,7 @@ class PageCheckoutPH extends HTMLElement {
           }
         });
         
-        // Cerrar sugerencias al hacer clic fueraa
+        // Cerrar sugerencias al hacer clic fueraaa
         document.addEventListener('click', (e) => {
           if (!this.inputSeleccionarDireccion.contains(e.target) && 
               !this.contenedorResultadosBusquedaDireccion.contains(e.target) &&
