@@ -1745,6 +1745,8 @@ class PageCheckoutPH extends HTMLElement {
       const query = event.target.value.trim();
       if(query == ""){
         this.btnProcesoPrincipalNd.classList.add('desactivado');
+      }else{
+        this.btnProcesoPrincipalNd.classList.remove('desactivado');
       }
     });
     // INICIALIZAR ELEMENTOS Y PROCESOS BASICOSS
