@@ -1720,7 +1720,9 @@ class PageCheckoutPH extends HTMLElement {
     this.btnProcesoPrincipalNd = this.querySelector('#phpc-btn-proceso-principal-nd');
     this.btnCancelarNd = this.querySelector('#phpc-btn-cancelar-nd');
 
+    this.contenedorDireccionEnvioSeleccionado = this.querySelector('#phpc-direccion-envio-de-uso');
     this.etiquetaAliasDireccion = this.querySelector('#phpc-alias-direccion-envio');
+    this.etiquetaIndicacionesDireccion = this.querySelector('#phpc-referencias-direccion-envio');
 
     this.contenedorBaseModal = this.querySelector('.ph-background-container-modal');
     this.btnsSeleccionMetodoEntrega = this.querySelectorAll('.smecph-opcion-metodo');
@@ -1998,10 +2000,10 @@ class PageCheckoutPH extends HTMLElement {
         });
         
         // Configurar evento para el botón de mostrar/ocultar
-        this.btnVerTodasDirecciones.addEventListener('click', () => {
+        this.contenedorDireccionEnvioSeleccionado.addEventListener('click', () => {
           // Si el contenedor ya está visible, ocultarlo
-          if (this.contenedorResultadosBuquedaLocal.style.display === "flex") {
-            this.contenedorResultadosBuquedaLocal.style.display = "none";
+          if (this.contenedorResultadosBusquedaDireccion.style.display === "flex") {
+            this.contenedorResultadosBusquedaDireccion.style.display = "none";
             return;
           }
           
