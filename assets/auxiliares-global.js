@@ -1713,6 +1713,8 @@ class PageCheckoutPH extends HTMLElement {
     this.contenedorResultadosBusquedaReferenciasF1 = this.querySelector('#phpc-resultados-sugerencias-referencia');
     this.modalContenidoF2NuevaDireccion = this.querySelector('#phpc-modal-nd-fase2');
     this.modalContenidoF3NuevaDireccion = this.querySelector('#phpc-modal-nd-fase3');
+    this.inputIndicacionesDireccionF3 = this.querySelector('#phpc-input-indicaciones-nd');
+    this.inputAliasDireccionF3 = this.querySelector('#phpc-input-alias-nd');
     this.etiquetaBtnModalNuevaDireccion = this.querySelector('#phpc-etiqueta-btn-acciones');
     this.footerModalNuevaDireccion = this.querySelector('#phpc-modal-footer-nd');
     this.btnProcesoPrincipalNd = this.querySelector('#phpc-btn-proceso-principal-nd');
@@ -1740,6 +1742,12 @@ class PageCheckoutPH extends HTMLElement {
     this.btnProcesoPrincipalNd.addEventListener('click', this.procesoPrincipalNuevaDireccion.bind(this));
     this.btnCancelarNd.addEventListener('click', this.procesoVolverAtrasNuevaDireccion.bind(this));
     this.btnVerTodasDirecciones.addEventListener('click', this.mostrarTodasDirecciones.bind(this));
+    this.inputIndicacionesDireccionF3.addEventListener('input',(event)=>{
+      const query = event.target.value.trim();
+      if(query == ""){
+        this.btnProcesoPrincipalNd.classList.add('desactivado');
+      }
+    });
     // INICIALIZAR ELEMENTOS Y PROCESOS BASICOSS
 
     // local y domicilio
@@ -2413,7 +2421,7 @@ class PageCheckoutPH extends HTMLElement {
     // }
   }
 
-  procesoPrincipalNuevaDireccion(){
+  async procesoPrincipalNuevaDireccion(){
     if(this.estadoFaseNuevaDireccion == 2){
       this.estadoFaseNuevaDireccion = 3;
       this.modalContenidoF2NuevaDireccion.style.display = 'none';
@@ -2427,6 +2435,13 @@ class PageCheckoutPH extends HTMLElement {
     if(this.estadoFaseNuevaDireccion == 3){
       this.etiquetaBtnModalNuevaDireccion.textContent = "CONFIRMAR DIRECCION";
       this.btnProcesoPrincipalNd.classList.remove('desactivado');
+
+      const alias = this.inputAliasDireccionF3.value;
+      const indicaciones = this.inputIndicacionesDireccionF3.value;
+
+      const coordenadasTexto = await AuxiliaresGlobal.obtenerDireccionDesdeCoordenadas(this.coordenadas.lat,this.coordenadas.lng);
+      console.log('Direccion obtenida desde coordenadas:', coordenadasTexto);
+
 
       MensajeCargaDatos.mostrar('Guardando dirección ...');
       setTimeout(() => {
