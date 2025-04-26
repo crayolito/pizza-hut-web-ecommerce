@@ -2433,58 +2433,58 @@ class PageCheckoutPH extends HTMLElement {
       streetViewControl: false,
       fullscreenControl: false,
       zoomControl: true
-  });
+    });
 
-  // Crear marcador movible
-  const marker = new google.maps.Marker({
-      position: this.coordenadas,
-      map: map,
-      draggable: true,
-      animation: google.maps.Animation.DROP,
-      title: 'Tu ubicación'
-  });
+    // Crear marcador movible
+    const marker = new google.maps.Marker({
+        position: this.coordenadas,
+        map: map,
+        draggable: true,
+        animation: google.maps.Animation.DROP,
+        title: 'Tu ubicación'
+    });
 
 
     if(this.coordenadasProcesoNuevaDireccion == null){
-    // Intentar obtener la ubicación actual del usuario
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-            // Éxito al obtener la ubicación
-            (position) => {
-                const userLocation = {
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude
-                };
-                
-                // Actualizar coordenadas
-                this.coordenadasProcesoNuevaDireccion = userLocation;
-                
-                console.log('GPS activado, ubicación obtenida:', userLocation);
-            },
-            // Error al obtener la ubicación
-            (error) => {
-                console.warn('Error al obtener la ubicación:', error.message);
-                this.coordenadasProcesoNuevaDireccion = this.coordenadas;
-                // Usar las coordenadas por defecto (this.coordenadas ya está configurado)
-                alert('No se pudo acceder a tu ubicación. Utilizando ubicación predeterminada.');
-            },
-            // Opciones
-            {
-                enableHighAccuracy: true,
-                timeout: 5000,
-                maximumAge: 0
-            }
-        );
-    } else {
-        this.coordenadasProcesoNuevaDireccion = this.coordenadas;
-        console.warn('Geolocalización no soportada por este navegador');
-        alert('Tu navegador no soporta geolocalización. Utilizando ubicación predeterminada.');
+      // Intentar obtener la ubicación actual del usuario
+      if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+              // Éxito al obtener la ubicación
+              (position) => {
+                  const userLocation = {
+                      lat: position.coords.latitude,
+                      lng: position.coords.longitude
+                  };
+                  
+                  // Actualizar coordenadas
+                  this.coordenadasProcesoNuevaDireccion = userLocation;
+                  
+                  console.log('GPS activado, ubicación obtenida:', userLocation);
+              },
+              // Error al obtener la ubicación
+              (error) => {
+                  console.warn('Error al obtener la ubicación:', error.message);
+                  this.coordenadasProcesoNuevaDireccion = this.coordenadas;
+                  // Usar las coordenadas por defecto (this.coordenadas ya está configurado)
+                  alert('No se pudo acceder a tu ubicación. Utilizando ubicación predeterminada.');
+              },
+              // Opciones
+              {
+                  enableHighAccuracy: true,
+                  timeout: 5000,
+                  maximumAge: 0
+              }
+          );
+      } else {
+          this.coordenadasProcesoNuevaDireccion = this.coordenadas;
+          console.warn('Geolocalización no soportada por este navegador');
+          alert('Tu navegador no soporta geolocalización. Utilizando ubicación predeterminada.');
+      }
+    }else{
+      this.coordenadasProcesoNuevaDireccion = this.coordenadas;
     }
-  }else{
-    this.coordenadasProcesoNuevaDireccion = this.coordenadas;
-  }
-  marker.setPosition(this.coordenadasProcesoNuevaDireccion);
-  map.setPosition(this.coordenadasProcesoNuevaDireccion);
+    marker.setPosition(this.coordenadasProcesoNuevaDireccion);
+    map.panTo(this.coordenadasProcesoNuevaDireccion);
 
     // Actualizar this.coordenadas cuando el marcador se mueve
     google.maps.event.addListener(marker, 'dragend', (event) => {
@@ -2492,6 +2492,8 @@ class PageCheckoutPH extends HTMLElement {
             lat: event.latLng.lat(),
             lng: event.latLng.lng()
         };
+
+        this.coordenadasProcesoNuevaDireccion = this.coordenadas;
         console.log('Nueva ubicación:', this.coordenadas);
     });
   }
