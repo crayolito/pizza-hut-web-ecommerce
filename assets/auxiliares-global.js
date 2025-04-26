@@ -2407,6 +2407,7 @@ class PageCheckoutPH extends HTMLElement {
       this.footerModalNuevaDireccion.style.display = 'none';
       this.modalContenidoF2NuevaDireccion.style.display = 'none';
       this.estadoFaseNuevaDireccion = 1;
+      this.coordenadasProcesoNuevaDireccion = null;
     }
 
     if(this.estadoFaseNuevaDireccion == 3){
@@ -2415,6 +2416,7 @@ class PageCheckoutPH extends HTMLElement {
       this.modalContenidoF3NuevaDireccion.style.display = 'none';
       this.etiquetaBtnModalNuevaDireccion.textContent = "CONFIRMAR DIRECCION";
       this.estadoFaseNuevaDireccion = 2;
+      this.coordenadasProcesoNuevaDireccion = null;
     }
   }
 
@@ -2527,6 +2529,7 @@ class PageCheckoutPH extends HTMLElement {
         MensajeCargaDatos.ocultar();
       }, 3000);
       this.btnProcesoPrincipalNd.classList.add('desactivado');
+      this.coordenadasProcesoNuevaDireccion = null;
       return;
     }
   }
