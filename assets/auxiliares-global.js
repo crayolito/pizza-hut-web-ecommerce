@@ -2430,6 +2430,7 @@ class PageCheckoutPH extends HTMLElement {
       this.etiquetaBtnModalNuevaDireccion.textContent = "CONFIRMAR DIRECCION";
       const alias = this.inputAliasDireccionF3.value;
       const indicaciones = this.inputIndicacionesDireccionF3.value;
+      this.btnProcesoPrincipalNd.classList.add('desactivado');
       this.listaDireccionPrueba.push({
         lat: this.coordenadas.lat,
         lng: this.coordenadas.lng,
