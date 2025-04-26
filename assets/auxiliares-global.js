@@ -1752,7 +1752,7 @@ class PageCheckoutPH extends HTMLElement {
         this.btnProcesoPrincipalNd.classList.remove('desactivado');
       }
     });
-    // INICIALIZAR ELEMENTOS Y PROCESOS 
+    // INICIALIZAR ELEMENTOS Y PROCESO
 
     // local y domicilio
     this.estadoPagina = localStorage.getItem('ph-metodo-entrega');
