@@ -145,7 +145,8 @@ input[type="number"] {
   font-weight: 600;
 }
 
-.smecph-pc-resultado-item {
+.smecph-pc-resultado-item,
+.smecph-pc-resultado-item-especial {
   width: 100%;
   flex-direction: column;
   display: flex;

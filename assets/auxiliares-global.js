@@ -1761,407 +1761,407 @@ class PageCheckoutPH extends HTMLElement {
     this.inicializarDataContruccion();
   }
 
-      // PROCESO DE CONTENEDOR SUGERENCIAS PUNTOS DE REFERENCIAS
-      configuracionAutoCompletadoPuntosReferencia() {
-        // Verificar que el input existe
-        if (!this.inputPuntoReferenciaF1) return;
-        
-        // Variable para almacenar el timer del debounce
-        let timeoutId = null;
+  // PROCESO DE CONTENEDOR SUGERENCIAS PUNTOS DE REFERENCIAS
+  configuracionAutoCompletadoPuntosReferencia() {
+    // Verificar que el input existe
+    if (!this.inputPuntoReferenciaF1) return;
     
-        // Variable para el servicio de Google Places
-        this.placesService = new google.maps.places.AutocompleteService();
-        
-        // Configurar evento de entrada en el input
-        this.inputPuntoReferenciaF1.addEventListener('input', (event) => {
-          // Limpiar el timer anterior si existe
-          if (timeoutId) {
-            clearTimeout(timeoutId);
-          }
-          
-          const query = event.target.value;
-          
-          // Si el input está vacío, ocultar sugerencias
-          if (!query) {
-            this.contenedorResultadosBusquedaReferenciasF1.style.display = "none"; 
-            return;
-          }
-          
-          // Configurar debounce (500ms)
-          timeoutId = setTimeout(() => {
-            // Solo mostrar los 3 primeros resultados más relevantes
-            this.buscarSugerenciasSeleccionReferencia(query);
-          }, 500);
-        });
-        
-        // Cerrar sugerencias al hacer clic fuera
-        document.addEventListener('click', (e) => {
-          if (!this.inputPuntoReferenciaF1.contains(e.target) && 
-              !this.contenedorResultadosBusquedaReferenciasF1.contains(e.target)) {
-            this.contenedorResultadosBusquedaReferenciasF1.style.display = 'none';
-          }
-        });
+    // Variable para almacenar el timer del debounce
+    let timeoutId = null;
+
+    // Variable para el servicio de Google Places
+    this.placesService = new google.maps.places.AutocompleteService();
+    
+    // Configurar evento de entrada en el input
+    this.inputPuntoReferenciaF1.addEventListener('input', (event) => {
+      // Limpiar el timer anterior si existe
+      if (timeoutId) {
+        clearTimeout(timeoutId);
       }
-    
-      buscarSugerenciasSeleccionReferencia(query) {
-        // Opciones para la busqueda
-        const opcionesBusqueda = {
-          input: query,
-          componentRestrictions: { country: 'BO' },
-        }
-    
-        // Realizar la busqueda
-        this.placesService.getPlacePredictions(opcionesBusqueda, (predicciones, status) => {
-          // Limpiar contenedor de sugerencias
-          this.contenedorResultadosBusquedaReferenciasF1.innerHTML = '';
-    
-          if (status !== google.maps.places.PlacesServiceStatus.OK || !predicciones) {
-            this.contenedorResultadosBusquedaReferenciasF1.style.display = 'none';
-            return;
-          }
-    
-          // Limitar a 3 resultados
-          const sugerencias = predicciones.slice(0, 3);
-    
-          // Mostrar sugerencias
-          sugerencias.forEach(sugerencia => {
-            const elemento = document.createElement('div');
-            elemento.className = 'smecph-pc-resultado-item';
-    
-            // Crear elemento para el nombre del lugar
-            const textoElemento = document.createElement('p');
-            textoElemento.textContent = sugerencia.description;
-            elemento.appendChild(textoElemento);
-    
-            // Agregar evento de clic 
-            elemento.addEventListener('click', () => {
-              this.seleccionarPuntoReferencia(sugerencia);
-            });
-    
-            this.contenedorResultadosBusquedaReferenciasF1.appendChild(elemento);
-          });
-    
-          // Mostrar el contenedor
-          if(sugerencias.length > 0){
-            this.contenedorResultadosBusquedaReferenciasF1.style.display = 'flex';
-          }else{
-            this.contenedorResultadosBusquedaReferenciasF1.style.display = 'none';
-          }
-        });
-      }
-    
-      seleccionarPuntoReferencia(sugerencia) {
-        this.inputPuntoReferenciaF1.value = sugerencia.description;
-        this.contenedorResultadosBusquedaReferenciasF1.style.display = 'none';
       
-        // Obtener las coordenadas del lugar seleccionado
-        const geocoder = new google.maps.Geocoder();
-        geocoder.geocode({ placeId: sugerencia.place_id }, (resultados, status) => {
-          if (status === google.maps.GeocoderStatus.OK && resultados[0]) {
-            const location = resultados[0].geometry.location;
-            // Convertir el objeto LatLng de Google Maps a un objeto JavaScript simple
-            this.coordenadasProcesoNuevaDireccion = { 
-              lat: location.lat(), 
-              lng: location.lng() 
-            };
-            console.log('Coordenadas seleccionadas:', this.coordenadasProcesoNuevaDireccion);
-          } else {
-            console.error('Error al obtener las coordenadas:', status);
-          }
-        });
+      const query = event.target.value;
+      
+      // Si el input está vacío, ocultar sugerencias
+      if (!query) {
+        this.contenedorResultadosBusquedaReferenciasF1.style.display = "none"; 
+        return;
+      }
+      
+      // Configurar debounce (500ms)
+      timeoutId = setTimeout(() => {
+        // Solo mostrar los 3 primeros resultados más relevantes
+        this.buscarSugerenciasSeleccionReferencia(query);
+      }, 500);
+    });
+    
+    // Cerrar sugerencias al hacer clic fuera
+    document.addEventListener('click', (e) => {
+      if (!this.inputPuntoReferenciaF1.contains(e.target) && 
+          !this.contenedorResultadosBusquedaReferenciasF1.contains(e.target)) {
+        this.contenedorResultadosBusquedaReferenciasF1.style.display = 'none';
+      }
+    });
+  }
+
+  buscarSugerenciasSeleccionReferencia(query) {
+    // Opciones para la busqueda
+    const opcionesBusqueda = {
+      input: query,
+      componentRestrictions: { country: 'BO' },
+    }
+
+    // Realizar la busqueda
+    this.placesService.getPlacePredictions(opcionesBusqueda, (predicciones, status) => {
+      // Limpiar contenedor de sugerencias
+      this.contenedorResultadosBusquedaReferenciasF1.innerHTML = '';
+
+      if (status !== google.maps.places.PlacesServiceStatus.OK || !predicciones) {
+        this.contenedorResultadosBusquedaReferenciasF1.style.display = 'none';
+        return;
       }
 
-    // PROCESO DE CONTENEDOR SUGERENCIAS BUSQUEDA LOCALA
-    configuracionAutoCompletadoSeleccionLocal() {
-      // Verificar que el input existe
-      if (!this.inputSeleccionarLocal) return;
-      
-      // Variable para almacenar el timer del debounce
-      let timeoutId = null;
-      
-      // Configurar evento de entrada en el input
-      this.inputSeleccionarLocal.addEventListener('input', (event) => {
-        // Limpiar el timer anterior si existe
-        if (timeoutId) {
-          clearTimeout(timeoutId);
-        }
-        
-        const query = event.target.value;
-        
-        // Si el input está vacío, ocultar sugerencias
-        if (!query) {
-          this.contenedorResultadosBuquedaLocal.style.display = "none"; 
-          return;
-        }
-        
-        // Configurar debounce (500ms)
-        timeoutId = setTimeout(() => {
-          // Solo mostrar los 3 primeros resultados más relevantes
-          this.buscarSugerenciasSeleccionLocal(query, 3);
-        }, 500);
-      });
-      
-      // Configurar evento para el botón de mostrar/ocultar
-      this.btnIconoMostrarTodosLocales.addEventListener('click', () => {
-        // Si el contenedor ya está visible, ocultarlo
-        if (this.contenedorResultadosBuquedaLocal.style.display === "block") {
-          this.contenedorResultadosBuquedaLocal.style.display = "none";
-          return;
-        }
-        
-        const query = this.inputSeleccionarLocal.value;
-        
-        // Si el input está vacío, mostrar todos los locales
-        if (!query) {
-          this.mostrarTodosLosLocales();
-        } else {
-          // Si hay texto en el input, mostrar los 3 resultados más asertados
-          this.buscarSugerenciasSeleccionLocal(query, 3);
-        }
-      });
-      
-      // Cerrar sugerencias al hacer clic fuera
-      document.addEventListener('click', (e) => {
-        if (!this.inputSeleccionarLocal.contains(e.target) && 
-            !this.contenedorResultadosBuquedaLocal.contains(e.target) &&
-            !this.btnIconoMostrarTodosLocales.contains(e.target)) {
-          this.contenedorResultadosBuquedaLocal.style.display = 'none';
-        }
-      });
-    }
-  
-    // Método para mostrar todos los locales
-    mostrarTodosLosLocales() {
-      // Simplemente llamamos a buscarSugerenciasSeleccionLocal sin límite
-      // para mostrar todos los locales
-      if (this.contenedorResultadosBuquedaLocal.style.display === "none") {
-        this.buscarSugerenciasSeleccionLocal('', null);
-        this.contenedorResultadosBuquedaLocal.style.display = "flex";
-      }else{
-        this.contenedorResultadosBuquedaLocal.style.display = "none";
-      }
-    }
-  
-    buscarSugerenciasSeleccionLocal(query, limite = null) {
-      // Filtrar las ubicaciones basadas en la consulta
-      let resultados = this.pizzaLocations.filter(location => 
-        location.name.toLowerCase().includes(query.toLowerCase()) ||
-        location.localizacion.toLowerCase().includes(query.toLowerCase())
-      );
-      
-      // Ordenar por relevancia (priorizar coincidencias en el nombre)
-      resultados.sort((a, b) => {
-        const aInName = a.name.toLowerCase().includes(query.toLowerCase());
-        const bInName = b.name.toLowerCase().includes(query.toLowerCase());
-        
-        if (aInName && !bInName) return -1;
-        if (!aInName && bInName) return 1;
-        return 0;
-      });
-      
-      // Limitar resultados si se especifica un límite
-      if (limite && resultados.length > limite) {
-        resultados = resultados.slice(0, limite);
-      }
-    
-      // Limpiar resultados anteriores
-      this.contenedorResultadosBuquedaLocal.innerHTML = '';
-      
-      // Si hay resultados, mostrar el contenedor
-      if (resultados.length > 0) {
-        this.contenedorResultadosBuquedaLocal.style.display = "flex";
-        
-        // Crear y añadir elementos para cada resultado
-        resultados.forEach(location => {
-          const resultadoItem = document.createElement('div');
-          resultadoItem.className = 'smecph-pc-resultado-item';
-          
-          // Crear elemento para el nombre
-          const nombreLocal = document.createElement('p');
-          nombreLocal.textContent = location.name;
-          
-          // Crear elemento para la dirección
-          const direccionLocal = document.createElement('p');
-          direccionLocal.textContent = location.localizacion;
-          
-          // Añadir elementos al item
-          resultadoItem.appendChild(nombreLocal);
-          resultadoItem.appendChild(direccionLocal);
-          
-          // Añadir evento de clic para seleccionar este locall
-          resultadoItem.addEventListener('click', () => {
-            this.seleccionarLocal(location);
-          });
-          
-          // Añadir el item al contenedor de resultados
-          this.contenedorResultadosBuquedaLocal.appendChild(resultadoItem);
+      // Limitar a 3 resultados
+      const sugerencias = predicciones.slice(0, 3);
+
+      // Mostrar sugerencias
+      sugerencias.forEach(sugerencia => {
+        const elemento = document.createElement('div');
+        elemento.className = 'smecph-pc-resultado-item-especial';
+
+        // Crear elemento para el nombre del lugar
+        const textoElemento = document.createElement('p');
+        textoElemento.textContent = sugerencia.description;
+        elemento.appendChild(textoElemento);
+
+        // Agregar evento de clic 
+        elemento.addEventListener('click', () => {
+          this.seleccionarPuntoReferencia(sugerencia);
         });
-      } else {
-        // Si no hay resultados, ocultar el contenedor
-        this.contenedorResultadosBuquedaLocal.style.display = "none";
+
+        this.contenedorResultadosBusquedaReferenciasF1.appendChild(elemento);
+      });
+
+      // Mostrar el contenedor
+      if(sugerencias.length > 0){
+        this.contenedorResultadosBusquedaReferenciasF1.style.display = 'flex';
+      }else{
+        this.contenedorResultadosBusquedaReferenciasF1.style.display = 'none';
       }
-    }
+    });
+  }
+
+  seleccionarPuntoReferencia(sugerencia) {
+    this.inputPuntoReferenciaF1.value = sugerencia.description;
+    this.contenedorResultadosBusquedaReferenciasF1.style.display = 'none';
   
-    seleccionarLocal(location) {
-      this.localSeleccionado = location;
-      // this.coordenadas = { lat: location.lat, lng: location.lng };
-  
-      // Actualizar el input con el nombre del local seleccionadoo
-      this.inputSeleccionarLocal.value = location.name;
+    // Obtener las coordenadas del lugar seleccionado
+    const geocoder = new google.maps.Geocoder();
+    geocoder.geocode({ placeId: sugerencia.place_id }, (resultados, status) => {
+      if (status === google.maps.GeocoderStatus.OK && resultados[0]) {
+        const location = resultados[0].geometry.location;
+        // Convertir el objeto LatLng de Google Maps a un objeto JavaScript simple
+        this.coordenadasProcesoNuevaDireccion = { 
+          lat: location.lat(), 
+          lng: location.lng() 
+        };
+        console.log('Coordenadas seleccionadas:', this.coordenadasProcesoNuevaDireccion);
+      } else {
+        console.error('Error al obtener las coordenadas:', status);
+      }
+    });
+  }
+
+  // PROCESO DE CONTENEDOR SUGERENCIAS BUSQUEDA LOCALA
+  configuracionAutoCompletadoSeleccionLocal() {
+    // Verificar que el input existe
+    if (!this.inputSeleccionarLocal) return;
+    
+    // Variable para almacenar el timer del debounce
+    let timeoutId = null;
+    
+    // Configurar evento de entrada en el input
+    this.inputSeleccionarLocal.addEventListener('input', (event) => {
+      // Limpiar el timer anterior si existe
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
       
-      // Ocultar sugerencias
+      const query = event.target.value;
+      
+      // Si el input está vacío, ocultar sugerencias
+      if (!query) {
+        this.contenedorResultadosBuquedaLocal.style.display = "none"; 
+        return;
+      }
+      
+      // Configurar debounce (500ms)
+      timeoutId = setTimeout(() => {
+        // Solo mostrar los 3 primeros resultados más relevantes
+        this.buscarSugerenciasSeleccionLocal(query, 3);
+      }, 500);
+    });
+    
+    // Configurar evento para el botón de mostrar/ocultar
+    this.btnIconoMostrarTodosLocales.addEventListener('click', () => {
+      // Si el contenedor ya está visible, ocultarlo
+      if (this.contenedorResultadosBuquedaLocal.style.display === "block") {
+        this.contenedorResultadosBuquedaLocal.style.display = "none";
+        return;
+      }
+      
+      const query = this.inputSeleccionarLocal.value;
+      
+      // Si el input está vacío, mostrar todos los locales
+      if (!query) {
+        this.mostrarTodosLosLocales();
+      } else {
+        // Si hay texto en el input, mostrar los 3 resultados más asertados
+        this.buscarSugerenciasSeleccionLocal(query, 3);
+      }
+    });
+    
+    // Cerrar sugerencias al hacer clic fuera
+    document.addEventListener('click', (e) => {
+      if (!this.inputSeleccionarLocal.contains(e.target) && 
+          !this.contenedorResultadosBuquedaLocal.contains(e.target) &&
+          !this.btnIconoMostrarTodosLocales.contains(e.target)) {
+        this.contenedorResultadosBuquedaLocal.style.display = 'none';
+      }
+    });
+  }
+
+  // Método para mostrar todos los locales
+  mostrarTodosLosLocales() {
+    // Simplemente llamamos a buscarSugerenciasSeleccionLocal sin límite
+    // para mostrar todos los locales
+    if (this.contenedorResultadosBuquedaLocal.style.display === "none") {
+      this.buscarSugerenciasSeleccionLocal('', null);
+      this.contenedorResultadosBuquedaLocal.style.display = "flex";
+    }else{
       this.contenedorResultadosBuquedaLocal.style.display = "none";
-      
-      // Mostrar detalles del local seleccionadoo
-      const detalleLocal = this.querySelector('.pcktph-seleccion-local-detalle');
-      detalleLocal.style.display = "flex";
-  
-      const distancia = this.calcularDistancia(this.coordenadas, {lat: location.lat, lng: location.lng});
-      this.etiquetaModalLocalSeleccionado.textContent = `Local : ${location.name} (${distancia.toFixed(2)} Km) de tu ubicación`;
-  
-      // Actualizar información del local seleccionado
-      const infoLocal = this.querySelector('.pcktph-seleccion-local-detalle-info');
-      infoLocal.innerHTML = `
-        <p>${location.name.toUpperCase()}</p>
-        <p>+591 ${location.telefono} - ${parseFloat(distancia).toFixed(2)} Km</p>
-      `;
     }
-  
-    // PROCESO DE CONTENEDOR SUGERENCIAS DIRECCION DE ENVI
-    configuracionAutoCompletadoSeleccionDireccion(){
-          // Verificar que el input existe
-          // if (!this.inputSeleccionarDireccion) return;
-      
-          // Variable para almacenar el timer del debounce
-          let timeoutId = null;
-          
-          // Configurar evento de entrada en el input
-          // this.inputSeleccionarDireccion.addEventListener('input', (event) => {
-          //   // Limpiar el timer anterior si existe
-          //   if (timeoutId) {
-          //     clearTimeout(timeoutId);
-          //   }
-            
-          //   const query = event.target.value;
-            
-          //   // Si el input está vacío, ocultar sugerencias
-          //   if (!query) {
-          //     this.contenedorResultadosBusquedaDireccion.style.display = "none"; 
-          //     return;
-          //   }
-            
-          //   // Configurar debounce (500ms)
-          //   timeoutId = setTimeout(() => {
-          //     // Solo mostrar los 3 primeros resultados más relevantes
-          //     this.buscarSugerenciasSeleccionDireccion(query, 3);
-          //   }, 500);
-          // });
-          
-          // Configurar evento para el botón de mostrar/ocultar
-          this.contenedorDireccionEnvioSeleccionado.addEventListener('click', () => {
-            // Si el contenedor ya está visible, ocultarlo
-            if (this.contenedorResultadosBusquedaDireccion.style.display === "flex") {
-              this.contenedorResultadosBusquedaDireccion.style.display = "none";
-              return;
-            }
-            
-            const query = this.inputSeleccionarLocal.value;
-            
-            // Si el input está vacío, mostrar todos los locales
-            if (!query) {
-              this.mostrarTodasDirecciones();
-            } else {
-              // Si hay texto en el input, mostrar los 3 resultados más asertados
-              this.buscarSugerenciasSeleccionDireccion(query, 3);
-            }
-          });
-          
-          // Cerrar sugerencias al hacer clic fueraaa
-          document.addEventListener('click', (e) => {
-            if (!this.contenedorResultadosBusquedaDireccion.contains(e.target) &&
-                !this.contenedorDireccionEnvioSeleccionado.contains(e.target)) {
-              this.contenedorResultadosBusquedaDireccion.style.display = 'none';
-            }
-          });
-    }
-  
-    mostrarTodasDirecciones(){
-      if (this.contenedorResultadosBusquedaDireccion.style.display === "none") {
-        this.buscarSugerenciasSeleccionDireccion('', null);
-        this.contenedorResultadosBusquedaDireccion.style.display = "flex";
-      }else{
-        this.contenedorResultadosBusquedaDireccion.style.display = "none";
-      }
-    }
-  
-    buscarSugerenciasSeleccionDireccion(query, limite = null) {
-      // Filtrar las ubicaciones basadas en la consulta
-      let resultados = this.listaDireccionPrueba.filter(direccion => 
-        direccion.indicaciones.toLowerCase().includes(query.toLowerCase()) ||
-        direccion.alias.toLowerCase().includes(query.toLowerCase())
-      );
-      
-      // Ordenar por relevancia (priorizar coincidencias en el nombre)
-      resultados.sort((a, b) => {
-        const aInAlias = a.alias.toLowerCase().includes(query.toLowerCase());
-        const bInAlias = b.alias.toLowerCase().includes(query.toLowerCase());
-        
-        if (aInAlias && !bInAlias) return -1;
-        if (!aInAlias && bInAlias) return 1;
-        return 0;
-      });
-      
-      // Limitar resultados si se especifica un límite
-      if (limite && resultados.length > limite) {
-        resultados = resultados.slice(0, limite);
-      }
+  }
+
+  buscarSugerenciasSeleccionLocal(query, limite = null) {
+    // Filtrar las ubicaciones basadas en la consulta
+    let resultados = this.pizzaLocations.filter(location => 
+      location.name.toLowerCase().includes(query.toLowerCase()) ||
+      location.localizacion.toLowerCase().includes(query.toLowerCase())
+    );
     
-      // Limpiar resultados anteriores
-      this.contenedorResultadosBusquedaDireccion.innerHTML = '';
+    // Ordenar por relevancia (priorizar coincidencias en el nombre)
+    resultados.sort((a, b) => {
+      const aInName = a.name.toLowerCase().includes(query.toLowerCase());
+      const bInName = b.name.toLowerCase().includes(query.toLowerCase());
       
-      // Si hay resultados, mostrar el contenedor
-      if (resultados.length > 0) {
-        this.contenedorResultadosBusquedaDireccion.style.display = "flex";
+      if (aInName && !bInName) return -1;
+      if (!aInName && bInName) return 1;
+      return 0;
+    });
+    
+    // Limitar resultados si se especifica un límite
+    if (limite && resultados.length > limite) {
+      resultados = resultados.slice(0, limite);
+    }
+  
+    // Limpiar resultados anteriores
+    this.contenedorResultadosBuquedaLocal.innerHTML = '';
+    
+    // Si hay resultados, mostrar el contenedor
+    if (resultados.length > 0) {
+      this.contenedorResultadosBuquedaLocal.style.display = "flex";
+      
+      // Crear y añadir elementos para cada resultado
+      resultados.forEach(location => {
+        const resultadoItem = document.createElement('div');
+        resultadoItem.className = 'smecph-pc-resultado-item';
         
-        // Crear y añadir elementos para cada resultado
-        resultados.forEach(direccion => {
-          const resultadoItem = document.createElement('div');
-          resultadoItem.className = 'smecph-pc-resultado-item';
-          
-          // Crear elemento para el nombre
-          const nombreAlias = document.createElement('p');
-          nombreAlias.textContent = direccion.alias;
-          
-          // Crear elemento para la dirección
-          const direccionIndicacion = document.createElement('p');
-          direccionIndicacion.textContent = direccion.indicaciones;
-          
-          // Añadir elementos al item
-          resultadoItem.appendChild(nombreAlias);
-          resultadoItem.appendChild(direccionIndicacion);
-          
-          // Añadir evento de clic para seleccionar este locall
-          resultadoItem.addEventListener('click', () => {
-            this.seleccionarDireccion(direccion);
-          });
-          
-          // Añadir el item al contenedor de resultados
-          this.contenedorResultadosBusquedaDireccion.appendChild(resultadoItem);
+        // Crear elemento para el nombre
+        const nombreLocal = document.createElement('p');
+        nombreLocal.textContent = location.name;
+        
+        // Crear elemento para la dirección
+        const direccionLocal = document.createElement('p');
+        direccionLocal.textContent = location.localizacion;
+        
+        // Añadir elementos al item
+        resultadoItem.appendChild(nombreLocal);
+        resultadoItem.appendChild(direccionLocal);
+        
+        // Añadir evento de clic para seleccionar este locall
+        resultadoItem.addEventListener('click', () => {
+          this.seleccionarLocal(location);
         });
-      } else {
-        // Si no hay resultados, ocultar el contenedor
-        this.contenedorResultadosBusquedaDireccion.style.display = "none";
-      }
+        
+        // Añadir el item al contenedor de resultados
+        this.contenedorResultadosBuquedaLocal.appendChild(resultadoItem);
+      });
+    } else {
+      // Si no hay resultados, ocultar el contenedor
+      this.contenedorResultadosBuquedaLocal.style.display = "none";
     }
-  
-    seleccionarDireccion(direccion){
-      this.direccionSeleccionada = direccion;
-      this.coordenadas = { lat: direccion.lat, lng: direccion.lng };
+  }
+
+  seleccionarLocal(location) {
+    this.localSeleccionado = location;
+    // this.coordenadas = { lat: location.lat, lng: location.lng };
+
+    // Actualizar el input con el nombre del local seleccionadoo
+    this.inputSeleccionarLocal.value = location.name;
+    
+    // Ocultar sugerencias
+    this.contenedorResultadosBuquedaLocal.style.display = "none";
+    
+    // Mostrar detalles del local seleccionadoo
+    const detalleLocal = this.querySelector('.pcktph-seleccion-local-detalle');
+    detalleLocal.style.display = "flex";
+
+    const distancia = this.calcularDistancia(this.coordenadas, {lat: location.lat, lng: location.lng});
+    this.etiquetaModalLocalSeleccionado.textContent = `Local : ${location.name} (${distancia.toFixed(2)} Km) de tu ubicación`;
+
+    // Actualizar información del local seleccionado
+    const infoLocal = this.querySelector('.pcktph-seleccion-local-detalle-info');
+    infoLocal.innerHTML = `
+      <p>${location.name.toUpperCase()}</p>
+      <p>+591 ${location.telefono} - ${parseFloat(distancia).toFixed(2)} Km</p>
+    `;
+  }
+
+  // PROCESO DE CONTENEDOR SUGERENCIAS DIRECCION DE ENVI
+  configuracionAutoCompletadoSeleccionDireccion(){
+        // Verificar que el input existe
+        // if (!this.inputSeleccionarDireccion) return;
+    
+        // Variable para almacenar el timer del debounce
+        let timeoutId = null;
+        
+        // Configurar evento de entrada en el input
+        // this.inputSeleccionarDireccion.addEventListener('input', (event) => {
+        //   // Limpiar el timer anterior si existe
+        //   if (timeoutId) {
+        //     clearTimeout(timeoutId);
+        //   }
+          
+        //   const query = event.target.value;
+          
+        //   // Si el input está vacío, ocultar sugerencias
+        //   if (!query) {
+        //     this.contenedorResultadosBusquedaDireccion.style.display = "none"; 
+        //     return;
+        //   }
+          
+        //   // Configurar debounce (500ms)
+        //   timeoutId = setTimeout(() => {
+        //     // Solo mostrar los 3 primeros resultados más relevantes
+        //     this.buscarSugerenciasSeleccionDireccion(query, 3);
+        //   }, 500);
+        // });
+        
+        // Configurar evento para el botón de mostrar/ocultar
+        this.contenedorDireccionEnvioSeleccionado.addEventListener('click', () => {
+          // Si el contenedor ya está visible, ocultarlo
+          if (this.contenedorResultadosBusquedaDireccion.style.display === "flex") {
+            this.contenedorResultadosBusquedaDireccion.style.display = "none";
+            return;
+          }
+          
+          const query = this.inputSeleccionarLocal.value;
+          
+          // Si el input está vacío, mostrar todos los locales
+          if (!query) {
+            this.mostrarTodasDirecciones();
+          } else {
+            // Si hay texto en el input, mostrar los 3 resultados más asertados
+            this.buscarSugerenciasSeleccionDireccion(query, 3);
+          }
+        });
+        
+        // Cerrar sugerencias al hacer clic fueraaa
+        document.addEventListener('click', (e) => {
+          if (!this.contenedorResultadosBusquedaDireccion.contains(e.target) &&
+              !this.contenedorDireccionEnvioSeleccionado.contains(e.target)) {
+            this.contenedorResultadosBusquedaDireccion.style.display = 'none';
+          }
+        });
+  }
+
+  mostrarTodasDirecciones(){
+    if (this.contenedorResultadosBusquedaDireccion.style.display === "none") {
+      this.buscarSugerenciasSeleccionDireccion('', null);
+      this.contenedorResultadosBusquedaDireccion.style.display = "flex";
+    }else{
       this.contenedorResultadosBusquedaDireccion.style.display = "none";
-      this.etiquetaAliasDireccion.textContent = direccion.alias;
-      this.etiquetaIndicacionesDireccion.textContent = direccion.indicaciones;
+    }
+  }
+
+  buscarSugerenciasSeleccionDireccion(query, limite = null) {
+    // Filtrar las ubicaciones basadas en la consulta
+    let resultados = this.listaDireccionPrueba.filter(direccion => 
+      direccion.indicaciones.toLowerCase().includes(query.toLowerCase()) ||
+      direccion.alias.toLowerCase().includes(query.toLowerCase())
+    );
+    
+    // Ordenar por relevancia (priorizar coincidencias en el nombre)
+    resultados.sort((a, b) => {
+      const aInAlias = a.alias.toLowerCase().includes(query.toLowerCase());
+      const bInAlias = b.alias.toLowerCase().includes(query.toLowerCase());
+      
+      if (aInAlias && !bInAlias) return -1;
+      if (!aInAlias && bInAlias) return 1;
+      return 0;
+    });
+    
+    // Limitar resultados si se especifica un límite
+    if (limite && resultados.length > limite) {
+      resultados = resultados.slice(0, limite);
     }
   
+    // Limpiar resultados anteriores
+    this.contenedorResultadosBusquedaDireccion.innerHTML = '';
+    
+    // Si hay resultados, mostrar el contenedor
+    if (resultados.length > 0) {
+      this.contenedorResultadosBusquedaDireccion.style.display = "flex";
+      
+      // Crear y añadir elementos para cada resultado
+      resultados.forEach(direccion => {
+        const resultadoItem = document.createElement('div');
+        resultadoItem.className = 'smecph-pc-resultado-item';
+        
+        // Crear elemento para el nombre
+        const nombreAlias = document.createElement('p');
+        nombreAlias.textContent = direccion.alias;
+        
+        // Crear elemento para la dirección
+        const direccionIndicacion = document.createElement('p');
+        direccionIndicacion.textContent = direccion.indicaciones;
+        
+        // Añadir elementos al item
+        resultadoItem.appendChild(nombreAlias);
+        resultadoItem.appendChild(direccionIndicacion);
+        
+        // Añadir evento de clic para seleccionar este locall
+        resultadoItem.addEventListener('click', () => {
+          this.seleccionarDireccion(direccion);
+        });
+        
+        // Añadir el item al contenedor de resultados
+        this.contenedorResultadosBusquedaDireccion.appendChild(resultadoItem);
+      });
+    } else {
+      // Si no hay resultados, ocultar el contenedor
+      this.contenedorResultadosBusquedaDireccion.style.display = "none";
+    }
+  }
+
+  seleccionarDireccion(direccion){
+    this.direccionSeleccionada = direccion;
+    this.coordenadas = { lat: direccion.lat, lng: direccion.lng };
+    this.contenedorResultadosBusquedaDireccion.style.display = "none";
+    this.etiquetaAliasDireccion.textContent = direccion.alias;
+    this.etiquetaIndicacionesDireccion.textContent = direccion.indicaciones;
+  }
+
 
 
   async inicializarDataContruccion(){
