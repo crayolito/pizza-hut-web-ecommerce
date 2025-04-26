@@ -1784,6 +1784,7 @@ class PageCheckoutPH extends HTMLElement {
     
     this.configuracionAutoCompletadoSeleccionLocal();
     this.configuracionAutoCompletadoSeleccionDireccion();
+    this.configuracionAutoCompletadoSeleccionReferencia();
 
     this.etiquetaAliasDireccion.textContent = this.listaDireccionPrueba[0].alias;
     this.etiquetaIndicacionesDireccion.textContent = this.listaDireccionPrueba[0].indicaciones;
