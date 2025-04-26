@@ -1746,6 +1746,7 @@ class PageCheckoutPH extends HTMLElement {
     this.btnCancelarNd.addEventListener('click', this.procesoVolverAtrasNuevaDireccion.bind(this));
     this.inputIndicacionesDireccionF3.addEventListener('input',(event)=>{
       const query = event.target.value.trim();
+      console.log("Query de indicaciones", query);
       if(query == "" && this.estadoFaseNuevaDireccion == 3){
         this.btnProcesoPrincipalNd.classList.add('desactivado');
       }else{
@@ -2422,16 +2423,19 @@ class PageCheckoutPH extends HTMLElement {
       this.modalContenidoF3NuevaDireccion.style.display = 'flex';
       this.footerModalNuevaDireccion.style.display = 'flex';
       this.etiquetaBtnModalNuevaDireccion.textContent = "GUARDAR DIRECCION";
-      this.btnProcesoPrincipalNd.classList.add('desactivado');
       return;
     }
 
     if(this.estadoFaseNuevaDireccion == 3){
       this.etiquetaBtnModalNuevaDireccion.textContent = "CONFIRMAR DIRECCION";
-      this.btnProcesoPrincipalNd.classList.remove('desactivado');
-
       const alias = this.inputAliasDireccionF3.value;
       const indicaciones = this.inputIndicacionesDireccionF3.value;
+      this.listaDireccionPrueba.push({
+        lat: this.coordenadas.lat,
+        lng: this.coordenadas.lng,
+        indicaciones: indicaciones,
+        alias: alias
+      });
 
       const coordenadasTexto = await AuxiliaresGlobal.obtenerDireccionDesdeCoordenadas(this.coordenadas.lat,this.coordenadas.lng);
       console.log('Direccion obtenida desde coordenadas:', coordenadasTexto);
