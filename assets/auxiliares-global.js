@@ -2440,7 +2440,6 @@ class PageCheckoutPH extends HTMLElement {
       const coordenadasTexto = await AuxiliaresGlobal.obtenerDireccionDesdeCoordenadas(this.coordenadas.lat,this.coordenadas.lng);
       console.log('Direccion obtenida desde coordenadas:', coordenadasTexto);
 
-
       MensajeCargaDatos.mostrar('Guardando dirección ...');
       setTimeout(() => {
         MensajeCargaDatos.ocultar();
