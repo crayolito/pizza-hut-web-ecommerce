@@ -2222,8 +2222,6 @@ class PageCheckoutPH extends HTMLElement {
     iconoDesSeleccionado.innerHTML = window.shopIcons.icon_estado_off;
   }
 
-
-
   verDireccionEnMapaLocalSeleccionado() {
     // Verificar que existe el contenedor para el mapaa
     this.modalBodyContenedorMapa = this.querySelector('#phpc-localSeleccionado-mapa');
@@ -2430,7 +2428,7 @@ class PageCheckoutPH extends HTMLElement {
     // Inicializar el mapa en el contenedor
     const map = new google.maps.Map(this.contenedorModalMapaNuevaDireccion, {
         zoom: 15,
-        center: this.coordenadas, // Usa las coordenadas por defecto inicialmente
+        center: this.coordenadasProcesoNuevaDireccion,
         mapTypeControl: false,
         streetViewControl: false,
         fullscreenControl: false,
@@ -2466,12 +2464,10 @@ class PageCheckoutPH extends HTMLElement {
                 };
                 
                 // Actualizar coordenadas
-                this.coordenadas = userLocation;
+                this.coordenadasProcesoNuevaDireccion = userLocation;
                 
                 // Centrar el mapa en la ubicación del usuario
                 map.setCenter(userLocation);
-                marker.setPosition(userLocation);
-                
                 console.log('GPS activado, ubicación obtenida:', userLocation);
             },
             // Error al obtener la ubicación
