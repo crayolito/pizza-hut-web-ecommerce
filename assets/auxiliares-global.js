@@ -2116,6 +2116,9 @@ class PageCheckoutPH extends HTMLElement {
     
     // Variable para almacenar el timer del debounce
     let timeoutId = null;
+
+    // Variable para el servicio de Google Places
+    this.placesService = new google.maps.places.AutocompleteService();
     
     // Configurar evento de entrada en el input
     this.inputPuntoReferenciaF1.addEventListener('input', (event) => {
