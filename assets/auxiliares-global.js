@@ -1655,7 +1655,7 @@ class PageCheckoutPH extends HTMLElement {
     //   "alias" : "Este es el que se vera primero si o si",
     // }
 
-    this.coordenadasProcesoNuevaDireccion = { lat: -17.783315017953004, lng: -63.18214577296119 };;
+    this.coordenadasProcesoNuevaDireccion = null;
     this.estadoFaseNuevaDireccion = 1;
     this.listaDireccionPrueba = [
       {
@@ -2427,32 +2427,25 @@ class PageCheckoutPH extends HTMLElement {
 
     // Inicializar el mapa en el contenedor
     const map = new google.maps.Map(this.contenedorModalMapaNuevaDireccion, {
-        zoom: 15,
-        center: this.coordenadasProcesoNuevaDireccion,
-        mapTypeControl: false,
-        streetViewControl: false,
-        fullscreenControl: false,
-        zoomControl: true
-    });
+      zoom: 15,
+      center: this.coordenadas,
+      mapTypeControl: false,
+      streetViewControl: false,
+      fullscreenControl: false,
+      zoomControl: true
+  });
 
-    // Crear marcador movible
-    const marker = new google.maps.Marker({
-        position: this.coordenadas,
-        map: map,
-        draggable: true,
-        animation: google.maps.Animation.DROP,
-        title: 'Tu ubicación'
-    });
+  // Crear marcador movible
+  const marker = new google.maps.Marker({
+      position: this.coordenadas,
+      map: map,
+      draggable: true,
+      animation: google.maps.Animation.DROP,
+      title: 'Tu ubicación'
+  });
 
-    // Actualizar this.coordenadas cuando el marcador se mueve
-    google.maps.event.addListener(marker, 'dragend', (event) => {
-        this.coordenadas = {
-            lat: event.latLng.lat(),
-            lng: event.latLng.lng()
-        };
-        console.log('Nueva ubicación:', this.coordenadas);
-    });
 
+    if(this.coordenadasProcesoNuevaDireccion == null){
     // Intentar obtener la ubicación actual del usuario
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
@@ -2466,8 +2459,6 @@ class PageCheckoutPH extends HTMLElement {
                 // Actualizar coordenadas
                 this.coordenadasProcesoNuevaDireccion = userLocation;
                 
-                // Centrar el mapa en la ubicación del usuario
-                map.setCenter(userLocation);
                 console.log('GPS activado, ubicación obtenida:', userLocation);
             },
             // Error al obtener la ubicación
@@ -2487,43 +2478,24 @@ class PageCheckoutPH extends HTMLElement {
         console.warn('Geolocalización no soportada por este navegador');
         alert('Tu navegador no soporta geolocalización. Utilizando ubicación predeterminada.');
     }
+  }else{
+    this.coordenadasProcesoNuevaDireccion = this.coordenadas;
+  }
+  marker.setPosition(this.coordenadasProcesoNuevaDireccion);
+  map.setPosition(this.coordenadasProcesoNuevaDireccion);
 
-    // // Intentar obtener la ubicación actual del usuario
-    // if (navigator.geolocation) {
-    //     navigator.geolocation.getCurrentPosition(
-    //         // Éxito al obtener la ubicación
-    //         (position) => {
-    //             const userLocation = {
-    //                 lat: position.coords.latitude,
-    //                 lng: position.coords.longitude
-    //             };
-                
-    //             // Actualizar coordenadas
-    //             this.coordenadas = userLocation;
-                
-    //             // Centrar el mapa en la ubicación del usuario
-    //             map.setCenter(userLocation);
-    //             marker.setPosition(userLocation);
-                
-    //             console.log('GPS activado, ubicación obtenida:', userLocation);
-    //         },
-    //         // Error al obtener la ubicación
-    //         (error) => {
-    //             console.warn('Error al obtener la ubicación:', error.message);
-    //             // Usar las coordenadas por defecto (this.coordenadas ya está configurado)
-    //             alert('No se pudo acceder a tu ubicación. Utilizando ubicación predeterminada.');
-    //         },
-    //         // Opciones
-    //         {
-    //             enableHighAccuracy: true,
-    //             timeout: 5000,
-    //             maximumAge: 0
-    //         }
-    //     );
-    // } else {
-    //     console.warn('Geolocalización no soportada por este navegador');
-    //     alert('Tu navegador no soporta geolocalización. Utilizando ubicación predeterminada.');
-    // }
+
+
+    // Actualizar this.coordenadas cuando el marcador se mueve
+    google.maps.event.addListener(marker, 'dragend', (event) => {
+        this.coordenadas = {
+            lat: event.latLng.lat(),
+            lng: event.latLng.lng()
+        };
+        console.log('Nueva ubicación:', this.coordenadas);
+    });
+
+
   }
 
   async procesoPrincipalNuevaDireccion(){
