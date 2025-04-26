@@ -1746,7 +1746,7 @@ class PageCheckoutPH extends HTMLElement {
     this.btnCancelarNd.addEventListener('click', this.procesoVolverAtrasNuevaDireccion.bind(this));
     this.inputIndicacionesDireccionF3.addEventListener('input',(event)=>{
       const query = event.target.value.trim();
-      if(query == ""){
+      if(query == "" && this.estadoFaseNuevaDireccion == 3){
         this.btnProcesoPrincipalNd.classList.add('desactivado');
       }else{
         this.btnProcesoPrincipalNd.classList.remove('desactivado');
