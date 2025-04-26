@@ -2464,6 +2464,7 @@ class PageCheckoutPH extends HTMLElement {
             // Error al obtener la ubicación
             (error) => {
                 console.warn('Error al obtener la ubicación:', error.message);
+                this.coordenadasProcesoNuevaDireccion = this.coordenadas;
                 // Usar las coordenadas por defecto (this.coordenadas ya está configurado)
                 alert('No se pudo acceder a tu ubicación. Utilizando ubicación predeterminada.');
             },
@@ -2475,6 +2476,7 @@ class PageCheckoutPH extends HTMLElement {
             }
         );
     } else {
+        this.coordenadasProcesoNuevaDireccion = this.coordenadas;
         console.warn('Geolocalización no soportada por este navegador');
         alert('Tu navegador no soporta geolocalización. Utilizando ubicación predeterminada.');
     }
@@ -2484,8 +2486,6 @@ class PageCheckoutPH extends HTMLElement {
   marker.setPosition(this.coordenadasProcesoNuevaDireccion);
   map.setPosition(this.coordenadasProcesoNuevaDireccion);
 
-
-
     // Actualizar this.coordenadas cuando el marcador se mueve
     google.maps.event.addListener(marker, 'dragend', (event) => {
         this.coordenadas = {
@@ -2494,8 +2494,6 @@ class PageCheckoutPH extends HTMLElement {
         };
         console.log('Nueva ubicación:', this.coordenadas);
     });
-
-
   }
 
   async procesoPrincipalNuevaDireccion(){
