@@ -1818,7 +1818,7 @@ class PageCheckoutPH extends HTMLElement {
     iconoDesSeleccionado.innerHTML = window.shopIcons.icon_estado_off;
   }
 
-  // PROCESO DE CONTENEDOR SUGERENCIAS BUSQUEDA LOCAL
+  // PROCESO DE CONTENEDOR SUGERENCIAS BUSQUEDA LOCALA
   configuracionAutoCompletadoSeleccionLocal() {
     // Verificar que el input existe
     if (!this.inputSeleccionarLocal) return;
