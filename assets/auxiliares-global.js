@@ -1744,7 +1744,7 @@ class PageCheckoutPH extends HTMLElement {
     this.btnMiUbicacionActualF1.addEventListener('click', this.procesoMiUbicacionActualF1.bind(this));
     this.btnProcesoPrincipalNd.addEventListener('click', this.procesoPrincipalNuevaDireccion.bind(this));
     this.btnCancelarNd.addEventListener('click', this.procesoVolverAtrasNuevaDireccion.bind(this));
-    this.inputIndicacionesDireccionF3.addEventListener('input',(event)=>{
+    this.inputAliasDireccionF3.addEventListener('input',(event)=>{
       const query = event.target.value.trim();
       console.log("Query de indicaciones", query);
       if(query == "" && this.estadoFaseNuevaDireccion == 3){
@@ -2431,14 +2431,14 @@ class PageCheckoutPH extends HTMLElement {
       const alias = this.inputAliasDireccionF3.value;
       const indicaciones = this.inputIndicacionesDireccionF3.value;
       this.btnProcesoPrincipalNd.classList.add('desactivado');
+      const coordenadasTexto = await AuxiliaresGlobal.obtenerDireccionDesdeCoordenadas(this.coordenadas.lat,this.coordenadas.lng);
       this.listaDireccionPrueba.push({
         lat: this.coordenadas.lat,
         lng: this.coordenadas.lng,
-        indicaciones: indicaciones,
-        alias: alias
+        indicaciones: indicaciones == "" ? coordenadasTexto: indicaciones,
+        alias: alias,
       });
 
-      const coordenadasTexto = await AuxiliaresGlobal.obtenerDireccionDesdeCoordenadas(this.coordenadas.lat,this.coordenadas.lng);
       console.log('Direccion obtenida desde coordenadas:', coordenadasTexto);
 
       MensajeCargaDatos.mostrar('Guardando dirección ...');
