@@ -2432,6 +2432,8 @@ class PageCheckoutPH extends HTMLElement {
       const alias = this.inputAliasDireccionF3.value;
       const indicaciones = this.inputIndicacionesDireccionF3.value;
       const coordenadasTexto = await AuxiliaresGlobal.obtenerDireccionDesdeCoordenadas(this.coordenadas.lat,this.coordenadas.lng);
+      
+      
       this.listaDireccionPrueba.push({
         lat: this.coordenadas.lat,
         lng: this.coordenadas.lng,
@@ -2439,14 +2441,15 @@ class PageCheckoutPH extends HTMLElement {
         alias: alias,
       });
 
+
       console.log('Direccion obtenida desde coordenadas:', coordenadasTexto);
 
+      this.cerrarModalNuevaDireccion();
       MensajeCargaDatos.mostrar('Guardando dirección ...');
       setTimeout(() => {
         MensajeCargaDatos.ocultar();
-        this.cerrarModalNuevaDireccion();
-        this.contenedorBaseModal.style.display = 'none';
-        this.modalBodyNuevaDireccion.style.display = 'none';
+        this.etiquetaIndicacionesDireccion.textContent = indicaciones == "" ? coordenadasTexto: indicaciones;
+        this.etiquetaAliasDireccion.textContent = alias;
       }, 3000);
       this.btnProcesoPrincipalNd.classList.add('desactivado');
       return;
