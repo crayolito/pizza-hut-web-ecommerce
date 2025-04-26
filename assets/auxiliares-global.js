@@ -1852,14 +1852,18 @@ class PageCheckoutPH extends HTMLElement {
     
       seleccionarPuntoReferencia(sugerencia) {
         this.inputPuntoReferenciaF1.value = sugerencia.description;
-    
         this.contenedorResultadosBusquedaReferenciasF1.style.display = 'none';
-    
+      
         // Obtener las coordenadas del lugar seleccionado
         const geocoder = new google.maps.Geocoder();
         geocoder.geocode({ placeId: sugerencia.place_id }, (resultados, status) => {
           if (status === google.maps.GeocoderStatus.OK && resultados[0]) {
-            this.coordenadasProcesoNuevaDireccion = resultados[0].geometry.location;
+            const location = resultados[0].geometry.location;
+            // Convertir el objeto LatLng de Google Maps a un objeto JavaScript simple
+            this.coordenadasProcesoNuevaDireccion = { 
+              lat: location.lat(), 
+              lng: location.lng() 
+            };
             console.log('Coordenadas seleccionadas:', this.coordenadasProcesoNuevaDireccion);
           } else {
             console.error('Error al obtener las coordenadas:', status);
