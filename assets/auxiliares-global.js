@@ -2445,8 +2445,6 @@ class PageCheckoutPH extends HTMLElement {
       setTimeout(() => {
         MensajeCargaDatos.ocultar();
         this.cerrarModalNuevaDireccion();
-        
-        // Cerrar todo y ocultarlo 
         this.contenedorBaseModal.style.display = 'none';
         this.modalBodyNuevaDireccion.style.display = 'none';
       }, 3000);
