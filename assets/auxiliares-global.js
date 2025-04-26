@@ -2163,8 +2163,6 @@ class PageCheckoutPH extends HTMLElement {
     this.etiquetaIndicacionesDireccion.textContent = direccion.indicaciones;
   }
 
-
-
   async inicializarDataContruccion(){
     MensajeCargaDatos.mostrar('Cargando información del pagina ...');
 
@@ -2455,7 +2453,8 @@ class PageCheckoutPH extends HTMLElement {
       this.coordenadasProcesoNuevaDireccion = newPosition;
       console.log('Nueva ubicación:', this.coordenadasProcesoNuevaDireccion);
     });
-  
+
+    if(this.coordenadasProcesoNuevaDireccion == null){
     // Intentar obtener la ubicación del usuario después de inicializar el mapa
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -2493,6 +2492,13 @@ class PageCheckoutPH extends HTMLElement {
       console.warn('Geolocalización no soportada por este navegador');
       this.coordenadasProcesoNuevaDireccion = this.coordenadas;
     }
+
+    }else{
+      marker.setPosition(this.coordenadasProcesoNuevaDireccion);
+      map.panTo(this.coordenadasProcesoNuevaDireccion);
+    }
+
+
   }
 
   async procesoPrincipalNuevaDireccion(){
