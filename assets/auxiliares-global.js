@@ -1782,6 +1782,9 @@ class PageCheckoutPH extends HTMLElement {
     
     this.configuracionAutoCompletadoSeleccionLocal();
     this.configuracionAutoCompletadoSeleccionDireccion();
+
+    this.etiquetaAliasDireccion.textContent = this.listaDireccionPrueba[0].alias;
+    this.etiquetaIndicacionesDireccion.textContent = this.listaDireccionPrueba[0].indicaciones;
     
     MensajeCargaDatos.ocultar();
   }
@@ -2097,21 +2100,10 @@ class PageCheckoutPH extends HTMLElement {
 
   seleccionarDireccion(direccion){
     this.direccionSeleccionada = direccion;
-
-    // Actualizar el input con el nombre del direccion seleccionadoo
-    // this.inputSeleccionarDireccion.value = direccion.alias;
-
     this.coordenadas = { lat: direccion.lat, lng: direccion.lng };
-    
-    // Ocultar sugerencias
     this.contenedorResultadosBusquedaDireccion.style.display = "none";
-
-    // Actualizar información del local seleccionado
-    const infoDireccion = this.querySelector('.pcktph-seleccion-local-detalle-info');
-    infoDireccion.innerHTML = `
-      <p>${direccion.alias}</p>
-      <p>${direccion.referencias}</p>
-    `;
+    this.etiquetaAliasDireccion.textContent = direccion.alias;
+    this.etiquetaIndicacionesDireccion.textContent = direccion.indicaciones;
   }
 
   // PROCESO DE CONTENEDOR SUGERENCIAS PUNTOS DE REFERENCIAS
