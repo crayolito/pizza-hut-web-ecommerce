@@ -1864,6 +1864,7 @@ class PageCheckoutPH extends HTMLElement {
           lat: location.lat(), 
           lng: location.lng() 
         };
+        this.coordenadas = this.coordenadasProcesoNuevaDireccion;
         console.log('Coordenadas seleccionadas:', this.coordenadasProcesoNuevaDireccion);
       } else {
         console.error('Error al obtener las coordenadas:', status);
