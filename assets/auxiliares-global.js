@@ -1683,6 +1683,8 @@ class PageCheckoutPH extends HTMLElement {
         "alias" : "Trabajo",
       }
     ]
+
+    this.seleccionadoEstadoPago = null;
   }
 
   connectedCallback() {
@@ -1757,6 +1759,10 @@ class PageCheckoutPH extends HTMLElement {
     this.btnCodigoQr = this.querySelector('#phpc-btn-codigo-qr');
     this.btnTarjetaCredito = this.querySelector('#phpc-btn-tarjeta-credito');
     this.opcionesTarjetaCredito = this.querySelector('#phpc-opciones-tarjeta-credito');
+    this.inputPrimero4Digitos = this.querySelector('#phpc-input-primero-4-digitos');
+    this.mensajeAlertaPrimero4Digitos = this.querySelector('#phpc-alerta-primero-4-digitos');
+    this.inputUltimos4Digitos = this.querySelector('#phpc-input-ultimos-4-digitos');
+    this.mensajeAlertaUltimos4Digitos = this.querySelector('#phpc-alerta-ultimos-4-digitos');
     this.btnEfectivo = this.querySelector('#phpc-btn-efectivo');
     
     // Datos de facturacion
@@ -2664,6 +2670,7 @@ class PageCheckoutPH extends HTMLElement {
     
     // Si hay campos vacíos, programar limpieza de errores
     if (hayCampoVacio) {
+      this.mensajeInfoCelularContacto.style.display = 'none';
       setTimeout(() => {
         // Quitar la clase de error pero mantener mensajes visibles
         contenedoresConError.forEach(contenedor => {
@@ -2684,7 +2691,68 @@ class PageCheckoutPH extends HTMLElement {
     return !hayCampoVacio; // Retorna true si no hay campos vacíos
   }
 
+  validarCamposFormTarjeta(){
+    const formulario = {
+      primerInput: this.inputPrimero4Digitos.value.trim(),
+      segundoInput: this.inputSegundo4Digitos.value.trim()
+    }
 
+    const mensajesError ={ 
+      primerInput: this.mensajeAlertaPrimero4Digitos,
+      segundoInput: this.mensajeAlertaSegundo4Digitos
+    }
+
+    // Variable para rastrear contenedores con error
+    const contenedoresConError = [];
+
+    // Verificar campos vacíos
+    let hayCampoVacio = false;
+  
+    Object.keys(formulario).forEach(key => {
+      if (!mensajesError[key]) return;
+      
+      const contenedorPadre = mensajesError[key].closest('.smecph-pc-info-input');
+      
+      if (formulario[key] === '') {
+        // Campo vacío - mostrar error
+        mensajesError[key].style.display = 'flex';
+        
+        if (contenedorPadre) {
+          contenedorPadre.classList.add('error');
+          contenedoresConError.push(contenedorPadre);
+        }
+        
+        hayCampoVacio = true;
+      } else {
+        // Campo con valor - ocultar error
+        mensajesError[key].style.display = 'none';
+        
+        if (contenedorPadre) {
+          contenedorPadre.classList.remove('error');
+        }
+      }
+    });
+    
+    // Si hay campos vacíos, programar limpieza de errores
+    if (hayCampoVacio) {
+      setTimeout(() => {
+        // Quitar la clase de error pero mantener mensajes visibles
+        contenedoresConError.forEach(contenedor => {
+          contenedor.classList.remove('error');
+        });
+        // Ocultar todos los mensajes de alerta
+        Object.values(mensajesError).forEach(alerta => {
+          if (alerta) {
+            alerta.style.display = 'none';
+          }
+        });
+      }, 5000); // 5 segundos
+    }
+    
+    return !hayCampoVacio; // Retorna true si no hay campos vacíos
+  }
+
+  procesoSeleccionMetodoPago(){}
 }
 
 customElements.define('page-checkout-ph', PageCheckoutPH);

@@ -215,8 +215,8 @@
     </section>
     <section class="container-sub-smecph" id="pcktph-datos-pago">
       <div class="smecph-pc-dp-header">
-        <h4>Datos de facturación</h4>
-        <p>Ingrese tus datos para facturar tu pedido.</p>
+        <h4>Datos de Pago</h4>
+        <p>Selecciona un método de pago.</p>
       </div>
       <div
         id="phpc-mensaje-alerta-datos-facturacion"
@@ -227,6 +227,7 @@
       </div>
       <div class="smecph-pc-dp-items">
         <button
+          data-accion="pago-codigo-qr"
           id="phpc-btn-codigo-qr"
           class="smecph-pc-dp-item"
         >
@@ -243,9 +244,10 @@
             {% render 'icon-estado-off' %}
           </div>
         </button>
-        <div
+        <button
+          data-accion="pago-tarjeta-credito"
           id="phpc-btn-tarjeta-credito"
-          class="smecph-pc-dp-item seleccionado"
+          class="smecph-pc-dp-item"
         >
           <div class="smecph-pc-dp-item-info">
             <div class="smecph-pcdp-item-extra ">
@@ -257,8 +259,9 @@
           <div class="smecph-pc-dp-item-icono">
             {% render 'icon-estado-on' %}
           </div>
-        </div>
+        </button>
         <div
+          style="display: none;"
           id="phpc-opciones-tarjeta-credito"
           class="smecph-formulario-metodo-tarjeta"
         >
@@ -269,17 +272,50 @@
           <div class="smecph-pc-info-input">
             <p>Primeros 4 dígitos de la tarjeta</p>
             <div class="ph-container-input">
-              <input type="number" placeholder="Primeros 4 dígitos">
+              <input
+                id="phpc-input-primero-4-digitos"
+                type="text"
+                inputmode="numeric"
+                pattern="[0-9]{4}"
+                maxlength="4"
+                placeholder="Primeros 4 dígitos"
+                required
+              >
+            </div>
+            <div
+              style="display: none;"
+              id="phpc-alerta-primero-4-digitos"
+              class="smecph-pc-mensaje-input"
+            >
+              {% render 'icon-info' %}
+              <p>Este campo es obligatorio.</p>
             </div>
           </div>
           <div class="smecph-pc-info-input">
             <p>Últimos 4 dígitos de la tarjeta</p>
             <div class="ph-container-input">
-              <input type="number" placeholder="Últimos 4 dígitos">
+              <input
+                id="phpc-input-ultimos-4-digitos"
+                type="text"
+                inputmode="numeric"
+                pattern="[0-9]{4}"
+                maxlength="4"
+                placeholder="Últimos 4 dígitos"
+                required
+              >
+            </div>
+            <div
+              style="display: none;"
+              id="phpc-alerta-ultimos-4-digitos"
+              class="smecph-pc-mensaje-input"
+            >
+              {% render 'icon-info' %}
+              <p>Este campo es obligatorio.</p>
             </div>
           </div>
         </div>
-        <div
+        <button
+          data-accion="pago-efectivo"
           id="phpc-btn-efectivo"
           class="smecph-pc-dp-item "
         >
@@ -293,7 +329,7 @@
           <div class="smecph-pc-dp-item-icono">
             {% render 'icon-estado-off' %}
           </div>
-        </div>
+        </button>
       </div>
     </section>
     <section class="container-sub-smecph" id="pcktph-datos-facturacion">
@@ -305,6 +341,7 @@
         <button
           style="display: none;"
           class="smecph-pc-dch_btn"
+          id="phpc-btn-guardar-datos-facturacion"
         >
           {% render 'icon-guardar' %}
           <p class="color-letras-primary">GUARDAR</p>
@@ -312,6 +349,7 @@
         <button
           style="display: none;"
           class="smecph-pc-dch_btn"
+          id="phpc-btn-editar-datos-facturacion"
         >
           {% render 'icon-editar' %}
           <p class="color-letras-primary">EDITAR DATOS</p>
