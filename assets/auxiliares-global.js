@@ -2623,7 +2623,6 @@ class PageCheckoutPH extends HTMLElement {
       }
     });
     
-    // Si hay algún campo vacío, salir de la función
     if (algunCampoVacio) {
       this.mensajeInfoCelularContacto.style.display = 'none';
       return;
