@@ -2615,8 +2615,7 @@ class PageCheckoutPH extends HTMLElement {
     
     Object.keys(formulario).forEach(key => {
       if (formulario[key] === '') {
-
-        mensajesError[key].addClassList.add('error');
+        mensajesError[key].classList.add('error');
         mensajesError[key].style.display = 'flex';
         algunCampoVacio = true;
       } else {
