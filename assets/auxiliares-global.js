@@ -2607,25 +2607,49 @@ class PageCheckoutPH extends HTMLElement {
       apellido: this.alertaApellidoContacto,
       email: this.alertaCorreoElectronico,
       celular: this.alertaCelularContacto,
-      ci: this.alertaCIContacto
+      ci: this.alertaCiContacto
     };
     
-    // Verificar si hay campos vacíos y mostrar TODOS los mensajes de error correspondientes
+    // Verificar campos vacíos
     let algunCampoVacio = false;
+    const contenedoresConError = [];
     
     Object.keys(formulario).forEach(key => {
-      const contenedorPadre = mensajesError[key].closest('.smecph-pc-info-input');
-      contenedorPadre.classList.add('error');
-      if (formulario[key] === '') {
-        mensajesError[key].style.display = 'flex';
-        algunCampoVacio = true;
-      } else {
-        mensajesError[key].style.display = 'none';
+      if (mensajesError[key]) {
+        const contenedorPadre = mensajesError[key].closest('.smecph-pc-info-input');
+        
+        if (formulario[key] === '') {
+          // Campo vacío - mostrar error
+          mensajesError[key].style.display = 'flex';
+          
+          if (contenedorPadre) {
+            contenedorPadre.classList.add('error');
+            contenedoresConError.push(contenedorPadre);
+          }
+          
+          algunCampoVacio = true;
+        } else {
+          // Campo con valor - ocultar error
+          mensajesError[key].style.display = 'none';
+          
+          if (contenedorPadre) {
+            contenedorPadre.classList.remove('error');
+          }
+        }
       }
     });
     
     if (algunCampoVacio) {
       this.mensajeInfoCelularContacto.style.display = 'none';
+      
+      // Configurar temporizador para quitar solo la clase error después de 5 segundos
+      setTimeout(() => {
+        // Quitar la clase de error pero mantener mensajes visibles
+        contenedoresConError.forEach(contenedor => {
+          contenedor.classList.remove('error');
+        });
+      }, 5000); // 5 segundos
+      
       return;
     }
     
