@@ -2607,7 +2607,7 @@ class PageCheckoutPH extends HTMLElement {
       apellido: this.alertaApellidoContacto,
       email: this.alertaCorreoElectronico,
       celular: this.alertaCelularContacto,
-      ci: this.alertaCiContacto
+      ci: this.alertaCIContacto
     };
     
     // Verificar si hay campos vacíos y mostrar TODOS los mensajes de error correspondientes
