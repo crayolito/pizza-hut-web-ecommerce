@@ -1735,8 +1735,8 @@ class PageCheckoutPH extends HTMLElement {
     this.btnsMetodosPagos = this.querySelectorAll('.smecph-pc-dp-item');
 
     // Formulario Datos de contacto
-    this.btnEditarDatos = this.querySelector('#phpc-btn-editar-datos');
-    this.btnGuardarDatos = this.querySelector('#phpc-btn-guardar-datos');
+    this.btnEditarDatos = this.querySelector('#phpc-btn-editar-datos-contacto');
+    this.btnGuardarDatos = this.querySelector('#phpc-btn-guardar-datos-contacto');
     this.contenedorDatoContactoConsolidados = this.querySelector('#phpc-datos-contacto-consolidados');
     this.etiquetaDatosConsolidados = this.querySelector('#phpc-etiqueta-datos-consolidados');
     this.contenedorDatosContactoEditar = this.querySelector('#phpc-datos-contacto-editar');
