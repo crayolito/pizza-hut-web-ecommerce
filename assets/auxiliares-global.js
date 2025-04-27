@@ -2593,74 +2593,9 @@ class PageCheckoutPH extends HTMLElement {
   btnAccionDatosContacto(btnElemento) {
     const accion = btnElemento.dataset.accion;
     
-    // Recolectar datos del formulario
-    const formulario = {
-      nombre: this.inputNombreContacto.value.trim(),
-      apellido: this.inputApellidoContacto.value.trim(),
-      email: this.inputCorreoElectronico.value.trim(),
-      celular: this.inputCelularContacto.value.trim(),
-      ci: this.inputCIContacto.value.trim()
-    };
-    
-    const mensajesError = {
-      nombre: this.alertaNombreContacto,
-      apellido: this.alertaApellidoContacto,
-      email: this.alertaCorreoElectronico,
-      celular: this.alertaCelularContacto,
-      ci: this.alertaCIContacto
-    };
-    
-    // Verificar campos vacíos
-    let algunCampoVacio = false;
-    const contenedoresConError = [];
-    
-    Object.keys(formulario).forEach(key => {
-      if (mensajesError[key]) {
-        const contenedorPadre = mensajesError[key].closest('.smecph-pc-info-input');
-        
-        if (formulario[key] === '') {
-          // Campo vacío - mostrar error
-          mensajesError[key].style.display = 'flex';
-          
-          if (contenedorPadre) {
-            contenedorPadre.classList.add('error');
-            contenedoresConError.push(contenedorPadre);
-          }
-          
-          algunCampoVacio = true;
-        } else {
-          // Campo con valor - ocultar error
-          mensajesError[key].style.display = 'none';
-          
-          if (contenedorPadre) {
-            contenedorPadre.classList.remove('error');
-          }
-        }
-      }
-    });
-    
-    if (algunCampoVacio) {
-      this.mensajeInfoCelularContacto.style.display = 'none';
-      
-      // Configurar temporizador para quitar solo la clase error después de 5 segundos
-      setTimeout(() => {
-        // Quitar la clase de error pero mantener mensajes visibles
-        contenedoresConError.forEach(contenedor => {
-          contenedor.classList.remove('error');
-        });
-
-        // Ocultar todos los mensajes de alerta
-        Object.values(mensajesError).forEach(alerta => {
-          if (alerta) {
-            alerta.style.display = 'none';
-          }
-        });
-        
-        // Volver a mostrar el mensaje informativo
-        this.mensajeInfoCelularContacto.style.display = 'flex';
-      }, 5000); // 5 segundos
-      
-      return;
+    // Validar campos primero
+    if (!this.validarCamposFormDatosContacto()) {
+      return; // Si hay campos vacíos, detener la ejecución
     }
     
     // Si pasa la validación, continuar con la actualización de la interfaz
@@ -2678,6 +2613,78 @@ class PageCheckoutPH extends HTMLElement {
   }
 
   procedoPrincipalPagina(){}
+
+  validarCamposFormDatosContacto() {
+    const formulario = {
+      nombre: this.inputNombreContacto.value.trim(),
+      apellido: this.inputApellidoContacto.value.trim(),
+      email: this.inputCorreoElectronico.value.trim(),
+      celular: this.inputCelularContacto.value.trim(),
+      ci: this.inputCIContacto.value.trim()
+    };
+    
+    const mensajesError = {
+      nombre: this.alertaNombreContacto,
+      apellido: this.alertaApellidoContacto,
+      email: this.alertaCorreoElectronico,
+      celular: this.alertaCelularContacto,
+      ci: this.alertaCIContacto
+    };
+    
+    // Variable para rastrear contenedores con error
+    const contenedoresConError = [];
+    
+    // Verificar campos vacíos
+    let hayCampoVacio = false;
+    
+    Object.keys(formulario).forEach(key => {
+      if (!mensajesError[key]) return;
+      
+      const contenedorPadre = mensajesError[key].closest('.smecph-pc-info-input');
+      
+      if (formulario[key] === '') {
+        // Campo vacío - mostrar error
+        mensajesError[key].style.display = 'flex';
+        
+        if (contenedorPadre) {
+          contenedorPadre.classList.add('error');
+          contenedoresConError.push(contenedorPadre);
+        }
+        
+        hayCampoVacio = true;
+      } else {
+        // Campo con valor - ocultar error
+        mensajesError[key].style.display = 'none';
+        
+        if (contenedorPadre) {
+          contenedorPadre.classList.remove('error');
+        }
+      }
+    });
+    
+    // Si hay campos vacíos, programar limpieza de errores
+    if (hayCampoVacio) {
+      setTimeout(() => {
+        // Quitar la clase de error pero mantener mensajes visibles
+        contenedoresConError.forEach(contenedor => {
+          contenedor.classList.remove('error');
+        });
+        // Ocultar todos los mensajes de alerta
+        Object.values(mensajesError).forEach(alerta => {
+          if (alerta) {
+            alerta.style.display = 'none';
+          }
+        });
+        
+        // Volver a mostrar el mensaje informativo
+        this.mensajeInfoCelularContacto.style.display = 'flex';
+      }, 5000); // 5 segundos
+    }
+    
+    return !hayCampoVacio; // Retorna true si no hay campos vacíos
+  }
+
+
 }
 
 customElements.define('page-checkout-ph', PageCheckoutPH);
