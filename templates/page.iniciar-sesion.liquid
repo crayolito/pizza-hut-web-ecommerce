@@ -55,14 +55,16 @@
         </button>
       {% endcomment %}
       <!-- FACEBOOK LOGIN - MÍNIMO NECESARIO -->
-      <div id="fb-root"></div>
-      <div
-        class="fb-login-button mi-boton-facebook"
-        data-width="300"
-        data-size="large"
-        data-button-type="continue_with"
-        data-scope="public_profile,email"
-      ></div>
+      {% comment %}
+        <div id="fb-root"></div>
+        <div
+          class="fb-login-button mi-boton-facebook"
+          data-width="300"
+          data-size="large"
+          data-button-type="continue_with"
+          data-scope="public_profile,email"
+        ></div>
+      {% endcomment %}
       {% comment %}
         id="phpis-btn-facebook"
         {% render 'icon-facebook-custom' %}
@@ -73,18 +75,20 @@
         </button>
       {% endcomment %}
 
-      <div
-        id="g_id_onload"
-        data-client_id="658161391897-43e6il3h9ugg7vmecsmstrc8fbl0esmg.apps.googleusercontent.com"
-        data-callback="handleGoogleLogin"
-      ></div>
+      {% comment %}
+        <div
+          id="g_id_onload"
+          data-client_id="658161391897-43e6il3h9ugg7vmecsmstrc8fbl0esmg.apps.googleusercontent.com"
+          data-callback="handleGoogleLogin"
+        ></div>
 
-      <div
-        class="g_id_signin"
-        data-type="standard"
-        data-size="large"
-        data-width="300"
-      ></div>
+        <div
+          class="g_id_signin"
+          data-type="standard"
+          data-size="large"
+          data-width="300"
+        ></div>
+      {% endcomment %}
       <div class="pccph-modal-separador">
         <div class="pccph-modal-separador-linea"></div>
         <p class="color-letras-extra">¿No puedes iniciar sesión?</p>

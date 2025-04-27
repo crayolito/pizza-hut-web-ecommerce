@@ -719,7 +719,7 @@
     }
   }
 
-    // Funcion para procesar el login de Google
+    {% comment %} // Funcion para procesar el login de Google
     function handleGoogleLogin(responde) {
       console.log('Login con Google:', responde);
     }
@@ -737,7 +737,7 @@
     // Escucha eventos de login
     FB.Event.subscribe('auth.login', function (response) {
       console.log('Login con Facebook:', response);
-    });
+    }); {% endcomment %}
   
 
   customElements.define('crear-cuenta', CrearCuenta);
