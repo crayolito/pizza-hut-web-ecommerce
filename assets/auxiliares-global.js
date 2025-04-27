@@ -2599,7 +2599,7 @@ class PageCheckoutPH extends HTMLElement {
       apellido: this.inputApellidoContacto.value.trim(),
       email: this.inputCorreoElectronico.value.trim(),
       celular: this.inputCelularContacto.value.trim(),
-      ci: this.inputCiContacto.value.trim(),
+      ci: this.inputCiContacto.value.trim()
     };
     
     const mensajesError = {
