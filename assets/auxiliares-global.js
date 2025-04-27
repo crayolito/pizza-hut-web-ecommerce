@@ -2607,7 +2607,7 @@ class PageCheckoutPH extends HTMLElement {
       apellido: this.alertaApellidoContacto,
       email: this.alertaCorreoElectronico,
       celular: this.alertaCelularContacto,
-      ci: this.alertaCiContacto
+      ci: this.alertaCIContacto
     };
     
     // Verificar campos vacíos
@@ -2648,6 +2648,9 @@ class PageCheckoutPH extends HTMLElement {
         contenedoresConError.forEach(contenedor => {
           contenedor.classList.remove('error');
         });
+        
+        // Volver a mostrar el mensaje informativo
+        this.mensajeInfoCelularContacto.style.display = 'flex';
       }, 5000); // 5 segundos
       
       return;
