@@ -2648,6 +2648,13 @@ class PageCheckoutPH extends HTMLElement {
         contenedoresConError.forEach(contenedor => {
           contenedor.classList.remove('error');
         });
+
+        // Ocultar todos los mensajes de alerta
+        Object.values(mensajesError).forEach(alerta => {
+          if (alerta) {
+            alerta.style.display = 'none';
+          }
+        });
         
         // Volver a mostrar el mensaje informativo
         this.mensajeInfoCelularContacto.style.display = 'flex';
