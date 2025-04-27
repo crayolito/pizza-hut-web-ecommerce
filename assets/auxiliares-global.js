@@ -2614,8 +2614,9 @@ class PageCheckoutPH extends HTMLElement {
     let algunCampoVacio = false;
     
     Object.keys(formulario).forEach(key => {
+      const contenedorPadre = mensajesError[key].querySelector('.smecph-pc-info-input');
+      contenedorPadre.classList.add('error');
       if (formulario[key] === '') {
-        mensajesError[key].classList.add('error');
         mensajesError[key].style.display = 'flex';
         algunCampoVacio = true;
       } else {
