@@ -1734,6 +1734,49 @@ class PageCheckoutPH extends HTMLElement {
     this.mensajeAlertaSeleccionMetodoPago = this.querySelector('.smecph-mensaje-alerta');
     this.btnsMetodosPagos = this.querySelectorAll('.smecph-pc-dp-item');
 
+    // Formulario Datos de contacto
+    this.btnEditarDatos = this.querySelector('#phpc-btn-editar-datos');
+    this.btnGuardarDatos = this.querySelector('#phpc-btn-guardar-datos');
+    this.contenedorDatoContactoConsolidados = this.querySelector('#phpc-datos-contacto-consolidados');
+    this.etiquetaDatosConsolidados = this.querySelector('#phpc-etiqueta-datos-consolidados');
+    this.contenedorDatosContactoEditar = this.querySelector('#phpc-datos-contacto-editar');
+    this.inputNombreContacto = this.querySelector('#phpc-input-nombre-contacto');
+    this.alertaNombreContacto = this.querySelector('#phpc-alerta-nombre-contacto');
+    this.inputApellidoContacto = this.querySelector('#phpc-input-apellido-contacto');
+    this.alertaApellidoContacto = this.querySelector('#phpc-alerta-apellido-contacto');
+    this.inputCorreoElectronico = this.querySelector('#phpc-input-correo-contacto');
+    this.alertaCorreoElectronico = this.querySelector('#phpc-alerta-correo-contacto');
+    this.inputCelularContacto = this.querySelector('#phpc-input-celular-contacto');
+    this.alertaCelularContacto = this.querySelector('#phpc-alerta-celular-contacto');
+    this.mensajeInfoCelularContacto = this.querySelector('#phpc-mensaje-info-celular-contacto');
+    this.inputCIContacto = this.querySelector('#phpc-input-ci-contacto');
+    this.alertaCIContacto = this.querySelector('#phpc-alerta-ci-contacto');
+
+    // Datos de pago
+    this.mensajeAlertaDatosFacturacion = this.querySelector('#phpc-mensaje-alerta-datos-facturacion');
+    this.btnCodigoQr = this.querySelector('#phpc-btn-codigo-qr');
+    this.btnTarjetaCredito = this.querySelector('#phpc-btn-tarjeta-credito');
+    this.opcionesTarjetaCredito = this.querySelector('#phpc-opciones-tarjeta-credito');
+    this.btnEfectivo = this.querySelector('#phpc-btn-efectivo');
+    
+    // Datos de facturacion
+    this.btnEditarDatosFacturacion = this.querySelector('#phpc-btn-editar-datos-facturacion');
+    this.btnGuardarDatosFacturacion = this.querySelector('#phpc-btn-guardar-datos-facturacion');
+    this.inputRazonSocial = this.querySelector('#phpc-input-razon-social');
+    this.inputNitoCit = this.querySelector('#phpc-input-nit-cit');
+
+    // Carrito
+    this.btnEditarCarrito = this.querySelector('#phpc-btn-editar-carrito');
+    // Especial
+    this.itemProductoCarrito = this.querySelectorAll('.pcph-item-carrito');
+
+    // Hut Coins
+    this.contenedorHutCoins = this.querySelector('#phpc-hutcoins');
+    this.btnHutCoins = this.querySelector('#phpc-btn-hutcoins');
+    this.inputFechaNacimiento = this.querySelector('#phpc-input-fecha-nacimiento');
+
+    this.btnContinuar = this.querySelector('#phpc-btn-continuar-general');
+
     // INICIALIZAR EVENTOS
     this.btnMetodoLocal.addEventListener('click', this.seleccionarMetodoLocal.bind(this));
     this.btnMetodoDomicilio.addEventListener('click', this.seleccionarMetodoDomicilio.bind(this));
@@ -1754,6 +1797,13 @@ class PageCheckoutPH extends HTMLElement {
         this.btnProcesoPrincipalNd.classList.remove('desactivado');
       }
     });
+    this.btnEditarDatos.addEventListener('click', (event) => {
+      this.btnAccionDatosContacto(event.currentTarget);
+    });
+    this.btnGuardarDatos.addEventListener('click', (event)=>{
+      this.btnAccionDatosContacto(event.currentTarget);
+    });
+
     // INICIALIZAR ELEMENTOS Y PROCESO
 
     // local y domicilio
@@ -2539,6 +2589,59 @@ class PageCheckoutPH extends HTMLElement {
       return;
     }
   }
+
+  btnAccionDatosContacto(btnElemento) {
+    const accion = btnElemento.dataset.accion;
+    
+    // Recolectar datos del formulario
+    const formulario = {
+      nombre: this.inputNombreContacto.value.trim(),
+      apellido: this.inputApellidoContacto.value.trim(),
+      email: this.inputCorreoElectronico.value.trim(),
+      celular: this.inputCelularContacto.value.trim(),
+      ci: this.inputCiContacto.value.trim(),
+    };
+    
+    const mensajesError = {
+      nombre: this.alertaNombreContacto,
+      apellido: this.alertaApellidoContacto,
+      email: this.alertaCorreoElectronico,
+      celular: this.alertaCelularContacto,
+      ci: this.alertaCiContacto
+    };
+    
+    // Verificar si hay campos vacíos y mostrar TODOS los mensajes de error correspondientes
+    let algunCampoVacio = false;
+    
+    Object.keys(formulario).forEach(key => {
+      if (formulario[key] === '') {
+        mensajesError[key].style.display = 'flex';
+        algunCampoVacio = true;
+      } else {
+        mensajesError[key].style.display = 'none';
+      }
+    });
+    
+    // Si hay algún campo vacío, salir de la función
+    if (algunCampoVacio) {
+      return;
+    }
+    
+    // Si pasa la validación, continuar con la actualización de la interfaz
+    if (accion === "editar") {
+      this.btnEditarDatos.style.display = "flex";
+      this.btnGuardarDatos.style.display = "none";
+      this.contenedorDatosContactoEditar.style.display = "flex";
+      this.contenedorDatoContactoConsolidados.style.display = "none";
+    } else {
+      this.btnEditarDatos.style.display = "none";
+      this.btnGuardarDatos.style.display = "flex";
+      this.contenedorDatosContactoEditar.style.display = "none";
+      this.contenedorDatoContactoConsolidados.style.display = "flex";
+    }
+  }
+
+  procedoPrincipalPagina(){}
 }
 
 customElements.define('page-checkout-ph', PageCheckoutPH);
