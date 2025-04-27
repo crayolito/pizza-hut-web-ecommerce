@@ -2600,6 +2600,7 @@ class PageCheckoutPH extends HTMLElement {
       email: this.inputCorreoElectronico.value.trim(),
       celular: this.inputCelularContacto.value.trim(),
       // ci: this.inputCiContacto.value.trim()
+      // 
     };
     
     const mensajesError = {
