@@ -2599,8 +2599,7 @@ class PageCheckoutPH extends HTMLElement {
       apellido: this.inputApellidoContacto.value.trim(),
       email: this.inputCorreoElectronico.value.trim(),
       celular: this.inputCelularContacto.value.trim(),
-      // ci: this.inputCiContacto.value.trim()
-      // 
+      ci: this.inputCIContacto.value.trim()
     };
     
     const mensajesError = {
@@ -2616,6 +2615,8 @@ class PageCheckoutPH extends HTMLElement {
     
     Object.keys(formulario).forEach(key => {
       if (formulario[key] === '') {
+
+        mensajesError[key].addClassList.add('error');
         mensajesError[key].style.display = 'flex';
         algunCampoVacio = true;
       } else {
@@ -2625,6 +2626,7 @@ class PageCheckoutPH extends HTMLElement {
     
     // Si hay algún campo vacío, salir de la función
     if (algunCampoVacio) {
+      this.mensajeInfoCelularContacto.style.display = 'none';
       return;
     }
     
