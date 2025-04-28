@@ -2814,7 +2814,7 @@ class PageCheckoutPH extends HTMLElement {
       this.inputRazonSocial.value = "----";
       this.inputNitoCit.value = "----";
     }
-    this.etiquetaDatosFacturacionConsolidados.textContent = `${data.razonSocial} | ${data.nit}`;
+    this.etiquetaDatosFacturacionConsolidados.textContent = `${this.inputRazonSocial.value} | ${this.inputNitoCit.value}`;
   }
 }
 
