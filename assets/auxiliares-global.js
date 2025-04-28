@@ -2291,7 +2291,7 @@ class PageCheckoutPH extends HTMLElement {
               <div class="smecph-pc-item-cid3">
                 <div class="smecph-pc-item-cid3_total">
                   <small>Bs</small>
-                  <p>${precio.precioTotalConjunto}</p>
+                  <p>${data.producto.precioTotalConjunto}</p>
                 </div>
                 ${
                  data.producto.descuento == null || data.producto.descuento == 0 || data.producto.descuento == undefined 
