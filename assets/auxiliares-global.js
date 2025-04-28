@@ -3156,7 +3156,7 @@ class PageCheckoutPH extends HTMLElement {
           customAttributes: [
             { key: "Metodo Entrega", value: this.estadoPagina == "domicilio" ? "Domicilio" : "Local" },
             { key: "Datos Proceso Checkout", value: JSON.stringify(informacionPedido.datosCheckout) },
-            { key: "Datos Carrito PRoceso", value: json.stringify(informacionPedido.itemsCarrito) },
+            { key: "Datos Carrito PRoceso", value: JSON.stringify(informacionPedido.itemsCarrito) },
           ],
         }
       };
