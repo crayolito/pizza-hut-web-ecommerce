@@ -3154,7 +3154,7 @@ class PageCheckoutPH extends HTMLElement {
     var line_items = [];
     this.infoCarrito.informacionCompleta.items.forEach((item) => {
       line_items.push({
-        variant_id: item.producto.id,
+        variant_id: item.id,
         quantity: item.quantity
       });
     });
