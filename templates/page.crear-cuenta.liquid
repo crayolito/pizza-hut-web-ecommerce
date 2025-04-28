@@ -159,7 +159,12 @@
       <div class="ph-container-input icon-color-tertiary">
         <div id="phpcc-sugerencias-direccion" class="psme-sugerencias-container"></div>
         {% render 'icon-location-on' %}
-        <input id="phpcc-input-direccion" type="text" placeholder="Ingresar dirección o punto de referencia">
+        <input
+          id="phpcc-input-direccion"
+          type="text"
+          placeholder="Ingresar dirección o punto de referencia"
+          autocomplete="off"
+        >
       </div>
     </section>
     <section class="container-sub-smecph" id="pccph-hutcoins">
@@ -575,11 +580,15 @@
       }
     }
 
-    procesoConfirmacionModal() {
+    async procesoConfirmacionModal() {
       const posicion = this.marcadorMovible.getPosition();
       this.coordenadas = { lat: posicion.lat(), lng: posicion.lng() };
-      this.inputDireccion.value = posicion;
-      console.log('Coordenadas de dirección seleccionada:', this.coordenadas);
+      const ubicacionTexto = await AuxiliaresGlobal.obtenerDireccionDesdeCoordenadas(this.coordenadas.lat , this.coordenadas.lng);
+      this.inputDireccion.value = ubicacionTexto;
+      console.log('Coordenadas de dirección seleccionada:', {
+        "coordenadas": this.coordenadas,
+        "direccion": ubicacionTexto,
+      });
       this.cerrarModalMiUbicacion();
     }
 
