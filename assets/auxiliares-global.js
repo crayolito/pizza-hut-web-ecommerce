@@ -3174,7 +3174,7 @@ class PageCheckoutPH extends HTMLElement {
         
         return {
           title: item.title || "Producto",
-          quantity: data.producto.cantidad,
+          quantity: parseInt(data.producto.cantidad),
           originalUnitPrice: parseFloat((data.producto.precioTotalConjunto) || 0).toFixed(2)
         };
       });
@@ -3185,12 +3185,6 @@ class PageCheckoutPH extends HTMLElement {
         itemsCarrito: this.infoCarrito.informacionCompleta.items
       };
 
-      console.log("Testeo Pruebas  :",{
-        "pruebas1" : this.direccionSeleccionada,
-        "pruebas2" : this.localSeleccionado,
-        "pruebas3" : this.estadoPagina,
-      })
-      
       // Consulta GraphQL actualizada para draftOrderCreat
       const draftOrderQuery = `
         mutation draftOrderCreate($input: DraftOrderInput!) {
