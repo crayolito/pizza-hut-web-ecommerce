@@ -1739,6 +1739,7 @@ class PageCheckoutPH extends HTMLElement {
     // Formulario Datos de contacto
     this.btnEditarDatos = this.querySelector('#phpc-btn-editar-datos-contacto');
     this.btnGuardarDatos = this.querySelector('#phpc-btn-guardar-datos-contacto');
+    this.formDatosContacto = this.querySelector('#phpc-form-datos-contacto');
     this.contenedorDatoContactoConsolidados = this.querySelector('#phpc-datos-contacto-consolidados');
     this.etiquetaDatosConsolidados = this.querySelector('#phpc-etiqueta-datos-consolidados');
     this.contenedorDatosContactoEditar = this.querySelector('#phpc-datos-contacto-editar');
@@ -1756,17 +1757,16 @@ class PageCheckoutPH extends HTMLElement {
 
     // Datos de pago
     this.mensajeAlertaDatosFacturacion = this.querySelector('#phpc-mensaje-alerta-datos-facturacion');
-    // this.btnCodigoQr = this.querySelector('#phpc-btn-codigo-qr');
-    // this.btnTarjetaCredito = this.querySelector('#phpc-btn-tarjeta-credito');
     this.opcionesTarjetaCredito = this.querySelector('#phpc-opciones-tarjeta-credito');
     this.inputPrimero4Digitos = this.querySelector('#phpc-input-primero-4-digitos');
     this.mensajeAlertaPrimero4Digitos = this.querySelector('#phpc-alerta-primero-4-digitos');
     this.inputUltimos4Digitos = this.querySelector('#phpc-input-ultimos-4-digitos');
     this.mensajeAlertaUltimos4Digitos = this.querySelector('#phpc-alerta-ultimos-4-digitos');
-    // this.btnEfectivo = this.querySelector('#phpc-btn-efectivo');
     this.btnsMetodosPagos = this.querySelectorAll('#phpc-btn-metodo-pago');
     
     // Datos de facturacion
+    this.contenedorDatosFacturacion = this.querySelector('#phpc-form-datos-facturacion');
+    this.contenedorDatosFacturacionConsolidados = this.querySelector('#phpc-datos-facturacion-consolidados');
     this.btnEditarDatosFacturacion = this.querySelector('#phpc-btn-editar-datos-facturacion');
     this.btnGuardarDatosFacturacion = this.querySelector('#phpc-btn-guardar-datos-facturacion');
     this.inputRazonSocial = this.querySelector('#phpc-input-razon-social');
@@ -1815,21 +1815,14 @@ class PageCheckoutPH extends HTMLElement {
         this.procesoSeleccionMetodoPago(event.currentTarget);
       });
     });
-    // this.btnCodigoQr.addEventListener('click', (event) => {
-    //   this.seleccionarMetodoPago(event.currentTarget);
-    // });
-    // this.btnTarjetaCredito.addEventListener('click', (event) => {
-    //   this.seleccionarMetodoPago(event.currentTarget);
-    // });
-    // this.btnEfectivo.addEventListener('click', (event) => {
-    //   this.seleccionarMetodoPago(event.currentTarget);
-    // });
 
     // INICIALIZAR ELEMENTOS Y PROCESO
 
     // local y domicilio
     this.estadoPagina = localStorage.getItem('ph-metodo-entrega');
     this.inicializarDataContruccion();
+    this.inicializarDatosdeContacto();
+    this.inicializarDatosdeFacturacion();
   }
 
   // PROCESO DE CONTENEDOR SUGERENCIAS PUNTOS DE REFERENCIAS
@@ -2794,6 +2787,29 @@ class PageCheckoutPH extends HTMLElement {
       this.opcionesTarjetaCredito.style.display = "flex";
     }else{
       this.opcionesTarjetaCredito.style.display = "none";
+    }
+  }
+
+  inicializarDatosdeContacto(){
+    const data = JSON.parse(localStorage.getItem('ph-datos-usuario'));
+    if(data){
+      this.inputNombreContacto.value = data.nombre;
+      this.inputApellidoContacto.value = data.apellido;
+      this.inputCorreoElectronico.value = data.email;
+      this.inputCelularContacto.value = data.celular;
+      this.inputCIContacto.value = data.ci;
+      this.etiquetaDatosConsolidados.textContent = `${data.nombre} | ${data.apellido} | ${data.email}| +591 ${data.celular} | ${data.ci}`;
+    }
+  }
+
+  inicializarDatosdeFacturacion(){
+    const data = JSON.parse(localStorage.getItem('ph-datos-facturacion'));
+    if(data){
+      this.inputRazonSocial.value = data.razonSocial;
+      this.inputNit.value = data.nit;
+    }else{
+      this.inputRazonSocial.value = "----";
+      this.inputNit.value = "----";
     }
   }
 }

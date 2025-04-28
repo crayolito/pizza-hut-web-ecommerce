@@ -93,6 +93,7 @@
           <p>Ingrese tus datos para disfrutar tu pizza favorita.</p>
         </div>
         <button
+          style="display: none;"
           data-accion="guardar"
           id="phpc-btn-guardar-datos-contacto"
           class="smecph-pc-dch_btn"
@@ -102,7 +103,6 @@
         </button>
         <button
           data-accion="editar"
-          style="display: none;"
           id="phpc-btn-editar-datos-contacto"
           class="smecph-pc-dch_btn"
         >
@@ -110,7 +110,11 @@
           <p class="color-letras-primary">EDITAR DATOS</p>
         </button>
       </div>
-      <div class="smecph-formulario-datos-contacto">
+      <div
+        style="display: none;"
+        id="phpc-form-datos-contacto"
+        class="smecph-formulario-datos-contacto"
+      >
         <div class="smecph-pc-info-input">
           <p>Nombres</p>
           <div class="ph-container-input">
@@ -147,6 +151,7 @@
           <p>Correo Electrónico</p>
           <div class="ph-container-input">
             <input
+              readonly
               id="phpc-input-correo-contacto"
               type="email"
               placeholder="Correo Electrónico"
@@ -206,11 +211,10 @@
         </div>
       </div>
       <div
-        style="display: none;"
         id="phpc-datos-contacto-consolidados"
         class="smecph-datos-contacto-consolidados"
       >
-        <p id="phpc-etiqueta-datos-consolidados'">Maria Lopez | mlopez@email.com 77453368 | 2233400</p>
+        <p id="phpc-etiqueta-datos-consolidados"></p>
       </div>
     </section>
     <section class="container-sub-smecph" id="pcktph-datos-pago">
@@ -347,7 +351,6 @@
           <p class="color-letras-primary">GUARDAR</p>
         </button>
         <button
-          style="display: none;"
           class="smecph-pc-dch_btn"
           id="phpc-btn-editar-datos-facturacion"
         >
@@ -355,17 +358,37 @@
           <p class="color-letras-primary">EDITAR DATOS</p>
         </button>
       </div>
-      <div class="smecph-pc-info-input">
-        <p>Nombre o Razón Social</p>
-        <div class="ph-container-input">
-          <input type="text" placeholder="Nombre o Razón Social">
+      <div
+        id="phpc-form-datos-facturacion"
+        style="display: none;"
+        class="smecph-formulario-datos-contacto"
+      >
+        <div class="smecph-pc-info-input">
+          <p>Nombre o Razón Social</p>
+          <div class="ph-container-input">
+            <input
+              id="phpc-input-razon-social"
+              type="text"
+              placeholder="Nombre o Razón Social"
+            >
+          </div>
+        </div>
+        <div class="smecph-pc-info-input">
+          <p>Número de C.I. o N.I.T.</p>
+          <div class="ph-container-input">
+            <input
+              id="phpc-input-nit-cit"
+              type="text"
+              placeholder="Número de C.I. o N.I.T."
+            >
+          </div>
         </div>
       </div>
-      <div class="smecph-pc-info-input">
-        <p>Número de C.I. o N.I.T.</p>
-        <div class="ph-container-input">
-          <input type="text" placeholder="Número de C.I. o N.I.T.">
-        </div>
+      <div
+        id="phpc-datos-facturacion-consolidados"
+        class="smecph-datos-contacto-consolidados"
+      >
+        <p id="phpc-etiqueta-datos-consolidados"></p>
       </div>
     </section>
     <section class="container-sub-smecph" id="pcktph-detalle-carrito">
