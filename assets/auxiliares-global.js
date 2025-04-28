@@ -3020,11 +3020,6 @@ class PageCheckoutPH extends HTMLElement {
   }
 
   async procesoContinuarGeneral(){
-    console.log("Pruebas finales : ", {
-      "testeo1" :this.localSeleccionado,
-      "testeo2" : this.estadoPagina,
-      "testeo3" : this.inputSeleccionarLocal.value, 
-    });
 
     if(this.localSeleccionado == null && this.estadoPagina == "local" && this.inputSeleccionarLocal.value == ""){
       this.contenedorBaseSeleccionLocal.scrollIntoView({
@@ -3080,7 +3075,8 @@ class PageCheckoutPH extends HTMLElement {
     console.log("Data JSON", dataJSON);
     localStorage.setItem('ph-json-generado', JSON.stringify(dataJSON));
     MensajeCargaDatos.ocultar();
-    // window.location.href = "/pages/detalle-pedido";
+    localStorage.setItem('ph-estadoDP',"etapa-1");
+    window.location.href = "/pages/detalle-pedido";
   }
 
   async generarPedidoPreliminar(datosCheckout) {
