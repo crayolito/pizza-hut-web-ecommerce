@@ -877,7 +877,7 @@ class PageCarrito extends HTMLElement {
         const dataContruccion = JSON.parse(item.properties.estructura);
         console.log("PRECIO TOTAL CONJUNTO", dataContruccion.producto.precioTotalConjunto);
         precioTotal += parseFloat(dataContruccion.producto.precioTotalConjunto);
-
+        // 
         contenidoIzquierdoHTML += `
         <div 
         data-idTrabajo="${dataContruccion.producto.idTrabajo}"
