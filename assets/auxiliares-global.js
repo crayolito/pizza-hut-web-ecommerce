@@ -3159,11 +3159,23 @@ class PageCheckoutPH extends HTMLElement {
       const dataUsuario = JSON.parse(localStorage.getItem('ph-datos-usuario'));
       
       // Construir los lineItems para DraftOrderInput
-      const lineItems = this.infoCarrito.informacionCompleta.items.map(item => ({
-        title: item.title || "Producto",
-        quantity: item.quantity,
-        originalUnitPrice: parseFloat(item.price/100 || 0).toFixed(2)
-      }));
+      const lineItems = this.infoCarrito.informacionCompleta.items.map(item => {
+        let data = null;
+        try {
+          if (item.properties && item.properties.estructura) {
+            data = JSON.parse(item.properties.estructura);
+            console.log("Data de item", data);
+          }
+        } catch (error) {
+          console.error("Error al parsear estructura del item:", error);
+        }
+        
+        return {
+          title: item.title || "Producto",
+          quantity: item.quantity,
+          originalUnitPrice: parseFloat((item.price/100) || 0).toFixed(2)
+        };
+      });
       
       // La información del pedido para guardar en la nota
       const informacionPedido = {
