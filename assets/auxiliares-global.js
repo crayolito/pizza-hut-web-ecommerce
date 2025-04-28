@@ -1826,7 +1826,7 @@ class PageCheckoutPH extends HTMLElement {
     // INICIALIZAR ELEMENTOS Y PROCESO
 
     // local y domicilio
-    this.estadoPagina = localStorage.getItem('ph-metodo-entrega');
+    this.estadoPagina = localStorage.getItem('ph-metodo-entrega') || "domicilio";
     this.inicializarDatosdeContacto();
     this.inicializarDatosdeFacturacion();
     this.inicializarDataContruccion();
@@ -2687,8 +2687,6 @@ class PageCheckoutPH extends HTMLElement {
 
     }
   }
-
-  
 
   validarCamposFormDatosContacto() {
     const formulario = {
