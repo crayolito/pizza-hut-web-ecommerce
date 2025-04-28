@@ -2984,7 +2984,11 @@ class PageCheckoutPH extends HTMLElement {
     const seraVisto = hijoDetalle.dataset.seravisto;
 
     if(seraVisto == "true"){
-      hijoDetalle.style.display = "flex";
+      if(hijoDetalle.style.display == "none"){
+        hijoDetalle.style.display = "flex";
+      }else{
+        hijoDetalle.style.display = "none";
+      }
     }
   }
 }
