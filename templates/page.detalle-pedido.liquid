@@ -201,14 +201,8 @@
     }
 
     inicializarDataLocalStorage() {
-      {% comment %} localStorage.setItem('ph-estadoDP', 'etapa-1'); {% endcomment %}
       const estadoDetallePedido = localStorage.getItem('ph-estadoDP');
       const origenHistorial = localStorage.getItem('ph-origenHistorial');
-      
-
-      {% comment %} if (estadoDetallePedido == null) {
-        window.location.href = '/';
-      } {% endcomment %}
 
       if (estadoDetallePedido == 'etapa-1') {
         this.detallaPedidof1.style.display = 'flex';

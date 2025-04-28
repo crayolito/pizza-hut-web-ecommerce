@@ -865,26 +865,17 @@ class PageCarrito extends HTMLElement {
 
       const infoCarrito = await AuxiliaresGlobal.obtenerCarritoShopify();
       this.dataCarrito = infoCarrito.informacionCompleta;
-      console.log('Información completa inicializarDataShopify :', infoCarrito.informacionCompleta);
 
       let contenidoIzquierdoHTML = '';
       let precioTotal = 0;
 
       infoCarrito.informacionCompleta.items.forEach((item) => {
         if(!(item.properties && item.properties.estructura)){
-          console.log("Testep Pruebas", {
-            "testeo 1": item.properties,
-            "testeo 2": item.properties?.estructura,
-            "testeo 3": item.properties?.estructura == null,
-            "testeo 4": item.properties?.estructura == undefined,
-            "testeo 5": item.properties?.properties?.estructura,
-          });
           return;
         }
         
         const dataContruccion = JSON.parse(item.properties.estructura);
         precioTotal += parseFloat(dataContruccion.producto.precioTotalConjunto);
-        console.log('Data de construcción:', dataContruccion);
 
         contenidoIzquierdoHTML += `
         <div 
@@ -961,15 +952,6 @@ class PageCarrito extends HTMLElement {
           </div>
         `;
   
-        // <div class="pcph-itemc_cantidad">
-        //   <button class="pcph-itemc_cantidad-btn">
-        //     {% render 'icon-menos' %}
-        //   </button>
-        //   <p>1</p>
-        //   <button class="pcph-itemc_cantidad-btn">
-        //     {% render 'icon-mas' %}
-        //   </button>
-        // </div>
         contenidoIzquierdoHTML += `
             <cantidad-input>
               <div
@@ -1737,6 +1719,7 @@ class PageCheckoutPH extends HTMLElement {
     this.btnsMetodosPagos = this.querySelectorAll('.smecph-pc-dp-item');
 
     // Formulario Datos de contacto
+    this.seccionFormDatosContacto = this.querySelector('#phpc-sector-datos-contacto');
     this.btnEditarDatos = this.querySelector('#phpc-btn-editar-datos-contacto');
     this.btnGuardarDatos = this.querySelector('#phpc-btn-guardar-datos-contacto');
     this.formDatosContacto = this.querySelector('#phpc-form-datos-contacto');
@@ -1756,6 +1739,7 @@ class PageCheckoutPH extends HTMLElement {
     this.alertaCIContacto = this.querySelector('#phpc-alerta-ci-contacto');
 
     // Datos de pago
+    this.seccionGeneralMetodosPago =  this.querySelector('#phpc-sector-metodos-de-pago');
     this.mensajeAlertaDatosFacturacion = this.querySelector('#phpc-mensaje-alerta-datos-facturacion');
     this.opcionesTarjetaCredito = this.querySelector('#phpc-opciones-tarjeta-credito');
     this.inputPrimero4Digitos = this.querySelector('#phpc-input-primero-4-digitos');
@@ -2291,10 +2275,10 @@ class PageCheckoutPH extends HTMLElement {
             </div>
             <div class="smecph-pc-item-ci-detalle">
               <div class="smecph-pc-item-cid1">
-                <p>Cheesy Lovers</p>
+                <p>${data.producto.titulo}</p>
               </div>
               <div class="smecph-pc-item-cid2">
-                <p>x${data.producto.cantidad}</p>
+                <p>x${item.quantity}</p>
               </div>
               <div class="smecph-pc-item-cid3">
                 <div class="smecph-pc-item-cid3_total">
@@ -2869,6 +2853,10 @@ class PageCheckoutPH extends HTMLElement {
     return !hayCampoVacio; // Retorna true si no hay campos vacíos
   }
 
+  valirdarSeleccionMetodoPago(){
+    this.btnsMetodosPagos
+  }
+
   validarCamposFormTarjeta(){
     const formulario = {
       primerInput: this.inputPrimero4Digitos.value.trim(),
@@ -3016,6 +3004,21 @@ class PageCheckoutPH extends HTMLElement {
   }
 
   procesoContinuarGeneral(){
+    if(this.validarCamposFormDatosContacto()){
+      this.seccionFormDatosContacto.scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'start' 
+      });
+      return;
+    }
+
+    if(this.valirdarSeleccionMetodoPago()){
+      this.seccionGeneralMetodosPago.scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'start' 
+      });
+      return;
+    }
     // Optiene todos los datos de envio a domicilio o recoger en local
     // Se verifica el formulario Datos de contacto
     // Datos de pago
