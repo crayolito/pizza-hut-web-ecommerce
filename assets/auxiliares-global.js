@@ -3225,7 +3225,7 @@ class PageCheckoutPH extends HTMLElement {
         }
       `;
       
-      // El ID ya viene en formato GID completo: "gid://shopify/DraftOrder/1189380718876"
+      // El ID ya viene en formato GID completoo: "gid://shopify/DraftOrder/1189380718876"
       const variables = {
         id: idOrden
       };
