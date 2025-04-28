@@ -3060,103 +3060,15 @@ class PageCheckoutPH extends HTMLElement {
     localStorage.setItem('ph-datos-checkout', JSON.stringify(datosCheckout));
 
     MensajeCargaDatos.mostrar('Su pedido se esta procesando ...');
-    await this.generarPedido(datosCheckout);
+    const dataOrdenPreliminar = await this.generarPedidoPreliminar(datosCheckout);
+    await this.generarPedido(dataOrdenPreliminar.draftOrderCreate.draftOrder.id);
     const dataJSON = this.generarJSONMostrarConsola();
     localStorage.setItem('ph-datos-pedido', JSON.stringify(dataJSON));
     MensajeCargaDatos.ocultar();
     // window.location.href = "/pages/detalle-pedido";
   }
 
-  valirdarSeleccionMetodoPago() {
-    for (let btn of this.btnsMetodosPagos) {
-      if (btn.classList.contains('seleccionado')) {
-        if (btn.dataset.accion == "pago-tarjeta-credito") {
-          this.inputPrimero4Digitos.value = this.inputPrimero4Digitos.value.trim();
-          this.inputUltimos4Digitos.value = this.inputUltimos4Digitos.value.trim();
-          
-          // Verificar que los campos no estén vacíos después de quitar espacios
-          if (this.inputPrimero4Digitos.value === "" || this.inputUltimos4Digitos.value === "") {
-            return false; // Los campos están vacíos, no es válido
-          }
-        }
-        
-        return true; // Método de pago seleccionado y válid
-      }
-    }
-    
-    // Si termina el ciclo sin encontrar ninguno seleccionado
-    return false;
-  }
-
-  actualizarDatosUsuario(){
-    const data = JSON.parse(localStorage.getItem('ph-datos-usuario'));
-    const estaSeleccionadoBtnHutCoins = this.btnHutCoins.classList.contains('seleccionado');
-    const obtenerInputFechaNacimiento = this.inputFechaNacimiento.value;
-
-    if(estaSeleccionadoBtnHutCoins == false && obtenerInputFechaNacimiento == "")return;
-
-    data.permisoHutCoins = estaSeleccionadoBtnHutCoins;
-    data.fechaNacimiento = obtenerInputFechaNacimiento;
-  }
-
-  obtenerDatosMetodoEnvio(){
-
-
-    if(this.btnMetodoLocal.classList.contains('seleccionado')){
-      return {
-        metodo_envio : "local",
-        local_seleccionado : this.localSeleccionado
-      }
-    }
-    if(this.btnMetodoDomicilio.classList.contains('seleccionado')){
-      return{
-        metodo_envio : "domicilio",
-        info_seleccionada : this.direccionSeleccionada
-      }
-    }
-  }
-
-  obtenerDatosFacturacion(){
-    if(this.inputRazonSocial.value == "" || this.inputNitoCit.value == "")return null;
-    return {
-      razon_social : this.inputRazonSocial.value,
-      nit : this.inputNitoCit.value
-    }
-  }
-
-  obtenerDatosPagoSeleccionado() {
-    // Buscar el primer botón que tenga la acción que buscamos
-    for (let btn of this.btnsMetodosPagos) {
-      const accion = btn.dataset.accion;
-      
-      // Verificar si este botón está seleccionado
-      if (!btn.classList.contains('seleccionado')) continue;
-      
-      // Si llegamos aquí, encontramos un botón seleccionado
-      if (accion == "pago-codigo-qr") {
-        return { metodo_pago: "pago-codigo-qr" };
-      }
-      
-      if (accion == "pago-tarjeta-credito") {
-        return {
-          metodo_pago: "pago-tarjeta-credito",
-          tarjeta_primera_4_digitos: this.inputPrimero4Digitos.value,
-          tarjeta_segundo_4_digitos: this.inputUltimos4Digitos.value
-        };
-      }
-      
-      if (accion == "pago-efectivo") {
-        return { metodo_pago: "pago-efectivo" };
-      }
-    }
-    
-    // Si no se encontró ningún botón seleccionado
-    return null;
-  }
-
-  generarJSONMostrarConsola(){}
-
-  async generarPedido(datosCheckout) {
+  async generarPedidoPreliminar(datosCheckout) {
     try {
       const dataUsuario = JSON.parse(localStorage.getItem('ph-datos-usuario'));
       
@@ -3286,6 +3198,169 @@ class PageCheckoutPH extends HTMLElement {
       return { success: false, error: error.message };
     }
   }
+
+  async generarPedido(idOrden) {
+    try {
+      // Consulta GraphQL para completar un draft order
+      const completeDraftOrderQuery = `
+        mutation draftOrderComplete($id: ID!) {
+          draftOrderComplete(id: $id) {
+            draftOrder {
+              id
+              order {
+                id
+                name
+                financialStatus
+              }
+            }
+            userErrors {
+              field
+              message
+            }
+          }
+        }
+      `;
+      
+      // El ID ya viene en formato GID completo: "gid://shopify/DraftOrder/1189380718876"
+      const variables = {
+        id: idOrden
+      };
+      
+      const myTest = 'shpat_' + '45f4a7476152f4881d058f87ce063698';
+      
+      const response = await fetch(this.urlConsulta, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Shopify-Access-Token': myTest
+        },
+        body: JSON.stringify({
+          query: completeDraftOrderQuery,
+          variables: variables
+        })
+      });
+      
+      const data = await response.json();
+      console.log('Respuesta completa de finalización de pedido:', data);
+      
+      if (data.errors) {
+        console.error('Errores en la respuesta GraphQL:', data.errors);
+        return { success: false, errors: data.errors };
+      }
+      
+      if (data.data && data.data.draftOrderComplete.userErrors && 
+          data.data.draftOrderComplete.userErrors.length > 0) {
+        console.error('Errores al completar el pedido:', data.data.draftOrderComplete.userErrors);
+        return { success: false, errors: data.data.draftOrderComplete.userErrors };
+      }
+      
+      if (data.data && data.data.draftOrderComplete && data.data.draftOrderComplete.draftOrder) {
+        console.log('Pedido completado exitosamente:', data.data.draftOrderComplete.draftOrder);
+        return { 
+          success: true, 
+          order: data.data.draftOrderComplete.draftOrder 
+        };
+      }
+      
+      return { success: false, message: 'Respuesta inesperada del servidor' };
+    } catch (error) {
+      console.error('Error al completar el pedido:', error);
+      return { success: false, error: error.message };
+    }
+  }
+  
+  valirdarSeleccionMetodoPago() {
+    for (let btn of this.btnsMetodosPagos) {
+      if (btn.classList.contains('seleccionado')) {
+        if (btn.dataset.accion == "pago-tarjeta-credito") {
+          this.inputPrimero4Digitos.value = this.inputPrimero4Digitos.value.trim();
+          this.inputUltimos4Digitos.value = this.inputUltimos4Digitos.value.trim();
+          
+          // Verificar que los campos no estén vacíos después de quitar espacios
+          if (this.inputPrimero4Digitos.value === "" || this.inputUltimos4Digitos.value === "") {
+            return false; // Los campos están vacíos, no es válido
+          }
+        }
+        
+        return true; // Método de pago seleccionado y válid
+      }
+    }
+    
+    // Si termina el ciclo sin encontrar ninguno seleccionado
+    return false;
+  }
+
+  actualizarDatosUsuario(){
+    const data = JSON.parse(localStorage.getItem('ph-datos-usuario'));
+    const estaSeleccionadoBtnHutCoins = this.btnHutCoins.classList.contains('seleccionado');
+    const obtenerInputFechaNacimiento = this.inputFechaNacimiento.value;
+
+    if(estaSeleccionadoBtnHutCoins == false && obtenerInputFechaNacimiento == "")return;
+
+    data.permisoHutCoins = estaSeleccionadoBtnHutCoins;
+    data.fechaNacimiento = obtenerInputFechaNacimiento;
+  }
+
+  obtenerDatosMetodoEnvio(){
+
+
+    if(this.btnMetodoLocal.classList.contains('seleccionado')){
+      return {
+        metodo_envio : "local",
+        local_seleccionado : this.localSeleccionado
+      }
+    }
+    if(this.btnMetodoDomicilio.classList.contains('seleccionado')){
+      return{
+        metodo_envio : "domicilio",
+        info_seleccionada : this.direccionSeleccionada
+      }
+    }
+  }
+
+  obtenerDatosFacturacion(){
+    if(this.inputRazonSocial.value == "" || this.inputNitoCit.value == "")return null;
+    return {
+      razon_social : this.inputRazonSocial.value,
+      nit : this.inputNitoCit.value
+    }
+  }
+
+  obtenerDatosPagoSeleccionado() {
+    // Buscar el primer botón que tenga la acción que buscamos
+    for (let btn of this.btnsMetodosPagos) {
+      const accion = btn.dataset.accion;
+      
+      // Verificar si este botón está seleccionado
+      if (!btn.classList.contains('seleccionado')) continue;
+      
+      // Si llegamos aquí, encontramos un botón seleccionado
+      if (accion == "pago-codigo-qr") {
+        return { metodo_pago: "pago-codigo-qr" };
+      }
+      
+      if (accion == "pago-tarjeta-credito") {
+        return {
+          metodo_pago: "pago-tarjeta-credito",
+          tarjeta_primera_4_digitos: this.inputPrimero4Digitos.value,
+          tarjeta_segundo_4_digitos: this.inputUltimos4Digitos.value
+        };
+      }
+      
+      if (accion == "pago-efectivo") {
+        return { metodo_pago: "pago-efectivo" };
+      }
+    }
+    
+    // Si no se encontró ningún botón seleccionado
+    return null;
+  }
+
+  generarJSONMostrarConsola(){
+
+  }
+
+
 }
 
 customElements.define('page-checkout-ph', PageCheckoutPH);
