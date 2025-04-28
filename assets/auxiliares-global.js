@@ -1742,7 +1742,7 @@ class PageCheckoutPH extends HTMLElement {
     this.formDatosContacto = this.querySelector('#phpc-form-datos-contacto');
     this.contenedorDatoContactoConsolidados = this.querySelector('#phpc-datos-contacto-consolidados');
     this.etiquetaDatosConsolidados = this.querySelector('#phpc-etiqueta-datos-consolidados');
-    this.contenedorDatosContactoEditar = this.querySelector('#phpc-datos-contacto-editar');
+    this.contenedorDatosContactoEditar = this.querySelector('#phpc-form-datos-contacto');
     this.inputNombreContacto = this.querySelector('#phpc-input-nombre-contacto');
     this.alertaNombreContacto = this.querySelector('#phpc-alerta-nombre-contacto');
     this.inputApellidoContacto = this.querySelector('#phpc-input-apellido-contacto');
