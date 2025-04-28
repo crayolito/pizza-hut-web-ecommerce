@@ -3154,20 +3154,11 @@ class PageCheckoutPH extends HTMLElement {
             zip: "0000",
           },
           customAttributes: [
-            { key: "Note 1", value: "This is the first note" },
-            { key: "Note 2", value: "This is the second note" }
+            { key: "Metodo Entrega", value: this.estadoPagina == "domicilio" ? "Domicilio" : "Local" },
+            { key: "Datos Proceso Checkout", value: JSON.stringify(informacionPedido.datosCheckout) },
+            { key: "Datos Carrito PRoceso", value: json.stringify(informacionPedido.itemsCarrito) },
           ],
-          note: "General note for the draft order",
-
-        },
-        metafields: [
-          {
-            namespace: "custom",
-            key: "order_details",
-            type: "json_string",
-            value: JSON.stringify(datosCheckout),
-          },
-        ],
+        }
         // customer: {
         //   toUpsert: {
         //     firstName: dataUsuario.nombre,
