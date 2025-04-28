@@ -3361,7 +3361,7 @@ class PageCheckoutPH extends HTMLElement {
       var complementos = [];
       console.log("Producto completo", productoCompleto);
 
-      this.infoCarrito.informacionCompleta.opcionesPrincipales.forEach(producto => {
+      productoCompleto.opcionesPrincipales.forEach(producto => {
         return opcionesPrincipales.push({
           nombre: producto.nombre,
           cantidad: producto.cantidad,
@@ -3369,8 +3369,8 @@ class PageCheckoutPH extends HTMLElement {
           id : producto.idTrabajo
         });
       });
-      
-      this.infoCarrito.informacionCompleta.complementos.forEach(producto => {
+
+      productoCompleto.complementos.forEach(producto => {
         return complementos.push({
           nombre: producto.nombre, 
           cantidad: producto.cantidad,
@@ -3378,7 +3378,6 @@ class PageCheckoutPH extends HTMLElement {
           id : producto.idTrabajo
         });
       });
-
 
       productos.push({
         nombre: productoCompleto.producto.nombre,
