@@ -3065,7 +3065,7 @@ class PageCheckoutPH extends HTMLElement {
 
     MensajeCargaDatos.mostrar('Su pedido se esta procesando ...');
     
-    // Orden creada en los preliminares
+    // Orden creada en los preliminaress
     const dataOrdenPreliminar = await this.generarPedidoPreliminar(datosCheckout);
     this.infoUltimaOrden = dataOrdenPreliminar.order;
 
