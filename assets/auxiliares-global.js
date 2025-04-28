@@ -3118,6 +3118,8 @@ class PageCheckoutPH extends HTMLElement {
     // Si no se encontró ningún botón seleccionado
     return null;
   }
+
+  generarJSONMostrarConsola(){}
 }
 
 customElements.define('page-checkout-ph', PageCheckoutPH);
