@@ -2307,7 +2307,7 @@ class PageCheckoutPH extends HTMLElement {
             </div>
           </div>
           `
-          var seraVisto = data.opcionesPrincipales.productos.length == 0 && data.opcionesSecundarias.productos.length == 0;
+          var seraVisto = data.opcionesPrincipales.productos.length == 0 && data.complementos.productos.length == 0;
 
           contenidoHTML += `
           <div 
