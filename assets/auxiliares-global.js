@@ -2614,22 +2614,22 @@ class PageCheckoutPH extends HTMLElement {
   btnAccionDatosContacto(btnElemento) {
     const accion = btnElemento.dataset.accion;
     
-    // Validar campos primero
-    if (!this.validarCamposFormDatosContacto()) {
-      return; // Si hay campos vacíos, detener la ejecución
-    }
-    
     // Si pasa la validación, continuar con la actualización de la interfaz
-    if (accion === "editar") {
-      this.btnEditarDatos.style.display = "flex";
-      this.btnGuardarDatos.style.display = "none";
+    if (accion == "editar") {
+      this.btnEditarDatos.style.display = "none";
+      this.btnGuardarDatos.style.display = "flex";
       this.contenedorDatosContactoEditar.style.display = "flex";
       this.contenedorDatoContactoConsolidados.style.display = "none";
     } else {
-      this.btnEditarDatos.style.display = "none";
-      this.btnGuardarDatos.style.display = "flex";
+      this.btnEditarDatos.style.display = "flex";
+      this.btnGuardarDatos.style.display = "none";
       this.contenedorDatosContactoEditar.style.display = "none";
       this.contenedorDatoContactoConsolidados.style.display = "flex";
+
+      // Validar campos primero
+      if (!this.validarCamposFormDatosContacto()) {
+        return; // Si hay campos vacíos, detener la ejecución
+      }
 
       // Proceso de guardar datos
       const data = JSON.parse(localStorage.getItem('ph-datos-usuario'));
@@ -2656,16 +2656,14 @@ class PageCheckoutPH extends HTMLElement {
   btnAccionDatosFacturacion(btnElemento) {
     const accion = btnElemento.dataset.accion;
 
-    if (accion === "editar") {
-      this.btnEditarDatos.style.display = "flex";
-      this.btnGuardarDatos.style.display = "none";
+    if (accion == "editar") {
+      this.btnEditarDatos.style.display = "none";
+      this.btnGuardarDatos.style.display = "flex";
       this.contenedorDatosFacturacion.style.display = "flex";
       this.contenedorDatosFacturacionConsolidados.style.display = "none";
     }else{
-      
-      
-      this.btnEditarDatos.style.display = "none";
-      this.btnGuardarDatos.style.display = "flex";
+      this.btnEditarDatos.style.display = "flex";
+      this.btnGuardarDatos.style.display = "none";
       this.contenedorDatosFacturacion.style.display = "none";
       this.contenedorDatosFacturacionConsolidados.style.display = "flex";
       
