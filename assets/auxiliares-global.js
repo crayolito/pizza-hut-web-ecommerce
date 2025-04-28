@@ -1765,6 +1765,7 @@ class PageCheckoutPH extends HTMLElement {
     this.btnsMetodosPagos = this.querySelectorAll('#phpc-btn-metodo-pago');
     
     // Datos de facturacion
+    this.etiquetaDatosFacturacionConsolidados = this.querySelector('#phpc-etiqueta-datos-facturacion-consolidados');
     this.contenedorDatosFacturacion = this.querySelector('#phpc-form-datos-facturacion');
     this.contenedorDatosFacturacionConsolidados = this.querySelector('#phpc-datos-facturacion-consolidados');
     this.btnEditarDatosFacturacion = this.querySelector('#phpc-btn-editar-datos-facturacion');
@@ -2798,7 +2799,9 @@ class PageCheckoutPH extends HTMLElement {
       this.inputCorreoElectronico.value = data.email;
       this.inputCelularContacto.value = data.celular;
       this.inputCIContacto.value = data.ci;
-      this.etiquetaDatosConsolidados.textContent = `${data.nombre} | ${data.apellido} | ${data.email}| +591 ${data.celular} | ${data.ci}`;
+      this.etiquetaDatosConsolidados.textContent = `${data.nombre} | ${data.apellido} | ${data.email} | +591 ${data.celular} | ${data.ci}`;
+    }else{
+      window.location.href = "/pages/iniciar-sesion";
     }
   }
 
@@ -2807,9 +2810,7 @@ class PageCheckoutPH extends HTMLElement {
     if(data){
       this.inputRazonSocial.value = data.razonSocial;
       this.inputNit.value = data.nit;
-    }else{
-      this.inputRazonSocial.value = "----";
-      this.inputNit.value = "----";
+      this.etiquetaDatosFacturacionConsolidados.textContent = `${data.razonSocial} | ${data.nit}`;
     }
   }
 }
