@@ -3153,7 +3153,6 @@ class PageCheckoutPH extends HTMLElement {
             countryCode: "BO", 
             zip: "0000",
           },
-
           customAttributes: [
             { key: "Note 1", value: "This is the first note" },
             { key: "Note 2", value: "This is the second note" }
@@ -3168,14 +3167,14 @@ class PageCheckoutPH extends HTMLElement {
             },
           ],
         },
-        customer: {
-          toUpsert: {
-            firstName: dataUsuario.nombre,
-            lastName: dataUsuario.apellido,
-            email: dataUsuario.email,
-            phone: dataUsuario.celular,
-          }
-        },
+        // customer: {
+        //   toUpsert: {
+        //     firstName: dataUsuario.nombre,
+        //     lastName: dataUsuario.apellido,
+        //     email: dataUsuario.email,
+        //     phone: dataUsuario.celular,
+        //   }
+        // },
       };
       
       // Asegúrate de que this.urlConsulta esté definido o usa la URL directa
