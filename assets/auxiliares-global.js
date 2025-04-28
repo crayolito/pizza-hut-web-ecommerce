@@ -3062,9 +3062,9 @@ class PageCheckoutPH extends HTMLElement {
     MensajeCargaDatos.mostrar('Su pedido se esta procesando ...');
     const dataOrdenPreliminar = await this.generarPedidoPreliminar(datosCheckout);
     console.log("Data orden preliminar", dataOrdenPreliminar.order.id);
-    await this.generarPedido(dataOrdenPreliminar.order.id);
+    // await this.generarPedido(dataOrdenPreliminar.order.id);
     const dataJSON = this.generarJSONMostrarConsola();
-    localStorage.setItem('ph-datos-pedido', JSON.stringify(dataJSON));
+    localStorage.setItem('ph-json-generado', JSON.stringify(dataJSON));
     MensajeCargaDatos.ocultar();
     // window.location.href = "/pages/detalle-pedido";
   }
@@ -3092,7 +3092,6 @@ class PageCheckoutPH extends HTMLElement {
         };
       });
       
-      // La información del pedido para guardar en la not
       const informacionPedido = {
         datosCheckout,
         itemsCarrito: this.infoCarrito.informacionCompleta.items
@@ -3113,14 +3112,12 @@ class PageCheckoutPH extends HTMLElement {
               field
               message
             }
-
           }
         }
       `;
       
       const variables = {
         input: {
-
           email: dataUsuario.email,
           lineItems: lineItems,
           shippingAddress: {
@@ -3132,8 +3129,6 @@ class PageCheckoutPH extends HTMLElement {
             province: "Andres Ibáñez, Santa Cruz de la Sierra",
             countryCode: "BO", 
             zip: "0000",
-            // latitude: this.estadoPagina == "domicilio" ? this.direccionSeleccionada.lat : this.localSeleccionado.lat,
-            // longitude: this.estadoPagina == "domicilio" ? this.direccionSeleccionada.lng : this.localSeleccionado.lng
           }
         },
         customer: {
@@ -3358,7 +3353,46 @@ class PageCheckoutPH extends HTMLElement {
   }
 
   generarJSONMostrarConsola(){
+    const productos = [];
 
+    this.infoCarrito.informacionCompleta.items.forEach(item => {
+      const productoCompleto = JSON.parse(item.properties.estructura);
+      var opcionesPrincipales= [];
+      var complementos = [];
+      console.log("Producto completo", productoCompleto);
+
+      this.infoCarrito.informacionCompleta.opcionesPrincipales.forEach(producto => {
+        return opcionesPrincipales.push({
+          nombre: producto.nombre,
+          cantidad: producto.cantidad,
+          precio: producto.precio,
+          id : producto.idTrabajo
+        });
+      });
+      
+      this.infoCarrito.informacionCompleta.complementos.forEach(producto => {
+        return complementos.push({
+          nombre: producto.nombre, 
+          cantidad: producto.cantidad,
+          precio: producto.precio,
+          id : producto.idTrabajo
+        });
+      });
+
+
+      productos.push({
+        nombre: productoCompleto.producto.nombre,
+        precio: productoCompleto.producto.precioTotalConjunto,
+        cantidad: productoCompleto.producto.cantidad,
+        id: productoCompleto.producto.idTrabajo,
+        opcionesPrincipales,
+        complementos 
+      });
+    });
+
+    return {
+      productos 
+    }
   }
 
 
