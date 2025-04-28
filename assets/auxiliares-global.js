@@ -1568,6 +1568,8 @@ customElements.define('page-carrito', PageCarrito);
 class PageCheckoutPH extends HTMLElement {
   constructor() {
     super();
+    // INFORMACION DE LA ULTIMA ORDEN
+    this.infoUltimaOrden = null;
     this.dataCarrito = null;
     this.urlConsulta = "https://pizza-hut-bo.myshopify.com/admin/api/2025-01/graphql.json";
     this.estadoPagina = "domicilio";
@@ -3068,6 +3070,7 @@ class PageCheckoutPH extends HTMLElement {
 
     MensajeCargaDatos.mostrar('Su pedido se esta procesando ...');
     const dataOrdenPreliminar = await this.generarPedidoPreliminar(datosCheckout);
+    this.infoUltimaOrden = dataOrdenPreliminar.order;
     console.log("Data orden preliminar", dataOrdenPreliminar.order.id);
     // await this.generarPedido(dataOrdenPreliminar.order.id);
     const dataJSON = this.generarJSONMostrarConsola();
