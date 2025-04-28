@@ -2853,10 +2853,18 @@ class PageCheckoutPH extends HTMLElement {
     return !hayCampoVacio; // Retorna true si no hay campos vacíos
   }
 
-  valirdarSeleccionMetodoPago(){
-    this.btnsMetodosPagos
+  validarSeleccionMetodoPago() {
+    let haySeleccionado = false;
+    
+    for (const btn of this.btnsMetodosPagos) {
+      if (btn.classList.contains('seleccionado')) {
+        haySeleccionado = true;
+        break; // Termina el bucle al encontrar el primer botón seleccionado
+      }
+    }
+    
+    return haySeleccionado;
   }
-
   validarCamposFormTarjeta(){
     const formulario = {
       primerInput: this.inputPrimero4Digitos.value.trim(),
@@ -2998,13 +3006,16 @@ class PageCheckoutPH extends HTMLElement {
     const estaActivado = btnElemento.classList.contains('seleccionado');
     if(estaActivado == true){
       btnElemento.classList.remove('seleccionado');
+      btnElemento.innerHTML = window.shopIcons.icon_estado_off;
     }else{
       btnElemento.classList.add('seleccionado');
+      btnElemento.innerHTML = window.shopIcons.icon_estado_on;
     }
   }
 
   procesoContinuarGeneral(){
-    if(this.validarCamposFormDatosContacto()){
+
+    if(!this.validarCamposFormDatosContacto()){
       this.seccionFormDatosContacto.scrollIntoView({ 
         behavior: 'smooth', 
         block: 'start' 
@@ -3012,20 +3023,89 @@ class PageCheckoutPH extends HTMLElement {
       return;
     }
 
-    if(this.valirdarSeleccionMetodoPago()){
+    if(!this.valirdarSeleccionMetodoPago()){
       this.seccionGeneralMetodosPago.scrollIntoView({ 
         behavior: 'smooth', 
         block: 'start' 
       });
       return;
     }
-    // Optiene todos los datos de envio a domicilio o recoger en local
-    // Se verifica el formulario Datos de contacto
-    // Datos de pago
-    // Datos de facturacion
-    // Hacer el proceso Cupon de descuento
-    // Nota para el pedido
+
+
+    // Actualizar datos de usuario decuerdo a la seleccion HUT COINS
+    this.actualizarDatosUsuario();
+    
+    const datosCheckout ={
+      // Traer datos de metodo de envio seleccionado
+      metodo_envio_seleccionado : this.obtenerDatosMetodoEnvio(),
+      // Traer datos de metodo facturacion
+      info_metodo_pago_seleccionado : this.obtenerDatosPagoSeleccionado(),
+      // Traer info facturacion
+      info_facturacion :  this.obtenerDatosFacturacion(),
+      // Inforacion nota para el pedido
+      nota_para_envio : this.inputNotaPedido.value,
+    }
+
+    localStorage.setItem('ph-datos-checkout', JSON.stringify(datosCheckout));
+
+    this.generarJSONMostrarConsola();
     window.location.href = "/pages/detalle-pedido";
+  }
+
+  actualizarDatosUsuario(){
+    const data = JSON.parse(localStorage.getItem('ph-datos-usuario'));
+    const estaSeleccionadoBtnHutCoins = this.btnHutCoins.classList.contains('seleccionado');
+    const obtenerInputFechaNacimiento = this.inputFechaNacimiento.value;
+
+    if(estaSeleccionadoBtnHutCoins == false && obtenerInputFechaNacimiento == "")return;
+
+    data.permisoHutCoins = estaSeleccionadoBtnHutCoins;
+    data.fechaNacimiento = obtenerInputFechaNacimiento;
+  }
+
+  obtenerDatosMetodoEnvio(){
+    if(this.btnMetodoLocal.classList.contains('seleccionado')){
+      return {
+        metodo_envio : "local",
+        local_seleccionado : this.localSeleccionado
+      }
+    }
+    if(this.btnMetodoDomicilio.classList.contains('seleccionado')){
+      return{
+        metodo_envio : "domicilio",
+        info_seleccionada : this.direccionSeleccionada
+      }
+    }
+  }
+
+  obtenerDatosPagoSeleccionado() {
+    // Buscar el primer botón que tenga la acción que buscamos
+    for (let btn of this.btnsMetodosPagos) {
+      const accion = btn.dataset.accion;
+      
+      // Verificar si este botón está seleccionado
+      if (!btn.classList.contains('seleccionado')) continue;
+      
+      // Si llegamos aquí, encontramos un botón seleccionado
+      if (accion == "pago-codigo-qr") {
+        return { metodo_pago: "pago-codigo-qr" };
+      }
+      
+      if (accion == "pago-tarjeta-credito") {
+        return {
+          metodo_pago: "pago-tarjeta-credito",
+          tarjeta_primera_4_digitos: this.inputPrimero4Digitos.value,
+          tarjeta_segundo_4_digitos: this.inputSegundo4Digitos.value
+        };
+      }
+      
+      if (accion == "pago-efectivo") {
+        return { metodo_pago: "pago-efectivo" };
+      }
+    }
+    
+    // Si no se encontró ningún botón seleccionado
+    return null;
   }
 }
 
