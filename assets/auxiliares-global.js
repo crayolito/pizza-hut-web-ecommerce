@@ -3067,6 +3067,7 @@ class PageCheckoutPH extends HTMLElement {
     localStorage.setItem('ph-datos-pedido', JSON.stringify(dataJSON));
     MensajeCargaDatos.ocultar();
     // window.location.href = "/pages/detalle-pedido";
+    // 
   }
 
   async generarPedidoPreliminar(datosCheckout) {
