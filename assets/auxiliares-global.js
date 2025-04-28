@@ -3099,6 +3099,16 @@ class PageCheckoutPH extends HTMLElement {
     }
   }
 
+  obtenerDatosFacturacion(){
+    if(this.inputRazonSocial.value == "" || this.inputNitoCit.value == "")return null;
+
+    return {
+      razon_social : this.inputRazonSocial.value,
+      nit : this.inputNitoCit.value
+    }
+
+  }
+
   obtenerDatosPagoSeleccionado() {
     // Buscar el primer botón que tenga la acción que buscamos
     for (let btn of this.btnsMetodosPagos) {
