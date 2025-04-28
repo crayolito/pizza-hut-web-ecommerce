@@ -2980,8 +2980,14 @@ class PageCheckoutPH extends HTMLElement {
   }
 
   procesoVerDetallesProducto(elementoHTML){
+
     const seraVisto = elementoHTML.dataset.seravisto;
     const hijoDetalle = elementoHTML.querySelector('.smecph-pc-item-carrito-extra');
+    
+    console.log("Testeo detalle : ", {
+      seraVisto: seraVisto,
+      hijoDetalle: hijoDetalle
+    });
     if(seraVisto == "true"){
       hijoDetalle.style.display = "flex";
     }
