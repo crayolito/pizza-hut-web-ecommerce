@@ -2254,6 +2254,7 @@ class PageCheckoutPH extends HTMLElement {
     }
 
     this.infoCarrito = await AuxiliaresGlobal.obtenerCarritoShopify();
+    console.log("Info carrito Testeo : ", this.infoCarrito);
     
     this.configuracionAutoCompletadoSeleccionLocal();
     this.configuracionAutoCompletadoSeleccionDireccion();
@@ -2682,7 +2683,6 @@ class PageCheckoutPH extends HTMLElement {
       // Actualizar la interfaz
       this.inputRazonSocial.textContent = datosActualizados.razonsocial;
       this.inputNitoCit.textContent = datosActualizados.nit;
-
     }
   }
 
