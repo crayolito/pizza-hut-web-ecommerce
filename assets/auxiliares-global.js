@@ -3057,10 +3057,10 @@ class PageCheckoutPH extends HTMLElement {
       if (btn.classList.contains('seleccionado')) {
         if (btn.dataset.accion == "pago-tarjeta-credito") {
           this.inputPrimero4Digitos.value = this.inputPrimero4Digitos.value.trim();
-          this.inputSegundo4Digitos.value = this.inputSegundo4Digitos.value.trim();
+          this.inputUltimos4Digitos.value = this.inputUltimos4Digitos.value.trim();
           
           // Verificar que los campos no estén vacíos después de quitar espacios
-          if (this.inputPrimero4Digitos.value === "" || this.inputSegundo4Digitos.value === "") {
+          if (this.inputPrimero4Digitos.value === "" || this.inputUltimos4Digitos.value === "") {
             return false; // Los campos están vacíos, no es válido
           }
         }
@@ -3116,7 +3116,7 @@ class PageCheckoutPH extends HTMLElement {
         return {
           metodo_pago: "pago-tarjeta-credito",
           tarjeta_primera_4_digitos: this.inputPrimero4Digitos.value,
-          tarjeta_segundo_4_digitos: this.inputSegundo4Digitos.value
+          tarjeta_segundo_4_digitos: this.inputUltimos4Digitos.value
         };
       }
       
