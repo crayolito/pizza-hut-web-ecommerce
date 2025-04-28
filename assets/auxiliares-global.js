@@ -3173,7 +3173,7 @@ class PageCheckoutPH extends HTMLElement {
         return {
           title: item.title || "Producto",
           quantity: item.quantity,
-          originalUnitPrice: parseFloat((item.price/100) || 0).toFixed(2)
+          originalUnitPrice: parseFloat((item.precioTotalConjunto) || 0).toFixed(2)
         };
       });
       
