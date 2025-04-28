@@ -1825,7 +1825,10 @@ class PageCheckoutPH extends HTMLElement {
         this.procesoSeleccionMetodoPago(event.currentTarget);
       });
     });
-
+    this.btnContinuar.addEventListener('click', this.procesoContinuarGeneral.bind(this));
+    this.hutCoins.addEventListener('click', (event)=>{
+      this.procesoHutCoins(event.currentTarget);
+    });
     // INICIALIZAR ELEMENTOS Y PROCESO
 
     // local y domicilio
@@ -2734,7 +2737,6 @@ class PageCheckoutPH extends HTMLElement {
       }
 
       // Proceso de guardar datos
-      const data = JSON.parse(localStorage.getItem('ph-datos-usuario'));
       const datosActualizados = {
         nombre: this.inputNombreContacto.value,
         apellido: this.inputApellidoContacto.value,
@@ -2752,6 +2754,8 @@ class PageCheckoutPH extends HTMLElement {
       this.inputCorreoElectronico.textContent = datosActualizados.email;
       this.inputCelularContacto.textContent = datosActualizados.celular;
       this.inputCIContacto.textContent = datosActualizados.ci;
+
+      this.etiquetaDatosConsolidados.textContent = `${datosActualizados.nombre} | ${datosActualizados.apellido} | ${datosActualizados.email} | ${datosActualizados.celular} | ${datosActualizados.ci}`;
     }
   }
 
@@ -2784,6 +2788,8 @@ class PageCheckoutPH extends HTMLElement {
       // Actualizar la interfaz
       this.inputRazonSocial.textContent = datosActualizados.razonsocial;
       this.inputNitoCit.textContent = datosActualizados.nit;
+
+      this.etiquetaDatosFacturacionConsolidados.textContent = `${datosActualizados.razonsocial} | ${datosActualizados.nit}`;
     }
   }
 
@@ -2982,7 +2988,6 @@ class PageCheckoutPH extends HTMLElement {
   procesoVerDetallesProducto(elementoHTML){
     const hijoDetalle = elementoHTML.querySelector('.smecph-pc-item-carrito-extra');
     const seraVisto = hijoDetalle.dataset.seravisto;
-
     if(seraVisto == "true"){
       if(hijoDetalle.style.display == "none"){
         hijoDetalle.style.display = "flex";
@@ -2990,6 +2995,24 @@ class PageCheckoutPH extends HTMLElement {
         hijoDetalle.style.display = "none";
       }
     }
+  }
+
+  procesoHutCoins(btnElemento){
+    const estaActivado = btnElemento.classList.contains('seleccionado');
+    if(estaActivado == true){
+      btnElemento.classList.remove('seleccionado');
+    }else{
+      btnElemento.classList.add('seleccionado');
+    }
+  }
+
+  procesoContinuarGeneral(){
+    // Optiene todos los datos de envio a domicilio o recoger en local
+    // Se verifica el formulario Datos de contacto
+    // Datos de pago
+    // Datos de facturacion
+    // Hacer el proceso Cupon de descuento
+    // Nota para el pedido
   }
 }
 
