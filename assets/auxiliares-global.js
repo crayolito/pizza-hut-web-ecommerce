@@ -2657,13 +2657,13 @@ class PageCheckoutPH extends HTMLElement {
     const accion = btnElemento.dataset.accion;
 
     if (accion == "editar") {
-      this.btnEditarDatos.style.display = "none";
-      this.btnGuardarDatos.style.display = "flex";
+      this.btnEditarDatosFacturacion.style.display = "none";
+      this.btnGuardarDatosFacturacion.style.display = "flex";
       this.contenedorDatosFacturacion.style.display = "flex";
       this.contenedorDatosFacturacionConsolidados.style.display = "none";
     }else{
-      this.btnEditarDatos.style.display = "flex";
-      this.btnGuardarDatos.style.display = "none";
+      this.btnEditarDatosFacturacion.style.display = "flex";
+      this.btnGuardarDatosFacturacion.style.display = "none";
       this.contenedorDatosFacturacion.style.display = "none";
       this.contenedorDatosFacturacionConsolidados.style.display = "flex";
       
