@@ -3043,7 +3043,7 @@ class PageCheckoutPH extends HTMLElement {
     }
 
 
-    // Actualizar datos de usuario decuerdo a la seleccion HUT COINSS
+    // Actualizar datos de usuario decuerdo a la seleccion HUT COINS
     this.actualizarDatosUsuario();
     
     const datosCheckout ={
