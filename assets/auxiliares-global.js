@@ -2779,8 +2779,8 @@ class PageCheckoutPH extends HTMLElement {
 
     if(!estaSeleccionado ){
       this.mensajeAlertaDatosFacturacion.style.display = "none";
-      this.btnMetodoPagoSeleccionado.classList.add('seleccionado');
-      const iconoSeleccionado = this.btnMetodoPagoSeleccionado.querySelector('.smecph-pc-dp-item-icono');
+      btnElemento.classList.add('seleccionado');
+      const iconoSeleccionado = btnElemento.querySelector('.smecph-pc-dp-item-icono');
       iconoSeleccionado.innerHTML = window.shopIcons.icon_estado_on;
     }
 
