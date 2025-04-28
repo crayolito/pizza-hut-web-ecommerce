@@ -3013,7 +3013,7 @@ class PageCheckoutPH extends HTMLElement {
     }
   }
 
-  procesoContinuarGeneral(){
+  async procesoContinuarGeneral(){
 
     if(!this.validarCamposFormDatosContacto()){
       this.seccionFormDatosContacto.scrollIntoView({ 
@@ -3048,8 +3048,12 @@ class PageCheckoutPH extends HTMLElement {
 
     localStorage.setItem('ph-datos-checkout', JSON.stringify(datosCheckout));
 
-    this.generarJSONMostrarConsola();
-    window.location.href = "/pages/detalle-pedido";
+    MensajeCargaDatos.mostrar('Su pedido se esta procesando ...');
+    await this.generarPedido(datosCheckout);
+    const dataJSON = this.generarJSONMostrarConsola();
+    localStorage.setItem('ph-datos-pedido', JSON.stringify(dataJSON));
+    MensajeCargaDatos.ocultar();
+    // window.location.href = "/pages/detalle-pedido";
   }
 
   valirdarSeleccionMetodoPago() {
@@ -3101,12 +3105,10 @@ class PageCheckoutPH extends HTMLElement {
 
   obtenerDatosFacturacion(){
     if(this.inputRazonSocial.value == "" || this.inputNitoCit.value == "")return null;
-
     return {
       razon_social : this.inputRazonSocial.value,
       nit : this.inputNitoCit.value
     }
-
   }
 
   obtenerDatosPagoSeleccionado() {
@@ -3140,6 +3142,62 @@ class PageCheckoutPH extends HTMLElement {
   }
 
   generarJSONMostrarConsola(){}
+
+  async generarPedido(datosCheckout){
+    const dataUsuario = JSON.parse(localStorage.getItem('ph-datos-usuario'));
+
+    const informacionPedido = {
+      datosCheckout,
+      itemsCarrito : this.this.infoCarrito.informacionCompleta.items
+    }
+
+    var line_items = [];
+    this.infoCarrito.informacionCompleta.items.forEach((item) => {
+      line_items.push({
+        variant_id: item.producto.id,
+        quantity: item.quantity
+      });
+    });
+
+    // Datos del pedido 
+    const orderData = {
+      order: {
+        line_items: line_items,
+        customer: {
+          first_name: dataUsuario.nombre,
+          last_name: dataUsuario.apellido,
+          email: dataUsuario.email,
+        },
+        shipping_address: {
+          first_name: dataUsuario.nombre,
+          last_name: dataUsuario.apellido,
+          phone: dataUsuario.celular,
+          city: "Ciudad",
+          province: "Santa Cruz de la Sierra",
+          country: "Bolivia",
+        },
+        billing_address: {},
+        financial_status: "pending", // o "paid" si ya se ha pagado
+        fulfillment_status: null,
+        // Aquí guardamos el JSON grande como string en la nota del pedido
+        note: JSON.stringify(datosGrandesJSON),
+        send_receipt: true,
+        send_fulfillment_receipt: false
+      }
+    };
+    const myTest = 'shpat_' + '45f4a7476152f4881d058f87ce063698';
+    fetch(`https://${shopDomain}/admin/api/2023-07/orders.json`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Shopify-Access-Token': myTest
+      },
+      body: JSON.stringify(orderData)
+    })
+    .then(response => response.json())
+    .then(data => console.log('Pedido creado:', data))
+    .catch(error => console.error('Error al crear el pedido:', error));
+  }
 }
 
 customElements.define('page-checkout-ph', PageCheckoutPH);
