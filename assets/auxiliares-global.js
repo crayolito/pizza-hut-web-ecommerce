@@ -3043,7 +3043,7 @@ class PageCheckoutPH extends HTMLElement {
       // Traer info facturacion
       info_facturacion :  this.obtenerDatosFacturacion(),
       // Inforacion nota para el pedido
-      nota_para_envio : this.inputNotaPedido.value,
+      nota_para_envio : this.inputNotaParaElPedido.value,
     }
 
     localStorage.setItem('ph-datos-checkout', JSON.stringify(datosCheckout));
