@@ -2771,13 +2771,15 @@ class PageCheckoutPH extends HTMLElement {
     const accion = btnElemento.dataset.accion;
     const estaSeleccionado = btnElemento.classList.contains('seleccionado');
 
+    if(estaSeleccionado == true)return;
+
     this.btnsMetodosPagos.forEach(btn => {
       btn.classList.remove('seleccionado');
       const iconoDesSeleccionado = btn.querySelector('.smecph-pc-dp-item-icono');
       iconoDesSeleccionado.innerHTML = window.shopIcons.icon_estado_off;
     });
 
-    if(!estaSeleccionado ){
+    if(estaSeleccionado == false){
       this.mensajeAlertaDatosFacturacion.style.display = "none";
       btnElemento.classList.add('seleccionado');
       const iconoSeleccionado = btnElemento.querySelector('.smecph-pc-dp-item-icono');
