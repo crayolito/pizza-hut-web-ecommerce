@@ -3186,7 +3186,7 @@ class PageCheckoutPH extends HTMLElement {
       }
     };
     const myTest = 'shpat_' + '45f4a7476152f4881d058f87ce063698';
-    fetch(this.urlConsulta, {
+    fetch(`https://pizza-hut-bo.myshopify.com/admin/api/2023-07/orders.json`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
