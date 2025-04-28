@@ -3179,7 +3179,7 @@ class PageCheckoutPH extends HTMLElement {
         };
       });
       
-      // La información del pedido para guardar en la nota
+      // La información del pedido para guardar en la not
       const informacionPedido = {
         datosCheckout,
         itemsCarrito: this.infoCarrito.informacionCompleta.items
