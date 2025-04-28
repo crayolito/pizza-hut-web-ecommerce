@@ -3052,10 +3052,20 @@ class PageCheckoutPH extends HTMLElement {
     window.location.href = "/pages/detalle-pedido";
   }
 
-  valirdarSeleccionMetodoPago() {
+  validarSeleccionMetodoPago() {
     for (let btn of this.btnsMetodosPagos) {
       if (btn.classList.contains('seleccionado')) {
-        return true; // Se encontró un botón seleccionado
+        if (btn.dataset.accion == "pago-tarjeta-credito") {
+          this.inputPrimero4Digitos.value = this.inputPrimero4Digitos.value.trim();
+          this.inputSegundo4Digitos.value = this.inputSegundo4Digitos.value.trim();
+          
+          // Verificar que los campos no estén vacíos después de quitar espacios
+          if (this.inputPrimero4Digitos.value === "" || this.inputSegundo4Digitos.value === "") {
+            return false; // Los campos están vacíos, no es válido
+          }
+        }
+        
+        return true; // Método de pago seleccionado y válido
       }
     }
     
