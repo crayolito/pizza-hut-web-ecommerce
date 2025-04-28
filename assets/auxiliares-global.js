@@ -3074,7 +3074,7 @@ class PageCheckoutPH extends HTMLElement {
     const dataOrdenPreliminar = await this.generarPedidoPreliminar(datosCheckout);
     this.infoUltimaOrden = dataOrdenPreliminar.order;
 
-    // Orden consolidada como pagada (PEDIDO)
+    // Orden consolidada como pagada (PEDIDOO)
     await this.generarPedido(dataOrdenPreliminar.order.id);
     const dataJSON = this.generarJSONMostrarConsola();
     console.log("Data JSON", dataJSON);
