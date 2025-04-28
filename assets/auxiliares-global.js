@@ -1779,12 +1779,13 @@ class PageCheckoutPH extends HTMLElement {
     this.etiquetaSubtotal = this.querySelector('#phpc-etiqueta-subtotal');
     this.etiquetaTotal = this.querySelector('#phpc-etiqueta-total');
 
-    
-
     // Hut Coins
     this.contenedorHutCoins = this.querySelector('#phpc-hutcoins');
     this.btnHutCoins = this.querySelector('#phpc-btn-hutcoins');
     this.inputFechaNacimiento = this.querySelector('#phpc-input-fecha-nacimiento');
+    this.inputNotaParaElPedido = this.querySelector('#phpc-info-adicional-notapedido');
+    this.inputCodigoCupon = this.querySelector('#phpc-input-codigo-cupon');
+    this.btnAplicarCupon = this.querySelector('#phpc-btn-aplicar-cupon');
 
     this.btnContinuar = this.querySelector('#phpc-btn-continuar-general');
 
