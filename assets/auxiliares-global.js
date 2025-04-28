@@ -2830,7 +2830,7 @@ class PageCheckoutPH extends HTMLElement {
       }
     });
     
-    // Si hay campos vacíos, programar limpieza de errores
+    // Si hay campos vacíos, programar limpieza de erroress
     if (hayCampoVacio) {
       this.mensajeInfoCelularContacto.style.display = 'none';
       setTimeout(() => {
