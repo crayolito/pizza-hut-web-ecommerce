@@ -3147,16 +3147,11 @@ class PageCheckoutPH extends HTMLElement {
     try {
       const dataUsuario = JSON.parse(localStorage.getItem('ph-datos-usuario'));
       
-      // Construir los lineItems
+      // Construir los lineItems para DraftOrderInput
       const lineItems = this.infoCarrito.informacionCompleta.items.map(item => ({
         title: item.title || "Producto",
         quantity: item.quantity,
-        priceSet: {
-          shopMoney: {
-            amount: parseFloat(item.price || 0).toFixed(2),
-            currencyCode: "BOB"
-          }
-        }
+        originalUnitPrice: parseFloat(item.price || 0).toFixed(2)
       }));
       
       // La información del pedido para guardar en la nota
@@ -3165,47 +3160,16 @@ class PageCheckoutPH extends HTMLElement {
         itemsCarrito: this.infoCarrito.informacionCompleta.items
       };
       
-      // La consulta GraphQL para crear un pedido con un nuevo cliente
-      const graphqlQuery = `
-        mutation CreateOrderWithNewCustomer {
-          orderCreate(
-            order: {
-              email: "${dataUsuario.email}",
-              lineItems: ${JSON.stringify(lineItems)},
-              shippingAddress: {
-                firstName: "${dataUsuario.nombre}",
-                lastName: "${dataUsuario.apellido}",
-                phone: "${dataUsuario.celular}",
-                address1: "Dirección de entrega",
-                city: "Ciudad",
-                province: "Santa Cruz de la Sierra",
-                country: "Bolivia",
-                zip: "0000"
-              },
-              note: ${JSON.stringify(JSON.stringify(informacionPedido))}
-            }
-          ) {
-            order {
+      // Consulta GraphQL actualizada para draftOrderCreate
+      const draftOrderQuery = `
+        mutation draftOrderCreate($input: DraftOrderInput!) {
+          draftOrderCreate(input: $input) {
+            draftOrder {
               id
               name
               email
-            }
-            userErrors {
-              field
-              message
-            }
-          }
-        }
-      `;
-      
-      // Otra alternativa es usar variables
-      const orderCreateQuery = `
-        mutation orderCreate($order: OrderCreateOrderInput!) {
-          orderCreate(order: $order) {
-            order {
-              id
-              name
-              email
+              totalPrice
+              createdAt
             }
             userErrors {
               field
@@ -3216,7 +3180,7 @@ class PageCheckoutPH extends HTMLElement {
       `;
       
       const variables = {
-        order: {
+        input: {
           email: dataUsuario.email,
           lineItems: lineItems,
           shippingAddress: {
@@ -3226,24 +3190,29 @@ class PageCheckoutPH extends HTMLElement {
             address1: "Dirección de entrega",
             city: "Ciudad",
             province: "Santa Cruz de la Sierra",
-            country: "Bolivia",
+            countryCode: "BO", // Usa countryCode en lugar de country
             zip: "0000"
           },
-          note: JSON.stringify(informacionPedido)
+          note: JSON.stringify(informacionPedido),
+          // Incluir información de pago si está disponible
+          ...(datosCheckout.metodoPago && {
+            tags: [`Método de pago: ${datosCheckout.metodoPago}`]
+          })
         }
       };
       
+      // Asegúrate de que this.urlConsulta esté definido o usa la URL directa
+      const apiUrl = this.urlConsulta || 'https://pizza-hut-bo.myshopify.com/admin/api/2023-07/graphql.json';
       const myTest = 'shpat_' + '45f4a7476152f4881d058f87ce063698';
       
-      // Usar la segunda opción con variables, que es más limpia
-      const response = await fetch(this.urlConsulta, {
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'X-Shopify-Access-Token': myTest
         },
         body: JSON.stringify({
-          query: orderCreateQuery,
+          query: draftOrderQuery,
           variables: variables
         })
       });
@@ -3256,17 +3225,23 @@ class PageCheckoutPH extends HTMLElement {
         return { success: false, errors: data.errors };
       }
       
-      if (data.data && data.data.orderCreate.userErrors && data.data.orderCreate.userErrors.length > 0) {
-        console.error('Errores al crear el pedido:', data.data.orderCreate.userErrors);
-        return { success: false, errors: data.data.orderCreate.userErrors };
+      // Verificar errores en draftOrderCreate, no en orderCreate
+      if (data.data && data.data.draftOrderCreate && data.data.draftOrderCreate.userErrors && 
+          data.data.draftOrderCreate.userErrors.length > 0) {
+        console.error('Errores al crear el pedido:', data.data.draftOrderCreate.userErrors);
+        return { success: false, errors: data.data.draftOrderCreate.userErrors };
       }
       
-      if (data.data && data.data.orderCreate.order) {
-        console.log('Pedido creado exitosamente:', data.data.orderCreate.order);
-        return { success: true, order: data.data.orderCreate.order };
+      // Verificar éxito en draftOrderCreate, no en orderCreate
+      if (data.data && data.data.draftOrderCreate && data.data.draftOrderCreate.draftOrder) {
+        console.log('Pedido creado exitosamente:', data.data.draftOrderCreate.draftOrder);
+        return { 
+          success: true, 
+          order: data.data.draftOrderCreate.draftOrder 
+        };
       }
       
-      return { success: false, message: 'Respuesta inesperada' };
+      return { success: false, message: 'Respuesta inesperada del servidor' };
     } catch (error) {
       console.error('Error al crear el pedido:', error);
       return { success: false, error: error.message };
