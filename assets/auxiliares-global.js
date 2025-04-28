@@ -2771,7 +2771,7 @@ class PageCheckoutPH extends HTMLElement {
     const accion = btnElemento.dataset.accion;
     const estaSeleccionado = btnElemento.classList.contains('seleccionado');
 
-    this.btnsMetodoPago.forEach(btn => {
+    this.btnsMetodosPagos.forEach(btn => {
       btn.classList.remove('seleccionado');
       const iconoDesSeleccionado = btn.querySelector('.smecph-pc-dp-item-icono');
       iconoDesSeleccionado.innerHTML = window.shopIcons.icon_estado_off;
