@@ -3086,48 +3086,59 @@ class PageCheckoutPH extends HTMLElement {
   async generarPedidoPreliminar(datosCheckout) {
     try {
       const dataUsuario = JSON.parse(localStorage.getItem('ph-datos-usuario'));
-      // Construct line items for DraftOrderInput
-      const lineItems = datosCheckout.items.map(item => {
+      
+      // Construir los lineItems para DraftOrderInput
+      const lineItems = this.infoCarrito.informacionCompleta.items.map(item => {
         let data = null;
         try {
           if (item.properties && item.properties.estructura) {
             data = JSON.parse(item.properties.estructura);
+            console.log("Data de item", data);
           }
         } catch (error) {
-          console.error("Error parsing item structure:", error);
+          console.error("Error al parsear estructura del item:", error);
         }
+        
         return {
           title: item.title || "Producto",
-          quantity: parseInt(data?.producto?.cantidad || 1),
-          originalUnitPrice: parseFloat(data?.producto?.precioTotalConjunto || 0).toFixed(2),
+          quantity: parseInt(data.producto.cantidad),
+          originalUnitPrice: parseFloat((data.producto.precioTotalConjunto) || 0).toFixed(2)
         };
       });
-      const draftOrderQuery = `
-        mutation draftOrderCreate($input: DraftOrderInput!) {
-          draftOrderCreate(input: $input) {
-            draftOrder {
-              id
-              name
-              email
-              totalPrice
-              createdAt
-              metafields(first: 5) {
-                edges {
-                  node {
-                    namespace
-                    key
-                    value
-                  }
+      
+      const informacionPedido = {
+        datosCheckout,
+        itemsCarrito: this.infoCarrito.informacionCompleta.items
+      };
+
+      // Consulta GraphQL actualizada para draftOrderCreat
+    const draftOrderQuery = `
+      mutation draftOrderCreate($input: DraftOrderInput!) {
+        draftOrderCreate(input: $input) {
+          draftOrder {
+            id
+            name
+            email
+            totalPrice
+            createdAt
+            metafields(first: 5) {
+              edges {
+                node {
+                  namespace
+                  key
+                  value
                 }
               }
             }
-            userErrors {
-              field
-              message
-            }
+          }
+          userErrors {
+            field
+            message
           }
         }
-      `;
+      }
+    `;
+      
       const variables = {
         input: {
           email: dataUsuario.email,
@@ -3136,17 +3147,25 @@ class PageCheckoutPH extends HTMLElement {
             firstName: dataUsuario.nombre,
             lastName: dataUsuario.apellido,
             phone: dataUsuario.celular,
-            address1: datosCheckout.direccion,
-            city: datosCheckout.ciudad || "Santa Cruz",
-            province: datosCheckout.provincia || "Andres Ibáñez, Santa Cruz de la Sierra",
-            countryCode: "BO",
-            zip: datosCheckout.codigoPostal || "0000",
+            address1: this.estadoPagina == "domicilio" ? this.direccionSeleccionada.indicaciones : this.localSeleccionado.localizacion,
+            city: "Santa Cruz",
+            province: "Andres Ibáñez, Santa Cruz de la Sierra",
+            countryCode: "BO", 
+            zip: "0000",
           },
-          note: "General note for the draft order",
+          customer: {
+            toUpsert: {
+              firstName: dataUsuario.nombre,
+              lastName: dataUsuario.apellido,
+              email: dataUsuario.email,
+              phone: dataUsuario.celular,
+            }
+          },
           customAttributes: [
             { key: "Note 1", value: "This is the first note" },
-            { key: "Note 2", value: "This is the second note" },
+            { key: "Note 2", value: "This is the second note" }
           ],
+          note: "General note for the draft order",
           metafields: [
             {
               namespace: "custom",
@@ -3155,37 +3174,51 @@ class PageCheckoutPH extends HTMLElement {
               value: JSON.stringify(datosCheckout),
             },
           ],
-        },
+        }
       };
-
+      
+      // Asegúrate de que this.urlConsulta esté definido o usa la URL directa
       const myTest = 'shpat_' + '45f4a7476152f4881d058f87ce063698';
-      const response = await fetch('https://your-shopify-store.myshopify.com/admin/api/2023-10/graphql.json', {
+      
+      const response = await fetch(this.urlConsulta , {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'X-Shopify-Access-Token': myTest,
+          'X-Shopify-Access-Token': myTest
         },
         body: JSON.stringify({
           query: draftOrderQuery,
-          variables: variables,
-        }),
+          variables: variables
+        })
       });
+      
       const data = await response.json();
+      console.log('Respuesta completa de Shopify:', data);
+      
       if (data.errors) {
-        console.error('GraphQL errors:', data.errors);
+        console.error('Errores en la respuesta GraphQL:', data.errors);
         return { success: false, errors: data.errors };
       }
-      if (data.data?.draftOrderCreate?.userErrors?.length > 0) {
-        console.error('Draft order creation errors:', data.data.draftOrderCreate.userErrors);
+      
+      // Verificar errores en draftOrderCreate, no en orderCreate
+      if (data.data && data.data.draftOrderCreate && data.data.draftOrderCreate.userErrors && 
+          data.data.draftOrderCreate.userErrors.length > 0) {
+        console.error('Errores al crear el pedido:', data.data.draftOrderCreate.userErrors);
         return { success: false, errors: data.data.draftOrderCreate.userErrors };
       }
-      if (data.data?.draftOrderCreate?.draftOrder) {
-        console.log('Draft order created successfully:', data.data.draftOrderCreate.draftOrder);
-        return { success: true, order: data.data.draftOrderCreate.draftOrder };
+      
+      // Verificar éxito en draftOrderCreate, no en orderCreate
+      if (data.data && data.data.draftOrderCreate && data.data.draftOrderCreate.draftOrder) {
+        console.log('Pedido creado exitosamente:', data.data.draftOrderCreate.draftOrder);
+        return { 
+          success: true, 
+          order: data.data.draftOrderCreate.draftOrder 
+        };
       }
-      return { success: false, message: 'Unexpected server response' };
+      
+      return { success: false, message: 'Respuesta inesperada del servidor' };
     } catch (error) {
-      console.error('Error creating draft order:', error);
+      console.error('Error al crear el pedido:', error);
       return { success: false, error: error.message };
     }
   }
