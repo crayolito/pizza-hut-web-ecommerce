@@ -2854,6 +2854,7 @@ class PageCheckoutPH extends HTMLElement {
   }
 
   validarSeleccionMetodoPago() {
+
     let haySeleccionado = false;
     
     for (const btn of this.btnsMetodosPagos) {
@@ -3151,7 +3152,7 @@ class PageCheckoutPH extends HTMLElement {
       const lineItems = this.infoCarrito.informacionCompleta.items.map(item => ({
         title: item.title || "Producto",
         quantity: item.quantity,
-        originalUnitPrice: parseFloat(item.price || 0).toFixed(2)
+        originalUnitPrice: parseFloat(item.price/100 || 0).toFixed(2)
       }));
       
       // La información del pedido para guardar en la nota
@@ -3175,37 +3176,43 @@ class PageCheckoutPH extends HTMLElement {
               field
               message
             }
+
           }
         }
       `;
       
       const variables = {
         input: {
+          
           email: dataUsuario.email,
           lineItems: lineItems,
           shippingAddress: {
             firstName: dataUsuario.nombre,
             lastName: dataUsuario.apellido,
             phone: dataUsuario.celular,
-            address1: "Dirección de entrega",
-            city: "Ciudad",
-            province: "Santa Cruz de la Sierra",
-            countryCode: "BO", // Usa countryCode en lugar de country
-            zip: "0000"
-          },
-          // note: JSON.stringify(informacionPedido),
-          // Incluir información de pago si está disponible
-          ...(datosCheckout.metodoPago && {
-            tags: [`Método de pago: ${datosCheckout.metodoPago}`]
-          })
-        }
+            address1: this.estadoPagina == "domicilio" ? this.direccionSeleccionada.indicaciones : this.localSeleccionado.localizacion,
+            city: "Santa Cruz",
+            province: "Andres Ibáñez, Santa Cruz de la Sierra",
+            countryCode: "BO", 
+            zip: "0000",
+            latitude: this.estadoPagina == "domicilio" ? this.direccionSeleccionada.lat : this.localSeleccionado.lat,
+            longitude: this.estadoPagina == "domicilio" ? this.direccionSeleccionada.lng : this.localSeleccionado.lng
+          }
+        },
+        metafields: [
+          {
+            namespace: "custom",
+            key: "order_details",
+            type: "json_string",
+            value:  `${informacionPedido}`
+          }
+        ]
       };
       
       // Asegúrate de que this.urlConsulta esté definido o usa la URL directa
-      const apiUrl = this.urlConsulta || 'https://pizza-hut-bo.myshopify.com/admin/api/2023-07/graphql.json';
       const myTest = 'shpat_' + '45f4a7476152f4881d058f87ce063698';
       
-      const response = await fetch(apiUrl, {
+      const response = await fetch(this.urlConsulta , {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
