@@ -3211,15 +3211,11 @@ class PageCheckoutPH extends HTMLElement {
     try {
       // Consulta GraphQL para completar un draft order
       const completeDraftOrderQuery = `
-        mutation draftOrderComplete($id: ID!) {
-          draftOrderComplete(id: $id) {
+        mutation CompleteDraftOrder {
+          draftOrderComplete(id: "${idOrden}") {
             draftOrder {
               id
-              order {
-                id
-                name
-                financialStatus
-              }
+              status
             }
             userErrors {
               field
