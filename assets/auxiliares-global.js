@@ -3148,7 +3148,7 @@ class PageCheckoutPH extends HTMLElement {
 
     const informacionPedido = {
       datosCheckout,
-      itemsCarrito : this.this.infoCarrito.informacionCompleta.items
+      itemsCarrito : this.infoCarrito.informacionCompleta.items
     }
 
     var line_items = [];
