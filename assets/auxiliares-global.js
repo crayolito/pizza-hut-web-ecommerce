@@ -2981,7 +2981,7 @@ class PageCheckoutPH extends HTMLElement {
 
   procesoVerDetallesProducto(elementoHTML){
     const hijoDetalle = elementoHTML.querySelector('.smecph-pc-item-carrito-extra');
-    const seraVisto = hioDetalle.dataset.seravisto;
+    const seraVisto = hijoDetalle.dataset.seravisto;
 
     if(seraVisto == "true"){
       hijoDetalle.style.display = "flex";
