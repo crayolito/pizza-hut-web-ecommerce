@@ -2667,13 +2667,13 @@ class PageCheckoutPH extends HTMLElement {
       this.contenedorDatosFacturacion.style.display = "none";
       this.contenedorDatosFacturacionConsolidados.style.display = "flex";
       
-      if(this.inputRazonSocial.value == "" || this.inputNit.value == "")return;
+      if(this.inputRazonSocial.value == "" || this.inputNitoCit.value == "")return;
 
       // Proceso de guardar datos
       const data = JSON.parse(localStorage.getItem('ph-datos-facturacion'));
       const datosActualizados = {
         razonsocial : this.inputRazonSocial.value,
-        nit : this.inputNit.value,
+        nit : this.inputNitoCit.value,
       }
 
       // Actualizar los datos en el localStorage
@@ -2681,7 +2681,7 @@ class PageCheckoutPH extends HTMLElement {
 
       // Actualizar la interfaz
       this.inputRazonSocial.textContent = datosActualizados.razonsocial;
-      this.inputNit.textContent = datosActualizados.nit;
+      this.inputNitoCit.textContent = datosActualizados.nit;
 
     }
   }
