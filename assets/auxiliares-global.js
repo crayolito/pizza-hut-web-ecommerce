@@ -1302,7 +1302,7 @@ class PageCarrito extends HTMLElement {
         });
         let cantidadSolamenteComplementos = cantidadPrecioTotalAntiguo - (cantidadProductoBaseAntiguo + cantidadOpcionesPrincipalesAntiguo);
 
-        // El nuevo precio del conjunto se calcula (cantidadProductoBaseNuevo + cantidadOpcionesPrincipalesNueva + cantidadSolamenteComplementos)
+        // Ell nuevo precio del conjunto se calcula (cantidadProductoBaseNuevo + cantidadOpcionesPrincipalesNueva + cantidadSolamenteComplementos)
         informacionCompleta.producto.cantidad = cantidadElemento;
         informacionCompleta.producto.precioTotalConjunto = cantidadProductoBaseNuevo + cantidadOpcionesPrincipalesNueva + cantidadSolamenteComplementos;
         console.log("Testeo completo :",{
