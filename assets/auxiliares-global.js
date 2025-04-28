@@ -2853,6 +2853,10 @@ class PageCheckoutPH extends HTMLElement {
   inicializarDatosdeContacto(){
     const data = JSON.parse(localStorage.getItem('ph-datos-usuario'));
     if(data){
+      if(!data.permisoHutCoins){
+        this.contenedorHutCoins.style.display = "flex";
+      }
+
       this.inputNombreContacto.value = data.nombre;
       this.inputApellidoContacto.value = data.apellido;
       this.inputCorreoElectronico.value = data.email;

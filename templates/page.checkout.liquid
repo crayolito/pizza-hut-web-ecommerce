@@ -561,12 +561,20 @@
         </div>
       </div>
     </section>
-    <section class="container-sub-smecph" id="pcktph-hutcoins">
+    <section
+      style="display: none;"
+      id="phpc-hutcoins"
+      class="container-sub-smecph"
+      id="pcktph-hutcoins"
+    >
       <div class="smecph-pc-hutcoins-banner">
         <img src="{{ 'banner-hutcoints-carrito.png' | asset_url }}" alt="Hutcoins Banner" width="100%" height="100%">
       </div>
       <div class="smecph-pc-hutcoins-mensaje">
-        <div class="ph-container-icono">
+        <div
+          id="phpc-btn-hutcoins"
+          class="ph-container-icono"
+        >
           {% render 'icon-checkbox-off' %}
         </div>
         <p>Usar mi información para registrarme a Hut Coins y ganar puntos por esta compra.</p>
@@ -574,7 +582,7 @@
       <div class="smecph-pc-info-input">
         <p>Fecha de nacimiento</p>
         <div class="ph-container-input">
-          <input type="date" placeholder="Fecha de nacimiento">
+          <input id="phpc-input-fecha-nacimiento" type="date" placeholder="Fecha de nacimiento">
         </div>
       </div>
     </section>
