@@ -1821,9 +1821,9 @@ class PageCheckoutPH extends HTMLElement {
 
     // local y domicilio
     this.estadoPagina = localStorage.getItem('ph-metodo-entrega');
-    this.inicializarDataContruccion();
     this.inicializarDatosdeContacto();
     this.inicializarDatosdeFacturacion();
+    this.inicializarDataContruccion();
   }
 
   // PROCESO DE CONTENEDOR SUGERENCIAS PUNTOS DE REFERENCIAS
