@@ -2809,9 +2809,12 @@ class PageCheckoutPH extends HTMLElement {
     const data = JSON.parse(localStorage.getItem('ph-datos-facturacion'));
     if(data){
       this.inputRazonSocial.value = data.razonSocial;
-      this.inputNit.value = data.nit;
-      this.etiquetaDatosFacturacionConsolidados.textContent = `${data.razonSocial} | ${data.nit}`;
+      this.inputNitoCit.value = data.nit;
+    }else{
+      this.inputRazonSocial.value = "----";
+      this.inputNitoCit.value = "----";
     }
+    this.etiquetaDatosFacturacionConsolidados.textContent = `${data.razonSocial} | ${data.nit}`;
   }
 }
 
