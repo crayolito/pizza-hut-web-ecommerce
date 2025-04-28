@@ -3052,6 +3052,17 @@ class PageCheckoutPH extends HTMLElement {
     window.location.href = "/pages/detalle-pedido";
   }
 
+  validarSeleccionMetodoPago() {
+    for (let btn of this.btnsMetodosPagos) {
+      if (btn.classList.contains('seleccionado')) {
+        return true; // Se encontró un botón seleccionado
+      }
+    }
+    
+    // Si termina el ciclo sin encontrar ninguno seleccionado
+    return false;
+  }
+
   actualizarDatosUsuario(){
     const data = JSON.parse(localStorage.getItem('ph-datos-usuario'));
     const estaSeleccionadoBtnHutCoins = this.btnHutCoins.classList.contains('seleccionado');
