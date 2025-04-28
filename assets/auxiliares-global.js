@@ -3167,7 +3167,7 @@ class PageCheckoutPH extends HTMLElement {
         "pruebas3" : this.estadoPagina,
       })
       
-      // Consulta GraphQL actualizada para draftOrderCreate
+      // Consulta GraphQL actualizada para draftOrderCreat
       const draftOrderQuery = `
         mutation draftOrderCreate($input: DraftOrderInput!) {
           draftOrderCreate(input: $input) {
