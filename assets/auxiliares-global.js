@@ -3199,6 +3199,14 @@ class PageCheckoutPH extends HTMLElement {
             longitude: this.estadoPagina == "domicilio" ? this.direccionSeleccionada.lng : this.localSeleccionado.lng
           }
         },
+        customer: {
+          toUpsert: {
+            firstName: dataUsuario.nombre,
+            lastName: dataUsuario.apellido,
+            email: dataUsuario.email,
+            phone: dataUsuario.celular,
+          }
+        },
         metafields: [
           {
             namespace: "custom",
