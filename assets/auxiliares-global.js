@@ -3061,8 +3061,8 @@ class PageCheckoutPH extends HTMLElement {
 
     MensajeCargaDatos.mostrar('Su pedido se esta procesando ...');
     const dataOrdenPreliminar = await this.generarPedidoPreliminar(datosCheckout);
-    console.log("Data orden preliminar", dataOrdenPreliminar);
-    await this.generarPedido(dataOrdenPreliminar.draftOrderCreate.draftOrder.id);
+    console.log("Data orden preliminar", dataOrdenPreliminar.order.id);
+    await this.generarPedido(dataOrdenPreliminar.order.id);
     const dataJSON = this.generarJSONMostrarConsola();
     localStorage.setItem('ph-datos-pedido', JSON.stringify(dataJSON));
     MensajeCargaDatos.ocultar();
