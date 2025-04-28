@@ -1811,6 +1811,12 @@ class PageCheckoutPH extends HTMLElement {
     this.btnGuardarDatos.addEventListener('click', (event)=>{
       this.btnAccionDatosContacto(event.currentTarget);
     });
+    this.btnEditarDatosFacturacion.addEventListener('click', (event) => {
+      this.btnAccionDatosFacturacion(event.currentTarget);
+    });
+    this.btnGuardarDatosFacturacion.addEventListener('click', (event)=>{
+      this.btnAccionDatosFacturacion(event.currentTarget);
+    });
     this.btnsMetodosPagos.forEach((btn) => {
       btn.addEventListener('click', (event) => {
         this.procesoSeleccionMetodoPago(event.currentTarget);
@@ -2624,10 +2630,65 @@ class PageCheckoutPH extends HTMLElement {
       this.btnGuardarDatos.style.display = "flex";
       this.contenedorDatosContactoEditar.style.display = "none";
       this.contenedorDatoContactoConsolidados.style.display = "flex";
+
+      // Proceso de guardar datos
+      const data = JSON.parse(localStorage.getItem('ph-datos-usuario'));
+      const datosActualizados = {
+        nombre: this.inputNombreContacto.value,
+        apellido: this.inputApellidoContacto.value,
+        email: this.inputCorreoElectronico.value,
+        celular: this.inputCelularContacto.value,
+        ci: this.inputCIContacto.value
+      };
+
+      // Actualizar los datos en el localStorage
+      localStorage.setItem('ph-datos-usuario', JSON.stringify(datosActualizados));
+
+      // Actualizar la interfaz
+      this.inputNombreContacto.textContent = datosActualizados.nombre;
+      this.inputApellidoContacto.textContent = datosActualizados.apellido;
+      this.inputCorreoElectronico.textContent = datosActualizados.email;
+      this.inputCelularContacto.textContent = datosActualizados.celular;
+      this.inputCIContacto.textContent = datosActualizados.ci;
     }
   }
 
-  procedoPrincipalPagina(){}
+  btnAccionDatosFacturacion(btnElemento) {
+    const accion = btnElemento.dataset.accion;
+
+    if (accion === "editar") {
+      this.btnEditarDatos.style.display = "flex";
+      this.btnGuardarDatos.style.display = "none";
+      this.contenedorDatosFacturacion.style.display = "flex";
+      this.contenedorDatosFacturacionConsolidados.style.display = "none";
+    }else{
+      
+      
+      this.btnEditarDatos.style.display = "none";
+      this.btnGuardarDatos.style.display = "flex";
+      this.contenedorDatosFacturacion.style.display = "none";
+      this.contenedorDatosFacturacionConsolidados.style.display = "flex";
+      
+      if(this.inputRazonSocial.value == "" || this.inputNit.value == "")return;
+
+      // Proceso de guardar datos
+      const data = JSON.parse(localStorage.getItem('ph-datos-facturacion'));
+      const datosActualizados = {
+        razonsocial : this.inputRazonSocial.value,
+        nit : this.inputNit.value,
+      }
+
+      // Actualizar los datos en el localStorage
+      localStorage.setItem('ph-datos-facturacion', JSON.stringify(datosActualizados));
+
+      // Actualizar la interfaz
+      this.inputRazonSocial.textContent = datosActualizados.razonsocial;
+      this.inputNit.textContent = datosActualizados.nit;
+
+    }
+  }
+
+  
 
   validarCamposFormDatosContacto() {
     const formulario = {
