@@ -2318,7 +2318,7 @@ class PageCheckoutPH extends HTMLElement {
             <ul class="color-letras-extra">
           `;
 
-          data.opcionesPrincipales.opciones.forEach((producto) => {
+          data.opcionesPrincipales.productos.forEach((producto) => {
             contenidoHTML += `
               <li>
                 <p>${producto.tituloSeccion} : <br> ${producto.titulo}</p>
