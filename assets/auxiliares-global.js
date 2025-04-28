@@ -2350,7 +2350,7 @@ class PageCheckoutPH extends HTMLElement {
     this.etiquetaSubtotal.textContent = `Bs ${totalPrecioCarrito.toFixed(2)}`;
     this.etiquetaTotal.textContent = `Bs ${totalPrecioCarrito.toFixed(2)}`;
     this.contenedorItemsCarrito.innerHTML = contenidoHTML;
-    this.itemProductoCarrito = this.querySelectorAll('.pcph-item-carrito');
+    this.itemProductoCarrito = this.querySelectorAll('.smecph-pc-item-carrito');
     this.itemProductoCarrito.forEach((item) => {
       item.addEventListener('click', (event) => {
         this.procesoVerDetallesProducto(event.currentTarget);
