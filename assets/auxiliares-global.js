@@ -3144,98 +3144,98 @@ class PageCheckoutPH extends HTMLElement {
   generarJSONMostrarConsola(){}
 
   async generarPedido(datosCheckout) {
-    const dataUsuario = JSON.parse(localStorage.getItem('ph-datos-usuario'));
-    
-    // La información del pedido para guardar en la nota
-    const informacionPedido = {
-      datosCheckout,
-      itemsCarrito: this.infoCarrito.informacionCompleta.items
-    };
-    
-    // Construir los lineItems según el formato de la documentación
-    const lineItems = this.infoCarrito.informacionCompleta.items.map(item => {
-      // Asumiendo que cada item tiene precio, título, etc.
-      return {
+    try {
+      const dataUsuario = JSON.parse(localStorage.getItem('ph-datos-usuario'));
+      
+      // Construir los lineItems
+      const lineItems = this.infoCarrito.informacionCompleta.items.map(item => ({
         title: item.title || "Producto",
         quantity: item.quantity,
         priceSet: {
           shopMoney: {
-            amount: item.price || 0,
-            currencyCode: "BOB" // Moneda para Bolivia
+            amount: parseFloat(item.price || 0).toFixed(2),
+            currencyCode: "BOB"
           }
         }
-        // Si tienes información de impuestos, podrías agregarla aquí
+      }));
+      
+      // La información del pedido para guardar en la nota
+      const informacionPedido = {
+        datosCheckout,
+        itemsCarrito: this.infoCarrito.informacionCompleta.items
       };
-    });
-    
-    // Consulta GraphQL exactamente como en la documentación
-    const graphqlQuery = `
-      mutation orderCreate($order: OrderCreateOrderInput!, $options: OrderCreateOptionsInput) {
-        orderCreate(order: $order, options: $options) {
-          userErrors {
-            field
-            message
-          }
-          order {
-            id
-            totalTaxSet {
-              shopMoney {
-                amount
-                currencyCode
-              }
+      
+      // La consulta GraphQL para crear un pedido con un nuevo cliente
+      const graphqlQuery = `
+        mutation CreateOrderWithNewCustomer {
+          orderCreate(
+            order: {
+              email: "${dataUsuario.email}",
+              lineItems: ${JSON.stringify(lineItems)},
+              shippingAddress: {
+                firstName: "${dataUsuario.nombre}",
+                lastName: "${dataUsuario.apellido}",
+                phone: "${dataUsuario.celular}",
+                address1: "Dirección de entrega",
+                city: "Ciudad",
+                province: "Santa Cruz de la Sierra",
+                country: "Bolivia",
+                zip: "0000"
+              },
+              note: ${JSON.stringify(JSON.stringify(informacionPedido))}
             }
-            lineItems(first: 5) {
-              nodes {
-                variant {
-                  id
-                }
-                id
-                title
-                quantity
-                taxLines {
-                  title
-                  rate
-                  priceSet {
-                    shopMoney {
-                      amount
-                      currencyCode
-                    }
-                  }
-                }
-              }
+          ) {
+            order {
+              id
+              name
+              email
+            }
+            userErrors {
+              field
+              message
             }
           }
         }
-      }
-    `;
-    
-    // Variables siguiendo exactamente el formato de la documentación
-    const variables = {
-      "order": {
-        "currency": "BOB", // Moneda para Bolivia
-        "lineItems": lineItems,
-        "customer": {
-          "firstName": dataUsuario.nombre,
-          "lastName": dataUsuario.apellido,
-          "email": dataUsuario.email
-        },
-        "shippingAddress": {
-          "firstName": dataUsuario.nombre,
-          "lastName": dataUsuario.apellido,
-          "phone": dataUsuario.celular,
-          "city": "Ciudad",
-          "province": "Santa Cruz de la Sierra",
-          "country": "Bolivia"
-        },
-        "note": JSON.stringify(informacionPedido)
-      },
-      "options": null // Puedes omitir esto o pasar null si no necesitas opciones específicas
-    };
-    
-    const myTest = 'shpat_' + '45f4a7476152f4881d058f87ce063698';
-    
-    // Hacer la petición GraphQL
-    try {
+      `;
+      
+      // Otra alternativa es usar variables
+      const orderCreateQuery = `
+        mutation orderCreate($order: OrderCreateOrderInput!) {
+          orderCreate(order: $order) {
+            order {
+              id
+              name
+              email
+            }
+            userErrors {
+              field
+              message
+            }
+          }
+        }
+      `;
+      
+      const variables = {
+        order: {
+          email: dataUsuario.email,
+          lineItems: lineItems,
+          shippingAddress: {
+            firstName: dataUsuario.nombre,
+            lastName: dataUsuario.apellido,
+            phone: dataUsuario.celular,
+            address1: "Dirección de entrega",
+            city: "Ciudad",
+            province: "Santa Cruz de la Sierra",
+            country: "Bolivia",
+            zip: "0000"
+          },
+          note: JSON.stringify(informacionPedido)
+        }
+      };
+      
+      const myTest = 'shpat_' + '45f4a7476152f4881d058f87ce063698';
+      
+      // Usar la segunda opción con variables, que es más limpia
       const response = await fetch('https://pizza-hut-bo.myshopify.com/admin/api/2023-07/graphql.json', {
         method: 'POST',
         headers: {
@@ -3243,25 +3243,25 @@ class PageCheckoutPH extends HTMLElement {
           'X-Shopify-Access-Token': myTest
         },
         body: JSON.stringify({
-          query: graphqlQuery,
+          query: orderCreateQuery,
           variables: variables
         })
       });
       
       const data = await response.json();
-      console.log('Respuesta completa:', data);
+      console.log('Respuesta completa de Shopify:', data);
       
       if (data.errors) {
         console.error('Errores en la respuesta GraphQL:', data.errors);
         return { success: false, errors: data.errors };
-      } 
+      }
       
-      if (data.data && data.data.orderCreate.userErrors.length > 0) {
+      if (data.data && data.data.orderCreate.userErrors && data.data.orderCreate.userErrors.length > 0) {
         console.error('Errores al crear el pedido:', data.data.orderCreate.userErrors);
         return { success: false, errors: data.data.orderCreate.userErrors };
       }
       
-      if (data.data) {
+      if (data.data && data.data.orderCreate.order) {
         console.log('Pedido creado exitosamente:', data.data.orderCreate.order);
         return { success: true, order: data.data.orderCreate.order };
       }
