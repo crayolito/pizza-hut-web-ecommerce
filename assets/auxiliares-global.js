@@ -2276,9 +2276,9 @@ class PageCheckoutPH extends HTMLElement {
         class="smecph-pc-item-carrito">
           <div class="smecph-pc-item-carrito-info">
             <div class="smecph-pc-item-ci-img">
-              ${data.producto.imagen == null || dataContruccion.producto.imagen == '' 
-                ? `<img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="${dataContruccion.producto.titulo}" width="100" height="100">`
-                : `<img src="${dataContruccion.producto.imagen}" alt="${dataContruccion.producto.titulo}" width="100" height="100">`
+              ${data.producto.imagen == null || data.producto.imagen == '' 
+                ? `<img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="${data.producto.titulo}" width="100" height="100">`
+                : `<img src="${data.producto.imagen}" alt="${data.producto.titulo}" width="100" height="100">`
               }
             </div>
             <div class="smecph-pc-item-ci-detalle">
@@ -2332,7 +2332,7 @@ class PageCheckoutPH extends HTMLElement {
             <ul class="color-letras-extra">
           `;
 
-          dataContruccion.complementos.productos.forEach((producto) => {
+          data.complementos.productos.forEach((producto) => {
             contenidoHTML += `
               <li>
                 <p>${producto.tituloSeccion} : <br> ${producto.titulo}</p>
