@@ -2788,6 +2788,7 @@ class PageCheckoutPH extends HTMLElement {
 
     // if(accion == "pago-codigo-qr"){}
     // if(accion == "pago-efectivo"){}
+    // 
     if(accion == "ago-tarjeta-credito"){
       this.opcionesTarjetaCredito.style.display = "flex";
     }
