@@ -3211,8 +3211,8 @@ class PageCheckoutPH extends HTMLElement {
             province: "Andres Ibáñez, Santa Cruz de la Sierra",
             countryCode: "BO", 
             zip: "0000",
-            latitude: this.estadoPagina == "domicilio" ? this.direccionSeleccionada.lat : this.localSeleccionado.lat,
-            longitude: this.estadoPagina == "domicilio" ? this.direccionSeleccionada.lng : this.localSeleccionado.lng
+            // latitude: this.estadoPagina == "domicilio" ? this.direccionSeleccionada.lat : this.localSeleccionado.lat,
+            // longitude: this.estadoPagina == "domicilio" ? this.direccionSeleccionada.lng : this.localSeleccionado.lng
           }
         },
         customer: {
