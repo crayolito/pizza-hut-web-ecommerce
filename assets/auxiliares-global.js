@@ -3146,81 +3146,131 @@ class PageCheckoutPH extends HTMLElement {
   async generarPedido(datosCheckout) {
     const dataUsuario = JSON.parse(localStorage.getItem('ph-datos-usuario'));
     
-    // Preparar los items del carrito en el formato requerido por GraphQL
-    const lineItems = this.infoCarrito.informacionCompleta.items.map(item => ({
-      variantId: item.id,
-      quantity: item.quantity
-    }));
-  
-    // La información del pedido que querías guardar en la nota
+    // La información del pedido para guardar en la nota
     const informacionPedido = {
       datosCheckout,
       itemsCarrito: this.infoCarrito.informacionCompleta.items
     };
     
-    // Construir la mutación GraphQL
+    // Construir los lineItems según el formato de la documentación
+    const lineItems = this.infoCarrito.informacionCompleta.items.map(item => {
+      // Asumiendo que cada item tiene precio, título, etc.
+      return {
+        title: item.title || "Producto",
+        quantity: item.quantity,
+        priceSet: {
+          shopMoney: {
+            amount: item.price || 0,
+            currencyCode: "BOB" // Moneda para Bolivia
+          }
+        }
+        // Si tienes información de impuestos, podrías agregarla aquí
+      };
+    });
+    
+    // Consulta GraphQL exactamente como en la documentación
     const graphqlQuery = `
-      mutation orderCreate($input: OrderInput!) {
-        orderCreate(input: $input) {
+      mutation orderCreate($order: OrderCreateOrderInput!, $options: OrderCreateOptionsInput) {
+        orderCreate(order: $order, options: $options) {
           userErrors {
             field
             message
           }
           order {
             id
+            totalTaxSet {
+              shopMoney {
+                amount
+                currencyCode
+              }
+            }
+            lineItems(first: 5) {
+              nodes {
+                variant {
+                  id
+                }
+                id
+                title
+                quantity
+                taxLines {
+                  title
+                  rate
+                  priceSet {
+                    shopMoney {
+                      amount
+                      currencyCode
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
     `;
     
-    // Variables para la mutación
+    // Variables siguiendo exactamente el formato de la documentación
     const variables = {
-      input: {
-        lineItems: lineItems,
-        customer: {
-          firstName: dataUsuario.nombre,
-          lastName: dataUsuario.apellido,
-          email: dataUsuario.email,
+      "order": {
+        "currency": "BOB", // Moneda para Bolivia
+        "lineItems": lineItems,
+        "customer": {
+          "firstName": dataUsuario.nombre,
+          "lastName": dataUsuario.apellido,
+          "email": dataUsuario.email
         },
-        shippingAddress: {
-          firstName: dataUsuario.nombre,
-          lastName: dataUsuario.apellido,
-          phone: dataUsuario.celular,
-          city: "Ciudad",
-          province: "Santa Cruz de la Sierra",
-          country: "Bolivia",
+        "shippingAddress": {
+          "firstName": dataUsuario.nombre,
+          "lastName": dataUsuario.apellido,
+          "phone": dataUsuario.celular,
+          "city": "Ciudad",
+          "province": "Santa Cruz de la Sierra",
+          "country": "Bolivia"
         },
-        note: JSON.stringify(informacionPedido),
-        sendReceipt: true,
-        sendFulfillmentReceipt: false,
-        financialStatus: "PENDING"
-      }
+        "note": JSON.stringify(informacionPedido)
+      },
+      "options": null // Puedes omitir esto o pasar null si no necesitas opciones específicas
     };
     
     const myTest = 'shpat_' + '45f4a7476152f4881d058f87ce063698';
     
     // Hacer la petición GraphQL
-    fetch(this.urlConsulta, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Shopify-Access-Token': myTest
-      },
-      body: JSON.stringify({
-        query: graphqlQuery,
-        variables: variables
-      })
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Pedido creado:', data);
+    try {
+      const response = await fetch('https://pizza-hut-bo.myshopify.com/admin/api/2023-07/graphql.json', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Shopify-Access-Token': myTest
+        },
+        body: JSON.stringify({
+          query: graphqlQuery,
+          variables: variables
+        })
+      });
+      
+      const data = await response.json();
+      console.log('Respuesta completa:', data);
+      
       if (data.errors) {
         console.error('Errores en la respuesta GraphQL:', data.errors);
-      } else if (data.data.orderCreate.userErrors.length > 0) {
+        return { success: false, errors: data.errors };
+      } 
+      
+      if (data.data && data.data.orderCreate.userErrors.length > 0) {
         console.error('Errores al crear el pedido:', data.data.orderCreate.userErrors);
+        return { success: false, errors: data.data.orderCreate.userErrors };
       }
-    })
-    .catch(error => console.error('Error al crear el pedido:', error));
+      
+      if (data.data) {
+        console.log('Pedido creado exitosamente:', data.data.orderCreate.order);
+        return { success: true, order: data.data.orderCreate.order };
+      }
+      
+      return { success: false, message: 'Respuesta inesperada' };
+    } catch (error) {
+      console.error('Error al crear el pedido:', error);
+      return { success: false, error: error.message };
+    }
   }
 }
 
