@@ -1756,14 +1756,15 @@ class PageCheckoutPH extends HTMLElement {
 
     // Datos de pago
     this.mensajeAlertaDatosFacturacion = this.querySelector('#phpc-mensaje-alerta-datos-facturacion');
-    this.btnCodigoQr = this.querySelector('#phpc-btn-codigo-qr');
-    this.btnTarjetaCredito = this.querySelector('#phpc-btn-tarjeta-credito');
+    // this.btnCodigoQr = this.querySelector('#phpc-btn-codigo-qr');
+    // this.btnTarjetaCredito = this.querySelector('#phpc-btn-tarjeta-credito');
     this.opcionesTarjetaCredito = this.querySelector('#phpc-opciones-tarjeta-credito');
     this.inputPrimero4Digitos = this.querySelector('#phpc-input-primero-4-digitos');
     this.mensajeAlertaPrimero4Digitos = this.querySelector('#phpc-alerta-primero-4-digitos');
     this.inputUltimos4Digitos = this.querySelector('#phpc-input-ultimos-4-digitos');
     this.mensajeAlertaUltimos4Digitos = this.querySelector('#phpc-alerta-ultimos-4-digitos');
-    this.btnEfectivo = this.querySelector('#phpc-btn-efectivo');
+    // this.btnEfectivo = this.querySelector('#phpc-btn-efectivo');
+    this.btnsMetodosPagos = this.querySelectorAll('#pphpc-btn-metodo-pago');
     
     // Datos de facturacion
     this.btnEditarDatosFacturacion = this.querySelector('#phpc-btn-editar-datos-facturacion');
@@ -1809,6 +1810,20 @@ class PageCheckoutPH extends HTMLElement {
     this.btnGuardarDatos.addEventListener('click', (event)=>{
       this.btnAccionDatosContacto(event.currentTarget);
     });
+    this.btnsMetodosPagos.forEach((btn) => {
+      btn.addEventListener('click', (event) => {
+        this.seleccionarMetodoPago(event.currentTarget);
+      });
+    });
+    // this.btnCodigoQr.addEventListener('click', (event) => {
+    //   this.seleccionarMetodoPago(event.currentTarget);
+    // });
+    // this.btnTarjetaCredito.addEventListener('click', (event) => {
+    //   this.seleccionarMetodoPago(event.currentTarget);
+    // });
+    // this.btnEfectivo.addEventListener('click', (event) => {
+    //   this.seleccionarMetodoPago(event.currentTarget);
+    // });
 
     // INICIALIZAR ELEMENTOS Y PROCESO
 
@@ -2752,7 +2767,32 @@ class PageCheckoutPH extends HTMLElement {
     return !hayCampoVacio; // Retorna true si no hay campos vacíos
   }
 
-  procesoSeleccionMetodoPago(){}
+  procesoSeleccionMetodoPago(btnElemento){
+    const accion = btnElemento.dataset.accion;
+    const estaSeleccionado = btnElemento.classList.contains('seleccionado');
+
+    this.btnsMetodoPago.forEach(btn => {
+      btn.classList.remove('seleccionado');
+      const iconoDesSeleccionado = btn.querySelector('.smecph-opcion-icono');
+      iconoDesSeleccionado.innerHTML = window.shopIcons.icon_estado_off;
+    });
+
+    if(!estaSeleccionado ){
+      this.mensajeAlertaDatosFacturacion.style.display = "none";
+      this.btnMetodoPagoSeleccionado.classList.add('seleccionado');
+      const iconoSeleccionado = this.btnMetodoPagoSeleccionado.querySelector('.smecph-opcion-icono');
+      iconoSeleccionado.innerHTML = window.shopIcons.icon_estado_on;
+    }
+
+    this.seleccionadoEstadoPago = accion;
+
+    // if(accion == "pago-codigo-qr"){}
+    // if(accion == "pago-efectivo"){}
+    if(accion == "ago-tarjeta-credito"){
+      this.opcionesTarjetaCredito.style.display = "flex";
+    }
+
+  }
 }
 
 customElements.define('page-checkout-ph', PageCheckoutPH);
