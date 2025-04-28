@@ -3061,6 +3061,7 @@ class PageCheckoutPH extends HTMLElement {
 
     MensajeCargaDatos.mostrar('Su pedido se esta procesando ...');
     const dataOrdenPreliminar = await this.generarPedidoPreliminar(datosCheckout);
+    console.log("Data orden preliminar", dataOrdenPreliminar.draftOrderCreate.draftOrder);
     await this.generarPedido(dataOrdenPreliminar.draftOrderCreate.draftOrder.id);
     const dataJSON = this.generarJSONMostrarConsola();
     localStorage.setItem('ph-datos-pedido', JSON.stringify(dataJSON));
@@ -3268,7 +3269,7 @@ class PageCheckoutPH extends HTMLElement {
       return { success: false, error: error.message };
     }
   }
-  
+
   valirdarSeleccionMetodoPago() {
     for (let btn of this.btnsMetodosPagos) {
       if (btn.classList.contains('seleccionado')) {
