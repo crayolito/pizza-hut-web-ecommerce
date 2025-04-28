@@ -1774,6 +1774,7 @@ class PageCheckoutPH extends HTMLElement {
     this.inputNitoCit = this.querySelector('#phpc-input-nit-cit');
 
     // Carrito
+    this.btnEditarCarrito = this.querySelector('#phpc-btn-editar-carrito');
     this.contenedorItemsCarrito = this.querySelector('#phpc-contenedor-items-carrito');
     this.btnEditarCarrito = this.querySelector('#phpc-btn-editar-carrito');
     this.etiquetaSubtotal = this.querySelector('#phpc-etiqueta-subtotal');
@@ -1829,6 +1830,9 @@ class PageCheckoutPH extends HTMLElement {
     this.btnContinuar.addEventListener('click', this.procesoContinuarGeneral.bind(this));
     this.hutCoins.addEventListener('click', (event)=>{
       this.procesoHutCoins(event.currentTarget);
+    });
+    this.btnEditarCarrito.addEventListener('click', (event)=>{
+      this.procesoEditarCarrito(event.currentTarget);
     });
     // INICIALIZAR ELEMENTOS Y PROCESO
 
@@ -2998,6 +3002,10 @@ class PageCheckoutPH extends HTMLElement {
     }
   }
 
+  procesoEditarCarrito(){
+    window.location.href = "/pages/carrito";
+  }
+
   procesoHutCoins(btnElemento){
     const estaActivado = btnElemento.classList.contains('seleccionado');
     if(estaActivado == true){
@@ -3005,7 +3013,7 @@ class PageCheckoutPH extends HTMLElement {
     }else{
       btnElemento.classList.add('seleccionado');
     }
-  }
+}
 
   procesoContinuarGeneral(){
     // Optiene todos los datos de envio a domicilio o recoger en local
@@ -3014,6 +3022,7 @@ class PageCheckoutPH extends HTMLElement {
     // Datos de facturacion
     // Hacer el proceso Cupon de descuento
     // Nota para el pedido
+    window.location.href = "/pages/detalle-pedido";
   }
 }
 
