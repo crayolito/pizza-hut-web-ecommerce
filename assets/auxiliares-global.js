@@ -3071,7 +3071,7 @@ class PageCheckoutPH extends HTMLElement {
     MensajeCargaDatos.mostrar('Su pedido se esta procesando ...');
     const dataOrdenPreliminar = await this.generarPedidoPreliminar(datosCheckout);
     this.infoUltimaOrden = dataOrdenPreliminar.order;
-    console.log("Data orden preliminar", dataOrdenPreliminar.order.id);
+    console.log("Data orden preliminar", this.infoUltimaOrden);
     // await this.generarPedido(dataOrdenPreliminar.order.id);
     const dataJSON = this.generarJSONMostrarConsola();
     console.log("Data JSON", dataJSON);
