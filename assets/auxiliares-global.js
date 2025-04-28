@@ -2311,7 +2311,7 @@ class PageCheckoutPH extends HTMLElement {
 
           contenidoHTML += `
           <div 
-          data-seravisto="${seraVisto}"
+          data-seravisto="${!seraVisto}"
           style="display: none;"
           class="smecph-pc-item-carrito-extra">
             <p>${data.opcionesPrincipales.titulo}</p>
@@ -2979,8 +2979,12 @@ class PageCheckoutPH extends HTMLElement {
     this.etiquetaDatosFacturacionConsolidados.textContent = `${this.inputRazonSocial.value} | ${this.inputNitoCit.value}`;
   }
 
-  procesoVerDetallesProducto(){
-    
+  procesoVerDetallesProducto(elementoHTML){
+    const seraVisto = elementoHTML.dataset.seravisto;
+    const hijoDetalle = elementoHTML.querySelector('.smecph-pc-item-carrito-extra');
+    if(seraVisto == "true"){
+      hijoDetalle.style.display = "flex";
+    }
   }
 }
 
