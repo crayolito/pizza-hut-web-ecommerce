@@ -1673,7 +1673,6 @@ class PageCheckoutPH extends HTMLElement {
     // DECLARAR ELEMENTOS
     this.btnMetodoLocal = this.querySelector('#phpc-metodo-local');
     this.btnMetodoDomicilio = this.querySelector('#phpc-metodo-domicilio');
-    this.contenedorSeccionRecogerLocal = this.querySelector('#phpc-seccion-seleccion-local');
 
     this.bodyModalLocalSeleccionado = this.querySelector('#phpc-modal-body-local-seleccionado');
     this.modalBodyContenedorMapa = this.querySelector('#phpc-localSeleccionado-mapa');
@@ -1713,7 +1712,7 @@ class PageCheckoutPH extends HTMLElement {
     this.btnsSeleccionMetodoEntrega = this.querySelectorAll('.smecph-opcion-metodo');
     
     this.contenedorBaseSeleccionLocal = this.querySelector('#pcktph-seleccion-local');
-    this.contenedorBaseSeleccionDireccionEnvio = this.querySelector('#pcktph-direccion-envio');
+    this.contenedorBaseSeleccionDireccionEnvio = this.querySelector('#phpc-seccion-seleccion-local');
     this.contenedorDatosContactoInputsForm = this.querySelector('.smecph-formulario-datos-contacto');
     this.contenedorDatosContactoConsolidados = this.querySelector('.smecph-datos-contacto-consolidados');
     this.mensajeAlertaSeleccionMetodoPago = this.querySelector('.smecph-mensaje-alerta');
@@ -3018,7 +3017,7 @@ class PageCheckoutPH extends HTMLElement {
 
   async procesoContinuarGeneral(){
     if(this.localSeleccionado == null && this.estadoPagina == "local"){
-      this.contenedorSeccionRecogerLocal.scrollIntoView({
+      this.contenedorBaseSeleccionDireccionEnvio.scrollIntoView({
         behavior: 'smooth', 
         block: 'start' 
       });
