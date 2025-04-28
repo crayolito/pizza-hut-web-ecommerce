@@ -3013,7 +3013,7 @@ class PageCheckoutPH extends HTMLElement {
     }else{
       btnElemento.classList.add('seleccionado');
     }
-}
+  }
 
   procesoContinuarGeneral(){
     // Optiene todos los datos de envio a domicilio o recoger en local
