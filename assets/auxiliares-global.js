@@ -2262,8 +2262,7 @@ class PageCheckoutPH extends HTMLElement {
       if(!(item.properties && item.properties.estructura))return;
       // Verificar si el item tiene la propiedad "estructura"
       const data = JSON.parse(item.properties.estructura);
-      console.log("Item : ", data);
-      totalPrecioCarrito += parseInt(data.producto.precioTotalConjunto);
+      totalPrecioCarrito += parseInt(data.producto.precioTotalConjunto * parseInt(data.producto.cantidad));
 
       contenidoHTML += `
         <div 
