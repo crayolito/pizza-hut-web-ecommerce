@@ -3159,17 +3159,9 @@ class PageCheckoutPH extends HTMLElement {
             { key: "Datos Carrito PRoceso", value: json.stringify(informacionPedido.itemsCarrito) },
           ],
         }
-        // customer: {
-        //   toUpsert: {
-        //     firstName: dataUsuario.nombre,
-        //     lastName: dataUsuario.apellido,
-        //     email: dataUsuario.email,
-        //     phone: dataUsuario.celular,
-        //   }
-        // },
       };
       
-      // Asegúrate de que this.urlConsulta esté definido o usa la URL directa
+      // Asegúrate de que this.urlConsulta esté definido o usa la URL directaa
       const myTest = 'shpat_' + '45f4a7476152f4881d058f87ce063698';
       
       const response = await fetch(this.urlConsulta , {
