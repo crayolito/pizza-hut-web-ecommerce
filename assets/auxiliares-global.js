@@ -3027,7 +3027,7 @@ class PageCheckoutPH extends HTMLElement {
     });
 
     if(this.localSeleccionado == null && this.estadoPagina == "local" && this.inputSeleccionarLocal.value == ""){
-      this.contenedorBaseSeleccionDireccionEnvio.scrollIntoView({
+      this.contenedorBaseSeleccionLocal.scrollIntoView({
         behavior: 'smooth', 
         block: 'start' 
       });
