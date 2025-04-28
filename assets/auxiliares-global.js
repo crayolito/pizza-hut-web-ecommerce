@@ -2773,14 +2773,14 @@ class PageCheckoutPH extends HTMLElement {
 
     this.btnsMetodoPago.forEach(btn => {
       btn.classList.remove('seleccionado');
-      const iconoDesSeleccionado = btn.querySelector('.smecph-opcion-icono');
+      const iconoDesSeleccionado = btn.querySelector('.smecph-pc-dp-item-icono');
       iconoDesSeleccionado.innerHTML = window.shopIcons.icon_estado_off;
     });
 
     if(!estaSeleccionado ){
       this.mensajeAlertaDatosFacturacion.style.display = "none";
       this.btnMetodoPagoSeleccionado.classList.add('seleccionado');
-      const iconoSeleccionado = this.btnMetodoPagoSeleccionado.querySelector('.smecph-opcion-icono');
+      const iconoSeleccionado = this.btnMetodoPagoSeleccionado.querySelector('.smecph-pc-dp-item-icono');
       iconoSeleccionado.innerHTML = window.shopIcons.icon_estado_on;
     }
 
