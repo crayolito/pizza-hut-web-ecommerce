@@ -3052,7 +3052,7 @@ class PageCheckoutPH extends HTMLElement {
     window.location.href = "/pages/detalle-pedido";
   }
 
-  validarSeleccionMetodoPago() {
+  valirdarSeleccionMetodoPago() {
     for (let btn of this.btnsMetodosPagos) {
       if (btn.classList.contains('seleccionado')) {
         if (btn.dataset.accion == "pago-tarjeta-credito") {
