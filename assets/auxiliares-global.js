@@ -3180,7 +3180,7 @@ class PageCheckoutPH extends HTMLElement {
         financial_status: "pending", // o "paid" si ya se ha pagado
         fulfillment_status: null,
         // Aquí guardamos el JSON grande como string en la nota del pedido
-        note: JSON.stringify(datosGrandesJSON),
+        note: JSON.stringify(informacionPedido),
         send_receipt: true,
         send_fulfillment_receipt: false
       }
