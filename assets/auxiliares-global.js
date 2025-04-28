@@ -1828,7 +1828,7 @@ class PageCheckoutPH extends HTMLElement {
       });
     });
     this.btnContinuar.addEventListener('click', this.procesoContinuarGeneral.bind(this));
-    this.hutCoins.addEventListener('click', (event)=>{
+    this.btnHutCoins.addEventListener('click', (event)=>{
       this.procesoHutCoins(event.currentTarget);
     });
     this.btnEditarCarrito.addEventListener('click', (event)=>{
