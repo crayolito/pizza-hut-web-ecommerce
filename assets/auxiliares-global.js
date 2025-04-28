@@ -3143,59 +3143,83 @@ class PageCheckoutPH extends HTMLElement {
 
   generarJSONMostrarConsola(){}
 
-  async generarPedido(datosCheckout){
+  async generarPedido(datosCheckout) {
     const dataUsuario = JSON.parse(localStorage.getItem('ph-datos-usuario'));
-
+    
+    // Preparar los items del carrito en el formato requerido por GraphQL
+    const lineItems = this.infoCarrito.informacionCompleta.items.map(item => ({
+      variantId: item.id,
+      quantity: item.quantity
+    }));
+  
+    // La información del pedido que querías guardar en la nota
     const informacionPedido = {
       datosCheckout,
-      itemsCarrito : this.infoCarrito.informacionCompleta.items
-    }
-
-    var line_items = [];
-    this.infoCarrito.informacionCompleta.items.forEach((item) => {
-      line_items.push({
-        variant_id: item.id,
-        quantity: item.quantity
-      });
-    });
-
-    // Datos del pedido 
-    const orderData = {
-      order: {
-        line_items: line_items,
+      itemsCarrito: this.infoCarrito.informacionCompleta.items
+    };
+    
+    // Construir la mutación GraphQL
+    const graphqlQuery = `
+      mutation orderCreate($input: OrderInput!) {
+        orderCreate(input: $input) {
+          userErrors {
+            field
+            message
+          }
+          order {
+            id
+          }
+        }
+      }
+    `;
+    
+    // Variables para la mutación
+    const variables = {
+      input: {
+        lineItems: lineItems,
         customer: {
-          first_name: dataUsuario.nombre,
-          last_name: dataUsuario.apellido,
+          firstName: dataUsuario.nombre,
+          lastName: dataUsuario.apellido,
           email: dataUsuario.email,
         },
-        shipping_address: {
-          first_name: dataUsuario.nombre,
-          last_name: dataUsuario.apellido,
+        shippingAddress: {
+          firstName: dataUsuario.nombre,
+          lastName: dataUsuario.apellido,
           phone: dataUsuario.celular,
           city: "Ciudad",
           province: "Santa Cruz de la Sierra",
           country: "Bolivia",
         },
-        billing_address: {},
-        financial_status: "pending", // o "paid" si ya se ha pagado
-        fulfillment_status: null,
-        // Aquí guardamos el JSON grande como string en la nota del pedid
         note: JSON.stringify(informacionPedido),
-        send_receipt: true,
-        send_fulfillment_receipt: false
+        sendReceipt: true,
+        sendFulfillmentReceipt: false,
+        financialStatus: "PENDING"
       }
     };
+    
     const myTest = 'shpat_' + '45f4a7476152f4881d058f87ce063698';
-    fetch(`https://pizza-hut-bo.myshopify.com/admin/api/2023-07/orders.json`, {
+    
+    // Hacer la petición GraphQL
+    fetch('https://pizza-hut-bo.myshopify.com/admin/api/2023-07/graphql.json', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'X-Shopify-Access-Token': myTest
       },
-      body: JSON.stringify(orderData)
+      body: JSON.stringify({
+        query: graphqlQuery,
+        variables: variables
+      })
     })
     .then(response => response.json())
-    .then(data => console.log('Pedido creado:', data))
+    .then(data => {
+      console.log('Pedido creado:', data);
+      if (data.errors) {
+        console.error('Errores en la respuesta GraphQL:', data.errors);
+      } else if (data.data.orderCreate.userErrors.length > 0) {
+        console.error('Errores al crear el pedido:', data.data.orderCreate.userErrors);
+      }
+    })
     .catch(error => console.error('Error al crear el pedido:', error));
   }
 }
