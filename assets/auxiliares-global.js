@@ -1774,9 +1774,12 @@ class PageCheckoutPH extends HTMLElement {
     this.inputNitoCit = this.querySelector('#phpc-input-nit-cit');
 
     // Carrito
+    this.contenedorItemsCarrito = this.querySelector('#phpc-contenedor-items-carrito');
     this.btnEditarCarrito = this.querySelector('#phpc-btn-editar-carrito');
-    // Especial
-    this.itemProductoCarrito = this.querySelectorAll('.pcph-item-carrito');
+    this.etiquetaSubtotal = this.querySelector('#phpc-etiqueta-subtotal');
+    this.etiquetaTotal = this.querySelector('#phpc-etiqueta-total');
+
+    
 
     // Hut Coins
     this.contenedorHutCoins = this.querySelector('#phpc-hutcoins');
@@ -2255,6 +2258,104 @@ class PageCheckoutPH extends HTMLElement {
 
     this.infoCarrito = await AuxiliaresGlobal.obtenerCarritoShopify();
     console.log("Info carrito Testeo : ", this.infoCarrito);
+    var contenidoHTML = "";
+    var totalPrecioCarrito = 0;
+    
+    this.infoCarrito.items.forEach((item) => {
+      if(!(item.properties && item.properties.estructura))return;
+
+      const data = JSON.parse(item.properties.estructura);
+      totalPrecioCarrito += parseInt(data.producto.precioTotalConjunto);
+
+      contenidoHTML += `
+        <div 
+        data-idTrabajo="${data.producto.idTrabajo}"
+        data-idShopify="${data.producto.idShopify}"
+        data-handle="${data.producto.handle}"
+        data-precio="${data.producto.precio}"
+        class="smecph-pc-item-carrito">
+          <div class="smecph-pc-item-carrito-info">
+            <div class="smecph-pc-item-ci-img">
+              ${data.producto.imagen == null || dataContruccion.producto.imagen == '' 
+                ? `<img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="${dataContruccion.producto.titulo}" width="100" height="100">`
+                : `<img src="${dataContruccion.producto.imagen}" alt="${dataContruccion.producto.titulo}" width="100" height="100">`
+              }
+            </div>
+            <div class="smecph-pc-item-ci-detalle">
+              <div class="smecph-pc-item-cid1">
+                <p>Cheesy Lovers</p>
+              </div>
+              <div class="smecph-pc-item-cid2">
+                <p>x${data.producto.cantidad}</p>
+              </div>
+              <div class="smecph-pc-item-cid3">
+                <div class="smecph-pc-item-cid3_total">
+                  <small>Bs</small>
+                  <p>${precio.precioTotalConjunto}</p>
+                </div>
+                ${
+                 data.producto.descuento == null || data.producto.descuento == 0 || data.producto.descuento == undefined 
+                 ? ``
+                 : `                
+                 <div class="smecph-pc-item-cid3_total color-letras-extra">
+                  <small>Bs</small>
+                  <p>${data.producto.descuento}</p>
+                  </div>
+                  `
+                }
+              </div>
+            </div>
+          </div>
+          `
+          var seraVisto = data.opcionesPrincipales.length == 0 && data.opcionesSecundarias.length == 0;
+
+          contenidoHTML += `
+          <div 
+          data-seravisto="${seraVisto}"
+          style="display: none;"
+          class="smecph-pc-item-carrito-extra">
+            <p>${data.opcionesPrincipales.titulo}</p>
+            <ul class="color-letras-extra">
+          `;
+
+          data.opcionesPrincipales.opciones.forEach((producto) => {
+            contenidoHTML += `
+              <li>
+                <p>${producto.tituloSeccion} : <br> ${producto.titulo}</p>
+              </li>
+            `;
+          });
+
+          contenidoHTML += `
+            </ul>
+            <p>${data.complementos.titulo}</p>
+            <ul class="color-letras-extra">
+          `;
+
+          dataContruccion.complementos.productos.forEach((producto) => {
+            contenidoHTML += `
+              <li>
+                <p>${producto.tituloSeccion} : <br> ${producto.titulo}</p>
+              </li>
+            `;
+          });
+
+          contenidoHTML += `
+            </ul>
+          </div>
+        </div>
+        `;
+    });
+
+    this.etiquetaSubtotal.textContent = `Bs ${totalPrecioCarrito.toFixed(2)}`;
+    this.etiquetaTotal.textContent = `Bs ${totalPrecioCarrito.toFixed(2)}`;
+    this.contenedorItemsCarrito.innerHTML = contenidoHTML;
+    this.itemProductoCarrito = this.querySelectorAll('.pcph-item-carrito');
+    this.itemProductoCarrito.forEach((item) => {
+      item.addEventListener('click', (event) => {
+        this.procesoVerDetallesProducto(event.currentTarget);
+      });
+    });
     
     this.configuracionAutoCompletadoSeleccionLocal();
     this.configuracionAutoCompletadoSeleccionDireccion();
@@ -2876,6 +2977,10 @@ class PageCheckoutPH extends HTMLElement {
       this.inputNitoCit.value = "----";
     }
     this.etiquetaDatosFacturacionConsolidados.textContent = `${this.inputRazonSocial.value} | ${this.inputNitoCit.value}`;
+  }
+
+  procesoVerDetallesProducto(){
+    
   }
 }
 

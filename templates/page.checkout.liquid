@@ -401,7 +401,10 @@
           <p class="color-letras-primary">EDITAR CARRITO</p>
         </button>
       </div>
-      <div class="smecph-pc-items-carrito">
+      <div
+        id="phpc-contenedor-items-carrito"
+        class="smecph-pc-items-carrito"
+      >
         <div class="smecph-pc-item-carrito">
           <div class="smecph-pc-item-carrito-info">
             <div class="smecph-pc-item-ci-img">
@@ -532,11 +535,10 @@
       <div class="smecph-mensaje-exito">
         {% render 'icon-check' %}
       </div>
-
       <hr>
       <div class="smecph-pcdc-precio-info">
         <p>Subtotal</p>
-        <p>Bs 126.05</p>
+        <p id="phpc-etiqueta-subtotal">Bs 126.05</p>
       </div>
       <div class="smecph-pcdc-precio-info">
         <p>Descuento</p>
@@ -549,7 +551,7 @@
       <hr>
       <div class="smecph-pcdc-precio-info">
         <p>Total</p>
-        <p>Bs 175.05</p>
+        <p id="phpc-etiqueta-total">Bs 175.05</p>
       </div>
     </section>
     <section class="container-sub-smecph" id="pcktph-nota-pedido">
