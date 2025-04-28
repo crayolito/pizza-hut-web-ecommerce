@@ -1643,7 +1643,7 @@ class PageCheckoutPH extends HTMLElement {
       {
         "lat" : -17.783315017953004,
         "lng" : -63.18214577296119,
-        "indicaciones" : "Santa Cruz, Preguntar por habitacion #45, Bolivia",
+        "indicaciones" : "Puente Urubo 91, Santa Cruz de la Sierra",
         "alias" : "Condominio de la amante",
       },
       {
@@ -1673,6 +1673,7 @@ class PageCheckoutPH extends HTMLElement {
     // DECLARAR ELEMENTOS
     this.btnMetodoLocal = this.querySelector('#phpc-metodo-local');
     this.btnMetodoDomicilio = this.querySelector('#phpc-metodo-domicilio');
+    this.contenedorSeccionRecogerLocal = this.querySelector('#phpc-seccion-seleccion-local');
 
     this.bodyModalLocalSeleccionado = this.querySelector('#phpc-modal-body-local-seleccionado');
     this.modalBodyContenedorMapa = this.querySelector('#phpc-localSeleccionado-mapa');
@@ -1822,6 +1823,7 @@ class PageCheckoutPH extends HTMLElement {
 
     // local y domicilio
     this.estadoPagina = localStorage.getItem('ph-metodo-entrega') || "domicilio";
+    this.direccionSeleccionada = this.listaDireccionPrueba[0];
     this.inicializarDatosdeContacto();
     this.inicializarDatosdeFacturacion();
     this.inicializarDataContruccion();
@@ -3015,6 +3017,13 @@ class PageCheckoutPH extends HTMLElement {
   }
 
   async procesoContinuarGeneral(){
+    if(this.localSeleccionado == null && this.estadoPagina == "local"){
+      this.contenedorSeccionRecogerLocal.scrollIntoView({
+        behavior: 'smooth', 
+        block: 'start' 
+      });
+      return;
+    }
 
     if(!this.validarCamposFormDatosContacto()){
       this.seccionFormDatosContacto.scrollIntoView({ 
@@ -3090,6 +3099,8 @@ class PageCheckoutPH extends HTMLElement {
   }
 
   obtenerDatosMetodoEnvio(){
+
+
     if(this.btnMetodoLocal.classList.contains('seleccionado')){
       return {
         metodo_envio : "local",
