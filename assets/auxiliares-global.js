@@ -3160,6 +3160,12 @@ class PageCheckoutPH extends HTMLElement {
         datosCheckout,
         itemsCarrito: this.infoCarrito.informacionCompleta.items
       };
+
+      console.log("Testeo Pruebas  :",{
+        "pruebas1" : this.direccionSeleccionada,
+        "pruebas2" : this.localSeleccionado,
+        "pruebas3" : this.estadoPagina,
+      })
       
       // Consulta GraphQL actualizada para draftOrderCreate
       const draftOrderQuery = `
@@ -3183,7 +3189,7 @@ class PageCheckoutPH extends HTMLElement {
       
       const variables = {
         input: {
-          
+
           email: dataUsuario.email,
           lineItems: lineItems,
           shippingAddress: {
