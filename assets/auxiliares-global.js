@@ -2261,7 +2261,7 @@ class PageCheckoutPH extends HTMLElement {
     var contenidoHTML = "";
     var totalPrecioCarrito = 0;
     
-    this.infoCarrito.items.forEach((item) => {
+    this.infoCarrito.informacionCompleta.items.forEach((item) => {
       if(!(item.properties && item.properties.estructura))return;
 
       const data = JSON.parse(item.properties.estructura);
