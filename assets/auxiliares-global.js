@@ -3065,7 +3065,7 @@ class PageCheckoutPH extends HTMLElement {
           }
         }
         
-        return true; // Método de pago seleccionado y válido
+        return true; // Método de pago seleccionado y válid
       }
     }
     
