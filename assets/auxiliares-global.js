@@ -3193,7 +3193,7 @@ class PageCheckoutPH extends HTMLElement {
             countryCode: "BO", // Usa countryCode en lugar de country
             zip: "0000"
           },
-          note: JSON.stringify(informacionPedido),
+          // note: JSON.stringify(informacionPedido),
           // Incluir información de pago si está disponible
           ...(datosCheckout.metodoPago && {
             tags: [`Método de pago: ${datosCheckout.metodoPago}`]
