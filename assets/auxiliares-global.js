@@ -3158,15 +3158,16 @@ class PageCheckoutPH extends HTMLElement {
             { key: "Note 2", value: "This is the second note" }
           ],
           note: "General note for the draft order",
-          metafields: [
-            {
-              namespace: "custom",
-              key: "order_details",
-              type: "json_string",
-              value: JSON.stringify(datosCheckout),
-            },
-          ],
+
         },
+        metafields: [
+          {
+            namespace: "custom",
+            key: "order_details",
+            type: "json_string",
+            value: JSON.stringify(datosCheckout),
+          },
+        ],
         // customer: {
         //   toUpsert: {
         //     firstName: dataUsuario.nombre,
