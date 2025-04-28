@@ -1764,7 +1764,7 @@ class PageCheckoutPH extends HTMLElement {
     this.inputUltimos4Digitos = this.querySelector('#phpc-input-ultimos-4-digitos');
     this.mensajeAlertaUltimos4Digitos = this.querySelector('#phpc-alerta-ultimos-4-digitos');
     // this.btnEfectivo = this.querySelector('#phpc-btn-efectivo');
-    this.btnsMetodosPagos = this.querySelectorAll('#pphpc-btn-metodo-pago');
+    this.btnsMetodosPagos = this.querySelectorAll('#phpc-btn-metodo-pago');
     
     // Datos de facturacion
     this.btnEditarDatosFacturacion = this.querySelector('#phpc-btn-editar-datos-facturacion');
