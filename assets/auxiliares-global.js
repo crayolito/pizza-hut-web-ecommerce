@@ -3029,7 +3029,7 @@ class PageCheckoutPH extends HTMLElement {
     if(this.localSeleccionado == null && this.estadoPagina == "local" && this.inputSeleccionarLocal.value == ""){
       this.contenedorBaseSeleccionLocal.scrollIntoView({
         behavior: 'smooth', 
-        block: 'start' 
+        block: 'center' 
       });
       return;
     }
@@ -3038,7 +3038,7 @@ class PageCheckoutPH extends HTMLElement {
     if(!this.validarCamposFormDatosContacto()){
       this.seccionFormDatosContacto.scrollIntoView({ 
         behavior: 'smooth', 
-        block: 'start' 
+        block: 'center' 
       });
       return;
     }
@@ -3046,7 +3046,7 @@ class PageCheckoutPH extends HTMLElement {
     if(!this.valirdarSeleccionMetodoPago()){
       this.seccionGeneralMetodosPago.scrollIntoView({ 
         behavior: 'smooth', 
-        block: 'start' 
+        block: 'center' 
       });
       return;
     }
