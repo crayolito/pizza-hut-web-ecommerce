@@ -2394,7 +2394,7 @@ class PageCheckoutPH extends HTMLElement {
   }
 
   verDireccionEnMapaLocalSeleccionado() {
-    // Verificar que existe el contenedor para el mapaa
+    // Verificar que existe el contenedor para el mapa
     this.modalBodyContenedorMapa = this.querySelector('#phpc-localSeleccionado-mapa');
     
     if (!this.modalBodyContenedorMapa) {
