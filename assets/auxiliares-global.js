@@ -875,7 +875,6 @@ class PageCarrito extends HTMLElement {
         }
         
         const dataContruccion = JSON.parse(item.properties.estructura);
-        console.log("PRECIO TOTAL CONJUNTO", dataContruccion.producto.precioTotalConjunto);
         precioTotal += parseFloat(dataContruccion.producto.precioTotalConjunto);
         // 
         contenidoIzquierdoHTML += `
@@ -2261,7 +2260,8 @@ class PageCheckoutPH extends HTMLElement {
     
     this.infoCarrito.informacionCompleta.items.forEach((item) => {
       if(!(item.properties && item.properties.estructura))return;
-
+      console.log("Item : ", item);
+      // Verificar si el item tiene la propiedad "estructura"
       const data = JSON.parse(item.properties.estructura);
       totalPrecioCarrito += parseInt(data.producto.precioTotalConjunto);
 
