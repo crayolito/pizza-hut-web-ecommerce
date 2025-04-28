@@ -1280,6 +1280,7 @@ class PageCarrito extends HTMLElement {
       });
 
       if(informacionCompleta.opcionesPrincipales.productos.length == 0 && informacionCompleta.complementos.productos.length == 0){
+        informacionCompleta.producto.cantidad = cantidadElemento;
         informacionCompleta.producto.precioTotalConjunto = informacionCompleta.producto.precio * cantidadElemento;
       }else {
         // 1. Primero se optiene el precio del producto base y se lo multiplica por la cantidad actual
@@ -1302,6 +1303,7 @@ class PageCarrito extends HTMLElement {
         let cantidadSolamenteComplementos = cantidadPrecioTotalAntiguo - (cantidadProductoBaseAntiguo + cantidadOpcionesPrincipalesAntiguo);
 
         // El nuevo precio del conjunto se calcula (cantidadProductoBaseNuevo + cantidadOpcionesPrincipalesNueva + cantidadSolamenteComplementos)
+        informacionCompleta.producto.cantidad = cantidadElemento;
         informacionCompleta.producto.precioTotalConjunto = cantidadProductoBaseNuevo + cantidadOpcionesPrincipalesNueva + cantidadSolamenteComplementos;
         console.log("Testeo completo :",{
           cantidadElemento,
@@ -3173,7 +3175,7 @@ class PageCheckoutPH extends HTMLElement {
         return {
           title: item.title || "Producto",
           quantity: item.quantity,
-          originalUnitPrice: parseFloat((item.precioTotalConjunto) || 0).toFixed(2)
+          originalUnitPrice: parseFloat((data.producto.precioTotalConjunto) || 0).toFixed(2)
         };
       });
       
