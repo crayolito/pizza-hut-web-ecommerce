@@ -3018,7 +3018,13 @@ class PageCheckoutPH extends HTMLElement {
   }
 
   async procesoContinuarGeneral(){
-    if(this.localSeleccionado == null && this.estadoPagina == "local"){
+    console.log("Pruebas finales : ", {
+      "testeo1" :this.localSeleccionado,
+      "testeo2" : this.estadoPagina,
+      "testeo3" : this.inputSeleccionarLocal.value, 
+    });
+
+    if(this.localSeleccionado == null && this.estadoPagina == "local" && this.inputSeleccionarLocal.value == ""){
       this.contenedorBaseSeleccionDireccionEnvio.scrollIntoView({
         behavior: 'smooth', 
         block: 'start' 
@@ -3064,6 +3070,7 @@ class PageCheckoutPH extends HTMLElement {
     console.log("Data orden preliminar", dataOrdenPreliminar.order.id);
     // await this.generarPedido(dataOrdenPreliminar.order.id);
     const dataJSON = this.generarJSONMostrarConsola();
+    console.log("Data JSON", dataJSON);
     localStorage.setItem('ph-json-generado', JSON.stringify(dataJSON));
     MensajeCargaDatos.ocultar();
     // window.location.href = "/pages/detalle-pedido";
@@ -3361,7 +3368,6 @@ class PageCheckoutPH extends HTMLElement {
       const productoCompleto = JSON.parse(item.properties.estructura);
       var opcionesPrincipales= [];
       var complementos = [];
-      console.log("Producto completo", productoCompleto);
 
       productoCompleto.opcionesPrincipales.productos.forEach(producto => {
         return opcionesPrincipales.push({
@@ -3395,8 +3401,6 @@ class PageCheckoutPH extends HTMLElement {
       productos 
     }
   }
-
-
 }
 
 customElements.define('page-checkout-ph', PageCheckoutPH);
