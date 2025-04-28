@@ -3363,7 +3363,7 @@ class PageCheckoutPH extends HTMLElement {
       var complementos = [];
       console.log("Producto completo", productoCompleto);
 
-      productoCompleto.opcionesPrincipales.forEach(producto => {
+      productoCompleto.opcionesPrincipales.productos.forEach(producto => {
         return opcionesPrincipales.push({
           nombre: producto.nombre,
           cantidad: producto.cantidad,
@@ -3372,7 +3372,7 @@ class PageCheckoutPH extends HTMLElement {
         });
       });
 
-      productoCompleto.complementos.forEach(producto => {
+      productoCompleto.complementos.productos.forEach(producto => {
         return complementos.push({
           nombre: producto.nombre, 
           cantidad: producto.cantidad,
