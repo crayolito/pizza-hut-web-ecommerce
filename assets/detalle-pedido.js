@@ -170,6 +170,7 @@ class DetallePedido extends HTMLElement {
     this.etiquetaSubTotal.textContent = `${infoCompletaOrden.orden.totales.subtotal} Bs`;
     this.etiquetaTotal.textContent = `${infoCompletaOrden.orden.totales.subtotal} Bs`;
 
+    console.log('Testeo de nota del pedido : ', infoProcesoCheckout.nota_para_envio);
     if (infoProcesoCheckout.nota_para_envio = "") {
       this.seccionNotaDeEnvio.style.display = 'none';
     } else {
