@@ -1,7 +1,7 @@
 class InicioSesion extends HTMLElement {
   constructor() {
     super();
-
+    this.codigoEnviadoCliente = null;
     // Configuración de Firebase
     // this.firebaseConfig = {
     //   apiKey: "AIzaSyBFBm87CEKsPhKNXLRt7QOAXL_67vbdAjI",
@@ -28,7 +28,7 @@ class InicioSesion extends HTMLElement {
     this.confirmationResult = null;
 
     // Inicializar componente
-    this.initializeFirebase();
+    // this.initializeFirebase();
   }
 
   connectedCallback() {
@@ -274,8 +274,12 @@ código y pégalo a continuación:`;
 
     if (todosLlenos) {
       const optenerNumero = inputs.map((input) => input.value).join('');
+      this.codigoEnviadoCliente = this.generarCodigo4Digitos();
+      localStorage.setItem('ph-codigo-verificacion', optenerNumero);
+
+      window.open(`https://wa.me/591${this.input.value}?text=Hola, este es el código que debes ingresar: ${this.optenerNumero}`,)
       // Aquí puedes agregar la lógica para enviar el código de verificaciónn
-      const result = await this.confirmationResult.confirm("123456");
+      // const result = await this.confirmationResult.confirm("123456");
 
       // Usuario verificado 
       const user = result.user;
@@ -332,6 +336,11 @@ código y pégalo a continuación:`;
     // Por ejemplo: this.containerPrincipal.style.display = 'block';
 
     console.log('Proceso reiniciado');
+  }
+
+  generarCodigo4Digitos() {
+    // Genera un número aleatorio entre 1000 y 9999
+    return Math.floor(1000 + Math.random() * 9000);
   }
 }
 
