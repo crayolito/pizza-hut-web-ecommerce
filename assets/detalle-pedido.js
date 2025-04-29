@@ -10,7 +10,6 @@ class DetallePedido extends HTMLElement {
       // REFERENCIAS A ELEMENTOS
       this.modalSnipper = this.querySelector('#phpdp-modal-snipper');
       this.detalleGeneralPedido = this.querySelector('#detalle-general-pedido');
-      this.contenedorTrackingPedido = this.querySelector('#pdpph-tracking-pedido');
       this.detallaPedidof1 = this.querySelector('#etapa-1-detalle-pedido');
       this.detallaPedidof2 = this.querySelector('#etapa-2-detalle-pedido');
       this.infoCompraF2 = this.querySelector('#etapa-2-info-compra');
