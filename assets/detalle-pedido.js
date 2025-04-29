@@ -193,7 +193,6 @@ class DetallePedido extends HTMLElement {
     });
 
     this.seccionPedidoCliente.insertAdjacentHTML('afterend', contenidoHTMLPedido)
-
     MensajeCargaDatos.ocultar();
   }
 
