@@ -86,7 +86,7 @@ class DetallePedido extends HTMLElement {
             this.seccionInferiorDetallePedido.style.display = 'flex';
         }
 
-        const textosCombos = this.formatoTextosCombos(infoCompletaOrden.orden.productos);
+        const textosCombos = this.formatoTextosCombos(infoCompletaOrden.orden.productos.length);
         this.etiquetaIdShopifyOrder.textContent = `#${idOrdenTrabajo}`;
         this.infoSuperiorDetallePedido.innerHTML = `#235246
             <p>${textosCombos}</p>
@@ -444,6 +444,20 @@ class DetallePedido extends HTMLElement {
         });
 
         return resultado;
+    }
+
+    formatoTextosCombos(cantidad) {
+        // Verificar si es un número válido
+        if (typeof cantidad !== 'number' || isNaN(cantidad) || cantidad < 0) {
+            return "0 Combos";
+        }
+
+        // Singular si es 1, plural para el resto
+        if (cantidad === 1) {
+            return "1 Combo";
+        } else {
+            return `${cantidad} Combos`;
+        }
     }
 
     btnVerMasDetallesClick() {
