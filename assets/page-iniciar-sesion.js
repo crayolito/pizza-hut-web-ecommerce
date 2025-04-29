@@ -294,7 +294,7 @@ código y pégalo a continuación:`;
         codigoVerificacion
       });
 
-      if (optenerNumero !== codigoVerificacion) {
+      if (parseInt(optenerNumero) !== parseInt(codigoVerificacion)) {
         this.ocultarElementosBase();
         console.log('Código incorrecto');
         MensajeCargaDatos.mostrar('El código ingresado es incorrecto.\nPor favor intenta nuevamente.');
