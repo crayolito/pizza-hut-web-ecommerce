@@ -352,7 +352,7 @@ carrito-shopify {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: start;
+  justify-content: space-between;
   gap: var(--espaciado-l);
   /* padding: var(--espaciado-xxl); */
   gap: var(--espaciado-l);

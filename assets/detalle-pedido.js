@@ -58,6 +58,7 @@ class DetallePedido extends HTMLElement {
         const infoCompletaOrden = await this.traerInformacionOrdenTrabajo(idOrdenTrabajo);
         console.log('infoCompletaOrden: ', infoCompletaOrden);
         const metodoEntrega = infoCompletaOrden.orden.notasPersonalizadas[0].value;
+        const idShopifyOrder = infoCompletaOrden.orden.id.split('/').pop();
 
 
         if (this.estadoEtapaPagina == "etapa-1") {
@@ -71,7 +72,6 @@ class DetallePedido extends HTMLElement {
             contenedorIcono.innerHTML = metodoEntrega == "Domicilio" ? `${window.shopIcons.icon_recogo_delivery}` : `${window.shopIcons.icon_recogo_local}`;
 
             // Solo necesito obtener los numeros
-            const idShopifyOrder = infoCompletaOrden.orden.id.split('/').pop();
             const { fechaFormateada, horaCompletada } = this.formatearFechaInfoBasica(infoCompletaOrden.orden.fechaCompletado);
 
             this.infoBasicaDetalle.innerHTML = `
@@ -88,8 +88,8 @@ class DetallePedido extends HTMLElement {
         }
 
         const textosCombos = this.formatoTextosCombos(infoCompletaOrden.orden.productos.length);
-        this.etiquetaIdShopifyOrder.textContent = `#${idOrdenTrabajo}`;
-        this.infoSuperiorDetallePedido.innerHTML = `#235246
+        this.etiquetaIdShopifyOrder.textContent = `#${idShopifyOrder}`;
+        this.infoSuperiorDetallePedido.innerHTML = `
             <p>${textosCombos}</p>
             <p>•</p>
             <p>
