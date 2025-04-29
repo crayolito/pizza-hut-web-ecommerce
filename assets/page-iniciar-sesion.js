@@ -3,14 +3,14 @@ class InicioSesion extends HTMLElement {
     super();
 
     // Configuración de Firebase
-    this.firebaseConfig = {
-      apiKey: "AIzaSyBFBm87CEKsPhKNXLRt7QOAXL_67vbdAjI",
-      authDomain: "hackathon-b16d3.firebaseapp.com",
-      projectId: "hackathon-b16d3",
-      storageBucket: "hackathon-b16d3.firebasestorage.app",
-      messagingSenderId: "622628492965",
-      appId: "1:622628492965:web:ccd1b01b6355b5c84f9f4c",
-      measurementId: "G-PT6GFSWCLT"
+    const firebaseConfig = {
+      apiKey: "AIzaSyCiu2KfBo01XSkN8LCjf-w689gdC3Mbx0k",
+      authDomain: "fir-ed62b.firebaseapp.com",
+      databaseURL: "https://fir-ed62b.firebaseio.com",
+      projectId: "fir-ed62b",
+      storageBucket: "fir-ed62b.firebasestorage.app",
+      messagingSenderId: "284308699223",
+      appId: "1:284308699223:web:0b82592b77b6577f9ecb12"
     };
 
     // Variable para almacenar el resultado de la confirmación
