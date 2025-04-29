@@ -13,15 +13,19 @@ class DetallePedido extends HTMLElement {
     this.btnVolverInicio = this.querySelector('#phpdp-btn-volver-inicio');
     this.btnVolverAtras = this.querySelector('#phpdp-btn-volver-atras');
 
-    this.etiquetaIdShopifyOrder = this.querySelector('#phpdp-etiqueta-idshopify-order');
-    this.etiquetaSubTotal = this.querySelector('#phpdp-etiqueta-subtotal');
-    this.etiquetaTotal = this.querySelector('#phpdp-etiqueta-total');
-    this.infoBasicaDetallePedido = this.querySelector('#phpdp-info-basica-detalle-pedido');
+    this.seccionInfoBasica = this.querySelector('#phpdp-seccion-info-basica');
 
     this.seccionInfoEntregaLocal = this.querySelector('#phpdp-detalle-pedido-local');
     this.seccionInfoEntregaDomicilio = this.querySelector('#phpdp-detalle-envio-domicilio');
     this.seccionNotaDeEnvio = this.querySelector('#phpdp-seccion-nota-envio');
-    this.seccionMasDetallesSobrePedido = this.querySelector('#phpdp-seccion-mas-detalle-sobre-pedido');
+
+    this.seccionSuperiorDetallePedido = this.querySelector('#phpdp-seccion-superior-detalle-pedido');
+    this.infoSuperiorDetallePedido = this.querySelector('#phpdp-info-superior-detalle-pedido');
+    this.etiquetaIdShopifyOrder = this.querySelector('#phpdp-etiqueta-idshopify-order');
+    this.etiquetaSubTotal = this.querySelector('#phpdp-etiqueta-subtotal');
+    this.etiquetaTotal = this.querySelector('#phpdp-etiqueta-total');    
+    
+    this.seccionInferiorDetallePedido = this.querySelector('#phpdp-seccion-inferior-detalle-pedido');
 
     this.seccionMetodoPago = this.querySelector('#phpdp-metodo-pago');
 
@@ -39,10 +43,17 @@ class DetallePedido extends HTMLElement {
             return;
         };
 
+        
         const infoCompletaOrden = await this.traerInformacionOrdenTrabajo(idOrdenTrabajo);
         console.log('infoCompletaOrden: ', infoCompletaOrden);
-
+        
         this.btnVolverInicio.style.display = 'flex';
+        
+        const metodoEntrega = infoCompletaOrden.notasPersonalizadas[0].value;
+        const etiquetaInfoBasica = this.seccionInfoBasica.querySelector('#phpdp-etiqueta-tipo-pedido');
+        etiquetaInfoBasica.textContent = metodoEntrega == "Domicilio" ? "Envío a Domicilio" : "En Local";
+        const contenedorIcono = this.seccionInfoBasica.querySelector('.pdpph-mensaje-etapa1-icono');
+        contenedorIcono.innerHTML = metodoEntrega == "Domicilio" ? `${window.shopIcons.icon_recogo_delivery}` : `${window.shopIcons.icon_recogo_local}`;
 
         // if (infoEtapaPagina == 'etapa-1') {
         // this.detallaPedidof1.style.display = 'flex';
