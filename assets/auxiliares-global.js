@@ -3074,6 +3074,7 @@ class PageCheckoutPH extends HTMLElement {
      await this.generarPedido(dataOrdenPreliminar.order.id);
     const dataJSON = this.generarJSONMostrarConsola();
     console.log("Data JSON", dataJSON);
+    console.log("Data Orden Finalizada", await this.getOrderDetails());
     localStorage.setItem('ph-json-generado', JSON.stringify(dataJSON));
     MensajeCargaDatos.ocultar();
     localStorage.setItem('ph-estadoDP',"etapa-1");
@@ -3221,7 +3222,6 @@ class PageCheckoutPH extends HTMLElement {
         }
       `;
       
-      // El ID ya viene en formato GID completoo: "gid://shopify/DraftOrder/1189380718876"
       const variables = {
         id: idOrden
       };
@@ -3268,6 +3268,73 @@ class PageCheckoutPH extends HTMLElement {
       return { success: false, error: error.message };
     }
   }
+
+  async getOrderDetails(orderId = "gid://shopify/Order/1189413257500") {
+    try {
+      // Consulta GraphQL para obtener detalles de la orden
+      const orderDetailsQuery = `
+        query GetOrderDetails {
+          order(id: "${orderId}") {
+            id
+            name
+            lineItems(first: 10) {
+              edges {
+                node {
+                  title
+                  quantity
+                  customAttributes {
+                    key
+                    value
+                  }
+                }
+              }
+            }
+            totalPriceSet {
+              shopMoney {
+                amount
+                currencyCode
+              }
+            }
+            note
+          }
+        }
+      `;
+      
+      const myTest = 'shpat_' + '45f4a7476152f4881d058f87ce063698';
+      
+      const response = await fetch(this.urlConsulta, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Shopify-Access-Token': myTest
+        },
+        body: JSON.stringify({
+          query: orderDetailsQuery
+        })
+      });
+      
+      const data = await response.json();
+      console.log('Respuesta completa de detalles de orden:', data);
+      
+      if (data.errors) {
+        console.error('Errores en la respuesta GraphQL:', data.errors);
+        return { success: false, errors: data.errors };
+      }
+      
+      if (data.data && data.data.order) {
+        console.log('Detalles de orden obtenidos exitosamente:', data.data.order);
+        return { 
+          success: true, 
+          order: data.data.order 
+        };
+      }
+      
+      return { success: false, message: 'Respuesta inesperada del servidor' };
+    } catch (error) {
+      console.error('Error al obtener detalles de la orden:', error);
+      return { success: false, error: error.message };
+    }
+   }
 
   valirdarSeleccionMetodoPago() {
     for (let btn of this.btnsMetodosPagos) {
