@@ -387,7 +387,7 @@
       this.inicializarMedianteDataLocalStorage();
     }
 
-    declararComponentesDespuesCreacion(){
+    async declararComponentesDespuesCreacion(){
       // REFERENCIAS ELEMENTOS
       this.estadoVacioContenedorPostres = this.querySelector('#phpm-vacio-extras-especiales-postres');
       this.estadoItemsContenedorPostres = this.querySelector('#phpm-extras-especiales-postres');
@@ -439,10 +439,11 @@
       this.anadirMasContenedorGaseosasCerversas.style.display = 'none';
       this.estadoItemsContenedorPostres.style.display = 'none';
       this.estadoItemsContenedorGaseosasCerversas.style.display = 'none';
-      this.actualizarEstadoBotonesInferiores();
+      await this.actualizarEstadoBotonesInferiores();
     }
 
     async inicializarMedianteDataLocalStorage() {
+      MensajeCargaDatos.mostrar('Procesando Informacion ...');
       // BUSCAR EN EL LOCALSTORAGE SI ES UN PRODUCTO INICIAL O EDITABLE 
       // RECUERDA VERIFICAR QUE TIPO DE PRODUCTO ES SIMPLE O COMPLEJO
       
@@ -757,7 +758,8 @@
       this.cantidadPrecioCarrito = await AuxiliaresGlobal.totalPrecioCarritoShopify();
 
       // Declaracion referenciar - inicializar - eventos
-      this.declararComponentesDespuesCreacion();
+      await this.declararComponentesDespuesCreacion();
+      MensajeCargaDatos.ocutlar();
     }
 
     async creacionHTMLGaseosasCervesas(){
@@ -1064,7 +1066,7 @@
 
     editarEstructuraTrabajoLocalStorage(){}
 
-    procesoItemRamaPrincipal(btnElemento){
+    async procesoItemRamaPrincipal(btnElemento){
       // SIEMPE LA LOGICA DE LOS PRINCIPALES ES QUE SELECCIONA UNO SOLO Y SUS SUB PRODUCTOS SE ACTUALIZAN
 
       // Ir a buscar al padre de esa seccion con id="pmph-seleccion-rama-principal"
@@ -1260,13 +1262,13 @@
       }); {% endcomment %}
 
       // Hay que actualizar el valor de los botones inferiores
-      this.actualizarEstadoBotonesInferiores();
+      await this.actualizarEstadoBotonesInferiores();
     }
 
     predefinirItemSeleccionado(){
     }
 
-    procesoItemSubRama(btnElemento){  
+    async procesoItemSubRama(btnElemento){  
       // Busco al contenedor padre de la seccion con id="pmph-seleccion-subRama"
       // Obtengo su informacion max min codigo (tipo boton)
       const contenedorPadreSeccion = btnElemento.closest('#pmph-seleccion-subRama');
@@ -1355,7 +1357,7 @@
       });
 
       // Hay que actualizar el valor de los botones inferiores
-      this.actualizarEstadoBotonesInferiores();
+      await this.actualizarEstadoBotonesInferiores();
     }
 
     abrirSeccionModalExtras(tipoProductos){
@@ -1379,7 +1381,7 @@
       this.modalProductoExtras.style.display = 'none';
     }
 
-    procesarSeccionModal(){
+    async procesarSeccionModal(){
       this.cerrarSeccionModalExtras();
       var elClienteSiSelecciono = false;
       var itemsPedidos =[];
@@ -1528,10 +1530,10 @@
         });
       }
 
-      this.actualizarEstadoBotonesInferiores();
+      await this.actualizarEstadoBotonesInferiores();
     }
 
-    eliminarItemExtras(btnElemento){
+    async eliminarItemExtras(btnElemento){
       const tipoExtra = btnElemento.getAttribute('data-extras');
 
       if(tipoExtra == 'postres'){
@@ -1596,10 +1598,10 @@
         }
       }
 
-      this.actualizarEstadoBotonesInferiores();
+      await this.actualizarEstadoBotonesInferiores();
     }
 
-    actualizarEstadoBotonesInferiores(){
+    async actualizarEstadoBotonesInferiores(){
       var data = JSON.parse(localStorage.getItem('phpp-productoData'));
       const cantidadSolicitada = this.querySelector('#phpd-cantidad-general').innerHTML;
 
@@ -1670,7 +1672,8 @@
       }
       
       // Debo traerme el carrito 
-      console.log('Testeo de ver si tengo todo el carrito : ', this.ca);
+      this.carritoShopify = await AuxiliaresGlobal.obtenerCarrito();
+      console.log('Testeo de ver si tengo todo el carrito : ', this.carritoShopify);
       var precioTotalCarrito = this.cantidadPrecioCarrito + (cantidadPrecioHazUnPedido * parseInt(cantidadSolicitada)) + cantidadPrecioTotalExtras; 
       this.cantidadPrecioHazUnPedido = cantidadPrecioHazUnPedido * parseInt(cantidadSolicitada) + cantidadPrecioTotalExtras;
 
@@ -1791,7 +1794,6 @@
         }
       };
       
-      this.carritoShopify  = await AuxiliaresGlobal.obtenerCarritoShopify();
       var precioToalCarrito = 0;
       console.log("Testeo al obtener carrito Shopify", this.carritoShopify);
 
@@ -1804,6 +1806,9 @@
         MensajeCargaDatos.ocultar();
         window.location.href = '/pages/carrito';
       } 
+
+      this.carritoShopify = await AuxiliaresGlobal.obtenerCarrito();
+      console.log('Testeo de ver si tengo todo el carrito : ', this.carritoShopify);
 
       if(tipoProceso == 'agregarcarrito'){
         // Actualizar las etiquetas del HAAZ ME UN PEDIDO Y AGREGAR AL CARRITo  
