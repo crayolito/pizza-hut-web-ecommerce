@@ -49,9 +49,198 @@
   class BannerIndex extends HTMLElement {
     constructor() {
       super();
+      this.imagenesUso = {
+        imagen1: window.assets.banner_1,
+        imagen2: window.assets.banner_2,
+        imagen3: window.assets.banner_3,
+        imagen4: window.assets.banner_4,
+        imagen5: window.assets.banner_5,
+      };
+      this.tiempoTransicion = 3000; // 3 segundos en milisegundos
+      this.imagenActual = 0;
+      this.totalImagenes = 4; // Total de imágenes que usaremos (4 botones)
+      this.intervaloTransicion = null;
+      this.imagenElement = null;
+      this.botonesCarrusel = [];
     }
 
-    connectedCallback() {}
+    connectedCallback() {
+      // Inicializar componentes
+      this.inicializarComponentes();
+
+      // Configurar evento para botones de navegación
+      this.configurarBotonesNavegacion();
+
+      // Configurar eventos para botones de carrusel
+      this.configurarBotonesCarrusel();
+
+      // Configurar evento para mostrar/ocultar flechas en hover
+      this.configurarVisibilidadFlechas();
+
+      // Iniciar transición automática
+      this.iniciarTransicionAutomatica();
+    }
+
+    inicializarComponentes() {
+      // Obtener la imagen principal
+      this.imagenElement = this.querySelector('.bi-contenedor-imagen img');
+
+      // Obtener botones del carrusel
+      this.botonesCarrusel = this.querySelectorAll('.bi-boton-carrusel');
+
+      // Configurar imagen inicial
+      this.actualizarImagen(0);
+    }
+
+    configurarBotonesNavegacion() {
+      // Botón flecha atrás
+      const botonAtras = this.querySelector('.bi-icono-flecha-atras');
+      botonAtras.addEventListener('click', () => {
+        this.mostrarImagenAnterior();
+      });
+
+      // Botón flecha adelante
+      const botonAdelante = this.querySelector('.bi-icono-flecha-adelante');
+      botonAdelante.addEventListener('click', () => {
+        this.mostrarImagenSiguiente();
+      });
+    }
+
+    configurarBotonesCarrusel() {
+      // Agregar eventos a cada botón del carrusel
+      this.botonesCarrusel.forEach((boton, indice) => {
+        boton.addEventListener('click', () => {
+          this.actualizarImagen(indice);
+          this.reiniciarTransicionAutomatica();
+        });
+      });
+    }
+
+    actualizarImagen(indice) {
+      // Actualizar índice actual
+      this.imagenActual = indice;
+
+      // Actualizar la imagen mostrada
+      const rutaImagen = this.obtenerRutaImagen(indice);
+      this.imagenElement.src = rutaImagen;
+
+      // Actualizar estado de los botones del carrusel
+      this.actualizarBotonesCarrusel();
+    }
+
+    obtenerRutaImagen(indice) {
+      // Obtener la ruta de la imagen según el índice
+      const claves = Object.keys(this.imagenesUso);
+      if (indice < claves.length) {
+        return this.imagenesUso[claves[indice]];
+      }
+      // Por defecto, devolver la primera imagen
+      return this.imagenesUso.imagen1;
+    }
+
+    actualizarBotonesCarrusel() {
+      // Actualizar la apariencia de los botones del carrusel
+      this.botonesCarrusel.forEach((boton, indice) => {
+        // Limpiar el contenido existente
+        boton.innerHTML = '';
+
+        // Agregar el icono correspondiente
+        if (indice === this.imagenActual) {
+          boton.innerHTML = this.obtenerIconoSeleccionado();
+        } else {
+          boton.innerHTML = this.obtenerIconoNoSeleccionado();
+        }
+      });
+    }
+
+    obtenerIconoSeleccionado() {
+      // Template para icono de carrusel seleccionado
+      return `{% render 'icon-carrusel-seleccionado' %}`;
+    }
+
+    obtenerIconoNoSeleccionado() {
+      // Template para icono de carrusel no seleccionado
+      return `{% render 'icon-carrusel-no-seleccionado' %}`;
+    }
+
+    mostrarImagenSiguiente() {
+      // Calcular el siguiente índice (con manejo circular)
+      const siguienteIndice = (this.imagenActual + 1) % this.totalImagenes;
+      this.actualizarImagen(siguienteIndice);
+      this.reiniciarTransicionAutomatica();
+    }
+
+    mostrarImagenAnterior() {
+      // Calcular el índice anterior (con manejo circular)
+      const anteriorIndice = (this.imagenActual - 1 + this.totalImagenes) % this.totalImagenes;
+      this.actualizarImagen(anteriorIndice);
+      this.reiniciarTransicionAutomatica();
+    }
+
+    iniciarTransicionAutomatica() {
+      // Iniciar el intervalo para cambiar automáticamente las imágenes
+      this.intervaloTransicion = setInterval(() => {
+        this.mostrarImagenSiguiente();
+      }, this.tiempoTransicion);
+    }
+
+    reiniciarTransicionAutomatica() {
+      // Reiniciar el temporizador cuando hay interacción manual
+      if (this.intervaloTransicion) {
+        clearInterval(this.intervaloTransicion);
+      }
+      this.iniciarTransicionAutomatica();
+    }
+
+    configurarVisibilidadFlechas() {
+      // Obtener componente principal
+      const componentePrincipal = this;
+      const flechaAtras = this.querySelector('.bi-icono-flecha-atras');
+      const flechaAdelante = this.querySelector('.bi-icono-flecha-adelante');
+
+      // Solo aplicar estos eventos si estamos en desktop
+      const esDesktop = window.matchMedia('(min-width: 768px)');
+
+      if (esDesktop.matches) {
+        // Por defecto, ocultar flechas en desktop (sobrescribir CSS)
+        flechaAtras.style.display = 'none';
+        flechaAdelante.style.display = 'none';
+
+        // Mostrar flechas cuando el cursor está sobre el componente
+        componentePrincipal.addEventListener('mouseenter', () => {
+          flechaAtras.style.display = 'block';
+          flechaAdelante.style.display = 'block';
+        });
+
+        // Ocultar flechas cuando el cursor sale del componente
+        componentePrincipal.addEventListener('mouseleave', () => {
+          flechaAtras.style.display = 'none';
+          flechaAdelante.style.display = 'none';
+        });
+
+        // Escuchar cambios en el tamaño de la ventana
+        window.addEventListener('resize', () => {
+          if (window.matchMedia('(min-width: 768px)').matches) {
+            // En desktop, ocultar flechas por defecto
+            flechaAtras.style.display = 'none';
+            flechaAdelante.style.display = 'none';
+          } else {
+            // En móvil, restablecer a los valores CSS
+            flechaAtras.style.display = '';
+            flechaAdelante.style.display = '';
+          }
+        });
+      }
+    }
+
+    // Método para limpiar cuando el componente se elimina
+    disconnectedCallback() {
+      if (this.intervaloTransicion) {
+        clearInterval(this.intervaloTransicion);
+      }
+    }
   }
+
+  // Registrar el componente personalizado
   customElements.define('banner-index', BannerIndex);
 </script>
