@@ -167,8 +167,8 @@ class DetallePedido extends HTMLElement {
       `;
     }
 
-    this.etiquetaSubTotal.textContent = `${infoCompletaOrden.orden.totales.subtotal}.00 Bs`;
-    this.etiquetaTotal.textContent = `${infoCompletaOrden.orden.totales.total}.00 Bs`;
+    this.etiquetaSubTotal.textContent = `${infoCompletaOrden.orden.totales.subtotal} Bs`;
+    this.etiquetaTotal.textContent = `${infoCompletaOrden.orden.totales.subtotal} Bs`;
 
     if (infoProcesoCheckout.nota_para_envio = "") {
       this.seccionNotaDeEnvio.style.display = 'none';
