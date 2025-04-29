@@ -1053,7 +1053,6 @@ class PizzaHutProducto extends HTMLElement {
 
         const imagen = itemHTML.querySelector('.ppme-modal-item-extra-imagen img').getAttribute('src');
         const [titulo, precio] = itemHTML.querySelectorAll('.ppme-modal-item-extra-info-detalle p');
-        // {% comment %} const [titulo, precio] = [informacionProducto[0], informacionProducto[1]]; {% endcomment %}
 
         if (parseInt(cantidad) > 0) {
           elClienteSiSelecciono = true;
@@ -1318,7 +1317,6 @@ class PizzaHutProducto extends HTMLElement {
       cantidadPrecioTotalExtras += precio;
     });
 
-
     if (cumplenLasRamasPrincipales == false && cumplenLasSubRamas == false) {
       this.btnHazUnPedido.classList.add('desactivado');
       this.btnAgregarCarrito.classList.add('desactivado');
@@ -1327,7 +1325,6 @@ class PizzaHutProducto extends HTMLElement {
       this.btnAgregarCarrito.classList.remove('desactivado');
     }
 
-    // var precioTotalCarrito = this.cantidadPrecioCarrito + (cantidadPrecioHazUnPedido * parseInt(cantidadSolicitada)) + cantidadPrecioTotalExtras;
     var precioTotalCarrito = 0;
     this.carritoShopify = await AuxiliaresGlobal.obtenerCarritoShopify();
     console.log('Testeo de ver si tengo todo el carrito: ', this.carritoShopify);
@@ -1338,9 +1335,12 @@ class PizzaHutProducto extends HTMLElement {
     this.cantidadPrecioCarrito = precioTotalCarrito;
 
     this.cantidadPrecioHazUnPedido = cantidadPrecioHazUnPedido * parseInt(cantidadSolicitada) + cantidadPrecioTotalExtras;
-    console.log('Cantidad precio haz un pedido: ', this.cantidadPrecioHazUnPedido);
     precioTotalCarrito = precioTotalCarrito + cantidadPrecioHazUnPedido;
-    console.log('Precio total carrito: ', precioTotalCarrito);
+    console.log('Testeo de precio total carrito: ', {
+      "testeo cantidadPrecioTotalExtras": cantidadPrecioTotalExtras,
+      "testeo precioTotalCarrito": precioTotalCarrito,
+      "testeo cantidadPrecioHazUnPedido": this.cantidadPrecioHazUnPedido,
+    });
 
     this.etiquetaHazUnPedido.innerHTML = `Bs ${this.cantidadPrecioHazUnPedido}`;
     this.etiquetaAgregarCarrito.innerHTML = `Bs ${precioTotalCarrito}`;
