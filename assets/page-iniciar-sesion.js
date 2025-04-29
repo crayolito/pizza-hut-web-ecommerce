@@ -186,7 +186,7 @@ class InicioSesion extends HTMLElement {
 
     // await this.sendVerificationCode();
     this.codigoEnviadoCliente = this.generarCodigo4Digitos();
-    localStorage.setItem('ph-codigo-verificacion', optenerNumero);
+    localStorage.setItem('ph-codigo-verificacion', this.codigoEnviadoCliente);
 
     // Abrir WhatsApp con el mensaje que contiene el código
     console.log("Testeo de WhatsApp",
