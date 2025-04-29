@@ -181,7 +181,6 @@ class DetallePedido extends HTMLElement {
     var contenidoHTMLPedido = '';
     infoCarritoProceso.forEach(item => {
       const dataEstructuraProducto = JSON.parse(item.properties.estructura);
-      console.log('Testeo dataEstructuraProducto: ', dataEstructuraProducto);
       contenidoHTMLPedido += `
         <div class="container-sub-smecph">
           <div class="pdpph-etapa2-info-pedido">
