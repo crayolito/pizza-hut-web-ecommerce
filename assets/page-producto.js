@@ -1331,12 +1331,12 @@ class PizzaHutProducto extends HTMLElement {
         // var precioTotalCarrito = this.cantidadPrecioCarrito + (cantidadPrecioHazUnPedido * parseInt(cantidadSolicitada)) + cantidadPrecioTotalExtras;
         var precioTotalCarrito = 0;
         this.carritoShopify = await AuxiliaresGlobal.obtenerCarritoShopify();
+        console.log('Testeo de ver si tengo todo el carrito : ', this.carritoShopify);
         this.carritoShopify.items.forEach((item) => {
             const dataProducto = JSON.parse(item.properties.estructura);
             precioTotalCarrito += parseInt(dataProducto.precioTotalConjunto) * parseInt(dataProducto.cantidad);
         });
 
-        console.log('Testeo de ver si tengo todo el carrito : ', this.carritoShopify);
         this.cantidadPrecioHazUnPedido = cantidadPrecioHazUnPedido * parseInt(cantidadSolicitada) + cantidadPrecioTotalExtras;
         precioTotalCarrito += precioTotalCarrito + cantidadPrecioHazUnPedido;
 
