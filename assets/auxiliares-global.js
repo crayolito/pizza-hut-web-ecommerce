@@ -364,7 +364,7 @@ class AuxiliaresGlobal {
   }
 
   /**
-   * Sincroniza el contador visual con el estado actual del carrito
+   * Sincroniza el contador visual con el estado actual del carritoo
     * @param {Object} cart - Objeto carrito devuelto por Shopify
     */
   static sincronizarContadorConCarrito(cart) {
