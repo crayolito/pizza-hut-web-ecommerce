@@ -24,7 +24,7 @@ class InicioSesion extends HTMLElement {
     };
 
 
-    // Variable para almacenar el resultado de la confirmación
+    // Variable para almacenar el resultado de la confirmaciónn
     this.confirmationResult = null;
 
     // Inicializar componente
