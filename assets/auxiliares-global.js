@@ -3078,6 +3078,7 @@ class PageCheckoutPH extends HTMLElement {
     localStorage.setItem('ph-json-generado', JSON.stringify(dataJSON));
     MensajeCargaDatos.ocultar();
     localStorage.setItem('ph-estadoDP',"etapa-1");
+    localStorage.setItem('ph-id-orden', dataOrdenPreliminar.order.id);
     // window.location.href = "/pages/detalle-pedido";
   }
 
