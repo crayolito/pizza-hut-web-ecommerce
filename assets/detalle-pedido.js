@@ -50,26 +50,11 @@ class DetallePedido extends HTMLElement {
         this.btnVolverInicio.style.display = 'flex';
         
         const metodoEntrega = infoCompletaOrden.notasPersonalizadas[0].value;
+        console.log('metodoEntrega: ', metodoEntrega);
         const etiquetaInfoBasica = this.seccionInfoBasica.querySelector('#phpdp-etiqueta-tipo-pedido');
         etiquetaInfoBasica.textContent = metodoEntrega == "Domicilio" ? "Envío a Domicilio" : "En Local";
         const contenedorIcono = this.seccionInfoBasica.querySelector('.pdpph-mensaje-etapa1-icono');
         contenedorIcono.innerHTML = metodoEntrega == "Domicilio" ? `${window.shopIcons.icon_recogo_delivery}` : `${window.shopIcons.icon_recogo_local}`;
-
-        // if (infoEtapaPagina == 'etapa-1') {
-        // this.detallaPedidof1.style.display = 'flex';
-        // this.btnVerMasDetalles.style.display = 'flex';
-        // this.btnVolverInicio.style.display = 'flex';
-        // this.detalleGeneralPedido.style.display = 'flex';
-        // this.contenedorTrackingPedido.style.display = 'flex';
-        // }
-
-        // if (infoEtapaPagina == 'etapa-2') {
-        // this.detallaPedidof2.style.display = 'flex';
-        // this.infoCompraF2.style.display = 'flex';
-        // this.btnVolverInicio.style.display = 'flex';
-        // this.detalleGeneralPedido.style.display = 'flex';
-        // this.contenedorTrackingPedido.style.display = 'flex';
-        // }
     }
 
         async traerInformacionOrdenTrabajo(idOrdenTrabajo) {
