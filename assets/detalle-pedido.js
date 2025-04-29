@@ -55,7 +55,7 @@ class DetallePedido extends HTMLElement {
         if (this.estadoEtapaPagina == "etapa-1") {
             this.seccionGeneralInfoBasica.style.display = 'flex';
             this.btnVolverInicio.style.display = 'flex';
-            this.verMasDetalles.style.display = 'flex';
+            this.btnVerMasDetalles.style.display = 'flex';
 
             const infoCompletaOrden = await this.traerInformacionOrdenTrabajo(idOrdenTrabajo);
             console.log('infoCompletaOrden: ', infoCompletaOrden);
@@ -78,7 +78,7 @@ class DetallePedido extends HTMLElement {
         }
 
         if (this.estadoEtapaPagina == "etapa-2") {
-            this.volverAtras.style.display = 'flex';
+            this.btnVolverAtras.style.display = 'flex';
             this.seccionSuperiorDetallePedido.style.display = 'flex';
             this.seccionInferiorDetallePedido.style.display = 'flex';
         }
