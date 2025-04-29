@@ -3076,10 +3076,10 @@ class PageCheckoutPH extends HTMLElement {
     console.log("Data JSON", dataJSON);
     console.log("Data Orden Finalizada", await this.getOrderDetails());
     localStorage.setItem('ph-json-generado', JSON.stringify(dataJSON));
-    MensajeCargaDatos.ocultar();
     localStorage.setItem('ph-estadoDP',"etapa-1");
     localStorage.setItem('ph-id-orden', dataOrdenPreliminar.order.id);
-    // window.location.href = "/pages/detalle-pedido";
+    MensajeCargaDatos.ocultar();
+    window.location.href = "/pages/detalle-pedido";
   }
 
   async generarPedidoPreliminar(datosCheckout) {
