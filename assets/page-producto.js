@@ -68,6 +68,11 @@ class PizzaHutProducto extends HTMLElement {
 
     this.cantidadProductoGeneralEtiqueta = this.querySelector('#phpd-cantidad-general');
 
+    this.btnVolverAtras = this.querySelector('#phpp-btn-volver-atras');
+    this.btnVolverAtras.addEventListener('click', () => {
+      window.history.back();
+    });
+
     this.btnsContenedorCantidad = this.querySelectorAll('.pmph-cantidad-selector-button');
     this.btnsContenedorCantidad.forEach((btn) => {
       btn.addEventListener('click', this.actualizarEstadoBotonesInferiores.bind(this));
@@ -160,7 +165,9 @@ class PizzaHutProducto extends HTMLElement {
 
     var detallaBasicoProducto = '';
     detallaBasicoProducto += `
-        <button class="pmph-volver-atras icon-color-primary ">
+        <button 
+        id="phpp-btn-volver-atras"
+        class="pmph-volver-atras icon-color-primary ">
           ${window.shopIcons.icon_volver_atras}
           <p class="color-letras-primary">Volver</p>
         </button>

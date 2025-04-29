@@ -373,6 +373,8 @@ class AuxiliaresGlobal {
       const cantidadTotal = cart.item_count || 0;
       mensaje.textContent = cantidadTotal;
 
+      console.log('Cantidad total de productos Testeo :', cantidadTotal);
+
       // Actualizar clases
       mensaje.classList.remove('digitos-2', 'digitos-3');
       const valorStr = cantidadTotal.toString();
