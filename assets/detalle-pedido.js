@@ -42,7 +42,6 @@ class DetallePedido extends HTMLElement {
             window.location.href = '/';
             return;
         };
-
         
         const infoCompletaOrden = await this.traerInformacionOrdenTrabajo(idOrdenTrabajo);
         console.log('infoCompletaOrden: ', infoCompletaOrden);
