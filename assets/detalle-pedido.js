@@ -451,7 +451,6 @@ class DetallePedido extends HTMLElement {
         if (typeof cantidad !== 'number' || isNaN(cantidad) || cantidad < 0) {
             return "0 Combos";
         }
-
         // Singular si es 1, plural para el resto
         if (cantidad === 1) {
             return "1 Combo";
