@@ -1480,7 +1480,7 @@ class PizzaHutProducto extends HTMLElement {
 
     console.log("Testeo al agregar al carrito", {
       "testeo cantidadPrecioCarrito": this.cantidadPrecioCarrito,
-      "testeo cantidadSolicitada": cantidadSolicitada,
+      "testeo cantidadSolicitadaa": cantidadSolicitada,
     });
 
     await AuxiliaresGlobal.agregarCarrito(parseInt(cantidadSolicitada), parseInt(data.producto.idShopify), {
