@@ -1472,20 +1472,6 @@ class PizzaHutProducto extends HTMLElement {
             window.location.href = '/pages/carrito';
         }
 
-
-        // var precioTotalCarrito = 0;
-        // this.carritoShopify = await AuxiliaresGlobal.obtenerCarritoShopify();
-        // console.log('Testeo de ver si tengo todo el carrito: ', this.carritoShopify);
-        // this.carritoShopify.informacionCompleta.items.forEach((item) => {
-        //     const dataProducto = JSON.parse(item.properties.estructura);
-        //     precioTotalCarrito += parseInt(dataProducto.producto.precioTotalConjunto);
-        // });
-
-        // this.cantidadPrecioHazUnPedido = cantidadPrecioHazUnPedido * parseInt(cantidadSolicitada) + cantidadPrecioTotalExtras;
-        // console.log('Cantidad precio haz un pedido: ', this.cantidadPrecioHazUnPedido);
-        // precioTotalCarrito = precioTotalCarrito + cantidadPrecioHazUnPedido;
-        // console.log('Precio total carrito: ', precioTotalCarrito);
-
         if (tipoProceso == 'agregarcarrito') {
             // Actualizar las etiquetas del HAAZ ME UN PEDIDO Y AGREGAR AL CARRITo  
 
