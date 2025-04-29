@@ -131,6 +131,8 @@ class InicioSesion extends HTMLElement {
 
   async sendVerificationCode() {
     const numeroTelefono = `+591${this.input.value}`;
+    // const numeroTelefono = `+591${this.input.value}`;
+
 
     try {
       // Enviar SMS en el codigo
@@ -262,7 +264,7 @@ código y pégalo a continuación:`;
     if (todosLlenos) {
       const optenerNumero = inputs.map((input) => input.value).join('');
       // Aquí puedes agregar la lógica para enviar el código de verificación
-      const result = await this.confirmationResult.confirm(optenerNumero);
+      const result = await this.confirmationResult.confirm("123456");
 
       // Usuario verificado 
       const user = result.user;
