@@ -1339,7 +1339,9 @@ class PizzaHutProducto extends HTMLElement {
         });
 
         this.cantidadPrecioHazUnPedido = cantidadPrecioHazUnPedido * parseInt(cantidadSolicitada) + cantidadPrecioTotalExtras;
-        precioTotalCarrito += precioTotalCarrito + cantidadPrecioHazUnPedido;
+        console.log('Cantidad precio haz un pedido: ', this.cantidadPrecioHazUnPedido);
+        precioTotalCarrito = precioTotalCarrito + cantidadPrecioHazUnPedido;
+        console.log('Precio total carrito: ', precioTotalCarrito);
 
         this.etiquetaHazUnPedido.innerHTML = `Bs ${this.cantidadPrecioHazUnPedido}`;
         this.etiquetaAgregarCarrito.innerHTML = `Bs ${precioTotalCarrito}`;
