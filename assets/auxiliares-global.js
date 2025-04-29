@@ -1569,6 +1569,7 @@ class PageCheckoutPH extends HTMLElement {
   constructor() {
     super();
     // INFORMACION DE LA ULTIMA ORDEN
+    this.infoOrdenPreliminar = null;
     this.infoUltimaOrden = null;
     this.dataCarrito = null;
     this.urlConsulta = "https://pizza-hut-bo.myshopify.com/admin/api/2025-01/graphql.json";
@@ -3067,16 +3068,16 @@ class PageCheckoutPH extends HTMLElement {
     
     // Orden creada en los preliminaress
     const dataOrdenPreliminar = await this.generarPedidoPreliminar(datosCheckout);
-    this.infoUltimaOrden = dataOrdenPreliminar.order;
+    this.infoOrdenPreliminar = dataOrdenPreliminar.order;
 
     // Orden consolidada como pagada (PEDIDOO)
-    await this.generarPedido(dataOrdenPreliminar.order.id);
+     await this.generarPedido(dataOrdenPreliminar.order.id);
     const dataJSON = this.generarJSONMostrarConsola();
     console.log("Data JSON", dataJSON);
     localStorage.setItem('ph-json-generado', JSON.stringify(dataJSON));
     MensajeCargaDatos.ocultar();
     localStorage.setItem('ph-estadoDP',"etapa-1");
-    window.location.href = "/pages/detalle-pedido";
+    // window.location.href = "/pages/detalle-pedido";
   }
 
   async generarPedidoPreliminar(datosCheckout) {
