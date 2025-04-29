@@ -20,7 +20,7 @@ class PizzaHutProducto extends HTMLElement {
         this.cantidadPrecioCarrito = null;
         this.cantidadPrecioHazUnPedido = null;
         this.carritoShopify = null;
-        // REFERENCIAS ELEMENTOSSs
+        // REFERENCIAS ELEMENTOS
         this.btnHazUnPedido = this.querySelector('#phpm-btn-haz-un-pedido');
         this.btnAgregarCarrito = this.querySelector('#phpm-btn-agregar-carrito');
         this.etiquetaAgregarCarrito = this.querySelector('#phpp-etiqueta-agregarcarrito');
