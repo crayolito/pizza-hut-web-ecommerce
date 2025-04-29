@@ -194,10 +194,8 @@
 
       // Obtener ciudades únicas
       this.ciudades = [...new Set(this.pizzaLocations.map((loc) => loc.ciudad))];
-
       // Tipos de servicio
       this.tiposServicio = ['TODOS', 'ENVÍO A DOMICILIO', 'RECOGER EN LOCAL'];
-
       // Estado actual de selección
       this.ciudadSeleccionada = this.ciudades[0];
       this.servicioSeleccionado = this.tiposServicio[0];
