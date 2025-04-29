@@ -188,7 +188,7 @@ class DetallePedido extends HTMLElement {
             <p>${dataEstructuraProducto.producto.titulo}</p>
             <p class="color-letras-extra">Cantidad: ${dataEstructuraProducto.producto.cantidad}</p>
           </div>
-          <p style="font-weight: 700;" class="color-letras-primary">${dataEstructuraProducto.producto.totalPrecioConjunto} Bs</p>
+          <p style="font-weight: 700;" class="color-letras-primary">${dataEstructuraProducto.producto.precioTotalConjunto} Bs</p>
         </div>
       `;
     });
