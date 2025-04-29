@@ -23,12 +23,16 @@ class DetallePedido extends HTMLElement {
         this.seccionNotaDeEnvio = this.querySelector('#phpdp-seccion-nota-envio');
 
         this.seccionSuperiorDetallePedido = this.querySelector('#phpdp-seccion-superior-detalle-pedido');
+        this.etiquetaTotalPrecioSuperior = this.querySelector('#phpdp-etiqueta-totalPedido');
         this.infoSuperiorDetallePedido = this.querySelector('#phpdp-info-superior-detalle-pedido');
         this.etiquetaIdShopifyOrder = this.querySelector('#phpdp-etiqueta-idshopify-order');
         this.etiquetaSubTotal = this.querySelector('#phpdp-etiqueta-subtotal');
         this.etiquetaTotal = this.querySelector('#phpdp-etiqueta-total');
 
         this.seccionInferiorDetallePedido = this.querySelector('#phpdp-seccion-inferior-detalle-pedido');
+        this.etiquetaTipoMetodoEntrega = this.querySelector('#phpdp-etiqueta-metodo-entrega');
+        this.seccionDetalleLocal = this.querySelector('#pdpph-seccion-detalle-inferior-local');
+        this.seccionDetalleDomicilio = this.querySelector('#pdpph-seccion-detalle-inferior-domicilio');
 
         this.seccionMetodoPago = this.querySelector('#phpdp-metodo-pago');
 
@@ -51,14 +55,13 @@ class DetallePedido extends HTMLElement {
 
 
         MensajeCargaDatos.mostrar('Cargando informacion ...');
+        const infoCompletaOrden = await this.traerInformacionOrdenTrabajo(idOrdenTrabajo);
+        console.log('infoCompletaOrden: ', infoCompletaOrden);
 
         if (this.estadoEtapaPagina == "etapa-1") {
             this.seccionGeneralInfoBasica.style.display = 'flex';
             this.btnVolverInicio.style.display = 'flex';
             this.btnVerMasDetalles.style.display = 'flex';
-
-            const infoCompletaOrden = await this.traerInformacionOrdenTrabajo(idOrdenTrabajo);
-            console.log('infoCompletaOrden: ', infoCompletaOrden);
 
             const metodoEntrega = infoCompletaOrden.orden.notasPersonalizadas[0].value;
             const etiquetaInfoBasica = this.seccionInfoBasica.querySelector('#phpdp-etiqueta-tipo-pedido');
@@ -83,7 +86,35 @@ class DetallePedido extends HTMLElement {
             this.seccionInferiorDetallePedido.style.display = 'flex';
         }
 
+        const textosCombos = this.formatoTextosCombos(infoCompletaOrden.orden.productos);
+        this.etiquetaIdShopifyOrder.textContent = `#${idOrdenTrabajo}`;
+        this.infoSuperiorDetallePedido.innerHTML = `#235246
+            <p>${textosCombos}</p>
+            <p>•</p>
+            <p>
+              Pedido realizado: <br>
+              ${infoCompletaOrden.orden.fechaCompletado}
+            </p>
+        `;
 
+        var totalPrecioConjunto = 0;
+        infoCompletaOrden.orden.productos.forEach(item => {
+            totalPrecioConjunto += item.precioUnitarioConDescuento * item.cantidad;
+        });
+        this.etiquetaTotalPrecioSuperior.textContent = `${TotalPrecioConjunto} Bs`
+        this.etiquetaTipoMetodoEntrega.textContent = metodoEntrega == "Domicilio" ? "Envío a Domicilio" : "Pedido en Local";
+        metodoEntrega == "Domicilio" ? this.seccionInfoEntregaDomicilio.style.display = 'flex' : this.seccionInfoEntregaLocal.style.display = 'flex';
+        const infoProcesoCheckout = JSON.parse(infoCompletaOrden.orden.notasPersonalizadas[1].value);
+        const infoCarritoProceso = JSON.parse(infoCompletaOrden.orden.notasPersonalizadas[2].value);
+        console.log('Testeo de informacion : ', {
+            infoProcesoCheckout,
+            infoCarritoProceso
+        });
+
+        this.seccionMetodoPago.innerHTML = `
+          {% render 'icon-dolar' %}
+          <p class="color-letras-extra">Efectivo contra entrega</p>
+        `;
 
         MensajeCargaDatos.ocultar();
     }
@@ -421,6 +452,7 @@ class DetallePedido extends HTMLElement {
         this.seccionInferiorDetallePedido.style.display = 'flex';
         this.btnVerMasDetalles.style.display = 'none';
         this.btnVolverInicio.style.display = 'none';
+        this.btnVolverAtras.style.display = 'flex';
     }
 
     btnVolverInicioClick() {
