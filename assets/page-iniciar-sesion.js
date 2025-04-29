@@ -277,7 +277,11 @@ código y pégalo a continuación:`;
       this.codigoEnviadoCliente = this.generarCodigo4Digitos();
       localStorage.setItem('ph-codigo-verificacion', optenerNumero);
 
-      window.open(`https://wa.me/591${this.input.value}?text=Hola, este es el código que debes ingresar: ${this.optenerNumero}`,)
+      // Abrir WhatsApp con el mensaje que contiene el código
+      window.open(
+        `https://wa.me/591${this.input.value}?text=Hola, este es el código que debes ingresar: ${this.codigoEnviadoCliente}`,
+        '_blank'
+      );
       // Aquí puedes agregar la lógica para enviar el código de verificación
       // const result = await this.confirmationResult.confirm("123456");
 
