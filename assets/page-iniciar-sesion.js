@@ -278,7 +278,7 @@ código y pégalo a continuación:`;
       localStorage.setItem('ph-codigo-verificacion', optenerNumero);
 
       window.open(`https://wa.me/591${this.input.value}?text=Hola, este es el código que debes ingresar: ${this.optenerNumero}`,)
-      // Aquí puedes agregar la lógica para enviar el código de verificaciónn
+      // Aquí puedes agregar la lógica para enviar el código de verificación
       // const result = await this.confirmationResult.confirm("123456");
 
       // Usuario verificado 
