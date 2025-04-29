@@ -4,8 +4,6 @@
   class="container-base  ohci-contenedor-base"
 >
   <a
-    href="https://microsites.spnty.co/pizzahutbolivia/login"
-    target="_blank"
     class="ohci-contenedor-imagen"
   >
     <img src="{{ 'banner-Hutcoins.png' | asset_url }}" width="100%" height="100%">
@@ -33,11 +31,10 @@
 </style>
 
 <script>
-  const contenedorImagen = document.querySelector('.ohci-contenedor-imagen');
+  const contenedorImagen = document.querySelector('#phohci-contenedor-base');
 
   // Al hacer clic en el contenedor, navegar a la URL
   contenedorImagen.addEventListener('click', (e) => {
-    e.preventDefault(); // Prevenir comportamiento predeterminado del enlace
     window.open('https://microsites.spnty.co/pizzahutbolivia/login', '_blank');
   });
 </script>

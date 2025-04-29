@@ -186,10 +186,10 @@ class InicioSesion extends HTMLElement {
 
     // Ingresar el valor dentro del this.mensajeVerificarNumeroo
     this.mensajeVerificarNumero.innerHTML = `
-Enviamos un código de verificación de 4 dígitos a tu  número de WhatsApp *****${this.input.value.slice(
+      Enviamos un código de verificación de 4 dígitos a tu  número de WhatsApp *****${this.input.value.slice(
       -3
     )}. Copia ese
-código y pégalo a continuación:`;
+      código y pégalo a continuación:`;
 
     this.containerGeneral.style.display = 'flex';
     this.containerSnipper.style.display = 'flex';
@@ -199,14 +199,15 @@ código y pégalo a continuación:`;
     localStorage.setItem('ph-codigo-verificacion', this.codigoEnviadoCliente);
 
     // Abrir WhatsApp con el mensaje que contiene el código
-    console.log("Testeo de WhatsApp",
-      {
-        numero: this.input.value,
-        mensaje: `Hola, este es el código que debes ingresar: ${this.codigoEnviadoCliente}`,
-      }
-    )
+    // console.log("Testeo de WhatsApp",
+    //   {
+    //     numero: this.input.value,
+    //     mensaje: `Hola, este es el código que debes ingresar: ${this.codigoEnviadoCliente}`,
+    //   }
+    // )
+
     window.open(
-      `https://wa.me/591${this.input.value}?text=Hola, este es el código que debes ingresar: ${this.codigoEnviadoCliente}`,
+      `https://wa.me/591${this.input.value}?text=Pizza Hut, tu código de verificación es ${this.codigoEnviadoCliente}. Gracias por su preferencia.`,
       '_blank'
     );
 
