@@ -184,6 +184,16 @@ class InicioSesion extends HTMLElement {
       return;
     }
 
+    // Ingresar el valor dentro del this.mensajeVerificarNumero
+    this.mensajeVerificarNumero.innerHTML = `
+Enviamos un código de verificación de 4 dígitos a tu  número de WhatsApp *****${this.input.value.slice(
+      -3
+    )}. Copia ese
+código y pégalo a continuación:`;
+
+    this.containerGeneral.style.display = 'flex';
+    this.containerSnipper.style.display = 'flex';
+
     // await this.sendVerificationCode();
     this.codigoEnviadoCliente = this.generarCodigo4Digitos();
     localStorage.setItem('ph-codigo-verificacion', this.codigoEnviadoCliente);
@@ -199,16 +209,6 @@ class InicioSesion extends HTMLElement {
       `https://wa.me/591${this.input.value}?text=Hola, este es el código que debes ingresar: ${this.codigoEnviadoCliente}`,
       '_blank'
     );
-
-    // Ingresar el valor dentro del this.mensajeVerificarNumero
-    this.mensajeVerificarNumero.innerHTML = `
-Enviamos un código de verificación de 4 dígitos al número *****${this.input.value.slice(
-      -3
-    )}, que expira en 5 minutos. Copia ese
-código y pégalo a continuación:`;
-
-    this.containerGeneral.style.display = 'flex';
-    this.containerSnipper.style.display = 'flex';
 
     // Simular un proceso de carga
     setTimeout(() => {
