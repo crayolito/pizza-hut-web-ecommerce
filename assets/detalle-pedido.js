@@ -49,7 +49,7 @@ class DetallePedido extends HTMLElement {
         
         this.btnVolverInicio.style.display = 'flex';
         
-        const metodoEntrega = infoCompletaOrden.notasPersonalizadas[0].value;
+        const metodoEntrega = infoCompletaOrden.orden.notasPersonalizadas[0].value;
         console.log('metodoEntrega: ', metodoEntrega);
         const etiquetaInfoBasica = this.seccionInfoBasica.querySelector('#phpdp-etiqueta-tipo-pedido');
         etiquetaInfoBasica.textContent = metodoEntrega == "Domicilio" ? "Envío a Domicilio" : "En Local";
