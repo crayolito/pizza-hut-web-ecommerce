@@ -40,16 +40,16 @@ class AuxiliaresGlobal {
         .then(cart => {
           // Mostrar en consola la información completa del carrito
           console.log('Información completa del carrito Shopify:', cart);
-          
+
           // Crear un objeto con la información solicitada
           const infoCarrito = {
             informacionCompleta: cart, // Todo el objeto original del carrito
             cantidadTotal: cart.item_count // Solo la cantidad total de productos
           };
-          
+
           // Mostrar en consola específicamente la cantidad total
           console.log(`Cantidad total de productos: ${infoCarrito.cantidadTotal}`);
-          
+
           resolve(infoCarrito);
         })
         .catch(error => {
@@ -65,18 +65,18 @@ class AuxiliaresGlobal {
       this.obtenerCarritoShopify()
         .then(carrito => {
           // Verificar que existe la información y el precio total
-          if (carrito && carrito.informacionCompleta && 
-              typeof carrito.informacionCompleta.total_price !== 'undefined') {
-            
+          if (carrito && carrito.informacionCompleta &&
+            typeof carrito.informacionCompleta.total_price !== 'undefined') {
+
             // Obtener el precio total (viene en centavos)
             const precioTotalCentavos = carrito.informacionCompleta.total_price;
-            
+
             // Convertir a formato de moneda (dividir por 100 para obtener el valor en la moneda base)
             const precioTotal = precioTotalCentavos / 100;
-            
+
             // Mostrar en consola el precio total formateado
             console.log(`Precio total del carrito: ${precioTotal.toFixed(2)}`);
-            
+
             // Resolver la promesa con el precio total
             resolve(precioTotal);
           } else {
@@ -97,13 +97,13 @@ class AuxiliaresGlobal {
         .then(carrito => {
           // Verificar que existe la información del carrito
           if (carrito && typeof carrito.cantidadTotal !== 'undefined') {
-            
+
             // Obtener la cantidad total de productos
             const cantidadTotal = carrito.cantidadTotal;
-            
+
             // Mostrar en consola la cantidad total de productos
             console.log(`Cantidad total de productos en el carrito: ${cantidadTotal}`);
-            
+
             // Resolver la promesa con la cantidad total
             resolve(cantidadTotal);
           } else {
@@ -133,48 +133,48 @@ class AuxiliaresGlobal {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ id: key, quantity: 0 })
       })
-      .then(response => response.json())
-      .then(() => {
-        // Agregar el nuevo ítem con la variante, cantidad y propiedades
-        return fetch('/cart/add.js', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            items: [{
-              id: variante,
-              quantity: cantidad,
-              properties: propiedades
-            }]
-          })
+        .then(response => response.json())
+        .then(() => {
+          // Agregar el nuevo ítem con la variante, cantidad y propiedades
+          return fetch('/cart/add.js', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              items: [{
+                id: variante,
+                quantity: cantidad,
+                properties: propiedades
+              }]
+            })
+          });
+        })
+        .then(response => response.json())
+        .then(() => {
+          // Obtener carrito actualizado
+          return fetch('/cart.js');
+        })
+        .then(response => response.json())
+        .then(carrito => {
+          // Sincronizar el contador con el carrito actualizado
+          this.sincronizarContadorConCarrito(carrito);
+
+          // Devolver el carrito actualizado
+          resolve(carrito);
+        })
+        .catch(error => {
+          console.error('Error al actualizar ítem:', error);
+          reject(error);
         });
-      })
-      .then(response => response.json())
-      .then(() => {
-        // Obtener carrito actualizado
-        return fetch('/cart.js');
-      })
-      .then(response => response.json())
-      .then(carrito => {
-        // Sincronizar el contador con el carrito actualizado
-        this.sincronizarContadorConCarrito(carrito);
-        
-        // Devolver el carrito actualizado
-        resolve(carrito);
-      })
-      .catch(error => {
-        console.error('Error al actualizar ítem:', error);
-        reject(error);
-      });
     });
   }
-  
+
   /**
    * Método para actualizar el contador visual
     */
   static actualizarContadorVisual(valor) {
     const contenedorPadre = document.querySelector('.h-ic-cantidad');
     const mensaje = document.querySelector('.hicc-mensaje');
-    
+
     // Verificar que los elementos existan
     if (mensaje && contenedorPadre) {
       // Obtener el valor actual (si existe)
@@ -182,19 +182,19 @@ class AuxiliaresGlobal {
       if (mensaje.textContent.trim() !== '') {
         valorActual = parseInt(mensaje.textContent, 10) || 0;
       }
-      
+
       // Sumar el nuevo valor al actual
       const nuevoValor = valorActual + valor;
-      
+
       // Actualizar el texto con el nuevo valor
       mensaje.textContent = nuevoValor;
-      
+
       // Quitar clases existentes de tamaños de dígitos
       mensaje.classList.remove('digitos-2', 'digitos-3');
-      
+
       // Convertir el valor a string para verificar su longitud
       const valorStr = nuevoValor.toString();
-      
+
       // Añadir clase según número de dígitos
       if (valorStr.length === 2) {
         mensaje.classList.add('digitos-2');
@@ -204,19 +204,19 @@ class AuxiliaresGlobal {
 
       // Mostrar mensaje de éxito después de actualizar el carrito
       this.mensajeExitoCarrito();
-      
+
       // Actualizar también todos los componentes CarritoShopify
       this.actualizarComponentesCarrito();
     }
   }
-  
+
   /**
    * Actualiza todos los componentes CarritoShopify en la página
   */
   static actualizarComponentesCarrito() {
     // Si existe el método estático en CarritoShopify, usarlo
-    if (typeof CarritoShopify !== 'undefined' && 
-        typeof CarritoShopify.actualizarContador === 'function') {
+    if (typeof CarritoShopify !== 'undefined' &&
+      typeof CarritoShopify.actualizarContador === 'function') {
       CarritoShopify.actualizarContador();
     } else {
       // Si no, buscar todos los componentes y actualizar manualmente
@@ -241,32 +241,32 @@ class AuxiliaresGlobal {
           'Content-Type': 'application/json'
         }
       })
-      .then(response => response.json())
-      .then(data => {
-        // Actualizar el contador visual a 0
-        const mensaje = document.querySelector('.hicc-mensaje');
-        if (mensaje) {
-          mensaje.textContent = '0';
-          mensaje.classList.remove('digitos-2', 'digitos-3');
-        }
-        
-        // Actualizar los componentes CarritoShopify
-        this.actualizarComponentesCarrito();
-        
-        // Mostrar mensaje de éxito
-        // this.mensajeInfo('El carrito ha sido vaciado');
-        
-        // Disparar evento personalizado
-        document.dispatchEvent(new CustomEvent('cart:cleared'));
-        
-        console.log('Carrito limpiado:', data);
-        resolve(data);
-      })
-      .catch(error => {
-        console.error('Error al limpiar el carrito:', error);
-        this.mensajeError('No se pudo vaciar el carrito');
-        reject(error);
-      });
+        .then(response => response.json())
+        .then(data => {
+          // Actualizar el contador visual a 0
+          const mensaje = document.querySelector('.hicc-mensaje');
+          if (mensaje) {
+            mensaje.textContent = '0';
+            mensaje.classList.remove('digitos-2', 'digitos-3');
+          }
+
+          // Actualizar los componentes CarritoShopify
+          this.actualizarComponentesCarrito();
+
+          // Mostrar mensaje de éxito
+          // this.mensajeInfo('El carrito ha sido vaciado');
+
+          // Disparar evento personalizado
+          document.dispatchEvent(new CustomEvent('cart:cleared'));
+
+          console.log('Carrito limpiado:', data);
+          resolve(data);
+        })
+        .catch(error => {
+          console.error('Error al limpiar el carrito:', error);
+          this.mensajeError('No se pudo vaciar el carrito');
+          reject(error);
+        });
     });
   }
 
@@ -288,28 +288,28 @@ class AuxiliaresGlobal {
           quantity: quantity // 0 para eliminar, otro valor para actualizar
         })
       })
-      .then(response => response.json())
-      .then(cart => {
-        // Actualizar el contador visual y componentes
-        this.sincronizarContadorConCarrito(cart);
-        
-        // Mostrar mensaje de éxito
-        // const mensaje = quantity === 0 ? 'Producto eliminado del carrito' : 'Carrito actualizado';
-        // this.mensajeInfo(mensaje);
-        
-        // Disparar evento personalizado
-        document.dispatchEvent(new CustomEvent('cart:updated', {
-          detail: { cart }
-        }));
-        
-        console.log('Carrito actualizado:', cart);
-        resolve(cart);
-      })
-      .catch(error => {
-        console.error('Error al actualizar el carrito:', error);
-        this.mensajeError('No se pudo actualizar el carrito');
-        reject(error);
-      });
+        .then(response => response.json())
+        .then(cart => {
+          // Actualizar el contador visual y componentes
+          this.sincronizarContadorConCarrito(cart);
+
+          // Mostrar mensaje de éxito
+          // const mensaje = quantity === 0 ? 'Producto eliminado del carrito' : 'Carrito actualizado';
+          // this.mensajeInfo(mensaje);
+
+          // Disparar evento personalizado
+          document.dispatchEvent(new CustomEvent('cart:updated', {
+            detail: { cart }
+          }));
+
+          console.log('Carrito actualizado:', cart);
+          resolve(cart);
+        })
+        .catch(error => {
+          console.error('Error al actualizar el carrito:', error);
+          this.mensajeError('No se pudo actualizar el carrito');
+          reject(error);
+        });
     });
   }
 
@@ -325,7 +325,7 @@ class AuxiliaresGlobal {
         reject(new Error('Cantidad inválida'));
         return;
       }
-      
+
       // Usar la API de Shopify para actualizar el carrito
       fetch('/cart/change.js', {
         method: 'POST',
@@ -337,30 +337,30 @@ class AuxiliaresGlobal {
           quantity: cantidad
         })
       })
-      .then(response => response.json())
-      .then(cart => {
-        // Actualizar el contador visual y componentes
-        this.sincronizarContadorConCarrito(cart);
-        
-        // Mostrar mensaje de éxito
-        this.mensajeInfo('Carrito actualizado');
-        
-        // Disparar evento personalizado
-        document.dispatchEvent(new CustomEvent('cart:updated', {
-          detail: { cart }
-        }));
-        
-        console.log('Carrito actualizado:', cart);
-        resolve(cart);
-      })
-      .catch(error => {
-        console.error('Error al actualizar el carrito:', error);
-        this.mensajeError('No se pudo actualizar el carrito');
-        reject(error);
-      });
+        .then(response => response.json())
+        .then(cart => {
+          // Actualizar el contador visual y componentes
+          this.sincronizarContadorConCarrito(cart);
+
+          // Mostrar mensaje de éxito
+          this.mensajeInfo('Carrito actualizado');
+
+          // Disparar evento personalizado
+          document.dispatchEvent(new CustomEvent('cart:updated', {
+            detail: { cart }
+          }));
+
+          console.log('Carrito actualizado:', cart);
+          resolve(cart);
+        })
+        .catch(error => {
+          console.error('Error al actualizar el carrito:', error);
+          this.mensajeError('No se pudo actualizar el carrito');
+          reject(error);
+        });
     });
   }
-  
+
   /**
    * Sincroniza el contador visual con el estado actual del carrito
     * @param {Object} cart - Objeto carrito devuelto por Shopify
@@ -370,7 +370,7 @@ class AuxiliaresGlobal {
     if (mensaje) {
       const cantidadTotal = cart.item_count || 0;
       mensaje.textContent = cantidadTotal;
-      
+
       // Actualizar clases
       mensaje.classList.remove('digitos-2', 'digitos-3');
       const valorStr = cantidadTotal.toString();
@@ -380,11 +380,11 @@ class AuxiliaresGlobal {
         mensaje.classList.add('digitos-3');
       }
     }
-    
+
     // Actualizar componentes CarritoShopify
     this.actualizarComponentesCarrito();
   }
-  
+
   // MÉTODOS DE GOOGLE MAPS
   static obtenerDireccionDesdeCoordenadas(lat, lng) {
     return new Promise((resolve, reject) => {
@@ -393,8 +393,8 @@ class AuxiliaresGlobal {
         lat: parseFloat(lat),
         lng: parseFloat(lng)
       };
-      
-      geocoder.geocode({ 
+
+      geocoder.geocode({
         location: latlng,
         language: 'es' // Resultados en español
       }, (results, status) => {
@@ -402,34 +402,34 @@ class AuxiliaresGlobal {
           // Intentar extraer la información más útil para delivery
           let direccionFinal = "";
           let calleEncontrada = false;
-          
+
           // Primero buscar el resultado que tenga más detalles de calle
           for (const result of results) {
             // Verificar si este resultado tiene componentes de dirección útiles
-            const tieneRuta = result.address_components.some(comp => 
+            const tieneRuta = result.address_components.some(comp =>
               comp.types.includes('route') || comp.types.includes('street_address'));
-            
+
             if (tieneRuta) {
               direccionFinal = result.formatted_address;
               calleEncontrada = true;
               break;
             }
           }
-          
+
           // Si no se encontró información de calle, usar la dirección más detallada disponible
           if (!calleEncontrada) {
             direccionFinal = results[0].formatted_address;
           }
-          
+
           // Eliminar el código plus (si existe) de la dirección final
           direccionFinal = direccionFinal.replace(/\b[0-9A-Z]{4}\+[0-9A-Z]{2,3}\b,?/g, '').trim();
-          
+
           // Eliminar el país si está al final para hacerlo más conciso
           const paisRegex = /, Bolivia$/;
           if (paisRegex.test(direccionFinal)) {
             direccionFinal = direccionFinal.replace(paisRegex, '');
           }
-          
+
           resolve(direccionFinal || "Dirección no disponible");
         } else {
           reject("No se pudo obtener una dirección detallada: " + status);
@@ -457,7 +457,7 @@ class AuxiliaresGlobal {
             ...opciones // Propiedades adicionales (como propiedades de línea)
           }]
         };
-        
+
         // Realizar la petición para añadir al carrito
         fetch('/cart/add.js', {
           method: 'POST',
@@ -466,36 +466,37 @@ class AuxiliaresGlobal {
           },
           body: JSON.stringify(datos)
         })
-        .then(response => response.json())
-        .then(data => {
-          // Verificar si hay un mensaje de error (status 422)
-          if (data.status === 422 || data.message) {
-            // Verificar si el mensaje contiene la palabra "agotado"
-            if (data.message && data.message.toLowerCase().includes('agotado')) {
-              this.mensajeError('Este producto está agotado');
-            } else {
-              // Mostrar mensaje de error genérico o el específico que viene del servidor
-              this.mensajeError(data.message || 'No se pudo agregar el producto al carrito');
+          .then(response => response.json())
+          .then(data => {
+            // Verificar si hay un mensaje de error (status 422)
+            if (data.status === 422 || data.message) {
+              // Verificar si el mensaje contiene la palabra "agotado"
+              if (data.message && data.message.toLowerCase().includes('agotado')) {
+                this.mensajeError('Este producto está agotado');
+              } else {
+                // Mostrar mensaje de error genérico o el específico que viene del servidor
+                this.mensajeError(data.message || 'No se pudo agregar el producto al carrito');
+              }
+              console.error('Error al agregar al carrito:', data);
+              return; // Salir de la función para no continuar con el flujo de éxito
             }
-            console.error('Error al agregar al carrito:', data);
-            return; // Salir de la función para no continuar con el flujo de éxito
-          }
-          
-          // Si llegamos aquí, es porque la operación fue exitosa
-          // Actualizar el contador visual
-          this.actualizarContadorVisual(valor);
-          
-          // Disparar evento personalizado
-          document.dispatchEvent(new CustomEvent('product:added-to-cart', { 
-            detail: { product: data }
-          }));
-          
-          console.log('Producto agregado al carrito:', data);
-        })
-        .catch(error => {
-          console.error('Error al agregar al carrito:', error);
-          this.mensajeError('No se pudo agregar el producto al carrito');
-        });
+
+            // Si llegamos aquí, es porque la operación fue exitosa
+            // Actualizar el contador visual
+            console.log("Testeo des la funcion agregarCarrito", valor);
+            this.actualizarContadorVisual(valor);
+
+            // Disparar evento personalizado
+            document.dispatchEvent(new CustomEvent('product:added-to-cart', {
+              detail: { product: data }
+            }));
+
+            console.log('Producto agregado al carrito:', data);
+          })
+          .catch(error => {
+            console.error('Error al agregar al carrito:', error);
+            this.mensajeError('No se pudo agregar el producto al carrito');
+          });
       } else {
         // Si no hay variantId, solo actualizar el contador visual
         this.actualizarContadorVisual(valor);
@@ -514,18 +515,18 @@ class CarritoShopify extends HTMLElement {
   connectedCallback() {
     // Obtener el contador
     const contador = this.querySelector('#contador-carrito');
-    
+
     // Usar AuxiliaresGlobal para obtener la cantidad actual del carrito de Shopify
     AuxiliaresGlobal.obtenerCarritoShopify()
       .then(carrito => {
         // Guardar la cantidad en la propiedad de la clase
         this.cantidadTotal = carrito.cantidadTotal || 0;
-        
+
         // Actualizar el texto del contador con la cantidad actual
         if (contador) {
           contador.textContent = this.cantidadTotal;
         }
-        
+
         // Log después de obtener los datos
         console.log('Componente CarritoShopify inicializado');
         console.log('Cantidad total de productos:', this.cantidadTotal);
@@ -541,7 +542,7 @@ customElements.define('carrito-shopify', CarritoShopify);
 class CantidadInput extends HTMLElement {
   constructor() {
     super();
-    
+
     this.btn = this.querySelectorAll('button');
     this.contenedorGeneral = this.querySelector('div');
     this.parrafo = this.querySelector('p');
@@ -554,40 +555,40 @@ class CantidadInput extends HTMLElement {
   get cantidadEtiqueta() {
     return parseInt(this.parrafo.textContent) || 0;
   }
-  
+
   // Setter que actualiza tanto la variable como el DOM
   set cantidadEtiqueta(valor) {
     this.parrafo.textContent = valor;
     this.actualizarBotones();
   }
-  
+
   connectedCallback() {
     this.inicializarElemento();
     this.actualizarBotones(); // Inicializar estado de botones
-    
+
     this.btn.forEach((boton) => {
       boton.addEventListener('click', this.manejarAccionBoton.bind(this, boton));
     });
   }
-  
+
   inicializarElemento() {
     this.baseTrabajo = this.contenedorGeneral.getAttribute('origen-trabajo') || 'no-definido';
     this.min = parseInt(this.contenedorGeneral.getAttribute('min')) || 0;
     this.max = parseInt(this.contenedorGeneral.getAttribute('max')) || 100;
     this.idProducto = this.contenedorGeneral.getAttribute('id-producto') || 'no-definido';
     this.handle = this.contenedorGeneral.getAttribute('handle') || 'no-definido';
-    
+
     console.log('Base de trabajo:', this.baseTrabajo);
-    
-    if(this.baseTrabajo != 'carrito'){
+
+    if (this.baseTrabajo != 'carrito') {
       this.btn[1].classList.remove('elemento-oculto');
     }
   }
-   
+
   actualizarBotones() {
     // Actualizar visibilidad de botones según el valor actual
     const cantidad = this.cantidadEtiqueta;
-    
+
     if (this.baseTrabajo == 'carrito') {
       if (cantidad <= 1) {
         this.btn[0].classList.remove('elemento-oculto');
@@ -598,21 +599,21 @@ class CantidadInput extends HTMLElement {
       }
     }
   }
-  
+
   manejarAccionBoton(boton) {
     const accion = boton.getAttribute('accion');
     let nuevaCantidad = this.cantidadEtiqueta;
-    
+
     if (accion == 'incrementar' && nuevaCantidad < this.max) {
       nuevaCantidad++;
       this.parrafo.textContent = nuevaCantidad;
     }
-    
+
     if (accion == 'decrementar' && nuevaCantidad > this.min) {
       nuevaCantidad--;
       this.parrafo.textContent = nuevaCantidad;
     }
-    
+
     this.actualizarBotones();
   }
 }
@@ -642,7 +643,7 @@ class MensajeTemporal extends HTMLElement {
 
 
     // Verificamos que todos los elementos existan
-    if (!this.contenedor || !this.etiquetaMensaje){
+    if (!this.contenedor || !this.etiquetaMensaje) {
       console.error('No se encontraron todos los elementos necesarios para el componente MensajeTemporal');
     }
   }
@@ -653,7 +654,7 @@ class MensajeTemporal extends HTMLElement {
    * @param {string} tipo - El tipo de mensaje ('exito', 'error', 'info', 'alerta')
    * @param {number} duracion - Duración en ms que se mostrará el mensaje
   */
-  mostrar(mensaje, tipo="exito",duracion = 3000) {
+  mostrar(mensaje, tipo = "exito", duracion = 3000) {
     // Verificar que las referencias esten disponibles
     if (!this.contenedor || !this.etiquetaMensaje) {
       console.error('No se encontraron todos los elementos necesarios para el componente MensajeTemporal');
@@ -692,18 +693,18 @@ class MensajeTemporal extends HTMLElement {
     // Establecer nuevo tiemout
     this.tiempoEspera = setTimeout(() => {
       this.ocultar();
-    },duracion);
+    }, duracion);
 
     return true;
   }
 
-  ocultar(){
-    if(this.contenedor){
+  ocultar() {
+    if (this.contenedor) {
       this.contenedor.style.opacity = '0';
       this.contenedor.style.visibility = 'hidden';
     }
-    
-    if(this.tiempoEspera) {
+
+    if (this.tiempoEspera) {
       clearTimeout(this.tiempoEspera);
       this.tiempoEspera = null;
     }
@@ -717,24 +718,24 @@ class MensajeTemporal extends HTMLElement {
     }
   }
 
-   /**
-   * Método estático para mostrar un mensaje global
-   * Encuentra o crea una instancia del componente y muestra el mensaje
-   */
+  /**
+  * Método estático para mostrar un mensaje global
+  * Encuentra o crea una instancia del componente y muestra el mensaje
+  */
   static mostrarMensaje(mensaje, tipo = 'exito', duracion = 3000) {
     // Buscar si ya existe una instancia del componente
     let mensajeElement = document.querySelector('mensaje-temporal');
-    
+
     // Si no existe una instancia, mostrar error
     if (!mensajeElement) {
       console.error('No se encontró el componente mensaje-temporal en el DOM');
       return false;
     }
-    
+
     // Llamar al método de instancia
     return mensajeElement.mostrar(mensaje, tipo, duracion);
   }
-  
+
   /**
    * Método estático para ocultar el mensaje global
    */
@@ -752,12 +753,12 @@ class MensajeCargaDatos extends HTMLElement {
   constructor() {
     super();
   }
-  
+
   connectedCallback() {
     // Se ejecuta cuando el componente se añade al DOM
     // No necesitamos inicializar nada especial aquí
   }
-  
+
   /**
    * Método estático para mostrar el mensaje de carga
    * @param {string} mensaje - El mensaje a mostrar durante la carga
@@ -766,36 +767,36 @@ class MensajeCargaDatos extends HTMLElement {
   static mostrar(mensaje = 'Cargando datos...', bloquearPantalla = true) {
     // Buscar la instancia del componente
     const mensajeCarga = document.querySelector('mensaje-carga-datos');
-    
+
     if (!mensajeCarga) {
       console.error('No se encontró el componente mensaje-carga-datos en el DOM');
       return false;
     }
-    
+
     // Obtener el contenedor modal y el elemento para el mensaje
     const containerModal = mensajeCarga.querySelector('#ph-container-modal');
     const mensajeElement = mensajeCarga.querySelector('#ph-mensaje-carga-datos');
-    
+
     if (!containerModal || !mensajeElement) {
       console.error('No se encontraron los elementos necesarios dentro del componente');
       return false;
     }
-    
+
     // Establecer el mensaje
     mensajeElement.textContent = mensaje;
-    
+
     // Mostrar el modal
     containerModal.style.display = 'flex';
-    
+
     // Si debe bloquear la pantalla, añadir clase o estilo apropiado
     if (bloquearPantalla) {
       document.body.style.overflow = 'hidden'; // Evita el scroll
       containerModal.style.pointerEvents = 'all'; // Captura todos los clicks
     }
-    
+
     return true;
   }
-  
+
   /**
    * Método estático para ocultar el mensaje de carga
    * @param {number} retraso - Milisegundos de retraso antes de ocultar (opcional)
@@ -804,30 +805,30 @@ class MensajeCargaDatos extends HTMLElement {
     const ocultar = () => {
       // Buscar la instancia del componente
       const mensajeCarga = document.querySelector('mensaje-carga-datos');
-      
+
       if (!mensajeCarga) {
         console.error('No se encontró el componente mensaje-carga-datos en el DOM');
         return false;
       }
-      
+
       // Obtener el contenedor modal
       const containerModal = mensajeCarga.querySelector('#ph-container-modal');
-      
+
       if (!containerModal) {
         console.error('No se encontró el contenedor modal dentro del componente');
         return false;
       }
-      
+
       // Ocultar el modal
       containerModal.style.display = 'none';
-      
+
       // Restaurar comportamiento del body
       document.body.style.overflow = '';
       containerModal.style.pointerEvents = '';
-      
+
       return true;
     };
-    
+
     // Si hay retraso, usar setTimeout
     if (retraso > 0) {
       setTimeout(ocultar, retraso);
@@ -870,10 +871,10 @@ class PageCarrito extends HTMLElement {
       let precioTotal = 0;
 
       infoCarrito.informacionCompleta.items.forEach((item) => {
-        if(!(item.properties && item.properties.estructura)){
+        if (!(item.properties && item.properties.estructura)) {
           return;
         }
-        
+
         const dataContruccion = JSON.parse(item.properties.estructura);
         precioTotal += parseFloat(dataContruccion.producto.precioTotalConjunto);
         // 
@@ -887,10 +888,10 @@ class PageCarrito extends HTMLElement {
         class="pcph-item-carrito">
           <div class="pcph-itemc-detalle">
             <div class="pcph-itemc-imagen">
-              ${dataContruccion.producto.imagen == null || dataContruccion.producto.imagen == '' 
-                ? `<img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="${dataContruccion.producto.titulo}" width="100" height="100">`
-                : `<img src="${dataContruccion.producto.imagen}" alt="${dataContruccion.producto.titulo}" width="100" height="100">`
-              }
+              ${dataContruccion.producto.imagen == null || dataContruccion.producto.imagen == ''
+            ? `<img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="${dataContruccion.producto.titulo}" width="100" height="100">`
+            : `<img src="${dataContruccion.producto.imagen}" alt="${dataContruccion.producto.titulo}" width="100" height="100">`
+          }
             </div>
             <div class="pcph-itemc-info">
               <div class="pcph-itemc_opcion1">
@@ -904,12 +905,12 @@ class PageCarrito extends HTMLElement {
                 <div class="pcph-itemc-detalles-primarios">
                   <h1>${dataContruccion.producto.titulo}</h1>
                   ${dataContruccion.opcionesPrincipales.productos.length > 0
-                    ? `<p>${dataContruccion.opcionesPrincipales.titulo}</p>
+            ? `<p>${dataContruccion.opcionesPrincipales.titulo}</p>
                         <ul class="color-letras-extra">`
-                    : ''
-                  }
+            : ''
+          }
         `;
-  
+
         dataContruccion.opcionesPrincipales.productos.forEach((producto) => {
           contenidoIzquierdoHTML += `
               <li>
@@ -917,41 +918,39 @@ class PageCarrito extends HTMLElement {
               </li>
           `;
         });
-  
+
         contenidoIzquierdoHTML += `
                   </ul>
                 </div>
                 <div class="pcph-itemc-detalles-secundarios">
-                ${
-                  dataContruccion.complementos.productos.length > 0
-                    ? `<p>${dataContruccion.complementos.titulo}</p>
+                ${dataContruccion.complementos.productos.length > 0
+            ? `<p>${dataContruccion.complementos.titulo}</p>
                         <ul class="color-letras-extra">`
-                    : ''
-                 }
+            : ''
+          }
 
         `;
-  
+
         dataContruccion.complementos.productos.forEach((producto) => {
           contenidoIzquierdoHTML += `
               <li>
-                <p>${"x" + producto.cantidad +" "+  producto.tituloSeccion} : <br> ${producto.titulo}</p>
+                <p>${"x" + producto.cantidad + " " + producto.tituloSeccion} : <br> ${producto.titulo}</p>
               </li>
           `;
         });
-  
+
         contenidoIzquierdoHTML += `
-                ${
-                  dataContruccion.complementos.productos.length > 0
-                    ? `</ul>`
-                    : ''
-                 }
+                ${dataContruccion.complementos.productos.length > 0
+            ? `</ul>`
+            : ''
+          }
                   </ul>
                 </div>
               </div>
             </div>
           </div>
         `;
-  
+
         contenidoIzquierdoHTML += `
             <cantidad-input>
               <div
@@ -988,14 +987,14 @@ class PageCarrito extends HTMLElement {
         </div>
         `;
       });
-  
+
       this.contenedorItemsDetalle.innerHTML = contenidoIzquierdoHTML;
       this.etiquetaSubtotal.textContent = `Bs. ${precioTotal}`;
       this.etiquetaTotal.textContent = `Bs. ${precioTotal}`;
 
       // DIBUJAR LA SECCION DE POSTRES
       await this.crearSecciondeAcompanamiento();
-      
+
       this.declararComponentesDespuesCreacion();
 
       MensajeCargaDatos.ocultar();
@@ -1008,12 +1007,12 @@ class PageCarrito extends HTMLElement {
   declararComponentesDespuesCreacion() {
     // DECLARAR ELEMENTOS
     this.btnsEditar = this.querySelectorAll('.pcph-itemc_editar');
-    this.btnsEditarCantidadItem = this.querySelectorAll('.pcph-itemc_cantidad-btn'); 
+    this.btnsEditarCantidadItem = this.querySelectorAll('.pcph-itemc_cantidad-btn');
 
     // INICIALIZAR EVENTOS
     this.btnsEditar.forEach((btn) => {
       btn.addEventListener('click', this.procedoEditarItem.bind(this, btn));
-    }); 
+    });
     this.btnsEditarCantidadItem.forEach((btn) => {
       btn.addEventListener('click', this.actualizarProductoCarrito.bind(this, btn));
     });
@@ -1023,7 +1022,7 @@ class PageCarrito extends HTMLElement {
   }
 
   async crearSecciondeAcompanamiento() {
-    const {informacionColeccion,  productosColeccion } = await this.traerProductoAcompanamiento();
+    const { informacionColeccion, productosColeccion } = await this.traerProductoAcompanamiento();
     console.log("Testeo de productos acompanamiento", productosColeccion);
 
     this.productosAcompanamiento = productosColeccion;
@@ -1045,9 +1044,9 @@ class PageCarrito extends HTMLElement {
         class="cardph-item-producto">
           <div class="cardph-itemp-imagen">
           ${producto.imagen == null || producto.imagen == ''
-            ? `<img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="${producto.titulo}" width="100" height="100">`
-            : `<img src="${producto.imagen}" alt="${producto.titulo}" width="100" height="100">`
-          }
+          ? `<img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="${producto.titulo}" width="100" height="100">`
+          : `<img src="${producto.imagen}" alt="${producto.titulo}" width="100" height="100">`
+        }
           </div>
           <div class="cardph-itemp-info">
             <h3>${producto.titulo}</h3>
@@ -1166,17 +1165,17 @@ class PageCarrito extends HTMLElement {
         } catch (e) {
           estructuraColeccion = null;
           console.error('Error al parsear la estructura de la colección:', e);
-        } 
+        }
       }
 
       // Transformar los productos a un formato más simple
       const productosSimplificados = coleccion.products.edges.map(edge => {
         const producto = edge.node;
         const imagenURL = producto.images.edges.length > 0 ? producto.images.edges[0].node.url : '';
-        
+
         // Obtener el inventario total del producto
         const stockGeneral = producto.totalInventory || 0;
-        
+
         // Obtener el ID de la variante
         let varianteId = '';
         if (producto.variants && producto.variants.edges.length > 0) {
@@ -1184,7 +1183,7 @@ class PageCarrito extends HTMLElement {
           // Extraer solo la parte numérica del ID de la variante
           varianteId = varianteCompleta.split('/').pop();
         }
-        
+
         // Obtener el inventario por sucursal
         const sucursales = [];
         if (producto.variants && producto.variants.edges.length > 0) {
@@ -1194,7 +1193,7 @@ class PageCarrito extends HTMLElement {
               const level = levelEdge.node;
               const nombreSucursal = level.location.name;
               let stockSucursal = 0;
-              
+
               // Buscar la cantidad disponible
               if (level.quantities && level.quantities.length > 0) {
                 const availableQuantity = level.quantities.find(q => q.name === "available");
@@ -1202,7 +1201,7 @@ class PageCarrito extends HTMLElement {
                   stockSucursal = availableQuantity.quantity;
                 }
               }
-              
+
               sucursales.push({
                 nombre: nombreSucursal,
                 stock: stockSucursal
@@ -1248,7 +1247,7 @@ class PageCarrito extends HTMLElement {
     }
   }
 
-  async actualizarProductoCarrito(btnElemento){
+  async actualizarProductoCarrito(btnElemento) {
     const contenedorPadre = btnElemento.closest('.pcph-item-carrito');
     const dataPeticion = btnElemento.dataset.peticion;
     const keyCarrito = contenedorPadre.dataset.keycarrito;
@@ -1264,11 +1263,11 @@ class PageCarrito extends HTMLElement {
     // Verificar si el botón es de incrementar o decrementar
     const accionBtn = btnElemento.getAttribute('accion');
 
-    if(accionBtn == "decrementar" && dataPeticion == "eliminar"){
+    if (accionBtn == "decrementar" && dataPeticion == "eliminar") {
       // Se procede a eliminar del carrito
       MensajeCargaDatos.mostrar('Eliminando producto del carrito...');
       await AuxiliaresGlobal.eliminarItemCarritoPorKey(keyCarrito, 0);
-    }else{
+    } else {
       // accionBtn == "incrementar" ? cantidadElemento++ : cantidadElemento--;
       var cantidadNuevaTrabajo = cantidadElemento;
       var cantidadAntiguaTrabajo = accionBtn == "incrementar" ? cantidadElemento - 1 : cantidadElemento + 1;
@@ -1279,24 +1278,24 @@ class PageCarrito extends HTMLElement {
         cantidadNuevaTrabajo,
       });
 
-      if(informacionCompleta.opcionesPrincipales.productos.length == 0 && informacionCompleta.complementos.productos.length == 0){
+      if (informacionCompleta.opcionesPrincipales.productos.length == 0 && informacionCompleta.complementos.productos.length == 0) {
         informacionCompleta.producto.cantidad = cantidadElemento;
         informacionCompleta.producto.precioTotalConjunto = informacionCompleta.producto.precio * cantidadElemento;
-      }else {
+      } else {
         // 1. Primero se optiene el precio del producto base y se lo multiplica por la cantidad actual
         let cantidadProductoBaseNuevo = parseInt(informacionCompleta.producto.precioProducto) * cantidadNuevaTrabajo;
         // 2. Se optiene el precio del producto base y se lo multiplica por la cantidad antigua
         let cantidadProductoBaseAntiguo = parseInt(informacionCompleta.producto.precioProducto) * cantidadAntiguaTrabajo;
         // 3. Se optiene el precio total del conjunto (producto base + complementos + opciones principales) 
         let cantidadPrecioTotalAntiguo = parseFloat(informacionCompleta.producto.precioTotalConjunto);
-        
+
         let cantidadOpcionesPrincipalesAntiguo = 0;
         let cantidadOpcionesPrincipalesNueva = 0;
 
         // 4. Se va recorrer las opciones principales
         informacionCompleta.opcionesPrincipales.productos.forEach((producto) => {
           // 5. Se optiene el precio
-          cantidadOpcionesPrincipalesNueva  += (cantidadNuevaTrabajo * parseInt(producto.precio));
+          cantidadOpcionesPrincipalesNueva += (cantidadNuevaTrabajo * parseInt(producto.precio));
           cantidadOpcionesPrincipalesAntiguo += (cantidadAntiguaTrabajo * parseInt(producto.precio));
           producto.cantidad = cantidadNuevaTrabajo;
         });
@@ -1305,7 +1304,7 @@ class PageCarrito extends HTMLElement {
         // Ell nuevo precio del conjunto se calcula (cantidadProductoBaseNuevo + cantidadOpcionesPrincipalesNueva + cantidadSolamenteComplementos)
         informacionCompleta.producto.cantidad = cantidadElemento;
         informacionCompleta.producto.precioTotalConjunto = cantidadProductoBaseNuevo + cantidadOpcionesPrincipalesNueva + cantidadSolamenteComplementos;
-        console.log("Testeo completo :",{
+        console.log("Testeo completo :", {
           cantidadElemento,
           cantidadAntiguaTrabajo,
           cantidadNuevaTrabajo,
@@ -1313,30 +1312,30 @@ class PageCarrito extends HTMLElement {
           cantidadOpcionesPrincipalesNueva,
           cantidadOpcionesPrincipalesAntiguo,
           cantidadSolamenteComplementos,
-          "Objeto actualizado" : informacionCompleta.producto.precioTotalConjunto
+          "Objeto actualizado": informacionCompleta.producto.precioTotalConjunto
         })
       }
 
-        console.log("Testeo completo :",{
+      console.log("Testeo completo :", {
         cantidadElemento,
         cantidadAntiguaTrabajo,
         cantidadNuevaTrabajo,
 
 
-        })
-  
-      if(accionBtn == "decrementar"){
+      })
+
+      if (accionBtn == "decrementar") {
         // Se procede a decrementar la cantidad
         MensajeCargaDatos.mostrar('Actualizando producto en el carrito...');
-        await AuxiliaresGlobal.actualizarItemCarrito(keyCarrito,itemCarrito.id, cantidadElemento,{
+        await AuxiliaresGlobal.actualizarItemCarrito(keyCarrito, itemCarrito.id, cantidadElemento, {
           "estructura": JSON.stringify(informacionCompleta)
         });
       }
-  
-      if(accionBtn == "incrementar"){
+
+      if (accionBtn == "incrementar") {
         // Se procede a incrementar la cantidad
         MensajeCargaDatos.mostrar('Actualizando producto en el carrito...');
-        await AuxiliaresGlobal.actualizarItemCarrito(keyCarrito,itemCarrito.id, cantidadElemento,{
+        await AuxiliaresGlobal.actualizarItemCarrito(keyCarrito, itemCarrito.id, cantidadElemento, {
           "estructura": JSON.stringify(informacionCompleta)
         });
       }
@@ -1346,7 +1345,7 @@ class PageCarrito extends HTMLElement {
     MensajeCargaDatos.ocultar();
   }
 
-  async actualizarSoloContenidoCarrito(){
+  async actualizarSoloContenidoCarrito() {
     try {
       console.log('Actualizando solo contenido del carrito...');
 
@@ -1360,10 +1359,10 @@ class PageCarrito extends HTMLElement {
       console.log('Items del carrito:', infoCarrito.informacionCompleta.items);
 
       infoCarrito.informacionCompleta.items.forEach((item) => {
-        if(item.properties && item.properties.estructura) {
+        if (item.properties && item.properties.estructura) {
           const dataContruccion = JSON.parse(item.properties.estructura);
           precioTotal += parseFloat(dataContruccion.producto.precioTotalConjunto);
-  
+
           contenidoIzquierdoHTML += `
           <div 
           data-idTrabajo="${dataContruccion.producto.idTrabajo}"
@@ -1374,10 +1373,10 @@ class PageCarrito extends HTMLElement {
           class="pcph-item-carrito">
             <div class="pcph-itemc-detalle">
               <div class="pcph-itemc-imagen">
-                ${dataContruccion.producto.imagen == null || dataContruccion.producto.imagen == '' 
-                  ? `<img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="${dataContruccion.producto.titulo}" width="100" height="100">`
-                  : `<img src="${dataContruccion.producto.imagen}" alt="${dataContruccion.producto.titulo}" width="100" height="100">`
-                }
+                ${dataContruccion.producto.imagen == null || dataContruccion.producto.imagen == ''
+              ? `<img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="${dataContruccion.producto.titulo}" width="100" height="100">`
+              : `<img src="${dataContruccion.producto.imagen}" alt="${dataContruccion.producto.titulo}" width="100" height="100">`
+            }
               </div>
               <div class="pcph-itemc-info">
                 <div class="pcph-itemc_opcion1">
@@ -1391,12 +1390,12 @@ class PageCarrito extends HTMLElement {
                   <div class="pcph-itemc-detalles-primarios">
                     <h1>${dataContruccion.producto.titulo}</h1>
                     ${dataContruccion.opcionesPrincipales.productos.length > 0
-                      ? `<p>${dataContruccion.opcionesPrincipales.titulo}</p>
+              ? `<p>${dataContruccion.opcionesPrincipales.titulo}</p>
                           <ul class="color-letras-extra">`
-                      : ''
-                    }
+              : ''
+            }
           `;
-    
+
           dataContruccion.opcionesPrincipales.productos.forEach((producto) => {
             contenidoIzquierdoHTML += `
                 <li>
@@ -1404,41 +1403,39 @@ class PageCarrito extends HTMLElement {
                 </li>
             `;
           });
-    
+
           contenidoIzquierdoHTML += `
                     </ul>
                   </div>
                   <div class="pcph-itemc-detalles-secundarios">
-                  ${
-                    dataContruccion.complementos.productos.length > 0
-                      ? `<p>${dataContruccion.complementos.titulo}</p>
+                  ${dataContruccion.complementos.productos.length > 0
+              ? `<p>${dataContruccion.complementos.titulo}</p>
                           <ul class="color-letras-extra">`
-                      : ''
-                   }
+              : ''
+            }
   
           `;
-    
+
           dataContruccion.complementos.productos.forEach((producto) => {
             contenidoIzquierdoHTML += `
                 <li>
-                  <p>${"x" + producto.cantidad +" "+  producto.tituloSeccion} : <br> ${producto.titulo}</p>
+                  <p>${"x" + producto.cantidad + " " + producto.tituloSeccion} : <br> ${producto.titulo}</p>
                 </li>
             `;
           });
-    
+
           contenidoIzquierdoHTML += `
-                  ${
-                    dataContruccion.complementos.productos.length > 0
-                      ? `</ul>`
-                      : ''
-                   }
+                  ${dataContruccion.complementos.productos.length > 0
+              ? `</ul>`
+              : ''
+            }
                     </ul>
                   </div>
                 </div>
               </div>
             </div>
           `;
-  
+
           contenidoIzquierdoHTML += `
               <cantidad-input>
                 <div
@@ -1475,7 +1472,7 @@ class PageCarrito extends HTMLElement {
           </div>
           `;
 
-        }else{
+        } else {
 
         };
       });
@@ -1484,36 +1481,36 @@ class PageCarrito extends HTMLElement {
 
       this.etiquetaSubtotal.textContent = `Bs. ${precioTotal}`;
       this.etiquetaTotal.textContent = `Bs. ${precioTotal}`;
-      
+
       this.declararComponentesDespuesCreacion();
     } catch (error) {
       console.error('Hubo un error:', error);
     }
   }
 
-  procedoEditarItem(btnElemento) {}
+  procedoEditarItem(btnElemento) { }
 
-  obtenerStockGenericoTrabajo(productoTrabajo){
+  obtenerStockGenericoTrabajo(productoTrabajo) {
     // Verificar si tenemos una sucursal seleccionada
     const dataSucursal = JSON.parse(localStorage.getItem('sucursal-informacion'));
-    if(!dataSucursal || dataSucursal == "") return productoTrabajo.stockTotal || productoTrabajo.stockGeneral;
+    if (!dataSucursal || dataSucursal == "") return productoTrabajo.stockTotal || productoTrabajo.stockGeneral;
 
     const sucursalEncontrada = productoTrabajo.sucursales.find(
       sucursal => sucursal.nombre == dataSucursal.name
     );
 
-    return sucursalEncontrada 
-    ? parseInt(sucursalEncontrada.stock) 
-    : productoTrabajo.stockTotal;
+    return sucursalEncontrada
+      ? parseInt(sucursalEncontrada.stock)
+      : productoTrabajo.stockTotal;
   }
 
-  async agregarProductoAcompanamiento(btnElemento){
+  async agregarProductoAcompanamiento(btnElemento) {
     const contenedorPadre = btnElemento.closest('.cardph-item-producto');
     const idTrabajo = contenedorPadre.dataset.idtrabajo;
     const idShopify = contenedorPadre.dataset.idshopify;
 
     const productoTrabajo = this.productosAcompanamiento.find(
-      producto =>{
+      producto => {
 
         return producto.id == idShopify && producto.estructura.id == idTrabajo
       }
@@ -1529,12 +1526,12 @@ class PageCarrito extends HTMLElement {
         imagen: productoTrabajo.imagen,
         cantidad: 1,
         sucursales: productoTrabajo.sucursales,
-        stockTotal : parseInt(productoTrabajo.stockTotal),
+        stockTotal: parseInt(productoTrabajo.stockTotal),
         precioTotalConjunto: parseInt(productoTrabajo.estructura.precio) * 1,
       },
       opcionesPrincipales: {
         titulo: "Opciones Principales",
-        productos: []  
+        productos: []
       },
       complementos: {
         titulo: "Complementos",
@@ -1545,11 +1542,11 @@ class PageCarrito extends HTMLElement {
     // Se procede a agregar al carritoo
     MensajeCargaDatos.mostrar('Agregando producto al carrito...');
     await AuxiliaresGlobal.agregarCarrito(1, parseInt(idShopify), {
-      properties: {"estructura": JSON.stringify(detalleProducto),}
+      properties: { "estructura": JSON.stringify(detalleProducto), }
     });
 
     // Hacer un setTiempo de 3 segundos
-    setTimeout(async() => {
+    setTimeout(async () => {
       await this.actualizarSoloContenidoCarrito();
       MensajeCargaDatos.ocultar();
     }, 3000);
@@ -1577,53 +1574,53 @@ class PageCheckoutPH extends HTMLElement {
     this.estadoProcesoDireccion = "";
     this.coordenadas = { lat: -17.783315017953004, lng: -63.18214577296119 };
     this.pizzaLocations = [
-      { 
-        lat: -17.757619, 
-        lng: -63.178738, 
-        name: 'BANZER 3ER ANILLO', 
-        localizacion: 'Tercer Anillo Externo', 
-        telefono: '78452415', 
-        dias : 'Lunes a Viernes', 
+      {
+        lat: -17.757619,
+        lng: -63.178738,
+        name: 'BANZER 3ER ANILLO',
+        localizacion: 'Tercer Anillo Externo',
+        telefono: '78452415',
+        dias: 'Lunes a Viernes',
         horario: '8:00 a 23:00',
         servicios: ['Envío a domicilio', 'Recoger en local']
       },
-      { 
-        lat: -17.70001, 
-        lng: -63.160219, 
-        name: 'BANZER KM 8.5', 
-        localizacion: '8R2Q+2XH', 
-        telefono: '78452415', 
-        dias : 'Lunes a Viernes', 
+      {
+        lat: -17.70001,
+        lng: -63.160219,
+        name: 'BANZER KM 8.5',
+        localizacion: '8R2Q+2XH',
+        telefono: '78452415',
+        dias: 'Lunes a Viernes',
         horario: '8:00 a 23:00',
         servicios: ['Envío a domicilio', 'Recoger en local']
       },
-      { 
-        lat: -17.807739, 
-        lng: -63.204363, 
-        name: 'LAS PALMAS', 
-        localizacion: 'Doble vía La Guardia', 
-        telefono: '78452415', 
-        dias : 'Lunes a Viernes', 
+      {
+        lat: -17.807739,
+        lng: -63.204363,
+        name: 'LAS PALMAS',
+        localizacion: 'Doble vía La Guardia',
+        telefono: '78452415',
+        dias: 'Lunes a Viernes',
         horario: '8:00 a 23:00',
         servicios: ['Envío a domicilio', 'Recoger en local']
       },
-      { 
-        lat: -17.758879, 
-        lng: -63.19948, 
-        name: 'SAN MARTIN', 
-        localizacion: 'Av. San Martin 2200', 
-        telefono: '78452415', 
-        dias : 'Lunes a Viernes', 
+      {
+        lat: -17.758879,
+        lng: -63.19948,
+        name: 'SAN MARTIN',
+        localizacion: 'Av. San Martin 2200',
+        telefono: '78452415',
+        dias: 'Lunes a Viernes',
         horario: '8:00 a 23:00',
         servicios: ['Envío a domicilio', 'Recoger en local']
       },
-      { 
-        lat: -17.820341, 
-        lng: -63.184337, 
-        name: 'SANTOS DUMONT', 
-        localizacion: 'Av Santos Dumont 3228', 
-        telefono: '78452415', 
-        dias : 'Lunes a Viernes', 
+      {
+        lat: -17.820341,
+        lng: -63.184337,
+        name: 'SANTOS DUMONT',
+        localizacion: 'Av Santos Dumont 3228',
+        telefono: '78452415',
+        dias: 'Lunes a Viernes',
         horario: '8:00 a 23:00',
         servicios: ['Envío a domicilio', 'Recoger en local']
       }
@@ -1646,28 +1643,28 @@ class PageCheckoutPH extends HTMLElement {
     this.estadoFaseNuevaDireccion = 1;
     this.listaDireccionPrueba = [
       {
-        "lat" : -17.783315017953004,
-        "lng" : -63.18214577296119,
-        "indicaciones" : "Puente Urubo 91, Santa Cruz de la Sierra",
-        "alias" : "Condominio de la amante",
+        "lat": -17.783315017953004,
+        "lng": -63.18214577296119,
+        "indicaciones": "Puente Urubo 91, Santa Cruz de la Sierra",
+        "alias": "Condominio de la amante",
       },
       {
-        "lat" : -17.783315017953004,
-        "lng" : -63.18214577296119,
-        "indicaciones" : "Santa Cruz, San Martin 2200, Bolivia",
-        "alias" : "Casa del abuelo",
+        "lat": -17.783315017953004,
+        "lng": -63.18214577296119,
+        "indicaciones": "Santa Cruz, San Martin 2200, Bolivia",
+        "alias": "Casa del abuelo",
       },
       {
-        "lat" : -17.783315017953004,
-        "lng" : -63.18214577296119,
-        "indicaciones" : "Santa Cruz, Av. Santos Dumont 3228, Bolivia",
-        "alias" : "Casa por mi suegra",
+        "lat": -17.783315017953004,
+        "lng": -63.18214577296119,
+        "indicaciones": "Santa Cruz, Av. Santos Dumont 3228, Bolivia",
+        "alias": "Casa por mi suegra",
       },
       {
-        "lat" : -17.783315017953004,
-        "lng" : -63.18214577296119,
-        "indicaciones" : "Santa Cruz, Av. Banzer 3er Anillo, Bolivia",
-        "alias" : "Trabajo",
+        "lat": -17.783315017953004,
+        "lng": -63.18214577296119,
+        "indicaciones": "Santa Cruz, Av. Banzer 3er Anillo, Bolivia",
+        "alias": "Trabajo",
       }
     ]
 
@@ -1683,7 +1680,7 @@ class PageCheckoutPH extends HTMLElement {
     this.modalBodyContenedorMapa = this.querySelector('#phpc-localSeleccionado-mapa');
     this.btnCerrarModalContenedorLocalSeleccionado = this.querySelector('#phpc-btn-cerrar-modal');
     this.etiquetaModalLocalSeleccionado = this.querySelector('#phpc-etiqueta-informacion-modal-local-seleccionado');
-    this.etiquetaLocalSeleccionado = this.querySelector('#pcktph-seleccion-local-detalle-info'); 
+    this.etiquetaLocalSeleccionado = this.querySelector('#pcktph-seleccion-local-detalle-info');
     this.btnVerDireccionEnMapa = this.querySelector('#phpc-btn-ver-direccion-mapa');
     this.inputSeleccionarLocal = this.querySelector('#phpc-input-seleccionar-local');
     this.contenedorResultadosBuquedaLocal = this.querySelector('#phpc-resultados-seleccion-local');
@@ -1715,7 +1712,7 @@ class PageCheckoutPH extends HTMLElement {
 
     this.contenedorBaseModal = this.querySelector('.ph-background-container-modal');
     this.btnsSeleccionMetodoEntrega = this.querySelectorAll('.smecph-opcion-metodo');
-    
+
     this.contenedorBaseSeleccionLocal = this.querySelector('#pcktph-seleccion-local');
     this.contenedorBaseSeleccionDireccionEnvio = this.querySelector('#phpc-seccion-seleccion-local');
     this.contenedorDatosContactoInputsForm = this.querySelector('.smecph-formulario-datos-contacto');
@@ -1744,7 +1741,7 @@ class PageCheckoutPH extends HTMLElement {
     this.alertaCIContacto = this.querySelector('#phpc-alerta-ci-contacto');
 
     // Datos de pago
-    this.seccionGeneralMetodosPago =  this.querySelector('#phpc-sector-metodos-de-pago');
+    this.seccionGeneralMetodosPago = this.querySelector('#phpc-sector-metodos-de-pago');
     this.mensajeAlertaDatosFacturacion = this.querySelector('#phpc-mensaje-alerta-datos-facturacion');
     this.opcionesTarjetaCredito = this.querySelector('#phpc-opciones-tarjeta-credito');
     this.inputPrimero4Digitos = this.querySelector('#phpc-input-primero-4-digitos');
@@ -1752,7 +1749,7 @@ class PageCheckoutPH extends HTMLElement {
     this.inputUltimos4Digitos = this.querySelector('#phpc-input-ultimos-4-digitos');
     this.mensajeAlertaUltimos4Digitos = this.querySelector('#phpc-alerta-ultimos-4-digitos');
     this.btnsMetodosPagos = this.querySelectorAll('#phpc-btn-metodo-pago');
-    
+
     // Datos de facturacion
     this.etiquetaDatosFacturacionConsolidados = this.querySelector('#phpc-etiqueta-datos-facturacion-consolidados');
     this.contenedorDatosFacturacion = this.querySelector('#phpc-form-datos-facturacion');
@@ -1790,25 +1787,25 @@ class PageCheckoutPH extends HTMLElement {
     this.btnMiUbicacionActualF1.addEventListener('click', this.procesoMiUbicacionActualF1.bind(this));
     this.btnProcesoPrincipalNd.addEventListener('click', this.procesoPrincipalNuevaDireccion.bind(this));
     this.btnCancelarNd.addEventListener('click', this.procesoVolverAtrasNuevaDireccion.bind(this));
-    this.inputAliasDireccionF3.addEventListener('input',(event)=>{
+    this.inputAliasDireccionF3.addEventListener('input', (event) => {
       const query = event.target.value.trim();
       console.log("Query de indicaciones", query);
-      if(query == "" && this.estadoFaseNuevaDireccion == 3){
+      if (query == "" && this.estadoFaseNuevaDireccion == 3) {
         this.btnProcesoPrincipalNd.classList.add('desactivado');
-      }else{
+      } else {
         this.btnProcesoPrincipalNd.classList.remove('desactivado');
       }
     });
     this.btnEditarDatos.addEventListener('click', (event) => {
       this.btnAccionDatosContacto(event.currentTarget);
     });
-    this.btnGuardarDatos.addEventListener('click', (event)=>{
+    this.btnGuardarDatos.addEventListener('click', (event) => {
       this.btnAccionDatosContacto(event.currentTarget);
     });
     this.btnEditarDatosFacturacion.addEventListener('click', (event) => {
       this.btnAccionDatosFacturacion(event.currentTarget);
     });
-    this.btnGuardarDatosFacturacion.addEventListener('click', (event)=>{
+    this.btnGuardarDatosFacturacion.addEventListener('click', (event) => {
       this.btnAccionDatosFacturacion(event.currentTarget);
     });
     this.btnsMetodosPagos.forEach((btn) => {
@@ -1817,10 +1814,10 @@ class PageCheckoutPH extends HTMLElement {
       });
     });
     this.btnContinuar.addEventListener('click', this.procesoContinuarGeneral.bind(this));
-    this.btnHutCoins.addEventListener('click', (event)=>{
+    this.btnHutCoins.addEventListener('click', (event) => {
       this.procesoHutCoins(event.currentTarget);
     });
-    this.btnEditarCarrito.addEventListener('click', (event)=>{
+    this.btnEditarCarrito.addEventListener('click', (event) => {
       this.procesoEditarCarrito(event.currentTarget);
     });
     // INICIALIZAR ELEMENTOS Y PROCESO
@@ -1837,39 +1834,39 @@ class PageCheckoutPH extends HTMLElement {
   configuracionAutoCompletadoPuntosReferencia() {
     // Verificar que el input existe
     if (!this.inputPuntoReferenciaF1) return;
-    
+
     // Variable para almacenar el timer del debounce
     let timeoutId = null;
 
     // Variable para el servicio de Google Places
     this.placesService = new google.maps.places.AutocompleteService();
-    
+
     // Configurar evento de entrada en el input
     this.inputPuntoReferenciaF1.addEventListener('input', (event) => {
       // Limpiar el timer anterior si existe
       if (timeoutId) {
         clearTimeout(timeoutId);
       }
-      
+
       const query = event.target.value;
-      
+
       // Si el input está vacío, ocultar sugerencias
       if (!query) {
-        this.contenedorResultadosBusquedaReferenciasF1.style.display = "none"; 
+        this.contenedorResultadosBusquedaReferenciasF1.style.display = "none";
         return;
       }
-      
+
       // Configurar debounce (500ms)
       timeoutId = setTimeout(() => {
         // Solo mostrar los 3 primeros resultados más relevantes
         this.buscarSugerenciasSeleccionReferencia(query);
       }, 500);
     });
-    
+
     // Cerrar sugerencias al hacer clic fuera
     document.addEventListener('click', (e) => {
-      if (!this.inputPuntoReferenciaF1.contains(e.target) && 
-          !this.contenedorResultadosBusquedaReferenciasF1.contains(e.target)) {
+      if (!this.inputPuntoReferenciaF1.contains(e.target) &&
+        !this.contenedorResultadosBusquedaReferenciasF1.contains(e.target)) {
         this.contenedorResultadosBusquedaReferenciasF1.style.display = 'none';
       }
     });
@@ -1914,9 +1911,9 @@ class PageCheckoutPH extends HTMLElement {
       });
 
       // Mostrar el contenedor
-      if(sugerencias.length > 0){
+      if (sugerencias.length > 0) {
         this.contenedorResultadosBusquedaReferenciasF1.style.display = 'flex';
-      }else{
+      } else {
         this.contenedorResultadosBusquedaReferenciasF1.style.display = 'none';
       }
     });
@@ -1925,16 +1922,16 @@ class PageCheckoutPH extends HTMLElement {
   seleccionarPuntoReferencia(sugerencia) {
     this.inputPuntoReferenciaF1.value = sugerencia.description;
     this.contenedorResultadosBusquedaReferenciasF1.style.display = 'none';
-  
+
     // Obtener las coordenadas del lugar seleccionado
     const geocoder = new google.maps.Geocoder();
     geocoder.geocode({ placeId: sugerencia.place_id }, (resultados, status) => {
       if (status === google.maps.GeocoderStatus.OK && resultados[0]) {
         const location = resultados[0].geometry.location;
         // Convertir el objeto LatLng de Google Maps a un objeto JavaScript simple
-        this.coordenadasProcesoNuevaDireccion = { 
-          lat: location.lat(), 
-          lng: location.lng() 
+        this.coordenadasProcesoNuevaDireccion = {
+          lat: location.lat(),
+          lng: location.lng()
         };
         this.coordenadas = this.coordenadasProcesoNuevaDireccion;
         console.log('Coordenadas seleccionadas:', this.coordenadasProcesoNuevaDireccion);
@@ -1948,32 +1945,32 @@ class PageCheckoutPH extends HTMLElement {
   configuracionAutoCompletadoSeleccionLocal() {
     // Verificar que el input existe
     if (!this.inputSeleccionarLocal) return;
-    
+
     // Variable para almacenar el timer del debounce
     let timeoutId = null;
-    
+
     // Configurar evento de entrada en el input
     this.inputSeleccionarLocal.addEventListener('input', (event) => {
       // Limpiar el timer anterior si existe
       if (timeoutId) {
         clearTimeout(timeoutId);
       }
-      
+
       const query = event.target.value;
-      
+
       // Si el input está vacío, ocultar sugerencias
       if (!query) {
-        this.contenedorResultadosBuquedaLocal.style.display = "none"; 
+        this.contenedorResultadosBuquedaLocal.style.display = "none";
         return;
       }
-      
+
       // Configurar debounce (500ms)
       timeoutId = setTimeout(() => {
         // Solo mostrar los 3 primeros resultados más relevantes
         this.buscarSugerenciasSeleccionLocal(query, 3);
       }, 500);
     });
-    
+
     // Configurar evento para el botón de mostrar/ocultar
     this.btnIconoMostrarTodosLocales.addEventListener('click', () => {
       // Si el contenedor ya está visible, ocultarlo
@@ -1981,9 +1978,9 @@ class PageCheckoutPH extends HTMLElement {
         this.contenedorResultadosBuquedaLocal.style.display = "none";
         return;
       }
-      
+
       const query = this.inputSeleccionarLocal.value;
-      
+
       // Si el input está vacío, mostrar todos los locales
       if (!query) {
         this.mostrarTodosLosLocales();
@@ -1992,12 +1989,12 @@ class PageCheckoutPH extends HTMLElement {
         this.buscarSugerenciasSeleccionLocal(query, 3);
       }
     });
-    
+
     // Cerrar sugerencias al hacer clic fuera
     document.addEventListener('click', (e) => {
-      if (!this.inputSeleccionarLocal.contains(e.target) && 
-          !this.contenedorResultadosBuquedaLocal.contains(e.target) &&
-          !this.btnIconoMostrarTodosLocales.contains(e.target)) {
+      if (!this.inputSeleccionarLocal.contains(e.target) &&
+        !this.contenedorResultadosBuquedaLocal.contains(e.target) &&
+        !this.btnIconoMostrarTodosLocales.contains(e.target)) {
         this.contenedorResultadosBuquedaLocal.style.display = 'none';
       }
     });
@@ -2010,62 +2007,62 @@ class PageCheckoutPH extends HTMLElement {
     if (this.contenedorResultadosBuquedaLocal.style.display === "none") {
       this.buscarSugerenciasSeleccionLocal('', null);
       this.contenedorResultadosBuquedaLocal.style.display = "flex";
-    }else{
+    } else {
       this.contenedorResultadosBuquedaLocal.style.display = "none";
     }
   }
 
   buscarSugerenciasSeleccionLocal(query, limite = null) {
     // Filtrar las ubicaciones basadas en la consulta
-    let resultados = this.pizzaLocations.filter(location => 
+    let resultados = this.pizzaLocations.filter(location =>
       location.name.toLowerCase().includes(query.toLowerCase()) ||
       location.localizacion.toLowerCase().includes(query.toLowerCase())
     );
-    
+
     // Ordenar por relevancia (priorizar coincidencias en el nombre)
     resultados.sort((a, b) => {
       const aInName = a.name.toLowerCase().includes(query.toLowerCase());
       const bInName = b.name.toLowerCase().includes(query.toLowerCase());
-      
+
       if (aInName && !bInName) return -1;
       if (!aInName && bInName) return 1;
       return 0;
     });
-    
+
     // Limitar resultados si se especifica un límite
     if (limite && resultados.length > limite) {
       resultados = resultados.slice(0, limite);
     }
-  
+
     // Limpiar resultados anteriores
     this.contenedorResultadosBuquedaLocal.innerHTML = '';
-    
+
     // Si hay resultados, mostrar el contenedor
     if (resultados.length > 0) {
       this.contenedorResultadosBuquedaLocal.style.display = "flex";
-      
+
       // Crear y añadir elementos para cada resultado
       resultados.forEach(location => {
         const resultadoItem = document.createElement('div');
         resultadoItem.className = 'smecph-pc-resultado-item';
-        
+
         // Crear elemento para el nombre
         const nombreLocal = document.createElement('p');
         nombreLocal.textContent = location.name;
-        
+
         // Crear elemento para la dirección
         const direccionLocal = document.createElement('p');
         direccionLocal.textContent = location.localizacion;
-        
+
         // Añadir elementos al item
         resultadoItem.appendChild(nombreLocal);
         resultadoItem.appendChild(direccionLocal);
-        
+
         // Añadir evento de clic para seleccionar este locall
         resultadoItem.addEventListener('click', () => {
           this.seleccionarLocal(location);
         });
-        
+
         // Añadir el item al contenedor de resultados
         this.contenedorResultadosBuquedaLocal.appendChild(resultadoItem);
       });
@@ -2081,15 +2078,15 @@ class PageCheckoutPH extends HTMLElement {
 
     // Actualizar el input con el nombre del local seleccionadoo
     this.inputSeleccionarLocal.value = location.name;
-    
+
     // Ocultar sugerencias
     this.contenedorResultadosBuquedaLocal.style.display = "none";
-    
+
     // Mostrar detalles del local seleccionadoo
     const detalleLocal = this.querySelector('.pcktph-seleccion-local-detalle');
     detalleLocal.style.display = "flex";
 
-    const distancia = this.calcularDistancia(this.coordenadas, {lat: location.lat, lng: location.lng});
+    const distancia = this.calcularDistancia(this.coordenadas, { lat: location.lat, lng: location.lng });
     this.etiquetaModalLocalSeleccionado.textContent = `Local : ${location.name} (${distancia.toFixed(2)} Km) de tu ubicación`;
 
     // Actualizar información del local seleccionado
@@ -2101,123 +2098,123 @@ class PageCheckoutPH extends HTMLElement {
   }
 
   // PROCESO DE CONTENEDOR SUGERENCIAS DIRECCION DE ENVI
-  configuracionAutoCompletadoSeleccionDireccion(){
-        // Verificar que el input existe
-        // if (!this.inputSeleccionarDireccion) return;
-    
-        // Variable para almacenar el timer del debounce
-        let timeoutId = null;
-        
-        // Configurar evento de entrada en el input
-        // this.inputSeleccionarDireccion.addEventListener('input', (event) => {
-        //   // Limpiar el timer anterior si existe
-        //   if (timeoutId) {
-        //     clearTimeout(timeoutId);
-        //   }
-          
-        //   const query = event.target.value;
-          
-        //   // Si el input está vacío, ocultar sugerencias
-        //   if (!query) {
-        //     this.contenedorResultadosBusquedaDireccion.style.display = "none"; 
-        //     return;
-        //   }
-          
-        //   // Configurar debounce (500ms)
-        //   timeoutId = setTimeout(() => {
-        //     // Solo mostrar los 3 primeros resultados más relevantes
-        //     this.buscarSugerenciasSeleccionDireccion(query, 3);
-        //   }, 500);
-        // });
-        
-        // Configurar evento para el botón de mostrar/ocultar
-        this.contenedorDireccionEnvioSeleccionado.addEventListener('click', () => {
-          // Si el contenedor ya está visible, ocultarlo
-          if (this.contenedorResultadosBusquedaDireccion.style.display === "flex") {
-            this.contenedorResultadosBusquedaDireccion.style.display = "none";
-            return;
-          }
-          
-          const query = this.inputSeleccionarLocal.value;
-          
-          // Si el input está vacío, mostrar todos los locales
-          if (!query) {
-            this.mostrarTodasDirecciones();
-          } else {
-            // Si hay texto en el input, mostrar los 3 resultados más asertados
-            this.buscarSugerenciasSeleccionDireccion(query, 3);
-          }
-        });
-        
-        // Cerrar sugerencias al hacer clic fueraaa
-        document.addEventListener('click', (e) => {
-          if (!this.contenedorResultadosBusquedaDireccion.contains(e.target) &&
-              !this.contenedorDireccionEnvioSeleccionado.contains(e.target)) {
-            this.contenedorResultadosBusquedaDireccion.style.display = 'none';
-          }
-        });
+  configuracionAutoCompletadoSeleccionDireccion() {
+    // Verificar que el input existe
+    // if (!this.inputSeleccionarDireccion) return;
+
+    // Variable para almacenar el timer del debounce
+    let timeoutId = null;
+
+    // Configurar evento de entrada en el input
+    // this.inputSeleccionarDireccion.addEventListener('input', (event) => {
+    //   // Limpiar el timer anterior si existe
+    //   if (timeoutId) {
+    //     clearTimeout(timeoutId);
+    //   }
+
+    //   const query = event.target.value;
+
+    //   // Si el input está vacío, ocultar sugerencias
+    //   if (!query) {
+    //     this.contenedorResultadosBusquedaDireccion.style.display = "none"; 
+    //     return;
+    //   }
+
+    //   // Configurar debounce (500ms)
+    //   timeoutId = setTimeout(() => {
+    //     // Solo mostrar los 3 primeros resultados más relevantes
+    //     this.buscarSugerenciasSeleccionDireccion(query, 3);
+    //   }, 500);
+    // });
+
+    // Configurar evento para el botón de mostrar/ocultar
+    this.contenedorDireccionEnvioSeleccionado.addEventListener('click', () => {
+      // Si el contenedor ya está visible, ocultarlo
+      if (this.contenedorResultadosBusquedaDireccion.style.display === "flex") {
+        this.contenedorResultadosBusquedaDireccion.style.display = "none";
+        return;
+      }
+
+      const query = this.inputSeleccionarLocal.value;
+
+      // Si el input está vacío, mostrar todos los locales
+      if (!query) {
+        this.mostrarTodasDirecciones();
+      } else {
+        // Si hay texto en el input, mostrar los 3 resultados más asertados
+        this.buscarSugerenciasSeleccionDireccion(query, 3);
+      }
+    });
+
+    // Cerrar sugerencias al hacer clic fueraaa
+    document.addEventListener('click', (e) => {
+      if (!this.contenedorResultadosBusquedaDireccion.contains(e.target) &&
+        !this.contenedorDireccionEnvioSeleccionado.contains(e.target)) {
+        this.contenedorResultadosBusquedaDireccion.style.display = 'none';
+      }
+    });
   }
 
-  mostrarTodasDirecciones(){
+  mostrarTodasDirecciones() {
     if (this.contenedorResultadosBusquedaDireccion.style.display === "none") {
       this.buscarSugerenciasSeleccionDireccion('', null);
       this.contenedorResultadosBusquedaDireccion.style.display = "flex";
-    }else{
+    } else {
       this.contenedorResultadosBusquedaDireccion.style.display = "none";
     }
   }
 
   buscarSugerenciasSeleccionDireccion(query, limite = null) {
     // Filtrar las ubicaciones basadas en la consulta
-    let resultados = this.listaDireccionPrueba.filter(direccion => 
+    let resultados = this.listaDireccionPrueba.filter(direccion =>
       direccion.indicaciones.toLowerCase().includes(query.toLowerCase()) ||
       direccion.alias.toLowerCase().includes(query.toLowerCase())
     );
-    
+
     // Ordenar por relevancia (priorizar coincidencias en el nombre)
     resultados.sort((a, b) => {
       const aInAlias = a.alias.toLowerCase().includes(query.toLowerCase());
       const bInAlias = b.alias.toLowerCase().includes(query.toLowerCase());
-      
+
       if (aInAlias && !bInAlias) return -1;
       if (!aInAlias && bInAlias) return 1;
       return 0;
     });
-    
+
     // Limitar resultados si se especifica un límite
     if (limite && resultados.length > limite) {
       resultados = resultados.slice(0, limite);
     }
-  
+
     // Limpiar resultados anteriores
     this.contenedorResultadosBusquedaDireccion.innerHTML = '';
-    
+
     // Si hay resultados, mostrar el contenedor
     if (resultados.length > 0) {
       this.contenedorResultadosBusquedaDireccion.style.display = "flex";
-      
+
       // Crear y añadir elementos para cada resultado
       resultados.forEach(direccion => {
         const resultadoItem = document.createElement('div');
         resultadoItem.className = 'smecph-pc-resultado-item';
-        
+
         // Crear elemento para el nombre
         const nombreAlias = document.createElement('p');
         nombreAlias.textContent = direccion.alias;
-        
+
         // Crear elemento para la dirección
         const direccionIndicacion = document.createElement('p');
         direccionIndicacion.textContent = direccion.indicaciones;
-        
+
         // Añadir elementos al item
         resultadoItem.appendChild(nombreAlias);
         resultadoItem.appendChild(direccionIndicacion);
-        
+
         // Añadir evento de clic para seleccionar este locall
         resultadoItem.addEventListener('click', () => {
           this.seleccionarDireccion(direccion);
         });
-        
+
         // Añadir el item al contenedor de resultados
         this.contenedorResultadosBusquedaDireccion.appendChild(resultadoItem);
       });
@@ -2227,7 +2224,7 @@ class PageCheckoutPH extends HTMLElement {
     }
   }
 
-  seleccionarDireccion(direccion){
+  seleccionarDireccion(direccion) {
     this.direccionSeleccionada = direccion;
     this.coordenadas = { lat: direccion.lat, lng: direccion.lng };
     this.contenedorResultadosBusquedaDireccion.style.display = "none";
@@ -2235,18 +2232,18 @@ class PageCheckoutPH extends HTMLElement {
     this.etiquetaIndicacionesDireccion.textContent = direccion.indicaciones;
   }
 
-  async inicializarDataContruccion(){
+  async inicializarDataContruccion() {
     MensajeCargaDatos.mostrar('Cargando información del pagina ...');
 
-    if(this.estadoPagina == "domicilio"){
+    if (this.estadoPagina == "domicilio") {
       this.contenedorBaseSeleccionDireccionEnvio.style.display = "flex";
       this.contenedorBaseSeleccionLocal.style.display = "none";
       this.btnMetodoDomicilio.classList.add('seleccionado');
-      const iconoSeleccionado = this.btnMetodoDomicilio.querySelector('.smecph-opcion-icono'); 
+      const iconoSeleccionado = this.btnMetodoDomicilio.querySelector('.smecph-opcion-icono');
       iconoSeleccionado.innerHTML = window.shopIcons.icon_estado_on;
     }
 
-    if(this.estadoPagina == "local"){
+    if (this.estadoPagina == "local") {
       this.contenedorBaseSeleccionDireccionEnvio.style.display = "none";
       this.contenedorBaseSeleccionLocal.style.display = "flex";
       this.btnMetodoLocal.classList.add('seleccionado');
@@ -2258,9 +2255,9 @@ class PageCheckoutPH extends HTMLElement {
     console.log("Info carrito Testeo : ", this.infoCarrito);
     var contenidoHTML = "";
     var totalPrecioCarrito = 0;
-    
+
     this.infoCarrito.informacionCompleta.items.forEach((item) => {
-      if(!(item.properties && item.properties.estructura))return;
+      if (!(item.properties && item.properties.estructura)) return;
       // Verificar si el item tiene la propiedad "estructura"
       const data = JSON.parse(item.properties.estructura);
       totalPrecioCarrito += parseInt(data.producto.precioTotalConjunto * parseInt(data.producto.cantidad));
@@ -2274,10 +2271,10 @@ class PageCheckoutPH extends HTMLElement {
         class="smecph-pc-item-carrito">
           <div class="smecph-pc-item-carrito-info">
             <div class="smecph-pc-item-ci-img">
-              ${data.producto.imagen == null || data.producto.imagen == '' 
-                ? `<img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="${data.producto.titulo}" width="100" height="100">`
-                : `<img src="${data.producto.imagen}" alt="${data.producto.titulo}" width="100" height="100">`
-              }
+              ${data.producto.imagen == null || data.producto.imagen == ''
+          ? `<img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="${data.producto.titulo}" width="100" height="100">`
+          : `<img src="${data.producto.imagen}" alt="${data.producto.titulo}" width="100" height="100">`
+        }
             </div>
             <div class="smecph-pc-item-ci-detalle">
               <div class="smecph-pc-item-cid1">
@@ -2291,23 +2288,22 @@ class PageCheckoutPH extends HTMLElement {
                   <small>Bs</small>
                   <p>${data.producto.precioTotalConjunto}</p>
                 </div>
-                ${
-                 data.producto.descuento == null || data.producto.descuento == 0 || data.producto.descuento == undefined 
-                 ? ``
-                 : `                
+                ${data.producto.descuento == null || data.producto.descuento == 0 || data.producto.descuento == undefined
+          ? ``
+          : `                
                  <div class="smecph-pc-item-cid3_total color-letras-extra">
                   <small>Bs</small>
                   <p>${data.producto.descuento}</p>
                   </div>
                   `
-                }
+        }
               </div>
             </div>
           </div>
           `
-          var seraVisto = data.opcionesPrincipales.productos.length == 0 && data.complementos.productos.length == 0;
+      var seraVisto = data.opcionesPrincipales.productos.length == 0 && data.complementos.productos.length == 0;
 
-          contenidoHTML += `
+      contenidoHTML += `
           <div 
           data-seravisto="${!seraVisto}"
           style="display: none;"
@@ -2316,29 +2312,29 @@ class PageCheckoutPH extends HTMLElement {
             <ul class="color-letras-extra">
           `;
 
-          data.opcionesPrincipales.productos.forEach((producto) => {
-            contenidoHTML += `
+      data.opcionesPrincipales.productos.forEach((producto) => {
+        contenidoHTML += `
               <li>
                 <p>${producto.tituloSeccion} : <br> ${producto.titulo}</p>
               </li>
             `;
-          });
+      });
 
-          contenidoHTML += `
+      contenidoHTML += `
             </ul>
             <p>${data.complementos.titulo}</p>
             <ul class="color-letras-extra">
           `;
 
-          data.complementos.productos.forEach((producto) => {
-            contenidoHTML += `
+      data.complementos.productos.forEach((producto) => {
+        contenidoHTML += `
               <li>
                 <p>${producto.tituloSeccion} : <br> ${producto.titulo}</p>
               </li>
             `;
-          });
+      });
 
-          contenidoHTML += `
+      contenidoHTML += `
             </ul>
           </div>
         </div>
@@ -2354,18 +2350,18 @@ class PageCheckoutPH extends HTMLElement {
         this.procesoVerDetallesProducto(event.currentTarget);
       });
     });
-    
+
     this.configuracionAutoCompletadoSeleccionLocal();
     this.configuracionAutoCompletadoSeleccionDireccion();
     this.configuracionAutoCompletadoPuntosReferencia();
 
     this.etiquetaAliasDireccion.textContent = this.listaDireccionPrueba[0].alias;
     this.etiquetaIndicacionesDireccion.textContent = this.listaDireccionPrueba[0].indicaciones;
-    
+
     MensajeCargaDatos.ocultar();
   }
 
-  seleccionarMetodoLocal(){
+  seleccionarMetodoLocal() {
     this.estadoPagina = "local";
     this.contenedorBaseSeleccionDireccionEnvio.style.display = "none";
     this.contenedorBaseSeleccionLocal.style.display = "flex";
@@ -2378,7 +2374,7 @@ class PageCheckoutPH extends HTMLElement {
     iconoDesSeleccionado.innerHTML = window.shopIcons.icon_estado_off;
   }
 
-  seleccionarMetodoDomicilio(){
+  seleccionarMetodoDomicilio() {
     this.estadoPagina = "domicilio";
     this.contenedorBaseSeleccionDireccionEnvio.style.display = "flex";
     this.contenedorBaseSeleccionLocal.style.display = "none";
@@ -2394,18 +2390,18 @@ class PageCheckoutPH extends HTMLElement {
   verDireccionEnMapaLocalSeleccionado() {
     // Verificar que existe el contenedor para el mapa
     this.modalBodyContenedorMapa = this.querySelector('#phpc-localSeleccionado-mapa');
-    
+
     if (!this.modalBodyContenedorMapa) {
       console.error('No se encontró el contenedor del mapa');
       return;
     }
-    
+
     // Verificar que tenemos un local seleccionado
     if (!this.localSeleccionado) {
       console.error('No hay un local seleccionado');
       return;
     }
-    
+
     // Asegurarse de que el contenedor del mapa sea visible
     // this.modalBodyContenedorMapa.style.display = 'flex';
     this.contenedorBaseModal.style.display = 'flex';
@@ -2416,7 +2412,7 @@ class PageCheckoutPH extends HTMLElement {
       lat: this.localSeleccionado.lat,
       lng: this.localSeleccionado.lng
     };
-    
+
     // Opciones del mapa
     const opcionesMapa = {
       center: posicion,
@@ -2425,18 +2421,18 @@ class PageCheckoutPH extends HTMLElement {
       mapTypeControl: false,
       streetViewControl: false
     };
-    
+
     // Crear el mapa
     const mapa = new google.maps.Map(this.modalBodyContenedorMapa, opcionesMapa);
-    
+
     // Crear icono personalizado
     const iconoPersonalizado = {
       url: window.assets.logo_primario,
       scaledSize: new google.maps.Size(40, 40),
       origin: new google.maps.Point(0, 0),
-      anchor: new google.maps.Point(20, 40) 
+      anchor: new google.maps.Point(20, 40)
     };
-    
+
     // Crear marcador
     const marcador = new google.maps.Marker({
       position: posicion,
@@ -2444,7 +2440,7 @@ class PageCheckoutPH extends HTMLElement {
       icon: iconoPersonalizado,
       title: this.localSeleccionado.name
     });
-    
+
     // // Crear ventana de información
     // const contenidoInfo = `
     //   <div class="info-window-content">
@@ -2454,19 +2450,19 @@ class PageCheckoutPH extends HTMLElement {
     //     <p>Horario: ${this.localSeleccionado.horario}</p>
     //   </div>
     // `;
-    
+
     // const infoWindow = new google.maps.InfoWindow({
     //   content: contenidoInfo
     // });
-    
+
     // // Abrir ventana de información al hacer clic en el marcador
     // marcador.addListener('click', () => {
     //   infoWindow.open(mapa, marcador);
     // });
-    
+
     // Abrir la ventana de información por defecto
     // infoWindow.open(mapa, marcador);
-    
+
     // Guardar referencias por si necesitamos modificar el mapa después
     // this.mapaActual = mapa;
     // this.marcadorActual = marcador;
@@ -2482,14 +2478,14 @@ class PageCheckoutPH extends HTMLElement {
         reject(mensaje);
         return;
       }
-  
+
       // Opciones de geolocalización
       const options = {
         enableHighAccuracy: true, // Alta precisión
         timeout: 10000,          // 10 segundos de timeout
         maximumAge: 0            // No usar cache
       };
-  
+
       // Función de éxito
       const success = (position) => {
         // Actualizar las coordenadas con la ubicación actual
@@ -2497,15 +2493,15 @@ class PageCheckoutPH extends HTMLElement {
           lat: position.coords.latitude,
           lng: position.coords.longitude
         };
-        
+
         console.log('Ubicación obtenida:', this.coordenadas);
         resolve(this.coordenadas);
       };
-  
+
       // Función de error
       const error = (err) => {
         let mensaje = '';
-        
+
         switch (err.code) {
           case err.PERMISSION_DENIED:
             mensaje = 'Has denegado el permiso para acceder a tu ubicación. No podremos mostrarte los locales más cercanos.';
@@ -2520,19 +2516,19 @@ class PageCheckoutPH extends HTMLElement {
             mensaje = 'Ocurrió un error desconocido al obtener tu ubicación.';
             break;
         }
-        
+
         // Mostrar alerta al usuario
         alert(mensaje);
         console.error('Error de geolocalización:', mensaje);
         reject(mensaje);
       };
-  
+
       // Solicitar la geolocalización
       navigator.geolocation.getCurrentPosition(success, error, options);
     });
   }
 
-  cerrarModalLocalSeleccionado(){
+  cerrarModalLocalSeleccionado() {
     this.contenedorBaseModal.style.display = 'none';
     this.bodyModalLocalSeleccionado.style.display = 'none';
   }
@@ -2543,20 +2539,20 @@ class PageCheckoutPH extends HTMLElement {
     const dLng = (coordenadas2.lng - coordenadas1.lng) * (Math.PI / 180);
 
     const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-    Math.cos(coordenadas1.lat * (Math.PI / 180)) * Math.cos(coordenadas2.lat * (Math.PI / 180)) *
-    Math.sin(dLng / 2) * Math.sin(dLng / 2);
+      Math.cos(coordenadas1.lat * (Math.PI / 180)) * Math.cos(coordenadas2.lat * (Math.PI / 180)) *
+      Math.sin(dLng / 2) * Math.sin(dLng / 2);
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     return radioTierra * c; // Distancia en kilómetros
   }
 
-  procesoParaAnadirNuevaDireccion(){
+  procesoParaAnadirNuevaDireccion() {
     this.contenedorBaseModal.style.display = 'flex';
     this.modalBodyNuevaDireccion.style.display = 'flex';
     this.estadoFaseNuevaDireccion = 1;
     this.modalContenidoF1NuevaDireccion.style.display = 'flex';
   }
 
-  cerrarModalNuevaDireccion(){
+  cerrarModalNuevaDireccion() {
     this.contenedorBaseModal.style.display = 'none';
     this.modalBodyNuevaDireccion.style.display = 'none';
     this.estadoFaseNuevaDireccion = 1;
@@ -2566,12 +2562,12 @@ class PageCheckoutPH extends HTMLElement {
     this.footerModalNuevaDireccion.style.display = 'none';
   }
 
-  procesoVolverAtrasNuevaDireccion(){
-    if(this.estadoFaseNuevaDireccion == 1){
+  procesoVolverAtrasNuevaDireccion() {
+    if (this.estadoFaseNuevaDireccion == 1) {
       this.cerrarModalNuevaDireccion();
     }
 
-    if(this.estadoFaseNuevaDireccion == 2){
+    if (this.estadoFaseNuevaDireccion == 2) {
       this.modalContenidoF1NuevaDireccion.style.display = 'flex';
       this.footerModalNuevaDireccion.style.display = 'none';
       this.modalContenidoF2NuevaDireccion.style.display = 'none';
@@ -2579,7 +2575,7 @@ class PageCheckoutPH extends HTMLElement {
       this.coordenadasProcesoNuevaDireccion = null;
     }
 
-    if(this.estadoFaseNuevaDireccion == 3){
+    if (this.estadoFaseNuevaDireccion == 3) {
       this.modalContenidoF2NuevaDireccion.style.display = 'flex';
       this.footerModalNuevaDireccion.style.display = 'flex';
       this.modalContenidoF3NuevaDireccion.style.display = 'none';
@@ -2595,7 +2591,7 @@ class PageCheckoutPH extends HTMLElement {
     this.modalContenidoF2NuevaDireccion.style.display = 'flex';
     this.footerModalNuevaDireccion.style.display = 'flex';
     this.etiquetaBtnModalNuevaDireccion.textContent = "CONFIRMAR DIRECCION";
-  
+
     // Siempre inicializamos el mapa con las coordenadas por defecto
     const map = new google.maps.Map(this.contenedorModalMapaNuevaDireccion, {
       zoom: 15,
@@ -2605,7 +2601,7 @@ class PageCheckoutPH extends HTMLElement {
       fullscreenControl: false,
       zoomControl: true
     });
-  
+
     // Inicializar el marcador con las coordenadas predeterminadas
     const marker = new google.maps.Marker({
       position: this.coordenadas, // Coordenadas predeterminadas
@@ -2614,7 +2610,7 @@ class PageCheckoutPH extends HTMLElement {
       animation: google.maps.Animation.DROP,
       title: 'Tu ubicación'
     });
-  
+
     // Actualizar coordenadas cuando el marcador se mueve
     google.maps.event.addListener(marker, 'dragend', (event) => {
       const newPosition = {
@@ -2625,46 +2621,46 @@ class PageCheckoutPH extends HTMLElement {
       console.log('Nueva ubicación:', this.coordenadasProcesoNuevaDireccion);
     });
 
-    if(this.coordenadasProcesoNuevaDireccion == null){
-    // Intentar obtener la ubicación del usuario después de inicializar el mapa
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        // Solo si el usuario acepta, actualizamos el mapa
-        (position) => {
-          const userLocation = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-          };
-          
-          // Actualizar coordenadas
-          this.coordenadasProcesoNuevaDireccion = userLocation;
-          
-          // Ahora actualizamos el mapa y el marcador
-          marker.setPosition(userLocation);
-          map.panTo(userLocation);
-          
-          console.log('GPS activado, ubicación obtenida:', userLocation);
-        },
-        // Si el usuario rechaza o hay error, simplemente mantenemos la ubicación predeterminada
-        (error) => {
-          console.warn('Error al obtener la ubicación:', error.message);
-          // No necesitamos hacer nada más, ya que el mapa ya está inicializado
-          this.coordenadasProcesoNuevaDireccion = this.coordenadas;
-        },
-        // Opciones
-        {
-          enableHighAccuracy: true,
-          timeout: 5000,
-          maximumAge: 0
-        }
-      );
-    } else {
-      // El navegador no soporta geolocalización
-      console.warn('Geolocalización no soportada por este navegador');
-      this.coordenadasProcesoNuevaDireccion = this.coordenadas;
-    }
+    if (this.coordenadasProcesoNuevaDireccion == null) {
+      // Intentar obtener la ubicación del usuario después de inicializar el mapa
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          // Solo si el usuario acepta, actualizamos el mapa
+          (position) => {
+            const userLocation = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
 
-    }else{
+            // Actualizar coordenadas
+            this.coordenadasProcesoNuevaDireccion = userLocation;
+
+            // Ahora actualizamos el mapa y el marcador
+            marker.setPosition(userLocation);
+            map.panTo(userLocation);
+
+            console.log('GPS activado, ubicación obtenida:', userLocation);
+          },
+          // Si el usuario rechaza o hay error, simplemente mantenemos la ubicación predeterminada
+          (error) => {
+            console.warn('Error al obtener la ubicación:', error.message);
+            // No necesitamos hacer nada más, ya que el mapa ya está inicializado
+            this.coordenadasProcesoNuevaDireccion = this.coordenadas;
+          },
+          // Opciones
+          {
+            enableHighAccuracy: true,
+            timeout: 5000,
+            maximumAge: 0
+          }
+        );
+      } else {
+        // El navegador no soporta geolocalización
+        console.warn('Geolocalización no soportada por este navegador');
+        this.coordenadasProcesoNuevaDireccion = this.coordenadas;
+      }
+
+    } else {
       marker.setPosition(this.coordenadasProcesoNuevaDireccion);
       map.panTo(this.coordenadasProcesoNuevaDireccion);
     }
@@ -2672,8 +2668,8 @@ class PageCheckoutPH extends HTMLElement {
 
   }
 
-  async procesoPrincipalNuevaDireccion(){
-    if(this.estadoFaseNuevaDireccion == 2){
+  async procesoPrincipalNuevaDireccion() {
+    if (this.estadoFaseNuevaDireccion == 2) {
       this.estadoFaseNuevaDireccion = 3;
       this.modalContenidoF2NuevaDireccion.style.display = 'none';
       this.modalContenidoF3NuevaDireccion.style.display = 'flex';
@@ -2683,17 +2679,17 @@ class PageCheckoutPH extends HTMLElement {
       return;
     }
 
-    if(this.estadoFaseNuevaDireccion == 3){
+    if (this.estadoFaseNuevaDireccion == 3) {
       this.cerrarModalNuevaDireccion();
       this.etiquetaBtnModalNuevaDireccion.textContent = "CONFIRMAR DIRECCION";
       const alias = this.inputAliasDireccionF3.value;
       const indicaciones = this.inputIndicacionesDireccionF3.value;
-      const coordenadasTexto = await AuxiliaresGlobal.obtenerDireccionDesdeCoordenadas(this.coordenadas.lat,this.coordenadas.lng);
-      
+      const coordenadasTexto = await AuxiliaresGlobal.obtenerDireccionDesdeCoordenadas(this.coordenadas.lat, this.coordenadas.lng);
+
       this.listaDireccionPrueba.push({
         lat: this.coordenadas.lat,
         lng: this.coordenadas.lng,
-        indicaciones: indicaciones == "" ? coordenadasTexto: indicaciones,
+        indicaciones: indicaciones == "" ? coordenadasTexto : indicaciones,
         alias: alias,
       });
 
@@ -2701,7 +2697,7 @@ class PageCheckoutPH extends HTMLElement {
 
       MensajeCargaDatos.mostrar('Guardando dirección ...');
       setTimeout(() => {
-        this.etiquetaIndicacionesDireccion.textContent = indicaciones == "" ? coordenadasTexto: indicaciones;
+        this.etiquetaIndicacionesDireccion.textContent = indicaciones == "" ? coordenadasTexto : indicaciones;
         this.etiquetaAliasDireccion.textContent = alias;
         MensajeCargaDatos.ocultar();
       }, 3000);
@@ -2713,7 +2709,7 @@ class PageCheckoutPH extends HTMLElement {
 
   btnAccionDatosContacto(btnElemento) {
     const accion = btnElemento.dataset.accion;
-    
+
     // Si pasa la validación, continuar con la actualización de la interfaz
     if (accion == "editar") {
       this.btnEditarDatos.style.display = "none";
@@ -2762,19 +2758,19 @@ class PageCheckoutPH extends HTMLElement {
       this.btnGuardarDatosFacturacion.style.display = "flex";
       this.contenedorDatosFacturacion.style.display = "flex";
       this.contenedorDatosFacturacionConsolidados.style.display = "none";
-    }else{
+    } else {
       this.btnEditarDatosFacturacion.style.display = "flex";
       this.btnGuardarDatosFacturacion.style.display = "none";
       this.contenedorDatosFacturacion.style.display = "none";
       this.contenedorDatosFacturacionConsolidados.style.display = "flex";
-      
-      if(this.inputRazonSocial.value == "" || this.inputNitoCit.value == "")return;
+
+      if (this.inputRazonSocial.value == "" || this.inputNitoCit.value == "") return;
 
       // Proceso de guardar datos
       const data = JSON.parse(localStorage.getItem('ph-datos-facturacion'));
       const datosActualizados = {
-        razonsocial : this.inputRazonSocial.value,
-        nit : this.inputNitoCit.value,
+        razonsocial: this.inputRazonSocial.value,
+        nit: this.inputNitoCit.value,
       }
 
       // Actualizar los datos en el localStorage
@@ -2796,7 +2792,7 @@ class PageCheckoutPH extends HTMLElement {
       celular: this.inputCelularContacto.value.trim(),
       ci: this.inputCIContacto.value.trim()
     };
-    
+
     const mensajesError = {
       nombre: this.alertaNombreContacto,
       apellido: this.alertaApellidoContacto,
@@ -2804,38 +2800,38 @@ class PageCheckoutPH extends HTMLElement {
       celular: this.alertaCelularContacto,
       ci: this.alertaCIContacto
     };
-    
+
     // Variable para rastrear contenedores con error
     const contenedoresConError = [];
-    
+
     // Verificar campos vacíos
     let hayCampoVacio = false;
-    
+
     Object.keys(formulario).forEach(key => {
       if (!mensajesError[key]) return;
-      
+
       const contenedorPadre = mensajesError[key].closest('.smecph-pc-info-input');
-      
+
       if (formulario[key] === '') {
         // Campo vacío - mostrar error
         mensajesError[key].style.display = 'flex';
-        
+
         if (contenedorPadre) {
           contenedorPadre.classList.add('error');
           contenedoresConError.push(contenedorPadre);
         }
-        
+
         hayCampoVacio = true;
       } else {
         // Campo con valor - ocultar error
         mensajesError[key].style.display = 'none';
-        
+
         if (contenedorPadre) {
           contenedorPadre.classList.remove('error');
         }
       }
     });
-    
+
     // Si hay campos vacíos, programar limpieza de erroress
     if (hayCampoVacio) {
       this.mensajeInfoCelularContacto.style.display = 'none';
@@ -2850,35 +2846,35 @@ class PageCheckoutPH extends HTMLElement {
             alerta.style.display = 'none';
           }
         });
-        
+
         // Volver a mostrar el mensaje informativo
         this.mensajeInfoCelularContacto.style.display = 'flex';
       }, 5000); // 5 segundos
     }
-    
+
     return !hayCampoVacio; // Retorna true si no hay campos vacíos
   }
 
   validarSeleccionMetodoPago() {
 
     let haySeleccionado = false;
-    
+
     for (const btn of this.btnsMetodosPagos) {
       if (btn.classList.contains('seleccionado')) {
         haySeleccionado = true;
         break; // Termina el bucle al encontrar el primer botón seleccionado
       }
     }
-    
+
     return haySeleccionado;
   }
-  validarCamposFormTarjeta(){
+  validarCamposFormTarjeta() {
     const formulario = {
       primerInput: this.inputPrimero4Digitos.value.trim(),
       segundoInput: this.inputSegundo4Digitos.value.trim()
     }
 
-    const mensajesError ={ 
+    const mensajesError = {
       primerInput: this.mensajeAlertaPrimero4Digitos,
       segundoInput: this.mensajeAlertaSegundo4Digitos
     }
@@ -2888,32 +2884,32 @@ class PageCheckoutPH extends HTMLElement {
 
     // Verificar campos vacíos
     let hayCampoVacio = false;
-  
+
     Object.keys(formulario).forEach(key => {
       if (!mensajesError[key]) return;
-      
+
       const contenedorPadre = mensajesError[key].closest('.smecph-pc-info-input');
-      
+
       if (formulario[key] === '') {
         // Campo vacío - mostrar error
         mensajesError[key].style.display = 'flex';
-        
+
         if (contenedorPadre) {
           contenedorPadre.classList.add('error');
           contenedoresConError.push(contenedorPadre);
         }
-        
+
         hayCampoVacio = true;
       } else {
         // Campo con valor - ocultar error
         mensajesError[key].style.display = 'none';
-        
+
         if (contenedorPadre) {
           contenedorPadre.classList.remove('error');
         }
       }
     });
-    
+
     // Si hay campos vacíos, programar limpieza de errores
     if (hayCampoVacio) {
       setTimeout(() => {
@@ -2929,15 +2925,15 @@ class PageCheckoutPH extends HTMLElement {
         });
       }, 5000); // 5 segundos
     }
-    
+
     return !hayCampoVacio; // Retorna true si no hay campos vacíos
   }
 
-  procesoSeleccionMetodoPago(btnElemento){
+  procesoSeleccionMetodoPago(btnElemento) {
     const accion = btnElemento.dataset.accion;
     const estaSeleccionado = btnElemento.classList.contains('seleccionado');
 
-    if(estaSeleccionado == true)return;
+    if (estaSeleccionado == true) return;
 
     this.btnsMetodosPagos.forEach(btn => {
       btn.classList.remove('seleccionado');
@@ -2945,7 +2941,7 @@ class PageCheckoutPH extends HTMLElement {
       iconoDesSeleccionado.innerHTML = window.shopIcons.icon_estado_off;
     });
 
-    if(estaSeleccionado == false){
+    if (estaSeleccionado == false) {
       this.mensajeAlertaDatosFacturacion.style.display = "none";
       btnElemento.classList.add('seleccionado');
       const iconoSeleccionado = btnElemento.querySelector('.smecph-pc-dp-item-icono');
@@ -2956,17 +2952,17 @@ class PageCheckoutPH extends HTMLElement {
 
     // if(accion == "pago-codigo-qr"){}
     // if(accion == "pago-efectivo"){}
-    if(accion == "pago-tarjeta-credito"){
+    if (accion == "pago-tarjeta-credito") {
       this.opcionesTarjetaCredito.style.display = "flex";
-    }else{
+    } else {
       this.opcionesTarjetaCredito.style.display = "none";
     }
   }
 
-  inicializarDatosdeContacto(){
+  inicializarDatosdeContacto() {
     const data = JSON.parse(localStorage.getItem('ph-datos-usuario'));
-    if(data){
-      if(!data.permisoHutCoins){
+    if (data) {
+      if (!data.permisoHutCoins) {
         this.contenedorHutCoins.style.display = "flex";
       }
 
@@ -2976,72 +2972,72 @@ class PageCheckoutPH extends HTMLElement {
       this.inputCelularContacto.value = data.celular;
       this.inputCIContacto.value = data.ci;
       this.etiquetaDatosConsolidados.textContent = `${data.nombre} | ${data.apellido} | ${data.email} | +591 ${data.celular} | ${data.ci}`;
-    }else{
+    } else {
       window.location.href = "/pages/iniciar-sesion";
     }
   }
 
-  inicializarDatosdeFacturacion(){
+  inicializarDatosdeFacturacion() {
     const data = JSON.parse(localStorage.getItem('ph-datos-facturacion'));
-    if(data){
+    if (data) {
       this.inputRazonSocial.value = data.razonSocial;
       this.inputNitoCit.value = data.nit;
-    }else{
+    } else {
       this.inputRazonSocial.value = "----";
       this.inputNitoCit.value = "----";
     }
     this.etiquetaDatosFacturacionConsolidados.textContent = `${this.inputRazonSocial.value} | ${this.inputNitoCit.value}`;
   }
 
-  procesoVerDetallesProducto(elementoHTML){
+  procesoVerDetallesProducto(elementoHTML) {
     const hijoDetalle = elementoHTML.querySelector('.smecph-pc-item-carrito-extra');
     const seraVisto = hijoDetalle.dataset.seravisto;
-    if(seraVisto == "true"){
-      if(hijoDetalle.style.display == "none"){
+    if (seraVisto == "true") {
+      if (hijoDetalle.style.display == "none") {
         hijoDetalle.style.display = "flex";
-      }else{
+      } else {
         hijoDetalle.style.display = "none";
       }
     }
   }
 
-  procesoEditarCarrito(){
+  procesoEditarCarrito() {
     window.location.href = "/pages/carrito";
   }
 
-  procesoHutCoins(btnElemento){
+  procesoHutCoins(btnElemento) {
     const estaActivado = btnElemento.classList.contains('seleccionado');
-    if(estaActivado == true){
+    if (estaActivado == true) {
       btnElemento.classList.remove('seleccionado');
       btnElemento.innerHTML = window.shopIcons.icon_estado_off;
-    }else{
+    } else {
       btnElemento.classList.add('seleccionado');
       btnElemento.innerHTML = window.shopIcons.icon_estado_on;
     }
   }
 
-  async procesoContinuarGeneral(){
+  async procesoContinuarGeneral() {
 
-    if(this.localSeleccionado == null && this.estadoPagina == "local" && this.inputSeleccionarLocal.value == ""){
+    if (this.localSeleccionado == null && this.estadoPagina == "local" && this.inputSeleccionarLocal.value == "") {
       this.contenedorBaseSeleccionLocal.scrollIntoView({
-        behavior: 'smooth', 
-        block: 'center' 
+        behavior: 'smooth',
+        block: 'center'
       });
       return;
     }
 
-    if(!this.validarCamposFormDatosContacto()){
-      this.seccionFormDatosContacto.scrollIntoView({ 
-        behavior: 'smooth', 
-        block: 'center' 
+    if (!this.validarCamposFormDatosContacto()) {
+      this.seccionFormDatosContacto.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
       });
       return;
     }
 
-    if(!this.valirdarSeleccionMetodoPago()){
-      this.seccionGeneralMetodosPago.scrollIntoView({ 
-        behavior: 'smooth', 
-        block: 'center' 
+    if (!this.valirdarSeleccionMetodoPago()) {
+      this.seccionGeneralMetodosPago.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
       });
       return;
     }
@@ -3049,33 +3045,33 @@ class PageCheckoutPH extends HTMLElement {
 
     // Actualizar datos de usuario decuerdo a la seleccion HUT COINS
     this.actualizarDatosUsuario();
-    
-    const datosCheckout ={
+
+    const datosCheckout = {
       // Traer datos de metodo de envio seleccionado
-      metodo_envio_seleccionado : this.obtenerDatosMetodoEnvio(),
+      metodo_envio_seleccionado: this.obtenerDatosMetodoEnvio(),
       // Traer datos de metodo facturacion
-      info_metodo_pago_seleccionado : this.obtenerDatosPagoSeleccionado(),
+      info_metodo_pago_seleccionado: this.obtenerDatosPagoSeleccionado(),
       // Traer info facturacion
-      info_facturacion :  this.obtenerDatosFacturacion(),
+      info_facturacion: this.obtenerDatosFacturacion(),
       // Inforacion nota para el pedido
-      nota_para_envio : this.inputNotaParaElPedido.value,
+      nota_para_envio: this.inputNotaParaElPedido.value,
     }
 
     localStorage.setItem('ph-datos-checkout', JSON.stringify(datosCheckout));
 
     MensajeCargaDatos.mostrar('Su pedido se esta procesando ...');
-    
+
     // Orden creada en los preliminaress
     const dataOrdenPreliminar = await this.generarPedidoPreliminar(datosCheckout);
     this.infoOrdenPreliminar = dataOrdenPreliminar.order;
 
     // Orden consolidada como pagada (PEDIDOO)
-     await this.generarPedido(dataOrdenPreliminar.order.id);
+    await this.generarPedido(dataOrdenPreliminar.order.id);
     const dataJSON = this.generarJSONMostrarConsola();
     console.log("Data JSON", dataJSON);
     console.log("Data Orden Finalizada", await this.getOrderDetails());
     localStorage.setItem('ph-json-generado', JSON.stringify(dataJSON));
-    localStorage.setItem('ph-estadoDP',"etapa-1");
+    localStorage.setItem('ph-estadoDP', "etapa-1");
     localStorage.setItem('ph-id-orden', dataOrdenPreliminar.order.id);
     MensajeCargaDatos.ocultar();
     window.location.href = "/pages/detalle-pedido";
@@ -3084,7 +3080,7 @@ class PageCheckoutPH extends HTMLElement {
   async generarPedidoPreliminar(datosCheckout) {
     try {
       const dataUsuario = JSON.parse(localStorage.getItem('ph-datos-usuario'));
-      
+
       // Construir los lineItems para DraftOrderInput
       const lineItems = this.infoCarrito.informacionCompleta.items.map(item => {
         let data = null;
@@ -3095,21 +3091,21 @@ class PageCheckoutPH extends HTMLElement {
         } catch (error) {
           console.error("Error al parsear estructura del item:", error);
         }
-        
+
         return {
           title: item.title || "Producto",
           quantity: parseInt(data.producto.cantidad),
           originalUnitPrice: parseFloat((data.producto.precioTotalConjunto) || 0).toFixed(2)
         };
       });
-      
+
       const informacionPedido = {
         datosCheckout,
         itemsCarrito: this.infoCarrito.informacionCompleta.items
       };
 
       // Consulta GraphQL actualizada para draftOrderCreat
-    const draftOrderQuery = `
+      const draftOrderQuery = `
       mutation draftOrderCreate($input: DraftOrderInput!) {
         draftOrderCreate(input: $input) {
           draftOrder {
@@ -3135,7 +3131,7 @@ class PageCheckoutPH extends HTMLElement {
         }
       }
     `;
-      
+
       const variables = {
         input: {
           email: dataUsuario.email,
@@ -3147,7 +3143,7 @@ class PageCheckoutPH extends HTMLElement {
             address1: this.estadoPagina == "domicilio" ? this.direccionSeleccionada.indicaciones : this.localSeleccionado.localizacion,
             city: "Santa Cruz",
             province: "Andres Ibáñez, Santa Cruz de la Sierra",
-            countryCode: "BO", 
+            countryCode: "BO",
             zip: "0000",
           },
           customAttributes: [
@@ -3157,11 +3153,11 @@ class PageCheckoutPH extends HTMLElement {
           ],
         }
       };
-      
+
       // Asegúrate de que this.urlConsulta esté definido o usa la URL directaa
       const myTest = 'shpat_' + '45f4a7476152f4881d058f87ce063698';
-      
-      const response = await fetch(this.urlConsulta , {
+
+      const response = await fetch(this.urlConsulta, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -3172,31 +3168,31 @@ class PageCheckoutPH extends HTMLElement {
           variables: variables
         })
       });
-      
+
       const data = await response.json();
       console.log('Respuesta completa de Shopify:', data);
-      
+
       if (data.errors) {
         console.error('Errores en la respuesta GraphQL:', data.errors);
         return { success: false, errors: data.errors };
       }
-      
+
       // Verificar errores en draftOrderCreate, no en orderCreate
-      if (data.data && data.data.draftOrderCreate && data.data.draftOrderCreate.userErrors && 
-          data.data.draftOrderCreate.userErrors.length > 0) {
+      if (data.data && data.data.draftOrderCreate && data.data.draftOrderCreate.userErrors &&
+        data.data.draftOrderCreate.userErrors.length > 0) {
         console.error('Errores al crear el pedido:', data.data.draftOrderCreate.userErrors);
         return { success: false, errors: data.data.draftOrderCreate.userErrors };
       }
-      
+
       // Verificar éxito en draftOrderCreate, no en orderCreate
       if (data.data && data.data.draftOrderCreate && data.data.draftOrderCreate.draftOrder) {
         console.log('Pedido creado exitosamente:', data.data.draftOrderCreate.draftOrder);
-        return { 
-          success: true, 
-          order: data.data.draftOrderCreate.draftOrder 
+        return {
+          success: true,
+          order: data.data.draftOrderCreate.draftOrder
         };
       }
-      
+
       return { success: false, message: 'Respuesta inesperada del servidor' };
     } catch (error) {
       console.error('Error al crear el pedido:', error);
@@ -3221,13 +3217,13 @@ class PageCheckoutPH extends HTMLElement {
           }
         }
       `;
-      
+
       const variables = {
         id: idOrden
       };
-      
+
       const myTest = 'shpat_' + '45f4a7476152f4881d058f87ce063698';
-      
+
       const response = await fetch(this.urlConsulta, {
         method: 'POST',
         headers: {
@@ -3239,29 +3235,29 @@ class PageCheckoutPH extends HTMLElement {
           variables: variables
         })
       });
-      
+
       const data = await response.json();
       console.log('Respuesta completa de finalización de pedido:', data);
-      
+
       if (data.errors) {
         console.error('Errores en la respuesta GraphQL:', data.errors);
         return { success: false, errors: data.errors };
       }
-      
-      if (data.data && data.data.draftOrderComplete.userErrors && 
-          data.data.draftOrderComplete.userErrors.length > 0) {
+
+      if (data.data && data.data.draftOrderComplete.userErrors &&
+        data.data.draftOrderComplete.userErrors.length > 0) {
         console.error('Errores al completar el pedido:', data.data.draftOrderComplete.userErrors);
         return { success: false, errors: data.data.draftOrderComplete.userErrors };
       }
-      
+
       if (data.data && data.data.draftOrderComplete && data.data.draftOrderComplete.draftOrder) {
         console.log('Pedido completado exitosamente:', data.data.draftOrderComplete.draftOrder);
-        return { 
-          success: true, 
-          order: data.data.draftOrderComplete.draftOrder 
+        return {
+          success: true,
+          order: data.data.draftOrderComplete.draftOrder
         };
       }
-      
+
       return { success: false, message: 'Respuesta inesperada del servidor' };
     } catch (error) {
       console.error('Error al completar el pedido:', error);
@@ -3299,9 +3295,9 @@ class PageCheckoutPH extends HTMLElement {
           }
         }
       `;
-      
+
       const myTest = 'shpat_' + '45f4a7476152f4881d058f87ce063698';
-      
+
       const response = await fetch(this.urlConsulta, {
         method: 'POST',
         headers: {
@@ -3312,29 +3308,29 @@ class PageCheckoutPH extends HTMLElement {
           query: orderDetailsQuery
         })
       });
-      
+
       const data = await response.json();
       console.log('Respuesta completa de detalles de orden:', data);
-      
+
       if (data.errors) {
         console.error('Errores en la respuesta GraphQL:', data.errors);
         return { success: false, errors: data.errors };
       }
-      
+
       if (data.data && data.data.order) {
         console.log('Detalles de orden obtenidos exitosamente:', data.data.order);
-        return { 
-          success: true, 
-          order: data.data.order 
+        return {
+          success: true,
+          order: data.data.order
         };
       }
-      
+
       return { success: false, message: 'Respuesta inesperada del servidor' };
     } catch (error) {
       console.error('Error al obtener detalles de la orden:', error);
       return { success: false, error: error.message };
     }
-   }
+  }
 
   valirdarSeleccionMetodoPago() {
     for (let btn of this.btnsMetodosPagos) {
@@ -3342,54 +3338,54 @@ class PageCheckoutPH extends HTMLElement {
         if (btn.dataset.accion == "pago-tarjeta-credito") {
           this.inputPrimero4Digitos.value = this.inputPrimero4Digitos.value.trim();
           this.inputUltimos4Digitos.value = this.inputUltimos4Digitos.value.trim();
-          
+
           // Verificar que los campos no estén vacíos después de quitar espacios
           if (this.inputPrimero4Digitos.value === "" || this.inputUltimos4Digitos.value === "") {
             return false; // Los campos están vacíos, no es válido
           }
         }
-        
+
         return true; // Método de pago seleccionado y válid
       }
     }
-    
+
     // Si termina el ciclo sin encontrar ninguno seleccionado
     return false;
   }
 
-  actualizarDatosUsuario(){
+  actualizarDatosUsuario() {
     const data = JSON.parse(localStorage.getItem('ph-datos-usuario'));
     const estaSeleccionadoBtnHutCoins = this.btnHutCoins.classList.contains('seleccionado');
     const obtenerInputFechaNacimiento = this.inputFechaNacimiento.value;
 
-    if(estaSeleccionadoBtnHutCoins == false && obtenerInputFechaNacimiento == "")return;
+    if (estaSeleccionadoBtnHutCoins == false && obtenerInputFechaNacimiento == "") return;
 
     data.permisoHutCoins = estaSeleccionadoBtnHutCoins;
     data.fechaNacimiento = obtenerInputFechaNacimiento;
   }
 
-  obtenerDatosMetodoEnvio(){
+  obtenerDatosMetodoEnvio() {
 
 
-    if(this.btnMetodoLocal.classList.contains('seleccionado')){
+    if (this.btnMetodoLocal.classList.contains('seleccionado')) {
       return {
-        metodo_envio : "local",
-        local_seleccionado : this.localSeleccionado
+        metodo_envio: "local",
+        local_seleccionado: this.localSeleccionado
       }
     }
-    if(this.btnMetodoDomicilio.classList.contains('seleccionado')){
-      return{
-        metodo_envio : "domicilio",
-        info_seleccionada : this.direccionSeleccionada
+    if (this.btnMetodoDomicilio.classList.contains('seleccionado')) {
+      return {
+        metodo_envio: "domicilio",
+        info_seleccionada: this.direccionSeleccionada
       }
     }
   }
 
-  obtenerDatosFacturacion(){
-    if(this.inputRazonSocial.value == "" || this.inputNitoCit.value == "")return null;
+  obtenerDatosFacturacion() {
+    if (this.inputRazonSocial.value == "" || this.inputNitoCit.value == "") return null;
     return {
-      razon_social : this.inputRazonSocial.value,
-      nit : this.inputNitoCit.value
+      razon_social: this.inputRazonSocial.value,
+      nit: this.inputNitoCit.value
     }
   }
 
@@ -3397,15 +3393,15 @@ class PageCheckoutPH extends HTMLElement {
     // Buscar el primer botón que tenga la acción que buscamos
     for (let btn of this.btnsMetodosPagos) {
       const accion = btn.dataset.accion;
-      
+
       // Verificar si este botón está seleccionado
       if (!btn.classList.contains('seleccionado')) continue;
-      
+
       // Si llegamos aquí, encontramos un botón seleccionado
       if (accion == "pago-codigo-qr") {
         return { metodo_pago: "pago-codigo-qr" };
       }
-      
+
       if (accion == "pago-tarjeta-credito") {
         return {
           metodo_pago: "pago-tarjeta-credito",
@@ -3413,22 +3409,22 @@ class PageCheckoutPH extends HTMLElement {
           tarjeta_segundo_4_digitos: this.inputUltimos4Digitos.value
         };
       }
-      
+
       if (accion == "pago-efectivo") {
         return { metodo_pago: "pago-efectivo" };
       }
     }
-    
+
     // Si no se encontró ningún botón seleccionado
     return null;
   }
 
-  generarJSONMostrarConsola(){
+  generarJSONMostrarConsola() {
     const productos = [];
 
     this.infoCarrito.informacionCompleta.items.forEach(item => {
       const productoCompleto = JSON.parse(item.properties.estructura);
-      var opcionesPrincipales= [];
+      var opcionesPrincipales = [];
       var complementos = [];
 
       productoCompleto.opcionesPrincipales.productos.forEach(producto => {
@@ -3436,16 +3432,16 @@ class PageCheckoutPH extends HTMLElement {
           nombre: producto.nombre,
           cantidad: producto.cantidad,
           precio: producto.precio,
-          id : producto.idTrabajo
+          id: producto.idTrabajo
         });
       });
 
       productoCompleto.complementos.productos.forEach(producto => {
         return complementos.push({
-          nombre: producto.nombre, 
+          nombre: producto.nombre,
           cantidad: producto.cantidad,
           precio: producto.precio,
-          id : producto.idTrabajo
+          id: producto.idTrabajo
         });
       });
 
@@ -3455,12 +3451,12 @@ class PageCheckoutPH extends HTMLElement {
         cantidad: productoCompleto.producto.cantidad,
         id: productoCompleto.producto.idTrabajo,
         opcionesPrincipales,
-        complementos 
+        complementos
       });
     });
 
     return {
-      productos 
+      productos
     }
   }
 }

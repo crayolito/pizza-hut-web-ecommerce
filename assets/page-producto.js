@@ -1336,11 +1336,11 @@ class PizzaHutProducto extends HTMLElement {
 
     this.cantidadPrecioHazUnPedido = cantidadPrecioHazUnPedido * parseInt(cantidadSolicitada) + cantidadPrecioTotalExtras;
     precioTotalCarrito = precioTotalCarrito + this.cantidadPrecioHazUnPedido;
-    console.log('Testeo de precio total carrito: ', {
-      "testeo cantidadPrecioTotalExtras": cantidadPrecioTotalExtras,
-      "testeo precioTotalCarrito": precioTotalCarrito,
-      "testeo cantidadPrecioHazUnPedido": this.cantidadPrecioHazUnPedido,
-    });
+    // console.log('Testeo de precio total carrito: ', {
+    //   "testeo cantidadPrecioTotalExtras": cantidadPrecioTotalExtras,
+    //   "testeo precioTotalCarrito": precioTotalCarrito,
+    //   "testeo cantidadPrecioHazUnPedido": this.cantidadPrecioHazUnPedido,
+    // });
 
     this.etiquetaHazUnPedido.innerHTML = `Bs ${this.cantidadPrecioHazUnPedido}`;
     this.etiquetaAgregarCarrito.innerHTML = `Bs ${precioTotalCarrito}`;
@@ -1459,7 +1459,6 @@ class PizzaHutProducto extends HTMLElement {
       }
     };
 
-    var precioToalCarrito = 0;
     console.log("Testeo al obtener carrito Shopify", this.carritoShopify);
 
     if (tipoProceso == 'hazunpedido') {
@@ -1478,6 +1477,11 @@ class PizzaHutProducto extends HTMLElement {
       this.etiquetaAgregarCarrito.innerHTML = `Bs ${this.cantidadPrecioCarrito}`;
       this.etiquetaHazUnPedido.innerHTML = `Bs ${(this.cantidadPrecioHazUnPedido * cantidadSolicitada)}`;
     }
+
+    console.log("Testeo al agregar al carrito", {
+      "testeo cantidadPrecioCarrito": this.cantidadPrecioCarrito,
+      "testeo cantidadSolicitada": cantidadSolicitada,
+    });
 
     await AuxiliaresGlobal.agregarCarrito(parseInt(cantidadSolicitada), parseInt(data.producto.idShopify), {
       properties: { "estructura": JSON.stringify(detalleProducto), }
