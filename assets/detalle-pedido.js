@@ -210,7 +210,7 @@ class DetallePedido extends HTMLElement {
             } : null;
 
         // Procesar información de pago y entrega de los atributos personalizados
-        const atributosPersonalizados = this.procesarAtributosPersonalizados(ordenOriginal.customAttributes);
+        // const atributosPersonalizados = this.procesarAtributosPersonalizados(ordenOriginal.customAttributes);
 
         // Calcular totales
         const subtotal = productosFormateados.reduce((sum, item) => 
@@ -323,53 +323,53 @@ class DetallePedido extends HTMLElement {
         }
         }
 
-        // // Método auxiliar para procesar atributos personalizados
-        // procesarAtributosPersonalizados(atributos) {
-        // const resultado = {};
+        // Método auxiliar para procesar atributos personalizados
+        procesarAtributosPersonalizados(atributos) {
+        const resultado = {};
 
-        // // Procesar todos los atributos
-        // atributos.forEach(attr => {
-        // // Procesar según el tipo de atributo
-        // if (attr.key === 'Metodo Entrega') {
-        // resultado.metodoEntrega = attr.value;
-        // }
-        // else if (attr.key === 'Datos Proceso Checkout') {
-        // try {
-        // resultado.datosCheckout = JSON.parse(attr.value);
+        // Procesar todos los atributos
+        atributos.forEach(attr => {
+        // Procesar según el tipo de atributo
+        if (attr.key === 'Metodo Entrega') {
+        resultado.metodoEntrega = attr.value;
+        }
+        else if (attr.key === 'Datos Proceso Checkout') {
+        try {
+        resultado.datosCheckout = JSON.parse(attr.value);
 
-        // // Extraer información de pago
-        // if (resultado.datosCheckout.info_metodo_pago_seleccionado) {
-        // resultado.infoPago = resultado.datosCheckout.info_metodo_pago_seleccionado;
-        // }
-        // } catch (e) {
-        // console.error('Error al parsear datos de checkout:', e);
-        // resultado.datosCheckout = { error: 'Error al parsear datos de checkout' };
-        // }
-        // }
-        // else if (attr.key === 'Datos Carrito PRoceso') {
-        // try {
-        // resultado.datosCarrito = JSON.parse(attr.value);
-        // } catch (e) {
-        // console.error('Error al parsear datos de carrito:', e);
-        // resultado.datosCarrito = { error: 'Error al parsear datos de carrito' };
-        // }
-        // }
-        // else {
-        // // Para otros atributos, mantener el nombre original
-        // try {
-        // if (attr.value.startsWith('{') || attr.value.startsWith('[')) {
-        // resultado[attr.key] = JSON.parse(attr.value);
-        // } else {
-        // resultado[attr.key] = attr.value;
-        // }
-        // } catch (e) {
-        // resultado[attr.key] = attr.value;
-        // }
-        // }
-        // });
+        // Extraer información de pago
+        if (resultado.datosCheckout.info_metodo_pago_seleccionado) {
+        resultado.infoPago = resultado.datosCheckout.info_metodo_pago_seleccionado;
+        }
+        } catch (e) {
+        console.error('Error al parsear datos de checkout:', e);
+        resultado.datosCheckout = { error: 'Error al parsear datos de checkout' };
+        }
+        }
+        else if (attr.key === 'Datos Carrito PRoceso') {
+        try {
+        resultado.datosCarrito = JSON.parse(attr.value);
+        } catch (e) {
+        console.error('Error al parsear datos de carrito:', e);
+        resultado.datosCarrito = { error: 'Error al parsear datos de carrito' };
+        }
+        }
+        else {
+        // Para otros atributos, mantener el nombre original
+        try {
+        if (attr.value.startsWith('{') || attr.value.startsWith('[')) {
+        resultado[attr.key] = JSON.parse(attr.value);
+        } else {
+        resultado[attr.key] = attr.value;
+        }
+        } catch (e) {
+        resultado[attr.key] = attr.value;
+        }
+        }
+        });
 
-        // return resultado;
-        // }
+        return resultado;
+        }
 
         // inicializarMapaTest() {
         // // 1. Crear el mapa
