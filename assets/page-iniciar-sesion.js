@@ -300,7 +300,7 @@ código y pégalo a continuación:`;
         return;
       }
 
-      // Usuario verificado 
+      // Usuario verificado
       // const user = result.user;
       // console.log('Usuario verificado:', user);
 
