@@ -115,6 +115,7 @@ class DetallePedido extends HTMLElement {
           {% render 'icon-dolar' %}
           <p class="color-letras-extra">Efectivo contra entrega</p>
         `;
+        // 
 
         MensajeCargaDatos.ocultar();
     }
