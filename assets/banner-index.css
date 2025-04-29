@@ -17,6 +17,8 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
 }
 
 .bi-icono-flecha-atras svg,
@@ -96,6 +98,34 @@
   gap: var(--espaciado-m);
   position: absolute;
   top: calc(100% - 1.5rem);
+}
+
+/* Efecto hover para los botones de carrusel */
+.bi-boton-carrusel {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  background: transparent;
+  border: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bi-boton-carrusel:hover {
+  transform: scale(1.2);
+}
+
+/* Efecto hover para los botones de flecha */
+.bi-icono-flecha-atras,
+.bi-icono-flecha-adelante {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.bi-icono-flecha-atras:hover,
+.bi-icono-flecha-adelante:hover {
+  transform: translateY(-50%) scale(1.1);
 }
 
 .bi-boton-carrusel svg {

@@ -58,10 +58,11 @@
       };
       this.tiempoTransicion = 3000; // 3 segundos en milisegundos
       this.imagenActual = 0;
-      this.totalImagenes = 4; // Total de imágenes que usaremos (4 botones)
+      this.totalImagenes = Object.keys(this.imagenesUso).length; // Calculamos dinámicamente
       this.intervaloTransicion = null;
       this.imagenElement = null;
       this.botonesCarrusel = [];
+      this.contenedorBotones = null;
     }
 
     connectedCallback() {
@@ -85,11 +86,47 @@
       // Obtener la imagen principal
       this.imagenElement = this.querySelector('.bi-contenedor-imagen img');
 
-      // Obtener botones del carrusel
-      this.botonesCarrusel = this.querySelectorAll('.bi-boton-carrusel');
+      // Agregar efecto de transición CSS a la imagen
+      this.imagenElement.style.transition = 'opacity 0.5s ease-in-out';
+
+      // Obtener el contenedor de botones del carrusel
+      this.contenedorBotones = this.querySelector('.bi-opciones-banner');
+
+      // Generar botones dinámicamente según el número de imágenes
+      this.generarBotonesCarrusel();
 
       // Configurar imagen inicial
       this.actualizarImagen(0);
+    }
+
+    generarBotonesCarrusel() {
+      // Limpiar botones existentes
+      this.contenedorBotones.innerHTML = '';
+
+      // Crear nuevos botones según el número de imágenes
+      for (let i = 0; i < this.totalImagenes; i++) {
+        const boton = document.createElement('button');
+        boton.classList.add('bi-boton-carrusel');
+
+        // Asignar el icono correspondiente
+        if (i === this.imagenActual) {
+          boton.innerHTML = this.obtenerIconoSeleccionado();
+        } else {
+          boton.innerHTML = this.obtenerIconoNoSeleccionado();
+        }
+
+        // Agregar evento al botón
+        boton.addEventListener('click', () => {
+          this.actualizarImagen(i);
+          this.reiniciarTransicionAutomatica();
+        });
+
+        // Agregar el botón al contenedor
+        this.contenedorBotones.appendChild(boton);
+      }
+
+      // Actualizar la referencia a los botones
+      this.botonesCarrusel = this.querySelectorAll('.bi-boton-carrusel');
     }
 
     configurarBotonesNavegacion() {
@@ -120,9 +157,18 @@
       // Actualizar índice actual
       this.imagenActual = indice;
 
-      // Actualizar la imagen mostrada
-      const rutaImagen = this.obtenerRutaImagen(indice);
-      this.imagenElement.src = rutaImagen;
+      // Aplicar efecto de transición - fade out
+      this.imagenElement.style.opacity = '0';
+
+      // Cambiar la imagen después de que se complete el fade out
+      setTimeout(() => {
+        // Actualizar la imagen mostrada
+        const rutaImagen = this.obtenerRutaImagen(indice);
+        this.imagenElement.src = rutaImagen;
+
+        // Aplicar efecto de transición - fade in
+        this.imagenElement.style.opacity = '1';
+      }, 300); // Esperar 300ms para el fade out
 
       // Actualizar estado de los botones del carrusel
       this.actualizarBotonesCarrusel();
