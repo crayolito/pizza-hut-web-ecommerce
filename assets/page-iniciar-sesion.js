@@ -321,6 +321,7 @@ código y pégalo a continuación:`;
 
       setTimeout(() => {
         this.ocultarElementosBase();
+        window.location.href = '/';
         inputs.forEach((input) => {
           input.value = '';
         });
@@ -334,7 +335,6 @@ código y pégalo a continuación:`;
             ci: '----'
           })
         );
-        window.location.href = '/';
       }, 3000);
     }
   }
