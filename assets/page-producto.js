@@ -2,12 +2,12 @@ class PizzaHutProducto extends HTMLElement {
     constructor() {
         super();
         this.iconos = {
-            iconCheckBoxOff: window.shopIcons.icon_checkbox_off,
-            iconCheckBoxOn: window.shopIcons.icon_checkbox_on,
-            iconEstadoOff: window.shopIcons.icon_estado_off,
-            iconEstadoOn: window.shopIcons.icon_estado_on_plus,
-            flechaIzquierda: window.shopIcons.icon_volver_atras,
-            flechaDerecha: window.shopIcons.icon_flecha_derecha,
+            iconCheckBoxOff: `${window.shopIcons.icon_checkbox_off}`,
+            iconCheckBoxOn: `${window.shopIcons.icon_checkbox_on}`,
+            iconEstadoOff: `${window.shopIcons.icon_estado_off}`,
+            iconEstadoOn: `${window.shopIcons.icon_estado_on_plus}`,
+            flechaIzquierda: `${window.shopIcons.icon_volver_atras}`,
+            flechaDerecha: `${window.shopIcons.icon_flecha_derecha}`,
         };
         this.cualSeccionExtrasEs = "";
         this.estadoTrabajoExtras = 'n1';
