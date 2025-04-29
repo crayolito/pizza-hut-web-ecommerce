@@ -289,6 +289,8 @@ código y pégalo a continuación:`;
     if (todosLlenos) {
       const optenerNumero = inputs.map((input) => input.value).join('');
       const codigoVerificacion = this.codigoEnviadoCliente || localStorage.getItem('ph-codigo-verificacion');
+      console.log('Código ingresado:', optenerNumero);
+
       if (optenerNumero !== codigoVerificacion) {
         this.ocultarElementosBase();
         console.log('Código incorrecto');
