@@ -95,9 +95,9 @@ class InicioSesion extends HTMLElement {
     }
 
     // Limpiar recursos
-    if (this.recaptchaVerifier) {
-      this.recaptchaVerifier.clear();
-    }
+    // if (this.recaptchaVerifier) {
+    //   this.recaptchaVerifier.clear();
+    // }
 
     // Limpiar otras referencias
     console.log('Componente InicioSesion desmontado y limpiado');
