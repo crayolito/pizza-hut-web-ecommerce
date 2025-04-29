@@ -288,15 +288,21 @@ código y pégalo a continuación:`;
 
     if (todosLlenos) {
       const optenerNumero = inputs.map((input) => input.value).join('');
-
-      // Aquí puedes agregar la lógica para enviar el código de verificación
-      // const result = await this.confirmationResult.confirm("123456");
+      const codigoVerificacion = this.codigoEnviadoCliente || localStorage.getItem('ph-codigo-verificacion');
+      if (optenerNumero !== codigoVerificacion) {
+        this.ocultarElementosBase();
+        console.log('Código incorrecto');
+        MensajeCargaDatos.mostrar('El código ingresado es incorrecto.\nPor favor intenta nuevamente.');
+        // Esperar 3 segundos antes de permitir un nuevo intento
+        setTimeout(() => {
+          MensajeCargaDatos.ocultar();
+        }, 3000);
+        return;
+      }
 
       // Usuario verificado 
-      const user = result.user;
-      console.log('Usuario verificado:', user);
-
-
+      // const user = result.user;
+      // console.log('Usuario verificado:', user);
 
       console.log('Código de verificación enviado');
       this.containerVerificarNumero.style.display = 'none';
@@ -308,11 +314,11 @@ código y pégalo a continuación:`;
         localStorage.setItem(
           'ph-datos-usuario',
           JSON.stringify({
-            nombre: '----',
+            nombre: `pizzaHut${optenerNumero}`,
             celular: this.input.value || '----',
-            apellido: '----',
-            email: '----',
-            ci: '----',
+            apellido: `pizzaHut${optenerNumero}`,
+            email: `pizzaHut${optenerNumero}@gmail.com`,
+            ci: '----'
           })
         );
         window.location.href = '/';
