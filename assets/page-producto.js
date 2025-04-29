@@ -415,7 +415,7 @@ class PizzaHutProducto extends HTMLElement {
 
         // Declaracion referenciar - inicializar - eventos
         await this.declararComponentesDespuesCreacion();
-        MensajeCargaDatos.ocutlar();
+        MensajeCargaDatos.ocultar();
     }
 
     async creacionHTMLGaseosasCervesas() {
