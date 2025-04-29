@@ -177,7 +177,7 @@ class DetallePedido extends HTMLElement {
       this.seccionNotaDeEnvio.style.display = 'flex';
       this.etiquetaNotaDeEnvio.textContent = infoProcesoCheckout.nota_para_envio;
     }
-    // 
+
     MensajeCargaDatos.ocultar();
   }
 
