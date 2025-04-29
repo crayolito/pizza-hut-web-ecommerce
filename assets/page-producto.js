@@ -1334,6 +1334,7 @@ class PizzaHutProducto extends HTMLElement {
         console.log('Testeo de ver si tengo todo el carrito: ', this.carritoShopify);
         this.carritoShopify.informacionCompleta.items.forEach((item) => {
             const dataProducto = JSON.parse(item.properties.estructura);
+            console.log('Data producto: ', dataProducto);
             precioTotalCarrito += parseInt(dataProducto.producto.precioTotalConjunto);
             console.log('Precio total carrito: ', precioTotalCarrito);
         });
