@@ -3029,7 +3029,6 @@ class PageCheckoutPH extends HTMLElement {
       });
       return;
     }
-    // 
 
     if(!this.validarCamposFormDatosContacto()){
       this.seccionFormDatosContacto.scrollIntoView({ 
