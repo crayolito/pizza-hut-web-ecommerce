@@ -1326,7 +1326,7 @@ class PizzaHutProducto extends HTMLElement {
             this.btnHazUnPedido.classList.remove('desactivado');
             this.btnAgregarCarrito.classList.remove('desactivado');
         }
-        // 
+
         // var precioTotalCarrito = this.cantidadPrecioCarrito + (cantidadPrecioHazUnPedido * parseInt(cantidadSolicitada)) + cantidadPrecioTotalExtras;
         var precioTotalCarrito = 0;
         this.carritoShopify = await AuxiliaresGlobal.obtenerCarritoShopify();
@@ -1335,6 +1335,7 @@ class PizzaHutProducto extends HTMLElement {
             const dataProducto = JSON.parse(item.properties.estructura);
             precioTotalCarrito += parseInt(dataProducto.producto.precioTotalConjunto);
         });
+        this.cantidadPrecioCarrito = precioTotalCarrito;
 
         this.cantidadPrecioHazUnPedido = cantidadPrecioHazUnPedido * parseInt(cantidadSolicitada) + cantidadPrecioTotalExtras;
         console.log('Cantidad precio haz un pedido: ', this.cantidadPrecioHazUnPedido);
@@ -1471,8 +1472,19 @@ class PizzaHutProducto extends HTMLElement {
             window.location.href = '/pages/carrito';
         }
 
-        this.carritoShopify = await AuxiliaresGlobal.obtenerCarritoShopify();
-        console.log('Testeo de ver si tengo todo el carrito : ', this.carritoShopify);
+
+        // var precioTotalCarrito = 0;
+        // this.carritoShopify = await AuxiliaresGlobal.obtenerCarritoShopify();
+        // console.log('Testeo de ver si tengo todo el carrito: ', this.carritoShopify);
+        // this.carritoShopify.informacionCompleta.items.forEach((item) => {
+        //     const dataProducto = JSON.parse(item.properties.estructura);
+        //     precioTotalCarrito += parseInt(dataProducto.producto.precioTotalConjunto);
+        // });
+
+        // this.cantidadPrecioHazUnPedido = cantidadPrecioHazUnPedido * parseInt(cantidadSolicitada) + cantidadPrecioTotalExtras;
+        // console.log('Cantidad precio haz un pedido: ', this.cantidadPrecioHazUnPedido);
+        // precioTotalCarrito = precioTotalCarrito + cantidadPrecioHazUnPedido;
+        // console.log('Precio total carrito: ', precioTotalCarrito);
 
         if (tipoProceso == 'agregarcarrito') {
             // Actualizar las etiquetas del HAAZ ME UN PEDIDO Y AGREGAR AL CARRITo  
