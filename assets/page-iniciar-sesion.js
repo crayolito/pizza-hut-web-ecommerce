@@ -263,7 +263,7 @@ código y pégalo a continuación:`;
 
     if (todosLlenos) {
       const optenerNumero = inputs.map((input) => input.value).join('');
-      // Aquí puedes agregar la lógica para enviar el código de verificación
+      // Aquí puedes agregar la lógica para enviar el código de verificaciónn
       const result = await this.confirmationResult.confirm("123456");
 
       // Usuario verificado 
