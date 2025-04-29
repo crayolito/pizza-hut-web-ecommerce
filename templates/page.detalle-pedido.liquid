@@ -39,20 +39,11 @@
       <small style="width: 100%;">DETALLE DEL PEDIDO</small>
       <div class="container-sub-simple-smecph-row">
         <div class="pdpph-etapa2-mensaje">
-          <p id="phpdp-etiqueta-idshopify-order">#235246</p>
+          <p id="phpdp-etiqueta-idshopify-order"></p>
           <div
             id="phpdp-info-superior-detalle-pedido"
             class="pdpph-etapa2-mensaje2 color-letras-extra"
-          >
-            {% comment %}
-              <p>1 COMBO</p>
-              <p>•</p>
-              <p>
-                Pedido realizado: <br>
-                13 de febrero de 2025 Hora: 13:00 P.M.
-              </p>
-            {% endcomment %}
-          </div>
+          ></div>
         </div>
         <h3
           id="phpdp-etiqueta-totalPedido"
@@ -68,12 +59,12 @@
       class="container-sub-simple-smecph phpdp-extra"
       id="phpdp-seccion-inferior-detalle-pedido"
     >
-      <h4>PEDIDO EN LOCAL</h4>
+      <h4 id="phpdp-etiqueta-metodo-entrega">PEDIDO EN LOCAL</h4>
       <div
         style="display: none;"
         id="phpdp-detalle-pedido-local"
         class="container-sub-simple-smecph-column"
-        id="pdpph-etapa2-info-local"
+        id="pdpph-seccion-detalle-inferior-local"
       >
         <h3 class="color-letras-primary">BANZER 3RE ANILLO</h3>
         <div class="pdpph-etapa2-info-local">
@@ -96,7 +87,7 @@
         style="display: none;"
         id="phpdp-detalle-envio-domicilio"
         class="container-sub-simple-smecph-column"
-        id="pdpph-etapa2-info-local"
+        id="pdpph-seccion-detalle-inferior-domicilio"
       >
         <h3 class="color-letras-primary">BANZER 3RE ANILLO</h3>
         <div class="pdpph-etapa2-info-local">
@@ -115,6 +106,7 @@
           {% render 'icon-map' %}
         </button>
       </div>
+
       <h4>METODO DE PAGO</h4>
       <div
         id="phpdp-metodo-pago"
