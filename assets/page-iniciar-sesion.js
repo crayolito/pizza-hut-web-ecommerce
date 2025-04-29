@@ -297,6 +297,11 @@ código y pégalo a continuación:`;
         setTimeout(() => {
           MensajeCargaDatos.ocultar();
         }, 3000);
+
+        // Limpiar inputs
+        inputs.forEach((input) => {
+          input.value = '';
+        });
         return;
       }
 
@@ -311,6 +316,9 @@ código y pégalo a continuación:`;
 
       setTimeout(() => {
         this.ocultarElementosBase();
+        inputs.forEach((input) => {
+          input.value = '';
+        });
         localStorage.setItem(
           'ph-datos-usuario',
           JSON.stringify({
