@@ -158,56 +158,56 @@ class DetallePedido extends HTMLElement {
 
         // Formatear productos (lineItems)
         const productosFormateados = ordenOriginal.lineItems.edges.map(edge => {
-        const item = edge.node;
+            const item = edge.node;
 
-        // Obtener estructura del producto si existe
-        let estructuraItem = null;
-        try {
-        // Buscar en datos de carrito que coincidan con este item por id o nombre
-        const datosCarrito = this.buscarItemEnCarrito(ordenOriginal.customAttributes, item.id, item.name);
-        if (datosCarrito && datosCarrito.properties && datosCarrito.properties.estructura) {
-        estructuraItem = JSON.parse(datosCarrito.properties.estructura);
-        }
-        } catch (error) {
-        console.error('Error al procesar estructura del item:', error);
-        }
+            // Obtener estructura del producto si existe
+            let estructuraItem = null;
+            try {
+            // Buscar en datos de carrito que coincidan con este item por id o nombre
+            const datosCarrito = this.buscarItemEnCarrito(ordenOriginal.customAttributes, item.id, item.name);
+            if (datosCarrito && datosCarrito.properties && datosCarrito.properties.estructura) {
+            estructuraItem = JSON.parse(datosCarrito.properties.estructura);
+            }
+            } catch (error) {
+            console.error('Error al procesar estructura del item:', error);
+            }
 
-        return {
-        id: item.id,
-        nombre: item.name,
-        cantidad: item.quantity,
-        sku: item.sku || '',
-        proveedor: item.vendor || '',
-        requiereEnvio: item.requiresShipping,
-        gravable: item.taxable,
-        esTarjetaRegalo: item.isGiftCard,
-        precioUnitarioOriginal: parseFloat(item.originalUnitPrice),
-        precioUnitarioConDescuento: parseFloat(item.discountedUnitPrice),
-        impuestos: item.taxLines ? item.taxLines.map(tax => ({
-        titulo: tax.title,
-        tasa: tax.rate,
-        importe: parseFloat(tax.price)
-        })) : [],
-        // Información detallada si está disponible
-        detalles: estructuraItem ? {
-        productoBase: estructuraItem.producto || {},
-        opcionesPrincipales: estructuraItem.opcionesPrincipales || {},
-        complementos: estructuraItem.complementos || {}
-        } : null
-        };
+            return {
+            id: item.id,
+            nombre: item.name,
+            cantidad: item.quantity,
+            sku: item.sku || '',
+            proveedor: item.vendor || '',
+            requiereEnvio: item.requiresShipping,
+            gravable: item.taxable,
+            esTarjetaRegalo: item.isGiftCard,
+            precioUnitarioOriginal: parseFloat(item.originalUnitPrice),
+            precioUnitarioConDescuento: parseFloat(item.discountedUnitPrice),
+            impuestos: item.taxLines ? item.taxLines.map(tax => ({
+            titulo: tax.title,
+            tasa: tax.rate,
+            importe: parseFloat(tax.price)
+            })) : [],
+            // Información detallada si está disponible
+            detalles: estructuraItem ? {
+            productoBase: estructuraItem.producto || {},
+            opcionesPrincipales: estructuraItem.opcionesPrincipales || {},
+            complementos: estructuraItem.complementos || {}
+            } : null
+            };
         });
 
-        // Procesar dirección de envío
-        const direccionEnvio = ordenOriginal.shippingAddress ? {
-        nombre: ordenOriginal.shippingAddress.firstName,
-        apellido: ordenOriginal.shippingAddress.lastName,
-        direccion: ordenOriginal.shippingAddress.address1,
-        ciudad: ordenOriginal.shippingAddress.city,
-        provincia: ordenOriginal.shippingAddress.province,
-        pais: ordenOriginal.shippingAddress.country,
-        codigoPostal: ordenOriginal.shippingAddress.zip,
-        telefono: ordenOriginal.shippingAddress.phone
-        } : null;
+            // Procesar dirección de envío
+            const direccionEnvio = ordenOriginal.shippingAddress ? {
+            nombre: ordenOriginal.shippingAddress.firstName,
+            apellido: ordenOriginal.shippingAddress.lastName,
+            direccion: ordenOriginal.shippingAddress.address1,
+            ciudad: ordenOriginal.shippingAddress.city,
+            provincia: ordenOriginal.shippingAddress.province,
+            pais: ordenOriginal.shippingAddress.country,
+            codigoPostal: ordenOriginal.shippingAddress.zip,
+            telefono: ordenOriginal.shippingAddress.phone
+            } : null;
 
         // Procesar información de pago y entrega de los atributos personalizados
         const atributosPersonalizados = this.procesarAtributosPersonalizados(ordenOriginal.customAttributes);
@@ -239,11 +239,6 @@ class DetallePedido extends HTMLElement {
         productos: productosFormateados,
         direccionEnvio: direccionEnvio,
         notasPersonalizadas: ordenOriginal.customAttributes,
-        //   metodoEntrega: atributosPersonalizados.metodoEntrega || "No especificado",
-        //   infoPago: atributosPersonalizados.infoPago || {},
-        //   infoCheckout: atributosPersonalizados.datosCheckout || {},
-        //   notaEnvio: atributosPersonalizados.datosCheckout?.nota_para_envio || "",
-        //   infoFacturacion: atributosPersonalizados.datosCheckout?.info_facturacion || {},
         totales: {
         subtotal: subtotal.toFixed(2),
         impuestos: impuestoTotal.toFixed(2),
@@ -294,39 +289,39 @@ class DetallePedido extends HTMLElement {
         }
         }
 
-        // // Método para buscar item en datos de carrito
-        // buscarItemEnCarrito(customAttributes, itemId, itemName) {
-        // try {
-        // // Buscar el atributo de datos de carrito
-        // const atributoCarrito = customAttributes.find(attr => attr.key === 'Datos Carrito PRoceso');
-        // if (!atributoCarrito) return null;
+        // Método para buscar item en datos de carrito
+        buscarItemEnCarrito(customAttributes, itemId, itemName) {
+        try {
+        // Buscar el atributo de datos de carrito
+        const atributoCarrito = customAttributes.find(attr => attr.key === 'Datos Carrito PRoceso');
+        if (!atributoCarrito) return null;
 
-        // // Parsear los datos de carrito
-        // const datosCarrito = JSON.parse(atributoCarrito.value);
-        // if (!Array.isArray(datosCarrito)) return null;
+        // Parsear los datos de carrito
+        const datosCarrito = JSON.parse(atributoCarrito.value);
+        if (!Array.isArray(datosCarrito)) return null;
 
-        // // Buscar por ID o nombre
-        // const idCorto = itemId.split('/').pop();
+        // Buscar por ID o nombre
+        const idCorto = itemId.split('/').pop();
 
-        // // Primero intentar con ID exacto
-        // let itemEncontrado = datosCarrito.find(item => 
-        // item.id.toString() === idCorto || 
-        // item.variant_id.toString() === idCorto
-        // );
+        // Primero intentar con ID exacto
+        let itemEncontrado = datosCarrito.find(item => 
+        item.id.toString() === idCorto || 
+        item.variant_id.toString() === idCorto
+        );
 
-        // // Si no encontramos por ID, buscar por nombre
-        // if (!itemEncontrado) {
-        // itemEncontrado = datosCarrito.find(item => 
-        // item.title.toLowerCase() === itemName.toLowerCase()
-        // );
-        // }
+        // Si no encontramos por ID, buscar por nombre
+        if (!itemEncontrado) {
+        itemEncontrado = datosCarrito.find(item => 
+        item.title.toLowerCase() === itemName.toLowerCase()
+        );
+        }
 
-        // return itemEncontrado;
-        // } catch (error) {
-        // console.error('Error al buscar item en carrito:', error);
-        // return null;
-        // }
-        // }
+        return itemEncontrado;
+        } catch (error) {
+        console.error('Error al buscar item en carrito:', error);
+        return null;
+        }
+        }
 
         // // Método auxiliar para procesar atributos personalizados
         // procesarAtributosPersonalizados(atributos) {
