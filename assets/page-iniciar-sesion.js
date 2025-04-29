@@ -185,6 +185,20 @@ class InicioSesion extends HTMLElement {
     }
 
     // await this.sendVerificationCode();
+    this.codigoEnviadoCliente = this.generarCodigo4Digitos();
+    localStorage.setItem('ph-codigo-verificacion', optenerNumero);
+
+    // Abrir WhatsApp con el mensaje que contiene el código
+    console.log("Testeo de WhatsApp",
+      {
+        numero: this.input.value,
+        mensaje: `Hola, este es el código que debes ingresar: ${this.codigoEnviadoCliente}`,
+      }
+    )
+    window.open(
+      `https://wa.me/591${this.input.value}?text=Hola, este es el código que debes ingresar: ${this.codigoEnviadoCliente}`,
+      '_blank'
+    );
 
     // Ingresar el valor dentro del this.mensajeVerificarNumero
     this.mensajeVerificarNumero.innerHTML = `
@@ -274,21 +288,8 @@ código y pégalo a continuación:`;
 
     if (todosLlenos) {
       const optenerNumero = inputs.map((input) => input.value).join('');
-      this.codigoEnviadoCliente = this.generarCodigo4Digitos();
-      localStorage.setItem('ph-codigo-verificacion', optenerNumero);
 
-      // Abrir WhatsApp con el mensaje que contiene el código
-      console.log("Testeo de WhatsApp",
-        {
-          numero: this.input.value,
-          mensaje: `Hola, este es el código que debes ingresar: ${this.codigoEnviadoCliente}`,
-        }
-      )
-      window.open(
-        `https://wa.me/591${this.input.value}?text=Hola, este es el código que debes ingresar: ${this.codigoEnviadoCliente}`,
-        '_blank'
-      );
-      // Aquí puedes agregar la lógica para enviar el código de verificaciónn
+      // Aquí puedes agregar la lógica para enviar el código de verificación
       // const result = await this.confirmationResult.confirm("123456");
 
       // Usuario verificado 
