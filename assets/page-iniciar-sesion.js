@@ -184,7 +184,7 @@ class InicioSesion extends HTMLElement {
       return;
     }
 
-    // Ingresar el valor dentro del this.mensajeVerificarNumero
+    // Ingresar el valor dentro del this.mensajeVerificarNumeroo
     this.mensajeVerificarNumero.innerHTML = `
 Enviamos un código de verificación de 4 dígitos a tu  número de WhatsApp *****${this.input.value.slice(
       -3
