@@ -368,21 +368,25 @@ class AuxiliaresGlobal {
     * @param {Object} cart - Objeto carrito devuelto por Shopify
     */
   static sincronizarContadorConCarrito(cart) {
-    const mensaje = document.querySelector('.hicc-mensaje');
-    if (mensaje) {
+    const mensajes = document.querySelectorAll('.hicc-mensaje');
+    if (mensajes && mensajes.length > 0) {
       const cantidadTotal = cart.item_count || 0;
-      mensaje.textContent = cantidadTotal;
 
-      console.log('Cantidad total de productos Testeo :', cantidadTotal);
+      // Actualizar todos los elementos de mensaje encontrados
+      mensajes.forEach(mensaje => {
+        mensaje.textContent = cantidadTotal;
 
-      // Actualizar clases
-      mensaje.classList.remove('digitos-2', 'digitos-3');
-      const valorStr = cantidadTotal.toString();
-      if (valorStr.length === 2) {
-        mensaje.classList.add('digitos-2');
-      } else if (valorStr.length >= 3) {
-        mensaje.classList.add('digitos-3');
-      }
+        // Actualizar clases
+        mensaje.classList.remove('digitos-2', 'digitos-3');
+        const valorStr = cantidadTotal.toString();
+        if (valorStr.length === 2) {
+          mensaje.classList.add('digitos-2');
+        } else if (valorStr.length >= 3) {
+          mensaje.classList.add('digitos-3');
+        }
+      });
+
+      console.log('Cantidad total de productos Testeo:', cantidadTotal);
     }
 
     // Actualizar componentes CarritoShopify
