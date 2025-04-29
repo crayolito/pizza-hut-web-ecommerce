@@ -5,6 +5,7 @@ class DetallePedido extends HTMLElement {
         this.direccionSeleccionada = false;
         this.marcadorMovible = null;
         this.urlConsulta = "https://pizza-hut-bo.myshopify.com/admin/api/2025-01/graphql.json";
+        this.estadoEtapaPagina = "";
     }
 
     connectedCallback() {
@@ -13,6 +14,7 @@ class DetallePedido extends HTMLElement {
         this.btnVolverInicio = this.querySelector('#phpdp-btn-volver-inicio');
         this.btnVolverAtras = this.querySelector('#phpdp-btn-volver-atras');
 
+        this.seccionGeneralInfoBasica = this.querySelector('#phpdp-seccion-general-info-basica');
         this.seccionInfoBasica = this.querySelector('#phpdp-seccion-info-basica');
         this.infoBasicaDetalle = this.querySelector('#phpdp-info-basica-detalle');
 
@@ -40,33 +42,48 @@ class DetallePedido extends HTMLElement {
     async inicializarDataLocalStorage() {
         const infoEtapaPagina = localStorage.getItem('ph-estadoDP');
         const idOrdenTrabajo = localStorage.getItem('ph-id-orden');
+        this.estadoEtapaPagina = infoEtapaPagina;
 
         if (infoEtapaPagina == null || infoEtapaPagina == undefined || idOrdenTrabajo == null || idOrdenTrabajo == undefined) {
             window.location.href = '/';
             return;
         };
 
-        const infoCompletaOrden = await this.traerInformacionOrdenTrabajo(idOrdenTrabajo);
-        console.log('infoCompletaOrden: ', infoCompletaOrden);
 
-        this.btnVolverInicio.style.display = 'flex';
+        MensajeCargaDatos.mostrar('Cargando informacion ...');
 
-        const metodoEntrega = infoCompletaOrden.orden.notasPersonalizadas[0].value;
-        const etiquetaInfoBasica = this.seccionInfoBasica.querySelector('#phpdp-etiqueta-tipo-pedido');
-        etiquetaInfoBasica.textContent = metodoEntrega == "Domicilio" ? "Envío a Domicilio" : "En Local";
-        const contenedorIcono = this.seccionInfoBasica.querySelector('.pdpph-mensaje-etapa1-icono');
-        contenedorIcono.innerHTML = metodoEntrega == "Domicilio" ? `${window.shopIcons.icon_recogo_delivery}` : `${window.shopIcons.icon_recogo_local}`;
+        if (this.estadoEtapaPagina == "etapa-1") {
+            this.seccionGeneralInfoBasica.style.display = 'flex';
+            this.btnVolverInicio.style.display = 'flex';
+            this.verMasDetalles.style.display = 'flex';
 
-        // Solo necesito obtener los numeros
-        const idShopifyOrder = infoCompletaOrden.orden.id.split('/').pop();
-        const { fechaFormateada, horaCompletada } = this.formatearFechaInfoBasica(infoCompletaOrden.orden.fechaCompletado);
+            const infoCompletaOrden = await this.traerInformacionOrdenTrabajo(idOrdenTrabajo);
+            console.log('infoCompletaOrden: ', infoCompletaOrden);
 
-        this.infoBasicaDetalle.innerHTML = `
-            <h3>Nº de pedido ${idShopifyOrder}</h3>
-            <h3>ESTARA LISTO A las ${horaCompletada}</h3>
-            <h3>fecha ${fechaFormateada}</h3>
-        `;
+            const metodoEntrega = infoCompletaOrden.orden.notasPersonalizadas[0].value;
+            const etiquetaInfoBasica = this.seccionInfoBasica.querySelector('#phpdp-etiqueta-tipo-pedido');
+            etiquetaInfoBasica.textContent = metodoEntrega == "Domicilio" ? "Envío a Domicilio" : "En Local";
+            const contenedorIcono = this.seccionInfoBasica.querySelector('.pdpph-mensaje-etapa1-icono');
+            contenedorIcono.innerHTML = metodoEntrega == "Domicilio" ? `${window.shopIcons.icon_recogo_delivery}` : `${window.shopIcons.icon_recogo_local}`;
 
+            // Solo necesito obtener los numeros
+            const idShopifyOrder = infoCompletaOrden.orden.id.split('/').pop();
+            const { fechaFormateada, horaCompletada } = this.formatearFechaInfoBasica(infoCompletaOrden.orden.fechaCompletado);
+
+            this.infoBasicaDetalle.innerHTML = `
+                <h3>Nº de pedido ${idShopifyOrder}</h3>
+                <h3>ESTARA LISTO A las ${horaCompletada}</h3>
+                <h3>fecha ${fechaFormateada}</h3>
+            `;
+        }
+
+        if (this.estadoEtapaPagina == "etapa-2") {
+            this.volverAtras.style.display = 'flex';
+            this.seccionSuperiorDetallePedido.style.display = 'flex';
+            this.seccionInferiorDetallePedido.style.display = 'flex';
+        }
+
+        MensajeCargaDatos.ocultar();
     }
 
     async traerInformacionOrdenTrabajo(idOrdenTrabajo) {
@@ -397,8 +414,9 @@ class DetallePedido extends HTMLElement {
     }
 
     btnVerMasDetallesClick() {
+        this.seccionGeneralInfoBasica.style.display = 'none';
         this.seccionSuperiorDetallePedido.style.display = 'flex';
-        this.seccionInfoBasica.style.display = 'none';
+        this.seccionInferiorDetallePedido.style.display = 'flex';
         this.btnVerMasDetalles.style.display = 'none';
         this.btnVolverInicio.style.display = 'none';
     }
@@ -408,8 +426,13 @@ class DetallePedido extends HTMLElement {
     }
 
     btnVolverAtrasClick() {
+        if (this.estadoEtapaPagina == "etapa-2") {
+            window.history.back();
+        }
+
+        this.seccionGeneralInfoBasica.style.display = 'flex';
         this.seccionSuperiorDetallePedido.style.display = 'none';
-        this.seccionInfoBasica.style.display = 'flex';
+        this.seccionInferiorDetallePedido.style.display = 'none';
         this.btnVerMasDetalles.style.display = 'flex';
         this.btnVolverInicio.style.display = 'flex';
         this.btnVolverAtras.style.display = 'none';
