@@ -57,13 +57,14 @@ class DetallePedido extends HTMLElement {
         MensajeCargaDatos.mostrar('Cargando informacion ...');
         const infoCompletaOrden = await this.traerInformacionOrdenTrabajo(idOrdenTrabajo);
         console.log('infoCompletaOrden: ', infoCompletaOrden);
+        const metodoEntrega = infoCompletaOrden.orden.notasPersonalizadas[0].value;
+
 
         if (this.estadoEtapaPagina == "etapa-1") {
             this.seccionGeneralInfoBasica.style.display = 'flex';
             this.btnVolverInicio.style.display = 'flex';
             this.btnVerMasDetalles.style.display = 'flex';
 
-            const metodoEntrega = infoCompletaOrden.orden.notasPersonalizadas[0].value;
             const etiquetaInfoBasica = this.seccionInfoBasica.querySelector('#phpdp-etiqueta-tipo-pedido');
             etiquetaInfoBasica.textContent = metodoEntrega == "Domicilio" ? "Envío a Domicilio" : "En Local";
             const contenedorIcono = this.seccionInfoBasica.querySelector('.pdpph-mensaje-etapa1-icono');
