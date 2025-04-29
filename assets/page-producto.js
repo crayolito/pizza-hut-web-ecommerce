@@ -1340,7 +1340,7 @@ class PizzaHutProducto extends HTMLElement {
     async procesoBotonesInferiores(tipoProceso) {
         MensajeCargaDatos.mostrar('Actualizando...');
 
-        // Recorrer todo y generar un objeto para introducir al carrit
+        // Recorrer todo y generar un objeto para introducir al carrito
         const data = JSON.parse(localStorage.getItem('phpp-productoData'));
         const cantidadSolicitada = this.querySelector('#phpd-cantidad-general').innerHTML;
         var productosOpciones = [];
