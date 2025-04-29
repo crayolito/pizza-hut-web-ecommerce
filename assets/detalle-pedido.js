@@ -101,7 +101,7 @@ class DetallePedido extends HTMLElement {
         infoCompletaOrden.orden.productos.forEach(item => {
             totalPrecioConjunto += item.precioUnitarioConDescuento * item.cantidad;
         });
-        this.etiquetaTotalPrecioSuperior.textContent = `${TotalPrecioConjunto} Bs`
+        this.etiquetaTotalPrecioSuperior.textContent = `${totalPrecioConjunto} Bs`
         this.etiquetaTipoMetodoEntrega.textContent = metodoEntrega == "Domicilio" ? "Envío a Domicilio" : "Pedido en Local";
         metodoEntrega == "Domicilio" ? this.seccionInfoEntregaDomicilio.style.display = 'flex' : this.seccionInfoEntregaLocal.style.display = 'flex';
         const infoProcesoCheckout = JSON.parse(infoCompletaOrden.orden.notasPersonalizadas[1].value);
