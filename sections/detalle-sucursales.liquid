@@ -123,6 +123,58 @@
   class SucursalesInformacion extends HTMLElement {
     constructor() {
       super();
+      this.pizzaLocations = [
+        {
+          lat: -17.757619,
+          lng: -63.178738,
+          name: 'BANZER 3ER ANILLO',
+          localizacion: 'Tercer Anillo Externo',
+          telefono: '78452415',
+          dias: 'Lunes a Viernes',
+          horario: '8:00 a 23:00',
+          servicios: ['Envío a domicilio', 'Recoger en local'],
+        },
+        {
+          lat: -17.70001,
+          lng: -63.160219,
+          name: 'BANZER KM 8.5',
+          localizacion: '8R2Q+2XH',
+          telefono: '78452415',
+          dias: 'Lunes a Viernes',
+          horario: '8:00 a 23:00',
+          servicios: ['Envío a domicilio', 'Recoger en local'],
+        },
+        {
+          lat: -17.807739,
+          lng: -63.204363,
+          name: 'LAS PALMAS',
+          localizacion: 'Doble vía La Guardia',
+          telefono: '78452415',
+          dias: 'Lunes a Viernes',
+          horario: '8:00 a 23:00',
+          servicios: ['Envío a domicilio', 'Recoger en local'],
+        },
+        {
+          lat: -17.758879,
+          lng: -63.19948,
+          name: 'SAN MARTIN',
+          localizacion: 'Av. San Martin 2200',
+          telefono: '78452415',
+          dias: 'Lunes a Viernes',
+          horario: '8:00 a 23:00',
+          servicios: ['Envío a domicilio', 'Recoger en local'],
+        },
+        {
+          lat: -17.820341,
+          lng: -63.184337,
+          name: 'SANTOS DUMONT',
+          localizacion: 'Av Santos Dumont 3228',
+          telefono: '78452415',
+          dias: 'Lunes a Viernes',
+          horario: '8:00 a 23:00',
+          servicios: ['Envío a domicilio', 'Recoger en local'],
+        },
+      ];
     }
 
     connectedCallback() {
@@ -152,283 +204,3 @@
   "blocks": []
 }
 {% endschema %}
-
-{% comment %}
-  <div class="psme-rl-locales">
-      <div class="psme-rl-local psme-rl-local-seleccionado">
-        <div class="psme-rl-titulos">
-          <h3>sANTA CRUZ</h3>
-          <h3 style="color: #C8102E;">las palmas</h3>
-        </div>
-        <div class="psme-rl-disponibilidad">
-          <div class="psme-rl-disponibilidad-info psme-rl-abierto ">
-            {% render 'icon-disponibilidad' %}
-            <p>ABIERTO</p>
-          </div>
-        </div>
-        <div class="psme-rl-info-local ">
-          <div class="psme-rl-info-local-item">
-            {% render 'icon-location-on' %}
-            <p>Doble vía a La Guardia</p>
-          </div>
-          <div class="psme-rl-info-local-item">
-            {% render 'icon-headser-mic' %}
-            <p>78452415</p>
-          </div>
-          <div class="psme-rl-info-local-item">
-            {% render 'icon-clock' %}
-            <p>Abre a las 11:00 AM</p>
-          </div>
-          <div class="psme-rl-info-servicios">
-            <div class="psme-rl-info-servicio">
-              {% render 'icon-check' %}
-              <p>Envío a domicilio</p>
-            </div>
-            <div class="psme-rl-info-servicio">
-              {% render 'icon-check' %}
-              <p>Recoger en local</p>
-            </div>
-          </div>
-        </div>
-        <button class="psme-rl-boton psme-rl-empezar">
-          <p>EMPEZAR MI PEDIDO</p>
-        </button>
-        <button class="psme-rl-boton psme-rl-ubicacion">
-          <p>Abrir ubicación en mapa</p>
-          {% render 'icon-map' %}
-        </button>
-      </div>
-      <div class="psme-rl-local psme-rl-local-no-seleccionado">
-        <div class="psme-rl-titulos">
-          <h3>sANTA CRUZ</h3>
-          <h3 style="color: #C8102E;">las palmas</h3>
-        </div>
-        <div class="psme-rl-disponibilidad">
-          <div class="psme-rl-disponibilidad-info psme-rl-cerrado ">
-            {% render 'icon-disponibilidad' %}
-            <p>CERRADO</p>
-          </div>
-        </div>
-        <div class="psme-rl-info-local ">
-          <div class="psme-rl-info-local-item">
-            {% render 'icon-location-on' %}
-            <p>Doble vía a La Guardia</p>
-          </div>
-          <div class="psme-rl-info-local-item">
-            {% render 'icon-headser-mic' %}
-            <p>78452415</p>
-          </div>
-          <div class="psme-rl-info-local-item">
-            {% render 'icon-clock' %}
-            <p>Abre a las 11:00 AM</p>
-          </div>
-          <div class="psme-rl-info-servicios">
-            <div class="psme-rl-info-servicio">
-              {% render 'icon-check' %}
-              <p>Envío a domicilio</p>
-            </div>
-            <div class="psme-rl-info-servicio">
-              {% render 'icon-check' %}
-              <p>Recoger en local</p>
-            </div>
-          </div>
-        </div>
-        <button class="psme-rl-boton psme-rl-empezar">
-          <p>EMPEZAR MI PEDIDO</p>
-        </button>
-        <button class="psme-rl-boton psme-rl-ubicacion">
-          <p>Abrir ubicación en mapa</p>
-          {% render 'icon-map' %}
-        </button>
-      </div>
-      <div class="psme-rl-local psme-rl-local-no-seleccionado">
-        <div class="psme-rl-titulos">
-          <h3>sANTA CRUZ</h3>
-          <h3 style="color: #C8102E;">las palmas</h3>
-        </div>
-        <div class="psme-rl-disponibilidad">
-          <div class="psme-rl-disponibilidad-info psme-rl-abierto ">
-            {% render 'icon-disponibilidad' %}
-            <p>ABIERTO</p>
-          </div>
-        </div>
-        <div class="psme-rl-info-local ">
-          <div class="psme-rl-info-local-item">
-            {% render 'icon-location-on' %}
-            <p>Doble vía a La Guardia</p>
-          </div>
-          <div class="psme-rl-info-local-item">
-            {% render 'icon-headser-mic' %}
-            <p>78452415</p>
-          </div>
-          <div class="psme-rl-info-local-item">
-            {% render 'icon-clock' %}
-            <p>Abre a las 11:00 AM</p>
-          </div>
-          <div class="psme-rl-info-servicios">
-            <div class="psme-rl-info-servicio">
-              {% render 'icon-check' %}
-              <p>Envío a domicilio</p>
-            </div>
-            <div class="psme-rl-info-servicio">
-              {% render 'icon-check' %}
-              <p>Recoger en local</p>
-            </div>
-          </div>
-        </div>
-        <button class="psme-rl-boton psme-rl-empezar">
-          <p>EMPEZAR MI PEDIDO</p>
-        </button>
-        <button class="psme-rl-boton psme-rl-ubicacion">
-          <p>Abrir ubicación en mapa</p>
-          {% render 'icon-map' %}
-        </button>
-      </div>
-  </div>
-{% endcomment %}
-
-{% comment %}
-  .psme-rl-locales {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: var(--espaciado-xxl);
-    padding: var(--espaciado-xxl) 0 12rem 0;
-  }
-
-  .psme-rl-local {
-    width: 23.25rem;
-    padding: var(--espaciado-xxl);
-    border: 1.5px solid var(--colorp-primary);
-    border-radius: var(--border-radius-2);
-    background-color: var(--colorp-secondary);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--espaciado-xxl);
-    cursor: pointer;
-  }
-
-  .psme-rl-local-seleccionado {
-    border: 1.5px solid var(--colorp-primary);
-  }
-
-  .psme-rl-local-no-seleccionado {
-    border: 1.5px solid #969696;
-  }
-
-  .psme-rl-disponibilidad,
-  .psme-rl-titulos {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .psme-rl-disponibilidad-info {
-    width: min-content;
-    display: flex;
-    align-items: center;
-    gap: var(--espaciado-xs);
-    border-radius: var(--border-radius-4);
-    padding: var(--espaciado-xs) var(--espaciado-s);
-  }
-
-  .psme-rl-abierto {
-    background: #e3ffc9;
-  }
-
-  .psme-rl-abierto p {
-    font-weight: 600;
-    color: #478c5c;
-  }
-
-  .psme-rl-abierto svg {
-    filter: brightness(0) saturate(100%) invert(42%) sepia(29%) saturate(709%)
-      hue-rotate(105deg) brightness(87%) contrast(84%);
-  }
-
-  .psme-rl-cerrado {
-    background: #ffebeb;
-  }
-
-  .psme-rl-cerrado p {
-    font-weight: 600;
-    color: #c8102e;
-  }
-
-  .psme-rl-cerrado svg {
-    filter: brightness(0) saturate(100%) invert(13%) sepia(93%) saturate(5266%)
-      hue-rotate(350deg) brightness(87%) contrast(99%);
-  }
-
-  .psme-rl-disponibilidad-info svg {
-    width: 0.375rem;
-    height: 0.375rem;
-  }
-
-  .psme-rl-info-local {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: var(--espaciado-m);
-  }
-
-  .psme-rl-info-local-item {
-    display: flex;
-    align-items: center;
-    gap: var(--espaciado-s);
-  }
-
-  .psme-rl-info-servicios {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: var(--espaciado-xs);
-  }
-
-  .psme-rl-info-servicio {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    gap: var(--espaciado-s);
-  }
-
-  .psme-rl-boton {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: var(--espaciado-s);
-    height: var(--espaciado-big);
-    padding: var(--espaciado-xl);
-    border-radius: var(--border-radius-1);
-  }
-
-  .psme-rl-boton p {
-    font-weight: 600;
-  }
-
-  .psme-rl-empezar {
-    background-color: var(--colorp-primary);
-  }
-
-  .psme-rl-empezar p {
-    color: var(--colorp-secondary);
-  }
-
-  .psme-rl-ubicacion {
-    border: 1.5px solid var(--colorp-primary);
-    background-color: var(--colorp-secondary);
-  }
-
-  .psme-rl-ubicacion p {
-    color: var(--colorp-primary);
-  }
-
-  .psme-rl-boton svg {
-    width: 1.5rem;
-    height: 1.5rem;
-  }
-{% endcomment %}

@@ -363,6 +363,7 @@
       this.itemsSeleccionadoGaseosasyCervezas = [];
       this.cantidadPrecioCarrito = null;
       this.cantidadPrecioHazUnPedido = null;
+      this.carritoShopify = null;
       // REFERENCIAS ELEMENTOSSs
       this.btnHazUnPedido = this.querySelector('#phpm-btn-haz-un-pedido');
       this.btnAgregarCarrito = this.querySelector('#phpm-btn-agregar-carrito'); 
@@ -1668,6 +1669,8 @@
         this.btnAgregarCarrito.classList.remove('desactivado');
       }
       
+      // Debo traerme el carrito 
+      console.log('Testeo de ver si tengo todo el carrito : ', this.ca);
       var precioTotalCarrito = this.cantidadPrecioCarrito + (cantidadPrecioHazUnPedido * parseInt(cantidadSolicitada)) + cantidadPrecioTotalExtras; 
       this.cantidadPrecioHazUnPedido = cantidadPrecioHazUnPedido * parseInt(cantidadSolicitada) + cantidadPrecioTotalExtras;
 
@@ -1676,6 +1679,8 @@
     }
     
     async procesoBotonesInferiores(tipoProceso){
+      MensajeCargaDatos.mostrar('Actualizando...');
+      
       // Recorrer todo y generar un objeto para introducir al carrito
       const data = JSON.parse(localStorage.getItem('phpp-productoData'));
       const cantidadSolicitada = this.querySelector('#phpd-cantidad-general').innerHTML;
@@ -1786,6 +1791,9 @@
         }
       };
       
+      this.carritoShopify  = await AuxiliaresGlobal.obtenerCarritoShopify();
+      var precioToalCarrito = 0;
+      console.log("Testeo al obtener carrito Shopify", this.carritoShopify);
 
       if(tipoProceso == 'hazunpedido'){
         MensajeCargaDatos.mostrar('Procesando pedido ...');
@@ -1799,6 +1807,7 @@
 
       if(tipoProceso == 'agregarcarrito'){
         // Actualizar las etiquetas del HAAZ ME UN PEDIDO Y AGREGAR AL CARRIT
+
         this.cantidadPrecioCarrito = this.cantidadPrecioCarrito + (this.cantidadPrecioHazUnPedido * cantidadSolicitada);
         this.etiquetaAgregarCarrito.innerHTML = `Bs ${this.cantidadPrecioCarrito + (this.cantidadPrecioHazUnPedido * cantidadSolicitada) }`;
         this.etiquetaHazUnPedido.innerHTML = `Bs ${(this.cantidadPrecioHazUnPedido * cantidadSolicitada)}`;
@@ -1808,40 +1817,7 @@
         properties: {"estructura": JSON.stringify(detalleProducto),}
       }); 
 
-      {% comment %} AuxiliaresGlobal.limpiarCarrito(); {% endcomment %}
-
-      {% comment %} // Envío de datos a webhook.site
-      const fechayhora = new Date().toLocaleString(); 
-
-      // Preparar el cuerpo de la solicitud
-      const webhookData = {
-        fechayhora: fechayhora,
-        productos: detalleProducto
-      };
-
-      // Realizar la solicitud POST a webhook.site
-      fetch('https://webhook.site/32c4a2e7-10c8-4a68-8c90-3497da2335db', {
-        method: 'POST',
-        headers: {
-          'content-type': 'application/json'
-        },
-        body: JSON.stringify(webhookData)
-      })
-      .then(response => {
-        if (response.ok) {
-          console.log('Datos enviados correctamente a webhook.site');
-          return response.text();
-        }
-        throw new Error('Error al enviar datos');
-      })
-      .catch(error => {
-        console.error('Error:', error);
-      }); {% endcomment %}
-
-      {% comment %} 
-      }); {% endcomment %}
-
-
+      MensajeCargaDatos.ocultar();
     }
 
     extraerPrecio(elementoHTML) {
