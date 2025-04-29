@@ -1335,7 +1335,7 @@ class PizzaHutProducto extends HTMLElement {
     this.cantidadPrecioCarrito = precioTotalCarrito;
 
     this.cantidadPrecioHazUnPedido = cantidadPrecioHazUnPedido * parseInt(cantidadSolicitada) + cantidadPrecioTotalExtras;
-    precioTotalCarrito = precioTotalCarrito + cantidadPrecioHazUnPedido;
+    precioTotalCarrito = precioTotalCarrito + this.cantidadPrecioHazUnPedido;
     console.log('Testeo de precio total carrito: ', {
       "testeo cantidadPrecioTotalExtras": cantidadPrecioTotalExtras,
       "testeo precioTotalCarrito": precioTotalCarrito,
