@@ -1328,7 +1328,7 @@ class PizzaHutProducto extends HTMLElement {
         }
 
         // Debo traerme el carrito 
-        this.carritoShopify = await AuxiliaresGlobal.obtenerCarrito();
+        this.carritoShopify = await AuxiliaresGlobal.obtenerCarritoShopify();
         console.log('Testeo de ver si tengo todo el carrito : ', this.carritoShopify);
         var precioTotalCarrito = this.cantidadPrecioCarrito + (cantidadPrecioHazUnPedido * parseInt(cantidadSolicitada)) + cantidadPrecioTotalExtras;
         this.cantidadPrecioHazUnPedido = cantidadPrecioHazUnPedido * parseInt(cantidadSolicitada) + cantidadPrecioTotalExtras;
@@ -1463,7 +1463,7 @@ class PizzaHutProducto extends HTMLElement {
             window.location.href = '/pages/carrito';
         }
 
-        this.carritoShopify = await AuxiliaresGlobal.obtenerCarrito();
+        this.carritoShopify = await AuxiliaresGlobal.obtenerCarritoShopify();
         console.log('Testeo de ver si tengo todo el carrito : ', this.carritoShopify);
 
         if (tipoProceso == 'agregarcarrito') {
