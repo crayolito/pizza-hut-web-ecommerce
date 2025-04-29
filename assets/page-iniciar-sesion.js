@@ -184,7 +184,7 @@ class InicioSesion extends HTMLElement {
       return;
     }
 
-    await this.sendVerificationCode();
+    // await this.sendVerificationCode();
 
     // Ingresar el valor dentro del this.mensajeVerificarNumero
     this.mensajeVerificarNumero.innerHTML = `
