@@ -1327,7 +1327,7 @@ class PizzaHutProducto extends HTMLElement {
             this.btnAgregarCarrito.classList.remove('desactivado');
         }
 
-        // Debo traerme el carrito 
+        // Debo traerme el carrito
         // var precioTotalCarrito = this.cantidadPrecioCarrito + (cantidadPrecioHazUnPedido * parseInt(cantidadSolicitada)) + cantidadPrecioTotalExtras;
         var precioTotalCarrito = 0;
         this.carritoShopify = await AuxiliaresGlobal.obtenerCarritoShopify();
