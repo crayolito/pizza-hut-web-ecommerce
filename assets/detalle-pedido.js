@@ -21,6 +21,7 @@ class DetallePedido extends HTMLElement {
     this.seccionInfoEntregaLocal = this.querySelector('#phpdp-detalle-pedido-local');
     this.seccionInfoEntregaDomicilio = this.querySelector('#phpdp-detalle-envio-domicilio');
     this.seccionNotaDeEnvio = this.querySelector('#phpdp-seccion-nota-envio');
+    this.etiquetaNotaDeEnvio = this.querySelector('#phpdp-etiqueta-nota-envio');
 
     this.seccionSuperiorDetallePedido = this.querySelector('#phpdp-seccion-superior-detalle-pedido');
     this.etiquetaTotalPrecioSuperior = this.querySelector('#phpdp-etiqueta-totalPedido');
@@ -130,7 +131,7 @@ class DetallePedido extends HTMLElement {
           ${window.shopIcons.icon_headser_mic}
           <p>+591 ${dataInformacionMetodoEntrega.telefono}</p>
           </div>
-          `);
+      `);
       this.seccionInfoEntregaLocal.style.display = 'flex';
     }
 
@@ -139,11 +140,42 @@ class DetallePedido extends HTMLElement {
       infoCarritoProceso
     });
 
-    this.seccionMetodoPago.innerHTML = `
-          {% render 'icon-dolar' %}
-          <p class="color-letras-extra">Efectivo contra entrega</p>
-        `;
-    // 
+    const metodoPago = infoProcesoCheckout.info_metodo_pago_seleccionado.metodo_pago
+    if (metodoPago == "pago-codigo-qr") {
+      this.seccionMetodoPago.innerHTML = `
+      ${window.shopIcons.icon_qr}
+      <p class="color-letras-extra">
+        Pago mediante QR
+      </p>
+      `;
+    }
+    if (metodoPago == "pago-tarjeta-credito") {
+      this.seccionMetodoPago.innerHTML = `
+      ${window.shopIcons.icon_tarjeta_credito}
+      <p class="color-letras-extra">
+        Pago mediante tarjeta de credito
+      </p>
+      `;
+    }
+
+    if (metodoPago == "pago-efectivo") {
+      this.seccionMetodoPago.innerHTML = `
+      ${window.shopIcons.icon_efectivo}
+      <p class="color-letras-extra">
+        Pago en efectivo
+      </p>
+      `;
+    }
+
+    this.etiquetaSubTotal.textContent = `${infoCompletaOrden.orden.totales.subtotal}.00 Bs`;
+    this.etiquetaTotal.textContent = `${infoCompletaOrden.orden.totales.total}.00 Bs`;
+
+    if (infoProcesoCheckout.nota_para_envio = "") {
+      this.seccionNotaDeEnvio.style.display = 'none';
+    } else {
+      this.seccionNotaDeEnvio.style.display = 'flex';
+      this.etiquetaNotaDeEnvio.textContent = infoProcesoCheckout.nota_para_envio;
+    }
 
     MensajeCargaDatos.ocultar();
   }
