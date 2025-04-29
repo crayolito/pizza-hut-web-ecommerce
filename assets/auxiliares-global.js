@@ -3269,7 +3269,7 @@ class PageCheckoutPH extends HTMLElement {
     }
   }
 
-  async getOrderDetails(orderId = "gid://shopify/Order/1189413257500") {
+  async getOrderDetails(orderId = "gid://shopify/Order/1189413978396") {
     try {
       // Consulta GraphQL para obtener detalles de la orden
       const orderDetailsQuery = `
