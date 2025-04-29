@@ -463,7 +463,7 @@ class DetallePedido extends HTMLElement {
         if (this.estadoEtapaPagina == "etapa-2") {
             window.history.back();
         }
-
+        // 
         this.seccionGeneralInfoBasica.style.display = 'flex';
         this.seccionSuperiorDetallePedido.style.display = 'none';
         this.seccionInferiorDetallePedido.style.display = 'none';
