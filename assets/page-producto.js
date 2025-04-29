@@ -1328,9 +1328,15 @@ class PizzaHutProducto extends HTMLElement {
         }
 
         // Debo traerme el carrito 
+        // var precioTotalCarrito = this.cantidadPrecioCarrito + (cantidadPrecioHazUnPedido * parseInt(cantidadSolicitada)) + cantidadPrecioTotalExtras;
+        var precioTotalCarrito = 0;
         this.carritoShopify = await AuxiliaresGlobal.obtenerCarritoShopify();
+        this.carritoShopify.items.forEach((item) => {
+            const dataProducto = JSON.parse(item.properties.estructura);
+            precioTotalCarrito += parseInt(dataProducto.precioTotalConjunto) * parseInt(dataProducto.cantidad);
+        });
+
         console.log('Testeo de ver si tengo todo el carrito : ', this.carritoShopify);
-        var precioTotalCarrito = this.cantidadPrecioCarrito + (cantidadPrecioHazUnPedido * parseInt(cantidadSolicitada)) + cantidadPrecioTotalExtras;
         this.cantidadPrecioHazUnPedido = cantidadPrecioHazUnPedido * parseInt(cantidadSolicitada) + cantidadPrecioTotalExtras;
 
         this.etiquetaHazUnPedido.innerHTML = `Bs ${this.cantidadPrecioHazUnPedido}`;
