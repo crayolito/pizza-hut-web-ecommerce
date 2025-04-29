@@ -83,6 +83,8 @@ class DetallePedido extends HTMLElement {
             this.seccionInferiorDetallePedido.style.display = 'flex';
         }
 
+
+
         MensajeCargaDatos.ocultar();
     }
 
