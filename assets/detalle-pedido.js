@@ -34,6 +34,7 @@ class DetallePedido extends HTMLElement {
     this.etiquetaTipoMetodoEntrega = this.querySelector('#phpdp-etiqueta-metodo-entrega');
     this.seccionDetalleLocal = this.querySelector('#pdpph-seccion-detalle-inferior-local');
     this.seccionDetalleDomicilio = this.querySelector('#pdpph-seccion-detalle-inferior-domicilio');
+    this.seccionPedidoCliente = this.querySelector('#phpdp-empieza-seccion-pedido');
 
     this.seccionMetodoPago = this.querySelector('#phpdp-metodo-pago');
     this.btnAbirUbicacionMapa = this.querySelector('#phpdp-btn-abrir-mapa');
@@ -62,7 +63,6 @@ class DetallePedido extends HTMLElement {
     console.log('infoCompletaOrden: ', infoCompletaOrden);
     const metodoEntrega = infoCompletaOrden.orden.notasPersonalizadas[0].value;
     const idShopifyOrder = infoCompletaOrden.orden.id.split('/').pop();
-
 
     if (this.estadoEtapaPagina == "etapa-1") {
       this.seccionGeneralInfoBasica.style.display = 'flex';
@@ -177,6 +177,23 @@ class DetallePedido extends HTMLElement {
       this.seccionNotaDeEnvio.style.display = 'flex';
       this.etiquetaNotaDeEnvio.textContent = infoProcesoCheckout.nota_para_envio;
     }
+
+    var contenidoHTMLPedido = '';
+    infoCarritoProceso.forEach(item => {
+      const dataEstructuraProducto = JSON.parse(item.properties.estructura);
+      console.log('Testeo dataEstructuraProducto: ', dataEstructuraProducto);
+      contenidoHTMLPedido += `
+        <div class="container-sub-smecph">
+          <div class="pdpph-etapa2-info-pedido">
+            <p>${dataEstructuraProducto.producto.titulo}</p>
+            <p class="color-letras-extra">Cantidad: ${dataEstructuraProducto.producto.cantidad}</p>
+          </div>
+          <p style="font-weight: 700;" class="color-letras-primary">${dataEstructuraProducto.producto.totalPrecioConjunto} Bs</p>
+        </div>
+      `;
+    });
+
+    this.seccionPedidoCliente.insertAdjacentHTML('afterend', contenidoHTMLPedido)
 
     MensajeCargaDatos.ocultar();
   }

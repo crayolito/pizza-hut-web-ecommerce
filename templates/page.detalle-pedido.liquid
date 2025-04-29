@@ -88,7 +88,6 @@
           {% render 'icon-map' %}
         </button>
       </div>
-
       <h4>METODO DE PAGO</h4>
       <div
         id="phpdp-metodo-pago"
@@ -100,21 +99,23 @@
           <p class="color-letras-extra">Efectivo contra entrega</p>
         {% endcomment %}
       </div>
-      <h4>TU PEDIDO(1)</h4>
-      <div class="container-sub-smecph">
-        <div class="pdpph-etapa2-info-pedido">
-          <p>COMBO LA CONDICIONAL</p>
-          <p class="color-letras-extra">Cantidad: 1</p>
+      <h4 id="phpdp-empieza-seccion-pedido">TU PEDIDO</h4>
+      {% comment %}
+        <div class="container-sub-smecph">
+          <div class="pdpph-etapa2-info-pedido">
+            <p>COMBO LA CONDICIONAL</p>
+            <p class="color-letras-extra">Cantidad: 1</p>
+          </div>
+          <p style="font-weight: 700;" class="color-letras-primary">55.00 Bs</p>
         </div>
-        <p style="font-weight: 700;" class="color-letras-primary">55.00 Bs</p>
-      </div>
-      <div class="container-sub-smecph">
-        <div class="pdpph-etapa2-info-pedido">
-          <p>COMBO LA CONDICIONAL</p>
-          <p class="color-letras-extra">Cantidad: 1</p>
+        <div class="container-sub-smecph">
+          <div class="pdpph-etapa2-info-pedido">
+            <p>COMBO LA CONDICIONAL</p>
+            <p class="color-letras-extra">Cantidad: 1</p>
+          </div>
+          <p style="font-weight: 700;" class="color-letras-primary">55.00 Bs</p>
         </div>
-        <p style="font-weight: 700;" class="color-letras-primary">55.00 Bs</p>
-      </div>
+      {% endcomment %}
       <div class="pdpph-detalle-precios">
         <div class="pdpph-detalle-precios-item">
           <p>Subtotal</p>
