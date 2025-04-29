@@ -278,11 +278,17 @@ código y pégalo a continuación:`;
       localStorage.setItem('ph-codigo-verificacion', optenerNumero);
 
       // Abrir WhatsApp con el mensaje que contiene el código
+      console.log("Testeo de WhatsApp",
+        {
+          numero: this.input.value,
+          mensaje: `Hola, este es el código que debes ingresar: ${this.codigoEnviadoCliente}`,
+        }
+      )
       window.open(
         `https://wa.me/591${this.input.value}?text=Hola, este es el código que debes ingresar: ${this.codigoEnviadoCliente}`,
         '_blank'
       );
-      // Aquí puedes agregar la lógica para enviar el código de verificación
+      // Aquí puedes agregar la lógica para enviar el código de verificaciónn
       // const result = await this.confirmationResult.confirm("123456");
 
       // Usuario verificado 
