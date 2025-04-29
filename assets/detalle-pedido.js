@@ -11,6 +11,7 @@ class DetallePedido extends HTMLElement {
     // REFERENCIAS A ELEMENTOS
     this.btnVerMasDetalles = this.querySelector('#phpdp-btn-ver-mas-detalles');
     this.btnVolverInicio = this.querySelector('#phpdp-btn-volver-inicio');
+    this.btnVolverAtras = this.querySelector('#phpdp-btn-volver-atras');
 
     this.etiquetaIdShopifyOrder = this.querySelector('#phpdp-etiqueta-idshopify-order');
     this.etiquetaSubTotal = this.querySelector('#phpdp-etiqueta-subtotal');
@@ -37,14 +38,14 @@ class DetallePedido extends HTMLElement {
         const idOrdenTrabajo = localStorage.getItem('ph-id-orden');
 
         if(infoEtapaPagina == null || infoEtapaPagina == undefined || idOrdenTrabajo == null || idOrdenTrabajo == undefined){
-        window.location.href = '/';
-        return;
+            window.location.href = '/';
+            return;
         };
 
         const infoCompletaOrden = await this.traerInformacionOrdenTrabajo(idOrdenTrabajo);
         console.log('infoCompletaOrden: ', infoCompletaOrden);
 
-        
+        this.btnVolverInicio.style.display = 'flex';
 
         // if (infoEtapaPagina == 'etapa-1') {
         // this.detallaPedidof1.style.display = 'flex';
