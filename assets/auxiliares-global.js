@@ -172,44 +172,46 @@ class AuxiliaresGlobal {
    * Método para actualizar el contador visual
     */
   static actualizarContadorVisual(valor) {
-    const contenedorPadre = document.querySelector('.h-ic-cantidad');
-    const mensaje = document.querySelector('.hicc-mensaje');
+    const contenedoresPadre = document.querySelectorAll('.h-ic-cantidad');
+    const mensajes = document.querySelectorAll('.hicc-mensaje');
 
-    // Verificar que los elementos existan
-    if (mensaje && contenedorPadre) {
-      // Obtener el valor actual (si existe)
-      let valorActual = 0;
-      if (mensaje.textContent.trim() !== '') {
-        valorActual = parseInt(mensaje.textContent, 10) || 0;
-      }
+    // Verificar que haya elementos
+    if (mensajes && mensajes.length > 0) {
+      // Iterar sobre cada mensaje encontrado
+      mensajes.forEach(mensaje => {
+        // Obtener el valor actual (si existe)
+        let valorActual = 0;
+        if (mensaje.textContent.trim() !== '') {
+          valorActual = parseInt(mensaje.textContent, 10) || 0;
+        }
 
-      // Sumar el nuevo valor al actual
-      const nuevoValor = valorActual + valor;
+        // Sumar el nuevo valor al actual
+        const nuevoValor = valorActual + valor;
 
-      // Actualizar el texto con el nuevo valor
-      mensaje.textContent = nuevoValor;
+        // Actualizar el texto con el nuevo valor
+        mensaje.textContent = nuevoValor;
 
-      // Quitar clases existentes de tamaños de dígitos
-      mensaje.classList.remove('digitos-2', 'digitos-3');
+        // Quitar clases existentes de tamaños de dígitos
+        mensaje.classList.remove('digitos-2', 'digitos-3');
 
-      // Convertir el valor a string para verificar su longitud
-      const valorStr = nuevoValor.toString();
+        // Convertir el valor a string para verificar su longitud
+        const valorStr = nuevoValor.toString();
 
-      // Añadir clase según número de dígitos
-      if (valorStr.length === 2) {
-        mensaje.classList.add('digitos-2');
-      } else if (valorStr.length >= 3) {
-        mensaje.classList.add('digitos-3');
-      }
+        // Añadir clase según número de dígitos
+        if (valorStr.length === 2) {
+          mensaje.classList.add('digitos-2');
+        } else if (valorStr.length >= 3) {
+          mensaje.classList.add('digitos-3');
+        }
+      });
 
-      // Mostrar mensaje de éxito después de actualizar el carrito
+      // Mostrar mensaje de éxito después de actualizar todos los carritos
       this.mensajeExitoCarrito();
 
       // Actualizar también todos los componentes CarritoShopify
       this.actualizarComponentesCarrito();
     }
   }
-
   /**
    * Actualiza todos los componentes CarritoShopify en la página
   */
