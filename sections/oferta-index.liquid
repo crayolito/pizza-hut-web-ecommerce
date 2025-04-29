@@ -3,10 +3,16 @@
 
 <oferta-index>
   <div class="container-base  oi_contenedor-base">
-    <button class="oi_oferta">
+    <button
+      id="phoi-btn-ofertas"
+      class="oi_oferta"
+    >
       <img src="{{ 'oferta-index-1.png' | asset_url  }}" class="oferta-imagen" height="100%" width="100%">
     </button>
-    <button class="oi_oferta">
+    <button
+      id="phoi-btn-ofertas"
+      class="oi_oferta"
+    >
       <img src="{{ 'oferta-index-2.png' | asset_url }}" class="oferta-imagen" height="100%" width="100%">
     </button>
   </div>
@@ -24,8 +30,12 @@
       // INICIALIZAR EVENTOS
       this.btnOferta.forEach((btn, index) => {
         btn.addEventListener('click', (e) => {
-          localStorage.setItem('ph-tipoProducto', 'simple');
-          window.location.href = '/pages/producto';
+          // Guardar en localStorage el valor para que el Menu Page sepa que hhacer
+          localStorage.setItem('phph-itemMenu', 'ofertas');
+          // Depsue redireccionar
+          window.location.href = '/pages/menu';
+          {% comment %} localStorage.setItem('ph-tipoProducto', 'simple'); {% endcomment %}
+          {% comment %} window.location.href = '/pages/producto'; {% endcomment %}
         });
       });
     }

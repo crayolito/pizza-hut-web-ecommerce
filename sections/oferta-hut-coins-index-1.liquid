@@ -1,4 +1,8 @@
-<section class="container-base  ohci-contenedor-base">
+<section
+  style="cursor: pointer;"
+  id="phohci-contenedor-base"
+  class="container-base  ohci-contenedor-base"
+>
   <a
     href="https://microsites.spnty.co/pizzahutbolivia/login"
     target="_blank"
@@ -27,6 +31,16 @@
     border-radius: var(--border-radius-1);
   }
 </style>
+
+<script>
+  const contenedorImagen = document.querySelector('.ohci-contenedor-imagen');
+
+  // Al hacer clic en el contenedor, navegar a la URL
+  contenedorImagen.addEventListener('click', (e) => {
+    e.preventDefault(); // Prevenir comportamiento predeterminado del enlace
+    window.open('https://microsites.spnty.co/pizzahutbolivia/login', '_blank');
+  });
+</script>
 
 {% schema %}
 {

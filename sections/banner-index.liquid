@@ -14,7 +14,10 @@
     </section>
     <section class="bi-informacion-banner">
       <small class="bi-informacion-banner-texto">LA MEJOR PIZZA DEL MUNDO</small>
-      <button class="bi-boton-banner">
+      <button
+        id="phbi-btn-pedir-ahora"
+        class="bi-boton-banner"
+      >
         <p>PEDIR AHORA</p>
       </button>
     </section>
@@ -79,6 +82,14 @@
 
       // Iniciar transición automática
       this.iniciarTransicionAutomatica();
+
+      this.btnPedirAhora = this.querySelector('#phbi-btn-pedir-ahora');
+      this.btnPedirAhora.addEventListener('click', () => {
+        // Guardar en localStorage el valor para que el Menu Page sepa que hhacer
+        localStorage.setItem('phph-itemMenu', 'pizzas');
+        // Depsue redireccionar
+        window.location.href = '/pages/menu';
+      });
     }
 
     inicializarComponentes() {
