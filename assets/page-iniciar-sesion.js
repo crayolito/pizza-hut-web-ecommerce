@@ -50,6 +50,7 @@ class InicioSesion extends HTMLElement {
     // INICIALIZAR ELEMENTOS
     this.reiniciarProceso();
     this.ocultarElementosBase();
+    console.log('Componente InicioSesion inicializado');
   }
 
   disconnectedCallback() {
