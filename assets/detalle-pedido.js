@@ -26,9 +26,6 @@ class DetallePedido extends HTMLElement {
     this.seccionMetodoPago = this.querySelector('#phpdp-metodo-pago');
 
     // EVENTOS INICIALIZAR
-    this.btnVolverInicio.addEventListener('click', this.volverAtras.bind(this));
-    this.btnVerMasDetalles.addEventListener('click', this.verMasDetalles.bind(this));
-    this.btnAbrirUbicacionLocal.addEventListener('click', this.abrirUbicacionLocal.bind(this));
 
     this.inicializarDataLocalStorage();
     }
