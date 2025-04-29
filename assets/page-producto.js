@@ -1338,6 +1338,7 @@ class PizzaHutProducto extends HTMLElement {
 
         console.log('Testeo de ver si tengo todo el carrito : ', this.carritoShopify);
         this.cantidadPrecioHazUnPedido = cantidadPrecioHazUnPedido * parseInt(cantidadSolicitada) + cantidadPrecioTotalExtras;
+        precioTotalCarrito += precioTotalCarrito + cantidadPrecioHazUnPedido;
 
         this.etiquetaHazUnPedido.innerHTML = `Bs ${this.cantidadPrecioHazUnPedido}`;
         this.etiquetaAgregarCarrito.innerHTML = `Bs ${precioTotalCarrito}`;
