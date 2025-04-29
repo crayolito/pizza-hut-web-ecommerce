@@ -1474,7 +1474,6 @@ class PizzaHutProducto extends HTMLElement {
 
         if (tipoProceso == 'agregarcarrito') {
             // Actualizar las etiquetas del HAAZ ME UN PEDIDO Y AGREGAR AL CARRITo  
-
             this.cantidadPrecioCarrito = this.cantidadPrecioCarrito + (this.cantidadPrecioHazUnPedido * cantidadSolicitada);
             this.etiquetaAgregarCarrito.innerHTML = `Bs ${this.cantidadPrecioCarrito}`;
             this.etiquetaHazUnPedido.innerHTML = `Bs ${(this.cantidadPrecioHazUnPedido * cantidadSolicitada)}`;
