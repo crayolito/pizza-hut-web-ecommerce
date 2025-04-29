@@ -298,7 +298,7 @@ código y pégalo a continuación:`;
         this.ocultarElementosBase();
         console.log('Código incorrecto');
         MensajeCargaDatos.mostrar('El código ingresado es incorrecto.\nPor favor intenta nuevamente.');
-        // Esperar 3 segundos antes de permitir un nuevo intento
+        // Esperar 3 segundos antes de permitir un nuevo intentoo
         setTimeout(() => {
           MensajeCargaDatos.ocultar();
         }, 3000);
