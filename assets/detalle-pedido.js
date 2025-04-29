@@ -34,7 +34,6 @@ class DetallePedido extends HTMLElement {
       this.btnVerMasDetalles.style.display = 'none';
 
       this.inicializarDataLocalStorage();
-      this.inicializarObjetoGoogleMaps(0);
     }
 
     inicializarDataLocalStorage() {
@@ -57,26 +56,6 @@ class DetallePedido extends HTMLElement {
         this.detalleGeneralPedido.style.display = 'flex';
         this.contenedorTrackingPedido.style.display = 'flex';
       }
-    }
-
-    inicializarObjetoGoogleMaps(intentos = 0) {
-      // Verificar si Google Maps esta cargado
-      if (typeof google == 'undefined') {
-        this.modalSnipper.style.display = 'flex';
-        if (intentos < 10) {
-          console.log('Google Maps no está cargado, esperando... Intento ' + (intentos + 1));
-          setTimeout(() => {
-            this.inicializarObjetoGoogleMaps(intentos + 1);
-          }, 500); // Esperar 0.5 segundos antes de volver a intentar
-        } else {
-          console.error('Google Maps no se cargó después de varios intentos');
-        }
-        return;
-      }
-
-      this.modalSnipper.style.display = 'none';
-      console.log('Google Maps cargado correctamente');
-      this.inicializarMapaTest();
     }
 
     inicializarMapaTest() {
