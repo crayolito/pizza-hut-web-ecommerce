@@ -756,11 +756,13 @@
             <div class="ph-modal-imgen-qr">
               <img src="{{ 'qr-prueba.png' | asset_url }}" alt="QR" width="100%" height="100%">
             </div>
-            <button class="pcktpch-btn-secundario">
-              {% render 'icon-descargar' %}
-              <p>DESCARGAR QR</p>
-            </button>
           {% endcomment %}
+          <button
+            id="download"
+            class="pcktpch-btn-secundario"
+          >
+            <p>DESCARGAR QR</p>
+          </button>
         </div>
       </div>
       <!-- 3re MODAL : DETALLE DE LOCAL SELECCIONADO -->
