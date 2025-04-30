@@ -111,6 +111,7 @@ class PageCheckoutPH extends HTMLElement {
     this.user = "fbustos";
     this.pass = "Fwy" + "8xYfq";
     this.myTest = "shpat_" + "23d619ad617e8ed378cc27dd6ce39869";
+    this.totalCarrito = 0;
   }
 
   connectedCallback() {
@@ -782,6 +783,8 @@ class PageCheckoutPH extends HTMLElement {
           </div>
           `;
     });
+
+    this.totalCarrito = parseInt(totalPrecioCarrito);
 
     this.etiquetaSubtotal.textContent = `Bs ${totalPrecioCarrito.toFixed(2)}`;
     this.etiquetaTotal.textContent = `Bs ${totalPrecioCarrito.toFixed(2)}`;
@@ -1528,9 +1531,10 @@ class PageCheckoutPH extends HTMLElement {
         apellido: this.inputApellidoContacto.value,
         inputCelularContacto: this.inputCelularContacto.value,
         id: this.infoOrdenPreliminar.id.split('/').pop(),
+        precio: this.totalCarrito
       });
-      // return;
-      await this.iniciarPasarela();
+      return;
+      // await this.iniciarPasarela();
 
     }
 
