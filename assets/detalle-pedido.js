@@ -114,7 +114,7 @@ class DetallePedido extends HTMLElement {
       this.coordenadas = { lat: dataInformacionMetodoEntrega.lat, lng: dataInformacionMetodoEntrega.lng };
       this.seccionInfoEntregaDomicilio.insertAdjacentHTML('afterbegin', `
         <h3>${dataInformacionMetodoEntrega.alias}</h3>
-        <h4>${dataInformacionMetodoEntrega.indicacione}</h4>
+        <h4>${dataInformacionMetodoEntrega.indicaciones}</h4>
       `);
 
       this.seccionInfoEntregaDomicilio.style.display = 'flex';
@@ -160,7 +160,7 @@ class DetallePedido extends HTMLElement {
 
     if (metodoPago == "pago-efectivo") {
       this.seccionMetodoPago.innerHTML = `
-      ${window.shopIcons.icon_efectivo}
+      ${window.shopIcons.icon_dolar}
       <p class="color-letras-extra">
         Pago en efectivo
       </p>
@@ -563,6 +563,8 @@ class DetallePedido extends HTMLElement {
   }
 
   btnAbirUbicacionMapaClick() {
+    console.log('Coordenadas: ', this.coordenadas);
+    console.log('Abriendo mapa con coordenadas: ', this.coordenadas);
     const url = `https://www.google.com/maps/search/?api=1&query=${this.coordenadas.lat},${this.coordenadas.lng}`;
     window.open(url, '_blank');
   }
