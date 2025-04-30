@@ -1250,7 +1250,7 @@ class PageCheckoutPH extends HTMLElement {
       ci: this.alertaCIContacto
     };
 
-    // Variable para rastrear contenedores con error
+    // Variable para rastrear contenedores con errorr
     const contenedoresConError = [];
 
     // Verificar campos vacíos
