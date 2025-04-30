@@ -315,7 +315,7 @@ class InicioSesion extends HTMLElement {
 
     const graphQLQuery = `
     query {
-      customer(id: ${id}) {
+      customer(id: "${id}") {
         id
         firstName
         lastName
