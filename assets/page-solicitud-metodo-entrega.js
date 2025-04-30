@@ -120,20 +120,20 @@ class ClienteLocalizacion extends HTMLElement {
     if (localStorage.getItem('ubicacion-cliente')) {
       this.coordenadas = JSON.parse(localStorage.getItem('ubicacion-cliente'));
     }
-    if (typeof google === 'undefined') {
-      console.log('Google Maps aún no está cargado, esperando...');
-      // Esperar a que Google Maps se cargue
-      window.addEventListener('load', () => {
-        if (typeof google !== 'undefined') {
-          this.configurarAutocompletadoDirecciones();
-        } else {
-          console.error('Google Maps no se pudo cargar correctamente');
-        }
-      });
-    } else {
-      // Google Maps ya está disponible
-      this.configurarAutocompletadoDirecciones();
-    }
+    // if (typeof google === 'undefined') {
+    //   console.log('Google Maps aún no está cargado, esperando...');
+    //   // Esperar a que Google Maps se cargue
+    //   window.addEventListener('load', () => {
+    //     if (typeof google !== 'undefined') {
+    //       this.configurarAutocompletadoDirecciones();
+    //     } else {
+    //       console.error('Google Maps no se pudo cargar correctamente');
+    //     }
+    //   });
+    // } else {
+    //   // Google Maps ya está disponible
+    // }
+    this.configurarAutocompletadoDirecciones();
     this.inicializarPaginaLocalStorage(0);
   }
 
@@ -221,55 +221,55 @@ class ClienteLocalizacion extends HTMLElement {
     }
   }
 
-  inicializarPaginaLocalStorage(intentos = 0) {
-    console.log('Inicia la pagina de localStorage');
-    // Verificar si existe el localStorage y la clave 'ubicacion-cliente'
-    if (localStorage.getItem('ubicacion-cliente')) {
-      // Si existe, cargar la ubicación del cliente desde el localStorage
-      this.coordenadas = JSON.parse(localStorage.getItem('ubicacion-cliente'));
-    }
+  // inicializarPaginaLocalStorage(intentos = 0) {
+  //   console.log('Inicia la pagina de localStorage');
+  //   // Verificar si existe el localStorage y la clave 'ubicacion-cliente'
+  //   if (localStorage.getItem('ubicacion-cliente')) {
+  //     // Si existe, cargar la ubicación del cliente desde el localStorage
+  //     this.coordenadas = JSON.parse(localStorage.getItem('ubicacion-cliente'));
+  //   }
 
-    // Verificar si Google Maps esta cargado
-    if (typeof google == 'undefined') {
-      this.containerModalCarga.style.display = 'flex';
-      // Limitar a 10 intentos para evitar bucles infinitos
-      if (intentos < 10) {
-        console.log("Google Maps no está cargado, esperando... Intento " + (intentos + 1));
-        setTimeout(() => {
-          this.inicializarPaginaLocalStorage(intentos + 1);
-        }, 500); // Esperar 0.5 segundos antes de volver a intentar
-      } else {
-        console.error("Google Maps no se cargó después de varios intentos");
-      }
-      return;
-    }
+  //   // Verificar si Google Maps esta cargado
+  //   if (typeof google == 'undefined') {
+  //     this.containerModalCarga.style.display = 'flex';
+  //     // Limitar a 10 intentos para evitar bucles infinitos
+  //     if (intentos < 10) {
+  //       console.log("Google Maps no está cargado, esperando... Intento " + (intentos + 1));
+  //       setTimeout(() => {
+  //         this.inicializarPaginaLocalStorage(intentos + 1);
+  //       }, 500); // Esperar 0.5 segundos antes de volver a intentar
+  //     } else {
+  //       console.error("Google Maps no se cargó después de varios intentos");
+  //     }
+  //     return;
+  //   }
 
-    // Si llegamos aquí, Google Maps está cargado, podemos ocultar el modal de carga
-    if (this.containerModalCarga.style.display === 'flex') {
-      this.containerModalCarga.style.display = 'none';
-    }
+  //   // Si llegamos aquí, Google Maps está cargado, podemos ocultar el modal de carga
+  //   if (this.containerModalCarga.style.display === 'flex') {
+  //     this.containerModalCarga.style.display = 'none';
+  //   }
 
-    // Verificar si hay datos preseleccionados en el localStorage (INDEX)
-    // Verificar si hay datos en el localStorage (PAGINA METODO DE ENTREGA)
-    const localStorageIndex = localStorage.getItem('seleccion-me-mi');
-    const localStorageMetodoEntrega = localStorage.getItem('ph-metodo-entrega');
+  //   // Verificar si hay datos preseleccionados en el localStorage (INDEX)
+  //   // Verificar si hay datos en el localStorage (PAGINA METODO DE ENTREGA)
+  //   const localStorageIndex = localStorage.getItem('seleccion-me-mi');
+  //   const localStorageMetodoEntrega = localStorage.getItem('ph-metodo-entrega');
 
-    if (localStorageMetodoEntrega == null || localStorageMetodoEntrega == 'no') {
-      if (localStorageIndex == 'domicilio') {
-        this.accionBotonEnvioDomicilio();
-      }
-      if (localStorageIndex == 'local') {
-        this.accionBotonRecogerLocal();
-      }
-    } else {
-      if (localStorageMetodoEntrega == 'domicilio') {
-        this.accionBotonEnvioDomicilio();
-      }
-      if (localStorageMetodoEntrega == 'local') {
-        this.accionBotonRecogerLocal();
-      }
-    }
-  }
+  //   if (localStorageMetodoEntrega == null || localStorageMetodoEntrega == 'no') {
+  //     if (localStorageIndex == 'domicilio') {
+  //       this.accionBotonEnvioDomicilio();
+  //     }
+  //     if (localStorageIndex == 'local') {
+  //       this.accionBotonRecogerLocal();
+  //     }
+  //   } else {
+  //     if (localStorageMetodoEntrega == 'domicilio') {
+  //       this.accionBotonEnvioDomicilio();
+  //     }
+  //     if (localStorageMetodoEntrega == 'local') {
+  //       this.accionBotonRecogerLocal();
+  //     }
+  //   }
+  // }
 
   // FUNCIONES RELACIONADAS A LA SELECCION => RECOGER EN LOCALl 
   inicializarMapaRecogerLocal() {
