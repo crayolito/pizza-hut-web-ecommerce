@@ -153,10 +153,12 @@
         >
           <img src="{{ 'imagen-check-verde.png' | asset_url }}" alt="Icono de exito" width="100%" height="100%">
           <small>Tu cuenta está activa. ¡ya puedes pedir tu pizza favorita!</small>
-          <button class="ph-btn-general icon-color-primary">
-            {% render 'icon-cerrar-sesion' %}
-            <p>INICIAR SESION</p>
-          </button>
+          {% comment %}
+            <button class="ph-btn-general icon-color-primary">
+              {% render 'icon-cerrar-sesion' %}
+              <p>INICIAR SESION</p>
+            </button>
+          {% endcomment %}
         </div>
         <!-- 4to MODAL : VERIFICAR TU NUMEROo -->
         <div
