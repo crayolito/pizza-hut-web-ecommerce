@@ -132,9 +132,11 @@ class ClienteLocalizacion extends HTMLElement {
     // } else {
     //   // Google Maps ya está disponible
     // }
+    MensajeCargaDatos.mostrar('Procesando informacion ...');
     this.configurarAutocompletadoDirecciones();
     this.inicializarPaginaLocalStorage(0);
     this.procesoSucursales();
+    MensajeCargaDatos.ocultar();
   }
 
   async procesoSucursales() {
@@ -245,9 +247,9 @@ class ClienteLocalizacion extends HTMLElement {
     // }
 
     // Si llegamos aquí, Google Maps está cargado, podemos ocultar el modal de carga
-    if (this.containerModalCarga.style.display === 'flex') {
-      this.containerModalCarga.style.display = 'none';
-    }
+    // if (this.containerModalCarga.style.display === 'flex') {
+    //   this.containerModalCarga.style.display = 'none';
+    // }
 
     // Verificar si hay datos preseleccionados en el localStorage (INDEX)
     // Verificar si hay datos en el localStorage (PAGINA METODO DE ENTREGA)
