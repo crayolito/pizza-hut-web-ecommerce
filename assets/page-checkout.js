@@ -219,6 +219,7 @@ class PageCheckoutPH extends HTMLElement {
     this.inputCodigoCupon = this.querySelector('#phpc-input-codigo-cupon');
     this.btnAplicarCupon = this.querySelector('#phpc-btn-aplicar-cupon');
 
+    this.cerrarModalMensaje = this.querySelector('#phpc-btn-cerrar-modal');
     this.btnContinuar = this.querySelector('#phpc-btn-continuar-general');
 
     // INICIALIZAR EVENTOS
@@ -258,6 +259,7 @@ class PageCheckoutPH extends HTMLElement {
         this.procesoSeleccionMetodoPago(event.currentTarget);
       });
     });
+    this.cerrarModalMensaje.addEventListener('click', this.cerrarModalMensaje.bind(this));
     this.btnContinuar.addEventListener('click', this.procesoContinuarGeneral.bind(this));
     this.btnHutCoins.addEventListener('click', (event) => {
       this.procesoHutCoins(event.currentTarget);
@@ -2067,6 +2069,12 @@ class PageCheckoutPH extends HTMLElement {
     return {
       productos
     }
+  }
+
+  cerrarModalMensaje() {
+    this.contenedorBaseModal.style.display = "none";
+    this.contenedorBaseMensaje.style.display = "none";
+    this.contenedorQR.style.display = "none";
   }
 }
 
