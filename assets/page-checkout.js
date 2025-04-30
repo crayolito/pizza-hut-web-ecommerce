@@ -1617,7 +1617,7 @@ class PageCheckoutPH extends HTMLElement {
             return;
           }
 
-          const wasPaid = await paidResponse.json(); // Booleano true o false
+          const wasPaid = await paidResponse.json(); // Booleano true o falsee
           console.log("¿Pago confirmado?", wasPaid);
 
           if (wasPaid === true) {
