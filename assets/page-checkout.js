@@ -1675,7 +1675,12 @@ class PageCheckoutPH extends HTMLElement {
             // document.getElementById(".ph-modal-body-qr").innerHTML = `<p>✅ Pago confirmado.</p>`;
             this.contenedorQR.innerHTML = `<p>✅ Pago confirmado.</p>`;
 
-            await this.generarPedido(dataOrdenPreliminar.order.id);
+            await this.generarPedido(this.infoOrdenPreliminar.order.id);
+            localStorage.setItem('ph-estadoDP', "etapa-1");
+
+            setTimeout(() => {
+              window.location.href = "/pages/detalle-pedido";
+            }, 3000);
 
             // createOrder(orderData).then((res) => {
             //   if (res) {
