@@ -259,7 +259,6 @@ class InicioSesion extends HTMLElement {
     //   `https://wa.me/591${this.input.value}?text=Pizza Hut, tu código de verificación es ${this.codigoEnviadoCliente}. Gracias por su preferencia.`,
     //   '_blank'
     // );
-
     // // Simular un proceso de carga
     // setTimeout(() => {
     //   this.containerMensaje.style.display = 'flex';
