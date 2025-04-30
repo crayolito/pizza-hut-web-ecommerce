@@ -314,21 +314,13 @@ class InicioSesion extends HTMLElement {
     console.log('ID del cliente:', id);
     const graphQLQuery = `
     query {
-      customer(id: "${id}") {
+      customer(id: "gid://shopify/Customer/9090429288732") {
         id
         firstName
         lastName
         email
         phone
         numberOfOrders
-        orders {
-          edges {
-            node {
-              id
-            }
-          }
-        }
-        
         amountSpent {
           amount
           currencyCode
