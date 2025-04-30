@@ -915,9 +915,7 @@ input[type="number"] {
 ================================= */
 
 .ph-opciones-mobile-footer {
-  width: 100% !important;
-  max-width: 40.25rem !important;
-  min-width: 40.25rem !important;
+  width: 100%;
 }
 
 @media (min-width: 768px) {
@@ -962,6 +960,12 @@ input[type="number"] {
   .pcktpch-modal-body-fase1 {
     /* width: 40.25rem; */
     width: 100%;
+  }
+
+  .ph-opciones-mobile-footer {
+    width: 100% !important;
+    max-width: 40.25rem !important;
+    min-width: 40.25rem !important;
   }
 
   .pcktpch-modal-header-opciones {
