@@ -187,84 +187,84 @@ class InicioSesion extends HTMLElement {
       return;
     }
 
-    const dataUsuario = await this.porNroTelefonoUsuarioVerificar(`+591${this.input.value}`);
-    if (dataUsuario == undefined) {
-      MensajeCargaDatos.mostrar('Enviando código de verificación...');
-      this.estadoCliente = "no-existe";
-      this.mensajeVerificarNumero.innerHTML = `
-      Enviamos un código de verificación de 4 dígitos a tu  número de WhatsApp *****${this.input.value.slice(
-        -3
-      )}. Copia ese código y pégalo a continuación:`;
+    // const dataUsuario = await this.porNroTelefonoUsuarioVerificar(`+591${this.input.value}`);
+    // if (dataUsuario == undefined) {
+    //   MensajeCargaDatos.mostrar('Enviando código de verificación...');
+    //   this.estadoCliente = "no-existe";
+    //   this.mensajeVerificarNumero.innerHTML = `
+    //   Enviamos un código de verificación de 4 dígitos a tu  número de WhatsApp *****${this.input.value.slice(
+    //     -3
+    //   )}. Copia ese código y pégalo a continuación:`;
 
-      this.codigoEnviadoCliente = this.generarCodigo4Digitos();
-      localStorage.setItem('ph-codigo-verificacion', this.codigoEnviadoCliente);
-      MensajeCargaDatos.ocultar();
+    //   this.codigoEnviadoCliente = this.generarCodigo4Digitos();
+    //   localStorage.setItem('ph-codigo-verificacion', this.codigoEnviadoCliente);
+    //   MensajeCargaDatos.ocultar();
 
-      window.open(
-        `https://wa.me/591${this.input.value}?text=Pizza Hut, tu código de verificación es ${this.codigoEnviadoCliente}. Gracias por su preferencia.`,
-        '_blank'
-      );
-      // Primero se va verificar si el numero existe (evitar duplicidad)
-      // Si existe el numero va mostrar mensaje de Exito y va traer los datos 
-      // y si el cliente tiene datos por defecto (se le va actualizar con los ultimos 4 digitos nuevos)
-    } else {
+    //   window.open(
+    //     `https://wa.me/591${this.input.value}?text=Pizza Hut, tu código de verificación es ${this.codigoEnviadoCliente}. Gracias por su preferencia.`,
+    //     '_blank'
+    //   );
+    //   // Primero se va verificar si el numero existe (evitar duplicidad)
+    //   // Si existe el numero va mostrar mensaje de Exito y va traer los datos 
+    //   // y si el cliente tiene datos por defecto (se le va actualizar con los ultimos 4 digitos nuevos)
+    // } else {
 
-      await this.traerTodaInfoUsuario(dataUsuario);
+    //   await this.traerTodaInfoUsuario(dataUsuario);
 
-      // this.estadoCliente = "si-existe";
-      // this.containerGeneral.style.display = 'flex';
-      // this.containerMensaje.style.display = 'flex';
-      // this.containerExito.style.display = 'flex';
+    //   // this.estadoCliente = "si-existe";
+    //   // this.containerGeneral.style.display = 'flex';
+    //   // this.containerMensaje.style.display = 'flex';
+    //   // this.containerExito.style.display = 'flex';
 
-      // setTimeout(() => {
-      //   this.containerGeneral.style.display = 'none';
-      //   this.containerMensaje.style.display = 'none';
-      //   this.containerExito.style.display = 'none';
-      //   localStorage.setItem(
-      //     'ph-datos-usuario',
-      //     JSON.stringify({
-      //       nombre: dataUsuario.nombre,
-      //       celular: dataUsuario.celular,
-      //       apellido: dataUsuario.apellido,
-      //       email: dataUsuario.email,
-      //       ci: dataUsuario.ci,
-      //       direcciones: dataUsuario.direcciones,
-      //       nit: dataUsuario.nit,
-      //       fecha_nacimiento: dataUsuario.fecha_nacimiento,
-      //       permisosHutCoins: dataUsuario.permisosHutCoins,
-      //       ordenesPagadas: dataUsuario.ordenesPagadas,
-      //       ordenesPendientes: dataUsuario.ordenesPendientes,
-      //     })
-      //   );
-      //   window.location.href = '/pages/perfil';
-      // }, 1000);
-    }
+    //   // setTimeout(() => {
+    //   //   this.containerGeneral.style.display = 'none';
+    //   //   this.containerMensaje.style.display = 'none';
+    //   //   this.containerExito.style.display = 'none';
+    //   //   localStorage.setItem(
+    //   //     'ph-datos-usuario',
+    //   //     JSON.stringify({
+    //   //       nombre: dataUsuario.nombre,
+    //   //       celular: dataUsuario.celular,
+    //   //       apellido: dataUsuario.apellido,
+    //   //       email: dataUsuario.email,
+    //   //       ci: dataUsuario.ci,
+    //   //       direcciones: dataUsuario.direcciones,
+    //   //       nit: dataUsuario.nit,
+    //   //       fecha_nacimiento: dataUsuario.fecha_nacimiento,
+    //   //       permisosHutCoins: dataUsuario.permisosHutCoins,
+    //   //       ordenesPagadas: dataUsuario.ordenesPagadas,
+    //   //       ordenesPendientes: dataUsuario.ordenesPendientes,
+    //   //     })
+    //   //   );
+    //   //   window.location.href = '/pages/perfil';
+    //   // }, 1000);
+    // }
 
 
     // Ingresar el valor dentro del this.mensajeVerificarNumeroo
-    // this.mensajeVerificarNumero.innerHTML = `
-    //   Enviamos un código de verificación de 4 dígitos a tu  número de WhatsApp *****${this.input.value.slice(
-    //   -3
-    // )}. Copia ese
-    //   código y pégalo a continuación:`;
+    this.mensajeVerificarNumero.innerHTML = `
+      Enviamos un código de verificación de 4 dígitos a tu  número de WhatsApp *****${this.input.value.slice(
+      -3
+    )}. Copia ese
+      código y pégalo a continuación:`;
 
-    // this.containerGeneral.style.display = 'flex';
-    // this.containerSnipper.style.display = 'flex';
+    this.containerGeneral.style.display = 'flex';
+    this.containerSnipper.style.display = 'flex';
 
-    // // await this.sendVerificationCode();
-    // this.codigoEnviadoCliente = this.generarCodigo4Digitos();
-    // localStorage.setItem('ph-codigo-verificacion', this.codigoEnviadoCliente);
+    // await this.sendVerificationCode();
+    this.codigoEnviadoCliente = this.generarCodigo4Digitos();
+    localStorage.setItem('ph-codigo-verificacion', this.codigoEnviadoCliente);
 
-    // window.open(
-    //   `https://wa.me/591${this.input.value}?text=Pizza Hut, tu código de verificación es ${this.codigoEnviadoCliente}. Gracias por su preferencia.`,
-    //   '_blank'
-    // );
-    // // Simular un proceso de carga
-    // setTimeout(() => {
-    //   this.containerMensaje.style.display = 'flex';
-    //   this.containerSnipper.style.display = 'none';
-    //   this.containerVerificarNumero.style.display = 'flex';
-    // }, 3000);
+    window.open(
+      `https://wa.me/591${this.input.value}?text=Pizza Hut, tu código de verificación es ${this.codigoEnviadoCliente}. Gracias por su preferencia.`,
+      '_blank'
+    );
+    // Simular un proceso de carga
+    setTimeout(() => {
+      this.containerMensaje.style.display = 'flex';
+      this.containerSnipper.style.display = 'none';
+      this.containerVerificarNumero.style.display = 'flex';
+    }, 3000);
   }
 
   async porNroTelefonoUsuarioVerificar(numeroTelefono) {
