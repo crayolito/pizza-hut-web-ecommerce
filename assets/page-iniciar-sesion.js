@@ -373,7 +373,7 @@ class InicioSesion extends HTMLElement {
       const datos = await respuesta.json();
 
       // Mostrar el resultado completo por consola
-      console.log('Información del usuario:', datos.data.customer);
+      console.log('Información del usuario:', datos);
 
     } catch (error) {
       console.error("Error al obtener información del usuario:", error);
