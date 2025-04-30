@@ -24,6 +24,14 @@
       <link rel="icon" type="logo-sauce-only-1.png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
     {%- endif -%}
 
+    <!-- Hojas de estilos css -->
+    {{ 'estilos-auxliares.css' | asset_url | stylesheet_tag }}
+    {{ 'estilos-generales.css' | asset_url | stylesheet_tag }}
+
+    <script
+      defer
+      src="https://maps.googleapis.com/maps/api/js?key={{settings.keyGoogleMap}}&libraries=places"
+    ></script>
     <script>
       window.localizacionesSucursales = [
         {
@@ -77,7 +85,13 @@
           servicios: ['Envío a domicilio', 'Recoger en local'],
         },
       ];
+      window.urlConsulta = '{{ settings.urlConsulta }}';
+      window.keyBackendShopify = '{{ settings.keyBackendShopify }}';
     </script>
+
+    <!-- Hojas de estilos js -->
+    <script src="{{ 'auxiliares-global.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'page-solicitud-metodo-entrega.js' | asset_url }}" defer="defer"></script>
 
     {% style %}
       :root {
