@@ -1517,6 +1517,8 @@ class PageCheckoutPH extends HTMLElement {
     localStorage.setItem('ph-id-orden', dataOrdenPreliminar.order.id);
 
     if (this.seleccionadoEstadoPago == "pago-codigo-qr") {
+
+
       console.log("Testeo de informacion QR", {
         user: this.user,
         pass: this.pass,
@@ -1525,9 +1527,9 @@ class PageCheckoutPH extends HTMLElement {
         nombre: this.inputNombreContacto.value,
         apellido: this.inputApellidoContacto.value,
         inputCelularContacto: this.inputCelularContacto.value,
-        id: this.infoOrdenPreliminar.order.id.split('/').pop()
+        id: this.infoOrdenPreliminar
       });
-
+      return;
       // await this.iniciarPasarela();
 
     }
