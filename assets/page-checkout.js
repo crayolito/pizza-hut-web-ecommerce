@@ -1606,7 +1606,7 @@ class PageCheckoutPH extends HTMLElement {
       const now = new Date();
       now.setHours(now.getHours() - 4); // Restamos 4 horas
       const timestamp = now.toISOString(); // Formato ISO con desfase horario
-      const transactionId = `webQr-${this.infoOrdenPreliminar.id.split('/').pop()}-${timestamp}`;
+      const transactionId = `ph-${this.infoOrdenPreliminar.id.split('/').pop()}-${timestamp}`;
 
       const qrResponse = await fetch(`${this.url}/qr/generate`, {
         method: "POST",
@@ -1737,7 +1737,6 @@ class PageCheckoutPH extends HTMLElement {
     }
   }
 
-
   async generarPedidoPreliminar(datosCheckout) {
     try {
       const dataUsuario = JSON.parse(localStorage.getItem('ph-datos-usuario'));
@@ -1793,6 +1792,29 @@ class PageCheckoutPH extends HTMLElement {
         }
       `;
 
+      const metodoPago = () => {
+        switch (this.seleccionadoEstadoPago) {
+          case "pago-efectivo":
+            return "Pago Efectivo";
+          case "pago-tarjeta-credito":
+            return "Pago Tarjeta";
+          case "pago-codigo-qr":
+            return "Pago QR";
+          default:
+            return "Metodo de Pago Desconocido";
+        }
+      }
+
+      const coordenadasFormatoEnviar = () => {
+        const data = null;
+        if (this.estadoPagina == "domicilio") {
+          data = informacionPedido.datosCheckout.metodo_envio_seleccionado.info_seleccionada;
+        } else {
+          data = informacionPedido.datosCheckout.metodo_envio_seleccionado.local_seleccionado;
+        }
+        return `lat: ${data.lat} ,lng: ${data.lng}`
+      }
+
       const variables = {
         input: {
           email: dataUsuario.email,
@@ -1808,7 +1830,18 @@ class PageCheckoutPH extends HTMLElement {
             zip: "0000",
           },
           customAttributes: [
-            { key: "Metodo Entrega", value: this.estadoPagina == "domicilio" ? "Domicilio" : "Local" },
+            { key: "Metodo Pago", value: metodoPago() },
+            { key: "Metodo Entrega", value: this.estadoPagina == "domicilio" ? "Envio a Domicilio" : "Recogo de Local" },
+            { key: "Surcursal", value: dataUsuario.nombre },
+            { key: "Coordenadas", value: coordenadasFormatoEnviar() },
+            informacionPedido.datosCheckout.nota_para_envio != ""
+              ? { key: "Nota para el pedido", value: informacionPedido.datosCheckout.nota_para_envio }
+              : null,
+            informacionPedido.datosCheckout.sucursal != null
+              ? { key: "Sucursal", value: informacionPedido.datosCheckout.sucursal }
+              : null,
+            { key: "Datos Usuario", value: JSON.stringify(dataUsuario) },
+            { key: "Datos Direccion", value: JSON.stringify(informacionPedido.datosCheckout.metodo_envio_seleccionado) },
             { key: "Datos Proceso Checkout", value: JSON.stringify(informacionPedido.datosCheckout) },
             { key: "Datos Carrito PRoceso", value: JSON.stringify(informacionPedido.itemsCarrito) },
           ],

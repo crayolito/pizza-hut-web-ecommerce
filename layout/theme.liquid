@@ -419,6 +419,59 @@
         banner_4: '{{ 'banner-1.png' | asset_url }}',
         banner_5: '{{ 'banner-2.png' | asset_url }}',
       }
+
+      window.localizacionesSucursales = [
+        { 
+          lat: -17.757619, 
+          lng: -63.178738, 
+          name: 'BANZER 3ER ANILLO', 
+          localizacion: 'Tercer Anillo Externo', 
+          telefono: '78452415', 
+          dias : 'Lunes a Viernes', 
+          horario: '8:00 a 23:00',
+          servicios: ['Envío a domicilio', 'Recoger en local']
+        },
+        { 
+          lat: -17.70001, 
+          lng: -63.160219, 
+          name: 'BANZER KM 8.5', 
+          localizacion: '8R2Q+2XH', 
+          telefono: '78452415', 
+          dias : 'Lunes a Viernes', 
+          horario: '8:00 a 23:00',
+          servicios: ['Envío a domicilio', 'Recoger en local']
+        },
+        { 
+          lat: -17.807739, 
+          lng: -63.204363, 
+          name: 'LAS PALMAS', 
+          localizacion: 'Doble vía La Guardia', 
+          telefono: '78452415', 
+          dias : 'Lunes a Viernes', 
+          horario: '8:00 a 23:00',
+          servicios: ['Envío a domicilio', 'Recoger en local']
+        },
+        { 
+          lat: -17.758879, 
+          lng: -63.19948, 
+          name: 'SAN MARTIN', 
+          localizacion: 'Av. San Martin 2200', 
+          telefono: '78452415', 
+          dias : 'Lunes a Viernes', 
+          horario: '8:00 a 23:00',
+          servicios: ['Envío a domicilio', 'Recoger en local']
+        },
+        { 
+          lat: -17.820341, 
+          lng: -63.184337, 
+          name: 'SANTOS DUMONT', 
+          localizacion: 'Av Santos Dumont 3228', 
+          telefono: '78452415', 
+          dias : 'Lunes a Viernes', 
+          horario: '8:00 a 23:00',
+          servicios: ['Envío a domicilio', 'Recoger en local']
+        }
+      ];
     </script>
 
     <!-- Hojas de estilos js -->
@@ -960,27 +1013,6 @@
         localStorage.setItem('seleccion-me-mi', 'domicilio');
       }
     }
-
-    {% comment %} inicializacionGoogleMaps(intentos = 0){
-      // Verificar si Google Maps esta cargado
-      if(typeof google == 'undefined'){
-        this.modalGeneralCarga.style.display = 'flex';
-        // Limitar a 10 intentos para evitar bucles infinitos
-        if(intentos < 10){
-          console.log("Google Maps no está cargado, esperando... Intento " + (intentos + 1));
-          setTimeout(() => {
-            this.inicializacionGoogleMaps(intentos + 1);
-          }, 500); 
-        }else{
-          console.error("Google Maps no se cargó después de varios intentos");
-        }
-        return;
-      }
-
-      // Si Google Maps está cargado, ocultar el modal de carga
-      this.modalGeneralCarga.style.display = 'none';
-      console.log("Google Maps cargado correctamente");
-    } {% endcomment %}
   }
 
   customElements.define('modal-inicial', ModalInicial);

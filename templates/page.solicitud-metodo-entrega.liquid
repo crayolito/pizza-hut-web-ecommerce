@@ -180,6 +180,8 @@
       this.mapaModalEnvioDomicilio = null;
       this.controlSeleccionInput = false;
       this.coordenadas = { lat: -17.783315017953004, lng: -63.18214577296119 };
+      this.urlConsulta = "https://pizza-hut-bo.myshopify.com/admin/api/2025-01/graphql.json";
+      this.myTest = 'shpat_' + '45f4a7476152f4881d058f87ce063698';
       this.pizzaLocations = [
         { 
           lat: -17.757619, 
@@ -306,6 +308,58 @@
         this.configurarAutocompletadoDirecciones();
       }
       this.inicializarPaginaLocalStorage(0);
+      this.procesoSucursales();
+    }
+    
+    async procesoSucursales() {
+      const consultaGrapql = `
+        query GetAllLocations {
+        locations(first: 50) {
+          edges {
+            node {
+              id
+              name
+              address {
+                address1
+                city
+                country
+                zip
+              }
+              isActive
+            }
+          }
+        }
+      }`;
+        
+      try {
+        const response = await fetch(this.urlConsulta, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-Shopify-Access-Token': this.myTest
+          },
+          body: JSON.stringify({ query: consultaGrapql })
+        });
+        
+        if (!response.ok) {
+          throw new Error(`Error de red: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        
+        if (data.errors) {
+          throw new Error(`Error en la consulta GraphQL: ${JSON.stringify(data.errors)}`);
+        }
+        
+        // Procesar los datos de las sucursales
+        const sucursales = data.data.locations.edges.map(edge => edge.node);
+        console.log('Sucursales obtenidas:', sucursales);
+        
+        return sucursales;
+      } catch (error) {
+        console.error('Error al obtener sucursales:', error);
+        throw error; // Re-lanzar el error para manejarlo en el nivel superior
+      }
     }
 
     inicializarPaginaLocalStorage(intentos = 0) {
