@@ -904,7 +904,9 @@ class PageCarrito extends HTMLElement {
             <div class="pcph-itemc-info">
               <div class="pcph-itemc_opcion1">
                 <h2 class="color-letras-extra">Bs. ${dataContruccion.producto.precioTotalConjunto}</h2>
-                <div class="pcph-itemc_editar">
+                <div 
+                style="display: none;"
+                class="pcph-itemc_editar">
                   ${window.shopIcons.icon_editar}
                   <p class="color-letras-primary">Editar</p>
                 </div>

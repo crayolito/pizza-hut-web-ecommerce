@@ -1261,27 +1261,53 @@ class PageCheckoutPH extends HTMLElement {
 
       const contenedorPadre = mensajesError[key].closest('.smecph-pc-info-input');
 
-      if (formulario[key] === '') {
-        // Campo vacío - mostrar error
-        mensajesError[key].style.display = 'flex';
+      // Validación especial para el campo email
+      if (key === 'email') {
+        // Mostrar error si email está vacío O contiene "pizzahut"
+        const contienePizzaHut = formulario[key].toLowerCase().includes("pizzahut");
 
-        if (contenedorPadre) {
-          contenedorPadre.classList.add('error');
-          contenedoresConError.push(contenedorPadre);
+        if (formulario[key] === '' || contienePizzaHut) {
+          // Mostrar error de email
+          mensajesError[key].style.display = 'flex';
+
+          if (contenedorPadre) {
+            contenedorPadre.classList.add('error');
+            contenedoresConError.push(contenedorPadre);
+          }
+
+          hayCampoVacio = true;
+        } else {
+          // Email válido - ocultar error
+          mensajesError[key].style.display = 'none';
+
+          if (contenedorPadre) {
+            contenedorPadre.classList.remove('error');
+          }
         }
-
-        hayCampoVacio = true;
       } else {
-        // Campo con valor - ocultar error
-        mensajesError[key].style.display = 'none';
+        // Para el resto de campos, validación normal (solo campo vacío)
+        if (formulario[key] === '') {
+          // Campo vacío - mostrar error
+          mensajesError[key].style.display = 'flex';
 
-        if (contenedorPadre) {
-          contenedorPadre.classList.remove('error');
+          if (contenedorPadre) {
+            contenedorPadre.classList.add('error');
+            contenedoresConError.push(contenedorPadre);
+          }
+
+          hayCampoVacio = true;
+        } else {
+          // Campo con valor - ocultar error
+          mensajesError[key].style.display = 'none';
+
+          if (contenedorPadre) {
+            contenedorPadre.classList.remove('error');
+          }
         }
       }
     });
 
-    // Si hay campos vacíos, programar limpieza de erroress
+    // Si hay campos vacíos, programar limpieza de errores
     if (hayCampoVacio) {
       this.mensajeInfoCelularContacto.style.display = 'none';
       setTimeout(() => {
