@@ -314,7 +314,7 @@ class InicioSesion extends HTMLElement {
   async traerTodaInfoUsuario(id) {
     const graphQLQuery = `
     query {
-      customer(id: "gid://shopify/Customer/9090429288732") {
+      customer(id: "${id}") {
         id
         firstName
         lastName
