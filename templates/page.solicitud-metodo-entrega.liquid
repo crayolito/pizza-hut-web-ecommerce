@@ -312,8 +312,14 @@
     }
     
     async procesoSucursales() {
-      const consultaGrapql = `
-        query GetAllLocations {
+      console.log("Iniciando actualización de sucursales...");
+      
+      if (!this.urlConsulta || !this.myTest || !window.localizacionesSucursales?.length) {
+        console.error("Error: Configuración incompleta o no hay sucursales locales");
+        return;
+      }
+      
+      const consultaGrapql = `query GetAllLocations {
         locations(first: 50) {
           edges {
             node {
@@ -332,6 +338,7 @@
       }`;
         
       try {
+        console.log("Consultando API de Shopify...");
         const response = await fetch(this.urlConsulta, {
           method: 'POST',
           headers: {
@@ -342,24 +349,67 @@
         });
         
         if (!response.ok) {
-          throw new Error(`Error de red: ${response.status}`);
+          console.error(`Error de red: ${response.status}`);
+          return;
         }
         
-        const data = await response.json();
+        const { data, errors } = await response.json();
         
-        if (data.errors) {
-          throw new Error(`Error en la consulta GraphQL: ${JSON.stringify(data.errors)}`);
+        if (errors) {
+          console.error("Errores en la respuesta GraphQL:", errors);
+          return;
         }
         
-        // Procesar los datos de las sucursales
-        const sucursales = data.data.locations.edges.map(edge => edge.node);
-        console.log('Sucursales obtenidas:', sucursales);
+        if (!data?.locations?.edges) {
+          console.error("Estructura de datos inesperada en la respuesta");
+          return;
+        }
         
-        return sucursales;
+        const sucursalesShopify = data.locations.edges.map(edge => edge.node);
+        console.log("Datos recibidos de Shopify:", sucursalesShopify);
+        
+        // Crear un mapa para búsqueda eficiente
+        const sucursalesMap = new Map();
+        window.localizacionesSucursales.forEach(local => {
+          if (local?.name) sucursalesMap.set(local.name, local);
+        });
+        
+        let actualizadas = 0;
+        
+        // Actualizar sucursales
+        sucursalesShopify.forEach(sucursal => {
+          if (!sucursal?.name) {
+            console.warn("Sucursal sin nombre encontrada, omitiendo");
+            return;
+          }
+          
+          const localSucursal = sucursalesMap.get(sucursal.name);
+          if (localSucursal) {
+            console.log(`Actualizando sucursal: ${sucursal.name}`);
+            
+            localSucursal.id = sucursal.id || '';
+            localSucursal.direccionCompleta = sucursal.address?.address1 || '';
+            localSucursal.ciudad = sucursal.address?.city || '';
+            localSucursal.pais = sucursal.address?.country || '';
+            localSucursal.codigoPostal = sucursal.address?.zip || '';
+            localSucursal.activo = !!sucursal.isActive;
+            
+            actualizadas++;
+          } else {
+            console.log(`No se encontró coincidencia local para: ${sucursal.name}`);
+          }
+        });
+        
+        console.log(`Proceso finalizado: ${actualizadas} de ${sucursalesShopify.length} sucursales actualizadas`);
+        console.log("Sucursales actualizadas:", window.localizacionesSucursales);
+        
       } catch (error) {
-        console.error('Error al obtener sucursales:', error);
-        throw error; // Re-lanzar el error para manejarlo en el nivel superior
+        console.error('Error en el proceso:', error);
+      } finally {
+        console.log("Proceso de actualización completado");
       }
+      
+      // No retorna nada
     }
 
     inicializarPaginaLocalStorage(intentos = 0) {
