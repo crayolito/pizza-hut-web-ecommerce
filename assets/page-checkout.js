@@ -1533,8 +1533,8 @@ class PageCheckoutPH extends HTMLElement {
         id: this.infoOrdenPreliminar.id.split('/').pop(),
         precio: this.totalCarrito
       });
-      return;
-      // await this.iniciarPasarela();
+      // return;
+      await this.iniciarPasarela();
     }
 
     MensajeCargaDatos.ocultar();
@@ -1570,7 +1570,7 @@ class PageCheckoutPH extends HTMLElement {
         },
         body: JSON.stringify({
           transaction: transactionId,
-          amount: paymentGatewayAmount,
+          amount: this.totalCarrito,
           gloss: `Pago pedido Pizza Hut ${transactionId}`,
           pos: "POS 1",
           cashier: "Web",
