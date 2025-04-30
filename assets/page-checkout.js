@@ -1549,7 +1549,6 @@ class PageCheckoutPH extends HTMLElement {
     console.log("Data JSON", dataJSON);
     console.log("Data Orden Finalizada", await this.getOrderDetails());
     localStorage.setItem('ph-json-generado', JSON.stringify(dataJSON));
-    localStorage.setItem('ph-estadoDP', "etapa-1");
     localStorage.setItem('ph-id-orden', dataOrdenPreliminar.order.id);
 
     if (this.seleccionadoEstadoPago == "pago-codigo-qr") {
@@ -1566,10 +1565,13 @@ class PageCheckoutPH extends HTMLElement {
       });
       // return;
       await this.iniciarPasarela();
+    } else {
+      await this.generarPedido(dataOrdenPreliminar.order.id);
+      localStorage.setItem('ph-estadoDP', "etapa-1");
     }
 
     MensajeCargaDatos.ocultar();
-    // window.location.href = "/pages/detalle-pedido";
+    window.location.href = "/pages/detalle-pedido";
   }
 
   async iniciarPasarela() {
