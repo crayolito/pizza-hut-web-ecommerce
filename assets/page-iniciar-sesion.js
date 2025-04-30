@@ -313,6 +313,7 @@ class InicioSesion extends HTMLElement {
   async traerTodaInfoUsuario(id) {
     console.log('ID del cliente:', id);
     const graphQLQuery = `
+
     query {
       customer(id: "gid://shopify/Customer/9090429288732") {
         id
@@ -321,6 +322,13 @@ class InicioSesion extends HTMLElement {
         email
         phone
         numberOfOrders
+        orders {
+          edges {
+            node {
+              id
+            }
+          }
+        }
         amountSpent {
           amount
           currencyCode
