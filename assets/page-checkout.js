@@ -1581,10 +1581,10 @@ class PageCheckoutPH extends HTMLElement {
     } else {
       await this.generarPedido(dataOrdenPreliminar.order.id);
       localStorage.setItem('ph-estadoDP', "etapa-1");
+      window.location.href = "/pages/detalle-pedido";
     }
 
     MensajeCargaDatos.ocultar();
-    window.location.href = "/pages/detalle-pedido";
   }
 
   async iniciarPasarela() {
