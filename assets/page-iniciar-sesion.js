@@ -312,9 +312,11 @@ class InicioSesion extends HTMLElement {
   }
 
   async traerTodaInfoUsuario(id) {
+    console.log('ID del cliente:', id);
+
     const graphQLQuery = `
     query {
-      customer(id: "${id}") {
+      customer(id: ${id}) {
         id
         firstName
         lastName
