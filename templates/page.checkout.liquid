@@ -733,10 +733,17 @@
       {% comment %}  {% endcomment %}
       <div class="ph-modal-main-mensajes" style="display: none;">
         <!-- 3er MODAL : EXITO -->
-        <div class="ph-modal-body-exito" style="display: none;">
-          <img src="{{ 'imagen-check-verde.png' | asset_url }}" alt="Icono de exito" width="100%" height="100%">
-          <small>mensaje de confirmación</small>
-        </div>
+        {% comment %}
+          <div class="ph-modal-body-exito" style="display: none;">
+            <img src="{{ 'imagen-check-verde.png' | asset_url }}" alt="Icono de exito" width="100%" height="100%">
+            <small>mensaje de confirmación</small>
+          </div>
+        {% endcomment %}
+        <button
+          id="phpc-btn-cerrar-modal"
+        >
+          {% render 'icon-close-rojo' %}
+        </button>
         <!-- 4to MODAL : QR -->
         {% comment %} {% endcomment %}
         <div class="ph-modal-body-qr" style="display: none;">
@@ -758,25 +765,27 @@
             </div>
           {% endcomment %}
         </div>
-        <div
-          style="
-            width: 100%;
-            height: max-content;
-            display: flex; flex-direction: row; justify-content: space-between; align-items: center;
-          "
-        >
-          <button
-            class="pcktpch-btn-secundario"
+        {% comment %}
+          <div
+            style="
+              width: 100%;
+              height: max-content;
+              display: flex; flex-direction: row; justify-content: space-between; align-items: center;
+            "
           >
-            <p>Cerrar</p>
-          </button>
-          <button
-            id="download"
-            class="pcktpch-btn-secundario"
-          >
-            <p>DESCARGAR QR</p>
-          </button>
-        </div>
+            <button
+              class="pcktpch-btn-secundario"
+            >
+              <p>Cerrar</p>
+            </button>
+            <button
+              id="download"
+              class="pcktpch-btn-secundario"
+            >
+              <p>DESCARGAR QR</p>
+            </button>
+          </div>
+        {% endcomment %}
       </div>
       <!-- 3re MODAL : DETALLE DE LOCAL SELECCIONADO -->
       <div id="phpc-modal-body-local-seleccionado" class="psme-modal-contenedor-base" style="display: none;">
