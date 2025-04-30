@@ -260,8 +260,6 @@ class InicioSesion extends HTMLElement {
     //   '_blank'
     // );
 
-
-
     // // Simular un proceso de carga
     // setTimeout(() => {
     //   this.containerMensaje.style.display = 'flex';
