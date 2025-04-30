@@ -1676,6 +1676,7 @@ class PageCheckoutPH extends HTMLElement {
             this.contenedorQR.innerHTML = `<p>✅ Pago confirmado.</p>`;
 
             await this.generarPedido(this.infoOrdenPreliminar.id);
+            await AuxiliaresGlobal.limpiarCarrito();
             localStorage.setItem('ph-estadoDP', "etapa-1");
 
             setTimeout(() => {
