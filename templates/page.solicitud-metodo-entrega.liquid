@@ -6,6 +6,274 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Solicitud de Método de Entrega</title>
+
+    <!-- Hojas de estilos css -->
+    {{ 'estilos-auxliares.css' | asset_url | stylesheet_tag }}
+    {{ 'estilos-generales.css' | asset_url | stylesheet_tag }}
+
+    <script
+      defer
+      src="https://maps.googleapis.com/maps/api/js?key={{settings.keyGoogleMap}}&libraries=places"
+    ></script>
+    <script>
+      window.shopIcons = {
+        icon_editar: `{% render 'icon-editar' %}`,
+        icon_menos: `{% render 'icon-menos' %}`,
+        icon_mas: `{% render 'icon-mas' %}`,
+        icon_basura: `{% render 'icon-basura' %}`,
+        icon_carrito: `{% render 'icon-carrito' %}`,
+        icon_estado_on: `{% render 'icon-estado-on' %}`,
+        icon_estado_off: `{% render 'icon-estado-off' %}`,
+        icon_recogo_local: `{% render 'icon-recogo-local' %}`,
+        icon_recogo_delivery: `{% render 'icon-recogo-delivery' %}`,
+        icon_location_on: `{% render 'icon-location-on' %}`,
+        icon_headser_mic: `{% render 'icon-headser-mic' %}`,
+        icon_qr: `{% render 'icon-qr' %}`,
+        icon_tarjeta_credito: `{% render 'icon-tarjeta-credito' %}`,
+        icon_dolar: `{% render 'icon-dolar' %}`,
+        icon_estado_on_plus: `{% render 'icon-estado-on-plus' %}`,
+        icon_checkbox_off: `{% render 'icon-checkbox-off' %}`,
+        icon_checkbox_on: `{% render 'icon-checkbox-on' %}`,
+        icon_volver_atras: `{% render 'icon-volver-atras' %}`,
+        icon_flecha_derecha: `{% render 'icon-flecha-derecha' %}`,
+        icon_disponibilidad: `{% render 'icon-disponibilidad' %}`,
+        icon_clock: `{% render 'icon-clock' %}`,
+        icon_check: `{% render 'icon-check' %}`,
+        icon_map: `{% render 'icon-map' %}`,
+        icon_check: `{% render 'icon-check' %}`,
+      };
+
+      window.localizacionesSucursales = [
+        {
+          lat: -17.757619,
+          lng: -63.178738,
+          name: 'BANZER 3ER ANILLO',
+          localizacion: 'Tercer Anillo Externo',
+          telefono: '78452415',
+          dias: 'Lunes a Viernes',
+          horario: '8:00 a 23:00',
+          servicios: ['Envío a domicilio', 'Recoger en local'],
+        },
+        {
+          lat: -17.70001,
+          lng: -63.160219,
+          name: 'BANZER KM 8.5',
+          localizacion: '8R2Q+2XH',
+          telefono: '78452415',
+          dias: 'Lunes a Viernes',
+          horario: '8:00 a 23:00',
+          servicios: ['Envío a domicilio', 'Recoger en local'],
+        },
+        {
+          lat: -17.807739,
+          lng: -63.204363,
+          name: 'LAS PALMAS',
+          localizacion: 'Doble vía La Guardia',
+          telefono: '78452415',
+          dias: 'Lunes a Viernes',
+          horario: '8:00 a 23:00',
+          servicios: ['Envío a domicilio', 'Recoger en local'],
+        },
+        {
+          lat: -17.758879,
+          lng: -63.19948,
+          name: 'SAN MARTIN',
+          localizacion: 'Av. San Martin 2200',
+          telefono: '78452415',
+          dias: 'Lunes a Viernes',
+          horario: '8:00 a 23:00',
+          servicios: ['Envío a domicilio', 'Recoger en local'],
+        },
+        {
+          lat: -17.820341,
+          lng: -63.184337,
+          name: 'SANTOS DUMONT',
+          localizacion: 'Av Santos Dumont 3228',
+          telefono: '78452415',
+          dias: 'Lunes a Viernes',
+          horario: '8:00 a 23:00',
+          servicios: ['Envío a domicilio', 'Recoger en local'],
+        },
+      ];
+      window.urlConsulta = '{{ settings.urlConsulta }}';
+      window.keyBackendShopify = `shpat_` + `{{ settings.keyBackendShopify }}`;
+    </script>
+
+    <!-- Hojas de estilos jss -->
+    <script src="{{ 'auxiliares-global.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'page-solicitud-metodo-entrega.js' | asset_url }}" defer="defer"></script>
+
+    {% style %}
+      :root {
+        --fuente-primary: 'League Gothic', sans-serif;
+        --fuente-secondary: 'Montserrat', sans-serif;
+        /* Colores Primarios */
+        --colorp-primary: #c8102e;
+        --colorp-secondary: #ffffff;
+        --colorp-tertiary: #231f20;
+        /* Colores Acento */
+        --colora-primary: #e6b991;
+        --colora-secondary: #a50a23;
+        --colora-tertiary: #231f20;
+
+        /* Colores de bordes */
+        --colorb-primary: #969696;
+
+        /* Tamaños de fuente responsivos con clamp() */
+        --font-size-h1: clamp(2.5rem, 5vw, 3rem);
+        --font-size-h2: clamp(2rem, 4vw, 2.25rem);
+        --font-size-h3: clamp(1.5rem, 3.5vw, 2rem);
+        --font-size-h4: clamp(1.25rem, 3vw, 1.5rem);
+        --font-size-p: clamp(0.875rem, 2vw, 1rem);
+
+        /* Letter spacing responsivo asasd*/
+        --letter-spacing-h1: clamp(-0.05rem, -0.1vw, -0.06rem);
+        --letter-spacing-h2: clamp(-0.04rem, -0.09vw, -0.045rem);
+        --letter-spacing-h3: clamp(-0.03rem, -0.08vw, -0.04rem);
+        --letter-spacing-h4: clamp(-0.025rem, -0.07vw, -0.03rem);
+
+        /* Sistema de espaciado */
+        --espaciado-xs: 0.25rem;
+        --espaciado-s: 0.5rem;
+        --espaciado-m: 0.75rem;
+        --espaciado-l: 1rem;
+        --espaciado-xl: 1.25rem;
+        --espaciado-xxl: 1.5rem;
+        --espaciado-xxxl: 3rem;
+        --espaciado-big: 4rem;
+
+        /* Bordes Radius */
+        --border-radius-1: 0.25rem;
+        --border-radius-2: 0.5rem;
+        --border-radius-3: 0.625rem;
+        --border-radius-4: 6.25rem;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: inherit;
+      }
+
+      html {
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+        font-family: var(--fuente-primary);
+        font-size: 16px;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        overflow-x: hidden;
+        color: var(--text-color);
+      }
+
+      h1 {
+        margin: 0;
+        font-family: var(--fuente-primary);
+        font-size: var(--font-size-h1);
+        font-style: normal;
+        font-weight: 400;
+        line-height: 100%;
+        letter-spacing: var(--letter-spacing-h1);
+        text-transform: uppercase;
+      }
+
+      h2 {
+        margin: 0;
+        font-family: var(--fuente-primary);
+        font-size: var(--font-size-h2);
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        letter-spacing: var(--letter-spacing-h2);
+        text-transform: uppercase;
+      }
+
+      h3 {
+        margin: 0;
+        font-family: var(--fuente-primary);
+        font-size: var(--font-size-h3);
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        letter-spacing: var(--letter-spacing-h3);
+        text-transform: uppercase;
+      }
+
+      h4 {
+        margin: 0;
+        font-family: var(--fuente-primary);
+        font-size: var(--font-size-h4);
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        letter-spacing: var(--letter-spacing-h4);
+        text-transform: uppercase;
+      }
+
+      p {
+        margin: 0;
+        font-family: Montserrat, sans-serif;
+        font-size: var(--font-size-p);
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+      }
+
+      li,
+      ul,
+      ol {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      input {
+        font-family: var(--fuente-secondary);
+        width: 100%;
+        border: 0;
+      }
+
+      input:focus {
+        outline: none;
+      }
+
+      button {
+        cursor: pointer;
+        background: transparent;
+        border: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+
+      @media screen and (min-width: 350px) and (max-width: 380px) {
+        html {
+          font-size: 13px;
+        }
+      }
+
+      @media screen and (min-width: 800px) and (max-width: 960px) {
+        html {
+          font-size: 14.5px;
+        }
+      }
+
+      @media screen and (min-width: 1440px) {
+        html {
+          font-size: 17.5px;
+        }
+      }
+    {% endstyle %}
   </head>
   <body>
     <cliente-localizacion>
