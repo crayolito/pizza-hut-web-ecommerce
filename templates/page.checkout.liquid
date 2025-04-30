@@ -745,7 +745,6 @@
           {% render 'icon-close-rojo' %}
         </button>
         <!-- 4to MODAL : QR -->
-        {% comment %} {% endcomment %}
         <div class="ph-modal-body-qr" style="display: none;">
           {% comment %}
             <h1>PAGO POR QR</h1>
@@ -765,27 +764,6 @@
             </div>
           {% endcomment %}
         </div>
-        {% comment %}
-          <div
-            style="
-              width: 100%;
-              height: max-content;
-              display: flex; flex-direction: row; justify-content: space-between; align-items: center;
-            "
-          >
-            <button
-              class="pcktpch-btn-secundario"
-            >
-              <p>Cerrar</p>
-            </button>
-            <button
-              id="download"
-              class="pcktpch-btn-secundario"
-            >
-              <p>DESCARGAR QR</p>
-            </button>
-          </div>
-        {% endcomment %}
       </div>
       <!-- 3re MODAL : DETALLE DE LOCAL SELECCIONADO -->
       <div id="phpc-modal-body-local-seleccionado" class="psme-modal-contenedor-base" style="display: none;">
