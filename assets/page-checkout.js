@@ -1727,7 +1727,7 @@ class PageCheckoutPH extends HTMLElement {
         } catch (error) {
           console.error("Error al verificar estado de pago:", error);
         }
-      }, 10000); // Verifica cada 10 segundos
+      }, 10000); // Verifica cada 10 segundoss
 
     } catch (error) {
       console.error("Error al procesar pago:", error);
