@@ -313,55 +313,46 @@ class InicioSesion extends HTMLElement {
 
   async traerTodaInfoUsuario(id) {
     const graphQLQuery = `
-        query GetCustomerDetails {
-          customer(id: "${id}") {
-            id
-            firstName
-            lastName
-            email
-            phone
-            metafields(namespace: "info_cliente", first: 1) {
-              edges {
-                node {
-                  namespace
-                  key
-                  value
-                }
-              }
-            }
-            orders(first: 10) {
-              edges {
-                node {
-                  id
-                  name
-                  totalPriceSet {
-                    shopMoney {
-                      amount
-                      currencyCode
-                    }
-                  }
-                  createdAt
-                  financialStatus
-                }
-              }
-            }
-            draftOrders(first: 10) {
-              edges {
-                node {
-                  id
-                  name
-                  totalPriceSet {
-                    shopMoney {
-                      amount
-                      currencyCode
-                    }
-                  }
-                  createdAt
-                }
-              }
+    query {
+      customer(id: "gid://shopify/Customer/9090429288732") {
+        id
+        firstName
+        lastName
+        email
+        phone
+        numberOfOrders
+        orders {
+          edges {
+            node {
+              id
             }
           }
         }
+        
+        amountSpent {
+          amount
+          currencyCode
+        }
+        createdAt
+        updatedAt
+        note
+        verifiedEmail
+        validEmailAddress
+        tags
+        lifetimeDuration
+        defaultAddress {
+          formattedArea
+          address1
+        }
+        addresses {
+          address1
+        }
+        image {
+          src
+        }
+        canDelete
+      }
+    }
       `;
 
     try {
