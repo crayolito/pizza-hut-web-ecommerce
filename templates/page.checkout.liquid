@@ -615,8 +615,8 @@
       </button>
     </section>
 
-    {% comment %} style="display: none;" {% endcomment %}
-    <section class="ph-background-container-modal">
+    {% comment %}  {% endcomment %}
+    <section class="ph-background-container-modal" style="display: none;">
       <!-- 1re MODAL : NUEVA DIRECION -->
       <div id="phpc-modal-body-nueva-direccion" class="ph-mmdi-modal-main" style="display: none;">
         <div class="pcktpch-modal-header">
@@ -730,16 +730,16 @@
         </div>
         <p>Procesando informacion ...</p>
       </div>
-      {% comment %} style="display: none;" {% endcomment %}
-      <div class="ph-modal-main-mensajes">
+      {% comment %}  {% endcomment %}
+      <div class="ph-modal-main-mensajes" style="display: none;">
         <!-- 3er MODAL : EXITO -->
         <div class="ph-modal-body-exito" style="display: none;">
           <img src="{{ 'imagen-check-verde.png' | asset_url }}" alt="Icono de exito" width="100%" height="100%">
           <small>mensaje de confirmación</small>
         </div>
         <!-- 4to MODAL : QR -->
-        {% comment %} style="display: none;" {% endcomment %}
-        <div class="ph-modal-body-qr">
+        {% comment %} {% endcomment %}
+        <div class="ph-modal-body-qr" style="display: none;">
           {% comment %}
             <h1>PAGO POR QR</h1>
             <div class="ph-modal-qr-detalles">
