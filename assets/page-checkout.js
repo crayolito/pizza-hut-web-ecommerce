@@ -155,7 +155,7 @@ class PageCheckoutPH extends HTMLElement {
 
     this.contenedorBaseModal = this.querySelector('.ph-background-container-modal');
     this.contenedorBaseMensaje = this.querySelector('.ph-modal-main-mensajes');
-    this.contenedorQR = this.querySelector('#ph-modal-body-qr');
+    this.contenedorQR = this.querySelector('.ph-modal-body-qr');
     this.btnsSeleccionMetodoEntrega = this.querySelectorAll('.smecph-opcion-metodo');
 
     this.contenedorBaseSeleccionLocal = this.querySelector('#pcktph-seleccion-local');
@@ -1595,7 +1595,7 @@ class PageCheckoutPH extends HTMLElement {
       this.contenedorBaseMensaje.style.display = "flex";
       this.contenedorQR.style.display = "flex";
 
-      document.getElementById("#ph-modal-body-qr").innerHTML = `
+      document.getElementById(".ph-modal-body-qr").innerHTML = `
       <iframe id="ifarma" src="https://qr.farmacorp.com/viewer/${qrId}" alt="QR de pago" height="760px" width="100%"></iframe>
       <p>Escanea el QR para pagar</p>
       `;
@@ -1623,7 +1623,7 @@ class PageCheckoutPH extends HTMLElement {
           if (wasPaid === true) {
             clearInterval(interval);
 
-            document.getElementById("#ph-modal-body-qr").innerHTML = `<p>✅ Pago confirmado.</p>`;
+            document.getElementById(".ph-modal-body-qr").innerHTML = `<p>✅ Pago confirmado.</p>`;
             await this.generarPedido(dataOrdenPreliminar.order.id);
 
             // createOrder(orderData).then((res) => {
@@ -1675,7 +1675,7 @@ class PageCheckoutPH extends HTMLElement {
 
     } catch (error) {
       console.error("Error al procesar pago:", error);
-      document.getElementById("#ph-modal-body-qr").innerHTML = `<p>⚠️ Error al generar el QR.</p>`;
+      document.getElementById(".ph-modal-body-qr").innerHTML = `<p>⚠️ Error al generar el QR.</p>`;
     }
   }
 
