@@ -37,13 +37,15 @@ class DetallePedido extends HTMLElement {
     this.seccionPedidoCliente = this.querySelector('#phpdp-empieza-seccion-pedido');
 
     this.seccionMetodoPago = this.querySelector('#phpdp-metodo-pago');
-    this.btnAbirUbicacionMapa = this.querySelector('#phpdp-btn-abrir-mapa');
+    this.btnAbirUbicacionMapa = this.querySelectorAll('#phpdp-btn-abrir-mapa');
 
     // EVENTOS INICIALIZAR
     this.btnVerMasDetalles.addEventListener('click', this.btnVerMasDetallesClick.bind(this));
     this.btnVolverInicio.addEventListener('click', this.btnVolverInicioClick.bind(this));
     this.btnVolverAtras.addEventListener('click', this.btnVolverAtrasClick.bind(this));
-    this.btnAbirUbicacionMapa.addEventListener('click', this.btnAbirUbicacionMapaClick.bind(this));
+    this.btnAbirUbicacionMapa.forEach(btn => {
+      btn.addEventListener('click', this.btnAbirUbicacionMapaClick.bind(this));
+    });
     this.inicializarDataLocalStorage();
   }
 
