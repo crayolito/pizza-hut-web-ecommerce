@@ -114,7 +114,6 @@ class ClienteLocalizacion extends HTMLElement {
     this.contenedorOpcionesRecogerLocal.style.display = 'none';
     this.contenedorOpcionesEnvioDomicilio.style.display = 'none';
     this.contenedorTotalModal.style.visibility = 'hidden';
-    this.procesoSucursales();
     this.verificarActivacionBotonSiguientePrincipal();
     // Actualizar la variable this.coordenadas si es que hay en el localstoragee
     if (localStorage.getItem('ubicacion-cliente')) {
@@ -135,6 +134,7 @@ class ClienteLocalizacion extends HTMLElement {
     // }
     this.configurarAutocompletadoDirecciones();
     this.inicializarPaginaLocalStorage(0);
+    this.procesoSucursales();
   }
 
   async procesoSucursales() {
