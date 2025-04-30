@@ -1467,12 +1467,7 @@ class PageCheckoutPH extends HTMLElement {
   }
 
   async procesoContinuarGeneral() {
-
     if (this.localSeleccionado == null && this.estadoPagina == "local" && this.inputSeleccionarLocal.value == "") {
-      this.btnEditarDatos.style.display = "none";
-      this.btnGuardarDatos.style.display = "flex";
-      this.contenedorDatosContactoEditar.style.display = "flex";
-      this.contenedorDatoContactoConsolidados.style.display = "none";
       this.contenedorBaseSeleccionLocal.scrollIntoView({
         behavior: 'smooth',
         block: 'center'
@@ -1481,6 +1476,10 @@ class PageCheckoutPH extends HTMLElement {
     }
 
     if (!this.validarCamposFormDatosContacto()) {
+      this.btnEditarDatos.style.display = "none";
+      this.btnGuardarDatos.style.display = "flex";
+      this.contenedorDatosContactoEditar.style.display = "flex";
+      this.contenedorDatoContactoConsolidados.style.display = "none";
       this.seccionFormDatosContacto.scrollIntoView({
         behavior: 'smooth',
         block: 'center'
