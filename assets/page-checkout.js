@@ -1535,7 +1535,6 @@ class PageCheckoutPH extends HTMLElement {
       });
       return;
       // await this.iniciarPasarela();
-
     }
 
     MensajeCargaDatos.ocultar();
