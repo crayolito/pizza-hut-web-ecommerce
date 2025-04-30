@@ -1671,7 +1671,7 @@ class PageCheckoutPH extends HTMLElement {
 
           if (wasPaid === true) {
             clearInterval(interval);
-
+            // 
             // document.getElementById(".ph-modal-body-qr").innerHTML = `<p>✅ Pago confirmado.</p>`;
             this.contenedorQR.innerHTML = `<p>✅ Pago confirmado.</p>`;
 
