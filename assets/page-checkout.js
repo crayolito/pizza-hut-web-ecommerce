@@ -1529,8 +1529,8 @@ class PageCheckoutPH extends HTMLElement {
         inputCelularContacto: this.inputCelularContacto.value,
         id: this.infoOrdenPreliminar.id.split('/').pop(),
       });
-      return;
-      // await this.iniciarPasarela();
+      // return;
+      await this.iniciarPasarela();
 
     }
 
@@ -1557,7 +1557,7 @@ class PageCheckoutPH extends HTMLElement {
       const now = new Date();
       now.setHours(now.getHours() - 4); // Restamos 4 horas
       const timestamp = now.toISOString(); // Formato ISO con desfase horario
-      const transactionId = `webQr-${this.infoOrdenPreliminar.order.id.split('/').pop()}-${timestamp}`;
+      const transactionId = `webQr-${this.infoOrdenPreliminar.id.split('/').pop()}-${timestamp}`;
 
       const qrResponse = await fetch(`${this.url}/qr/generate`, {
         method: "POST",
