@@ -1540,7 +1540,7 @@ class PageCheckoutPH extends HTMLElement {
     }
 
     MensajeCargaDatos.ocultar();
-    window.location.href = "/pages/detalle-pedido";
+    // window.location.href = "/pages/detalle-pedido";
   }
 
   async iniciarPasarela() {
