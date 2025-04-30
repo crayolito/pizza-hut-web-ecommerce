@@ -1527,7 +1527,7 @@ class PageCheckoutPH extends HTMLElement {
         nombre: this.inputNombreContacto.value,
         apellido: this.inputApellidoContacto.value,
         inputCelularContacto: this.inputCelularContacto.value,
-        id: this.infoOrdenPreliminar
+        id: this.infoOrdenPreliminar.id.split('/').pop(),
       });
       return;
       // await this.iniciarPasarela();
