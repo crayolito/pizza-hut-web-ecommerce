@@ -83,7 +83,7 @@ class PageCheckoutPH extends HTMLElement {
         "lat": -17.783315017953004,
         "lng": -63.18214577296119,
         "indicaciones": "Puente Urubo 91, Santa Cruz de la Sierra",
-        "alias": "Condominio de la amante",
+        "alias": "Condominio de la Abuela",
       },
       {
         "lat": -17.783315017953004,
