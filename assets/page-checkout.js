@@ -1459,10 +1459,10 @@ class PageCheckoutPH extends HTMLElement {
     const estaActivado = btnElemento.classList.contains('seleccionado');
     if (estaActivado == true) {
       btnElemento.classList.remove('seleccionado');
-      btnElemento.innerHTML = window.shopIcons.icon_estado_off;
+      btnElemento.innerHTML = window.shopIcons.icon_checkbox_off;
     } else {
       btnElemento.classList.add('seleccionado');
-      btnElemento.innerHTML = window.shopIcons.icon_estado_on;
+      btnElemento.innerHTML = window.shopIcons.icon_checkbox_on;
     }
   }
 

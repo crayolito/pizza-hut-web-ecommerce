@@ -1,6 +1,7 @@
 class InicioSesion extends HTMLElement {
   constructor() {
     super();
+    this.estadoCliente = "";
     this.codigoEnviadoCliente = null;
     // Configuración de Firebase
     // this.firebaseConfig = {
@@ -22,11 +23,13 @@ class InicioSesion extends HTMLElement {
       messagingSenderId: "284308699223",
       appId: "1:284308699223:web:0b82592b77b6577f9ecb12"
     };
-
+    this.coordenadas = { lat: -17.783315017953004, lng: -63.18214577296119 };
+    // Ubicacion de envio
 
     // Variable para almacenar el resultado de la confirmaciónn
     this.confirmationResult = null;
-
+    this.urlConsulta = "https://pizza-hut-bo.myshopify.com/admin/api/2025-01/graphql.json";
+    this.myTest = 'shpat_' + '45f4a7476152f4881d058f87ce063698';
     // Inicializar componente
     // this.initializeFirebase();
   }
@@ -184,40 +187,195 @@ class InicioSesion extends HTMLElement {
       return;
     }
 
-    // Ingresar el valor dentro del this.mensajeVerificarNumeroo
-    this.mensajeVerificarNumero.innerHTML = `
+    const dataUsuario = await this.porNroTelefonoUsuarioVerificar(`+591${this.input.value}`);
+    if (dataUsuario == undefined) {
+      MensajeCargaDatos.mostrar('Enviando código de verificación...');
+      this.estadoCliente = "no-existe";
+      this.mensajeVerificarNumero.innerHTML = `
       Enviamos un código de verificación de 4 dígitos a tu  número de WhatsApp *****${this.input.value.slice(
-      -3
-    )}. Copia ese
-      código y pégalo a continuación:`;
+        -3
+      )}. Copia ese código y pégalo a continuación:`;
 
-    this.containerGeneral.style.display = 'flex';
-    this.containerSnipper.style.display = 'flex';
+      this.codigoEnviadoCliente = this.generarCodigo4Digitos();
+      localStorage.setItem('ph-codigo-verificacion', this.codigoEnviadoCliente);
+      MensajeCargaDatos.ocultar();
 
-    // await this.sendVerificationCode();
-    this.codigoEnviadoCliente = this.generarCodigo4Digitos();
-    localStorage.setItem('ph-codigo-verificacion', this.codigoEnviadoCliente);
+      window.open(
+        `https://wa.me/591${this.input.value}?text=Pizza Hut, tu código de verificación es ${this.codigoEnviadoCliente}. Gracias por su preferencia.`,
+        '_blank'
+      );
+      // Primero se va verificar si el numero existe (evitar duplicidad)
+      // Si existe el numero va mostrar mensaje de Exito y va traer los datos 
+      // y si el cliente tiene datos por defecto (se le va actualizar con los ultimos 4 digitos nuevos)
+    } else {
 
-    // Abrir WhatsApp con el mensaje que contiene el código
-    // console.log("Testeo de WhatsApp",
-    //   {
-    //     numero: this.input.value,
-    //     mensaje: `Hola, este es el código que debes ingresar: ${this.codigoEnviadoCliente}`,
-    //   }
-    // )
+      await this.traerTodaInfoUsuario(dataUsuario);
 
-    window.open(
-      `https://wa.me/591${this.input.value}?text=Pizza Hut, tu código de verificación es ${this.codigoEnviadoCliente}. Gracias por su preferencia.`,
-      '_blank'
-    );
+      // this.estadoCliente = "si-existe";
+      // this.containerGeneral.style.display = 'flex';
+      // this.containerMensaje.style.display = 'flex';
+      // this.containerExito.style.display = 'flex';
 
-    // Simular un proceso de carga
-    setTimeout(() => {
-      this.containerMensaje.style.display = 'flex';
-      this.containerSnipper.style.display = 'none';
-      this.containerVerificarNumero.style.display = 'flex';
-    }, 3000);
+      // setTimeout(() => {
+      //   this.containerGeneral.style.display = 'none';
+      //   this.containerMensaje.style.display = 'none';
+      //   this.containerExito.style.display = 'none';
+      //   localStorage.setItem(
+      //     'ph-datos-usuario',
+      //     JSON.stringify({
+      //       nombre: dataUsuario.nombre,
+      //       celular: dataUsuario.celular,
+      //       apellido: dataUsuario.apellido,
+      //       email: dataUsuario.email,
+      //       ci: dataUsuario.ci,
+      //       direcciones: dataUsuario.direcciones,
+      //       nit: dataUsuario.nit,
+      //       fecha_nacimiento: dataUsuario.fecha_nacimiento,
+      //       permisosHutCoins: dataUsuario.permisosHutCoins,
+      //       ordenes: dataUsuario.ordenes,
+      //     })
+      //   );
+      //   window.location.href = '/pages/perfil';
+      // }, 1000);
+    }
+
+
+    // Ingresar el valor dentro del this.mensajeVerificarNumeroo
+    // this.mensajeVerificarNumero.innerHTML = `
+    //   Enviamos un código de verificación de 4 dígitos a tu  número de WhatsApp *****${this.input.value.slice(
+    //   -3
+    // )}. Copia ese
+    //   código y pégalo a continuación:`;
+
+    // this.containerGeneral.style.display = 'flex';
+    // this.containerSnipper.style.display = 'flex';
+
+    // // await this.sendVerificationCode();
+    // this.codigoEnviadoCliente = this.generarCodigo4Digitos();
+    // localStorage.setItem('ph-codigo-verificacion', this.codigoEnviadoCliente);
+
+    // window.open(
+    //   `https://wa.me/591${this.input.value}?text=Pizza Hut, tu código de verificación es ${this.codigoEnviadoCliente}. Gracias por su preferencia.`,
+    //   '_blank'
+    // );
+
+
+
+    // // Simular un proceso de carga
+    // setTimeout(() => {
+    //   this.containerMensaje.style.display = 'flex';
+    //   this.containerSnipper.style.display = 'none';
+    //   this.containerVerificarNumero.style.display = 'flex';
+    // }, 3000);
   }
+
+  async porNroTelefonoUsuarioVerificar(numeroTelefono) {
+    const graphQLQuery = `
+      query SearchCustomerByPhone {
+        customers(query: "phone:${numeroTelefono}", first: 1) {
+          edges {
+            node {
+              id
+            }
+          }
+        }
+      }
+    `;
+
+    try {
+      // Realizar la solicitud
+      const respuesta = await fetch(this.urlConsulta, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Shopify-Access-Token': this.myTest,
+        },
+        body: JSON.stringify({ query: graphQLQuery }),
+      });
+
+      if (!respuesta.ok) {
+        throw new Error(`Error de red: ${respuesta.status} ${respuesta.statusText}`);
+      }
+
+      const datos = await respuesta.json();
+
+      // Verificar si hay resultados
+      if (datos.data?.customers?.edges?.length > 0) {
+        return datos.data.customers.edges[0].node.id;
+      } else {
+        return undefined;
+      }
+
+    } catch (error) {
+      console.error("Error al verificar usuario por teléfono:", error);
+      return undefined;
+    }
+  }
+
+  async traerTodaInfoUsuario(id) {
+    const graphQLQuery = `
+      query GetCustomerDetails {
+        customer(id: "${id}") {
+          id
+          firstName
+          lastName
+          email
+          phone
+          metafields(namespace: "info_cliente", first: 1) {
+            edges {
+              node {
+                namespace
+                key
+                value
+              }
+            }
+          }
+          orders(first: 50) {
+            edges {
+              node {
+                id
+                name
+                totalPriceSet {
+                  shopMoney {
+                    amount
+                    currencyCode
+                  }
+                }
+                createdAt
+              }
+            }
+          }
+        }
+      }
+    `;
+
+    try {
+      // Realizar la solicitud
+      const respuesta = await fetch(this.urlConsulta, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Shopify-Access-Token': this.myTest,
+        },
+        body: JSON.stringify({ query: graphQLQuery }),
+      });
+
+      if (!respuesta.ok) {
+        throw new Error(`Error de red: ${respuesta.status} ${respuesta.statusText}`);
+      }
+
+      const datos = await respuesta.json();
+
+      // Mostrar el resultado completo por consola
+      console.log('Información del usuario:', datos.data.customer);
+
+    } catch (error) {
+      console.error("Error al obtener información del usuario:", error);
+    }
+  }
+
+
+  async crearUnNuevoUsuario() { }
 
   iniciarSesionGoogle() {
     // Lógica para iniciar sesión con Google
@@ -339,6 +497,7 @@ class InicioSesion extends HTMLElement {
       }, 3000);
     }
   }
+
 
   ocultarElementosBase() {
     this.containerGeneral.style.display = 'none';
