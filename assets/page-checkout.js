@@ -1675,7 +1675,7 @@ class PageCheckoutPH extends HTMLElement {
             // document.getElementById(".ph-modal-body-qr").innerHTML = `<p>✅ Pago confirmado.</p>`;
             this.contenedorQR.innerHTML = `<p>✅ Pago confirmado.</p>`;
 
-            await this.generarPedido(this.infoOrdenPreliminar.order.id);
+            await this.generarPedido(this.infoOrdenPreliminar.id);
             localStorage.setItem('ph-estadoDP', "etapa-1");
 
             setTimeout(() => {
