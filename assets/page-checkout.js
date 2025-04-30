@@ -310,7 +310,7 @@ class PageCheckoutPH extends HTMLElement {
       }, 500);
     });
 
-    // Cerrar sugerencias al hacer clic fuera
+    // Cerrar sugerencias al hacer clic fuer  vcd
     document.addEventListener('click', (e) => {
       if (!this.inputPuntoReferenciaF1.contains(e.target) &&
         !this.contenedorResultadosBusquedaReferenciasF1.contains(e.target)) {
