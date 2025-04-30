@@ -64,7 +64,6 @@ class PageCheckoutPH extends HTMLElement {
     this.infoCarrito = null;
 
     this.localSeleccionado = null;
-    this.direccionSeleccionada = null;
 
     this.placesService = null;
     // {
@@ -104,6 +103,8 @@ class PageCheckoutPH extends HTMLElement {
         "alias": "Trabajo",
       }
     ]
+    this.direccionSeleccionada = this.listaDireccionPrueba[0];
+
 
     this.seleccionadoEstadoPago = null;
 
@@ -1520,6 +1521,18 @@ class PageCheckoutPH extends HTMLElement {
       });
       return;
     }
+
+    // Proceso de guardar datos
+    const datosActualizados = {
+      nombre: this.inputNombreContacto.value,
+      apellido: this.inputApellidoContacto.value,
+      email: this.inputCorreoElectronico.value,
+      celular: this.inputCelularContacto.value,
+      ci: this.inputCIContacto.value
+    };
+
+    // Actualizar los datos en el localStorage
+    localStorage.setItem('ph-datos-usuario', JSON.stringify(datosActualizados));
 
 
     // Actualizar datos de usuario decuerdo a la seleccion HUT COINS
