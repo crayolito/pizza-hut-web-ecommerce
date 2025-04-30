@@ -232,7 +232,8 @@ class InicioSesion extends HTMLElement {
       //       nit: dataUsuario.nit,
       //       fecha_nacimiento: dataUsuario.fecha_nacimiento,
       //       permisosHutCoins: dataUsuario.permisosHutCoins,
-      //       ordenes: dataUsuario.ordenes,
+      //       ordenesPagadas: dataUsuario.ordenesPagadas,
+      //       ordenesPendientes: dataUsuario.ordenesPendientes,
       //     })
       //   );
       //   window.location.href = '/pages/perfil';
@@ -314,40 +315,56 @@ class InicioSesion extends HTMLElement {
 
   async traerTodaInfoUsuario(id) {
     const graphQLQuery = `
-      query GetCustomerDetails {
-        customer(id: "${id}") {
-          id
-          firstName
-          lastName
-          email
-          phone
-          metafields(namespace: "info_cliente", first: 1) {
-            edges {
-              node {
-                namespace
-                key
-                value
+        query GetCustomerDetails {
+          customer(id: "${id}") {
+            id
+            firstName
+            lastName
+            email
+            phone
+            metafields(namespace: "info_cliente", first: 1) {
+              edges {
+                node {
+                  namespace
+                  key
+                  value
+                }
               }
             }
-          }
-          orders(first: 50) {
-            edges {
-              node {
-                id
-                name
-                totalPriceSet {
-                  shopMoney {
-                    amount
-                    currencyCode
+            orders(first: 10) {
+              edges {
+                node {
+                  id
+                  name
+                  totalPriceSet {
+                    shopMoney {
+                      amount
+                      currencyCode
+                    }
                   }
+                  createdAt
+                  financialStatus
                 }
-                createdAt
+              }
+            }
+            draftOrders(first: 10) {
+              edges {
+                node {
+                  id
+                  name
+                  totalPriceSet {
+                    shopMoney {
+                      amount
+                      currencyCode
+                    }
+                  }
+                  createdAt
+                }
               }
             }
           }
         }
-      }
-    `;
+      `;
 
     try {
       // Realizar la solicitud
@@ -373,7 +390,6 @@ class InicioSesion extends HTMLElement {
       console.error("Error al obtener información del usuario:", error);
     }
   }
-
 
   async crearUnNuevoUsuario() { }
 
