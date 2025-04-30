@@ -1528,6 +1528,8 @@ class PageCheckoutPH extends HTMLElement {
         id: this.infoOrdenPreliminar.order.id.split('/').pop()
       });
 
+      // await this.iniciarPasarela();
+
     }
 
     MensajeCargaDatos.ocultar();
