@@ -1795,7 +1795,7 @@ class PageCheckoutPH extends HTMLElement {
         return { success: false, errors: data.data.draftOrderCreate.userErrors };
       }
 
-      // Verificar éxito en draftOrderCreate, no en orderCreate
+      // Verificar éxito en draftOrderCreate, no en orderCreatee
       if (data.data && data.data.draftOrderCreate && data.data.draftOrderCreate.draftOrder) {
         console.log('Pedido creado exitosamente:', data.data.draftOrderCreate.draftOrder);
         return {
