@@ -376,12 +376,12 @@ class ClienteLocalizacion extends HTMLElement {
 
   crearElementosSeleccionLocal() {
     // Pre-renderizar íconos Liquid como variables JavaScript
-    const iconoDisponibilidad = `{% render 'icon-disponibilidad' %}`;
-    const iconoLocationOn = `{% render 'icon-location-on' %}`;
-    const iconoHeadserMic = `{% render 'icon-headser-mic' %}`;
-    const iconoClock = `{% render 'icon-clock' %}`;
-    const iconoCheck = `{% render 'icon-check' %}`;
-    const iconoMap = `{% render 'icon-map' %}`;
+    const iconoDisponibilidad = `${window.shopIcons.icon_disponibilidad}`;
+    const iconoLocationOn = `${window.shopIcons.icon_location_on}`;
+    const iconoHeadserMic = `${window.shopIcons.icon_headser_mic}`;
+    const iconoClock = `${window.shopIcons.icon_clock}`;
+    const iconoCheck = `${window.shopIcons.icon_check}`;
+    const iconoMap = `${window.shopIcons.icon_map}`;
     // Obtener la hora actual y almacenar en una variable
     const horaActual = new Date().getHours();
 
@@ -986,7 +986,7 @@ class ClienteLocalizacion extends HTMLElement {
       console.log('Entra a activar modo recogida en local test 1');
 
       // === MODO ACTIVACIÓN ===
-      iconoEstado.innerHTML = `{% render 'icon-estado-on' %}`;
+      iconoEstado.innerHTML = `${window.shopIcons.icon_estado_on}`;
 
       // Ajustar interfaz para modo recogida en local:
       this.imagenBackground.style.visibility = 'hidden';
@@ -1028,7 +1028,7 @@ class ClienteLocalizacion extends HTMLElement {
 
     if (estaActivo) {
       // === MODO ACTIVACIÓN ===
-      iconoEstado.innerHTML = `{% render 'icon-estado-on' %}`;
+      iconoEstado.innerHTML = `${window.shopIcons.icon_estado_on}`;
 
       // Ajustar interfaz para modo envío a domicilio:
       this.imagenBackground.style.visibility = 'hidden';
@@ -1059,13 +1059,14 @@ class ClienteLocalizacion extends HTMLElement {
   desactivarBotonEnvioDomicilio() {
     this.botonOpcionEnvioDomicilio.classList.remove('psme-opcion-seleccionado');
     const iconoEstado = this.botonOpcionEnvioDomicilio.querySelector('.psme-icono-select');
-    iconoEstado.innerHTML = `{% render 'icon-estado-off' %}`;
+    iconoEstado.innerHTML = `${window.shopIcons.icon_estado_off}`;
   }
 
   desactivarBotonRecogerLocal() {
     this.botonOpcionRecogerLocal.classList.remove('psme-opcion-seleccionado');
     const iconoEstado = this.botonOpcionRecogerLocal.querySelector('.psme-icono-select');
-    iconoEstado.innerHTML = `{% render 'icon-estado-off' %}`;
+    iconoEstado.innerHTML = `${window.shopIcons.icon_estado_off}`;
+
   }
 
   // Helpers para todo el componente
