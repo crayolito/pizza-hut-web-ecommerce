@@ -493,10 +493,10 @@ class InicioSesion extends HTMLElement {
           'ph-datos-usuario',
           JSON.stringify({
             nombre: `pizzaHut${optenerNumero}`,
-            celular: this.input.value || '----',
+            celular: this.input.value || '',
             apellido: `pizzaHut${optenerNumero}`,
             email: `pizzaHut${optenerNumero}@gmail.com`,
-            ci: '----'
+            ci: ''
           })
         );
       }, 3000);
