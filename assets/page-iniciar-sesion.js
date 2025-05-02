@@ -55,7 +55,23 @@ class InicioSesion extends HTMLElement {
     this.btnIniciarSesion.addEventListener('click', this.iniciarSesion.bind(this));
     // this.btnGoogle.addEventListener('click', this.iniciarSesionGoogle.bind(this));
     // this.btnFacebook.addEventListener('click', this.iniciarSesionFacebook.bind(this));
+    document.addEventListener('click', (event) => {
+      // Verificar si ambos contenedores están visibles
+      if (this.containerGeneral.style.display === 'flex' && this.containerVerificarNumero.style.display === 'flex') {
+        // Si el clic fue dentro del containerGeneral pero NO dentro del containerVerificarNumero
+        if (this.containerGeneral.contains(event.target) && !this.containerVerificarNumero.contains(event.target)) {
+          this.containerGeneral.style.display = 'none';
+        }
+      }
+    });
 
+    // Agregar evento para la tecla Enter
+    document.addEventListener('keydown', (event) => {
+      // Verificar si la tecla presionada es Enter y si los contenedores están visibles
+      if (event.key === 'Enter' && this.containerGeneral.style.display === 'flex' && this.containerVerificarNumero.style.display === 'flex') {
+        this.containerGeneral.style.display = 'none';
+      }
+    });
 
     // INICIALIZAR ELEMENTOS
     this.reiniciarProceso();
