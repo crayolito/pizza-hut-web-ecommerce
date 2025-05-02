@@ -527,12 +527,14 @@ class InicioSesion extends HTMLElement {
               ordenesPendientes: []
             })
           );
+          MensajeCargaDatos.ocultar();
           window.location.href = '/pages/perfil';
         } else {
           this.estadoCliente = "si-existe";
           datosUsuario = await this.traerTodaInfoUsuario(existeEsteUsuario);
           // const ordenesPagadas = await this.traerOrdenesCompletadas(dataUsuario);
           // const ordenesPendientes = await this.traerOrdenesPendientes(dataUsuario);
+          MensajeCargaDatos.ocultar();
           this.containerGeneral.style.display = 'flex';
           this.containerMensaje.style.display = 'flex';
           this.containerExito.style.display = 'flex';
@@ -568,7 +570,7 @@ class InicioSesion extends HTMLElement {
           this.mensajeErroCodigo.style.display = 'none';
         }, 1500);
       }
-      MensajeCargaDatos.ocultar();
+      // MensajeCargaDatos.ocultar();
 
       // const codigoVerificacion = this.codigoEnviadoCliente || localStorage.getItem('ph-codigo-verificacion');
       // console.log('Código ingresadoo:', {
