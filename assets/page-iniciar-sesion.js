@@ -311,7 +311,7 @@ class InicioSesion extends HTMLElement {
           "lat": "-17.51041339757574",
           "lng": "-63.164604605594825",
           "indicaciones": "Plaza Principal de Warnes, Santa Cruz.",
-          "alias": "Ubicación de entrega",
+          "alias": "Ubicación de entrega"
         }
       ]
     };
