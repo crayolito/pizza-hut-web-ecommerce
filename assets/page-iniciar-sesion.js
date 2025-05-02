@@ -300,12 +300,12 @@ class InicioSesion extends HTMLElement {
 
   async crearUnNuevoUsuario() {
     // Verificar que tenemos los datos necesarios
-    if (!this.input?.value || !this.codigoEnviadoCliente) {
-      return {
-        exito: false,
-        mensaje: "Faltan datos necesarios para crear el usuario"
-      };
-    }
+    // if (!this.input?.value || !this.codigoEnviadoCliente) {
+    //   return {
+    //     exito: false,
+    //     mensaje: "Faltan datos necesarios para crear el usuario"
+    //   };
+    // }
 
     // Convertir los datos adicionales a formato JSON para el metafield
     const metafieldValue = `{
