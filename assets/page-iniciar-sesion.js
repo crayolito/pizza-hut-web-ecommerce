@@ -298,7 +298,7 @@ class InicioSesion extends HTMLElement {
     }
   }
 
-  async crearUnNuevoUsuario(datos) {
+  async crearUnNuevoUsuario() {
     // Convertir los datos adicionales a formato JSON string para el metafield
     const metafieldValue = {
       "nit": "",
@@ -422,6 +422,85 @@ class InicioSesion extends HTMLElement {
         exito: false,
         mensaje: error.message
       };
+    }
+  }
+
+  async traerTodaInfoUsuario(id) {
+    // Convertir el ID numérico a formato GID si es necesario
+    const idGID = id.includes('gid://') ? id : `gid://shopify/Customer/${id}`;
+
+    const graphQLQuery = `
+      query GetCustomerMetafield {
+        customer(id: "${idGID}") {
+          id
+          firstName
+          lastName
+          email
+          phone
+          metafield(namespace: "informacion", key: "extra") {
+            id
+            namespace
+            key
+            value
+          }
+        }
+      }
+    `;
+
+    try {
+      // Realizar la solicitud
+      const respuesta = await fetch(window.urlConsulta, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Shopify-Access-Token': window.keyBackendShopify,
+        },
+        body: JSON.stringify({ query: graphQLQuery }),
+      });
+
+      if (!respuesta.ok) {
+        throw new Error(`Error de red: ${respuesta.status} ${respuesta.statusText}`);
+      }
+
+      const datos = await respuesta.json();
+
+      // Verificar si hay datos del cliente
+      if (datos.data?.customer) {
+        const customer = datos.data.customer;
+
+        // Parsear el valor del metafield si existe
+        let metafieldData = {};
+        if (customer.metafield?.value) {
+          try {
+            metafieldData = JSON.parse(customer.metafield.value);
+          } catch (e) {
+            console.error("Error al parsear metafield JSON:", e);
+          }
+        }
+
+        // Construir y devolver el objeto con toda la información
+        return {
+          id: customer.id,
+          firstName: customer.firstName,
+          lastName: customer.lastName,
+          email: customer.email,
+          phone: customer.phone,
+          metafield: customer.metafield,
+          // Incluir los datos parseados del metafield directamente en el objeto
+          nit: metafieldData.nit,
+          ci: metafieldData.ci,
+          fecha: metafieldData.fecha,
+          permisosHutCoins: metafieldData.permisosHutCoins,
+          direcciones: metafieldData.direcciones || []
+        };
+      } else {
+        console.log('No se encontró información del usuario');
+        return undefined;
+      }
+
+    } catch (error) {
+      console.error("Error al obtener información del usuario:", error);
+      return undefined;
     }
   }
 
