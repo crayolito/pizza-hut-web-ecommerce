@@ -599,8 +599,8 @@ class InicioSesion extends HTMLElement {
               direcciones: datosUsuario.direcciones,
               razon_social: datosUsuario.razon_social,
               nit: datosUsuario.nit,
-              fecha_nacimiento: false,
-              permisosHutCoins: datosUsuario.permisosHutCoins,
+              fecha_nacimiento: datosUsuario.fecha_nacimiento,
+              permisosHutCoins: false,
               ordenesPagadas: [],
               ordenesPendientes: []
             })
@@ -642,7 +642,7 @@ class InicioSesion extends HTMLElement {
             this.containerMensaje.style.display = 'none';
             this.containerExito.style.display = 'none';
             window.location.href = '/';
-          }, 3000);
+          }, 2000);
           return;
         }
       } else {
