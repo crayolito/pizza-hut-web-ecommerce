@@ -316,32 +316,30 @@ class InicioSesion extends HTMLElement {
       ]
     };
 
-    // El problema principal está en la forma en que se construye la consulta GraphQL
-    // Al usar interpolación de cadenas con JSON.stringify, se pueden escapar mal las comillas
 
     // Enfoque correcto: usar variables separadas para la consulta GraphQL
     const graphQLMutation = `
-      mutation customerCreate($input: CustomerCreateInput!) {
-        customerCreate(input: $input) {
-          customer {
-            id
-            firstName
-            lastName
-            email
-            phone
-            metafield(namespace: "informacion", key: "extra") {
+        mutation customerCreate($input: CustomerCreateInput!) {
+          customerCreate(input: $input) {
+            customer {
               id
-              namespace
-              key
-              value
+              firstName
+              lastName
+              email
+              phone
+              metafield(namespace: "informacion", key: "extra") {
+                id
+                namespace
+                key
+                value
+              }
+            }
+            userErrors {
+              field
+              message
             }
           }
-          userErrors {
-            field
-            message
-          }
         }
-      }
     `;
 
     // Crear el objeto de variables que se pasará separadamente
