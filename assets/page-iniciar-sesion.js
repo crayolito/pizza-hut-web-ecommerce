@@ -649,6 +649,9 @@ class InicioSesion extends HTMLElement {
         this.mensajeErroCodigo.style.display = 'flex';
         setTimeout(() => {
           this.mensajeErroCodigo.style.display = 'none';
+          this.inputs.forEach((input) => {
+            input.value = '';
+          });
         }, 1500);
       }
       // MensajeCargaDatos.ocultar();
