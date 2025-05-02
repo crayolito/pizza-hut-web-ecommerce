@@ -18,7 +18,7 @@ class InicioSesion extends HTMLElement {
 
     // Variable para almacenar el resultado de la confirmaciónn
     this.confirmationResult = null;
-    this.urlConsulta = "https://pizza-hut-bo.myshopify.com/admin/api/2025-04/graphql.json";
+    this.urlConsulta = "https://pizza-hut-bo.myshopify.com/admin/api/2025-01/graphql.json";
     this.myTest = 'shpat_' + '45f4a7476152f4881d058f87ce063698';
     // Inicializar componente
     // this.initializeFirebase();
@@ -264,11 +264,11 @@ class InicioSesion extends HTMLElement {
 
     try {
       // Realizar la solicitud
-      const respuesta = await fetch("https://pizza-hut-bo.myshopify.com/admin/api/2025-04/graphql.json", {
+      const respuesta = await fetch(window.urlConsulta, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'X-Shopify-Access-Token': this.myTest,
+          'X-Shopify-Access-Token': window.backendShopify,
         },
         body: JSON.stringify({
           query: graphQLQuery,
@@ -631,6 +631,7 @@ class InicioSesion extends HTMLElement {
         MensajeCargaDatos.mostrar('Verificando código ...');
         // Si el codigo es correcto hacerr
         const existeEsteUsuario = await this.porNroTelefonoUsuarioVerificar(`+591${this.input.value}`);
+        console.log('ID de usuario encontrado:', existeEsteUsuario);
         if (existeEsteUsuario == undefined) {
           this.estadoCliente = "no-existe";
           datosUsuario = await this.crearUnNuevoUsuario();
