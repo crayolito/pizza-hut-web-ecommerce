@@ -193,13 +193,13 @@ class InicioSesion extends HTMLElement {
       '_blank'
     );
 
-    document.addEventListener('click', (event) => {
-      if (this.containerGeneral.style.display == 'flex') {
-        if (!this.containerMensaje.contains(event.target)) {
-          this.containerGeneral.style.display = 'none';
-        }
-      }
-    });
+    // document.addEventListener('click', (event) => {
+    //   if (this.containerGeneral.style.display == 'flex') {
+    //     if (!this.containerMensaje.contains(event.target)) {
+    //       this.containerGeneral.style.display = 'none';
+    //     }
+    //   }
+    // });
 
 
 
