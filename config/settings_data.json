@@ -130,7 +130,7 @@
     "cart_color_scheme": "scheme-1",
     "keyGoogleMap": "AIzaSyAzBQg6Gbsg-bvZ3_jPAjoCbCj5Xva-Bls",
     "urlConsulta": "https://pizza-hut-bo.myshopify.com/admin/api/2025-01/graphql.json",
-    "keyBackendShopify": "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",
+    "keyBackendShopify": "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",
 
     "ubicacion_base": "{ lat: -17.783315017953004, lng: -63.18214577296119 }",
     "sections": {
