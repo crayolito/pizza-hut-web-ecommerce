@@ -220,10 +220,6 @@ class InicioSesion extends HTMLElement {
       // });
     }, 3000);
 
-
-
-
-
     // // Ingresar el valor dentro del this.mensajeVerificarNumeroo
     // this.mensajeVerificarNumero.innerHTML = `
     //   Enviamos un código de verificación de 4 dígitos a tu  número de WhatsApp *****${this.input.value.slice(
@@ -300,23 +296,56 @@ class InicioSesion extends HTMLElement {
     }
   }
 
-  async traerTodaInfoUsuario(id) {
-    // Convertir el ID numérico a formato GID si es necesario
-    const idGID = id.includes('gid://') ? id : `gid://shopify/Customer/${id}`;
+  async crearUnNuevoUsuario(datos) {
+    // Convertir los datos adicionales a formato JSON string para el metafield
+    const metafieldValue = {
+      "nit": "",
+      "razon_social": "",
+      "fecha": "",
+      "permisosHutCoins": "",
+      "ci": "",
+      "direcciones": [
+        {
+          "lat": "-17.51041339757574",
+          "lng": "-63.164604605594825",
+          "indicaciones": "Plaza Principal de Warnes, Santa Cruz.",
+          "alias": "Ubicación de entrega",
+        }
+      ]
+    };
 
-    const graphQLQuery = `
-      query GetCustomerMetafield {
-        customer(id: "${idGID}") {
-          id
-          firstName
-          lastName
-          email
-          phone
-          metafield(namespace: "informacion", key: "extra") {
+    const graphQLMutation = `
+      mutation CreateCustomerWithMetafields {
+        customerCreate(input: {
+          firstName: "pizzaHut${this.codigoEnviadoCliente}",
+          lastName: "pizzaHut${this.codigoEnviadoCliente}",
+          email: "pizzaHut${this.codigoEnviadoCliente}@gmail.com",
+          phone: "+591${this.input.value}",
+          metafields: [
+            {
+              namespace: "informacion",
+              key: "extra",
+              type: "JSON string",
+              value: ${JSON.stringify(JSON.stringify(metafieldValue))}
+            }
+          ]
+        }) {
+          customer {
             id
-            namespace
-            key
-            value
+            firstName
+            lastName
+            email
+            phone
+            metafield(namespace: "informacion", key: "extra") {
+              id
+              namespace
+              key
+              value
+            }
+          }
+          userErrors {
+            field
+            message
           }
         }
       }
@@ -330,7 +359,7 @@ class InicioSesion extends HTMLElement {
           'Content-Type': 'application/json',
           'X-Shopify-Access-Token': window.keyBackendShopify,
         },
-        body: JSON.stringify({ query: graphQLQuery }),
+        body: JSON.stringify({ query: graphQLMutation }),
       });
 
       if (!respuesta.ok) {
@@ -339,11 +368,21 @@ class InicioSesion extends HTMLElement {
 
       const datos = await respuesta.json();
 
-      // Verificar si hay datos del cliente
-      if (datos.data?.customer) {
-        const customer = datos.data.customer;
+      // Verificar si hay errores
+      if (datos.data?.customerCreate?.userErrors?.length > 0) {
+        console.error("Errores al crear usuario:", datos.data.customerCreate.userErrors);
+        return {
+          exito: false,
+          errores: datos.data.customerCreate.userErrors,
+          mensaje: "Error al crear el usuario"
+        };
+      }
 
-        // Parsear el valor del metafield si existe
+      // Verificar si se creó el cliente
+      if (datos.data?.customerCreate?.customer) {
+        const customer = datos.data.customerCreate.customer;
+
+        // Extraer el metafield
         let metafieldData = {};
         if (customer.metafield?.value) {
           try {
@@ -353,34 +392,36 @@ class InicioSesion extends HTMLElement {
           }
         }
 
-        // Construir y devolver el objeto con toda la información
+        // Construir y devolver el objeto con toda la información en el formato requerido
         return {
-          id: customer.id,
-          firstName: customer.firstName,
-          lastName: customer.lastName,
+          nombre: customer.firstName,
+          celular: customer.phone.replace("+591", ""),
+          apellido: customer.lastName,
           email: customer.email,
-          phone: customer.phone,
-          metafield: customer.metafield,
-          // Incluir los datos parseados del metafield directamente en el objeto
-          nit: metafieldData.nit,
-          razon_social: metafieldData.razon_social,
-          ci: metafieldData.ci,
-          fecha: metafieldData.fecha,
-          permisosHutCoins: metafieldData.permisosHutCoins,
-          direcciones: metafieldData.direcciones || []
+          ci: metafieldData.ci || "",
+          direcciones: metafieldData.direcciones || [],
+          razon_social: metafieldData.razon_social || "",
+          nit: metafieldData.nit || "",
+          fecha_nacimiento: metafieldData.fecha || "",
+          permisosHutCoins: metafieldData.permisosHutCoins || false,
+          id: customer.id
         };
       } else {
-        console.log('No se encontró información del usuario');
-        return undefined;
+        console.log('No se pudo crear el usuario');
+        return {
+          exito: false,
+          mensaje: "No se pudo crear el usuario"
+        };
       }
 
     } catch (error) {
-      console.error("Error al obtener información del usuario:", error);
-      return undefined;
+      console.error("Error al crear usuario:", error);
+      return {
+        exito: false,
+        mensaje: error.message
+      };
     }
   }
-
-  async crearUnNuevoUsuario() { }
 
   iniciarSesionGoogle() {
     // Lógica para iniciar sesión con Google
@@ -456,20 +497,38 @@ class InicioSesion extends HTMLElement {
       const optenerNumero = inputs.map((input) => input.value).join('');
       const codigoVerificacion = this.codigoEnviadoCliente || localStorage.getItem('ph-codigo-verificacion');
       // Verificar el codigo ingresado
-
+      MensajeCargaDatos.mostrar('Verificando código ...');
+      var datosUsuario = null;
       if (`${optenerNumero}` == `${codigoVerificacion}`) {
         // Si el codigo es correcto hacer
-        const dataUsuario = await this.porNroTelefonoUsuarioVerificar(`+591${this.input.value}`);
-        if (dataUsuario == undefined) {
+        const existeEsteUsuario = await this.porNroTelefonoUsuarioVerificar(`+591${this.input.value}`);
+        if (existeEsteUsuario == undefined) {
           MensajeCargaDatos.mostrar('Enviando código de verificación...');
           this.estadoCliente = "no-existe";
+          datosUsuario = await this.crearUnNuevoUsuario();
+
+          localStorage.setItem(
+            'ph-datos-usuario',
+            JSON.stringify({
+              nombre: datosUsuario.nombre,
+              celular: datosUsuario.celular,
+              apellido: datosUsuario.apellido,
+              email: datosUsuario.email,
+              ci: datosUsuario.ci,
+              direcciones: datosUsuario.direcciones,
+              razon_social: datosUsuario.razon_social,
+              nit: datosUsuario.nit,
+              fecha_nacimiento: datosUsuario.fecha_nacimiento,
+              permisosHutCoins: datosUsuario.permisosHutCoins,
+              ordenesPagadas: [],
+              ordenesPendientes: []
+            })
+          );
         } else {
-          MensajeCargaDatos.mostrar('Procesando datos ...');
           this.estadoCliente = "si-existe";
-          const datosUsuario = await this.traerTodaInfoUsuario(dataUsuario);
+          datosUsuario = await this.traerTodaInfoUsuario(existeEsteUsuario);
           // const ordenesPagadas = await this.traerOrdenesCompletadas(dataUsuario);
           // const ordenesPendientes = await this.traerOrdenesPendientes(dataUsuario);
-          MensajeCargaDatos.ocultar();
           this.containerGeneral.style.display = 'flex';
           this.containerMensaje.style.display = 'flex';
           this.containerExito.style.display = 'flex';
@@ -477,16 +536,16 @@ class InicioSesion extends HTMLElement {
           localStorage.setItem(
             'ph-datos-usuario',
             JSON.stringify({
-              nombre: dataUsuario.nombre,
-              celular: dataUsuario.celular,
-              apellido: dataUsuario.apellido,
-              email: dataUsuario.email,
-              ci: dataUsuario.ci,
-              direcciones: dataUsuario.direcciones,
-              razon_social: dataUsuario.razon_social,
-              nit: dataUsuario.nit,
-              fecha_nacimiento: dataUsuario.fecha_nacimiento,
-              permisosHutCoins: dataUsuario.permisosHutCoins,
+              nombre: datosUsuario.nombre,
+              celular: datosUsuario.celular,
+              apellido: datosUsuario.apellido,
+              email: datosUsuario.email,
+              ci: datosUsuario.ci,
+              direcciones: datosUsuario.direcciones,
+              razon_social: datosUsuario.razon_social,
+              nit: datosUsuario.nit,
+              fecha_nacimiento: datosUsuario.fecha_nacimiento,
+              permisosHutCoins: datosUsuario.permisosHutCoins,
               ordenesPagadas: [],
               ordenesPendientes: []
             })
@@ -500,11 +559,12 @@ class InicioSesion extends HTMLElement {
           }, 1000);
         }
       } else {
-        this.mensajeErroCodigo.style.visibility = 'visible';
+        this.mensajeErroCodigo.style.display = 'flex';
         setTimeout(() => {
-          this.mensajeErroCodigo.style.visibility = 'hidden';
+          this.mensajeErroCodigo.style.display = 'none';
         }, 1500);
       }
+      MensajeCargaDatos.ocultar();
 
       // const codigoVerificacion = this.codigoEnviadoCliente || localStorage.getItem('ph-codigo-verificacion');
       // console.log('Código ingresadoo:', {
@@ -532,28 +592,28 @@ class InicioSesion extends HTMLElement {
     // const user = result.user;
     // console.log('Usuario verificado:', user);
 
-    console.log('Código de verificación enviado');
-    this.containerVerificarNumero.style.display = 'none';
-    this.containerMensaje.style.display = 'none';
-    this.containerSnipper.style.display = 'flex';
+    // console.log('Código de verificación enviado');
+    // this.containerVerificarNumero.style.display = 'none';
+    // this.containerMensaje.style.display = 'none';
+    // this.containerSnipper.style.display = 'flex';
 
-    setTimeout(() => {
-      this.ocultarElementosBase();
-      window.location.href = '/';
-      inputs.forEach((input) => {
-        input.value = '';
-      });
-      localStorage.setItem(
-        'ph-datos-usuario',
-        JSON.stringify({
-          nombre: `pizzaHut${optenerNumero}`,
-          celular: this.input.value || '',
-          apellido: `pizzaHut${optenerNumero}`,
-          email: `pizzaHut${optenerNumero}@gmail.com`,
-          ci: ''
-        })
-      );
-    }, 3000);
+    // setTimeout(() => {
+    //   this.ocultarElementosBase();
+    //   window.location.href = '/';
+    //   inputs.forEach((input) => {
+    //     input.value = '';
+    //   });
+    //   localStorage.setItem(
+    //     'ph-datos-usuario',
+    //     JSON.stringify({
+    //       nombre: `pizzaHut${optenerNumero}`,
+    //       celular: this.input.value || '',
+    //       apellido: `pizzaHut${optenerNumero}`,
+    //       email: `pizzaHut${optenerNumero}@gmail.com`,
+    //       ci: ''
+    //     })
+    //   );
+    // }, 3000);
   }
 
   ocultarElementosBase() {
