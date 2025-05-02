@@ -472,7 +472,7 @@ class InicioSesion extends HTMLElement {
   }
 
   async traerTodaInfoUsuario(id) {
-    // Convertir el ID numérico a formato GID si es necesario
+    // Convertir el ID numérico a formato GID si es necesarioo
     const idGID = id.includes('gid://') ? id : `gid://shopify/Customer/${id}`;
 
     const graphQLQuery = `
