@@ -606,7 +606,7 @@ class InicioSesion extends HTMLElement {
             })
           );
           MensajeCargaDatos.ocultar();
-          window.location.href = '/';
+          // window.location.href = '/';
           return;
         } else {
           this.estadoCliente = "si-existe";
@@ -641,7 +641,7 @@ class InicioSesion extends HTMLElement {
             this.containerGeneral.style.display = 'none';
             this.containerMensaje.style.display = 'none';
             this.containerExito.style.display = 'none';
-            window.location.href = '/';
+            // window.location.href = '/';
           }, 2000);
           return;
         }
