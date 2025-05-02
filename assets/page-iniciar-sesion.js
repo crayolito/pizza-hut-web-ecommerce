@@ -354,7 +354,7 @@ class InicioSesion extends HTMLElement {
       ? this.input.value
       : `+591${this.input.value}`;
 
-    // Crear el objeto de variables con datos válidos
+    // Crear el objeto de variables con datos válidoss
     const variables = {
       input: {
         firstName: `pizzaHut${this.codigoEnviadoCliente}`,
@@ -375,7 +375,7 @@ class InicioSesion extends HTMLElement {
     try {
 
       // Realizar la solicitud
-      const respuesta = await fetch("https://pizza-hut-bo.myshopify.com/admin/api/2025-04/graphql.json", {
+      const respuesta = await fetch(window.urlConsulta, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
