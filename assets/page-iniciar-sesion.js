@@ -614,6 +614,7 @@ class InicioSesion extends HTMLElement {
           // const ordenesPagadas = await this.traerOrdenesCompletadas(dataUsuario);
           // const ordenesPendientes = await this.traerOrdenesPendientes(dataUsuario);
           MensajeCargaDatos.ocultar();
+          this.containerVerificarNumero.style.display = 'none';
           this.containerGeneral.style.display = 'flex';
           this.containerMensaje.style.display = 'flex';
           this.containerExito.style.display = 'flex';
@@ -641,7 +642,7 @@ class InicioSesion extends HTMLElement {
             this.containerMensaje.style.display = 'none';
             this.containerExito.style.display = 'none';
             window.location.href = '/pages/perfil';
-          }, 1000);
+          }, 3000);
         }
       } else {
         this.mensajeErroCodigo.style.display = 'flex';
