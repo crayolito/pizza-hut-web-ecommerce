@@ -220,7 +220,7 @@ class InicioSesion extends HTMLElement {
       //     }
       //   }
       // });
-    }, 3000);
+    }, 1000);
 
     // // Ingresar el valor dentro del this.mensajeVerificarNumeroo
     // this.mensajeVerificarNumero.innerHTML = `
