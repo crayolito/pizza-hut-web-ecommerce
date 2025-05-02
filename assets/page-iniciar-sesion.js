@@ -299,7 +299,7 @@ class InicioSesion extends HTMLElement {
   }
 
   async crearUnNuevoUsuario() {
-    // Convertir los datos adicionales a formato JSON string para el metafiell
+    // Convertir los datos adicionales a formato JSON para el metafield
     const metafieldValue = {
       "nit": "",
       "razon_social": "",
@@ -311,27 +311,18 @@ class InicioSesion extends HTMLElement {
           "lat": "-17.51041339757574",
           "lng": "-63.164604605594825",
           "indicaciones": "Plaza Principal de Warnes, Santa Cruz.",
-          "alias": "Ubicación de entrega"
+          "alias": "Ubicación de entrega"  // Eliminada la coma final
         }
       ]
     };
 
+    // El problema principal está en la forma en que se construye la consulta GraphQL
+    // Al usar interpolación de cadenas con JSON.stringify, se pueden escapar mal las comillas
+
+    // Enfoque correcto: usar variables separadas para la consulta GraphQL
     const graphQLMutation = `
-      mutation CreateCustomerWithMetafields {
-        customerCreate(input: {
-          firstName: "pizzaHut${this.codigoEnviadoCliente}",
-          lastName: "pizzaHut${this.codigoEnviadoCliente}",
-          email: "pizzaHut${this.codigoEnviadoCliente}@gmail.com",
-          phone: "+591${this.input.value}",
-          metafields: [
-            {
-              namespace: "informacion",
-              key: "extra",
-              type: "json_string",
-              value: ${JSON.stringify(metafieldValue)}
-            }
-          ]
-        }) {
+      mutation customerCreate($input: CustomerCreateInput!) {
+        customerCreate(input: $input) {
           customer {
             id
             firstName
@@ -353,6 +344,24 @@ class InicioSesion extends HTMLElement {
       }
     `;
 
+    // Crear el objeto de variables que se pasará separadamente
+    const variables = {
+      input: {
+        firstName: `pizzaHut${this.codigoEnviadoCliente}`,
+        lastName: `pizzaHut${this.codigoEnviadoCliente}`,
+        email: `pizzaHut${this.codigoEnviadoCliente}@gmail.com`,
+        phone: `+591${this.input.value}`,
+        metafields: [
+          {
+            namespace: "informacion",
+            key: "extra",
+            type: "json_string",
+            value: JSON.stringify(metafieldValue)
+          }
+        ]
+      }
+    };
+
     try {
       // Realizar la solicitud
       const respuesta = await fetch(window.urlConsulta, {
@@ -361,7 +370,10 @@ class InicioSesion extends HTMLElement {
           'Content-Type': 'application/json',
           'X-Shopify-Access-Token': window.keyBackendShopify,
         },
-        body: JSON.stringify({ query: graphQLMutation }),
+        body: JSON.stringify({
+          query: graphQLMutation,
+          variables: variables
+        }),
       });
 
       if (!respuesta.ok) {
@@ -392,21 +404,28 @@ class InicioSesion extends HTMLElement {
             metafieldData = JSON.parse(customer.metafield.value);
           } catch (e) {
             console.error("Error al parsear metafield JSON:", e);
+            return {
+              exito: false,
+              mensaje: "Error al procesar la información del usuario"
+            };
           }
         }
 
-        // Construir y devolver el objeto con toda la información en el formato requerido
+        // Construir y devolver el objeto con toda la información
         return {
-          nombre: customer.firstName,
-          celular: customer.phone.replace("+591", ""),
-          apellido: customer.lastName,
-          email: customer.email,
-          ci: metafieldData.ci || "",
-          direcciones: metafieldData.direcciones || [],
-          razon_social: metafieldData.razon_social || "",
-          nit: metafieldData.nit || "",
-          fecha_nacimiento: metafieldData.fecha || "",
-          permisosHutCoins: metafieldData.permisosHutCoins || false,
+          exito: true,
+          datos: {
+            nombre: customer.firstName,
+            celular: customer.phone.replace("+591", ""),
+            apellido: customer.lastName,
+            email: customer.email,
+            ci: metafieldData.ci || "",
+            direcciones: metafieldData.direcciones || [],
+            razon_social: metafieldData.razon_social || "",
+            nit: metafieldData.nit || "",
+            fecha_nacimiento: metafieldData.fecha || "",
+            permisosHutCoins: metafieldData.permisosHutCoins || false,
+          }
         };
       } else {
         console.log('No se pudo crear el usuario');
@@ -415,7 +434,6 @@ class InicioSesion extends HTMLElement {
           mensaje: "No se pudo crear el usuario"
         };
       }
-
     } catch (error) {
       console.error("Error al crear usuario:", error);
       return {
