@@ -53,13 +53,6 @@ class InicioSesion extends HTMLElement {
     // this.btnGoogle.addEventListener('click', this.iniciarSesionGoogle.bind(this));
     // this.btnFacebook.addEventListener('click', this.iniciarSesionFacebook.bind(this));
 
-    document.addEventListener('click', (event) => {
-      if (this.containerGeneral.style.display == 'flex') {
-        if (!this.containerMensaje.contains(event.target)) {
-          this.containerGeneral.style.display = 'none';
-        }
-      }
-    });
 
     // INICIALIZAR ELEMENTOS
     this.reiniciarProceso();
@@ -200,6 +193,13 @@ class InicioSesion extends HTMLElement {
       '_blank'
     );
 
+    document.addEventListener('click', (event) => {
+      if (this.containerGeneral.style.display == 'flex') {
+        if (!this.containerMensaje.contains(event.target)) {
+          this.containerGeneral.style.display = 'none';
+        }
+      }
+    });
 
 
 
