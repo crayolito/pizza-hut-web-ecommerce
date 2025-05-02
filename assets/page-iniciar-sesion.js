@@ -53,6 +53,8 @@ class InicioSesion extends HTMLElement {
     this.input2Verificacion.addEventListener('input', this.verificarNumero.bind(this));
     this.input3Verificacion.addEventListener('input', this.verificarNumero.bind(this));
     this.input4Verificacion.addEventListener('input', this.verificarNumero.bind(this));
+    this.input5Verificacion.addEventListener('input', this.verificarNumero.bind(this));
+    this.input6Verificacion.addEventListener('input', this.verificarNumero.bind(this));
     this.btnIniciarSesion.addEventListener('click', this.iniciarSesion.bind(this));
     // this.btnGoogle.addEventListener('click', this.iniciarSesionGoogle.bind(this));
     // this.btnFacebook.addEventListener('click', this.iniciarSesionFacebook.bind(this));
@@ -518,7 +520,7 @@ class InicioSesion extends HTMLElement {
               direcciones: datosUsuario.direcciones,
               razon_social: datosUsuario.razon_social,
               nit: datosUsuario.nit,
-              fecha_nacimiento: datosUsuario.fecha_nacimiento,
+              fecha_nacimiento: false,
               permisosHutCoins: datosUsuario.permisosHutCoins,
               ordenesPagadas: [],
               ordenesPendientes: []
