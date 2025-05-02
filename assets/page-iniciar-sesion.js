@@ -652,7 +652,7 @@ class InicioSesion extends HTMLElement {
             })
           );
           MensajeCargaDatos.ocultar();
-          window.location.href = '/';
+          // window.location.href = '/';
           return;
         } else {
           this.estadoCliente = "si-existe";
