@@ -634,7 +634,7 @@ class InicioSesion extends HTMLElement {
         const existeEsteUsuario = await this.porNroTelefonoUsuarioVerificar(`+591${this.input.value}`);
         if (existeEsteUsuario == undefined) {
           this.estadoCliente = "no-existe";
-          datosUsuario = await this.crearUnNuevoUsuario();
+          // datosUsuario = await this.crearUnNuevoUsuario();
           localStorage.setItem(
             'ph-datos-usuario',
             JSON.stringify({
