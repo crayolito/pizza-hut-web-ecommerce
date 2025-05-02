@@ -624,7 +624,7 @@ class InicioSesion extends HTMLElement {
     if (todosLlenos) {
       const optenerNumero = inputs.map((input) => input.value).join('');
       const codigoVerificacion = this.codigoEnviadoCliente || localStorage.getItem('ph-codigo-verificacion');
-      // Verificar el codigo ingresado
+      // Verificar el codigo ingresadoo
       var datosUsuario = null;
       if (`${optenerNumero}` == `${codigoVerificacion}`) {
         this.containerGeneral.style.display = 'none';
