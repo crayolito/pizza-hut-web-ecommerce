@@ -299,7 +299,7 @@ class InicioSesion extends HTMLElement {
   }
 
   async crearUnNuevoUsuario() {
-    // Convertir los datos adicionales a formato JSON string para el metafield
+    // Convertir los datos adicionales a formato JSON string para el metafiel
     const metafieldValue = {
       "nit": "",
       "razon_social": "",
