@@ -376,7 +376,7 @@ class InicioSesion extends HTMLElement {
       console.log("Enviando datos:", JSON.stringify(variables));
 
       // Realizar la solicitud
-      const respuesta = await fetch(window.urlConsulta, {
+      const respuesta = await fetch("https://pizza-hut-bo.myshopify.com/admin/api/2025-04/graphql.json", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -496,7 +496,7 @@ class InicioSesion extends HTMLElement {
 
     try {
       // Realizar la solicitud
-      const respuesta = await fetch(window.urlConsulta, {
+      const respuesta = await fetch("https://pizza-hut-bo.myshopify.com/admin/api/2025-04/graphql.json", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -634,7 +634,7 @@ class InicioSesion extends HTMLElement {
         const existeEsteUsuario = await this.porNroTelefonoUsuarioVerificar(`+591${this.input.value}`);
         if (existeEsteUsuario == undefined) {
           this.estadoCliente = "no-existe";
-          // datosUsuario = await this.crearUnNuevoUsuario();
+          datosUsuario = await this.crearUnNuevoUsuario();
           localStorage.setItem(
             'ph-datos-usuario',
             JSON.stringify({
