@@ -299,61 +299,74 @@ class InicioSesion extends HTMLElement {
   }
 
   async crearUnNuevoUsuario() {
+    // Verificar que tenemos los datos necesarios
+    if (!this.input?.value || !this.codigoEnviadoCliente) {
+      return {
+        exito: false,
+        mensaje: "Faltan datos necesarios para crear el usuario"
+      };
+    }
+
     // Convertir los datos adicionales a formato JSON para el metafield
     const metafieldValue = {
       "nit": "",
       "razon_social": "",
       "fecha": "",
-      "permisosHutCoins": "",
+      "permisosHutCoins": false,
       "ci": "",
       "direcciones": [
         {
           "lat": "-17.51041339757574",
           "lng": "-63.164604605594825",
           "indicaciones": "Plaza Principal de Warnes, Santa Cruz.",
-          "alias": "Ubicación de entrega"  // Eliminada la coma final
+          "alias": "Ubicación de entrega"
         }
       ]
     };
 
-
     // Enfoque correcto: usar variables separadas para la consulta GraphQL
     const graphQLMutation = `
-        mutation customerCreate($input: CustomerCreateInput!) {
-          customerCreate(input: $input) {
-            customer {
+      mutation customerCreate($input: CustomerCreateInput!) {
+        customerCreate(input: $input) {
+          customer {
+            id
+            firstName
+            lastName
+            email
+            phone
+            metafield(namespace: "informacion", key: "extra") {
               id
-              firstName
-              lastName
-              email
-              phone
-              metafield(namespace: "informacion", key: "extra") {
-                id
-                namespace
-                key
-                value
-              }
-            }
-            userErrors {
-              field
-              message
+              namespace
+              key
+              value
             }
           }
+          userErrors {
+            field
+            message
+          }
         }
+      }
     `;
 
-    // Crear el objeto de variables que se pasará separadamente
+    // Asegurarnos de que el teléfono tenga el formato correcto
+    const phoneNumber = this.input.value.startsWith("+591")
+      ? this.input.value
+      : `+591${this.input.value}`;
+
+    // Crear el objeto de variables con datos válidos
     const variables = {
       input: {
         firstName: `pizzaHut${this.codigoEnviadoCliente}`,
         lastName: `pizzaHut${this.codigoEnviadoCliente}`,
         email: `pizzaHut${this.codigoEnviadoCliente}@gmail.com`,
-        phone: `+591${this.input.value}`,
+        phone: phoneNumber,
+        acceptsMarketing: true,
         metafields: [
           {
             namespace: "informacion",
             key: "extra",
-            type: "json_string",
+            type: "json",
             value: JSON.stringify(metafieldValue)
           }
         ]
@@ -361,6 +374,8 @@ class InicioSesion extends HTMLElement {
     };
 
     try {
+      console.log("Enviando datos:", JSON.stringify(variables));
+
       // Realizar la solicitud
       const respuesta = await fetch(window.urlConsulta, {
         method: 'POST',
@@ -374,20 +389,40 @@ class InicioSesion extends HTMLElement {
         }),
       });
 
-      if (!respuesta.ok) {
-        throw new Error(`Error de red: ${respuesta.status} ${respuesta.statusText}`);
+      // Obtener el texto de la respuesta para debugging
+      const respuestaTexto = await respuesta.text();
+
+      // Intentar parsear la respuesta como JSON
+      let datos;
+      try {
+        datos = JSON.parse(respuestaTexto);
+      } catch (e) {
+        console.error("Error al parsear la respuesta:", respuestaTexto);
+        return {
+          exito: false,
+          mensaje: "Error en la respuesta del servidor"
+        };
       }
 
-      const datos = await respuesta.json();
-      console.log('Datos de respuesta:', datos);
+      console.log('Datos de respuesta completa:', datos);
 
-      // Verificar si hay errores
+      // Verificar si hay errores en la respuesta
+      if (datos.errors) {
+        console.error("Errores de GraphQL:", datos.errors);
+        return {
+          exito: false,
+          errores: datos.errors,
+          mensaje: datos.errors[0]?.message || "Error en la consulta GraphQL"
+        };
+      }
+
+      // Verificar si hay errores específicos de la creación del usuario
       if (datos.data?.customerCreate?.userErrors?.length > 0) {
         console.error("Errores al crear usuario:", datos.data.customerCreate.userErrors);
         return {
           exito: false,
           errores: datos.data.customerCreate.userErrors,
-          mensaje: "Error al crear el usuario"
+          mensaje: datos.data.customerCreate.userErrors[0]?.message || "Error al crear el usuario"
         };
       }
 
@@ -402,10 +437,6 @@ class InicioSesion extends HTMLElement {
             metafieldData = JSON.parse(customer.metafield.value);
           } catch (e) {
             console.error("Error al parsear metafield JSON:", e);
-            return {
-              exito: false,
-              mensaje: "Error al procesar la información del usuario"
-            };
           }
         }
 
@@ -413,6 +444,7 @@ class InicioSesion extends HTMLElement {
         return {
           exito: true,
           datos: {
+            id: customer.id,
             nombre: customer.firstName,
             celular: customer.phone.replace("+591", ""),
             apellido: customer.lastName,
@@ -426,7 +458,7 @@ class InicioSesion extends HTMLElement {
           }
         };
       } else {
-        console.log('No se pudo crear el usuario');
+        console.log('No se pudo crear el usuario, respuesta:', datos);
         return {
           exito: false,
           mensaje: "No se pudo crear el usuario"
