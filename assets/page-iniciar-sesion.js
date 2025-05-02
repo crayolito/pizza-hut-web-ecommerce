@@ -55,6 +55,7 @@ class InicioSesion extends HTMLElement {
     this.btnIniciarSesion.addEventListener('click', this.iniciarSesion.bind(this));
     // this.btnGoogle.addEventListener('click', this.iniciarSesionGoogle.bind(this));
     // this.btnFacebook.addEventListener('click', this.iniciarSesionFacebook.bind(this));
+
     document.addEventListener('click', (event) => {
       // Verificar si ambos contenedores están visibles
       if (this.containerGeneral.style.display === 'flex' && this.containerVerificarNumero.style.display === 'flex') {
