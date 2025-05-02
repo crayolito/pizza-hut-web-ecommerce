@@ -369,6 +369,7 @@ class InicioSesion extends HTMLElement {
       }
 
       const datos = await respuesta.json();
+      console.log('Datos de respuesta:', datos);
 
       // Verificar si hay errores
       if (datos.data?.customerCreate?.userErrors?.length > 0) {
@@ -406,7 +407,6 @@ class InicioSesion extends HTMLElement {
           nit: metafieldData.nit || "",
           fecha_nacimiento: metafieldData.fecha || "",
           permisosHutCoins: metafieldData.permisosHutCoins || false,
-          id: customer.id
         };
       } else {
         console.log('No se pudo crear el usuario');
