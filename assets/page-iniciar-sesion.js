@@ -42,6 +42,9 @@ class InicioSesion extends HTMLElement {
     this.input2Verificacion = this.querySelector('#single-digit2');
     this.input3Verificacion = this.querySelector('#single-digit3');
     this.input4Verificacion = this.querySelector('#single-digit4');
+    this.input4Verificacion = this.querySelector('#single-digit5');
+    this.input4Verificacion = this.querySelector('#single-digit6');
+
 
     // EVENTOS LISTENERS
     this.input.addEventListener('input', this.verificarInput.bind(this));
@@ -420,6 +423,8 @@ class InicioSesion extends HTMLElement {
       this.input2Verificacion,
       this.input3Verificacion,
       this.input4Verificacion,
+      this.input5Verificacion,
+      this.input6Verificacion,
     ];
 
     // Obtener el elemento de entrada actual que desencadenó el evento
