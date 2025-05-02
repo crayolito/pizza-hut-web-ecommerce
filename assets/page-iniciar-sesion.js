@@ -45,7 +45,7 @@ class InicioSesion extends HTMLElement {
     this.input5Verificacion = this.querySelector('#single-digit5');
     this.input6Verificacion = this.querySelector('#single-digit6');
 
-    this.mensajeErroCodigo = this.querySelector('#phpis-mensaje-error');
+    this.mensajeErroCodigo = this.querySelector('.phpis-mensaje-error');
 
     // EVENTOS LISTENERS
     this.input.addEventListener('input', this.verificarInput.bind(this));
@@ -607,6 +607,7 @@ class InicioSesion extends HTMLElement {
           );
           MensajeCargaDatos.ocultar();
           window.location.href = '/';
+          return;
         } else {
           this.estadoCliente = "si-existe";
           datosUsuario = await this.traerTodaInfoUsuario(existeEsteUsuario);
