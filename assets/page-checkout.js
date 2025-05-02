@@ -1832,7 +1832,6 @@ class PageCheckoutPH extends HTMLElement {
           customAttributes: [
             { key: "Metodo Pago", value: metodoPago() },
             { key: "Metodo Entrega", value: this.estadoPagina == "domicilio" ? "Envio a Domicilio" : "Recogo de Local" },
-            { key: "Surcursal", value: dataUsuario.nombre },
             { key: "Coordenadas", value: coordenadasFormatoEnviar() },
             informacionPedido.datosCheckout.nota_para_envio != ""
               ? { key: "Nota para el pedido", value: informacionPedido.datosCheckout.nota_para_envio }
