@@ -45,6 +45,7 @@ class InicioSesion extends HTMLElement {
     this.input5Verificacion = this.querySelector('#single-digit5');
     this.input6Verificacion = this.querySelector('#single-digit6');
 
+    this.mensajeErroCodigo = this.querySelector('#phpis-mensaje-error');
 
     // EVENTOS LISTENERS
     this.input.addEventListener('input', this.verificarInput.bind(this));
@@ -499,8 +500,10 @@ class InicioSesion extends HTMLElement {
           }, 1000);
         }
       } else {
-        // Si el codigo es incorrecto
-        // Mostrar el error de incorrecto por 2 segundos
+        this.mensajeErroCodigo.style.visibility = 'visible';
+        setTimeout(() => {
+          this.mensajeErroCodigo.style.visibility = 'hidden';
+        }, 1500);
       }
 
       // const codigoVerificacion = this.codigoEnviadoCliente || localStorage.getItem('ph-codigo-verificacion');
