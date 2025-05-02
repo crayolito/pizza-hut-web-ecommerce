@@ -499,13 +499,14 @@ class InicioSesion extends HTMLElement {
       const optenerNumero = inputs.map((input) => input.value).join('');
       const codigoVerificacion = this.codigoEnviadoCliente || localStorage.getItem('ph-codigo-verificacion');
       // Verificar el codigo ingresado
-      MensajeCargaDatos.mostrar('Verificando código ...');
       var datosUsuario = null;
       if (`${optenerNumero}` == `${codigoVerificacion}`) {
+        this.containerGeneral.style.display = 'none';
+        this.containerMensaje.style.display = 'none';
+        MensajeCargaDatos.mostrar('Verificando código ...');
         // Si el codigo es correcto hacer
         const existeEsteUsuario = await this.porNroTelefonoUsuarioVerificar(`+591${this.input.value}`);
         if (existeEsteUsuario == undefined) {
-          MensajeCargaDatos.mostrar('Enviando código de verificación...');
           this.estadoCliente = "no-existe";
           datosUsuario = await this.crearUnNuevoUsuario();
 
@@ -526,6 +527,7 @@ class InicioSesion extends HTMLElement {
               ordenesPendientes: []
             })
           );
+          window.location.href = '/pages/perfil';
         } else {
           this.estadoCliente = "si-existe";
           datosUsuario = await this.traerTodaInfoUsuario(existeEsteUsuario);
