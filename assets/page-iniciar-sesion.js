@@ -264,7 +264,7 @@ class InicioSesion extends HTMLElement {
 
     try {
       // Realizar la solicitud
-      const respuesta = await fetch(window.urlConsulta, {
+      const respuesta = await fetch("https://pizza-hut-bo.myshopify.com/admin/api/2025-04/graphql.json", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
