@@ -629,30 +629,30 @@ class InicioSesion extends HTMLElement {
         this.containerGeneral.style.display = 'none';
         this.containerMensaje.style.display = 'none';
         MensajeCargaDatos.mostrar('Verificando código ...');
-        // Si el codigo es correcto hacer
+        // Si el codigo es correcto hacerr
         const existeEsteUsuario = await this.porNroTelefonoUsuarioVerificar(`+591${this.input.value}`);
         if (existeEsteUsuario == undefined) {
           this.estadoCliente = "no-existe";
-          // datosUsuario = await this.crearUnNuevoUsuario();
-          // localStorage.setItem(
-          //   'ph-datos-usuario',
-          //   JSON.stringify({
-          //     nombre: datosUsuario.nombre,
-          //     celular: datosUsuario.celular,
-          //     apellido: datosUsuario.apellido,
-          //     email: datosUsuario.email,
-          //     ci: datosUsuario.ci,
-          //     direcciones: datosUsuario.direcciones,
-          //     razon_social: datosUsuario.razon_social,
-          //     nit: datosUsuario.nit,
-          //     fecha_nacimiento: datosUsuario.fecha_nacimiento,
-          //     permisosHutCoins: false,
-          //     // ordenesPagadas: [],
-          //     // ordenesPendientes: []
-          //   })
-          // );
+          datosUsuario = await this.crearUnNuevoUsuario();
+          localStorage.setItem(
+            'ph-datos-usuario',
+            JSON.stringify({
+              nombre: datosUsuario.nombre,
+              celular: datosUsuario.celular,
+              apellido: datosUsuario.apellido,
+              email: datosUsuario.email,
+              ci: datosUsuario.ci,
+              direcciones: datosUsuario.direcciones,
+              razon_social: datosUsuario.razon_social,
+              nit: datosUsuario.nit,
+              fecha_nacimiento: datosUsuario.fecha_nacimiento,
+              permisosHutCoins: false,
+              ordenesPagadas: [],
+              ordenesPendientes: []
+            })
+          );
           MensajeCargaDatos.ocultar();
-          // window.location.href = '/';
+          window.location.href = '/';
           return;
         } else {
           this.estadoCliente = "si-existe";
