@@ -308,7 +308,7 @@ class InicioSesion extends HTMLElement {
     }
 
     // Convertir los datos adicionales a formato JSON para el metafield
-    const metafieldValue = {
+    const metafieldValue = `{
       "nit": "",
       "razon_social": "",
       "fecha": "",
@@ -322,7 +322,7 @@ class InicioSesion extends HTMLElement {
           "alias": "Ubicación de entrega"
         }
       ]
-    };
+    }`;
 
     // Enfoque correcto: usar variables separadas para la consulta GraphQL
     const graphQLMutation = `
@@ -366,7 +366,7 @@ class InicioSesion extends HTMLElement {
             namespace: "informacion",
             key: "extra",
             type: "json",
-            value: JSON.stringify(metafieldValue)
+            value: metafieldValue
           }
         ]
       }
