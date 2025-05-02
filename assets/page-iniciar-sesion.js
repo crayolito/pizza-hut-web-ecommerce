@@ -561,6 +561,8 @@ class InicioSesion extends HTMLElement {
     this.input2Verificacion.value = '';
     this.input3Verificacion.value = '';
     this.input4Verificacion.value = '';
+    this.input5Verificacion.value = '';
+    this.input6Verificacion.value = '';
 
     // Desactivar el botón de inicio de sesión
     this.btnIniciarSesion.classList.add('desactivado');
