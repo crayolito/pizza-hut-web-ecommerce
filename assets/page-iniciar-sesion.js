@@ -588,7 +588,6 @@ class InicioSesion extends HTMLElement {
         if (existeEsteUsuario == undefined) {
           this.estadoCliente = "no-existe";
           datosUsuario = await this.crearUnNuevoUsuario();
-
           localStorage.setItem(
             'ph-datos-usuario',
             JSON.stringify({
@@ -607,7 +606,7 @@ class InicioSesion extends HTMLElement {
             })
           );
           MensajeCargaDatos.ocultar();
-          window.location.href = '/pages/perfil';
+          window.location.href = '/';
         } else {
           this.estadoCliente = "si-existe";
           datosUsuario = await this.traerTodaInfoUsuario(existeEsteUsuario);
@@ -641,8 +640,9 @@ class InicioSesion extends HTMLElement {
             this.containerGeneral.style.display = 'none';
             this.containerMensaje.style.display = 'none';
             this.containerExito.style.display = 'none';
-            window.location.href = '/pages/perfil';
+            window.location.href = '/';
           }, 3000);
+          return;
         }
       } else {
         this.mensajeErroCodigo.style.display = 'flex';
