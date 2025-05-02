@@ -365,7 +365,7 @@ class InicioSesion extends HTMLElement {
           {
             namespace: "informacion",
             key: "extra",
-            type: "json",
+            type: "json_string",
             value: metafieldValue
           }
         ]
