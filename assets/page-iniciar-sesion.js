@@ -373,7 +373,6 @@ class InicioSesion extends HTMLElement {
     };
 
     try {
-      console.log("Enviando datos:", JSON.stringify(variables));
 
       // Realizar la solicitud
       const respuesta = await fetch("https://pizza-hut-bo.myshopify.com/admin/api/2025-04/graphql.json", {
@@ -634,24 +633,24 @@ class InicioSesion extends HTMLElement {
         const existeEsteUsuario = await this.porNroTelefonoUsuarioVerificar(`+591${this.input.value}`);
         if (existeEsteUsuario == undefined) {
           this.estadoCliente = "no-existe";
-          datosUsuario = await this.crearUnNuevoUsuario();
-          localStorage.setItem(
-            'ph-datos-usuario',
-            JSON.stringify({
-              nombre: datosUsuario.nombre,
-              celular: datosUsuario.celular,
-              apellido: datosUsuario.apellido,
-              email: datosUsuario.email,
-              ci: datosUsuario.ci,
-              direcciones: datosUsuario.direcciones,
-              razon_social: datosUsuario.razon_social,
-              nit: datosUsuario.nit,
-              fecha_nacimiento: datosUsuario.fecha_nacimiento,
-              permisosHutCoins: false,
-              // ordenesPagadas: [],
-              // ordenesPendientes: []
-            })
-          );
+          // datosUsuario = await this.crearUnNuevoUsuario();
+          // localStorage.setItem(
+          //   'ph-datos-usuario',
+          //   JSON.stringify({
+          //     nombre: datosUsuario.nombre,
+          //     celular: datosUsuario.celular,
+          //     apellido: datosUsuario.apellido,
+          //     email: datosUsuario.email,
+          //     ci: datosUsuario.ci,
+          //     direcciones: datosUsuario.direcciones,
+          //     razon_social: datosUsuario.razon_social,
+          //     nit: datosUsuario.nit,
+          //     fecha_nacimiento: datosUsuario.fecha_nacimiento,
+          //     permisosHutCoins: false,
+          //     // ordenesPagadas: [],
+          //     // ordenesPendientes: []
+          //   })
+          // );
           MensajeCargaDatos.ocultar();
           // window.location.href = '/';
           return;
