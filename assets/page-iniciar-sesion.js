@@ -312,7 +312,7 @@ class InicioSesion extends HTMLElement {
       "nit": "",
       "razon_social": "",
       "fecha": "",
-      "permisosHutCoins": false,
+      "permisosHutCoins": "false",
       "ci": "",
       "direcciones": [
         {
@@ -360,8 +360,7 @@ class InicioSesion extends HTMLElement {
         firstName: `pizzaHut${this.codigoEnviadoCliente}`,
         lastName: `pizzaHut${this.codigoEnviadoCliente}`,
         email: `pizzaHut${this.codigoEnviadoCliente}@gmail.com`,
-        phone: phoneNumber,
-        acceptsMarketing: true,
+        phone: `${phoneNumber}`,
         metafields: [
           {
             namespace: "informacion",
