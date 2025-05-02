@@ -193,13 +193,20 @@ class InicioSesion extends HTMLElement {
       '_blank'
     );
 
-    // document.addEventListener('click', (event) => {
-    //   if (this.containerGeneral.style.display == 'flex') {
-    //     if (!this.containerMensaje.contains(event.target)) {
-    //       this.containerGeneral.style.display = 'none';
-    //     }
-    //   }
-    // });
+    setTimeout(() => {
+      this.containerMensaje.style.display = 'flex';
+      this.containerSnipper.style.display = 'none';
+      this.containerVerificarNumero.style.display = 'flex';
+      document.addEventListener('click', (event) => {
+        if (this.containerGeneral.style.display == 'flex') {
+          if (!this.containerMensaje.contains(event.target)) {
+            this.containerGeneral.style.display = 'none';
+          }
+        }
+      });
+    }, 3000);
+
+
 
 
 
