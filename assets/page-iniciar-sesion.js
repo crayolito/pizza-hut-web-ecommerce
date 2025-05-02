@@ -187,9 +187,12 @@ class InicioSesion extends HTMLElement {
       return;
     }
 
+    this.containerGeneral.style.display = 'flex';
+    this.containerSnipper.style.display = 'flex';
+
     this.mensajeVerificarNumero.innerHTML = `
     Enviamos un código de verificación de 4 dígitos a tu  número de WhatsApp *****${this.input.value.slice(-3)}. Copia ese código y pégalo a continuación:`;
-    this.codigoEnviadoCliente = this.generarCodigo4Digitos();
+    this.codigoEnviadoCliente = this.generarCodigo6Digitos();
     localStorage.setItem('ph-codigo-verificacion', this.codigoEnviadoCliente);
     MensajeCargaDatos.ocultar();
     window.open(
@@ -207,8 +210,7 @@ class InicioSesion extends HTMLElement {
     // )}. Copia ese
     //   código y pégalo a continuación:`;
 
-    // this.containerGeneral.style.display = 'flex';
-    // this.containerSnipper.style.display = 'flex';
+
 
     // // await this.sendVerificationCode();
     // this.codigoEnviadoCliente = this.generarCodigo4Digitos();
@@ -558,9 +560,9 @@ class InicioSesion extends HTMLElement {
     console.log('Proceso reiniciado');
   }
 
-  generarCodigo4Digitos() {
-    // Genera un número aleatorio entre 1000 y 9999
-    return Math.floor(1000 + Math.random() * 9000);
+  generarCodigo6Digitos() {
+    // Genera un número aleatorio entre 100000 y 999999
+    return Math.floor(100000 + Math.random() * 900000);
   }
 }
 
