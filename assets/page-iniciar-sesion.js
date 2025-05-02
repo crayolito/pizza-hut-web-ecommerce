@@ -42,8 +42,8 @@ class InicioSesion extends HTMLElement {
     this.input2Verificacion = this.querySelector('#single-digit2');
     this.input3Verificacion = this.querySelector('#single-digit3');
     this.input4Verificacion = this.querySelector('#single-digit4');
-    this.input4Verificacion = this.querySelector('#single-digit5');
-    this.input4Verificacion = this.querySelector('#single-digit6');
+    this.input5Verificacion = this.querySelector('#single-digit5');
+    this.input6Verificacion = this.querySelector('#single-digit6');
 
 
     // EVENTOS LISTENERS
@@ -66,13 +66,6 @@ class InicioSesion extends HTMLElement {
       }
     });
 
-    // Agregar evento para la tecla Enter
-    document.addEventListener('keydown', (event) => {
-      // Verificar si la tecla presionada es Enter y si los contenedores están visibles
-      if (event.key === 'Enter' && this.containerGeneral.style.display === 'flex' && this.containerVerificarNumero.style.display === 'flex') {
-        this.containerGeneral.style.display = 'none';
-      }
-    });
 
     // INICIALIZAR ELEMENTOS
     this.reiniciarProceso();
