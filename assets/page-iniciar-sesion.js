@@ -601,8 +601,8 @@ class InicioSesion extends HTMLElement {
               nit: datosUsuario.nit,
               fecha_nacimiento: datosUsuario.fecha_nacimiento,
               permisosHutCoins: false,
-              ordenesPagadas: [],
-              ordenesPendientes: []
+              // ordenesPagadas: [],
+              // ordenesPendientes: []
             })
           );
           MensajeCargaDatos.ocultar();
@@ -632,8 +632,8 @@ class InicioSesion extends HTMLElement {
               nit: datosUsuario.nit,
               fecha_nacimiento: datosUsuario.fecha_nacimiento,
               permisosHutCoins: datosUsuario.permisosHutCoins,
-              ordenesPagadas: [],
-              ordenesPendientes: []
+              // ordenesPagadas: [],
+              // ordenesPendientes: []
             })
           );
 
