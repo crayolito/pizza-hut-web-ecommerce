@@ -3,16 +3,6 @@ class InicioSesion extends HTMLElement {
     super();
     this.estadoCliente = "";
     this.codigoEnviadoCliente = null;
-    // Configuración de Firebase
-    // this.firebaseConfig = {
-    //   apiKey: "AIzaSyBFBm87CEKsPhKNXLRt7QOAXL_67vbdAjI",
-    //   authDomain: "hackathon-b16d3.firebaseapp.com",
-    //   projectId: "hackathon-b16d3",
-    //   storageBucket: "hackathon-b16d3.firebasestorage.app",
-    //   messagingSenderId: "622628492965",
-    //   appId: "1:622628492965:web:ccd1b01b6355b5c84f9f4c",
-    //   measurementId: "G-PT6GFSWCLT"
-    // };
 
     this.firebaseConfig = {
       apiKey: "AIzaSyCiu2KfBo01XSkN8LCjf-w689gdC3Mbx0k",
@@ -44,6 +34,8 @@ class InicioSesion extends HTMLElement {
     this.containerGeneral = this.querySelector('#phpis-container-modal');
     this.containerSnipper = this.querySelector('#phpis-snipper-modal');
     this.containerMensaje = this.querySelector('#phpis-mensaje-proceso');
+    this.containerMensaje.addEventListener
+
     this.containerExito = this.querySelector('#phpis-mp-exito');
     this.containerVerificarNumero = this.querySelector('#phpis-mp-verificar-numero');
     this.input1Verificacion = this.querySelector('#single-digit1');
@@ -59,7 +51,15 @@ class InicioSesion extends HTMLElement {
     this.input4Verificacion.addEventListener('input', this.verificarNumero.bind(this));
     this.btnIniciarSesion.addEventListener('click', this.iniciarSesion.bind(this));
     // this.btnGoogle.addEventListener('click', this.iniciarSesionGoogle.bind(this));
-    // this.btnFacebook.addEventListener('click', this.iniciarSesionFacebook.bind(this)); 
+    // this.btnFacebook.addEventListener('click', this.iniciarSesionFacebook.bind(this));
+
+    document.addEventListener('click', (event) => {
+      if (this.containerGeneral.style.display == 'flex') {
+        if (!this.containerMensaje.contains(event.target)) {
+          this.containerGeneral.style.display = 'none';
+        }
+      }
+    });
 
     // INICIALIZAR ELEMENTOS
     this.reiniciarProceso();
@@ -187,108 +187,72 @@ class InicioSesion extends HTMLElement {
       return;
     }
 
-    // const dataUsuario = await this.porNroTelefonoUsuarioVerificar(`+591${this.input.value}`);
-    // if (dataUsuario == undefined) {
-    //   MensajeCargaDatos.mostrar('Enviando código de verificación...');
-    //   this.estadoCliente = "no-existe";
-    //   this.mensajeVerificarNumero.innerHTML = `
-    //   Enviamos un código de verificación de 4 dígitos a tu  número de WhatsApp *****${this.input.value.slice(
-    //     -3
-    //   )}. Copia ese código y pégalo a continuación:`;
-
-    //   this.codigoEnviadoCliente = this.generarCodigo4Digitos();
-    //   localStorage.setItem('ph-codigo-verificacion', this.codigoEnviadoCliente);
-    //   MensajeCargaDatos.ocultar();
-
-    //   window.open(
-    //     `https://wa.me/591${this.input.value}?text=Pizza Hut, tu código de verificación es ${this.codigoEnviadoCliente}. Gracias por su preferencia.`,
-    //     '_blank'
-    //   );
-    //   // Primero se va verificar si el numero existe (evitar duplicidad)
-    //   // Si existe el numero va mostrar mensaje de Exito y va traer los datos 
-    //   // y si el cliente tiene datos por defecto (se le va actualizar con los ultimos 4 digitos nuevos)
-    // } else {
-
-    //   await this.traerTodaInfoUsuario(dataUsuario);
-
-    //   // this.estadoCliente = "si-existe";
-    //   // this.containerGeneral.style.display = 'flex';
-    //   // this.containerMensaje.style.display = 'flex';
-    //   // this.containerExito.style.display = 'flex';
-
-    //   // setTimeout(() => {
-    //   //   this.containerGeneral.style.display = 'none';
-    //   //   this.containerMensaje.style.display = 'none';
-    //   //   this.containerExito.style.display = 'none';
-    //   //   localStorage.setItem(
-    //   //     'ph-datos-usuario',
-    //   //     JSON.stringify({
-    //   //       nombre: dataUsuario.nombre,
-    //   //       celular: dataUsuario.celular,
-    //   //       apellido: dataUsuario.apellido,
-    //   //       email: dataUsuario.email,
-    //   //       ci: dataUsuario.ci,
-    //   //       direcciones: dataUsuario.direcciones,
-    //   //       nit: dataUsuario.nit,
-    //   //       fecha_nacimiento: dataUsuario.fecha_nacimiento,
-    //   //       permisosHutCoins: dataUsuario.permisosHutCoins,
-    //   //       ordenesPagadas: dataUsuario.ordenesPagadas,
-    //   //       ordenesPendientes: dataUsuario.ordenesPendientes,
-    //   //     })
-    //   //   );
-    //   //   window.location.href = '/pages/perfil';
-    //   // }, 1000);
-    // }
-
-
-    // Ingresar el valor dentro del this.mensajeVerificarNumeroo
     this.mensajeVerificarNumero.innerHTML = `
-      Enviamos un código de verificación de 4 dígitos a tu  número de WhatsApp *****${this.input.value.slice(
-      -3
-    )}. Copia ese
-      código y pégalo a continuación:`;
-
-    this.containerGeneral.style.display = 'flex';
-    this.containerSnipper.style.display = 'flex';
-
-    // await this.sendVerificationCode();
+    Enviamos un código de verificación de 4 dígitos a tu  número de WhatsApp *****${this.input.value.slice(-3)}. Copia ese código y pégalo a continuación:`;
     this.codigoEnviadoCliente = this.generarCodigo4Digitos();
     localStorage.setItem('ph-codigo-verificacion', this.codigoEnviadoCliente);
-
+    MensajeCargaDatos.ocultar();
     window.open(
       `https://wa.me/591${this.input.value}?text=Pizza Hut, tu código de verificación es ${this.codigoEnviadoCliente}. Gracias por su preferencia.`,
       '_blank'
     );
-    // Simular un proceso de carga
-    setTimeout(() => {
-      this.containerMensaje.style.display = 'flex';
-      this.containerSnipper.style.display = 'none';
-      this.containerVerificarNumero.style.display = 'flex';
-    }, 3000);
+
+
+
+
+    // // Ingresar el valor dentro del this.mensajeVerificarNumeroo
+    // this.mensajeVerificarNumero.innerHTML = `
+    //   Enviamos un código de verificación de 4 dígitos a tu  número de WhatsApp *****${this.input.value.slice(
+    //   -3
+    // )}. Copia ese
+    //   código y pégalo a continuación:`;
+
+    // this.containerGeneral.style.display = 'flex';
+    // this.containerSnipper.style.display = 'flex';
+
+    // // await this.sendVerificationCode();
+    // this.codigoEnviadoCliente = this.generarCodigo4Digitos();
+    // localStorage.setItem('ph-codigo-verificacion', this.codigoEnviadoCliente);
+
+    // window.open(
+    //   `https://wa.me/591${this.input.value}?text=Pizza Hut, tu código de verificación es ${this.codigoEnviadoCliente}. Gracias por su preferencia.`,
+    //   '_blank'
+    // );
+    // // Simular un proceso de carga
+    // setTimeout(() => {
+    //   this.containerMensaje.style.display = 'flex';
+    //   this.containerSnipper.style.display = 'none';
+    //   this.containerVerificarNumero.style.display = 'flex';
+    // }, 3000);
   }
 
   async porNroTelefonoUsuarioVerificar(numeroTelefono) {
     const graphQLQuery = `
-      query SearchCustomerByPhone {
-        customers(query: "phone:${numeroTelefono}", first: 1) {
-          edges {
-            node {
-              id
-            }
-          }
+      query CustomerByIdentifier($identifier: CustomerIdentifierInput!) {
+        customer: customerByIdentifier(identifier: $identifier) {
+          id
         }
       }
     `;
 
+    const variables = {
+      "identifier": {
+        "phoneNumber": numeroTelefono
+      }
+    };
+
     try {
       // Realizar la solicitud
-      const respuesta = await fetch(this.urlConsulta, {
+      const respuesta = await fetch(window.urlConsulta, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'X-Shopify-Access-Token': this.myTest,
         },
-        body: JSON.stringify({ query: graphQLQuery }),
+        body: JSON.stringify({
+          query: graphQLQuery,
+          variables: variables
+        }),
       });
 
       if (!respuesta.ok) {
@@ -297,9 +261,12 @@ class InicioSesion extends HTMLElement {
 
       const datos = await respuesta.json();
 
-      // Verificar si hay resultados
-      if (datos.data?.customers?.edges?.length > 0) {
-        return datos.data.customers.edges[0].node.id;
+      // Verificar si hay resultados y extraer solo el número del ID
+      if (datos.data?.customer?.id) {
+        // Extraer solo el número del ID (después de la última barra)
+        const idCompleto = datos.data.customer.id;
+        const numeroID = idCompleto.split('/').pop();
+        return numeroID;
       } else {
         return undefined;
       }
@@ -311,57 +278,34 @@ class InicioSesion extends HTMLElement {
   }
 
   async traerTodaInfoUsuario(id) {
-    console.log('ID del cliente:', id);
-    const graphQLQuery = `
+    // Convertir el ID numérico a formato GID si es necesario
+    const idGID = id.includes('gid://') ? id : `gid://shopify/Customer/${id}`;
 
-    query {
-      customer(id: "gid://shopify/Customer/9090429288732") {
-        id
-        firstName
-        lastName
-        email
-        phone
-        numberOfOrders
-        orders {
-          edges {
-            node {
-              id
-            }
+    const graphQLQuery = `
+      query GetCustomerMetafield {
+        customer(id: "${idGID}") {
+          id
+          firstName
+          lastName
+          email
+          phone
+          metafield(namespace: "informacion", key: "extra") {
+            id
+            namespace
+            key
+            value
           }
         }
-        amountSpent {
-          amount
-          currencyCode
-        }
-        createdAt
-        updatedAt
-        note
-        verifiedEmail
-        validEmailAddress
-        tags
-        lifetimeDuration
-        defaultAddress {
-          formattedArea
-          address1
-        }
-        addresses {
-          address1
-        }
-        image {
-          src
-        }
-        canDelete
       }
-    }
-      `;
+    `;
 
     try {
       // Realizar la solicitud
-      const respuesta = await fetch(this.urlConsulta, {
+      const respuesta = await fetch(window.urlConsulta, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'X-Shopify-Access-Token': this.myTest,
+          'X-Shopify-Access-Token': window.keyBackendShopify,
         },
         body: JSON.stringify({ query: graphQLQuery }),
       });
@@ -372,11 +316,44 @@ class InicioSesion extends HTMLElement {
 
       const datos = await respuesta.json();
 
-      // Mostrar el resultado completo por consola
-      console.log('Información del usuario:', datos);
+      // Verificar si hay datos del cliente
+      if (datos.data?.customer) {
+        const customer = datos.data.customer;
+
+        // Parsear el valor del metafield si existe
+        let metafieldData = {};
+        if (customer.metafield?.value) {
+          try {
+            metafieldData = JSON.parse(customer.metafield.value);
+          } catch (e) {
+            console.error("Error al parsear metafield JSON:", e);
+          }
+        }
+
+        // Construir y devolver el objeto con toda la información
+        return {
+          id: customer.id,
+          firstName: customer.firstName,
+          lastName: customer.lastName,
+          email: customer.email,
+          phone: customer.phone,
+          metafield: customer.metafield,
+          // Incluir los datos parseados del metafield directamente en el objeto
+          nit: metafieldData.nit,
+          razon_social: metafieldData.razon_social,
+          ci: metafieldData.ci,
+          fecha: metafieldData.fecha,
+          permisosHutCoins: metafieldData.permisosHutCoins,
+          direcciones: metafieldData.direcciones || []
+        };
+      } else {
+        console.log('No se encontró información del usuario');
+        return undefined;
+      }
 
     } catch (error) {
       console.error("Error al obtener información del usuario:", error);
+      return undefined;
     }
   }
 
@@ -453,56 +430,104 @@ class InicioSesion extends HTMLElement {
     if (todosLlenos) {
       const optenerNumero = inputs.map((input) => input.value).join('');
       const codigoVerificacion = this.codigoEnviadoCliente || localStorage.getItem('ph-codigo-verificacion');
-      console.log('Código ingresadoo:', {
-        optenerNumero,
-        codigoVerificacion
-      });
+      // Verificar el codigo ingresado
 
-      if (parseInt(optenerNumero) !== parseInt(codigoVerificacion)) {
-        this.ocultarElementosBase();
-        console.log('Código incorrecto');
-        MensajeCargaDatos.mostrar('El código ingresado es incorrecto.\nPor favor intenta nuevamente.');
-        // Esperar 3 segundos antes de permitir un nuevo intento
-        setTimeout(() => {
+      if (`${optenerNumero}` == `${codigoVerificacion}`) {
+        // Si el codigo es correcto hacer
+        const dataUsuario = await this.porNroTelefonoUsuarioVerificar(`+591${this.input.value}`);
+        if (dataUsuario == undefined) {
+          MensajeCargaDatos.mostrar('Enviando código de verificación...');
+          this.estadoCliente = "no-existe";
+        } else {
+          MensajeCargaDatos.mostrar('Procesando datos ...');
+          this.estadoCliente = "si-existe";
+          const datosUsuario = await this.traerTodaInfoUsuario(dataUsuario);
+          // const ordenesPagadas = await this.traerOrdenesCompletadas(dataUsuario);
+          // const ordenesPendientes = await this.traerOrdenesPendientes(dataUsuario);
           MensajeCargaDatos.ocultar();
-        }, 3000);
+          this.containerGeneral.style.display = 'flex';
+          this.containerMensaje.style.display = 'flex';
+          this.containerExito.style.display = 'flex';
 
-        // Limpiar inputs
-        inputs.forEach((input) => {
-          input.value = '';
-        });
-        return;
+          localStorage.setItem(
+            'ph-datos-usuario',
+            JSON.stringify({
+              nombre: dataUsuario.nombre,
+              celular: dataUsuario.celular,
+              apellido: dataUsuario.apellido,
+              email: dataUsuario.email,
+              ci: dataUsuario.ci,
+              direcciones: dataUsuario.direcciones,
+              razon_social: dataUsuario.razon_social,
+              nit: dataUsuario.nit,
+              fecha_nacimiento: dataUsuario.fecha_nacimiento,
+              permisosHutCoins: dataUsuario.permisosHutCoins,
+              ordenesPagadas: [],
+              ordenesPendientes: []
+            })
+          );
+
+          setTimeout(() => {
+            this.containerGeneral.style.display = 'none';
+            this.containerMensaje.style.display = 'none';
+            this.containerExito.style.display = 'none';
+            window.location.href = '/pages/perfil';
+          }, 1000);
+        }
+      } else {
+        // Si el codigo es incorrecto
+        // Mostrar el error de incorrecto por 2 segundos
       }
 
-      // Usuario verificado
-      // const user = result.user;
-      // console.log('Usuario verificado:', user);
+      // const codigoVerificacion = this.codigoEnviadoCliente || localStorage.getItem('ph-codigo-verificacion');
+      // console.log('Código ingresadoo:', {
+      //   optenerNumero,
+      //   codigoVerificacion
+      // });
 
-      console.log('Código de verificación enviado');
-      this.containerVerificarNumero.style.display = 'none';
-      this.containerMensaje.style.display = 'none';
-      this.containerSnipper.style.display = 'flex';
+      // if (parseInt(optenerNumero) !== parseInt(codigoVerificacion)) {
+      //   this.ocultarElementosBase();
+      //   console.log('Código incorrecto');
+      //   MensajeCargaDatos.mostrar('El código ingresado es incorrecto.\nPor favor intenta nuevamente.');
+      //   // Esperar 3 segundos antes de permitir un nuevo intento
+      //   setTimeout(() => {
+      //     MensajeCargaDatos.ocultar();
+      //   }, 3000);
 
-      setTimeout(() => {
-        this.ocultarElementosBase();
-        window.location.href = '/';
-        inputs.forEach((input) => {
-          input.value = '';
-        });
-        localStorage.setItem(
-          'ph-datos-usuario',
-          JSON.stringify({
-            nombre: `pizzaHut${optenerNumero}`,
-            celular: this.input.value || '',
-            apellido: `pizzaHut${optenerNumero}`,
-            email: `pizzaHut${optenerNumero}@gmail.com`,
-            ci: ''
-          })
-        );
-      }, 3000);
+      //   // Limpiar inputs
+      //   inputs.forEach((input) => {
+      //     input.value = '';
+      //   });
+      //   return;
     }
-  }
 
+    // Usuario verificado
+    // const user = result.user;
+    // console.log('Usuario verificado:', user);
+
+    console.log('Código de verificación enviado');
+    this.containerVerificarNumero.style.display = 'none';
+    this.containerMensaje.style.display = 'none';
+    this.containerSnipper.style.display = 'flex';
+
+    setTimeout(() => {
+      this.ocultarElementosBase();
+      window.location.href = '/';
+      inputs.forEach((input) => {
+        input.value = '';
+      });
+      localStorage.setItem(
+        'ph-datos-usuario',
+        JSON.stringify({
+          nombre: `pizzaHut${optenerNumero}`,
+          celular: this.input.value || '',
+          apellido: `pizzaHut${optenerNumero}`,
+          email: `pizzaHut${optenerNumero}@gmail.com`,
+          ci: ''
+        })
+      );
+    }, 3000);
+  }
 
   ocultarElementosBase() {
     this.containerGeneral.style.display = 'none';
