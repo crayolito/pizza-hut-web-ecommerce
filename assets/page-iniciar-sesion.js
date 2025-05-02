@@ -18,7 +18,7 @@ class InicioSesion extends HTMLElement {
 
     // Variable para almacenar el resultado de la confirmaciónn
     this.confirmationResult = null;
-    this.urlConsulta = "https://pizza-hut-bo.myshopify.com/admin/api/2025-01/graphql.json";
+    this.urlConsulta = "https://pizza-hut-bo.myshopify.com/admin/api/2025-04/graphql.json";
     this.myTest = 'shpat_' + 'ad1ba68bb734694a93299d35d35bb142';
     // Inicializar componente
     // this.initializeFirebase();
