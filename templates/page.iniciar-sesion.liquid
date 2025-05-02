@@ -232,14 +232,14 @@
               oninput="this.value=this.value.replace(/[^0-9]/g,''); if(this.value.length > 1) this.value = this.value.slice(0,1);"
             >
           </div>
-          <button class="phpis-mensaje-error icon-color-primary">
-            <p>INCORRECTO</p>
-          </button>
           <button class="ph-btn-secundario">
             <p>Reenviar código</p>
           </button>
+          <button class="phpis-mensaje-error icon-color-primary">
+            <p>INCORRECTO</p>
+          </button>
           <div class="phpis-message" style="dispaly: none;"></div>
-          <div id="recaptcha-container"></div>
+          {% comment %} <div id="recaptcha-container"></div> {% endcomment %}
           <div class="pccph-modal-separador">
             <div class="pccph-modal-separador-linea"></div>
             <p>¿No puedes iniciar sesión?</p>
