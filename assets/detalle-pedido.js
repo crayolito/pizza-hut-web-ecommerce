@@ -63,7 +63,19 @@ class DetallePedido extends HTMLElement {
     MensajeCargaDatos.mostrar('Cargando informacion ...');
     const infoCompletaOrden = await this.traerInformacionOrdenTrabajo(idOrdenTrabajo);
     console.log('infoCompletaOrden: ', infoCompletaOrden);
-    const metodoEntrega = infoCompletaOrden.orden.notasPersonalizadas[3].value;
+    // const metodoEntrega = infoCompletaOrden.orden.notasPersonalizadas[3].value;
+    var infoProcesoCheckout = null;
+    var infoCarritoProceso = null;
+    infoCompletaOrden.orden.notasPersonalizadas.forEach(item => {
+      if (item.key == "Datos Proceso Checkout") {
+        infoProcesoCheckout = JSON.parse(item.value);
+      }
+      if (item.key == "Datos Carrito Proceso") {
+        infoCarritoProceso = JSON.parse(item.value);
+      }
+    });
+    const metodoEntrega = infoProcesoCheckout.metodo_envio_seleccionado.metodo_envio;
+
     const idShopifyOrder = infoCompletaOrden.orden.id.split('/').pop();
 
     if (this.estadoEtapaPagina == "etapa-1") {
@@ -72,9 +84,9 @@ class DetallePedido extends HTMLElement {
       this.btnVerMasDetalles.style.display = 'flex';
 
       const etiquetaInfoBasica = this.seccionInfoBasica.querySelector('#phpdp-etiqueta-tipo-pedido');
-      etiquetaInfoBasica.textContent = metodoEntrega == "Domicilio" ? "Envío a Domicilio" : "En Local";
+      etiquetaInfoBasica.textContent = metodoEntrega == "domicilio" ? "Envío a Domicilio" : "En Local";
       const contenedorIcono = this.seccionInfoBasica.querySelector('.pdpph-mensaje-etapa1-icono');
-      contenedorIcono.innerHTML = metodoEntrega == "Domicilio" ? `${window.shopIcons.icon_recogo_delivery}` : `${window.shopIcons.icon_recogo_local}`;
+      contenedorIcono.innerHTML = metodoEntrega == "domicilio" ? `${window.shopIcons.icon_recogo_delivery}` : `${window.shopIcons.icon_recogo_local}`;
 
       // Solo necesito obtener los numeros
       const { fechaFormateada, horaCompletada } = this.formatearFechaInfoBasica(infoCompletaOrden.orden.fechaCompletado);
@@ -102,17 +114,18 @@ class DetallePedido extends HTMLElement {
             </p>
         `;
 
-    var totalPrecioConjunto = 0;
-    infoCompletaOrden.orden.productos.forEach(item => {
-      totalPrecioConjunto += item.precioUnitarioConDescuento * item.cantidad;
-    });
-    this.etiquetaTotalPrecioSuperior.textContent = `${totalPrecioConjunto} Bs`
-    this.etiquetaTipoMetodoEntrega.textContent = metodoEntrega == "Domicilio" ? "Envío a Domicilio" : "Pedido en Local";
-    metodoEntrega == "Domicilio" ? this.seccionInfoEntregaDomicilio.style.display = 'flex' : this.seccionInfoEntregaLocal.style.display = 'flex';
-    const infoProcesoCheckout = JSON.parse(infoCompletaOrden.orden.notasPersonalizadas[3].value);
-    const infoCarritoProceso = JSON.parse(infoCompletaOrden.orden.notasPersonalizadas[4].value);
-    if (metodoEntrega == "Domicilio") {
+    // var totalPrecioConjunto = 0;
+    // infoCompletaOrden.orden.productos.forEach(item => {
+    //   totalPrecioConjunto += item.precioUnitarioConDescuento * item.cantidad;
+    // });
+    this.etiquetaTotalPrecioSuperior.textContent = `${infoCompletaOrden.orden.totales.total} Bs`
+    this.etiquetaTipoMetodoEntrega.textContent = metodoEntrega == "domicilio" ? "Envío a Domicilio" : "Pedido en Local";
+    metodoEntrega == "domicilio" ? this.seccionInfoEntregaDomicilio.style.display = 'flex' : this.seccionInfoEntregaLocal.style.display = 'flex';
+    // const infoProcesoCheckout = JSON.parse(infoCompletaOrden.orden.notasPersonalizadas[3].value);
+    // const infoCarritoProceso = JSON.parse(infoCompletaOrden.orden.notasPersonalizadas[4].value);
+    if (metodoEntrega == "domicilio") {
       const dataInformacionMetodoEntrega = infoProcesoCheckout.metodo_envio_seleccionado.info_seleccionada;
+      console.log('Hola mundo a todos: ', dataInformacionMetodoEntrega);
       this.coordenadas = { lat: dataInformacionMetodoEntrega.lat, lng: dataInformacionMetodoEntrega.lng };
       this.seccionInfoEntregaDomicilio.insertAdjacentHTML('afterbegin', `
         <h3>${dataInformacionMetodoEntrega.alias}</h3>
@@ -256,8 +269,7 @@ currentTotalPriceSet {
         }
         `;
 
-      // Obtener token de acceso (similar al ejemplo proporcionado)
-      const tokenAcceso = 'shpat_' + '45f4a7476152f4881d058f87ce063698';
+
 
       // Realizar la petición al API de Shopify
       const respuesta = await fetch(window.urlConsulta, {
@@ -348,14 +360,14 @@ currentTotalPriceSet {
       // const atributosPersonalizados = this.procesarAtributosPersonalizados(ordenOriginal.customAttributes);
 
       // Calcular totales
-      const subtotal = productosFormateados.reduce((sum, item) =>
-        sum + (item.precioUnitarioOriginal * item.cantidad), 0);
+      // const subtotal = productosFormateados.reduce((sum, item) =>
+      //   sum + (item.precioUnitarioOriginal * item.cantidad), 0);
 
-      const impuestoTotal = productosFormateados.reduce((sum, item) => {
-        const impuestoPorItem = item.impuestos ?
-          item.impuestos.reduce((taxSum, tax) => taxSum + parseFloat(tax.importe), 0) : 0;
-        return sum + impuestoPorItem;
-      }, 0);
+      // const impuestoTotal = productosFormateados.reduce((sum, item) => {
+      //   const impuestoPorItem = item.impuestos ?
+      //     item.impuestos.reduce((taxSum, tax) => taxSum + parseFloat(tax.importe), 0) : 0;
+      //   return sum + impuestoPorItem;
+      // }, 0);
 
       // Crear objeto con la información en español
       const ordenFormateada = {
@@ -375,9 +387,8 @@ currentTotalPriceSet {
           direccionEnvio: direccionEnvio,
           notasPersonalizadas: ordenOriginal.customAttributes,
           totales: {
-            subtotal: subtotal.toFixed(2),
-            impuestos: impuestoTotal.toFixed(2),
-            total: (subtotal + impuestoTotal).toFixed(2)
+            subtotal: parseFloat(ordenOriginal.currentSubtotalPriceSet.shopMoney.amount).toFixed(2),
+            total: parseFloat(ordenOriginal.currentTotalPriceSet.shopMoney.amount).toFixed(2),
           }
         }
       };
@@ -413,11 +424,32 @@ currentTotalPriceSet {
     const [fecha, hora] = fechaCompletada.split(', ');
     const [dia, mes, anio] = fecha.split('/');
 
+    // Formatear la fecha
     const fechaFormateada = `${dia} de ${meses[parseInt(mes) - 1]} ${anio}`;
+
+    // Procesar la hora: quitar segundos y agregar 25 minutos
+    let [horas, minutos, segundos] = hora.split(':').map(num => parseInt(num));
+
+    // Agregar 25 minutos
+    minutos += 25;
+
+    // Ajustar si los minutos sobrepasan 60
+    if (minutos >= 60) {
+      horas += Math.floor(minutos / 60);
+      minutos = minutos % 60;
+
+      // Ajustar si las horas sobrepasan 24
+      if (horas >= 24) {
+        horas = horas % 24;
+      }
+    }
+
+    // Formatear la hora sin segundos (con ceros a la izquierda si es necesario)
+    const horaFormateada = `${horas.toString().padStart(2, '0')}:${minutos.toString().padStart(2, '0')}`;
 
     return {
       fechaFormateada,
-      horaCompletada: hora
+      horaCompletada: horaFormateada
     };
   }
 

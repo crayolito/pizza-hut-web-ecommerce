@@ -1100,14 +1100,129 @@ class PageCheckoutPH extends HTMLElement {
       console.log('Direccion obtenida desde coordenadas:', coordenadasTexto);
 
       MensajeCargaDatos.mostrar('Guardando dirección ...');
-      setTimeout(() => {
-        this.etiquetaIndicacionesDireccion.textContent = indicaciones == "" ? coordenadasTexto : indicaciones;
-        this.etiquetaAliasDireccion.textContent = alias;
-        MensajeCargaDatos.ocultar();
-      }, 3000);
+      const datosUsuario = JSON.parse(localStorage.getItem('ph-datos-usuario'));
+      const informacion = await this.actualizarMetaFieldDireccionCliente();
+      datosUsuario.direcciones = informacion.direcciones;
+      localStorage.setItem('ph-datos-usuario', JSON.stringify(datosUsuario));
+
+      this.etiquetaIndicacionesDireccion.textContent = indicaciones == "" ? coordenadasTexto : indicaciones;
+      this.etiquetaAliasDireccion.textContent = alias;
+      this.direccionSeleccionada = this.listaDireccionPrueba[this.listaDireccionPrueba.length - 1];
+      MensajeCargaDatos.ocultar();
+      // setTimeout(() => {
+      // }, 3000);
       this.btnProcesoPrincipalNd.classList.add('desactivado');
       this.coordenadasProcesoNuevaDireccion = null;
       return;
+    }
+  }
+
+  async actualizarMetaFieldDireccionCliente() {
+    const datosUsuario = JSON.parse(localStorage.getItem('ph-datos-usuario') || '{}');
+
+    const graphQLQuery = `
+    mutation UpdateCustomer($input: CustomerInput!) {
+      customerUpdate(input: $input) {
+        customer {
+          id
+          firstName
+          lastName
+          email
+          phone
+          metafield(namespace: "informacion", key: "extra") {
+            id
+            key
+            namespace
+            value
+          }
+        }
+        userErrors {
+          field
+          message
+        }
+      }
+    }
+  `;
+
+    const informacionExtra = JSON.stringify({
+      nit: datosUsuario.nit || "",
+      razon_social: datosUsuario.razon_social || "",
+      fecha: datosUsuario.fecha_nacimiento || "",
+      permisosHutCoins: datosUsuario.permisosHutCoins || false,
+      ci: datosUsuario.ci || "",
+      direcciones: this.listaDireccionPrueba || [],
+    });
+
+    const variables = {
+      input: {
+        id: datosUsuario.id,
+        metafields: [
+          {
+            namespace: "informacion",
+            key: "extra",
+            type: "json_string",
+            value: informacionExtra
+          }
+        ]
+      }
+    };
+
+    try {
+      const respuesta = await fetch(window.urlConsulta, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Shopify-Access-Token': window.backendShopify,
+        },
+        body: JSON.stringify({
+          query: graphQLQuery,
+          variables: variables
+        }),
+      });
+
+      const datos = await respuesta.json();
+      console.log("Respuesta de la API:", datos);
+
+      if (datos.data?.customerUpdate?.userErrors?.length > 0) {
+        return {
+          exito: false,
+          errores: datos.data.customerUpdate.userErrors
+        };
+      }
+
+      // Obtener el cliente actualizado
+      const customer = datos.data?.customerUpdate?.customer;
+
+      // Procesar los metafields para extraer la información extra
+      let metafieldData = {};
+      if (customer?.metafield?.value) {
+        try {
+          metafieldData = JSON.parse(customer.metafield.value);
+        } catch (e) {
+          console.error("Error al parsear metafield:", e);
+        }
+      }
+
+      // Devolver el objeto con el formato solicitado
+      return {
+        id: customer.id,
+        nombre: customer.firstName,
+        celular: customer.phone?.replace(/^\+591/, "") || "",
+        apellido: customer.lastName,
+        email: customer.email,
+        ci: metafieldData.ci || "",
+        direcciones: metafieldData.direcciones || [],
+        razon_social: metafieldData.razon_social || "",
+        nit: metafieldData.nit || "",
+        fecha_nacimiento: metafieldData.fecha || "",
+        permisosHutCoins: metafieldData.permisosHutCoins || false,
+      };
+    } catch (error) {
+      console.error("Error al actualizar datos de usuario:", error);
+      return {
+        exito: false,
+        error: error.message
+      };
     }
   }
 
@@ -1623,7 +1738,7 @@ class PageCheckoutPH extends HTMLElement {
       // await this.generarPedido(dataOrdenPreliminar.order.id);
       await this.actualizarPedidoCompletado(dataOrdenPendiente.order.id);
       localStorage.setItem('ph-estadoDP', "etapa-1");
-      // window.location.href = "/pages/detalle-pedido";
+      window.location.href = "/pages/detalle-pedido";
     }
 
     MensajeCargaDatos.ocultar();
@@ -1943,24 +2058,31 @@ class PageCheckoutPH extends HTMLElement {
   async crearOrdenPendiente(datosCheckout) {
     try {
       const dataUsuario = JSON.parse(localStorage.getItem('ph-datos-usuario'));
-
       const lineItems = this.infoCarrito.informacionCompleta.items.map(item => {
-        console.log("Testeo Item", item);
         let data = null;
         try {
           if (item.properties && item.properties.estructura) {
             data = JSON.parse(item.properties.estructura);
-            console.log("Testeo Data", data);
           }
         } catch (error) {
           console.error("Error al parsear estructura del item:", error);
         }
 
+        const precio = parseFloat((data?.producto?.precioTotalConjunto) || 0);
+
         return {
-          variantId: `gid://shopify/ProductVariant/${data.producto.idShopify}`,
-          quantity: parseInt(data.producto.cantidad)
+          title: item.title || "Producto",
+          quantity: parseInt(data?.producto?.cantidad || 1),
+          priceSet: {
+            shopMoney: {
+              amount: precio.toFixed(2),
+              currencyCode: "BOB"
+            }
+          }
+          // ❌ No se definen taxLines aquí
         };
       });
+
 
       const metodoPago = () => {
         switch (this.seleccionadoEstadoPago) {
@@ -1978,11 +2100,36 @@ class PageCheckoutPH extends HTMLElement {
         return `lat: ${data.lat}, lng: ${data.lng}`;
       };
 
-      console.log('Testeo ubicaicon ', this.optenerSucursalPorDominicilio(datosCheckout.metodo_envio_seleccionado.info_seleccionada))
-
       const variables = {
         order: {
+          currency: "BOB",
           lineItems,
+          taxesIncluded: false, // O true si ya están incluidos
+          taxLines: [ // ✅ Definido a nivel de orden
+            {
+              priceSet: {
+                shopMoney: {
+                  amount: "0.00",
+                  currencyCode: "BOB"
+                }
+              },
+              rate: 0.0,
+              title: "Sin impuesto"
+            }
+          ],
+          // transactions: [
+          //   {
+          //     kind: "SALE",
+          //     status: "SUCCESS",
+          //     amountSet: {
+          //       shopMoney: {
+          //         amount: lineItems.reduce((sum, item) => sum + (parseFloat(item.priceSet.shopMoney.amount) * item.quantity), 0).toFixed(2),
+          //         currencyCode: "BOB"
+          //       }
+          //     }
+          //   }
+          // ],
+
           customer: {
             toAssociate: {
               id: dataUsuario.id
@@ -2015,9 +2162,7 @@ class PageCheckoutPH extends HTMLElement {
             { key: "Metodo Pago", value: metodoPago() },
             { key: "Metodo Entrega", value: this.estadoPagina === "domicilio" ? "Envío a Domicilio" : "Recojo en Local" },
             { key: "Coordenadas", value: coordenadasFormatoEnviar() },
-            datosCheckout.nota_para_envio
-              ? { key: "Nota para el pedido", value: datosCheckout.nota_para_envio }
-              : null,
+            ...(datosCheckout.nota_para_envio ? [{ key: "Nota para el pedido", value: datosCheckout.nota_para_envio }] : []),
             {
               key: "Local Designado",
               value: this.estadoPagina === "domicilio"
@@ -2026,19 +2171,25 @@ class PageCheckoutPH extends HTMLElement {
             },
             { key: "Datos Proceso Checkout", value: JSON.stringify(datosCheckout) },
             { key: "Datos Carrito Proceso", value: JSON.stringify(this.infoCarrito.informacionCompleta.items) }
-          ].filter(Boolean) // elimina cualquier null
+          ]
         }
       };
 
       const orderCreateMutation = `
-          mutation orderCreate($order: OrderCreateOrderInput!, $options: OrderCreateOptionsInput) {
-            orderCreate(order: $order, options: $options) {
+        mutation orderCreate($order: OrderCreateOrderInput!, $options: OrderCreateOptionsInput) {
+          orderCreate(order: $order, options: $options) {
             order {
               id
               name
               email
               totalPrice
               createdAt
+              totalTaxSet {
+                shopMoney {
+                  amount
+                  currencyCode
+                }
+              }
               shippingAddress {
                 address1
                 city
@@ -2052,6 +2203,23 @@ class PageCheckoutPH extends HTMLElement {
                 provinceCode
                 countryCode
                 zip
+              }
+              lineItems(first: 5) {
+                nodes {
+                  id
+                  title
+                  quantity
+                  taxLines {
+                    title
+                    rate
+                    priceSet {
+                      shopMoney {
+                        amount
+                        currencyCode
+                      }
+                    }
+                  }
+                }
               }
             }
             userErrors {
@@ -2093,7 +2261,6 @@ class PageCheckoutPH extends HTMLElement {
 
       console.log('Orden creada con éxito:', resultado.order);
       return { success: true, order: resultado.order };
-
     } catch (error) {
       console.error('Error general al crear orden:', error);
       return { success: false, error: error.message };
