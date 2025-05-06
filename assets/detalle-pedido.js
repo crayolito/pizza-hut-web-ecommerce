@@ -63,7 +63,7 @@ class DetallePedido extends HTMLElement {
     MensajeCargaDatos.mostrar('Cargando informacion ...');
     const infoCompletaOrden = await this.traerInformacionOrdenTrabajo(idOrdenTrabajo);
     console.log('infoCompletaOrden: ', infoCompletaOrden);
-    const metodoEntrega = infoCompletaOrden.orden.notasPersonalizadas[0].value;
+    const metodoEntrega = infoCompletaOrden.orden.notasPersonalizadas[3].value;
     const idShopifyOrder = infoCompletaOrden.orden.id.split('/').pop();
 
     if (this.estadoEtapaPagina == "etapa-1") {
@@ -109,8 +109,8 @@ class DetallePedido extends HTMLElement {
     this.etiquetaTotalPrecioSuperior.textContent = `${totalPrecioConjunto} Bs`
     this.etiquetaTipoMetodoEntrega.textContent = metodoEntrega == "Domicilio" ? "Envío a Domicilio" : "Pedido en Local";
     metodoEntrega == "Domicilio" ? this.seccionInfoEntregaDomicilio.style.display = 'flex' : this.seccionInfoEntregaLocal.style.display = 'flex';
-    const infoProcesoCheckout = JSON.parse(infoCompletaOrden.orden.notasPersonalizadas[1].value);
-    const infoCarritoProceso = JSON.parse(infoCompletaOrden.orden.notasPersonalizadas[2].value);
+    const infoProcesoCheckout = JSON.parse(infoCompletaOrden.orden.notasPersonalizadas[3].value);
+    const infoCarritoProceso = JSON.parse(infoCompletaOrden.orden.notasPersonalizadas[4].value);
     if (metodoEntrega == "Domicilio") {
       const dataInformacionMetodoEntrega = infoProcesoCheckout.metodo_envio_seleccionado.info_seleccionada;
       this.coordenadas = { lat: dataInformacionMetodoEntrega.lat, lng: dataInformacionMetodoEntrega.lng };
@@ -212,7 +212,14 @@ class DetallePedido extends HTMLElement {
     id
     name
     createdAt
-    totalPriceSet {
+    updatedAt
+currentTotalPriceSet {
+      shopMoney {
+        amount
+        currencyCode
+      }
+    }
+    currentSubtotalPriceSet {
       shopMoney {
         amount
         currencyCode
@@ -274,7 +281,7 @@ class DetallePedido extends HTMLElement {
       }
 
       // Verificar si se obtuvo la orden correctamente
-      if (!datos.data || !datos.data.draftOrder) {
+      if (!datos.data || !datos.data.order) {
         return {
           exito: false,
           mensaje: 'No se encontró la orden solicitada'
@@ -282,7 +289,7 @@ class DetallePedido extends HTMLElement {
       }
 
       // Mapear la información de la orden a español
-      const ordenOriginal = datos.data.draftOrder;
+      const ordenOriginal = datos.data.order;
 
       // Formatear productos (lineItems)
       const productosFormateados = ordenOriginal.lineItems.edges.map(edge => {
@@ -360,7 +367,7 @@ class DetallePedido extends HTMLElement {
           email: ordenOriginal.email,
           fechaCreacion: this.formatearFecha(ordenOriginal.createdAt),
           fechaActualizacion: this.formatearFecha(ordenOriginal.updatedAt),
-          fechaCompletado: this.formatearFecha(ordenOriginal.completedAt),
+          fechaCompletado: this.formatearFecha(ordenOriginal.updatedAt),
           moneda: ordenOriginal.currencyCode,
           impuestosIncluidos: ordenOriginal.taxesIncluded,
           exentoImpuestos: ordenOriginal.taxExempt,
