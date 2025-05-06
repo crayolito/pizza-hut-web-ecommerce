@@ -1623,7 +1623,7 @@ class PageCheckoutPH extends HTMLElement {
       // await this.generarPedido(dataOrdenPreliminar.order.id);
       await this.actualizarPedidoCompletado(dataOrdenPendiente.order.id);
       localStorage.setItem('ph-estadoDP', "etapa-1");
-      window.location.href = "/pages/detalle-pedido";
+      // window.location.href = "/pages/detalle-pedido";
     }
 
     MensajeCargaDatos.ocultar();
@@ -1978,6 +1978,8 @@ class PageCheckoutPH extends HTMLElement {
         return `lat: ${data.lat}, lng: ${data.lng}`;
       };
 
+      console.log('Testeo ubicaicon ', this.optenerSucursalPorDominicilio(datosCheckout.metodo_envio_seleccionado.info_seleccionada))
+
       const variables = {
         order: {
           lineItems,
@@ -2016,14 +2018,12 @@ class PageCheckoutPH extends HTMLElement {
             datosCheckout.nota_para_envio
               ? { key: "Nota para el pedido", value: datosCheckout.nota_para_envio }
               : null,
-            datosCheckout.sucursal
-              ? {
-                key: "Local Designado",
-                value: this.estadoPagina === "domicilio"
-                  ? this.optenerSucursalPorDominicilio(datosCheckout.metodo_envio_seleccionado.info_seleccionada).name
-                  : datosCheckout.metodo_envio_seleccionado.local_seleccionado.name
-              }
-              : null,
+            {
+              key: "Local Designado",
+              value: this.estadoPagina === "domicilio"
+                ? this.optenerSucursalPorDominicilio(datosCheckout.metodo_envio_seleccionado.info_seleccionada).name
+                : datosCheckout.metodo_envio_seleccionado.local_seleccionado.name
+            },
             { key: "Datos Proceso Checkout", value: JSON.stringify(datosCheckout) },
             { key: "Datos Carrito Proceso", value: JSON.stringify(this.infoCarrito.informacionCompleta.items) }
           ].filter(Boolean) // elimina cualquier null
