@@ -613,12 +613,11 @@ class PizzaHutProducto extends HTMLElement {
 
     try {
       // Realiza la solicitud a la API de Shopifyy
-      const myTest = 'shpat_' + '45f4a7476152f4881d058f87ce063698';
-      const respuesta = await fetch(this.urlConsulta, {
+      const respuesta = await fetch(window.urlConsulta, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'X-Shopify-Access-Token': myTest,
+          'X-Shopify-Access-Token': window.backendShopify,
         },
         body: JSON.stringify({ query: graphQLQuery }),
       });

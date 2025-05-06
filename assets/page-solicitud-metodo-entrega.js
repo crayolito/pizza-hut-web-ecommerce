@@ -33,7 +33,7 @@ class ClienteLocalizacion extends HTMLElement {
         lat: -17.807739,
         lng: -63.204363,
         name: 'LAS PALMAS',
-        localizacion: 'Doble vía La Guardia',
+        localizacion: 'Farmacorp - Sucursal Las Palmas',
         telefono: '78452415',
         dias: 'Lunes a Viernes',
         horario: '8:00 a 23:00',
@@ -164,7 +164,7 @@ class ClienteLocalizacion extends HTMLElement {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'X-Shopify-Access-Token': window.keyBackendShopify
+          'X-Shopify-Access-Token': window.backendShopify
         },
         body: JSON.stringify({ query: consultaGrapql })
       });

@@ -1,3 +1,4 @@
+
 class PageCheckoutPH extends HTMLElement {
   constructor() {
     super();
@@ -9,58 +10,7 @@ class PageCheckoutPH extends HTMLElement {
     this.estadoPagina = "domicilio";
     this.estadoProcesoDireccion = "";
     this.coordenadas = { lat: -17.783315017953004, lng: -63.18214577296119 };
-    this.pizzaLocations = [
-      {
-        lat: -17.757619,
-        lng: -63.178738,
-        name: 'BANZER 3ER ANILLO',
-        localizacion: 'Tercer Anillo Externo',
-        telefono: '78452415',
-        dias: 'Lunes a Viernes',
-        horario: '8:00 a 23:00',
-        servicios: ['Envío a domicilio', 'Recoger en local']
-      },
-      {
-        lat: -17.70001,
-        lng: -63.160219,
-        name: 'BANZER KM 8.5',
-        localizacion: '8R2Q+2XH',
-        telefono: '78452415',
-        dias: 'Lunes a Viernes',
-        horario: '8:00 a 23:00',
-        servicios: ['Envío a domicilio', 'Recoger en local']
-      },
-      {
-        lat: -17.807739,
-        lng: -63.204363,
-        name: 'LAS PALMAS',
-        localizacion: 'Doble vía La Guardia',
-        telefono: '78452415',
-        dias: 'Lunes a Viernes',
-        horario: '8:00 a 23:00',
-        servicios: ['Envío a domicilio', 'Recoger en local']
-      },
-      {
-        lat: -17.758879,
-        lng: -63.19948,
-        name: 'SAN MARTIN',
-        localizacion: 'Av. San Martin 2200',
-        telefono: '78452415',
-        dias: 'Lunes a Viernes',
-        horario: '8:00 a 23:00',
-        servicios: ['Envío a domicilio', 'Recoger en local']
-      },
-      {
-        lat: -17.820341,
-        lng: -63.184337,
-        name: 'SANTOS DUMONT',
-        localizacion: 'Av Santos Dumont 3228',
-        telefono: '78452415',
-        dias: 'Lunes a Viernes',
-        horario: '8:00 a 23:00',
-        servicios: ['Envío a domicilio', 'Recoger en local']
-      }
-    ];
+    this.pizzaLocations = window.pizzaLocations || [];
     this.infoCarrito = null;
 
     this.localSeleccionado = null;
@@ -77,34 +27,33 @@ class PageCheckoutPH extends HTMLElement {
 
     this.coordenadasProcesoNuevaDireccion = null;
     this.estadoFaseNuevaDireccion = 1;
-    this.listaDireccionPrueba = [
+    this.listaDireccionPrueba = JSON.parse(localStorage.getItem('ph-datos-usuario')).direcciones || [
       {
         "lat": -17.783315017953004,
         "lng": -63.18214577296119,
         "indicaciones": "Puente Urubo 91, Santa Cruz de la Sierra",
-        "alias": "Condominio de la Abuela",
+        "alias": "Ubicacion de entrega",
       },
-      {
-        "lat": -17.783315017953004,
-        "lng": -63.18214577296119,
-        "indicaciones": "Santa Cruz, San Martin 2200, Bolivia",
-        "alias": "Casa del abuelo",
-      },
-      {
-        "lat": -17.783315017953004,
-        "lng": -63.18214577296119,
-        "indicaciones": "Santa Cruz, Av. Santos Dumont 3228, Bolivia",
-        "alias": "Casa por mi suegra",
-      },
-      {
-        "lat": -17.783315017953004,
-        "lng": -63.18214577296119,
-        "indicaciones": "Santa Cruz, Av. Banzer 3er Anillo, Bolivia",
-        "alias": "Trabajo",
-      }
+      // {
+      //   "lat": -17.783315017953004,
+      //   "lng": -63.18214577296119,
+      //   "indicaciones": "Santa Cruz, San Martin 2200, Bolivia",
+      //   "alias": "Casa del abuelo",
+      // },
+      // {
+      //   "lat": -17.783315017953004,
+      //   "lng": -63.18214577296119,
+      //   "indicaciones": "Santa Cruz, Av. Santos Dumont 3228, Bolivia",
+      //   "alias": "Casa por mi suegra",
+      // },
+      // {
+      //   "lat": -17.783315017953004,
+      //   "lng": -63.18214577296119,
+      //   "indicaciones": "Santa Cruz, Av. Banzer 3er Anillo, Bolivia",
+      //   "alias": "Trabajo",
+      // }
     ]
     this.direccionSeleccionada = this.listaDireccionPrueba[0];
-
 
     this.seleccionadoEstadoPago = null;
 
@@ -122,7 +71,7 @@ class PageCheckoutPH extends HTMLElement {
 
     this.bodyModalLocalSeleccionado = this.querySelector('#phpc-modal-body-local-seleccionado');
     this.modalBodyContenedorMapa = this.querySelector('#phpc-localSeleccionado-mapa');
-    this.btnCerrarModalContenedorLocalSeleccionado = this.querySelector('#phpc-btn-cerrar-modal');
+    // this.btnCerrarModalContenedorLocalSeleccionado = this.querySelector('#phpc-btn-cerrar-modal');
     this.etiquetaModalLocalSeleccionado = this.querySelector('#phpc-etiqueta-informacion-modal-local-seleccionado');
     this.etiquetaLocalSeleccionado = this.querySelector('#pcktph-seleccion-local-detalle-info');
     this.btnVerDireccionEnMapa = this.querySelector('#phpc-btn-ver-direccion-mapa');
@@ -220,14 +169,14 @@ class PageCheckoutPH extends HTMLElement {
     this.inputCodigoCupon = this.querySelector('#phpc-input-codigo-cupon');
     this.btnAplicarCupon = this.querySelector('#phpc-btn-aplicar-cupon');
 
-    this.cerrarModalMensaje = this.querySelector('#phpc-btn-cerrar-modal');
+    this.cerrarModalMensaje = this.querySelectorAll('#phpc-btn-cerrar-modal');
     this.btnContinuar = this.querySelector('#phpc-btn-continuar-general');
 
     // INICIALIZAR EVENTOS
     this.btnMetodoLocal.addEventListener('click', this.seleccionarMetodoLocal.bind(this));
     this.btnMetodoDomicilio.addEventListener('click', this.seleccionarMetodoDomicilio.bind(this));
     this.btnVerDireccionEnMapa.addEventListener('click', this.verDireccionEnMapaLocalSeleccionado.bind(this));
-    this.btnCerrarModalContenedorLocalSeleccionado.addEventListener('click', this.cerrarModalLocalSeleccionado.bind(this));
+    // this.btnCerrarModalContenedorLocalSeleccionado.addEventListener('click', this.cerrarModalLocalSeleccionado.bind(this));
     this.btnAnadirNuevaDireccion.addEventListener('click', this.procesoParaAnadirNuevaDireccion.bind(this));
     this.btnCerrarModalNuevaDireccion.addEventListener('click', this.cerrarModalNuevaDireccion.bind(this));
     this.btnVolverAtrasNuevaDireccion.addEventListener('click', this.procesoVolverAtrasNuevaDireccion.bind(this));
@@ -260,7 +209,11 @@ class PageCheckoutPH extends HTMLElement {
         this.procesoSeleccionMetodoPago(event.currentTarget);
       });
     });
-    this.cerrarModalMensaje.addEventListener('click', this.cerrarModalMensajeProceso.bind(this));
+    this.cerrarModalMensaje.forEach((btn) => {
+      btn.addEventListener('click', (event) => {
+        this.cerrarModalMensajeProceso(event.currentTarget);
+      });
+    });
     this.btnContinuar.addEventListener('click', this.procesoContinuarGeneral.bind(this));
     this.btnHutCoins.addEventListener('click', (event) => {
       this.procesoHutCoins(event.currentTarget);
@@ -522,6 +475,7 @@ class PageCheckoutPH extends HTMLElement {
 
   seleccionarLocal(location) {
     this.localSeleccionado = location;
+    console.log("Local seleccionado: ", location);
     // this.coordenadas = { lat: location.lat, lng: location.lng };
 
     // Actualizar el input con el nombre del local seleccionadoo
@@ -804,10 +758,10 @@ class PageCheckoutPH extends HTMLElement {
     this.configuracionAutoCompletadoSeleccionLocal();
     this.configuracionAutoCompletadoSeleccionDireccion();
     this.configuracionAutoCompletadoPuntosReferencia();
+    await this.procesoSucursales();
 
     this.etiquetaAliasDireccion.textContent = this.listaDireccionPrueba[0].alias;
     this.etiquetaIndicacionesDireccion.textContent = this.listaDireccionPrueba[0].indicaciones;
-
     MensajeCargaDatos.ocultar();
   }
 
@@ -1157,7 +1111,7 @@ class PageCheckoutPH extends HTMLElement {
     }
   }
 
-  btnAccionDatosContacto(btnElemento) {
+  async btnAccionDatosContacto(btnElemento) {
     const accion = btnElemento.dataset.accion;
 
     // Si pasa la validación, continuar con la actualización de la interfaz
@@ -1167,6 +1121,7 @@ class PageCheckoutPH extends HTMLElement {
       this.contenedorDatosContactoEditar.style.display = "flex";
       this.contenedorDatoContactoConsolidados.style.display = "none";
     } else {
+      MensajeCargaDatos.mostrar('Procesando datos ...');
       this.btnEditarDatos.style.display = "flex";
       this.btnGuardarDatos.style.display = "none";
       this.contenedorDatosContactoEditar.style.display = "none";
@@ -1176,27 +1131,58 @@ class PageCheckoutPH extends HTMLElement {
       if (!this.validarCamposFormDatosContacto()) {
         return; // Si hay campos vacíos, detener la ejecución
       }
+      const datosUsuario = JSON.parse(localStorage.getItem('ph-datos-usuario'));
+      const existeClienteAntiguo = await this.porNroTelefonoUsuarioVerificar("+591" + datosUsuario.celular);
+      console.log("Cliente antiguo : ", existeClienteAntiguo);
+      const existeClienteNuevo = await this.porNroTelefonoUsuarioVerificar("+591" + this.inputCelularContacto.value);
+      if (existeClienteNuevo == existeClienteAntiguo || existeClienteNuevo == undefined) {
+        const nuevosDatosUsuario = await this.actualizarDatosUsuario(existeClienteAntiguo);
+        localStorage.setItem('ph-datos-usuario', JSON.stringify({
+          id: nuevosDatosUsuario.id,
+          nombre: nuevosDatosUsuario.nombre,
+          celular: nuevosDatosUsuario.celular,
+          apellido: nuevosDatosUsuario.apellido,
+          email: nuevosDatosUsuario.email,
+          ci: nuevosDatosUsuario.ci,
+          direcciones: nuevosDatosUsuario.direcciones,
+          razon_social: nuevosDatosUsuario.razon_social,
+          nit: nuevosDatosUsuario.nit,
+          fecha_nacimiento: nuevosDatosUsuario.fecha_nacimiento,
+          permisosHutCoins: nuevosDatosUsuario.permisosHutCoins,
+          ordenesPagadas: datosUsuario.ordenesPagadas,
+          ordenesPendientes: datosUsuario.ordenesPendientes
+        }));
+        this.inputNombreContacto.textContent = nuevosDatosUsuario.nombre;
+        this.inputApellidoContacto.textContent = nuevosDatosUsuario.apellido;
+        this.inputCorreoElectronico.textContent = nuevosDatosUsuario.email;
+        this.inputCelularContacto.textContent = nuevosDatosUsuario.celular;
+        this.inputCIContacto.textContent = nuevosDatosUsuario.ci;
+        this.etiquetaDatosConsolidados.textContent = `${nuevosDatosUsuario.nombre} | ${nuevosDatosUsuario.apellido} | ${nuevosDatosUsuario.email} | ${nuevosDatosUsuario.celular} | ${nuevosDatosUsuario.ci}`;
+      } else {
+        MensajeCargaDatos.ocultar();
+        MensajeTemporal.mostrarMensaje('El número de celular ya está registrado. Por favor, intenta con otro número.', 'error', 3500);
+        return;
+      }
 
       // Proceso de guardar datos
-      const datosActualizados = {
-        nombre: this.inputNombreContacto.value,
-        apellido: this.inputApellidoContacto.value,
-        email: this.inputCorreoElectronico.value,
-        celular: this.inputCelularContacto.value,
-        ci: this.inputCIContacto.value
-      };
+      // const datosActualizados = {
+      //   nombre: this.inputNombreContacto.value,
+      //   apellido: this.inputApellidoContacto.value,
+      //   email: this.inputCorreoElectronico.value,
+      //   celular: this.inputCelularContacto.value,
+      //   ci: this.inputCIContacto.value
+      // };
 
       // Actualizar los datos en el localStorage
-      localStorage.setItem('ph-datos-usuario', JSON.stringify(datosActualizados));
+      // localStorage.setItem('ph-datos-usuario', JSON.stringify(datosActualizados));
 
-      // Actualizar la interfaz
-      this.inputNombreContacto.textContent = datosActualizados.nombre;
-      this.inputApellidoContacto.textContent = datosActualizados.apellido;
-      this.inputCorreoElectronico.textContent = datosActualizados.email;
-      this.inputCelularContacto.textContent = datosActualizados.celular;
-      this.inputCIContacto.textContent = datosActualizados.ci;
-
-      this.etiquetaDatosConsolidados.textContent = `${datosActualizados.nombre} | ${datosActualizados.apellido} | ${datosActualizados.email} | ${datosActualizados.celular} | ${datosActualizados.ci}`;
+      // // Actualizar la interfaz
+      // this.inputNombreContacto.textContent = datosActualizados.nombre;
+      // this.inputApellidoContacto.textContent = datosActualizados.apellido;
+      // this.inputCorreoElectronico.textContent = datosActualizados.email;
+      // this.inputCelularContacto.textContent = datosActualizados.celular;
+      // this.inputCIContacto.textContent = datosActualizados.ci;
+      MensajeCargaDatos.ocultar();
     }
   }
 
@@ -1438,32 +1424,61 @@ class PageCheckoutPH extends HTMLElement {
 
   inicializarDatosdeContacto() {
     const data = JSON.parse(localStorage.getItem('ph-datos-usuario'));
-    if (data) {
-      if (!data.permisoHutCoins) {
-        this.contenedorHutCoins.style.display = "flex";
-      }
-
+    if (data.nombre.includes("pizzaHut") && data.apellido.includes("pizzaHut") && data.email.includes("pizzaHut")) {
+      this.inputNombreContacto.value = "";
+      this.inputApellidoContacto.value = "";
+      this.inputCorreoElectronico.value = "";
+      this.inputCelularContacto.value = data.celular;
+      this.inputCIContacto.value = data.ci;
+      this.btnEditarDatos.style.display = "none";
+      this.btnGuardarDatos.style.display = "flex";
+      this.contenedorDatosContactoEditar.style.display = "flex";
+      this.contenedorDatoContactoConsolidados.style.display = "none";
+    } else {
       this.inputNombreContacto.value = data.nombre;
       this.inputApellidoContacto.value = data.apellido;
       this.inputCorreoElectronico.value = data.email;
       this.inputCelularContacto.value = data.celular;
       this.inputCIContacto.value = data.ci;
       this.etiquetaDatosConsolidados.textContent = `${data.nombre} | ${data.apellido} | ${data.email} | +591 ${data.celular} | ${data.ci}`;
-    } else {
-      window.location.href = "/pages/iniciar-sesion";
+      this.btnEditarDatos.style.display = "flex";
+      this.btnGuardarDatos.style.display = "none";
+      this.contenedorDatosContactoEditar.style.display = "none";
+      this.contenedorDatoContactoConsolidados.style.display = "flex";
     }
+    if (!data.permisosHutCoins) {
+      this.contenedorHutCoins.style.display = "flex";
+    }
+    //   this.inputNombreContacto.value = data.nombre;
+    //   this.inputApellidoContacto.value = data.apellido;
+    //   this.inputCorreoElectronico.value = data.email;
+    //   this.inputCelularContacto.value = data.celular;
+    //   this.inputCIContacto.value = data.ci;
+    //   this.etiquetaDatosConsolidados.textContent = `${data.nombre} | ${data.apellido} | ${data.email} | +591 ${data.celular} | ${data.ci}`;
+    // } else {
+    //   window.location.href = "/pages/iniciar-sesion";
+    // }
   }
 
   inicializarDatosdeFacturacion() {
-    const data = JSON.parse(localStorage.getItem('ph-datos-facturacion'));
-    if (data) {
+    const data = JSON.parse(localStorage.getItem('ph-datos-usuario'));
+    if (data.razonSocial == "" || data.nit == "") {
+      this.inputRazonSocial.value = "";
+      this.inputNitoCit.value = "";
+    } else {
       this.inputRazonSocial.value = data.razonSocial;
       this.inputNitoCit.value = data.nit;
-    } else {
-      this.inputRazonSocial.value = "----";
-      this.inputNitoCit.value = "----";
     }
     this.etiquetaDatosFacturacionConsolidados.textContent = `${this.inputRazonSocial.value} | ${this.inputNitoCit.value}`;
+
+    // if (data) {
+    //   this.inputRazonSocial.value = data.razonSocial;
+    //   this.inputNitoCit.value = data.nit;
+    // } else {
+    //   this.inputRazonSocial.value = "----";
+    //   this.inputNitoCit.value = "----";
+    // }
+    // this.etiquetaDatosFacturacionConsolidados.textContent = `${this.inputRazonSocial.value} | ${this.inputNitoCit.value}`;
   }
 
   procesoVerDetallesProducto(elementoHTML) {
@@ -1522,21 +1537,47 @@ class PageCheckoutPH extends HTMLElement {
       return;
     }
 
-    // Proceso de guardar datos
-    const datosActualizados = {
-      nombre: this.inputNombreContacto.value,
-      apellido: this.inputApellidoContacto.value,
-      email: this.inputCorreoElectronico.value,
-      celular: this.inputCelularContacto.value,
-      ci: this.inputCIContacto.value
-    };
-
-    // Actualizar los datos en el localStorage
-    localStorage.setItem('ph-datos-usuario', JSON.stringify(datosActualizados));
-
+    MensajeCargaDatos.mostrar('Su pedido se esta procesando ...');
+    const datosBase = JSON.parse(localStorage.getItem('ph-datos-usuario'));
 
     // Actualizar datos de usuario decuerdo a la seleccion HUT COINS
-    this.actualizarDatosUsuario();
+    const existeClienteAntiguo = await this.porNroTelefonoUsuarioVerificar("+591" + datosBase.celular);
+    console.log("Cliente antiguo : ", existeClienteAntiguo);
+    const existeClienteNuevo = await this.porNroTelefonoUsuarioVerificar("+591" + this.inputCelularContacto.value);
+    if (existeClienteNuevo == existeClienteAntiguo || existeClienteNuevo == undefined) {
+      const nuevosDatosUsuario = await this.actualizarDatosUsuario(existeClienteAntiguo);
+      localStorage.setItem('ph-datos-usuario', JSON.stringify({
+        id: nuevosDatosUsuario.id,
+        nombre: nuevosDatosUsuario.nombre,
+        celular: nuevosDatosUsuario.celular,
+        apellido: nuevosDatosUsuario.apellido,
+        email: nuevosDatosUsuario.email,
+        ci: nuevosDatosUsuario.ci,
+        direcciones: nuevosDatosUsuario.direcciones,
+        razon_social: nuevosDatosUsuario.razon_social,
+        nit: nuevosDatosUsuario.nit,
+        fecha_nacimiento: nuevosDatosUsuario.fecha_nacimiento,
+        permisosHutCoins: nuevosDatosUsuario.permisosHutCoins,
+        ordenesPagadas: datosBase.ordenesPagadas,
+        ordenesPendientes: datosBase.ordenesPendientes
+      }));
+    } else {
+      MensajeCargaDatos.ocultar();
+      MensajeTemporal.mostrarMensaje('El número de celular ya está registrado. Por favor, intenta con otro número.', 'error', 3500);
+      return;
+    }
+
+    // // Proceso de guardar datos
+    // const datosActualizados = {
+    //   nombre: this.inputNombreContacto.value,
+    //   apellido: this.inputApellidoContacto.value,
+    //   email: this.inputCorreoElectronico.value,
+    //   celular: this.inputCelularContacto.value,
+    //   ci: this.inputCIContacto.value
+    // };
+
+    // // Actualizar los datos en el localStorage
+    // localStorage.setItem('ph-datos-usuario', JSON.stringify(datosActualizados));
 
     const datosCheckout = {
       // Traer datos de metodo de envio seleccionado
@@ -1551,18 +1592,18 @@ class PageCheckoutPH extends HTMLElement {
 
     localStorage.setItem('ph-datos-checkout', JSON.stringify(datosCheckout));
 
-    MensajeCargaDatos.mostrar('Su pedido se esta procesando ...');
 
     // Orden creada en los preliminaress
-    const dataOrdenPreliminar = await this.generarPedidoPreliminar(datosCheckout);
-    this.infoOrdenPreliminar = dataOrdenPreliminar.order;
+    // const dataOrdenPreliminar = await this.generarPedidoPreliminar(datosCheckout);
+    const dataOrdenPendiente = await this.crearOrdenPendiente(datosCheckout);
+    this.infoOrdenPreliminar = dataOrdenPendiente.order;
 
     // Orden consolidada como pagada (PEDIDOO)
     const dataJSON = this.generarJSONMostrarConsola();
     console.log("Data JSON", dataJSON);
-    console.log("Data Orden Finalizada", await this.getOrderDetails());
+    // console.log("Data Orden Finalizada", await this.getOrderDetails());
     localStorage.setItem('ph-json-generado', JSON.stringify(dataJSON));
-    localStorage.setItem('ph-id-orden', dataOrdenPreliminar.order.id);
+    localStorage.setItem('ph-id-orden', dataOrdenPendiente.order.id);
 
     if (this.seleccionadoEstadoPago == "pago-codigo-qr") {
       console.log("Testeo de informacion QR", {
@@ -1579,7 +1620,8 @@ class PageCheckoutPH extends HTMLElement {
       // return;
       await this.iniciarPasarela();
     } else {
-      await this.generarPedido(dataOrdenPreliminar.order.id);
+      // await this.generarPedido(dataOrdenPreliminar.order.id);
+      await this.actualizarPedidoCompletado(dataOrdenPendiente.order.id);
       localStorage.setItem('ph-estadoDP', "etapa-1");
       window.location.href = "/pages/detalle-pedido";
     }
@@ -1675,7 +1717,8 @@ class PageCheckoutPH extends HTMLElement {
             // document.getElementById(".ph-modal-body-qr").innerHTML = `<p>✅ Pago confirmado.</p>`;
             this.contenedorQR.innerHTML = `<p>✅ Pago confirmado.</p>`;
 
-            await this.generarPedido(this.infoOrdenPreliminar.id);
+            // await this.generarPedido(this.infoOrdenPreliminar.id);
+            await this.actualizarPedidoCompletado(dataOrdenPendiente.order.id);
             await AuxiliaresGlobal.limpiarCarrito();
             localStorage.setItem('ph-estadoDP', "etapa-1");
 
@@ -1806,7 +1849,7 @@ class PageCheckoutPH extends HTMLElement {
       }
 
       const coordenadasFormatoEnviar = () => {
-        const data = null;
+        var data = null;
         if (this.estadoPagina == "domicilio") {
           data = informacionPedido.datosCheckout.metodo_envio_seleccionado.info_seleccionada;
         } else {
@@ -1814,6 +1857,7 @@ class PageCheckoutPH extends HTMLElement {
         }
         return `lat: ${data.lat} ,lng: ${data.lng}`
       }
+
 
       const variables = {
         input: {
@@ -1837,10 +1881,13 @@ class PageCheckoutPH extends HTMLElement {
               ? { key: "Nota para el pedido", value: informacionPedido.datosCheckout.nota_para_envio }
               : null,
             informacionPedido.datosCheckout.sucursal != null
-              ? { key: "Sucursal", value: informacionPedido.datosCheckout.sucursal }
+              ? {
+                key: "Local Designado",
+                value: this.estadoPagina == "domicilio" ?
+                  this.optenerSucursalPorDominicilio(informacionPedido.datosCheckout.metodo_envio_seleccionado.info_seleccionada).name
+                  : informacionPedido.datosCheckout.metodo_envio_seleccionado.local_seleccionado.name
+              }
               : null,
-            { key: "Datos Usuario", value: JSON.stringify(dataUsuario) },
-            { key: "Datos Direccion", value: JSON.stringify(informacionPedido.datosCheckout.metodo_envio_seleccionado) },
             { key: "Datos Proceso Checkout", value: JSON.stringify(informacionPedido.datosCheckout) },
             { key: "Datos Carrito PRoceso", value: JSON.stringify(informacionPedido.itemsCarrito) },
           ],
@@ -1848,13 +1895,13 @@ class PageCheckoutPH extends HTMLElement {
       };
 
       // Asegúrate de que this.urlConsulta esté definido o usa la URL directaa
-      const myTest = 'shpat_' + '45f4a7476152f4881d058f87ce063698';
 
-      const response = await fetch(this.urlConsulta, {
+
+      const respuesta = await fetch(window.urlConsulta, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'X-Shopify-Access-Token': myTest
+          'X-Shopify-Access-Token': window.backendShopify,
         },
         body: JSON.stringify({
           query: draftOrderQuery,
@@ -1862,7 +1909,7 @@ class PageCheckoutPH extends HTMLElement {
         })
       });
 
-      const data = await response.json();
+      const data = await respuesta.json();
       console.log('Respuesta completa de Shopify:', data);
 
       if (data.errors) {
@@ -1893,12 +1940,201 @@ class PageCheckoutPH extends HTMLElement {
     }
   }
 
+  async crearOrdenPendiente(datosCheckout) {
+    try {
+      const dataUsuario = JSON.parse(localStorage.getItem('ph-datos-usuario'));
+
+      const lineItems = this.infoCarrito.informacionCompleta.items.map(item => {
+        console.log("Testeo Item", item);
+        let data = null;
+        try {
+          if (item.properties && item.properties.estructura) {
+            data = JSON.parse(item.properties.estructura);
+            console.log("Testeo Data", data);
+          }
+        } catch (error) {
+          console.error("Error al parsear estructura del item:", error);
+        }
+
+        return {
+          variantId: `gid://shopify/ProductVariant/${data.producto.idShopify}`,
+          quantity: parseInt(data.producto.cantidad)
+        };
+      });
+
+      const metodoPago = () => {
+        switch (this.seleccionadoEstadoPago) {
+          case "pago-efectivo": return "Pago Efectivo";
+          case "pago-tarjeta-credito": return "Pago Tarjeta";
+          case "pago-codigo-qr": return "Pago QR";
+          default: return "Método de Pago Desconocido";
+        }
+      };
+
+      const coordenadasFormatoEnviar = () => {
+        const data = this.estadoPagina == "domicilio"
+          ? datosCheckout.metodo_envio_seleccionado.info_seleccionada
+          : datosCheckout.metodo_envio_seleccionado.local_seleccionado;
+        return `lat: ${data.lat}, lng: ${data.lng}`;
+      };
+
+      const variables = {
+        order: {
+          lineItems,
+          customer: {
+            toAssociate: {
+              id: dataUsuario.id
+            }
+          },
+          financialStatus: "PENDING",
+          shippingAddress: {
+            firstName: dataUsuario.nombre,
+            lastName: dataUsuario.apellido,
+            phone: dataUsuario.celular,
+            address1: this.estadoPagina == "domicilio"
+              ? this.direccionSeleccionada.indicaciones
+              : this.localSeleccionado.localizacion,
+            city: "Santa Cruz",
+            provinceCode: "SC",
+            countryCode: "BO",
+            zip: "0000"
+          },
+          billingAddress: {
+            firstName: dataUsuario.nombre,
+            lastName: dataUsuario.apellido,
+            phone: dataUsuario.celular,
+            address1: "Dirección Facturación (opcional)",
+            city: "Santa Cruz",
+            provinceCode: "SC",
+            countryCode: "BO",
+            zip: "0000"
+          },
+          customAttributes: [
+            { key: "Metodo Pago", value: metodoPago() },
+            { key: "Metodo Entrega", value: this.estadoPagina === "domicilio" ? "Envío a Domicilio" : "Recojo en Local" },
+            { key: "Coordenadas", value: coordenadasFormatoEnviar() },
+            datosCheckout.nota_para_envio
+              ? { key: "Nota para el pedido", value: datosCheckout.nota_para_envio }
+              : null,
+            datosCheckout.sucursal
+              ? {
+                key: "Local Designado",
+                value: this.estadoPagina === "domicilio"
+                  ? this.optenerSucursalPorDominicilio(datosCheckout.metodo_envio_seleccionado.info_seleccionada).name
+                  : datosCheckout.metodo_envio_seleccionado.local_seleccionado.name
+              }
+              : null,
+            { key: "Datos Proceso Checkout", value: JSON.stringify(datosCheckout) },
+            { key: "Datos Carrito Proceso", value: JSON.stringify(this.infoCarrito.informacionCompleta.items) }
+          ].filter(Boolean) // elimina cualquier null
+        }
+      };
+
+      const orderCreateMutation = `
+          mutation orderCreate($order: OrderCreateOrderInput!, $options: OrderCreateOptionsInput) {
+            orderCreate(order: $order, options: $options) {
+            order {
+              id
+              name
+              email
+              totalPrice
+              createdAt
+              shippingAddress {
+                address1
+                city
+                provinceCode
+                countryCode
+                zip
+              }
+              billingAddress {
+                address1
+                city
+                provinceCode
+                countryCode
+                zip
+              }
+            }
+            userErrors {
+              field
+              message
+            }
+          }
+        }
+      `;
+
+      const respuesta = await fetch(window.urlConsulta, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Shopify-Access-Token': window.backendShopify
+        },
+        body: JSON.stringify({
+          query: orderCreateMutation,
+          variables: {
+            order: variables.order,
+            options: null
+          }
+        })
+      });
+
+      const data = await respuesta.json();
+      console.log('Respuesta completa de Shopify:', data);
+
+      if (data.errors) {
+        console.error('Errores en GraphQL:', data.errors);
+        return { success: false, errors: data.errors };
+      }
+
+      const resultado = data.data.orderCreate;
+      if (resultado.userErrors.length > 0) {
+        console.error('Errores del usuario:', resultado.userErrors);
+        return { success: false, errors: resultado.userErrors };
+      }
+
+      console.log('Orden creada con éxito:', resultado.order);
+      return { success: true, order: resultado.order };
+
+    } catch (error) {
+      console.error('Error general al crear orden:', error);
+      return { success: false, error: error.message };
+    }
+  }
+
+  optenerSucursalPorDominicilio(informacion) {
+    const coordenadasInfo = { lat: parseFloat(informacion.lat), lng: parseFloat(informacion.lng) };
+
+    // Verificar si hay sucursales disponibles
+    if (!this.pizzaLocations || this.pizzaLocations.length === 0) {
+      return null;
+    }
+
+    let sucursalMasCercana = null;
+    let distanciaMinima = Infinity;
+
+    // Encontrar la sucursal más cercana
+    for (const sucursal of this.pizzaLocations) {
+      const coordenadasSucursal = {
+        lat: parseFloat(sucursal.lat),
+        lng: parseFloat(sucursal.lng)
+      };
+
+      const distancia = this.calcularDistancia(coordenadasInfo, coordenadasSucursal);
+
+      if (distancia < distanciaMinima) {
+        distanciaMinima = distancia;
+        sucursalMasCercana = { ...sucursal, distancia };
+      }
+    }
+
+    return sucursalMasCercana;
+  }
+
   async generarPedido(idOrden) {
     try {
       // Consulta GraphQL para completar un draft order
       const completeDraftOrderQuery = `
           mutation CompleteDraftOrder {
-            draftOrderComplete(id: "${idOrden}") {
+            draftOrderComplete(id: "${idOrden}",paymentPending: false) {
               draftOrder {
                 id
                 status
@@ -1915,13 +2151,13 @@ class PageCheckoutPH extends HTMLElement {
         id: idOrden
       };
 
-      const myTest = 'shpat_' + '45f4a7476152f4881d058f87ce063698';
 
-      const response = await fetch(this.urlConsulta, {
+
+      const respuesta = await fetch(window.urlConsulta, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'X-Shopify-Access-Token': myTest
+          'X-Shopify-Access-Token': window.backendShopify,
         },
         body: JSON.stringify({
           query: completeDraftOrderQuery,
@@ -1958,6 +2194,70 @@ class PageCheckoutPH extends HTMLElement {
     }
   }
 
+  async actualizarPedidoCompletado(idOrden) {
+    try {
+      // Consulta GraphQL para marcar un pedido como pagado
+      const markOrderAsPaidQuery = `
+        mutation MarkOrderAsPaid {
+          orderMarkAsPaid(input: { id: "${idOrden}" }) {
+            order {
+              id
+              fullyPaid
+              displayFinancialStatus
+            }
+            userErrors {
+              field
+              message
+            }
+          }
+        }
+      `;
+
+      const variables = {
+        id: idOrden
+      };
+
+      const respuesta = await fetch(window.urlConsulta, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Shopify-Access-Token': window.backendShopify,
+        },
+        body: JSON.stringify({
+          query: markOrderAsPaidQuery,
+          variables: variables
+        })
+      });
+
+      const data = await respuesta.json();
+      console.log('Respuesta completa de actualización de pedido:', data);
+
+      if (data.errors) {
+        console.error('Errores en la respuesta GraphQL:', data.errors);
+        return { success: false, errors: data.errors };
+      }
+
+      if (data.data && data.data.orderMarkAsPaid.userErrors &&
+        data.data.orderMarkAsPaid.userErrors.length > 0) {
+        console.error('Errores al marcar el pedido como pagado:', data.data.orderMarkAsPaid.userErrors);
+        return { success: false, errors: data.data.orderMarkAsPaid.userErrors };
+      }
+
+      if (data.data && data.data.orderMarkAsPaid && data.data.orderMarkAsPaid.order) {
+        console.log('Pedido marcado como pagado exitosamente:', data.data.orderMarkAsPaid.order);
+        return {
+          success: true,
+          order: data.data.orderMarkAsPaid.order
+        };
+      }
+
+      return { success: false, message: 'Respuesta inesperada del servidor' };
+    } catch (error) {
+      console.error('Error al marcar el pedido como pagado:', error);
+      return { success: false, error: error.message };
+    }
+  }
+
   async getOrderDetails(orderId = "gid://shopify/Order/1189413978396") {
     try {
       // Consulta GraphQL para obtener detalles de la orden
@@ -1989,13 +2289,13 @@ class PageCheckoutPH extends HTMLElement {
           }
         `;
 
-      const myTest = 'shpat_' + '45f4a7476152f4881d058f87ce063698';
 
-      const response = await fetch(this.urlConsulta, {
+
+      const respuesta = await fetch(window.urlConsulta, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'X-Shopify-Access-Token': myTest
+          'X-Shopify-Access-Token': window.backendShopify,
         },
         body: JSON.stringify({
           query: orderDetailsQuery
@@ -2046,20 +2346,185 @@ class PageCheckoutPH extends HTMLElement {
     return false;
   }
 
-  actualizarDatosUsuario() {
-    const data = JSON.parse(localStorage.getItem('ph-datos-usuario'));
-    const estaSeleccionadoBtnHutCoins = this.btnHutCoins.classList.contains('seleccionado');
-    const obtenerInputFechaNacimiento = this.inputFechaNacimiento.value;
+  async actualizarDatosUsuario(id) {
+    const datosUsuario = JSON.parse(localStorage.getItem('ph-datos-usuario') || '{}');
+    const graphQLQuery = `
+    mutation UpdateCustomer($input: CustomerInput!) {
+      customerUpdate(input: $input) {
+        customer {
+          id
+          firstName
+          lastName
+          email
+          phone
+          metafield(namespace: "informacion", key: "extra") {
+            id
+            key
+            namespace
+            value
+          }
+        }
+        userErrors {
+          field
+          message
+        }
+      }
+    }
+  `;
 
-    if (estaSeleccionadoBtnHutCoins == false && obtenerInputFechaNacimiento == "") return;
+    const informacionExtra = JSON.stringify({
+      nit: this.inputNitoCit.value == "" ? datosUsuario.nit : this.inputNitoCit.value,
+      razon_social: this.inputRazonSocial.value == "" ? datosUsuario.razon_social : this.inputRazonSocial.value,
+      fecha: this.inputFechaNacimiento.value == "" ? datosUsuario.fecha_nacimiento : this.inputFechaNacimiento.value,
+      permisosHutCoins: this.btnHutCoins.classList.contains('seleccionado') ? true : false,
+      ci: this.inputCIContacto.value == "" ? datosUsuario.ci : this.inputCIContacto.value,
+      direcciones: this.listaDireccionPrueba,
+    });
 
-    data.permisoHutCoins = estaSeleccionadoBtnHutCoins;
-    data.fechaNacimiento = obtenerInputFechaNacimiento;
+    const variables = {
+      input: {
+        id: `gid://shopify/Customer/${id}`,
+        firstName: this.inputNombreContacto.value == "" ? datosUsuario.nombre : this.inputNombreContacto.value,
+        lastName: this.inputApellidoContacto.value == "" ? datosUsuario.apellido : this.inputApellidoContacto.value,
+        email: this.inputCorreoElectronico.value == "" ? datosUsuario.email : this.inputCorreoElectronico.value,
+        phone: `+591${this.inputCelularContacto.value == "" ? datosUsuario.celular : this.inputCelularContacto.value}`,
+        metafields: [
+          {
+            namespace: "informacion",
+            key: "extra",
+            type: "json_string",
+            value: informacionExtra
+          }
+        ]
+      }
+    };
+
+    try {
+      const respuesta = await fetch(window.urlConsulta, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Shopify-Access-Token': window.backendShopify,
+        },
+        body: JSON.stringify({
+          query: graphQLQuery,
+          variables: variables
+        }),
+      });
+
+      const datos = await respuesta.json();
+      console.log("Respuesta de la API:", datos);
+
+      if (datos.data?.customerUpdate?.userErrors?.length > 0) {
+        return {
+          exito: false,
+          errores: datos.data.customerUpdate.userErrors
+        };
+      }
+
+      // Obtener el cliente actualizado
+      const customer = datos.data?.customerUpdate?.customer;
+
+      // Procesar los metafields para extraer la información extra
+      let metafieldData = {};
+      if (customer?.metafield?.value) {
+        try {
+          metafieldData = JSON.parse(customer.metafield.value);
+        } catch (e) {
+          console.error("Error al parsear metafield:", e);
+        }
+      }
+
+      // Devolver el objeto con el formato solicitado
+      return {
+        id: customer.id,
+        nombre: customer.firstName,
+        celular: customer.phone?.replace(/^\+591/, "") || "",
+        apellido: customer.lastName,
+        email: customer.email,
+        ci: metafieldData.ci || "",
+        direcciones: metafieldData.direcciones || [],
+        razon_social: metafieldData.razon_social || "",
+        nit: metafieldData.nit || "",
+        fecha_nacimiento: metafieldData.fecha || "",
+        permisosHutCoins: metafieldData.permisosHutCoins || false,
+      };
+    } catch (error) {
+      console.error("Error al actualizar datos de usuario:", error);
+      return {
+        exito: false,
+        error: error.message
+      };
+    }
+
+    // const data = JSON.parse(localStorage.getItem('ph-datos-usuario'));
+    // const estaSeleccionadoBtnHutCoins = this.btnHutCoins.classList.contains('seleccionado');
+    // const obtenerInputFechaNacimiento = this.inputFechaNacimiento.value;
+
+    // if (estaSeleccionadoBtnHutCoins == false && obtenerInputFechaNacimiento == "") return;
+
+    // data.permisoHutCoins = estaSeleccionadoBtnHutCoins;
+    // data.fechaNacimiento = obtenerInputFechaNacimiento;
+  }
+
+  async porNroTelefonoUsuarioVerificar(numeroTelefono) {
+    const graphQLQuery = `
+query($identifier: CustomerIdentifierInput!) {
+  customer: customerByIdentifier(identifier: $identifier) {
+    id
+		            metafield(namespace: "informacion", key: "extra") {
+              id
+              key
+              namespace
+              value
+            }
+  }
+}
+    `;
+
+    const variables = {
+      "identifier": {
+        "phoneNumber": numeroTelefono
+      }
+    };
+
+    try {
+      // Usar el servidor intermediario local en lugar de la API directa de Shopify
+      const respuesta = await fetch(window.urlConsulta, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Shopify-Access-Token': window.backendShopify,
+        },
+        body: JSON.stringify({
+          query: graphQLQuery,
+          variables: variables
+        }),
+      });
+
+      if (!respuesta.ok) {
+        throw new Error(`Error de red: ${respuesta.status} ${respuesta.statusText}`);
+      }
+
+      const datos = await respuesta.json();
+
+      // Verificar si hay resultados y extraer solo el número del ID
+      if (datos.data?.customer?.id) {
+        // Extraer solo el número del ID (después de la última barra)
+        const idCompleto = datos.data.customer.id;
+        const numeroID = idCompleto.split('/').pop();
+        return numeroID;
+      } else {
+        return undefined;
+      }
+
+    } catch (error) {
+      console.error("Error al verificar usuario por teléfono:", error);
+      return undefined;
+    }
   }
 
   obtenerDatosMetodoEnvio() {
-
-
     if (this.btnMetodoLocal.classList.contains('seleccionado')) {
       return {
         metodo_envio: "local",
@@ -2154,9 +2619,94 @@ class PageCheckoutPH extends HTMLElement {
   }
 
   cerrarModalMensajeProceso() {
+    console.log("Cerrando modal");
     this.contenedorBaseModal.style.display = "none";
     this.contenedorBaseMensaje.style.display = "none";
     this.contenedorQR.style.display = "none";
+  }
+
+  async procesoSucursales() {
+    const consultaGrapql = `query GetAllLocations {
+        locations(first: 50) {
+          edges {
+            node {
+              id
+              name
+              address {
+                address1
+                city
+                country
+                zip
+              }
+              isActive
+            }
+          }
+        }
+      }`;
+
+    try {
+      console.log("Consultando API de Shopify...");
+      const response = await fetch(window.urlConsulta, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Shopify-Access-Token': window.backendShopify
+        },
+        body: JSON.stringify({ query: consultaGrapql })
+      });
+
+      if (!response.ok) {
+        console.error(`Error de red: ${response.status}`);
+        return;
+      }
+
+      const { data, errors } = await response.json();
+
+      if (errors) {
+        console.error("Errores en la respuesta GraphQL:", errors);
+        return;
+      }
+
+      if (!data?.locations?.edges) {
+        console.error("Estructura de datos inesperada en la respuesta");
+        return;
+      }
+
+      const sucursalesShopify = data.locations.edges.map(edge => edge.node);
+      console.log("Datos recibidos de Shopify:", sucursalesShopify);
+
+      // Crear un mapa para búsqueda eficiente
+      const sucursalesMap = new Map();
+      window.localizacionesSucursales.forEach(local => {
+        if (local?.name) sucursalesMap.set(local.name, local);
+      });
+
+      let actualizadas = 0;
+
+      // Actualizar sucursales
+      sucursalesShopify.forEach(sucursal => {
+        if (!sucursal?.name) {
+          console.warn("Sucursal sin nombre encontrada, omitiendo");
+          return;
+        }
+        const localSucursal = sucursalesMap.get(sucursal.name);
+        if (localSucursal) {
+          localSucursal.id = sucursal.id || '';
+          actualizadas++;
+        } else {
+          console.log(`No se encontró coincidencia local para: ${sucursal.name}`);
+        }
+      });
+
+      localStorage.setItem('ph-sucursales', JSON.stringify(window.localizacionesSucursales));
+      this.pizzaLocations = window.localizacionesSucursales;
+      // console.log(`Proceso finalizado: ${actualizadas} de ${sucursalesShopify.length} sucursales actualizadas`);
+      // console.log("Sucursales actualizadas:", window.localizacionesSucursales);
+    } catch (error) {
+      console.error('Error en el proceso:', error);
+    } finally {
+      console.log("Proceso de actualización completado");
+    }
   }
 }
 

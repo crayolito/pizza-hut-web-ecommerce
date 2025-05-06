@@ -263,7 +263,7 @@ class InicioSesion extends HTMLElement {
     };
 
     try {
-      // Realizar la solicitud
+      // Usar el servidor intermediario local en lugar de la API directa de Shopify
       const respuesta = await fetch(window.urlConsulta, {
         method: 'POST',
         headers: {
@@ -326,7 +326,7 @@ class InicioSesion extends HTMLElement {
 
     // Enfoque correcto: usar variables separadas para la consulta GraphQL
     const graphQLMutation = `
-      mutation customerCreate($input: CustomerCreateInput!) {
+      mutation customerCreate($input: CustomerInput!) {
         customerCreate(input: $input) {
           customer {
             id
@@ -375,11 +375,23 @@ class InicioSesion extends HTMLElement {
     try {
 
       // Realizar la solicitud
+      // const respuesta = await fetch(window.urlConsulta, {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //     'X-Shopify-Access-Token': window.backendShopify,
+      //   },
+      //   body: JSON.stringify({
+      //     query: graphQLMutation,
+      //     variables: variables
+      //   }),
+      // });
+
       const respuesta = await fetch(window.urlConsulta, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'X-Shopify-Access-Token': window.keyBackendShopify,
+          'X-Shopify-Access-Token': window.backendShopify,
         },
         body: JSON.stringify({
           query: graphQLMutation,
@@ -440,20 +452,17 @@ class InicioSesion extends HTMLElement {
 
         // Construir y devolver el objeto con toda la información
         return {
-          exito: true,
-          datos: {
-            id: customer.id,
-            nombre: customer.firstName,
-            celular: customer.phone.replace("+591", ""),
-            apellido: customer.lastName,
-            email: customer.email,
-            ci: metafieldData.ci || "",
-            direcciones: metafieldData.direcciones || [],
-            razon_social: metafieldData.razon_social || "",
-            nit: metafieldData.nit || "",
-            fecha_nacimiento: metafieldData.fecha || "",
-            permisosHutCoins: metafieldData.permisosHutCoins || false,
-          }
+          id: customer.id,
+          nombre: customer.firstName,
+          celular: customer.phone.replace("+591", ""),
+          apellido: customer.lastName,
+          email: customer.email,
+          ci: metafieldData.ci || "",
+          direcciones: metafieldData.direcciones || [],
+          razon_social: metafieldData.razon_social || "",
+          nit: metafieldData.nit || "",
+          fecha_nacimiento: metafieldData.fecha || "",
+          permisosHutCoins: metafieldData.permisosHutCoins || false,
         };
       } else {
         console.log('No se pudo crear el usuario, respuesta:', datos);
@@ -495,11 +504,20 @@ class InicioSesion extends HTMLElement {
 
     try {
       // Realizar la solicitud
-      const respuesta = await fetch("https://pizza-hut-bo.myshopify.com/admin/api/2025-04/graphql.json", {
+      // const respuesta = await fetch("https://pizza-hut-bo.myshopify.com/admin/api/2025-04/graphql.json", {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //     'X-Shopify-Access-Token': window.backendShopify,
+      //   },
+      //   body: JSON.stringify({ query: graphQLQuery }),
+      // });
+
+      const respuesta = await fetch(window.urlConsulta, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'X-Shopify-Access-Token': window.keyBackendShopify,
+          'X-Shopify-Access-Token': window.backendShopify,
         },
         body: JSON.stringify({ query: graphQLQuery }),
       });
@@ -527,17 +545,16 @@ class InicioSesion extends HTMLElement {
         // Construir y devolver el objeto con toda la información
         return {
           id: customer.id,
-          firstName: customer.firstName,
-          lastName: customer.lastName,
+          nombre: customer.firstName,
+          apellido: customer.lastName,
           email: customer.email,
-          phone: customer.phone,
-          metafield: customer.metafield,
-          // Incluir los datos parseados del metafield directamente en el objeto
-          nit: metafieldData.nit,
+          celular: customer.phone.replace("+591", ""),
           ci: metafieldData.ci,
-          fecha: metafieldData.fecha,
-          permisosHutCoins: metafieldData.permisosHutCoins,
-          direcciones: metafieldData.direcciones || []
+          direcciones: metafieldData.direcciones || [],
+          razon_social: metafieldData.razon_social || "",
+          nit: metafieldData.nit,
+          fecha_nacimiento: metafieldData.fecha || "",
+          permisosHutCoins: metafieldData.permisosHutCoins || false,
         };
       } else {
         console.log('No se encontró información del usuario');
@@ -635,9 +652,11 @@ class InicioSesion extends HTMLElement {
         if (existeEsteUsuario == undefined) {
           this.estadoCliente = "no-existe";
           datosUsuario = await this.crearUnNuevoUsuario();
+          console.log('Usuario creado:', datosUsuario);
           localStorage.setItem(
             'ph-datos-usuario',
             JSON.stringify({
+              id: datosUsuario.id,
               nombre: datosUsuario.nombre,
               celular: datosUsuario.celular,
               apellido: datosUsuario.apellido,
@@ -653,13 +672,13 @@ class InicioSesion extends HTMLElement {
             })
           );
           MensajeCargaDatos.ocultar();
-          // window.location.href = '/';
+          window.location.href = '/';
           return;
         } else {
           this.estadoCliente = "si-existe";
           datosUsuario = await this.traerTodaInfoUsuario(existeEsteUsuario);
-          // const ordenesPagadas = await this.traerOrdenesCompletadas(dataUsuario);
-          // const ordenesPendientes = await this.traerOrdenesPendientes(dataUsuario);
+          const ordenesPagadas = await this.traerOrdenesCompletadas(existeEsteUsuario);
+          const ordenesPendientes = await this.traerOrdenesPendientes(existeEsteUsuario);
           MensajeCargaDatos.ocultar();
           this.containerVerificarNumero.style.display = 'none';
           this.containerGeneral.style.display = 'flex';
@@ -669,6 +688,7 @@ class InicioSesion extends HTMLElement {
           localStorage.setItem(
             'ph-datos-usuario',
             JSON.stringify({
+              id: datosUsuario.id,
               nombre: datosUsuario.nombre,
               celular: datosUsuario.celular,
               apellido: datosUsuario.apellido,
@@ -679,8 +699,8 @@ class InicioSesion extends HTMLElement {
               nit: datosUsuario.nit,
               fecha_nacimiento: datosUsuario.fecha_nacimiento,
               permisosHutCoins: datosUsuario.permisosHutCoins,
-              // ordenesPagadas: [],
-              // ordenesPendientes: []
+              ordenesPagadas,
+              ordenesPendientes
             })
           );
 
@@ -688,7 +708,7 @@ class InicioSesion extends HTMLElement {
             this.containerGeneral.style.display = 'none';
             this.containerMensaje.style.display = 'none';
             this.containerExito.style.display = 'none';
-            // window.location.href = '/';
+            window.location.href = '/';
           }, 2000);
           return;
         }
@@ -751,6 +771,153 @@ class InicioSesion extends HTMLElement {
     //     })
     //   );
     // }, 3000);
+  }
+
+  enviarCodigoWhatsappOTP() {
+  }
+
+  async traerOrdenesCompletadas(id) {
+    const query = `
+      query GetCustomerOrders($clienteId: ID!) {
+        customer(id: $clienteId) {
+          orders(first: 50) {
+            edges {
+              node {
+                id
+                name
+                processedAt
+                createdAt
+                totalPriceSet {
+                  shopMoney {
+                    amount
+                    currencyCode
+                  }
+                }
+                customAttributes {
+                  key
+                  value
+                }
+              }
+            }
+          }
+        }
+      }
+    `;
+
+    const variables = {
+      clienteId: `gid://shopify/Customer/${id}`
+    };
+
+    try {
+      // Usar el servidor intermediario
+      const respuesta = await fetch(window.urlConsulta, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Shopify-Access-Token': window.backendShopify,
+        },
+        body: JSON.stringify({
+          query: query,
+          variables: variables
+        }),
+      });
+
+      if (!respuesta.ok) {
+        throw new Error(`Error de red: ${respuesta.status} ${respuesta.statusText}`);
+      }
+
+      const datos = await respuesta.json();
+
+      if (datos.data?.customer?.orders?.edges) {
+        // Transformar los datos a un formato más simple
+        return datos.data.customer.orders.edges.map(edge => {
+          const orden = edge.node;
+          return {
+            id: orden.id,
+            nombre: orden.name,
+            fechaProcesado: orden.processedAt,
+            fechaCreacion: orden.createdAt,
+            total: orden.totalPriceSet?.shopMoney?.amount || 0,
+            atributos: orden.customAttributes || []
+          };
+        });
+      }
+
+      return [];
+    } catch (error) {
+      console.error("Error al obtener órdenes completadas:", error);
+      return [];
+    }
+  }
+
+  async traerOrdenesPendientes(id) {
+    const query = `
+      query GetCustomerDraftOrders($queryFilter: String!) {
+        draftOrders(first: 50, query: $queryFilter) {
+          edges {
+            node {
+              id
+              name
+              status
+              totalPriceSet {
+                shopMoney {
+                  amount
+                  currencyCode
+                }
+              }
+              customAttributes {
+                key
+                value
+              }
+            }
+          }
+        }
+      }
+    `;
+
+    const variables = {
+      queryFilter: `customer_id:${id}`
+    };
+
+    try {
+      // Usar el servidor intermediario
+      const respuesta = await fetch(window.urlConsulta, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Shopify-Access-Token': window.backendShopify,
+        },
+        body: JSON.stringify({
+          query: query,
+          variables: variables
+        }),
+      });
+
+      if (!respuesta.ok) {
+        throw new Error(`Error de red: ${respuesta.status} ${respuesta.statusText}`);
+      }
+
+      const datos = await respuesta.json();
+
+      if (datos.data?.draftOrders?.edges) {
+        // Transformar los datos a un formato más simple
+        return datos.data.draftOrders.edges.map(edge => {
+          const borrador = edge.node;
+          return {
+            id: borrador.id,
+            nombre: borrador.name,
+            estado: borrador.status,
+            total: borrador.totalPriceSet?.shopMoney?.amount || 0,
+            atributos: borrador.customAttributes || []
+          };
+        });
+      }
+
+      return [];
+    } catch (error) {
+      console.error("Error al obtener órdenes pendientes:", error);
+      return [];
+    }
   }
 
   ocultarElementosBase() {

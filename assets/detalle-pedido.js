@@ -203,52 +203,43 @@ class DetallePedido extends HTMLElement {
       // Asegurarse de que el ID tenga el formato correcto para la consulta GraphQL
       const idFormateado = idOrdenTrabajo.includes('gid://')
         ? idOrdenTrabajo
-        : `gid://shopify/DraftOrder/${idOrdenTrabajo}`;
+        : `gid://shopify/Order/${idOrdenTrabajo}`;
 
       // Definir la consulta GraphQL
       const consultaOrden = `
-        query GetDraftOrderDetails {
-        draftOrder(id: "${idFormateado}") {
-        id
-        name
-        status
-        email
-        createdAt
-        updatedAt
-        completedAt
+        query GetOrderDetails {
+        order(id: "${idFormateado}") {
+    id
+    name
+    createdAt
+    totalPriceSet {
+      shopMoney {
+        amount
         currencyCode
-        taxesIncluded
-        taxExempt
+      }
+    }
         lineItems(first: 10) {
-        edges {
+      edges {
         node {
-        id
-        name
-        quantity
-        sku
-        vendor
-        requiresShipping
-        taxable
-        isGiftCard
-        originalUnitPrice
-        discountedUnitPrice
-        taxLines {
-        title
-        rate
-        price
+          id
+          name
+          quantity
+          sku
+          variant {
+            id
+            title
+          }
         }
-        }
-        }
+      }
         }
         shippingAddress {
-        firstName
-        lastName
-        address1
-        city
-        province
-        country
-        zip
-        phone
+          firstName
+                lastName
+                address1
+                city
+                province
+                country
+                zip
         }
         customAttributes {
         key
@@ -262,11 +253,11 @@ class DetallePedido extends HTMLElement {
       const tokenAcceso = 'shpat_' + '45f4a7476152f4881d058f87ce063698';
 
       // Realizar la petición al API de Shopify
-      const respuesta = await fetch(this.urlConsulta, {
+      const respuesta = await fetch(window.urlConsulta, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'X-Shopify-Access-Token': tokenAcceso
+          'X-Shopify-Access-Token': window.backendShopify,
         },
         body: JSON.stringify({
           query: consultaOrden

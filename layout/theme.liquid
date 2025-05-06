@@ -385,6 +385,69 @@
         }
       }
 
+      if(window.location.pathname.includes('/pages/checkout')) {
+        // Verificar si existe el item 'ph-datos-usuario' en localStorage
+        const datosUsuario = localStorage.getItem('ph-datos-usuario');
+
+        // Si no existe o está vacío, redirigir a la página de inicio de sesión
+        if (!datosUsuario) {
+          window.location.href = '/pages/inicio-sesion';
+        }
+      }
+
+      window.localizacionesSucursales = [
+        {
+          lat: -17.757619,
+          lng: -63.178738,
+          name: 'BANZER 3ER ANILLO',
+          localizacion: '6RRC+FG Santa Cruz de la Sierra',
+          telefono: '78452415',
+          dias: 'Lunes a Viernes',
+          horario: '8:00 a 23:00',
+          servicios: ['Envío a domicilio', 'Recoger en local'],
+        },
+        {
+          lat: -17.70001,
+          lng: -63.160219,
+          name: 'BANZER KM 8.5',
+          localizacion: '7RXQ+XX Santa Cruz de la Sierra',
+          telefono: '78452415',
+          dias: 'Lunes a Viernes',
+          horario: '8:00 a 23:00',
+          servicios: ['Envío a domicilio', 'Recoger en local'],
+        },
+        {
+          lat: -17.807759403109873,
+          lng: -63.204340783954436,
+          name: 'LAS PALMAS',
+          localizacion: '5QRW+WC Santa Cruz de la Sierra',
+          telefono: '784524155',
+          dias: 'Lunes a Viernes',
+          horario: '8:00 a 23:00',
+          servicios: ['Envío a domicilio', 'Recoger en local'],
+        },
+        {
+          lat: -17.758879,
+          lng: -63.19948,
+          name: 'SAN MARTIN',
+          localizacion: '6RR2+97 Santa Cruz de la Sierra',
+          telefono: '78452415',
+          dias: 'Lunes a Viernes',
+          horario: '8:00 a 23:00',
+          servicios: ['Envío a domicilio', 'Recoger en local'],
+        },
+        {
+          lat: -17.820341,
+          lng: -63.184337,
+          name: 'SANTOS DUMONT',
+          localizacion: '5RH8+V7 Santa Cruz de la Sierra',
+          telefono: '78452415',
+          dias: 'Lunes a Viernes',
+          horario: '8:00 a 23:00',
+          servicios: ['Envío a domicilio', 'Recoger en local'],
+        },
+      ];
+
       window.shopIcons = {
         icon_editar: `{% render 'icon-editar' %}`,
         icon_menos: `{% render 'icon-menos' %}`,
@@ -409,6 +472,7 @@
         icon_clock : `{% render 'icon-clock' %}`,
         icon_check: `{% render 'icon-check' %}`,
         icon_map: `{% render 'icon-map' %}`,
+        icon_flecha_abajo : `{% render 'icon-flecha-abajo' %}`,
       };
 
       window.assets = {
@@ -419,61 +483,10 @@
         banner_4: '{{ 'banner-1.png' | asset_url }}',
         banner_5: '{{ 'banner-2.png' | asset_url }}',
       }
-
-      window.localizacionesSucursales = [
-        { 
-          lat: -17.757619, 
-          lng: -63.178738, 
-          name: 'BANZER 3ER ANILLO', 
-          localizacion: 'Tercer Anillo Externo', 
-          telefono: '78452415', 
-          dias : 'Lunes a Viernes', 
-          horario: '8:00 a 23:00',
-          servicios: ['Envío a domicilio', 'Recoger en local']
-        },
-        { 
-          lat: -17.70001, 
-          lng: -63.160219, 
-          name: 'BANZER KM 8.5', 
-          localizacion: '8R2Q+2XH', 
-          telefono: '78452415', 
-          dias : 'Lunes a Viernes', 
-          horario: '8:00 a 23:00',
-          servicios: ['Envío a domicilio', 'Recoger en local']
-        },
-        { 
-          lat: -17.807739, 
-          lng: -63.204363, 
-          name: 'LAS PALMAS', 
-          localizacion: 'Doble vía La Guardia', 
-          telefono: '78452415', 
-          dias : 'Lunes a Viernes', 
-          horario: '8:00 a 23:00',
-          servicios: ['Envío a domicilio', 'Recoger en local']
-        },
-        { 
-          lat: -17.758879, 
-          lng: -63.19948, 
-          name: 'SAN MARTIN', 
-          localizacion: 'Av. San Martin 2200', 
-          telefono: '78452415', 
-          dias : 'Lunes a Viernes', 
-          horario: '8:00 a 23:00',
-          servicios: ['Envío a domicilio', 'Recoger en local']
-        },
-        { 
-          lat: -17.820341, 
-          lng: -63.184337, 
-          name: 'SANTOS DUMONT', 
-          localizacion: 'Av Santos Dumont 3228', 
-          telefono: '78452415', 
-          dias : 'Lunes a Viernes', 
-          horario: '8:00 a 23:00',
-          servicios: ['Envío a domicilio', 'Recoger en local']
-        }
-      ];
-      window.urlConsulta = '{{ settings.urlConsulta }}';
-      window.backendShopify = `shpat_`+`{{ settings.backendShopify }}`;
+      {% comment %} window.urlConsulta = '{{ settings.urlConsulta }}'; {% endcomment %}
+      {% comment %} window.backendShopify = `{{ settings.backendShopify }}`; {% endcomment %}
+      window.urlConsulta = 'http://localhost:5001/graphql';
+      window.backendShopify = `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`;
     </script>
 
     <!-- Hojas de estilos js -->
@@ -484,6 +497,8 @@
     <script src="{{ 'page-iniciar-sesion.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'page-checkout.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'page-perfil.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'page-crear-cuenta.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'page-editar-perfil.js' | asset_url }}" defer="defer"></script>
   </head>
 
   <body>

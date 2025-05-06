@@ -66,7 +66,7 @@ class PerfilUsuario extends HTMLElement {
       window.location.href = '/';
     }
 
-    if (datosUsuario.celular == null || direccion == null) {
+    if (!datosUsuario) {
       window.location.href = '/';
     }
 
