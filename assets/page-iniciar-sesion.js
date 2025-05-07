@@ -32,7 +32,7 @@ class InicioSesion extends HTMLElement {
     // this.btnGoogle = this.querySelector('#phpis-btn-google');
     // this.btnFacebook = this.querySelector('#phpis-btn-facebook'); 
     this.containerGeneral = this.querySelector('#phpis-container-modal');
-    this.containerSnipper = this.querySelector('#phpis-snipper-modal');
+    // this.containerSnipper = this.querySelector('#phpis-snipper-modal');
     this.containerMensaje = this.querySelector('#phpis-mensaje-proceso');
     this.containerMensaje.addEventListener
 
@@ -196,23 +196,23 @@ class InicioSesion extends HTMLElement {
       return;
     }
 
-    this.containerGeneral.style.display = 'flex';
-    this.containerSnipper.style.display = 'flex';
+    // this.containerGeneral.style.display = 'flex';
+    // this.containerSnipper.style.display = 'flex';
 
     this.mensajeVerificarNumero.innerHTML = `
     Enviamos un código de verificación de 4 dígitos a tu  número de WhatsApp *****${this.input.value.slice(-3)}. Copia ese código y pégalo a continuación:`;
-    this.codigoEnviadoCliente = this.generarCodigo6Digitos();
-    localStorage.setItem('ph-codigo-verificacion', this.codigoEnviadoCliente);
-    MensajeCargaDatos.ocultar();
-    window.open(
-      `https://wa.me/591${this.input.value}?text=Pizza Hut, tu código de verificación es ${this.codigoEnviadoCliente}. Gracias por su preferencia.`,
-      '_blank'
-    );
-
-    setTimeout(() => {
+    // this.codigoEnviadoCliente = this.generarCodigo6Digitos();
+    // localStorage.setItem('ph-codigo-verificacion', this.codigoEnviadoCliente);
+    MensajeCargaDatos.mostrar('Enviando código de verificación ...');
+    const verificarSiFueEnviado = await this.enviarCodigoOTP(`+591${this.input.value}`);
+    if (verificarSiFueEnviado) {
+      // Si el codigo fue enviado
+      MensajeCargaDatos.ocultar();
+      this.containerGeneral.style.display = 'flex';
       this.containerMensaje.style.display = 'flex';
-      this.containerSnipper.style.display = 'none';
       this.containerVerificarNumero.style.display = 'flex';
+      // setTimeout(() => {
+      // this.containerSnipper.style.display = 'none';
       // document.addEventListener('click', (event) => {
       //   if (this.containerGeneral.style.display == 'flex' && this.containerVerificarNumero.style.display == 'flex') {
       //     if (!this.containerMensaje.contains(event.target)) {
@@ -220,7 +220,17 @@ class InicioSesion extends HTMLElement {
       //     }
       //   }
       // });
-    }, 1000);
+      // }, 1000);
+    } else {
+      MensajeTemporal.mostrarMensaje('Sucedió un error intente reenviar un nuevo código por favor.', 'error', 3500);
+    }
+    // MensajeCargaDatos.ocultar();
+    // window.open(
+    //   `https://wa.me/591${this.input.value}?text=Pizza Hut, tu código de verificación es ${this.codigoEnviadoCliente}. Gracias por su preferencia.`,
+    //   '_blank'
+    // );
+
+
 
     // // Ingresar el valor dentro del this.mensajeVerificarNumeroo
     // this.mensajeVerificarNumero.innerHTML = `
@@ -638,14 +648,17 @@ class InicioSesion extends HTMLElement {
     const todosLlenos = inputs.every((input) => input.value.length === 1);
 
     if (todosLlenos) {
+      MensajeCargaDatos.mostrar('Verificando código ...');
       const optenerNumero = inputs.map((input) => input.value).join('');
-      const codigoVerificacion = this.codigoEnviadoCliente || localStorage.getItem('ph-codigo-verificacion');
+      const validacionCodigo = await this.validarCodigoOTP(optenerNumero, `+591${this.input.value}`);
+      // const codigoVerificacion = this.codigoEnviadoCliente || localStorage.getItem('ph-codigo-verificacion');
       // Verificar el codigo ingresadoo
       var datosUsuario = null;
-      if (`${optenerNumero}` == `${codigoVerificacion}`) {
+      // if (`${optenerNumero}` == `${codigoVerificacion}`) {
+      if (validacionCodigo) {
+
         this.containerGeneral.style.display = 'none';
         this.containerMensaje.style.display = 'none';
-        MensajeCargaDatos.mostrar('Verificando código ...');
         // Si el codigo es correcto hacerr
         const existeEsteUsuario = await this.porNroTelefonoUsuarioVerificar(`+591${this.input.value}`);
         console.log('ID de usuario encontrado:', existeEsteUsuario);
@@ -713,12 +726,14 @@ class InicioSesion extends HTMLElement {
           return;
         }
       } else {
+        MensajeCargaDatos.ocultar();
         this.mensajeErroCodigo.style.display = 'flex';
         setTimeout(() => {
           this.mensajeErroCodigo.style.display = 'none';
           inputs.forEach((input) => {
             input.value = '';
           });
+          inputs[0].focus();
         }, 1500);
       }
       // MensajeCargaDatos.ocultar();
@@ -922,7 +937,7 @@ class InicioSesion extends HTMLElement {
 
   ocultarElementosBase() {
     this.containerGeneral.style.display = 'none';
-    this.containerSnipper.style.display = 'none';
+    // this.containerSnipper.style.display = 'none';
     this.containerMensaje.style.display = 'none';
     this.containerExito.style.display = 'none';
     this.containerVerificarNumero.style.display = 'none';
@@ -954,6 +969,68 @@ class InicioSesion extends HTMLElement {
   generarCodigo6Digitos() {
     // Genera un número aleatorio entre 100000 y 999999
     return Math.floor(100000 + Math.random() * 900000);
+  }
+
+  async enviarCodigoOTP(numeroTelefono) {
+    try {
+      const response = await fetch('https://apicloud.farmacorp.com/apishopify/api/v1.0/sms/account/send', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Basic MmJjODUyZmNkNWIyNzBhZmI4MzRkMDFkNWU2NjhiYzEyYjllMDgwZTo2NzczMWM4ZTU0NTdiZTU2ZWI1OTdlZDJhYWQ3NjM1ZDlkOTRjYjM3'
+        },
+        body: JSON.stringify({
+          numeroCelular: numeroTelefono
+        })
+      });
+
+      // Si la respuesta HTTP no es exitosa, retornar false
+      if (!response.ok) {
+        console.error(`Error en la petición: ${response.status} ${response.statusText}`);
+        return false;
+      }
+
+      // Procesar la respuesta de la API
+      const data = await response.json();
+
+      // Extraer directamente el valor booleano de data.respuesta
+      return data && data.data && data.data.respuesta === true;
+
+    } catch (error) {
+      console.error('Error al enviar código OTP:', error);
+      return false; // En caso de cualquier error, retornar false
+    }
+  }
+
+  async validarCodigoOTP(codigo, numeroTelefono) {
+    try {
+      const response = await fetch('https://apicloud.farmacorp.com/apishopify/api/v1.0/sms/account/validate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          numeroCelular: numeroTelefono,
+          pin: codigo
+        })
+      });
+
+      // Si la respuesta HTTP no es exitosa, retornar false
+      if (!response.ok) {
+        console.error(`Error en la validación: ${response.status} ${response.statusText}`);
+        return false;
+      }
+
+      // Procesar la respuesta de la API
+      const data = await response.json();
+
+      // Extraer directamente el valor booleano de data.respuesta
+      return data && data.data && data.data.respuesta === true;
+
+    } catch (error) {
+      console.error('Error al validar código OTP:', error);
+      return false; // En caso de cualquier error, retornar false
+    }
   }
 }
 

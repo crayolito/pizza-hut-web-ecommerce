@@ -111,33 +111,35 @@
       class="ph-background-container-modal"
     >
       <!-- 1re MODAL : SNIPPER DE CARGANDO -->
-      <div
-        style="display: none;"
-        id="phpis-snipper-modal"
-        class="ph-modal-main-snipper"
-      >
-        <div class="ph-modal-body-snipper">
-          <div class="snipper-container">
-            <div class="snipper-background">
-              <img
-                src="{{ 'fondoSnipper.png' | asset_url }}"
-                alt="Fondo de Snipper"
-                width="100%"
-                height="100%"
-              >
-            </div>
-            <div class="snipper-logo">
-              <img
-                src="{{ 'logoSnipper.png' | asset_url }}"
-                alt="Logo de Snipper"
-                width="100%"
-                height="100%"
-              >
+      {% comment %}
+        <div
+          style="display: none;"
+          id="phpis-snipper-modal"
+          class="ph-modal-main-snipper"
+        >
+          <div class="ph-modal-body-snipper">
+            <div class="snipper-container">
+              <div class="snipper-background">
+                <img
+                  src="{{ 'fondoSnipper.png' | asset_url }}"
+                  alt="Fondo de Snipper"
+                  width="100%"
+                  height="100%"
+                >
+              </div>
+              <div class="snipper-logo">
+                <img
+                  src="{{ 'logoSnipper.png' | asset_url }}"
+                  alt="Logo de Snipper"
+                  width="100%"
+                  height="100%"
+                >
+              </div>
             </div>
           </div>
+          <p>Procesando informacion ...</p>
         </div>
-        <p>Procesando informacion ...</p>
-      </div>
+      {% endcomment %}
       <!-- 2do MODAL : MENSAJES DE RESPUESTA -->
       <div
         style="display: none;"

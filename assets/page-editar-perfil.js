@@ -575,6 +575,7 @@ query($identifier: CustomerIdentifierInput!) {
       };
     }
   }
+
 }
 
 customElements.define('editar-perfil', EditarPerfil);

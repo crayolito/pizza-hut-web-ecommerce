@@ -588,11 +588,7 @@ class PageMenuProductos extends HTMLElement {
   contruccionCuerpo() {
     // Contruccion  Coleccion TODO
     const obtenerSeccion = this.querySelector(`[data-tiposeccion="${this.estadoVistaPagina}"]`);
-    console.log('Testeo de zona : ', {
-      "obtenerSeccion": obtenerSeccion,
-      "estadoVistaPagina": this.estadoVistaPagina,
-      "datasetTipoSeccion": obtenerSeccion.dataset.tiposeccion,
-    })
+
 
     if (obtenerSeccion.dataset.cargada == "no") {
       var contenidoHTMLTodo = "";
