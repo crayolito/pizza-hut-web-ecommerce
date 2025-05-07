@@ -473,6 +473,9 @@
         icon_check: `{% render 'icon-check' %}`,
         icon_map: `{% render 'icon-map' %}`,
         icon_flecha_abajo : `{% render 'icon-flecha-abajo' %}`,
+        icon_todas_opciones : `{% render 'icon-todas-opciones' %}`,
+        icon_carrito : `{% render 'icon-carrito' %}`,
+
       };
 
       window.assets = {
@@ -482,6 +485,7 @@
         banner_3: '{{ 'banner-3.png' | asset_url }}',
         banner_4: '{{ 'banner-1.png' | asset_url }}',
         banner_5: '{{ 'banner-2.png' | asset_url }}',
+        imagen_aux : '{{ 'imagen-pizza-1.png' | asset_url }}',
       }
       window.urlConsulta = '{{ settings.urlConsulta }}';
       {% comment %}  {% endcomment %}
@@ -500,6 +504,7 @@
     <script src="{{ 'page-perfil.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'page-crear-cuenta.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'page-editar-perfil.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'page-menu.js' | asset_url }}" defer="defer"></script>
   </head>
 
   <body>

@@ -977,6 +977,7 @@ carrito-shopify {
 .producto-es-item-detalle,
 .producto-item-detalle {
   width: 100%;
+  min-width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -993,6 +994,15 @@ carrito-shopify {
   gap: var(--espaciado-xs);
 }
 
+.producto-item-info-es-basico {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: var(--espaciado-xs);
+}
+
+.producto-item-info-es-basico h3,
 .producto-es-item-info h3,
 .producto-item-info h3 {
   white-space: nowrap;
@@ -1109,6 +1119,7 @@ carrito-shopify {
 
 @media screen and (min-width: 768px) {
   .producto-es-item {
+    min-width: 100%;
     width: 100%;
     display: flex;
     flex-direction: column;

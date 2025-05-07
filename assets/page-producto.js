@@ -104,6 +104,9 @@ class PizzaHutProducto extends HTMLElement {
   }
 
   async inicializarMedianteDataLocalStorage() {
+    // HACER UNA VALIDACION SI ES UN PRODUCTO 
+    // - Basico - Desarrollado - Complejo 
+
     MensajeCargaDatos.mostrar('Procesando Informacion ...');
     // BUSCAR EN EL LOCALSTORAGE SI ES UN PRODUCTO INICIAL O EDITABLE 
     // RECUERDA VERIFICAR QUE TIPO DE PRODUCTO ES SIMPLE O COMPLEJO
