@@ -573,7 +573,7 @@ class PageMenuProductos extends HTMLElement {
   }
 
   contruccionCuerpo() {
-    // Contruccion  Coleccion TODO
+    // Contruccion  Coleccion TODOO
     const obtenerSeccion = this.querySelector(`[data-tiposeccion="${this.estadoVistaPagina}"]`);
 
     if (obtenerSeccion.dataset.cargada == "no") {
