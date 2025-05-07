@@ -62,7 +62,7 @@ class InicioSesion extends HTMLElement {
     this.btnReenviarCodigo.addEventListener('click', this.enviarCodigoOTP(`+591${this.input.value}`));
 
     document.addEventListener('click', (event) => {
-      // Verificar si ambos contenedores están visibles
+      // Verificar si ambos contenedores están visibless
       if (this.containerGeneral.style.display === 'flex' && this.containerVerificarNumero.style.display === 'flex') {
         // Si el clic fue dentro del containerGeneral pero NO dentro del containerVerificarNumeroo
         if (this.containerGeneral.contains(event.target) && !this.containerVerificarNumero.contains(event.target)) {
