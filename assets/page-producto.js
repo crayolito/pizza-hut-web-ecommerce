@@ -430,7 +430,7 @@ class PizzaHutProducto extends HTMLElement {
 
   async creacionHTMLGaseosasCervesas() {
     // Obtener coleccion de productos 
-    const { informacionColeccion, productosColeccion } = await this.obtenerColeccionShopify('Gaseosas y Cervesas');
+    const { informacionColeccion, productosColeccion } = await this.obtenerColeccionShopify('GASEOSAS');
     var contenidoHTML = `
         <div id="phpp-modal-productos-gaseosasycervezas" class="ppme-modal-informacion-extras-body">
           <small class="phpp-modal-extras-titulo">GASEOSAS Y CERVESAS</small>
@@ -499,7 +499,7 @@ class PizzaHutProducto extends HTMLElement {
 
   async creacionHTMLPostres() {
     // Obtener coleccion de productos 
-    const { informacionColeccion, productosColeccion } = await this.obtenerColeccionShopify('Postres');
+    const { informacionColeccion, productosColeccion } = await this.obtenerColeccionShopify("POSTRES");
     console.log('productosColeccion POSTRES:', productosColeccion);
 
     var contenidoHTML = `

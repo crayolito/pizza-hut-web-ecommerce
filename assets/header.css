@@ -648,7 +648,7 @@ header-principal {
   border-radius: var(--border-radius-2);
   background: var(--colorp-secondary);
   border: 1.5px solid #dedede;
-  /* cursor: pointer; */
+  cursor: pointer;
 }
 
 .h-menu-producto-info-imagen {

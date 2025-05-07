@@ -49,7 +49,6 @@ class PageMenuProductos extends HTMLElement {
     //   elementoBtnPersonalizar.addEventListener('click', this.redireccionPersonalizar.bind(this, elementoBtnPersonalizar));
     // });
 
-    document.addEventListener('click', this.clicksEspeciales.bind(this));
 
     // INICIALIZAR ELEMENTOS Y PROCESOS CLAVES
     // this.contenedorVariantes.forEach((elementoBase) => {
@@ -87,6 +86,7 @@ class PageMenuProductos extends HTMLElement {
                     handle
                     title
                     description
+                    totalInventory
                     collections(first: 100) {
                       edges {
                         node {
@@ -112,6 +112,21 @@ class PageMenuProductos extends HTMLElement {
                       edges {
                         node {
                           id
+                          inventoryItem {
+                            inventoryLevels(first: 100) {
+                              edges {
+                                node {
+                                  location {
+                                    name
+                                  }
+                                  quantities(names: ["available"]) {
+                                    name
+                                    quantity
+                                  }
+                                }
+                              }
+                            }
+                          }
                         }
                       }
                     }
@@ -244,8 +259,34 @@ class PageMenuProductos extends HTMLElement {
           // Procesar metafields del producto
           const metafieldsMap = this.procesarTodosMetafields(producto);
 
+          // Obtener el inventario por sucursales
+          const sucursales = [];
+          if (producto.variants && producto.variants.edges.length > 0) {
+            const variante = producto.variants.edges[0].node;
+            if (variante.inventoryItem && variante.inventoryItem.inventoryLevels.edges.length > 0) {
+              variante.inventoryItem.inventoryLevels.edges.forEach(levelEdge => {
+                const level = levelEdge.node;
+                const nombreSucursal = level.location.name;
+                let stockSucursal = 0;
+
+                // Buscar la cantidad disponible
+                if (level.quantities && level.quantities.length > 0) {
+                  const availableQuantity = level.quantities.find(q => q.name === "available");
+                  if (availableQuantity) {
+                    stockSucursal = availableQuantity.quantity;
+                  }
+                }
+
+                sucursales.push({
+                  nombre: nombreSucursal,
+                  stock: stockSucursal
+                });
+              });
+            }
+          }
+
           return {
-            id: producto.id,
+            id: producto.variants.edges[0].node.id.split('/').pop(),
             handle: producto.handle,
             descripcion: producto.description,
             titulo: producto.title,
@@ -256,6 +297,8 @@ class PageMenuProductos extends HTMLElement {
             moneda: producto.priceRange.minVariantPrice.currencyCode,
             varianteId: producto.variants.edges[0].node.id,
             colecciones: producto.collections.edges.map(edge => edge.node.title),
+            stockTotal: producto.totalInventory,
+            sucursales,
             metafields: metafieldsMap
           };
         });
@@ -263,7 +306,7 @@ class PageMenuProductos extends HTMLElement {
 
       // Procesar estructura de subcolecciones si es categoría "complejo"
       if (categoria.categoria === "complejo") {
-        console.log("Procesando subcolecciones para:", coleccionInfo.title);
+        // console.log("Procesando subcolecciones para:", coleccionInfo.title);
 
         // Buscar metafields de estructura que contiene un array de strings con nombres de subcolecciones
         // Por ejemplo: ["Pizza Clasica","Pizza Supreme","Pizza Lovers"]
@@ -275,7 +318,7 @@ class PageMenuProductos extends HTMLElement {
           try {
             // Parsing del array de nombres de subcolecciones
             const subcoleccionesArray = JSON.parse(subcoleccionesMetafield.node.value);
-            console.log("Subcolecciones encontradas:", subcoleccionesArray);
+            // console.log("Subcolecciones encontradas:", subcoleccionesArray);
 
             // Procesar cada subcolección del array
             for (const subColeccionNombre of subcoleccionesArray) {
@@ -283,7 +326,7 @@ class PageMenuProductos extends HTMLElement {
               const subColeccion = await this.traerProductosyColeccionInfo(subColeccionNombre);
 
               if (subColeccion) {
-                console.log("Procesando subcolección:", subColeccionNombre);
+                // console.log("Procesando subcolección:", subColeccionNombre);
 
                 // Agregar a la lista de subcolecciones
                 categoriaResultado.subColecciones[subColeccionNombre] = {
@@ -298,8 +341,35 @@ class PageMenuProductos extends HTMLElement {
                   categoriaResultado.subColecciones[subColeccionNombre].productos =
                     subColeccion.products.edges.map(edge => {
                       const subProducto = edge.node;
+
+                      // Obtener el inventario por sucursales
+                      const sucursales = [];
+                      if (subProducto.variants && subProducto.variants.edges.length > 0) {
+                        const variante = subProducto.variants.edges[0].node;
+                        if (variante.inventoryItem && variante.inventoryItem.inventoryLevels.edges.length > 0) {
+                          variante.inventoryItem.inventoryLevels.edges.forEach(levelEdge => {
+                            const level = levelEdge.node;
+                            const nombreSucursal = level.location.name;
+                            let stockSucursal = 0;
+
+                            // Buscar la cantidad disponible
+                            if (level.quantities && level.quantities.length > 0) {
+                              const availableQuantity = level.quantities.find(q => q.name === "available");
+                              if (availableQuantity) {
+                                stockSucursal = availableQuantity.quantity;
+                              }
+                            }
+
+                            sucursales.push({
+                              nombre: nombreSucursal,
+                              stock: stockSucursal
+                            });
+                          });
+                        }
+                      }
+
                       return {
-                        id: subProducto.id,
+                        id: subProducto.variants.edges[0].node.id.split('/').pop(),
                         handle: subProducto.handle,
                         titulo: subProducto.title,
                         descripcion: subProducto.description,
@@ -308,6 +378,8 @@ class PageMenuProductos extends HTMLElement {
                           : null,
                         precio: subProducto.priceRange.minVariantPrice.amount,
                         varianteId: subProducto.variants.edges[0].node.id,
+                        stockTotal: subProducto.totalInventory,
+                        sucursales,
                         colecciones: subProducto.collections.edges.map(edge => edge.node.title),
                         metafields: this.procesarTodosMetafields(subProducto)
                       };
@@ -319,7 +391,7 @@ class PageMenuProductos extends HTMLElement {
                 const estructuraSubcoleccion = this.procesarMetafieldsColeccion(subColeccion);
 
                 if (estructuraSubcoleccion && estructuraSubcoleccion.ramas) {
-                  console.log("Estructura de ramas encontrada para", subColeccionNombre, ":", estructuraSubcoleccion);
+                  // console.log("Estructura de ramas encontrada para", subColeccionNombre, ":", estructuraSubcoleccion);
                   categoriaResultado.subColecciones[subColeccionNombre].estructura = estructuraSubcoleccion;
 
                   // Para cada rama en la estructura, obtener información
@@ -328,7 +400,7 @@ class PageMenuProductos extends HTMLElement {
                     const ramaColeccion = await this.traerProductosyColeccionInfo(codigoRama);
 
                     if (ramaColeccion) {
-                      console.log("Procesando rama:", codigoRama);
+                      // console.log("Procesando rama:", codigoRama);
 
                       // Agregamos la información de la rama
                       if (!categoriaResultado.subColecciones[subColeccionNombre].ramas) {
@@ -343,13 +415,40 @@ class PageMenuProductos extends HTMLElement {
                         productos: []
                       };
 
+
                       // Procesar productos de la rama
                       if (ramaColeccion.products && ramaColeccion.products.edges) {
                         categoriaResultado.subColecciones[subColeccionNombre].ramas[codigoRama].productos =
                           ramaColeccion.products.edges.map(edge => {
                             const ramaProducto = edge.node;
+
+                            const sucursales = [];
+                            if (ramaProducto.variants && ramaProducto.variants.edges.length > 0) {
+                              const variante = ramaProducto.variants.edges[0].node;
+                              if (variante.inventoryItem && variante.inventoryItem.inventoryLevels.edges.length > 0) {
+                                variante.inventoryItem.inventoryLevels.edges.forEach(levelEdge => {
+                                  const level = levelEdge.node;
+                                  const nombreSucursal = level.location.name;
+                                  let stockSucursal = 0;
+
+                                  // Buscar la cantidad disponible
+                                  if (level.quantities && level.quantities.length > 0) {
+                                    const availableQuantity = level.quantities.find(q => q.name === "available");
+                                    if (availableQuantity) {
+                                      stockSucursal = availableQuantity.quantity;
+                                    }
+                                  }
+
+                                  sucursales.push({
+                                    nombre: nombreSucursal,
+                                    stock: stockSucursal
+                                  });
+                                });
+                              }
+                            }
+
                             return {
-                              id: ramaProducto.id,
+                              id: ramaProducto.variants.edges[0].node.id.split('/').pop(),
                               handle: ramaProducto.handle,
                               titulo: ramaProducto.title,
                               descripcion: ramaProducto.description,
@@ -358,6 +457,8 @@ class PageMenuProductos extends HTMLElement {
                                 : null,
                               precio: ramaProducto.priceRange.minVariantPrice.amount,
                               varianteId: ramaProducto.variants.edges[0].node.id,
+                              stockTotal: ramaProducto.totalInventory,
+                              sucursales,
                               colecciones: ramaProducto.collections.edges.map(edge => edge.node.title),
                               metafields: this.procesarTodosMetafields(ramaProducto)
                             };
@@ -366,7 +467,7 @@ class PageMenuProductos extends HTMLElement {
 
                       // Procesar subramas anidadas si existen (PCMB, PCE, etc.)
                       if (infoRama.ramas) {
-                        console.log("Subramas encontradas para", codigoRama, ":", infoRama.ramas);
+                        // console.log("Subramas encontradas para", codigoRama, ":", infoRama.ramas);
                         categoriaResultado.subColecciones[subColeccionNombre].ramas[codigoRama].subramas = {};
 
                         for (const [subRamaCode, subRamaInfo] of Object.entries(infoRama.ramas)) {
@@ -388,8 +489,34 @@ class PageMenuProductos extends HTMLElement {
                               categoriaResultado.subColecciones[subColeccionNombre].ramas[codigoRama].subramas[subRamaCode].productos =
                                 subRamaColeccion.products.edges.map(edge => {
                                   const subRamaProducto = edge.node;
+
+                                  const sucursales = [];
+                                  if (subRamaProducto.variants && subRamaProducto.variants.edges.length > 0) {
+                                    const variante = subRamaProducto.variants.edges[0].node;
+                                    if (variante.inventoryItem && variante.inventoryItem.inventoryLevels.edges.length > 0) {
+                                      variante.inventoryItem.inventoryLevels.edges.forEach(levelEdge => {
+                                        const level = levelEdge.node;
+                                        const nombreSucursal = level.location.name;
+                                        let stockSucursal = 0;
+
+                                        // Buscar la cantidad disponible
+                                        if (level.quantities && level.quantities.length > 0) {
+                                          const availableQuantity = level.quantities.find(q => q.name === "available");
+                                          if (availableQuantity) {
+                                            stockSucursal = availableQuantity.quantity;
+                                          }
+                                        }
+
+                                        sucursales.push({
+                                          nombre: nombreSucursal,
+                                          stock: stockSucursal
+                                        });
+                                      });
+                                    }
+                                  }
+
                                   return {
-                                    id: subRamaProducto.id,
+                                    id: subRamaProducto.variants.edges[0].node.id.split('/').pop(),
                                     handle: subRamaProducto.handle,
                                     titulo: subRamaProducto.title,
                                     descripcion: subRamaProducto.description,
@@ -397,6 +524,8 @@ class PageMenuProductos extends HTMLElement {
                                       ? subRamaProducto.images.edges[0].node.url
                                       : null,
                                     precio: subRamaProducto.priceRange.minVariantPrice.amount,
+                                    stockTotal: subRamaProducto.totalInventory,
+                                    sucursales,
                                     varianteId: subRamaProducto.variants.edges[0].node.id,
                                     colecciones: subRamaProducto.collections.edges.map(edge => edge.node.title),
                                     metafields: this.procesarTodosMetafields(subRamaProducto)
@@ -573,8 +702,8 @@ class PageMenuProductos extends HTMLElement {
   }
 
   contruccionCuerpo() {
-    // Contruccion  Coleccion TODOO
     const obtenerSeccion = this.querySelector(`[data-tiposeccion="${this.estadoVistaPagina}"]`);
+    // console.log("Seccion de productos: ", obtenerSeccion);
 
     if (obtenerSeccion.dataset.cargada == "no") {
       var contenidoHTMLTodo = "";
@@ -658,7 +787,7 @@ class PageMenuProductos extends HTMLElement {
                         data-handle="${productoSubColeccion.handle}"
                         data-titulo="${productoSubColeccion.titulo}"
                         data-precio="${productoSubColeccion.precio}"
-                        data-seleccionado="${elementoSeleccionado.idShopify}"
+                        data-seleccionado="${elementoSeleccionado.id}"
                         data-tipoproducto="complejo" class="producto-es-item">
                           <div class="producto-es-item-imagen">
                             ${productoSubColeccion.imagen
@@ -845,7 +974,7 @@ class PageMenuProductos extends HTMLElement {
                         data-handle="${productoSubColeccion.handle}"
                         data-titulo="${productoSubColeccion.titulo}"
                         data-precio="${productoSubColeccion.precio}"
-                        data-seleccionado="${elementoSeleccionado.idShopify}"
+                        data-seleccionado="${elementoSeleccionado.id}"
                         data-tipoproducto="complejo" class="producto-es-item">
                           <div class="producto-es-item-imagen">
                             ${productoSubColeccion.imagen
@@ -988,6 +1117,9 @@ class PageMenuProductos extends HTMLElement {
         this.btnsAgregarProducto.forEach((elementoBase) => {
           elementoBase.addEventListener('click', this.procesoAgregarProducto.bind(this, elementoBase));
         });
+
+        document.addEventListener('click', this.clicksEspeciales.bind(this));
+
         break;
       case "OFERTAS":
       case "HUT DAYS 2X1":
@@ -1018,6 +1150,9 @@ class PageMenuProductos extends HTMLElement {
         this.varianteElemento.forEach((elementoBase) => {
           elementoBase.addEventListener('click', this.procesoVarianteSeleccionada.bind(this, elementoBase));
         });
+
+        document.addEventListener('click', this.clicksEspeciales.bind(this));
+
         break;
       case "MELTS":
       case "PASTAS Y ENSALADAS":
@@ -1033,27 +1168,6 @@ class PageMenuProductos extends HTMLElement {
         console.log("No se encontró la colección");
         break;
     }
-  }
-
-  procesoVarianteSeleccionada(elementoBase) {
-    // Busco dentro del elemento al la primer etiqueta <p> y obtengo su valor ya que tenog 3 etiqueta p
-    const primerP = elementoBase.querySelectorAll('p')[0];
-    // Busco al elemento Padre General con id="phpm-general-variantes"
-    const padreGeneral = elementoBase.closest('#phpm-general-variantes');
-    // Busco al hijo de Padre con id="phpm-view-variantes"
-    const hijo = padreGeneral.querySelector('#phpm-view-variantes');
-    // El hijo tiene otro hijo que es una etiqueta p con id="phpm-variante-seleccionado"
-    const hijoP = hijo.querySelector('#phpm-variante-seleccionado');
-    hijoP.innerHTML = primerP.innerHTML; // Cambiamos el valor de la etiqueta p
-    // Busco al elemento Padre id="phpm-items-variantes"
-    // O tambien cierro a todos con ese id
-    this.contenedorVariantes.forEach((elementoBase) => {
-      if (elementoBase !== padreGeneral) {
-        // {% comment %} elementoBase.style.display = "none"; {% endcomment %}
-        elementoBase.classList.remove('elemento-visible');
-        elementoBase.classList.add('elemento-oculto');
-      }
-    });
   }
 
   clicksEspeciales(event) {
@@ -1154,46 +1268,6 @@ class PageMenuProductos extends HTMLElement {
     console.log("Agregado al carrito");
   }
 
-  // redireccionPersonalizar(elementoBtn) {
-  //   const padreElemento = elementoBtn.closest('.producto-es-item-detalle') || elementoBtn.closest('.producto-item-detalle');
-
-
-  //   const dataPadre = padreElemento.getAttribute('tipo-producto');
-
-  //   if (dataPadre == null) {
-  //     window.location.href = "/";
-  //   }
-
-  //   localStorage.setItem('phpp-tipo-producto', dataPadre);
-  //   window.location.href = "/pages/producto";
-  // }
-
-  // mostrarYOcultarContenedorVariantes(elementoBase) {
-  //   // Busco al elemento Padre
-  //   const elementoPadre = elementoBase.closest('#phpm-general-variantes');
-  //   // Busco a su hermano
-  //   const hermano = elementoPadre.querySelector('#phpm-items-variantes');
-
-  //   const estaVisible = hermano.classList.contains('elemento-visible');
-
-  //   if (estaVisible) {
-  //     hermano.classList.remove('elemento-visible');
-  //     hermano.classList.add('elemento-oculto');
-  //   } else {
-  //     hermano.classList.remove('elemento-oculto');
-  //     hermano.classList.add('elemento-visible');
-  //   }
-
-  //   // Oculto a los otros elementos
-  //   this.contenedorVariantes.forEach((elemento) => {
-  //     if (elemento !== hermano) {
-  //       elemento.classList.remove('elemento-visible');
-  //       elemento.classList.add('elemento-oculto');
-  //       // {% comment %} elemento.style.display = "none"; {% endcomment %}
-  //     }
-  //   });
-  // }
-
   acortarTitulo(titulo) {
     if (titulo.includes("Super personal")) {
       return "Super Pers.";
@@ -1280,9 +1354,110 @@ class PageMenuProductos extends HTMLElement {
     }
   }
 
-  procesoPersonalizarProducto(elementoBase) { }
+  procesoPersonalizarProducto(elementoBase) {
+    var productoTrabajo = null;
+    var idShopify = elementoBase.closest('.producto-es-item').dataset.idshopify;
+    var idTrabajo = idTrabajo = elementoBase.closest('.producto-es-item').dataset.idtrabajo;
+    var handle = elementoBase.closest('.producto-es-item').dataset.handle;
+    var tipoProducto = elementoBase.closest('.producto-es-item').dataset.tipoproducto;
+    const coleccionBaseTrabajo = this.productosPorCategorias.find((coleccion) => coleccion.titulo == this.estadoVistaPagina);
+    switch (this.estadoVistaPagina) {
+      case "TODO":
+        switch (tipoProducto) {
+          case "basico":
+          case "desarrollado":
+            // idShopify = elementoBase.closest('.producto-es-item').dataset.idshopify;
+            // idTrabajo = elementoBase.closest('.producto-es-item').dataset.idtrabajo;
+            // handle = elementoBase.closest('.producto-es-item').dataset.handle;
+            productoTrabajo = coleccionBaseTrabajo.productos.find((producto) => producto.id == idShopify);
+            localStorage.setItem('phpp-productoData', JSON.stringify(
+              {
+                "producto": {
+                  idShopify,
+                  idTrabajo,
+                  handle,
+                  titulo: productoTrabajo.titulo,
+                  descripcion: productoTrabajo.descripcion,
+                  imagen: productoTrabajo.imagen,
+                  precio: JSON.parse(productoTrabajo.metafields.estructura.json).precio,
+                  stockTotal: productoTrabajo.stockTotal,
+                  sucursales: productoTrabajo.sucursales
+                },
+                "estructura": null,
+                "productoParaEstructuraTrabajo": JSON.parse(productoTrabajo.metafields.estructura.json),
+                "subProductoSeleccionado": null
+              }
+            ));
+            break;
+          case "complejo":
+            break;
+          default:
+            console.log("No se encontró la colección");
+            break;
+        }
+        break;
+      case "HUT DAYS 2X1":
+      case "POLLO":
+      case "MITAD & MITAD":
+      case "OFERTAS":
+      case "MELTS":
+      case "PASTAS Y ENSALADAS":
+      case "GASEOSAS":
+      case "CERVEZAS":
+      case "POSTRES":
+        // idShopify = elementoBase.closest('.producto-es-item').dataset.idshopify;
+        // idTrabajo = elementoBase.closest('.producto-es-item').dataset.idtrabajo;
+        // handle = elementoBase.closest('.producto-es-item').dataset.handle;
+        productoTrabajo = coleccionBaseTrabajo.productos.find((producto) => producto.id == idShopify);
+        localStorage.setItem('phpp-productoData', JSON.stringify(
+          {
+            "producto": {
+              idShopify,
+              idTrabajo,
+              handle,
+              titulo: productoTrabajo.titulo,
+              descripcion: productoTrabajo.descripcion,
+              imagen: productoTrabajo.imagen,
+              precio: JSON.parse(productoTrabajo.metafields.estructura.json).precio,
+              stockTotal: productoTrabajo.stockTotal,
+              sucursales: productoTrabajo.sucursales
+            },
+            "estructura": null,
+            "productoParaEstructuraTrabajo": JSON.parse(productoTrabajo.metafields.estructura.json),
+            "subProductoSeleccionado": null
+          }
+        ));
+        break;
+      case "PIZZAS":
+        // Primero se va buscar el producto en la coleccion Pizzas al hacer eso lo va encontrar 
+        break;
+      default:
+        console.log("No se encontró la colección");
+        break;
+    }
+    localStorage.setItem('phpp-tipo-producto', tipoProducto);
 
-  procesoAgregarProducto(elementoBase) { }
+    // window.location.href = "/pages/producto";
+  }
+
+  procesoAgregarProducto(elementoBase) {
+    switch (this.estadoVistaPagina) {
+      case "TODO":
+      case "OFERTAS":
+      case "HUT DAYS 2X1":
+      case "POLLO":
+      case "MITAD & MITAD":
+      case "PIZZAS":
+      case "MELTS":
+      case "PASTAS Y ENSALADAS":
+      case "GASEOSAS":
+      case "CERVEZAS":
+      case "POSTRES":
+      default:
+        console.log("No se encontró la colección");
+        break;
+    }
+  }
 
   mostrarYOcultarContenedorVariantes(elementoBase) {
     // Busco al elemento Padre
@@ -1312,8 +1487,8 @@ class PageMenuProductos extends HTMLElement {
 
   procesoVarianteSeleccionada(elementoBase) {
     //
-    // Es el que tiene la class="producto-item"
-    const elementoPadreGeneral = elementoBase.closest('.producto-item') || elementoBase.closest('.producto-es-item');
+    // Es el que tiene la class="producto-es-item"
+    const elementoPadreGeneral = elementoBase.closest('.producto-es-item');
     // Busco dentro del elemento al la primer etiqueta <p> y obtengo su valor ya que tenog 3 etiqueta p
     const primerP = elementoBase.querySelectorAll('p')[0];
     // Busco al elemento Padre General con id="phpm-general-variantes"
@@ -1324,8 +1499,11 @@ class PageMenuProductos extends HTMLElement {
     const hijoP = hijo.querySelector('#phpm-variante-seleccionado');
     hijoP.innerHTML = primerP.innerHTML; // Cambiamos el valor de la etiqueta p
 
+    console.log('Testeo de variante seleccionada', {
+      "testeo1": elementoBase.dataset.idshopify,
+    });
     // Se edita el valor del atributo data-seleccionado del padre general
-    elementoPadreGeneral.dataset.seleccionado = elementoBase.dataset.idtrabajo;
+    elementoPadreGeneral.dataset.seleccionado = elementoBase.dataset.idshopify;
 
     // Se procede a agregar clase seleccionado a elementoBase y se lo quita a los demas si es que lo llevan
     const hermanos = elementoPadreGeneral.querySelectorAll('.variante-producto-item');
