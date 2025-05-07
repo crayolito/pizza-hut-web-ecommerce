@@ -32,42 +32,29 @@ class PageMenuProductos extends HTMLElement {
     this.botonIzquierdaMenu = document.getElementById('phpm-btn-izquierda-menu');
     this.botonDerechaMenu = document.getElementById('phpm-btn-derecha-menu');
 
+
     this.cantidadDesplazamiento = 400;
 
-    this.contenedorVarianteSeleccionado = this.querySelectorAll('#phpm-view-variantes');
-    this.contenedorVariantes = this.querySelectorAll('#phpm-items-variantes');
-    this.varianteElemento = this.querySelectorAll('.variante-producto-item');
-    this.btnsAgregar = this.querySelectorAll('#phpm-btn-agregar');
-    this.btnsPersonalizar = this.querySelectorAll('#phpm-btn-personalizar');
+
     this.seccionTodoYOfertas = this.querySelector('#phpm-seccion-todo');
     this.seccionPizzas = this.querySelector('#phpm-seccion-pizzas');
     this.seccionPostresYGaseosas = this.querySelector('#phpm-seccion-postres');
 
     // EVENTOS INICIALIZAR
-    this.btnsAgregar.forEach((elementoBtnAgregar) => {
-      elementoBtnAgregar.addEventListener('click', this.agregarCarrito.bind(this));
-    });
+    // this.btnsAgregar.forEach((elementoBtnAgregar) => {
+    //   elementoBtnAgregar.addEventListener('click', this.agregarCarrito.bind(this));
+    // });
 
-    this.btnsPersonalizar.forEach((elementoBtnPersonalizar) => {
-      elementoBtnPersonalizar.addEventListener('click', this.redireccionPersonalizar.bind(this, elementoBtnPersonalizar));
-    });
-
-
-
-    this.contenedorVarianteSeleccionado.forEach((elementoBase) => {
-      elementoBase.addEventListener('click', this.mostrarYOcultarContenedorVariantes.bind(this, elementoBase));
-    });
-
-    this.varianteElemento.forEach((elementoBase) => {
-      elementoBase.addEventListener('click', this.procesoVarianteSeleccionada.bind(this, elementoBase));
-    });
+    // this.btnsPersonalizar.forEach((elementoBtnPersonalizar) => {
+    //   elementoBtnPersonalizar.addEventListener('click', this.redireccionPersonalizar.bind(this, elementoBtnPersonalizar));
+    // });
 
     document.addEventListener('click', this.clicksEspeciales.bind(this));
 
     // INICIALIZAR ELEMENTOS Y PROCESOS CLAVES
-    this.contenedorVariantes.forEach((elementoBase) => {
-      elementoBase.classList.add('elemento-oculto');
-    });
+    // this.contenedorVariantes.forEach((elementoBase) => {
+    //   elementoBase.classList.add('elemento-oculto');
+    // });
 
     // Usa bind para mantener el contexto de 'this'
     this.botonIzquierdaMenu.addEventListener('click', this.desplazarIzquierda.bind(this));
@@ -589,7 +576,6 @@ class PageMenuProductos extends HTMLElement {
     // Contruccion  Coleccion TODO
     const obtenerSeccion = this.querySelector(`[data-tiposeccion="${this.estadoVistaPagina}"]`);
 
-
     if (obtenerSeccion.dataset.cargada == "no") {
       var contenidoHTMLTodo = "";
       // Si nunca se acargado tons se va a cargar generando las peticiones 
@@ -639,20 +625,44 @@ class PageMenuProductos extends HTMLElement {
                 Object.keys(coleccion.subColecciones).forEach((claveSubColeccion) => {
                   const subColeccion = coleccion.subColecciones[claveSubColeccion];
                   subColeccion.productos.forEach((productoSubColeccion) => {
-                    const dataMetaFields = JSON.parse(productoSubColeccion.metafields.estructura.json);
+                    const dataMetaFieldsProductoS = JSON.parse(productoSubColeccion.metafields.estructura.json);
                     // oBtengo el primero que son los tamanos PCT - PLT- PST
                     const productosTamano = Object.values(subColeccion.ramas)[0];
+                    var contenidoVariantes = "";
+                    var elementoSeleccionado;
+                    contenidoVariantes += productosTamano.productos.map((productoTamano, index) => {
+                      const dataMetaFields = JSON.parse(productoTamano.metafields.estructura[subColeccion.titulo.toLowerCase()]);
+
+                      // Determinar si este es el primer elemento
+                      const esSeleccionado = index === 0 ? "seleccionado" : "";
+                      if (index === 0) {
+                        elementoSeleccionado = productoTamano;
+                      }
+
+                      return `<div 
+                              data-idshopify="${productoTamano.id}"
+                              data-idtrabajo="${dataMetaFields.id}"
+                              data-handle="${productoTamano.handle}"
+                              data-titulo="${productoTamano.titulo}"
+                              data-precio="${productoTamano.precio}"
+                              class="variante-producto-item ${esSeleccionado}">
+                                <p>${this.acortarTitulo(productoTamano.titulo)}</p>
+                                <p class="color-letras-primary">${parseInt(dataMetaFieldsProductoS.precio) + (parseInt(dataMetaFields.precio))} BS</p>
+                              </div>
+                      `;
+                    }).join("");
                     contenidoHTMLTodo += `
                         <div 
                         data-idshopify="${productoSubColeccion.id}"
-                        data-idtrabajo="${dataMetaFields.id}"
+                        data-idtrabajo="${dataMetaFieldsProductoS.id}"
                         data-handle="${productoSubColeccion.handle}"
                         data-titulo="${productoSubColeccion.titulo}"
                         data-precio="${productoSubColeccion.precio}"
+                        data-seleccionado="${elementoSeleccionado.idShopify}"
                         data-tipoproducto="complejo" class="producto-es-item">
                           <div class="producto-es-item-imagen">
-                            ${productoSubColeccion.imagen.url
-                        ? `<img src="${productoSubColeccion.imagen.url}" alt="${productoSubColeccion.titulo}" width="100%" height="100%">`
+                            ${productoSubColeccion.imagen
+                        ? `<img src="${productoSubColeccion.imagen}" alt="${productoSubColeccion.titulo}" width="100%" height="100%">`
                         : `<img src="${window.assets.imagen_aux}" alt="${productoSubColeccion.titulo}" width="100%" height="100%">`
                       }
                           </div>
@@ -661,7 +671,7 @@ class PageMenuProductos extends HTMLElement {
                               <h3>${productoSubColeccion.titulo}</h3>
                               <p>${productoSubColeccion.descripcion}</p>
                             </div>
-                            <h3 class="color-letras-primary">${productoSubColeccion.precio / 100} BS</h3>
+                            <h3 class="color-letras-primary">${dataMetaFieldsProductoS.precio} BS</h3>
                             <div id="phpm-general-variantes" class="phpg-svpg-pcl seleccion-variante-producto-general">
                               <p>Tamaño</p>
                               <button id="phpm-view-variantes" class="container-info-variante">
@@ -670,28 +680,8 @@ class PageMenuProductos extends HTMLElement {
                                   ${window.shopIcons.icon_flecha_abajo}
                                 </div>
                               </button>
-                              <div id="phpm-items-variantes" class="variantes-producto">
-                                `;
-
-                    contenidoHTMLTodo += productosTamano.productos.map((productoTamano, index) => {
-                      const dataMetaFields = JSON.parse(productoTamano.metafields.estructura[subColeccion.titulo.toLowerCase()]);
-
-                      // Determinar si este es el primer elemento
-                      const esSeleccionado = index === 0 ? "seleccionado" : "";
-
-                      return `
-                            <div 
-                              data-idshopify="${productoTamano.id}"
-                              data-idtrabajo="${dataMetaFields.id}"
-                              data-handle="${productoTamano.handle}"
-                              data-titulo="${productoTamano.titulo}"
-                              data-precio="${productoTamano.precio}"
-                              class="variante-producto-item ${esSeleccionado}">
-                                <p>${this.acortarTitulo(productoTamano.titulo)}</p>
-                                <p class="color-letras-primary">${(productoSubColeccion.precio / 100) + (parseInt(dataMetaFields.precio))} BS</p>
-                            </div>
-                          `;
-                    }).join('');
+                              <div id="phpm-items-variantes" class="variantes-producto elemento-oculto">
+                              ${contenidoVariantes}`;
                     contenidoHTMLTodo += `
                               </div>
                             </div>
@@ -791,6 +781,114 @@ class PageMenuProductos extends HTMLElement {
 
           break;
         case "PIZZAS":
+          contenidoHTMLTodo += `
+            <div class="phpm-titulo-primario">
+              <small>PIZZAS</small>
+            </div>
+          `;
+          var coleccionTrabajo = this.productosPorCategorias.find((coleccion) => coleccion.titulo == this.estadoVistaPagina);
+          var coleccionesSubColeccion = JSON.parse(coleccionTrabajo.metafields.estructura.json);
+
+          // ["Pizza Clasica","Pizza Supreme","Pizza Lovers"]
+          coleccionesSubColeccion.forEach((subColeccion) => {
+            // Verificar si la subcolección existe en coleccionTrabajo
+            if (!coleccionTrabajo.subColecciones[subColeccion]) {
+              return; // Saltar esta iteración
+            }
+
+            // Verificacion si esta vacio o tiene productos para trabajar
+            const subProductosTrabajo = coleccionTrabajo.subColecciones[subColeccion].productos;
+
+
+            if (subProductosTrabajo.length == 0) return;
+            contenidoHTMLTodo += `
+              <div class="phpm-seccion">
+                <div class="phpm-titulo-secundario">
+                  <h1 class="color-letras-primary">${subColeccion.split(" ")[1] || ""}</h1>
+                </div>
+                <div class="container-productos-general container-base">
+            `;
+
+            subProductosTrabajo.forEach((productoSubColeccion) => {
+              const dataMetaFieldsProductoS = JSON.parse(productoSubColeccion.metafields.estructura.json);
+              // oBtengo el primero que son los tamanos PCT - PLT- PST
+              // const productosTamano = Object.values(subColeccion.ramas)[0];
+              const productosTamano = Object.values(coleccionTrabajo.subColecciones[subColeccion].ramas)[0];
+              var contenidoVariantes = "";
+              var elementoSeleccionado;
+              contenidoVariantes += productosTamano.productos.map((productoTamano, index) => {
+                const dataMetaFields = JSON.parse(productoTamano.metafields.estructura[subColeccion.toLowerCase()]);
+
+                // Determinar si este es el primer elemento
+                const esSeleccionado = index === 0 ? "seleccionado" : "";
+                if (index === 0) {
+                  elementoSeleccionado = productoTamano;
+                }
+
+                return `<div 
+                  data-idshopify="${productoTamano.id}"
+                  data-idtrabajo="${dataMetaFieldsProductoS.id}"
+                  data-handle="${productoTamano.handle}"
+                  data-titulo="${productoTamano.titulo}"
+                  data-precio="${productoTamano.precio}"
+                  class="variante-producto-item ${esSeleccionado}">
+                    <p>${this.acortarTitulo(productoTamano.titulo)}</p>
+                    <p class="color-letras-primary">${parseInt(dataMetaFieldsProductoS.precio) + (parseInt(dataMetaFields.precio))} BS</p>
+                  </div>
+                      `;
+              }).join("");
+
+              contenidoHTMLTodo += `
+                        <div 
+                        data-idshopify="${productoSubColeccion.id}"
+                        data-idtrabajo="${dataMetaFieldsProductoS.id}"
+                        data-handle="${productoSubColeccion.handle}"
+                        data-titulo="${productoSubColeccion.titulo}"
+                        data-precio="${productoSubColeccion.precio}"
+                        data-seleccionado="${elementoSeleccionado.idShopify}"
+                        data-tipoproducto="complejo" class="producto-es-item">
+                          <div class="producto-es-item-imagen">
+                            ${productoSubColeccion.imagen
+                  ? `<img src="${productoSubColeccion.imagen}" alt="${productoSubColeccion.titulo}" width="100%" height="100%">`
+                  : `<img src="${window.assets.imagen_aux}" alt="${productoSubColeccion.titulo}" width="100%" height="100%">`
+                }
+                          </div>
+                          <div class="producto-es-item-detalle">
+                            <div class="producto-es-item-info">
+                              <h3>${productoSubColeccion.titulo}</h3>
+                              <p>${productoSubColeccion.descripcion}</p>
+                            </div>
+                            <h3 class="color-letras-primary">${parseInt(dataMetaFieldsProductoS.precio)} BS</h3>
+                            <div id="phpm-general-variantes" class="phpg-svpg-pcl seleccion-variante-producto-general">
+                              <p>Tamaño</p>
+                              <button id="phpm-view-variantes" class="container-info-variante">
+                                <p id="phpm-variante-seleccionado">${this.acortarTitulo(productosTamano.productos[0].titulo)}</p>
+                                <div class="icono-dropdown-variantes icon-color-tertiary">
+                                  ${window.shopIcons.icon_flecha_abajo}
+                                </div>
+                              </button>
+                              <div id="phpm-items-variantes" class="variantes-producto elemento-oculto">
+                              ${contenidoVariantes}
+                                `;
+
+              contenidoHTMLTodo += `
+                              </div>
+                            </div>
+                            <button id="phpm-btn-personalizar" class="ph-btn-general  phpm-btn-personalizar ">
+                              <p class="color-letras-secondary">PERSONALIZAR</p>
+                            </button>
+                          </div>
+                    </div>
+                  `;
+            });
+
+            contenidoHTMLTodo += `
+                </div>
+              </div>
+            `;
+          });
+
+          break;
         case "MELTS":
         case "PASTAS Y ENSALADAS":
         case "GASEOSAS":
@@ -859,6 +957,81 @@ class PageMenuProductos extends HTMLElement {
           elementoSeccion.style.display = "none";
         }
       });
+    }
+    this.inicializarEventosYElementosSeccion();
+  }
+
+  inicializarEventosYElementosSeccion() {
+    switch (this.estadoVistaPagina) {
+      case "TODO":
+        // REFERENCIAS ELEMENTOS
+        // Contenedor es un button donde se refleja la variante seleccionada de la pizza
+        this.contenedorVarianteSeleccionado = this.querySelectorAll('#phpm-view-variantes');
+        // Contenedor donde se muestra todas las variantes
+        this.contenedorVariantes = this.querySelectorAll('#phpm-items-variantes');
+        // Dentro del contenedor de variantes tiene elementos hijos (son las variantes de esa pizza)
+        this.varianteElemento = this.querySelectorAll('.variante-producto-item');
+        this.btnsPersonalizarProducto = this.querySelectorAll('#phpm-btn-personalizar');
+
+        // INICIALIZACION DE EVENTOS
+        this.btnsPersonalizarProducto.forEach((elementoBase) => {
+          elementoBase.addEventListener('click', this.procesoPersonalizarProducto.bind(this, elementoBase));
+        });
+        this.contenedorVarianteSeleccionado.forEach((elementoBase) => {
+          elementoBase.addEventListener('click', this.mostrarYOcultarContenedorVariantes.bind(this, elementoBase));
+        });
+        this.varianteElemento.forEach((elementoBase) => {
+          elementoBase.addEventListener('click', this.procesoVarianteSeleccionada.bind(this, elementoBase));
+        });
+
+        this.btnsAgregarProducto = this.querySelectorAll('#phpm-btn-agregar');
+        this.btnsAgregarProducto.forEach((elementoBase) => {
+          elementoBase.addEventListener('click', this.procesoAgregarProducto.bind(this, elementoBase));
+        });
+        break;
+      case "OFERTAS":
+      case "HUT DAYS 2X1":
+      case "POLLO":
+      case "MITAD & MITAD":
+        this.btnsPersonalizarProducto = this.querySelectorAll('#phpm-btn-personalizar');
+        this.btnsPersonalizarProducto.forEach((elementoBase) => {
+          elementoBase.addEventListener('click', this.procesoPersonalizarProducto.bind(this, elementoBase));
+        });
+        break;
+      case "PIZZAS":
+        // REFERENCIAS ELEMENTOS
+        // Contenedor es un button donde se refleja la variante seleccionada de la pizza
+        this.contenedorVarianteSeleccionado = this.querySelectorAll('#phpm-view-variantes');
+        // Contenedor donde se muestra todas las variantes
+        this.contenedorVariantes = this.querySelectorAll('#phpm-items-variantes');
+        // Dentro del contenedor de variantes tiene elementos hijos (son las variantes de esa pizza)
+        this.varianteElemento = this.querySelectorAll('.variante-producto-item');
+        this.btnsPersonalizarProducto = this.querySelectorAll('#phpm-btn-personalizar');
+
+        // INICIALIZACION DE EVENTOS
+        this.btnsPersonalizarProducto.forEach((elementoBase) => {
+          elementoBase.addEventListener('click', this.procesoPersonalizarProducto.bind(this, elementoBase));
+        });
+        this.contenedorVarianteSeleccionado.forEach((elementoBase) => {
+          elementoBase.addEventListener('click', this.mostrarYOcultarContenedorVariantes.bind(this, elementoBase));
+        });
+        this.varianteElemento.forEach((elementoBase) => {
+          elementoBase.addEventListener('click', this.procesoVarianteSeleccionada.bind(this, elementoBase));
+        });
+        break;
+      case "MELTS":
+      case "PASTAS Y ENSALADAS":
+      case "GASEOSAS":
+      case "CERVEZAS":
+      case "POSTRES":
+        this.btnsAgregarProducto = this.querySelectorAll('#phpm-btn-agregar');
+        this.btnsAgregarProducto.forEach((elementoBase) => {
+          elementoBase.addEventListener('click', this.procesoAgregarProducto.bind(this, elementoBase));
+        });
+        break;
+      default:
+        console.log("No se encontró la colección");
+        break;
     }
   }
 
@@ -981,45 +1154,45 @@ class PageMenuProductos extends HTMLElement {
     console.log("Agregado al carrito");
   }
 
-  redireccionPersonalizar(elementoBtn) {
-    const padreElemento = elementoBtn.closest('.producto-es-item-detalle') || elementoBtn.closest('.producto-item-detalle');
+  // redireccionPersonalizar(elementoBtn) {
+  //   const padreElemento = elementoBtn.closest('.producto-es-item-detalle') || elementoBtn.closest('.producto-item-detalle');
 
 
-    const dataPadre = padreElemento.getAttribute('tipo-producto');
+  //   const dataPadre = padreElemento.getAttribute('tipo-producto');
 
-    if (dataPadre == null) {
-      window.location.href = "/";
-    }
+  //   if (dataPadre == null) {
+  //     window.location.href = "/";
+  //   }
 
-    localStorage.setItem('phpp-tipo-producto', dataPadre);
-    window.location.href = "/pages/producto";
-  }
+  //   localStorage.setItem('phpp-tipo-producto', dataPadre);
+  //   window.location.href = "/pages/producto";
+  // }
 
-  mostrarYOcultarContenedorVariantes(elementoBase) {
-    // Busco al elemento Padre
-    const elementoPadre = elementoBase.closest('#phpm-general-variantes');
-    // Busco a su hermano
-    const hermano = elementoPadre.querySelector('#phpm-items-variantes');
+  // mostrarYOcultarContenedorVariantes(elementoBase) {
+  //   // Busco al elemento Padre
+  //   const elementoPadre = elementoBase.closest('#phpm-general-variantes');
+  //   // Busco a su hermano
+  //   const hermano = elementoPadre.querySelector('#phpm-items-variantes');
 
-    const estaVisible = hermano.classList.contains('elemento-visible');
+  //   const estaVisible = hermano.classList.contains('elemento-visible');
 
-    if (estaVisible) {
-      hermano.classList.remove('elemento-visible');
-      hermano.classList.add('elemento-oculto');
-    } else {
-      hermano.classList.remove('elemento-oculto');
-      hermano.classList.add('elemento-visible');
-    }
+  //   if (estaVisible) {
+  //     hermano.classList.remove('elemento-visible');
+  //     hermano.classList.add('elemento-oculto');
+  //   } else {
+  //     hermano.classList.remove('elemento-oculto');
+  //     hermano.classList.add('elemento-visible');
+  //   }
 
-    // Oculto a los otros elementos
-    this.contenedorVariantes.forEach((elemento) => {
-      if (elemento !== hermano) {
-        elemento.classList.remove('elemento-visible');
-        elemento.classList.add('elemento-oculto');
-        // {% comment %} elemento.style.display = "none"; {% endcomment %}
-      }
-    });
-  }
+  //   // Oculto a los otros elementos
+  //   this.contenedorVariantes.forEach((elemento) => {
+  //     if (elemento !== hermano) {
+  //       elemento.classList.remove('elemento-visible');
+  //       elemento.classList.add('elemento-oculto');
+  //       // {% comment %} elemento.style.display = "none"; {% endcomment %}
+  //     }
+  //   });
+  // }
 
   acortarTitulo(titulo) {
     if (titulo.includes("Super personal")) {
@@ -1105,6 +1278,74 @@ class PageMenuProductos extends HTMLElement {
       this.botonDerechaMenu.style.opacity = "1";
       this.botonDerechaMenu.style.pointerEvents = "auto";
     }
+  }
+
+  procesoPersonalizarProducto(elementoBase) { }
+
+  procesoAgregarProducto(elementoBase) { }
+
+  mostrarYOcultarContenedorVariantes(elementoBase) {
+    // Busco al elemento Padre
+    const elementoPadre = elementoBase.closest('#phpm-general-variantes');
+    // Busco a su hermano
+    const hermano = elementoPadre.querySelector('#phpm-items-variantes');
+
+    const estaVisible = hermano.classList.contains('elemento-visible');
+
+    if (estaVisible) {
+      hermano.classList.remove('elemento-visible');
+      hermano.classList.add('elemento-oculto');
+    } else {
+      hermano.classList.remove('elemento-oculto');
+      hermano.classList.add('elemento-visible');
+    }
+
+    // Oculto a los otros elementos
+    this.contenedorVariantes.forEach((elemento) => {
+      if (elemento !== hermano) {
+        elemento.classList.remove('elemento-visible');
+        elemento.classList.add('elemento-oculto');
+        // {% comment %} elemento.style.display = "none"; {% endcomment %}
+      }
+    });
+  }
+
+  procesoVarianteSeleccionada(elementoBase) {
+    //
+    // Es el que tiene la class="producto-item"
+    const elementoPadreGeneral = elementoBase.closest('.producto-item') || elementoBase.closest('.producto-es-item');
+    // Busco dentro del elemento al la primer etiqueta <p> y obtengo su valor ya que tenog 3 etiqueta p
+    const primerP = elementoBase.querySelectorAll('p')[0];
+    // Busco al elemento Padre General con id="phpm-general-variantes"
+    const padreGeneral = elementoBase.closest('#phpm-general-variantes');
+    // Busco al hijo de Padre con id="phpm-view-variantes"
+    const hijo = padreGeneral.querySelector('#phpm-view-variantes');
+    // El hijo tiene otro hijo que es una etiqueta p con id="phpm-variante-seleccionado"
+    const hijoP = hijo.querySelector('#phpm-variante-seleccionado');
+    hijoP.innerHTML = primerP.innerHTML; // Cambiamos el valor de la etiqueta p
+
+    // Se edita el valor del atributo data-seleccionado del padre general
+    elementoPadreGeneral.dataset.seleccionado = elementoBase.dataset.idtrabajo;
+
+    // Se procede a agregar clase seleccionado a elementoBase y se lo quita a los demas si es que lo llevan
+    const hermanos = elementoPadreGeneral.querySelectorAll('.variante-producto-item');
+    hermanos.forEach((hermano) => {
+      if (hermano !== elementoBase) {
+        hermano.classList.remove('seleccionado');
+      } else {
+        hermano.classList.add('seleccionado');
+      }
+    });
+
+    // Busco al elemento Padre id="phpm-items-variantes"
+    // O tambien cierro a todos con ese id
+    this.contenedorVariantes.forEach((elementoBase) => {
+      if (elementoBase !== padreGeneral) {
+        // {% comment %} elementoBase.style.display = "none"; {% endcomment %}
+        elementoBase.classList.remove('elemento-visible');
+        elementoBase.classList.add('elemento-oculto');
+      }
+    });
   }
 }
 
