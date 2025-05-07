@@ -34,6 +34,7 @@ class InicioSesion extends HTMLElement {
     this.containerGeneral = this.querySelector('#phpis-container-modal');
     // this.containerSnipper = this.querySelector('#phpis-snipper-modal');
     this.containerMensaje = this.querySelector('#phpis-mensaje-proceso');
+    this.btnReenviarCodigo = this.querySelector('#phpis-btn-reenviar');
     this.containerMensaje.addEventListener
 
     this.containerExito = this.querySelector('#phpis-mp-exito');
@@ -58,6 +59,7 @@ class InicioSesion extends HTMLElement {
     this.btnIniciarSesion.addEventListener('click', this.iniciarSesion.bind(this));
     // this.btnGoogle.addEventListener('click', this.iniciarSesionGoogle.bind(this));
     // this.btnFacebook.addEventListener('click', this.iniciarSesionFacebook.bind(this));
+    this.btnReenviarCodigo.addEventListener('click', this.enviarCodigoOTP.bind(this));
 
     document.addEventListener('click', (event) => {
       // Verificar si ambos contenedores están visibles
