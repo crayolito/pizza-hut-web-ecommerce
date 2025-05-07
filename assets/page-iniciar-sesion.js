@@ -64,7 +64,7 @@ class InicioSesion extends HTMLElement {
     document.addEventListener('click', (event) => {
       // Verificar si ambos contenedores están visibles
       if (this.containerGeneral.style.display === 'flex' && this.containerVerificarNumero.style.display === 'flex') {
-        // Si el clic fue dentro del containerGeneral pero NO dentro del containerVerificarNumero
+        // Si el clic fue dentro del containerGeneral pero NO dentro del containerVerificarNumeroo
         if (this.containerGeneral.contains(event.target) && !this.containerVerificarNumero.contains(event.target)) {
           this.containerGeneral.style.display = 'none';
         }
