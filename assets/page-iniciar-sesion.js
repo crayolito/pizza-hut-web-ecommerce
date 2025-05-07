@@ -59,7 +59,7 @@ class InicioSesion extends HTMLElement {
     this.btnIniciarSesion.addEventListener('click', this.iniciarSesion.bind(this));
     // this.btnGoogle.addEventListener('click', this.iniciarSesionGoogle.bind(this));
     // this.btnFacebook.addEventListener('click', this.iniciarSesionFacebook.bind(this));
-    this.btnReenviarCodigo.addEventListener('click', this.enviarCodigoOTP(`+591${this.input.value}`));
+    this.btnReenviarCodigo.addEventListener('click', this.procesoReenviarCodigo.bind(this));
 
     document.addEventListener('click', (event) => {
       // Verificar si ambos contenedores están visibless
@@ -1034,6 +1034,10 @@ class InicioSesion extends HTMLElement {
       console.error('Error al validar código OTP:', error);
       return false; // En caso de cualquier error, retornar false
     }
+  }
+
+  async procesoReenviarCodigo() {
+    const verificarSiFueEnviado = await this.enviarCodigoOTP(`+591${this.input.value}`);
   }
 }
 
