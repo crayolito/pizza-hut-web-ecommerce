@@ -974,6 +974,7 @@ class InicioSesion extends HTMLElement {
   }
 
   async enviarCodigoOTP(numeroTelefono) {
+    console.log('Enviando código OTP a:', numeroTelefono);
     try {
       const response = await fetch('https://apicloud.farmacorp.com/apishopify/api/v1.0/sms/account/send', {
         method: 'POST',
