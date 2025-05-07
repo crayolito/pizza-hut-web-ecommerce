@@ -1429,7 +1429,41 @@ class PageMenuProductos extends HTMLElement {
         ));
         break;
       case "PIZZAS":
+        const subProductoPreSeleccionadoIDShopify =
+          productoTrabajo = coleccionBaseTrabajo.productos.find((producto) => producto.id == idShopify);
+        // ["PIZZAS","Pizza Clasica"]
+        const coleccionesProducto = productoTrabajo.colecciones;
+        // Pizza Clasica
+        const subColeccionTrabajo = coleccionesProducto.find(item => item !== this.estadoVistaPagina);
+        // Pizza Clasica : {titulo: "Pizza Classica", productos: Array
+        const infoSubColeccion = coleccionBaseTrabajo.subColecciones[subColeccionTrabajo];
+        // Se lo va buscar mediante el idShopify
         // Primero se va buscar el producto en la coleccion Pizzas al hacer eso lo va encontrar 
+        // Buscara en sus colecciones va filtrar no va tomar encuetna PIZZAS que es estado vista acutal en la pagina
+        // Se quedara con el otro en este caso siempre seran 2 nomas al hacer eso Pizza Clasica tons tendremos base
+        // Despues me voy a subColecciones usaremos la coleccion quedo trabajo
+        // Se va jalar directamente ramas estructura.ramas para trabajar con esto
+        // Despues se va jalarr .ramas de forma directa se va construir con logica esto
+
+        var productoParaEstructuraTrabajo = [];
+
+
+        localStorage.setItem('phpp-productoData', JSON.stringify({
+          "producto": {
+            idShopify,
+            idTrabajo,
+            handle,
+            titulo: productoTrabajo.titulo,
+            descripcion: productoTrabajo.descripcion,
+            imagen: productoTrabajo.imagen,
+            precio: JSON.parse(productoTrabajo.metafields.estructura.json).precio,
+            stockTotal: productoTrabajo.stockTotal,
+            sucursales: productoTrabajo.sucursales
+          },
+          "estructura": infoSubColeccion.estructura,
+          productoParaEstructuraTrabajo,
+          "subProductoSeleccionado": subProductoPreSeleccionadoIDShopify
+        }));
         break;
       default:
         console.log("No se encontró la colección");
