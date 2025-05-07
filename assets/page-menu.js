@@ -748,6 +748,7 @@ class PageMenuProductos extends HTMLElement {
               </div>
             `;
           });
+          // Declarar elementos basicos para productos ya sea seleccion (Tamano )
           break;
         case "OFERTAS":
         case "MITAD & MITAD":
