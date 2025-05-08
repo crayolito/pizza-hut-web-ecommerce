@@ -111,13 +111,13 @@ class HeaderPrincipal extends HTMLElement {
 
 
     // INICIALIZACION DE CONTENIDOSS
-    this.contenedorMenuMobile.style.display = 'none';
-    this.tituloMenuMobile.style.display = 'none';
+    // this.contenedorMenuMobile.style.display = 'none';
+    // this.tituloMenuMobile.style.display = 'none';
     // this.contenedorMenuDesplegable.style.visibility = 'hidden';
-    this.contenedorResultadoBusqueda.style.display = 'none';
-    this.contenedorIsMenu.style.display = 'none';
-    this.contenedorNisMenu.style.display = 'none';
-    this.contenedorDisMenu.style.display = 'none';
+    // this.contenedorResultadoBusqueda.style.display = 'none';
+    // this.contenedorIsMenu.style.display = 'none';
+    // this.contenedorNisMenu.style.display = 'none';
+    // this.contenedorDisMenu.style.display = 'none';
     this.verificarEstadoSesion();
     this.verificarEstadoEntrega();
     this.contruccionOpcionesMenu();

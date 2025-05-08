@@ -71,10 +71,16 @@
         id="h-btn-menu-mobile"
         class="h-boton-menu"
       >
-        <h3 id="h-titulo-mobile-menu">MENU</h3>
+        <h3
+          style="display: none;"
+          id="h-titulo-mobile-menu"
+        >
+          MENU
+        </h3>
         {% render 'icon-hamburguesa' %}
       </button>
       <section
+        style="display: none;"
         id="h-menu-inicio-sesion-usuario-mobile"
         class="container-base h-opciones-usuario-mobile"
       >
@@ -89,6 +95,7 @@
         </div>
         <!-- INICIADO SESION MENU MOBILE -->
         <div
+          style="display: none;"
           id="h-ismm-menu-principal"
           class="h-opciones-mobile-body"
         >
@@ -145,6 +152,7 @@
         </div>
         <!-- NO INICIO SESION - MENU MOBILE -->
         <div
+          style="display: none;"
           id="h-nismm-menu-principal"
           class="h-opciones-mobile-body"
         >
@@ -253,7 +261,10 @@
             <input type="text" placeholder="Buscar" id="h-input-buscar" autocomplete="off">
           </div>
           <!-- CONTENEDOR RESULTADOSS DE BUSQUEDA -->
-          <div class="h-busqueda-especifica">
+          <div
+            style="display: none;"
+            class="h-busqueda-especifica"
+          >
             <div class="h-busqueda-especifica-item">
               <img src="{{ 'imagen-pizza-1.png' | asset_url }}" alt="Hamburguesa" width="100" height="100">
               <div class="h-busqueda-especifica-item-info">
@@ -338,6 +349,7 @@
           </button>
           <!-- INICIADO SESION DESKTOP -->
           <div
+            style="display: none;"
             id="h-ismd-opciones-usuario"
             class="h-opciones-usuario"
           >
