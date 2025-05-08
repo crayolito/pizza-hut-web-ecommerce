@@ -12,16 +12,24 @@
     <div class="page-menu-header">
       <small class="page-menu-titulo-desktop">Menu</small>
       <!-- Estructura modificada con un contenedor relativo -->
-      <div class="menu-scroll-container">
+      <div
+        class="phpm-menu-scroll-container"
+      >
         <!-- Botón izquierdo fuera del contenedor de scroll -->
-        <button id="phpm-btn-izquierda-menu" class="icon-color-tertiary">
+        <button
+          id="phpm-btn-izquierda-menu"
+          class="icon-color-tertiary"
+        >
           {% render 'icon-volver-atras' %}
         </button>
         <!-- Contenedor de scroll solo para las opciones -->
         <div class="phpm-items-menu container-base"></div>
         <!-- Botón derecho fuera del contenedor de scroll -->
-        <button id="phpm-btn-derecha-menu" class="icon-color-tertiary">
-          {% render 'icon-flecha-derecha' %}
+        <button
+          id="phpm-btn-derecha-menu"
+          class="icon-color-tertiary"
+        >
+          {% render 'icon-flecha-derecha-plus' %}
         </button>
       </div>
     </div>

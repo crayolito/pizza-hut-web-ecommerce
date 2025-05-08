@@ -380,7 +380,7 @@
 }
 
 /* Contenedor principal con posición relativa */
-.menu-scroll-container {
+.phpm-menu-scroll-container {
   position: relative;
   width: 100%;
   display: flex;
@@ -450,15 +450,19 @@
 
 /* Adaptación para dispositivos móviles (opcional) */
 @media (max-width: 768px) {
+  .phpm-items-menu {
+    margin: 0 1.3rem;
+  }
+
   #phpm-btn-izquierda-menu,
   #phpm-btn-derecha-menu {
-    height: 2.5rem;
+    /* height: 2.5rem; */
     width: 2.5rem;
   }
 
-  .phpm-items-menu {
-    padding: 0 2.5rem; /* Reducir el padding para móviles */
-  }
+  /* .phpm-items-menu {
+    padding: 0 2.5rem;
+  } */
 }
 
 .phpm-items {

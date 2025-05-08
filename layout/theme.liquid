@@ -468,14 +468,14 @@
         icon_checkbox_on : `{% render 'icon-checkbox-on' %}`,
         icon_volver_atras : `{% render 'icon-volver-atras' %}`,
         icon_flecha_derecha : `{% render 'icon-flecha-derecha' %}`,
+        icon_flecha_derecha_plus : `{% render 'icon-flecha-derecha-plus' %}`,
         icon_disponibilidad : `{% render 'icon-disponibilidad' %}`,
         icon_clock : `{% render 'icon-clock' %}`,
         icon_check: `{% render 'icon-check' %}`,
         icon_map: `{% render 'icon-map' %}`,
         icon_flecha_abajo : `{% render 'icon-flecha-abajo' %}`,
         icon_todas_opciones : `{% render 'icon-todas-opciones' %}`,
-        icon_carrito : `{% render 'icon-carrito' %}`,
-
+        icon_carrito : `{% render 'icon-carrito' %}`
       };
 
       window.assets = {
@@ -505,6 +505,7 @@
     <script src="{{ 'page-crear-cuenta.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'page-editar-perfil.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'page-menu.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'header.js' | asset_url }}" defer="defer"></script>
   </head>
 
   <body>
@@ -926,7 +927,7 @@
       this.iconoSeleccionRecogerLocal = document.querySelector('#mpsme-icono-recoger-local');
       this.iconoSeleccionEnvioDomicilio = document.querySelector('#mpsme-icono-envio-domicilio');
       // OPCIONES DEL MODAL
-      this.containerModalMenu = document.querySelector('.h-menu-opciones-productos');
+      this.containerModalMenu = this.querySelector('.h-menu-opciones-productos');
       this.btnContinuar = document.querySelector('#mpsme-opcion-continuar');
       this.btnOmitir = document.querySelector('#mpsme-opcion-omitir');
       // LISTENER DE EVENTOS

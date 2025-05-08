@@ -874,6 +874,7 @@ class PageCarrito extends HTMLElement {
 
       const infoCarrito = await AuxiliaresGlobal.obtenerCarritoShopify();
       this.dataCarrito = infoCarrito.informacionCompleta;
+      console.log('Información del carrito:', this.dataCarrito);
 
       let contenidoIzquierdoHTML = '';
       let precioTotal = 0;
@@ -884,7 +885,7 @@ class PageCarrito extends HTMLElement {
         }
 
         const dataContruccion = JSON.parse(item.properties.estructura);
-        precioTotal += parseFloat(dataContruccion.producto.precioTotalConjunto);
+        precioTotal += parseInt(dataContruccion.producto.precioTotalConjunto) * parseInt(item.quantity);
         // 
         contenidoIzquierdoHTML += `
         <div 
@@ -903,7 +904,7 @@ class PageCarrito extends HTMLElement {
             </div>
             <div class="pcph-itemc-info">
               <div class="pcph-itemc_opcion1">
-                <h2 class="color-letras-extra">Bs. ${dataContruccion.producto.precioTotalConjunto}</h2>
+                <h2 class="color-letras-extra">Bs. ${parseInt(dataContruccion.producto.precioTotalConjunto) * parseInt(item.quantity)}</h2>
                 <div 
                 style="display: none;"
                 class="pcph-itemc_editar">
@@ -1561,8 +1562,6 @@ class PageCarrito extends HTMLElement {
       await this.actualizarSoloContenidoCarrito();
       MensajeCargaDatos.ocultar();
     }, 3000);
-
-    // MensajeCargaDatos.ocultar();
   }
 
   async pagarBtnPrincipal() {

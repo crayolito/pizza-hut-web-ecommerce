@@ -872,60 +872,6 @@ class PizzaHutProducto extends HTMLElement {
       });
     });
 
-    // {% comment %} this.seccionProductosSubRama.forEach((elementoSeccion) => {
-    //     const codigoPadre = elementoSeccion.getAttribute('data-codigopadre');
-    //     if (codigoPadre != codigo) {
-    //         elementoSeccion.style.display = 'none';
-    //         return;
-    //     }
-    //     const codigo = elementoSeccion.getAttribute('data-codigo');
-    //     const max = elementoSeccion.getAttribute('data-max');
-    //     const min = elementoSeccion.getAttribute('data-min');
-    //     const tipoBoton = elementoSeccion.getAttribute('tipo-boton');
-    //     let productosTrabajo = elementoTrabajo.ramas.find((rama) => rama.codigo == codigo);
-    //     const hijosSeccion = elementoSeccion.querySelectorAll('#pmp-item-subRama');
-    //     if (!productosTrabajo) {
-    //         console.log(`No se encontró rama con código ${codigo} para este elemento`);
-    //         return;
-    //     }
-
-    //     let seleccionaPrimero = false;
-    //     hijosSeccion.forEach((itemHTML) => {
-    //         const idTrabajo = itemHTML.getAttribute('data-idtrabajo');
-    //         const idShopify = itemHTML.getAttribute('data-idshopify');
-    //         const estaSeleccionado = itemHTML.classList.contains('seleccionado');
-    //         const estaDesactivado = itemHTML.classList.contains('desactivado');
-
-    //         // Encontrar al itemHTML mediante codigo idShopify dentro de productosTrabajo
-    //         const productoTrabajo = productosTrabajo.productos.find((producto) => producto.idShopify == idShopify);
-
-    //         // Si no se encontro el itemHTML dentro de productosTrabajo se lo desactiva
-    //         if (!productoTrabajo) {
-    //             itemHTML.classList.remove('seleccionado');
-    //             itemHTML.classList.add('desactivado');
-    //             itemHTML.querySelector('.pmp-item-simple-escoger').innerHTML = tipoBoton == 'checkbox' ? this.iconos.iconCheckBoxOff : this.iconos.iconEstadoOff;
-    //         } else {
-    //             // Si se encuentra coincidencia se lo activa
-    //             if (min == "1" && parseInt(productoTrabajo.precio) == 0 && seleccionaPrimero == false) {
-    //                 // Si el min es 1 y el elemento productoTrabajo es 0 (se va preseleccionar)
-    //                 itemHTML.classList.remove('desactivado');
-    //                 itemHTML.classList.add('seleccionado');
-    //                 itemHTML.querySelector('.pmp-item-simple-escoger').innerHTML = tipoBoton == 'checkbox' ? this.iconos.iconCheckBoxOn : this.iconos.iconEstadoOn;
-    //                 itemHTML.setAttribute('data-idtrabajo', productoTrabajo.idTrabajo);
-    //                 seleccionaPrimero = true;
-    //             } else {
-    //                 itemHTML.classList.remove('desactivado');
-    //                 itemHTML.classList.remove('seleccionado');
-    //                 itemHTML.querySelector('.pmp-item-simple-escoger').innerHTML = tipoBoton == 'checkbox' ? this.iconos.iconCheckBoxOff : this.iconos.iconEstadoOff;
-    //                 itemHTML.setAttribute('data-idtrabajo', productoTrabajo.idTrabajo);
-    //             }
-    //             if (itemHTML.querySelectorAll('p').length == 2) {
-    //                 itemHTML.querySelectorAll('p')[1].innerHTML = `+ ${productoTrabajo.precio} Bs`;
-    //             }
-    //         }
-    //     });
-    // }); {% endcomment %}
-
     // Hay que actualizar el valor de los botones inferiores
     await this.actualizarEstadoBotonesInferiores();
   }

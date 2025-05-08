@@ -617,8 +617,6 @@ header-principal {
   max-width: 1660px;
   position: absolute;
   display: flex;
-  /* flex-direction: column; */
-  align-items: start;
   top: 100%;
   left: 0;
   width: 100%;
@@ -626,15 +624,36 @@ header-principal {
   z-index: 9999;
   border-top: 1px solid #dedede;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  padding: var(--espaciado-xl);
-  gap: var(--espaciado-m);
-  overflow-x: auto;
-  overflow-y: hidden;
+  padding: var(--espaciado-xl) 0;
 }
 
-.h-menu-opciones-productos::-webkit-scrollbar {
+#phh-opciones-menu {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: start;
+  gap: var(--espaciado-l);
+  margin: 0 3.5rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  flex: 1;
+}
+
+#phh-opciones-menu::-webkit-scrollbar {
   width: 0;
   height: 0;
+}
+
+/* Contenedor principal con posición relativa */
+.phh-menu-scroll-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .h-menu-opciones-productos-item {
@@ -651,6 +670,51 @@ header-principal {
   cursor: pointer;
 }
 
+/* Botones de navegación posicionados absolutamente */
+#phh-btn-izquierda-menu,
+#phh-btn-derecha-menu {
+  position: absolute;
+  z-index: 10;
+  height: 100%;
+  width: 3.5rem;
+  padding-right: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  cursor: pointer;
+  transition: opacity 0.3s, background-color 0.3s;
+}
+
+#phh-btn-izquierda-menu {
+  left: 0;
+}
+
+#phh-btn-derecha-menu {
+  right: 0;
+}
+
+/* Efecto hover para los botones */
+#phh-btn-izquierda-menu:hover,
+#phh-btn-derecha-menu:hover {
+  background-color: #f5f5f5; /* Cambio sutil de color al pasar el ratón */
+}
+
+/* Cuando los botones están desactivados */
+#phh-btn-izquierda-menu[style*="pointer-events: none"],
+#phh-btn-derecha-menu[style*="pointer-events: none"] {
+  cursor: default; /* Cambiar el cursor cuando está desactivado */
+}
+
+/* Adaptación para dispositivos móviles (opcional) */
+@media (max-width: 768px) {
+  #phh-btn-izquierda-menu,
+  #phh-btn-derecha-menu {
+    /* height: 2.5rem; */
+    width: 2.5rem;
+  }
+}
+
 .h-menu-producto-info-imagen {
   width: 30%;
   height: 100%;
@@ -664,7 +728,7 @@ header-principal {
   height: 100%;
   border-top-left-radius: var(--border-radius-2);
   border-bottom-left-radius: var(--border-radius-2);
-  object-fit: contain;
+  object-fit: cover;
 }
 
 .h-menu-producto-info-nombre {

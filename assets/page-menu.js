@@ -29,8 +29,8 @@ class PageMenuProductos extends HTMLElement {
     this.menuContainer = this.querySelector('.phpm-items-menu');
     this.seccionesProductos = null;
     this.opcionesMenu = null;
-    this.botonIzquierdaMenu = document.getElementById('phpm-btn-izquierda-menu');
-    this.botonDerechaMenu = document.getElementById('phpm-btn-derecha-menu');
+    this.botonIzquierdaMenu = this.querySelector('#phpm-btn-izquierda-menu');
+    this.botonDerechaMenu = this.querySelector('#phpm-btn-derecha-menu');
 
 
     this.cantidadDesplazamiento = 400;
@@ -1390,6 +1390,101 @@ class PageMenuProductos extends HTMLElement {
             ));
             break;
           case "complejo":
+            const subProductoPreSeleccionadoIDShopify =
+              productoTrabajo = coleccionBaseTrabajo.productos.find((producto) => producto.id == idShopify);
+            // ["PIZZAS","Pizza Clasica"]
+            const coleccionesProducto = productoTrabajo.colecciones;
+            // Pizza Clasica
+            const subColeccionTrabajo = coleccionesProducto.find(item => item !== this.estadoVistaPagina);
+            // Pizza Clasica : {titulo: "Pizza Classica", productos: Array
+            const infoSubColeccion = coleccionBaseTrabajo.subColecciones[subColeccionTrabajo];
+
+            var productoParaEstructuraTrabajo = [];
+            // ramaPrincipal "PCT"
+            for (const ramaPrincipal in infoSubColeccion.ramas) {
+              const infoRamaPrincipal = infoSubColeccion.ramas[ramaPrincipal];
+
+              var productosRamaPrincipal = [];
+              infoRamaPrincipal.productos.forEach((productoRamaPrincipal) => {
+                const llaveAcceso = () => {
+                  // Luego los casos simples
+                  if (productoRamaPrincipal.titulo.includes("Personal")) {
+                    return "Personal";
+                  }
+                  if (productoRamaPrincipal.titulo.includes("Familiar")) {
+                    return "Familiar";
+                  }
+                  if (productoRamaPrincipal.titulo.includes("Super")) {
+                    return "Super";
+                  }
+                  if (productoRamaPrincipal.titulo.includes("Mediana")) {
+                    return "Mediana";
+                  }
+                  return null; // Valor por defecto
+                };
+
+                var subRamas = [];
+                for (const subRama in infoRamaPrincipal.subramas) {
+                  const infoSubRama = infoRamaPrincipal.subramas[subRama];
+
+
+                  var productosSubRama = [];
+                  infoSubRama.productos.forEach((productoSubRama) => {
+                    const infoExtra = JSON.parse(productoSubRama.metafields.estructura[subColeccionTrabajo.toLowerCase()]);
+                    const baseInfo = infoExtra[llaveAcceso()];
+                    if (!baseInfo) {
+                      return;
+                    }
+                    productosSubRama.push({
+                      handle: productoSubRama.handle,
+                      idShopify: productoSubRama.id,
+                      idTrabajo: baseInfo.id,
+                      precio: baseInfo.precio,
+                      titulo: productoSubRama.titulo,
+                      imagen: productoSubRama.imagen,
+                    });
+                  });
+
+                  subRamas.push({
+                    codigo: subRama,
+                    titulo: infoSubRama.titulo,
+                    condicion: { min: infoSubRama.min, max: infoSubRama.max },
+                    productos: productosSubRama
+                  });
+                }
+
+                productosRamaPrincipal.push({
+                  titulo: productoRamaPrincipal.titulo,
+                  handle: productoRamaPrincipal.handle,
+                  idShopify: productoRamaPrincipal.id,
+                  idTrabajo: JSON.parse(productoRamaPrincipal.metafields.estructura[subColeccionTrabajo.toLowerCase()]).id,
+                  precio: JSON.parse(productoRamaPrincipal.metafields.estructura[subColeccionTrabajo.toLowerCase()]).precio,
+                  ramas: subRamas
+                });
+              });
+
+              productoParaEstructuraTrabajo.push({
+                codigo: ramaPrincipal,
+                productos: productosRamaPrincipal
+              });
+            }
+
+            localStorage.setItem('phpp-productoData', JSON.stringify({
+              "producto": {
+                idShopify,
+                idTrabajo,
+                handle,
+                titulo: productoTrabajo.titulo,
+                descripcion: productoTrabajo.descripcion,
+                imagen: productoTrabajo.imagen,
+                precio: JSON.parse(productoTrabajo.metafields.estructura.json).precio,
+                stockTotal: productoTrabajo.stockTotal,
+                sucursales: productoTrabajo.sucursales
+              },
+              "estructura": infoSubColeccion.estructura,
+              productoParaEstructuraTrabajo,
+              "subProductoSeleccionado": subProductoPreSeleccionadoIDShopify
+            }));
             break;
           default:
             console.log("No se encontró la colección");
@@ -1437,16 +1532,76 @@ class PageMenuProductos extends HTMLElement {
         const subColeccionTrabajo = coleccionesProducto.find(item => item !== this.estadoVistaPagina);
         // Pizza Clasica : {titulo: "Pizza Classica", productos: Array
         const infoSubColeccion = coleccionBaseTrabajo.subColecciones[subColeccionTrabajo];
-        // Se lo va buscar mediante el idShopify
-        // Primero se va buscar el producto en la coleccion Pizzas al hacer eso lo va encontrar 
-        // Buscara en sus colecciones va filtrar no va tomar encuetna PIZZAS que es estado vista acutal en la pagina
-        // Se quedara con el otro en este caso siempre seran 2 nomas al hacer eso Pizza Clasica tons tendremos base
-        // Despues me voy a subColecciones usaremos la coleccion quedo trabajo
-        // Se va jalar directamente ramas estructura.ramas para trabajar con esto
-        // Despues se va jalarr .ramas de forma directa se va construir con logica esto
 
         var productoParaEstructuraTrabajo = [];
+        // ramaPrincipal "PCT"
+        for (const ramaPrincipal in infoSubColeccion.ramas) {
+          const infoRamaPrincipal = infoSubColeccion.ramas[ramaPrincipal];
 
+          var productosRamaPrincipal = [];
+          infoRamaPrincipal.productos.forEach((productoRamaPrincipal) => {
+            const llaveAcceso = () => {
+              // Luego los casos simples
+              if (productoRamaPrincipal.titulo.includes("Personal")) {
+                return "Personal";
+              }
+              if (productoRamaPrincipal.titulo.includes("Familiar")) {
+                return "Familiar";
+              }
+              if (productoRamaPrincipal.titulo.includes("Super")) {
+                return "Super";
+              }
+              if (productoRamaPrincipal.titulo.includes("Mediana")) {
+                return "Mediana";
+              }
+              return null; // Valor por defecto
+            };
+
+            var subRamas = [];
+            for (const subRama in infoRamaPrincipal.subramas) {
+              const infoSubRama = infoRamaPrincipal.subramas[subRama];
+
+
+              var productosSubRama = [];
+              infoSubRama.productos.forEach((productoSubRama) => {
+                const infoExtra = JSON.parse(productoSubRama.metafields.estructura[subColeccionTrabajo.toLowerCase()]);
+                const baseInfo = infoExtra[llaveAcceso()];
+                if (!baseInfo) {
+                  return;
+                }
+                productosSubRama.push({
+                  handle: productoSubRama.handle,
+                  idShopify: productoSubRama.id,
+                  idTrabajo: baseInfo.id,
+                  precio: baseInfo.precio,
+                  titulo: productoSubRama.titulo,
+                  imagen: productoSubRama.imagen,
+                });
+              });
+
+              subRamas.push({
+                codigo: subRama,
+                titulo: infoSubRama.titulo,
+                condicion: { min: infoSubRama.min, max: infoSubRama.max },
+                productos: productosSubRama
+              });
+            }
+
+            productosRamaPrincipal.push({
+              titulo: productoRamaPrincipal.titulo,
+              handle: productoRamaPrincipal.handle,
+              idShopify: productoRamaPrincipal.id,
+              idTrabajo: JSON.parse(productoRamaPrincipal.metafields.estructura[subColeccionTrabajo.toLowerCase()]).id,
+              precio: JSON.parse(productoRamaPrincipal.metafields.estructura[subColeccionTrabajo.toLowerCase()]).precio,
+              ramas: subRamas
+            });
+          });
+
+          productoParaEstructuraTrabajo.push({
+            codigo: ramaPrincipal,
+            productos: productosRamaPrincipal
+          });
+        }
 
         localStorage.setItem('phpp-productoData', JSON.stringify({
           "producto": {
@@ -1462,7 +1617,7 @@ class PageMenuProductos extends HTMLElement {
           },
           "estructura": infoSubColeccion.estructura,
           productoParaEstructuraTrabajo,
-          "subProductoSeleccionado": subProductoPreSeleccionadoIDShopify
+          "subProductoSeleccionado": subProductoPreSeleccionadoIDShopify.id
         }));
         break;
       default:
@@ -1474,24 +1629,56 @@ class PageMenuProductos extends HTMLElement {
     // window.location.href = "/pages/producto";
   }
 
-  procesoAgregarProducto(elementoBase) {
-    switch (this.estadoVistaPagina) {
-      case "TODO":
-      case "OFERTAS":
-      case "HUT DAYS 2X1":
-      case "POLLO":
-      case "MITAD & MITAD":
-      case "PIZZAS":
-      case "MELTS":
-      case "PASTAS Y ENSALADAS":
-      case "GASEOSAS":
-      case "CERVEZAS":
-      case "POSTRES":
-      default:
-        console.log("No se encontró la colección");
-        break;
+  async procesoAgregarProducto(elementoBase) {
+    const idShopify = elementoBase.closest('.producto-es-item').dataset.idshopify;
+    const idTrabajo = elementoBase.closest('.producto-es-item').dataset.idtrabajo;
+    const handle = elementoBase.closest('.producto-es-item').dataset.handle;
+
+    const infoCategoriaTrabajo = this.productosPorCategorias.find((coleccion) => coleccion.titulo == this.estadoVistaPagina);
+    const productoTrabajo = infoCategoriaTrabajo.productos.find((producto) => producto.id == idShopify);
+
+    const dataMetaFields = JSON.parse(productoTrabajo.metafields.estructura.json);
+    const detalleProducto = {
+      producto: {
+        idTrabajo: idTrabajo,
+        idShopify: idShopify,
+        handle: productoTrabajo.handle,
+        titulo: productoTrabajo.titulo,
+        precio: parseInt(dataMetaFields.precio),
+        imagen: productoTrabajo.imagen,
+        cantidad: 1,
+        sucursales: productoTrabajo.sucursales,
+        stockTotal: parseInt(productoTrabajo.stockTotal),
+        precioTotalConjunto: parseInt(dataMetaFields.precio) * 1,
+      },
+      opcionesPrincipales: {
+        titulo: "Opciones Principales",
+        productos: []
+      },
+      complementos: {
+        titulo: "Complementos",
+        productos: []
+      }
     }
+
+    console.log("Producto a agregar al carrito", detalleProducto);
+
+    // Se procede a agregar al carrito
+    MensajeCargaDatos.mostrar("Agregando al carrito");
+    await AuxiliaresGlobal.agregarCarrito(1, parseInt(idShopify), {
+      properties: { "estructura": JSON.stringify(detalleProducto) }
+    });
+    MensajeCargaDatos.ocultar();
+
+
+    // // Hacer un setTiempo de 3 segundos
+    // setTimeout(async () => {
+    //   await this.actualizarSoloContenidoCarrito();
+    //   MensajeCargaDatos.ocultar();
+    // }, 3000);
   }
+
+
 
   mostrarYOcultarContenedorVariantes(elementoBase) {
     // Busco al elemento Padre
