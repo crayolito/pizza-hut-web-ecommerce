@@ -1678,8 +1678,6 @@ class PageMenuProductos extends HTMLElement {
     // }, 3000);
   }
 
-
-
   mostrarYOcultarContenedorVariantes(elementoBase) {
     // Busco al elemento Padre
     const elementoPadre = elementoBase.closest('#phpm-general-variantes');
@@ -1707,7 +1705,6 @@ class PageMenuProductos extends HTMLElement {
   }
 
   procesoVarianteSeleccionada(elementoBase) {
-    //
     // Es el que tiene la class="producto-es-item"
     const elementoPadreGeneral = elementoBase.closest('.producto-es-item');
     // Busco dentro del elemento al la primer etiqueta <p> y obtengo su valor ya que tenog 3 etiqueta p

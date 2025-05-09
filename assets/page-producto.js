@@ -262,6 +262,7 @@ class PizzaHutProducto extends HTMLElement {
 
             detalleSubProductos += `
         <div data-max="${infoBaseSubRama.max}" data-min="${infoBaseSubRama.min}" data-codigo="${llaveSubRama}"
+        data-codigopadre="${ramaPrincipal}"
           id="pmph-seleccion-subRama" class="pmph-seleccion-normal">
             <h3>${infoBaseSubRama.titulo}</h3>
         `;
@@ -934,18 +935,264 @@ class PizzaHutProducto extends HTMLElement {
             }
          });
 
+         if (this.seccionProductosRamaPrincipales.length > 0) {
+            // Se inicializa los btn de productos rama principal
+            this.btnsProductosRamaPrincipales = this.querySelectorAll('#pmp-item-rama-principal');
+            this.btnsProductosRamaPrincipales.forEach((btn) => {
+               btn.addEventListener('click', (btnElemento) => {
+                  const elementoPadre = btnElemento.closest('#pmph-seleccion-rama-principal');
+                  const max = parseInt(elementoPadre.dataset.max);
+                  const min = parseInt(elementoPadre.dataset.min);
+                  const codigoRama = elementoPadre.dataset.codigo;
+                  const btnTarget = btnElemento.target.closest('.pmp-item-simple') || btnElemento.target;
+                  const estaSeleccionado = btnTarget.classList.contains('seleccionado');
+                  const hijosSeleccionadosPadre = elementoPadre.querySelectorAll('.seleccionado');
+                  const informacionRama = this.productoInfo.productoParaEstructuraTrabajo.ramas[codigoRama];
+                  const productoInfo = informacionRama.productos.find((item) => item.id == btnTarget.dataset.idtrabajo);
+
+                  if (estaSeleccionado) {
+                     // Si está seleccionado y se le hizo click, quiere deseleccionarlo
+                     // Calculamos cuántos elementos quedarían seleccionados después de esta acción
+                     const totalSeleccionadosDespues = hijosSeleccionadosPadre.length - 1;
+
+                     // Verificamos que al deseleccionar no incumplamos el mínimo requerido
+                     if (min > 0 && totalSeleccionadosDespues < min) {
+                        // No se puede deseleccionar porque quedaríamos por debajo del mínimo
+                        console.warn(`No se puede deseleccionar. Se requiere un mínimo de ${min} elementos seleccionados.`);
+                        return; // Salimos sin hacer cambios
+                     }
+
+                     // Si pasamos la verificación, podemos deseleccionar
+                     btnTarget.classList.remove('seleccionado');
+                     btnTarget.querySelector('.pmp-item-simple-escoger').innerHTML = this.iconos.iconEstadoOff;
+
+                     // Aquí podríamos añadir lógica adicional para manejar subRamas relacionadas
+                  } else {
+                     // Si no está seleccionado y se le hizo click, quiere seleccionarlo
+                     // Calculamos cuántos elementos quedarían seleccionados después de esta acción
+                     const totalSeleccionadosDespues = hijosSeleccionadosPadre.length + 1;
+
+                     // Verificamos que al seleccionar no sobrepasemos el máximo permitido
+                     if (max > 0 && totalSeleccionadosDespues > max) {
+                        // No se puede seleccionar porque excederíamos el máximo
+                        console.warn(`No se puede seleccionar más elementos. El máximo permitido es ${max}.`);
+                        return; // Salimos sin hacer cambios
+                     }
+
+                     // Si pasamos la verificación, podemos seleccionar
+                     btnTarget.classList.add('seleccionado');
+                     btnTarget.querySelector('.pmp-item-simple-escoger').innerHTML = this.iconos.iconEstadoOn;
+
+                     // El producto fue exitosamente seleccionado se va proceder a actualizar a la seccionSubRama
+                     // que corresponde ya que tiene un codigo como data-codigopadre en este caso primero hay 
+                     // encontrar a la subRama que corresponde
+                     if (this.seccionProductosSubRama.length > 0) {
+                        // Buscamos la sección de subRama correspondiente a la rama principal actual
+                        const seccionSubRama = Array.from(this.seccionProductosSubRama).find((subRama) => {
+                           return subRama.dataset.codigopadre == codigoRama;
+                        });
+
+                        if (seccionSubRama) {
+                           // Verificamos si el producto seleccionado tiene subRamas
+                           if (productoInfo && productoInfo.ramas) {
+                              // Se va unificar todos los productos de las ramas que tiene el productoInfo
+                              // Productos de trabajo base para actualizar desactivar o activar lo que corresponde
+                              let productosSubRamaUnificados = [];
+
+                              // Iteramos por cada subRama del producto seleccionado
+                              for (const codigoSubRama in productoInfo.ramas) {
+                                 const infoSubRama = productoInfo.ramas[codigoSubRama];
+
+                                 // Solo consideramos subRamas que tengan productos
+                                 if (infoSubRama.productos && infoSubRama.productos.length > 0) {
+                                    // Añadimos los productos a nuestra lista unificada
+                                    productosSubRamaUnificados = [
+                                       ...productosSubRamaUnificados,
+                                       ...infoSubRama.productos.map(producto => ({
+                                          ...producto,
+                                          codigoSubRama
+                                       }))
+                                    ];
+                                 }
+                              }
+
+                              // Obtenemos el mínimo requerido para las subRamas
+                              const minSubRama = parseInt(seccionSubRama.dataset.min) || 0;
+                              const hijosSeccionSubRama = seccionSubRama.querySelectorAll('.pmp-item-complejo');
+
+                              // Detectar productos ya seleccionados en subRamas
+                              const productosYaSeleccionados = Array.from(seccionSubRama.querySelectorAll('.seleccionado')).map(
+                                 item => item.dataset.idtrabajo
+                              );
+
+                              // Ordenamos los productos priorizando los de precio 0
+                              productosSubRamaUnificados.sort((a, b) => {
+                                 // Primero los de precio 0
+                                 if (parseInt(a.precio) === 0 && parseInt(b.precio) !== 0) return -1;
+                                 if (parseInt(a.precio) !== 0 && parseInt(b.precio) === 0) return 1;
+                                 // Si ambos tienen el mismo estado de precio, mantener el orden original
+                                 return 0;
+                              });
+
+                              // Contador para productos de subRama seleccionados
+                              let contadorSeleccionados = productosYaSeleccionados.length;
+
+                              // Recorremos todos los elementos de la subRama para actualizarlos
+                              hijosSeccionSubRama.forEach((item) => {
+                                 const idTrabajo = item.dataset.idtrabajo;
+                                 // Verificamos si este producto está entre los disponibles en las subRamas
+                                 const productoEncontrado = productosSubRamaUnificados.find(p => p.idTrabajo == idTrabajo);
+
+                                 if (productoEncontrado) {
+                                    // Activamos el elemento para que sea seleccionable
+                                    item.classList.remove('desactivado');
+
+                                    // Actualizamos los datos del producto en el DOM
+                                    item.dataset.idtrabajo = productoEncontrado.idTrabajo;
+                                    item.dataset.precio = productoEncontrado.precio;
+                                    item.dataset.productoPrincipalId = btnTarget.dataset.idtrabajo; // Guardamos relación con producto principal
+
+                                    // Actualizamos visualización de información
+                                    const mostrarDatos = item.querySelector('.pmp-item-simple-info');
+                                    mostrarDatos.innerHTML = this.contenidoSiTienePrecio(
+                                       productoEncontrado.titulo,
+                                       parseInt(productoEncontrado.precio)
+                                    );
+
+                                    // Si aún no hemos alcanzado el mínimo y este producto tiene precio 0 o ya estaba seleccionado
+                                    // lo seleccionamos automáticamente
+                                    const yaEstabaSeleccionado = productosYaSeleccionados.includes(idTrabajo);
+                                    const precioCero = parseInt(productoEncontrado.precio) === 0;
+
+                                    if (contadorSeleccionados < minSubRama && (precioCero || yaEstabaSeleccionado)) {
+                                       // Solo lo seleccionamos si aún no estaba seleccionado
+                                       if (!item.classList.contains('seleccionado')) {
+                                          item.classList.add('seleccionado');
+                                          item.querySelector('.pmp-item-simple-escoger').innerHTML = this.iconos.iconEstadoOn;
+                                          contadorSeleccionados++;
+                                       }
+                                    } else if (!item.classList.contains('seleccionado')) {
+                                       // Si no cumple criterios para selección automática y no estaba ya seleccionado
+                                       item.querySelector('.pmp-item-simple-escoger').innerHTML = this.iconos.iconEstadoOff;
+                                    }
+                                 } else {
+                                    // Este producto no está disponible en las subRamas del producto principal seleccionado
+                                    // Lo desactivamos para que no sea seleccionable
+                                    item.classList.add('desactivado');
+                                    item.classList.remove('seleccionado');
+                                    item.querySelector('.pmp-item-simple-escoger').innerHTML = this.iconos.iconEstadoOff;
+
+                                    // Si estaba contado como seleccionado, ajustamos el contador
+                                    if (productosYaSeleccionados.includes(idTrabajo)) {
+                                       contadorSeleccionados--;
+                                    }
+                                 }
+                              });
+
+                              // Verificación final de cumplimiento del mínimo
+                              if (contadorSeleccionados < minSubRama) {
+                                 console.warn(`Advertencia: No se pudo cumplir con el mínimo de ${minSubRama} productos para las subRamas`);
+
+                                 // Intentamos seleccionar productos adicionales para cumplir el mínimo
+                                 if (productosSubRamaUnificados.length > 0) {
+                                    const productosDisponiblesNoSeleccionados = Array.from(hijosSeccionSubRama)
+                                       .filter(item => !item.classList.contains('seleccionado') && !item.classList.contains('desactivado'));
+
+                                    // Seleccionamos elementos adicionales hasta cumplir el mínimo
+                                    for (const item of productosDisponiblesNoSeleccionados) {
+                                       if (contadorSeleccionados >= minSubRama) break;
+
+                                       item.classList.add('seleccionado');
+                                       item.querySelector('.pmp-item-simple-escoger').innerHTML = this.iconos.iconEstadoOn;
+                                       contadorSeleccionados++;
+                                    }
+                                 }
+                              }
+                           } else {
+                              // Si el producto seleccionado no tiene subRamas, desactivamos todos los elementos de subRama
+                              const hijosSeccionSubRama = seccionSubRama.querySelectorAll('.pmp-item-complejo');
+                              hijosSeccionSubRama.forEach((item) => {
+                                 item.classList.add('desactivado');
+                                 item.classList.remove('seleccionado');
+                                 item.querySelector('.pmp-item-simple-escoger').innerHTML = this.iconos.iconEstadoOff;
+                              });
+                           }
+                        }
+                     }
+                  }
+               });
+            });
+         }
+
+         if (this.seccionProductosSubRama.length > 0) {
+            this.btnsProductosSubRama = this.querySelectorAll('#pmp-item-subRama');
+            this.btnsProductosSubRama.forEach((btn) => {
+               btn.addEventListener('click', (btnElemento) => {
+                  // Verificamos si el elemento está desactivado, en cuyo caso no hacemos nada
+                  const btnTarget = btnElemento.target.closest('.pmp-item-complejo') || btnElemento.target;
+                  if (btnTarget.classList.contains('desactivado')) {
+                     return; // No permitimos acción en elementos desactivados
+                  }
+
+                  // Obtenemos el elemento padre (sección de subRama)
+                  const elementoPadre = btnTarget.closest('#pmph-seleccion-subRama');
+                  if (!elementoPadre) return; // Si no encontramos el padre, salimos
+
+                  // Obtenemos los valores de mínimo y máximo
+                  const min = parseInt(elementoPadre.dataset.min) || 0;
+                  const max = parseInt(elementoPadre.dataset.max) || 0;
+
+                  // Verificamos si el elemento está seleccionado
+                  const estaSeleccionado = btnTarget.classList.contains('seleccionado');
+
+                  // Obtenemos todos los elementos seleccionados en la misma sección
+                  const hijosSeleccionadosPadre = elementoPadre.querySelectorAll('.seleccionado');
+
+                  if (estaSeleccionado) {
+                     // Si está seleccionado, intentamos deseleccionar
+                     const totalSeleccionadosDespues = hijosSeleccionadosPadre.length - 1;
+
+                     // Verificamos que al deseleccionar no incumplamos el mínimo requerido
+                     if (min > 0 && totalSeleccionadosDespues < min) {
+                        // No se puede deseleccionar porque quedaríamos por debajo del mínimo
+                        console.warn(`No se puede deseleccionar. Se requiere un mínimo de ${min} elementos seleccionados en esta subRama.`);
+                        return; // Salimos sin hacer cambios
+                     }
+
+                     // Si pasamos la verificación, podemos deseleccionar
+                     btnTarget.classList.remove('seleccionado');
+                     btnTarget.querySelector('.pmp-item-simple-escoger').innerHTML = this.iconos.iconEstadoOff;
+                  } else {
+                     // Si no está seleccionado, intentamos seleccionar
+                     const totalSeleccionadosDespues = hijosSeleccionadosPadre.length + 1;
+
+                     // Verificamos que al seleccionar no sobrepasemos el máximo permitido
+                     if (max > 0 && totalSeleccionadosDespues > max) {
+                        // No se puede seleccionar porque excederíamos el máximo
+                        console.warn(`No se puede seleccionar más elementos. El máximo permitido es ${max} en esta subRama.`);
+                        return; // Salimos sin hacer cambios
+                     }
+
+                     // Si pasamos la verificación, podemos seleccionar
+                     btnTarget.classList.add('seleccionado');
+                     btnTarget.querySelector('.pmp-item-simple-escoger').innerHTML = this.iconos.iconEstadoOn;
+                  }
+               });
+            });
+         }
+
       } else {
-         // Creacion de elementos de la coleccion Postres
-         await this.creacionHTMLPostres();
+         // // Creacion de elementos de la coleccion Postres
+         // await this.creacionHTMLPostres();
 
-         // Creacion de elementos de la coleccion Gaseosas y Postres
-         await this.creacionHTMLGaseosasCervesas();
+         // // Creacion de elementos de la coleccion Gaseosas y Postres
+         // await this.creacionHTMLGaseosasCervesas();
 
-         // Se inicializa el precio del carrito y haz un pedido
-         this.cantidadPrecioCarrito = await AuxiliaresGlobal.totalPrecioCarritoShopify();
+         // // Se inicializa el precio del carrito y haz un pedido
+         // this.cantidadPrecioCarrito = await AuxiliaresGlobal.totalPrecioCarritoShopify();
 
-         // Declaracion referenciar - inicializar - eventos
-         await this.declararComponentesDespuesCreacion();
+         // // Declaracion referenciar - inicializar - eventos
+         // await this.declararComponentesDespuesCreacion();
       }
       // Creacion de elementos de la coleccion Postres
       await this.creacionHTMLPostres();
@@ -971,58 +1218,106 @@ class PizzaHutProducto extends HTMLElement {
    }
 
    async declararComponentesDespuesCreacion() {
-      // REFERENCIAS ELEMENTOS
-      this.estadoVacioContenedorPostres = this.querySelector('#phpm-vacio-extras-especiales-postres');
-      this.estadoItemsContenedorPostres = this.querySelector('#phpm-extras-especiales-postres');
-      this.anadirMasContenedorPostres = this.querySelector('#phpm-btn-anadir-extras-postres');
-      this.btnsEliminarExtrasPostres = null;
+      if (this.tipoProducto == 'basico' || this.tipoProducto == 'desarrollado') {
+         // REFERENCIAS ELEMENTOS
+         this.estadoVacioContenedorPostres = this.querySelector('#phpm-vacio-extras-especiales-postres');
+         this.estadoItemsContenedorPostres = this.querySelector('#phpm-extras-especiales-postres');
+         this.anadirMasContenedorPostres = this.querySelector('#phpm-btn-anadir-extras-postres');
+         this.btnsEliminarExtrasPostres = null;
 
-      this.estadoVacioContenedorGaseosasCerversas = this.querySelector('#phpm-vacio-extras-especiales-gaseosasycervezas');
-      this.estadoItemsContenedorGaseosasCerversas = this.querySelector('#phpm-extras-especiales-gaseosasycervezas');
-      this.anadirMasContenedorGaseosasCerversas = this.querySelector('#phpm-btn-anadir-extras-gaseosasycervezas');
-      this.btnsEliminarExtrasGaseosasCerversas = null;
+         this.estadoVacioContenedorGaseosasCerversas = this.querySelector('#phpm-vacio-extras-especiales-gaseosasycervezas');
+         this.estadoItemsContenedorGaseosasCerversas = this.querySelector('#phpm-extras-especiales-gaseosasycervezas');
+         this.anadirMasContenedorGaseosasCerversas = this.querySelector('#phpm-btn-anadir-extras-gaseosasycervezas');
+         this.btnsEliminarExtrasGaseosasCerversas = null;
 
-      this.btnSeccionModalSalir = this.querySelector('#phppm-btn-salir');
-      this.btnSeccionModalGuardar = this.querySelector('#phppm-btn-guardar');
+         this.btnSeccionModalSalir = this.querySelector('#phppm-btn-salir');
+         this.btnSeccionModalGuardar = this.querySelector('#phppm-btn-guardar');
 
-      this.seccionProductosRamaPrincipales = this.querySelectorAll('#pmph-seleccion-rama-principal');
-      this.seccionProductosSubRama = this.querySelectorAll('#pmph-seleccion-subRama');
-      this.btnsProductosRamaPrincipales = this.querySelectorAll('#pmp-item-rama-principal');
-      this.btnsProductosSubRama = this.querySelectorAll('#pmp-item-subRama');
+         // this.seccionProductosRamaPrincipales = this.querySelectorAll('#pmph-seleccion-rama-principal');
+         // this.seccionProductosSubRama = this.querySelectorAll('#pmph-seleccion-subRama');
 
-      this.seccionModalExtrasPostres = this.querySelector('#phpp-modal-productos-postres');
-      this.seccionModalExtrasGaseosasCerversas = this.querySelector('#phpp-modal-productos-gaseosasycervezas');
+         // this.btnsProductosRamaPrincipales = this.querySelectorAll('#pmp-item-rama-principal');
+         // this.btnsProductosSubRama = this.querySelectorAll('#pmp-item-subRama');
 
-      this.cantidadProductoGeneralEtiqueta = this.querySelector('#phpd-cantidad-general');
+         this.seccionModalExtrasPostres = this.querySelector('#phpp-modal-productos-postres');
+         this.seccionModalExtrasGaseosasCerversas = this.querySelector('#phpp-modal-productos-gaseosasycervezas');
 
-      this.btnsContenedorCantidad = this.querySelectorAll('.pmph-cantidad-selector-button');
-      this.btnsContenedorCantidad.forEach((btn) => {
-         btn.addEventListener('click', this.actualizarEstadoBotonesInferiores.bind(this));
-      });
+         this.cantidadProductoGeneralEtiqueta = this.querySelector('#phpd-cantidad-general');
 
-      // INICIALIZAR EVENTOS
-      this.btnsProductosRamaPrincipales.forEach((btn) => {
-         btn.addEventListener('click', this.procesoItemRamaPrincipal.bind(this, btn));
-      });
-      this.btnsProductosSubRama.forEach((btn) => {
-         btn.addEventListener('click', this.procesoItemSubRama.bind(this, btn));
-      });
-      this.estadoVacioContenedorPostres.addEventListener('click', this.abrirSeccionModalExtras.bind(this, 'postres'));
-      this.estadoVacioContenedorGaseosasCerversas.addEventListener('click', this.abrirSeccionModalExtras.bind(this, 'gaseosasycervezas'));
-      this.btnSeccionModalSalir.addEventListener('click', this.cerrarSeccionModalExtras.bind(this));
-      this.btnSeccionModalGuardar.addEventListener('click', this.procesarSeccionModal.bind(this));
-      this.anadirMasContenedorPostres.addEventListener('click', this.abrirSeccionModalExtras.bind(this, 'postres'));
-      this.anadirMasContenedorGaseosasCerversas.addEventListener('click', this.abrirSeccionModalExtras.bind(this, 'gaseosasycervezas'));
+         this.btnsContenedorCantidad = this.querySelectorAll('.pmph-cantidad-selector-button');
+         this.btnsContenedorCantidad.forEach((btn) => {
+            btn.addEventListener('click', this.actualizarEstadoBotonesInferiores.bind(this));
+         });
 
-      // INICIALIZAR ELEMENTOS Y PROCESOS CLAVES
-      this.cantidadProductoGeneralEtiqueta.innerHTML = 1;
-      // this.seccionModalExtrasPostres.style.display = 'none';
-      // this.seccionModalExtrasGaseosasCerversas.style.display = 'none';
-      // this.anadirMasContenedorPostres.style.display = 'none';
-      // this.anadirMasContenedorGaseosasCerversas.style.display = 'none';
-      // this.estadoItemsContenedorPostres.style.display = 'none';
-      // this.estadoItemsContenedorGaseosasCerversas.style.display = 'none';
-      await this.actualizarEstadoBotonesInferiores();
+         // INICIALIZAR EVENTOS
+         // this.btnsProductosRamaPrincipales.forEach((btn) => {
+         //    btn.addEventListener('click', this.procesoItemRamaPrincipal.bind(this, btn));
+         // });
+         // this.btnsProductosSubRama.forEach((btn) => {
+         //    btn.addEventListener('click', this.procesoItemSubRama.bind(this, btn));
+         // });
+         this.estadoVacioContenedorPostres.addEventListener('click', this.abrirSeccionModalExtras.bind(this, 'postres'));
+         this.estadoVacioContenedorGaseosasCerversas.addEventListener('click', this.abrirSeccionModalExtras.bind(this, 'gaseosasycervezas'));
+         this.btnSeccionModalSalir.addEventListener('click', this.cerrarSeccionModalExtras.bind(this));
+         this.btnSeccionModalGuardar.addEventListener('click', this.procesarSeccionModal.bind(this));
+         this.anadirMasContenedorPostres.addEventListener('click', this.abrirSeccionModalExtras.bind(this, 'postres'));
+         this.anadirMasContenedorGaseosasCerversas.addEventListener('click', this.abrirSeccionModalExtras.bind(this, 'gaseosasycervezas'));
+
+         // INICIALIZAR ELEMENTOS Y PROCESOS CLAVES
+         this.cantidadProductoGeneralEtiqueta.innerHTML = 1;
+         await this.actualizarEstadoBotonesInferiores();
+
+      } else {
+
+         // REFERENCIAS ELEMENTOS
+         this.estadoVacioContenedorPostres = this.querySelector('#phpm-vacio-extras-especiales-postres');
+         this.estadoItemsContenedorPostres = this.querySelector('#phpm-extras-especiales-postres');
+         this.anadirMasContenedorPostres = this.querySelector('#phpm-btn-anadir-extras-postres');
+         this.btnsEliminarExtrasPostres = null;
+
+         this.estadoVacioContenedorGaseosasCerversas = this.querySelector('#phpm-vacio-extras-especiales-gaseosasycervezas');
+         this.estadoItemsContenedorGaseosasCerversas = this.querySelector('#phpm-extras-especiales-gaseosasycervezas');
+         this.anadirMasContenedorGaseosasCerversas = this.querySelector('#phpm-btn-anadir-extras-gaseosasycervezas');
+         this.btnsEliminarExtrasGaseosasCerversas = null;
+
+         this.btnSeccionModalSalir = this.querySelector('#phppm-btn-salir');
+         this.btnSeccionModalGuardar = this.querySelector('#phppm-btn-guardar');
+
+         this.seccionProductosRamaPrincipales = this.querySelectorAll('#pmph-seleccion-rama-principal');
+         this.seccionProductosSubRama = this.querySelectorAll('#pmph-seleccion-subRama');
+
+         this.btnsProductosRamaPrincipales = this.querySelectorAll('#pmp-item-rama-principal');
+         this.btnsProductosSubRama = this.querySelectorAll('#pmp-item-subRama');
+
+         this.seccionModalExtrasPostres = this.querySelector('#phpp-modal-productos-postres');
+         this.seccionModalExtrasGaseosasCerversas = this.querySelector('#phpp-modal-productos-gaseosasycervezas');
+
+         this.cantidadProductoGeneralEtiqueta = this.querySelector('#phpd-cantidad-general');
+
+         this.btnsContenedorCantidad = this.querySelectorAll('.pmph-cantidad-selector-button');
+         this.btnsContenedorCantidad.forEach((btn) => {
+            btn.addEventListener('click', this.actualizarEstadoBotonesInferiores.bind(this));
+         });
+
+         // INICIALIZAR EVENTOS
+         this.btnsProductosRamaPrincipales.forEach((btn) => {
+            btn.addEventListener('click', this.procesoItemRamaPrincipal.bind(this, btn));
+         });
+         this.btnsProductosSubRama.forEach((btn) => {
+            btn.addEventListener('click', this.procesoItemSubRama.bind(this, btn));
+         });
+         this.estadoVacioContenedorPostres.addEventListener('click', this.abrirSeccionModalExtras.bind(this, 'postres'));
+         this.estadoVacioContenedorGaseosasCerversas.addEventListener('click', this.abrirSeccionModalExtras.bind(this, 'gaseosasycervezas'));
+         this.btnSeccionModalSalir.addEventListener('click', this.cerrarSeccionModalExtras.bind(this));
+         this.btnSeccionModalGuardar.addEventListener('click', this.procesarSeccionModal.bind(this));
+         this.anadirMasContenedorPostres.addEventListener('click', this.abrirSeccionModalExtras.bind(this, 'postres'));
+         this.anadirMasContenedorGaseosasCerversas.addEventListener('click', this.abrirSeccionModalExtras.bind(this, 'gaseosasycervezas'));
+
+         // INICIALIZAR ELEMENTOS Y PROCESOS CLAVES
+         this.cantidadProductoGeneralEtiqueta.innerHTML = 1;
+         await this.actualizarEstadoBotonesInferiores();
+
+      }
    }
 
    async creacionHTMLGaseosasCervesas() {
@@ -1036,6 +1331,7 @@ class PizzaHutProducto extends HTMLElement {
           <div class="ppme-modal-items-extras">
       `;
 
+      if (productosColeccion == null || productosColeccion == undefined) return;
       productosColeccion.forEach((producto) => {
          var stockTrabajo = this.obtenerStockGenericoTrabajo(producto);
 
@@ -1109,6 +1405,7 @@ class PizzaHutProducto extends HTMLElement {
           <div class="ppme-modal-items-extras">
       `;
 
+      if (productosColeccion == null || productosColeccion == undefined) return;
       productosColeccion.forEach((producto) => {
          var stockTrabajo = this.obtenerStockGenericoTrabajo(producto);
 

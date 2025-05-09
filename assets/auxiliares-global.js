@@ -952,6 +952,15 @@ class ProductosIndex extends HTMLElement {
     // }
 
     // Estructura de trabajo y contruccion de un producto
+    console.log("Informacion de la coleccion : ", informacionColeccion);
+    if (
+      !informacionColeccion ||
+      !informacionColeccion.estructura ||
+      !informacionColeccion.estructura.ramas ||
+      Object.keys(informacionColeccion.estructura.ramas).length === 0
+    ) {
+      return;
+    }
     this.estructuraTrabajo = informacionColeccion.estructura;
 
     // Procesar la estructura, para saber que colecciones traer correctamente
@@ -1091,7 +1100,7 @@ class ProductosIndex extends HTMLElement {
           data-precio="${productoTrabajo.precio}"
           class="variante-producto-item ${esSeleccionado}">
             <p>${tituloCorto}</p>
-            <p class="color-letras-primary">${(productoTrabajo.precio !== "0") ? productoTrabajo.precio + ".00 BS" : ""}</p>
+            <p class="color-letras-primary">${(parseInt(productoTrabajo.precio) + parseInt(producto.precio)) + " Bs"}</p>
           </div>
         `;
       });
@@ -1103,9 +1112,13 @@ class ProductosIndex extends HTMLElement {
         data-handle="${producto.handle}"
         data-precio="${producto.precio}"
         data-seleccionado="${elementoSeleccionado.idTrabajo}"
+        tipo-producto="complejo"
         class="producto-item">
           <div class="producto-item-imagen">
-            <img src="${producto.imagen}" alt="${producto.titulo}" width="100%" height="100%">
+            ${producto.imagen
+          ? `<img src="${producto.imagen}" alt="${producto.titulo}" width="100%" height="100%">`
+          : `<img src="${window.assets.imagen_aux}" alt="Imagen de ${producto.titulo}" width="100%" height="100%">`
+        }
           </div>
           <div
             tipo-producto="simple"
@@ -1392,6 +1405,7 @@ class ProductosIndex extends HTMLElement {
 
       // Obtener los datos de la respuesta
       const datosRespuesta = await respuesta.json();
+      console.log('Datos de la respuesta:', datosRespuesta);
 
       // Verificar si tenemos datos
       if (!datosRespuesta.data || !datosRespuesta.data.collections.edges.length || !datosRespuesta.data.collections.edges[0].node.products.edges.length) {
@@ -1734,6 +1748,7 @@ class ProductosIndex extends HTMLElement {
     if (dataPadre == null) {
       window.location.href = "/";
     }
+
 
     localStorage.setItem('phpp-tipo-producto', dataPadre);
     // Guardar en el localStorage el productoBase y tamano seleccionado su id
