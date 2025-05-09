@@ -492,10 +492,10 @@
         banner_5: '{{ 'banner-2.png' | asset_url }}',
         imagen_aux : '{{ 'imagen-pizza-1.png' | asset_url }}',
       }
-      window.urlConsulta = '{{ settings.urlConsulta }}';
+      {% comment %} window.urlConsulta = '{{ settings.urlConsulta }}'; {% endcomment %}
       {% comment %}  {% endcomment %}
       {% comment %} window.backendShopify = `{{ settings.backendShopify }}`; {% endcomment %}
-      {% comment %} window.urlConsulta = 'http://localhost:5001/graphql'; {% endcomment %}
+      window.urlConsulta = 'http://localhost:5001/graphql';
       window.backendShopify = `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`;
     </script>
 

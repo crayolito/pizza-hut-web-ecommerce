@@ -440,7 +440,7 @@ class PageCarrito extends HTMLElement {
 
       if (informacionCompleta.opcionesPrincipales.productos.length == 0 && informacionCompleta.complementos.productos.length == 0) {
         informacionCompleta.producto.cantidad = cantidadElemento;
-        informacionCompleta.producto.precioTotalConjunto = informacionCompleta.producto.precio * cantidadElemento;
+        // informacionCompleta.producto.precioTotalConjunto = informacionCompleta.producto.precio * cantidadElemento;
       } else {
         // 1. Primero se optiene el precio del producto base y se lo multiplica por la cantidad actual
         let cantidadProductoBaseNuevo = parseInt(informacionCompleta.producto.precioProducto) * cantidadNuevaTrabajo;
@@ -463,7 +463,7 @@ class PageCarrito extends HTMLElement {
 
         // Ell nuevo precio del conjunto se calcula (cantidadProductoBaseNuevo + cantidadOpcionesPrincipalesNueva + cantidadSolamenteComplementos)
         informacionCompleta.producto.cantidad = cantidadElemento;
-        informacionCompleta.producto.precioTotalConjunto = cantidadProductoBaseNuevo + cantidadOpcionesPrincipalesNueva + cantidadSolamenteComplementos;
+        // informacionCompleta.producto.precioTotalConjunto = cantidadProductoBaseNuevo + cantidadOpcionesPrincipalesNueva + cantidadSolamenteComplementos;
         console.log("Testeo completo :", {
           cantidadElemento,
           cantidadAntiguaTrabajo,
@@ -480,8 +480,6 @@ class PageCarrito extends HTMLElement {
         cantidadElemento,
         cantidadAntiguaTrabajo,
         cantidadNuevaTrabajo,
-
-
       })
 
       if (accionBtn == "decrementar") {
@@ -521,7 +519,7 @@ class PageCarrito extends HTMLElement {
       infoCarrito.informacionCompleta.items.forEach((item) => {
         if (item.properties && item.properties.estructura) {
           const dataContruccion = JSON.parse(item.properties.estructura);
-          precioTotal += parseFloat(dataContruccion.producto.precioTotalConjunto);
+          precioTotal += parseInt(dataContruccion.producto.precioTotalConjunto) * parseInt(item.quantity);
 
           contenidoIzquierdoHTML += `
             <div 
@@ -540,7 +538,7 @@ class PageCarrito extends HTMLElement {
                 </div>
                 <div class="pcph-itemc-info">
                   <div class="pcph-itemc_opcion1">
-                    <h2 class="color-letras-extra">Bs. ${dataContruccion.producto.precioTotalConjunto}</h2>
+                    <h2 class="color-letras-extra">Bs. ${parseInt(dataContruccion.producto.precioTotalConjunto) * parseInt(item.quantity)}</h2>
                     <div 
                     style="display: none;"
                     class="pcph-itemc_editar">
