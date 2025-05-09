@@ -181,7 +181,7 @@ class HeaderPrincipal extends HTMLElement {
     const estaSeleccionado = this.btnMenu.classList.contains('seleccionado');
     if (estaSeleccionado) {
       this.btnMenu.classList.remove('seleccionado');
-      this.contenedorMenuDesplegable.style.left = '100%';
+      this.contenedorMenuDesplegable.style.left = '300%';
     } else {
       this.btnMenu.classList.add('seleccionado');
       this.contenedorMenuDesplegable.style.left = '0';

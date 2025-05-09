@@ -39,6 +39,7 @@ class DetallePedido extends HTMLElement {
     this.seccionMetodoPago = this.querySelector('#phpdp-metodo-pago');
     this.btnAbirUbicacionMapa = this.querySelectorAll('#phpdp-btn-abrir-mapa');
 
+
     // EVENTOS INICIALIZAR
     this.btnVerMasDetalles.addEventListener('click', this.btnVerMasDetallesClick.bind(this));
     this.btnVolverInicio.addEventListener('click', this.btnVolverInicioClick.bind(this));
@@ -118,7 +119,7 @@ class DetallePedido extends HTMLElement {
     // infoCompletaOrden.orden.productos.forEach(item => {
     //   totalPrecioConjunto += item.precioUnitarioConDescuento * item.cantidad;
     // });
-    this.etiquetaTotalPrecioSuperior.textContent = `${infoCompletaOrden.orden.totales.total} Bs`
+    this.etiquetaTotalPrecioSuperior.textContent = `${parseInt(infoCompletaOrden.orden.totales.total)} Bs`;
     this.etiquetaTipoMetodoEntrega.textContent = metodoEntrega == "domicilio" ? "Envío a Domicilio" : "Pedido en Local";
     metodoEntrega == "domicilio" ? this.seccionInfoEntregaDomicilio.style.display = 'flex' : this.seccionInfoEntregaLocal.style.display = 'flex';
     // const infoProcesoCheckout = JSON.parse(infoCompletaOrden.orden.notasPersonalizadas[3].value);
@@ -182,8 +183,10 @@ class DetallePedido extends HTMLElement {
       `;
     }
 
-    this.etiquetaSubTotal.textContent = `${infoCompletaOrden.orden.totales.subtotal} Bs`;
-    this.etiquetaTotal.textContent = `${infoCompletaOrden.orden.totales.subtotal} Bs`;
+    this.etiquetaSubTotal.textContent = `${parseInt(infoCompletaOrden.orden.totales.subtotal)} Bs`;
+    this.etiquetaEntrega = this.querySelector('#phpdp-etiqueta-gastos-envio');
+    this.etiquetaEntrega.textContent = metodoEntrega == "domicilio" ? `8 Bs` : "0 Bs";
+    this.etiquetaTotal.textContent = `${infoCompletaOrden.orden.totales.total} Bs`;
 
     console.log('Testeo de nota del pedido : ', infoProcesoCheckout.nota_para_envio);
     if (infoProcesoCheckout.nota_para_envio == "") {

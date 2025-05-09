@@ -94,6 +94,10 @@
   gap: var(--espaciado-xxl);
 }
 
+.ds-contenedor-right > .ds-rl-local:first-child {
+  margin-top: 58rem;
+}
+
 .ds-rl-local {
   /* width: 23.25rem; asd */
   width: 100%;

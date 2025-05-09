@@ -8,58 +8,7 @@ class ClienteLocalizacion extends HTMLElement {
     this.coordenadas = { lat: -17.783315017953004, lng: -63.18214577296119 };
     this.urlConsulta = "https://pizza-hut-bo.myshopify.com/admin/api/2025-01/graphql.json";
     this.myTest = 'shpat_' + '45f4a7476152f4881d058f87ce063698';
-    this.pizzaLocations = [
-      {
-        lat: -17.757619,
-        lng: -63.178738,
-        name: 'BANZER 3ER ANILLO',
-        localizacion: 'Tercer Anillo Externo',
-        telefono: '78452415',
-        dias: 'Lunes a Viernes',
-        horario: '8:00 a 23:00',
-        servicios: ['Envío a domicilio', 'Recoger en local']
-      },
-      {
-        lat: -17.70001,
-        lng: -63.160219,
-        name: 'BANZER KM 8.5',
-        localizacion: '8R2Q+2XH',
-        telefono: '78452415',
-        dias: 'Lunes a Viernes',
-        horario: '8:00 a 23:00',
-        servicios: ['Envío a domicilio', 'Recoger en local']
-      },
-      {
-        lat: -17.807739,
-        lng: -63.204363,
-        name: 'LAS PALMAS',
-        localizacion: 'Farmacorp - Sucursal Las Palmas',
-        telefono: '78452415',
-        dias: 'Lunes a Viernes',
-        horario: '8:00 a 23:00',
-        servicios: ['Envío a domicilio', 'Recoger en local']
-      },
-      {
-        lat: -17.758879,
-        lng: -63.19948,
-        name: 'SAN MARTIN',
-        localizacion: 'Av. San Martin 2200',
-        telefono: '78452415',
-        dias: 'Lunes a Viernes',
-        horario: '8:00 a 23:00',
-        servicios: ['Envío a domicilio', 'Recoger en local']
-      },
-      {
-        lat: -17.820341,
-        lng: -63.184337,
-        name: 'SANTOS DUMONT',
-        localizacion: 'Av Santos Dumont 3228',
-        telefono: '78452415',
-        dias: 'Lunes a Viernes',
-        horario: '8:00 a 23:00',
-        servicios: ['Envío a domicilio', 'Recoger en local']
-      }
-    ];
+    this.pizzaLocations = window.localizacionesSucursales || [];
   }
 
   connectedCallback() {

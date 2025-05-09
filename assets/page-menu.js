@@ -1626,7 +1626,7 @@ class PageMenuProductos extends HTMLElement {
     }
     localStorage.setItem('phpp-tipo-producto', tipoProducto);
 
-    // window.location.href = "/pages/producto";
+    window.location.href = "/pages/producto";
   }
 
   async procesoAgregarProducto(elementoBase) {

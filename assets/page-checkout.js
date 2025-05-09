@@ -3,7 +3,8 @@ class PageCheckoutPH extends HTMLElement {
   constructor() {
     super();
     // INFORMACION DE LA ULTIMA ORDEN
-    this.infoOrdenPreliminar = null;
+    this.infoOrdenPendiente = null;
+    this.nombreOrden = null;
     this.infoUltimaOrden = null;
     this.dataCarrito = null;
     this.urlConsulta = "https://pizza-hut-bo.myshopify.com/admin/api/2025-01/graphql.json";
@@ -69,6 +70,7 @@ class PageCheckoutPH extends HTMLElement {
     this.btnMetodoLocal = this.querySelector('#phpc-metodo-local');
     this.btnMetodoDomicilio = this.querySelector('#phpc-metodo-domicilio');
 
+    this.etiquetaEnvioDomicilio = this.querySelector('#phpc-etiqueta-envio-domicilio');
     this.bodyModalLocalSeleccionado = this.querySelector('#phpc-modal-body-local-seleccionado');
     this.modalBodyContenedorMapa = this.querySelector('#phpc-localSeleccionado-mapa');
     // this.btnCerrarModalContenedorLocalSeleccionado = this.querySelector('#phpc-btn-cerrar-modal');
@@ -225,6 +227,7 @@ class PageCheckoutPH extends HTMLElement {
 
     // local y domicilio
     this.estadoPagina = localStorage.getItem('ph-metodo-entrega') || "domicilio";
+    this.etiquetaEnvioDomicilio.textContent = this.estadoPagina == "domicilio" ? "Bs 8" : "Bs 0";
     this.direccionSeleccionada = this.listaDireccionPrueba[0];
     this.inicializarDatosdeContacto();
     this.inicializarDatosdeFacturacion();
@@ -746,7 +749,11 @@ class PageCheckoutPH extends HTMLElement {
     this.totalCarrito = parseInt(totalPrecioCarrito);
 
     this.etiquetaSubtotal.textContent = `Bs ${totalPrecioCarrito.toFixed(2)}`;
-    this.etiquetaTotal.textContent = `Bs ${totalPrecioCarrito.toFixed(2)}`;
+    if (this.estadoPagina == "domicilio") {
+      this.etiquetaTotal.textContent = `Bs ${(totalPrecioCarrito + 8).toFixed(2)}`;
+    } else {
+      this.etiquetaTotal.textContent = `Bs ${totalPrecioCarrito.toFixed(2)}`;
+    }
     this.contenedorItemsCarrito.innerHTML = contenidoHTML;
     this.itemProductoCarrito = this.querySelectorAll('.smecph-pc-item-carrito');
     this.itemProductoCarrito.forEach((item) => {
@@ -767,6 +774,9 @@ class PageCheckoutPH extends HTMLElement {
 
   seleccionarMetodoLocal() {
     this.estadoPagina = "local";
+    this.etiquetaEnvioDomicilio.textContent = "Bs 0";
+    var etiquetaTotal = this.querySelector('#phpc-etiqueta-total');
+    etiquetaTotal.textContent = `Bs ${this.totalCarrito.toFixed(2)}`;
     this.contenedorBaseSeleccionDireccionEnvio.style.display = "none";
     this.contenedorBaseSeleccionLocal.style.display = "flex";
     this.btnMetodoLocal.classList.add('seleccionado');
@@ -780,6 +790,9 @@ class PageCheckoutPH extends HTMLElement {
 
   seleccionarMetodoDomicilio() {
     this.estadoPagina = "domicilio";
+    this.etiquetaEnvioDomicilio.textContent = "Bs 8";
+    var etiquetaTotal = this.querySelector('#phpc-etiqueta-total');
+    etiquetaTotal.textContent = `Bs ${(this.totalCarrito + 8).toFixed(2)}`;
     this.contenedorBaseSeleccionDireccionEnvio.style.display = "flex";
     this.contenedorBaseSeleccionLocal.style.display = "none";
     this.btnMetodoDomicilio.classList.add('seleccionado');
@@ -1711,7 +1724,13 @@ class PageCheckoutPH extends HTMLElement {
     // Orden creada en los preliminaress
     // const dataOrdenPreliminar = await this.generarPedidoPreliminar(datosCheckout);
     const dataOrdenPendiente = await this.crearOrdenPendiente(datosCheckout);
-    this.infoOrdenPreliminar = dataOrdenPendiente.order;
+    this.infoOrdenPendiente = dataOrdenPendiente.order;
+    this.nombreOrden = dataOrdenPendiente.order.name;
+    console.log("Testeo de orden", {
+      dataOrdenPendiente,
+      nombreOrden: this.nombreOrden,
+      infoOrdenPendiente: this.infoOrdenPendiente
+    });
 
     // Orden consolidada como pagada (PEDIDOO)
     const dataJSON = this.generarJSONMostrarConsola();
@@ -1725,11 +1744,11 @@ class PageCheckoutPH extends HTMLElement {
         user: this.user,
         pass: this.pass,
         url: this.url,
-        infoOrdenPreliminar: this.infoOrdenPreliminar,
+        infoOrdenPendiente: this.infoOrdenPendiente,
         nombre: this.inputNombreContacto.value,
         apellido: this.inputApellidoContacto.value,
         inputCelularContacto: this.inputCelularContacto.value,
-        id: this.infoOrdenPreliminar.id.split('/').pop(),
+        id: this.infoOrdenPendiente.id.split('/').pop(),
         precio: this.totalCarrito
       });
       // return;
@@ -1763,7 +1782,7 @@ class PageCheckoutPH extends HTMLElement {
       const now = new Date();
       now.setHours(now.getHours() - 4); // Restamos 4 horas
       const timestamp = now.toISOString(); // Formato ISO con desfase horario
-      const transactionId = `ph-${this.infoOrdenPreliminar.id.split('/').pop()}-${timestamp}`;
+      const transactionId = `${this.nombreOrden}}`;
 
       const qrResponse = await fetch(`${this.url}/qr/generate`, {
         method: "POST",
@@ -1783,7 +1802,8 @@ class PageCheckoutPH extends HTMLElement {
             "1"
           ],
           lifespan: 300,
-          branchOffice: "B990",
+          // branchOffice: "B990",
+          branchOffice: "TMP",
           regional: "001"
         })
       });
@@ -1830,10 +1850,16 @@ class PageCheckoutPH extends HTMLElement {
             clearInterval(interval);
             // 
             // document.getElementById(".ph-modal-body-qr").innerHTML = `<p>✅ Pago confirmado.</p>`;
-            this.contenedorQR.innerHTML = `<p>✅ Pago confirmado.</p>`;
+            // this.contenedorQR.innerHTML = `<p>✅ Pago confirmado.</p>`;
+            this.contenedorQR.innerHTML = `
+              <div class="ph-modal-body-exito">
+                <img src="{{ 'imagen-check-verde.png' | asset_url }}" alt="Icono de exito" width="100%" height="100%">
+                <small>PAGO CONFIRMADO.</small>
+              </div>
+            `;
 
-            // await this.generarPedido(this.infoOrdenPreliminar.id);
-            await this.actualizarPedidoCompletado(dataOrdenPendiente.order.id);
+            // await this.generarPedido(this.infoOrdenPendiente.id);
+            await this.actualizarPedidoCompletado(this.infoOrdenPendiente.id);
             await AuxiliaresGlobal.limpiarCarrito();
             localStorage.setItem('ph-estadoDP', "etapa-1");
 
@@ -2083,6 +2109,9 @@ class PageCheckoutPH extends HTMLElement {
         };
       });
 
+      // Calcular si necesita cargo por envío
+      const costoEnvio = this.estadoPagina === "domicilio" ? 8.00 : 0.00;
+
 
       const metodoPago = () => {
         switch (this.seleccionadoEstadoPago) {
@@ -2129,6 +2158,18 @@ class PageCheckoutPH extends HTMLElement {
           //     }
           //   }
           // ],
+          // Añadir shipping lines para el cargo de envío
+          shippingLines: costoEnvio > 0 ? [
+            {
+              title: "Envío a Domicilio",
+              priceSet: {
+                shopMoney: {
+                  amount: costoEnvio.toFixed(2),
+                  currencyCode: "BOB"
+                }
+              }
+            }
+          ] : [],
 
           customer: {
             toAssociate: {
@@ -2260,7 +2301,7 @@ class PageCheckoutPH extends HTMLElement {
       }
 
       console.log('Orden creada con éxito:', resultado.order);
-      return { success: true, order: resultado.order };
+      return { success: true, order: resultado.order, nombre: resultado.order.name };
     } catch (error) {
       console.error('Error general al crear orden:', error);
       return { success: false, error: error.message };
