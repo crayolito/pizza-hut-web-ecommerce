@@ -657,7 +657,7 @@ class PageMenuProductos extends HTMLElement {
           <div class="page-menu-opcion-imagen">
            ${(coleccion.imagen && coleccion.imagen.url) ?
           `<img src="${coleccion.imagen.url}" alt="${coleccion.titulo}" width="100%" height="100%">` :
-          `<img src="/assets/imagen-pizza-1.png" alt="${coleccion.titulo}" width="100%" height="100%">`
+          `<img src="${window.assets.imagen_aux}" alt="${coleccion.titulo}" width="100%" height="100%">`
         }
           </div>
           <div class="page-menu-opcion-nombre">

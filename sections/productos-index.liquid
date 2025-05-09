@@ -12,7 +12,7 @@
   }
 
   .phpi-control-desktop {
-    display: none;
+    /* display: none; */
   }
 
   .container-productos-general {
@@ -28,7 +28,7 @@
 
   @media (min-width: 768px) {
     .phpi-general-mobile {
-      display: none;
+      /* display: none; */
     }
 
     .phpi-control-desktop {
@@ -45,7 +45,10 @@
     </section>
     <section class="phpi-general-productos">
       <!-- APARTADO DESKTOP -->
-      <div class="phpi-general-mobile">
+      <div
+        style="display: none; !important;"
+        class="phpi-general-mobile"
+      >
         <div id="phpi-sector1-mobile" class="container-productos-general">
           <div class="producto-item">
             <div class="producto-item-imagen">
@@ -314,7 +317,10 @@
         </div>
       </div>
       <!-- APARTADO MOBIL -->
-      <div id="phpi-contenedor-productos-muestra" class="container-productos-general phpi-control-desktop"></div>
+      <div
+        id="phpi-contenedor-productos-muestra"
+        class="container-productos-general phpi-control-desktop"
+      ></div>
     </section>
   </div>
 </productos-index>
