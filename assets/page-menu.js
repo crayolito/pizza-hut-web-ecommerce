@@ -752,6 +752,8 @@ class PageMenuProductos extends HTMLElement {
               case "Pizzas":
                 // Pizza Clasica - Pizza Supreme - Pizza Lovers
                 Object.keys(coleccion.subColecciones).forEach((claveSubColeccion) => {
+                  console.log("Subcoleccion Testing: ", claveSubColeccion);
+
                   const subColeccion = coleccion.subColecciones[claveSubColeccion];
                   subColeccion.productos.forEach((productoSubColeccion) => {
                     const dataMetaFieldsProductoS = JSON.parse(productoSubColeccion.metafields.estructura.json);
@@ -921,7 +923,7 @@ class PageMenuProductos extends HTMLElement {
           // ["Pizza Clasica","Pizza Supreme","Pizza Lovers"]
           coleccionesSubColeccion.forEach((subColeccion) => {
             // Verificar si la subcolección existe en coleccionTrabajo
-            if (!coleccionTrabajo.subColecciones[subColeccion]) {
+            if (!coleccionTrabajo.subColecciones[subColeccion] || !coleccionTrabajo.subColecciones[subColeccion].ramas) {
               return; // Saltar esta iteración
             }
 
@@ -940,10 +942,6 @@ class PageMenuProductos extends HTMLElement {
 
             subProductosTrabajo.forEach((productoSubColeccion) => {
               const dataMetaFieldsProductoS = JSON.parse(productoSubColeccion.metafields.estructura.json);
-              console.log("Producto subcoleccion: ", {
-                productoSubColeccion,
-                dataMetaFieldsProductoS
-              });
               // oBtengo el primero que son los tamanos PCT - PLT- PST
               // const productosTamano = Object.values(subColeccion.ramas)[0];
               const productosTamano = Object.values(coleccionTrabajo.subColecciones[subColeccion].ramas)[0];

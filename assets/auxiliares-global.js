@@ -992,6 +992,8 @@ class ProductosIndex extends HTMLElement {
       // Obtener la coleccion de productos de esta rama de trabajo
       var productosDeRama = todasColecciones["coleccion" + codigoRama] || [];
       productosDeRama.forEach((producto) => {
+        const estadosValidos = ["on", "activado", "activo", "active"];
+        if (!estadosValidos.includes(producto.estructura.estado)) return;
         var subProductos = [];
 
         for (var codigoSubRama in dataRama.ramas) {
@@ -1022,6 +1024,7 @@ class ProductosIndex extends HTMLElement {
           titulo: producto.titulo,
           handle: producto.handle,
           precio: producto.estructura.precio,
+          estado: producto.estructura.estado,
           ramas: subProductos
         }
 
@@ -1032,14 +1035,10 @@ class ProductosIndex extends HTMLElement {
         codigo: codigoRama,
         productos: productosRamaPrincipal
       });
-
-
     };
 
     // Productos estructurados, deacuerdo a la estructura de trabajo para mostrar un producto
     this.productoParaEstructuraTrabajo = productosEstructurados;
-
-    console.log('Testeo de productosEstructurados : ', productosEstructurados);
 
     // Contruccion del productos en su estado visible en la seccion
     const contenedorProductos = this.querySelector('#phpi-contenedor-productos-muestra');
@@ -1069,6 +1068,7 @@ class ProductosIndex extends HTMLElement {
         descripcion: producto.descripcion,
         precio: producto.estructura.precio,
         stockTotal: producto.stockGeneral,
+        estado: producto.estructura.estado,
         sucursales: producto.sucursales,
       }
     });
@@ -1076,6 +1076,9 @@ class ProductosIndex extends HTMLElement {
     this.productosTrabajo = productosContruccion;
 
     productosContruccion.forEach((producto) => {
+      console.log("Producto de la rama principal 2:", producto.estado);
+      const estadosValidos = ["on", "activado", "activo", "active"];
+      if (!estadosValidos.includes(producto.estado)) return;
       var variantesHTML = ``;
       let elementoSeleccionado;
 

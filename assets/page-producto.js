@@ -940,16 +940,22 @@ class PizzaHutProducto extends HTMLElement {
             this.btnsProductosRamaPrincipales = this.querySelectorAll('#pmp-item-rama-principal');
             this.btnsProductosRamaPrincipales.forEach((btn) => {
                btn.addEventListener('click', (btnElemento) => {
-                  const elementoPadre = btnElemento.closest('#pmph-seleccion-rama-principal');
+                  const elementoPadre = btn.closest('#pmph-seleccion-rama-principal');
                   const max = parseInt(elementoPadre.dataset.max);
                   const min = parseInt(elementoPadre.dataset.min);
                   const codigoRama = elementoPadre.dataset.codigo;
-                  const btnTarget = btnElemento.target.closest('.pmp-item-simple') || btnElemento.target;
-                  const estaSeleccionado = btnTarget.classList.contains('seleccionado');
+                  const estaSeleccionado = btn.classList.contains('seleccionado');
                   const hijosSeleccionadosPadre = elementoPadre.querySelectorAll('.seleccionado');
                   const informacionRama = this.productoInfo.productoParaEstructuraTrabajo.ramas[codigoRama];
-                  const productoInfo = informacionRama.productos.find((item) => item.id == btnTarget.dataset.idtrabajo);
-
+                  const productoInfo = informacionRama.productos.find((item) => item.id == btn.dataset.idtrabajo);
+                  console.log("Testeo de productos,", {
+                     elementoPadre,
+                     max,
+                     min,
+                     codigoRama,
+                     estaSeleccionado,
+                     hijosSeleccionadosPadre: hijosSeleccionadosPadre.length,
+                  })
                   if (estaSeleccionado) {
                      // Si está seleccionado y se le hizo click, quiere deseleccionarlo
                      // Calculamos cuántos elementos quedarían seleccionados después de esta acción
@@ -963,25 +969,31 @@ class PizzaHutProducto extends HTMLElement {
                      }
 
                      // Si pasamos la verificación, podemos deseleccionar
-                     btnTarget.classList.remove('seleccionado');
-                     btnTarget.querySelector('.pmp-item-simple-escoger').innerHTML = this.iconos.iconEstadoOff;
+                     btn.classList.remove('seleccionado');
+                     btn.querySelector('.pmp-item-simple-escoger').innerHTML = this.iconos.iconEstadoOff;
 
                      // Aquí podríamos añadir lógica adicional para manejar subRamas relacionadas
                   } else {
                      // Si no está seleccionado y se le hizo click, quiere seleccionarlo
                      // Calculamos cuántos elementos quedarían seleccionados después de esta acción
-                     const totalSeleccionadosDespues = hijosSeleccionadosPadre.length + 1;
+                     const totalSeleccionadosDespues = hijosSeleccionadosPadre.length;
 
                      // Verificamos que al seleccionar no sobrepasemos el máximo permitido
-                     if (max > 0 && totalSeleccionadosDespues > max) {
+                     if (min > 0 && hijosSeleccionadosPadre.length < min) {
                         // No se puede seleccionar porque excederíamos el máximo
                         console.warn(`No se puede seleccionar más elementos. El máximo permitido es ${max}.`);
                         return; // Salimos sin hacer cambios
                      }
 
                      // Si pasamos la verificación, podemos seleccionar
-                     btnTarget.classList.add('seleccionado');
-                     btnTarget.querySelector('.pmp-item-simple-escoger').innerHTML = this.iconos.iconEstadoOn;
+                     hijosSeleccionadosPadre.forEach((hijo) => {
+                        if (hijo !== btn) {
+                           hijo.classList.remove('seleccionado');
+                           hijo.querySelector('.pmp-item-simple-escoger').innerHTML = this.iconos.iconEstadoOff;
+                        }
+                     });
+                     btn.classList.add('seleccionado');
+                     btn.querySelector('.pmp-item-simple-escoger').innerHTML = this.iconos.iconEstadoOn;
 
                      // El producto fue exitosamente seleccionado se va proceder a actualizar a la seccionSubRama
                      // que corresponde ya que tiene un codigo como data-codigopadre en este caso primero hay 
