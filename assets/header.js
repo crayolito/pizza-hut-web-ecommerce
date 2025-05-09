@@ -3,17 +3,17 @@ class HeaderPrincipal extends HTMLElement {
     super();
 
     this.categoriasConstruccion = [
-      { titulo: "TODO", categoria: "" },
-      { titulo: "OFERTAS", categoria: "desarrollado" },
-      { titulo: "PIZZAS", categoria: "complejo" },
-      { titulo: "HUT DAYS 2X1", categoria: "desarrollado" },
-      { titulo: "POLLO", categoria: "desarrollado" },
-      { titulo: "MELTS", categoria: "desarrollado" },
-      { titulo: "MITAD & MITAD", categoria: "desarrollado" },
-      { titulo: "PASTAS Y ENSALADAS", categoria: "basico" },
-      { titulo: "GASEOSAS", categoria: "basico" },
-      { titulo: "CERVEZAS", categoria: "basico" },
-      { titulo: "POSTRES", categoria: "basico" }
+      { titulo: "Todo", categoria: "" },
+      { titulo: "Ofertas", categoria: "desarrollado" },
+      { titulo: "Pizzas", categoria: "complejo" },
+      { titulo: "Hut Days 2X1", categoria: "desarrollado" },
+      { titulo: "Pollo", categoria: "desarrollado" },
+      { titulo: "Melts", categoria: "desarrollado" },
+      { titulo: "Mitad & Mitad", categoria: "desarrollado" },
+      { titulo: "Pastas y Ensaladas", categoria: "basico" },
+      { titulo: "Gaseosas", categoria: "basico" },
+      { titulo: "Cervezas", categoria: "basico" },
+      { titulo: "Postres", categoria: "basico" }
     ]
 
     this.coleccionesProcesadas = null;

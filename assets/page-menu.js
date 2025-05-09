@@ -3,24 +3,24 @@ class PageMenuProductos extends HTMLElement {
     super();
 
     this.categoriasConstruccion = [
-      { titulo: "TODO", categoria: "" },
-      { titulo: "OFERTAS", categoria: "desarrollado" },
-      { titulo: "PIZZAS", categoria: "complejo" },
-      { titulo: "HUT DAYS 2X1", categoria: "desarrollado" },
-      { titulo: "POLLO", categoria: "desarrollado" },
-      { titulo: "MELTS", categoria: "desarrollado" },
-      { titulo: "MITAD & MITAD", categoria: "desarrollado" },
-      { titulo: "PASTAS Y ENSALADAS", categoria: "basico" },
-      { titulo: "GASEOSAS", categoria: "basico" },
-      { titulo: "CERVEZAS", categoria: "basico" },
-      { titulo: "POSTRES", categoria: "basico" }
+      { titulo: "Todo", categoria: "" },
+      { titulo: "Ofertas", categoria: "desarrollado" },
+      { titulo: "Pizzas", categoria: "complejo" },
+      { titulo: "Hut Days 2X1", categoria: "desarrollado" },
+      { titulo: "Pollo", categoria: "desarrollado" },
+      { titulo: "Melts", categoria: "desarrollado" },
+      { titulo: "Mitad & Mitad", categoria: "desarrollado" },
+      { titulo: "Pastas y Ensaladas", categoria: "basico" },
+      { titulo: "Gaseosas", categoria: "basico" },
+      { titulo: "Cervezas", categoria: "basico" },
+      { titulo: "Postres", categoria: "basico" }
     ]
 
     // Conjunto para llevar control de colecciones ya procesadas
     this.coleccionesProcesadas = new Set();
 
     this.productosPorCategorias = null
-    this.estadoVistaPagina = localStorage.getItem('phph-itemMenu') || "TODO";
+    this.estadoVistaPagina = localStorage.getItem('phph-itemMenu') || "Todo";
   }
 
   connectedCallback() {
@@ -709,7 +709,7 @@ class PageMenuProductos extends HTMLElement {
       var contenidoHTMLTodo = "";
       // Si nunca se acargado tons se va a cargar generando las peticiones 
       switch (this.estadoVistaPagina) {
-        case "TODO":
+        case "Todo":
           this.productosPorCategorias.forEach((coleccion) => {
             contenidoHTMLTodo += `
               <div class="phpm-titulo-primario">
@@ -720,10 +720,10 @@ class PageMenuProductos extends HTMLElement {
             `;
 
             switch (coleccion.titulo) {
-              case "OFERTAS":
-              case "HUT DAYS 2X1":
-              case "POLLO":
-              case "MITAD & MITAD":
+              case "Ofertas":
+              case "Hut Days 2X1":
+              case "Pollo":
+              case "Mitad & Mitad":
                 coleccion.productos.forEach((producto) => {
                   const dataMetaFields = JSON.parse(producto.metafields.estructura.json);
                   contenidoHTMLTodo += `
@@ -749,7 +749,7 @@ class PageMenuProductos extends HTMLElement {
                   `;
                 });
                 break;
-              case "PIZZAS":
+              case "Pizzas":
                 // Pizza Clasica - Pizza Supreme - Pizza Lovers
                 Object.keys(coleccion.subColecciones).forEach((claveSubColeccion) => {
                   const subColeccion = coleccion.subColecciones[claveSubColeccion];
@@ -823,11 +823,11 @@ class PageMenuProductos extends HTMLElement {
                   });
                 });
                 break;
-              case "MELTS":
-              case "PASTAS Y ENSALADAS":
-              case "GASEOSAS":
-              case "CERVEZAS":
-              case "POSTRES":
+              case "Melts":
+              case "Pastas y Ensaladas":
+              case "Gaseosas":
+              case "Cervezas":
+              case "Postres":
                 coleccion.productos.forEach((producto) => {
                   const dataMetaFields = JSON.parse(producto.metafields.estructura.json);
                   contenidoHTMLTodo += `
@@ -865,10 +865,10 @@ class PageMenuProductos extends HTMLElement {
           });
           // Declarar elementos basicos para productos ya sea seleccion (Tamano )
           break;
-        case "OFERTAS":
-        case "MITAD & MITAD":
-        case "POLLO":
-        case "HUT DAYS 2X1":
+        case "Ofertas":
+        case "Mitad & Mitad":
+        case "Pollo":
+        case "Hut Days 2X1":
           var coleccionTrabajo = this.productosPorCategorias.find((coleccion) => coleccion.titulo == this.estadoVistaPagina);
           contenidoHTMLTodo += `
               <div class="phpm-titulo-primario">
@@ -909,7 +909,7 @@ class PageMenuProductos extends HTMLElement {
             `;
 
           break;
-        case "PIZZAS":
+        case "Pizzas":
           contenidoHTMLTodo += `
             <div class="phpm-titulo-primario">
               <small>PIZZAS</small>
@@ -940,6 +940,10 @@ class PageMenuProductos extends HTMLElement {
 
             subProductosTrabajo.forEach((productoSubColeccion) => {
               const dataMetaFieldsProductoS = JSON.parse(productoSubColeccion.metafields.estructura.json);
+              console.log("Producto subcoleccion: ", {
+                productoSubColeccion,
+                dataMetaFieldsProductoS
+              });
               // oBtengo el primero que son los tamanos PCT - PLT- PST
               // const productosTamano = Object.values(subColeccion.ramas)[0];
               const productosTamano = Object.values(coleccionTrabajo.subColecciones[subColeccion].ramas)[0];
@@ -1018,11 +1022,11 @@ class PageMenuProductos extends HTMLElement {
           });
 
           break;
-        case "MELTS":
-        case "PASTAS Y ENSALADAS":
-        case "GASEOSAS":
-        case "CERVEZAS":
-        case "POSTRES":
+        case "Melts":
+        case "Pastas y Ensaladas":
+        case "Gaseosas":
+        case "Cervezas":
+        case "Postres":
           var coleccionTrabajo = this.productosPorCategorias.find((coleccion) => coleccion.titulo == this.estadoVistaPagina);
           contenidoHTMLTodo += `
               <div class="phpm-titulo-primario">
@@ -1092,7 +1096,7 @@ class PageMenuProductos extends HTMLElement {
 
   inicializarEventosYElementosSeccion() {
     switch (this.estadoVistaPagina) {
-      case "TODO":
+      case "Todo":
         // REFERENCIAS ELEMENTOS
         // Contenedor es un button donde se refleja la variante seleccionada de la pizza
         this.contenedorVarianteSeleccionado = this.querySelectorAll('#phpm-view-variantes');
@@ -1121,16 +1125,16 @@ class PageMenuProductos extends HTMLElement {
         document.addEventListener('click', this.clicksEspeciales.bind(this));
 
         break;
-      case "OFERTAS":
-      case "HUT DAYS 2X1":
-      case "POLLO":
-      case "MITAD & MITAD":
+      case "Ofertas":
+      case "Hut Days 2X1":
+      case "Pollo":
+      case "Mitad & Mitad":
         this.btnsPersonalizarProducto = this.querySelectorAll('#phpm-btn-personalizar');
         this.btnsPersonalizarProducto.forEach((elementoBase) => {
           elementoBase.addEventListener('click', this.procesoPersonalizarProducto.bind(this, elementoBase));
         });
         break;
-      case "PIZZAS":
+      case "Pizzas":
         // REFERENCIAS ELEMENTOS
         // Contenedor es un button donde se refleja la variante seleccionada de la pizza
         this.contenedorVarianteSeleccionado = this.querySelectorAll('#phpm-view-variantes');
@@ -1154,11 +1158,11 @@ class PageMenuProductos extends HTMLElement {
         document.addEventListener('click', this.clicksEspeciales.bind(this));
 
         break;
-      case "MELTS":
-      case "PASTAS Y ENSALADAS":
-      case "GASEOSAS":
-      case "CERVEZAS":
-      case "POSTRES":
+      case "Melts":
+      case "Pastas y Ensaladas":
+      case "Gaseosas":
+      case "Cervezas":
+      case "Postres":
         this.btnsAgregarProducto = this.querySelectorAll('#phpm-btn-agregar');
         this.btnsAgregarProducto.forEach((elementoBase) => {
           elementoBase.addEventListener('click', this.procesoAgregarProducto.bind(this, elementoBase));
@@ -1362,7 +1366,7 @@ class PageMenuProductos extends HTMLElement {
     var tipoProducto = elementoBase.closest('.producto-es-item').dataset.tipoproducto;
     const coleccionBaseTrabajo = this.productosPorCategorias.find((coleccion) => coleccion.titulo == this.estadoVistaPagina);
     switch (this.estadoVistaPagina) {
-      case "TODO":
+      case "Todo":
         switch (tipoProducto) {
           case "basico":
           case "desarrollado":
@@ -1491,15 +1495,15 @@ class PageMenuProductos extends HTMLElement {
             break;
         }
         break;
-      case "HUT DAYS 2X1":
-      case "POLLO":
-      case "MITAD & MITAD":
-      case "OFERTAS":
-      case "MELTS":
-      case "PASTAS Y ENSALADAS":
-      case "GASEOSAS":
-      case "CERVEZAS":
-      case "POSTRES":
+      case "Hut Days 2X1":
+      case "Pollo":
+      case "Mitad & Mitad":
+      case "Ofertas":
+      case "Melts":
+      case "Pastas y Ensaladas":
+      case "Gaseosas":
+      case "Cervezas":
+      case "Postres":
         // idShopify = elementoBase.closest('.producto-es-item').dataset.idshopify;
         // idTrabajo = elementoBase.closest('.producto-es-item').dataset.idtrabajo;
         // handle = elementoBase.closest('.producto-es-item').dataset.handle;
@@ -1523,7 +1527,7 @@ class PageMenuProductos extends HTMLElement {
           }
         ));
         break;
-      case "PIZZAS":
+      case "Pizzas":
         const subProductoPreSeleccionadoIDShopify =
           productoTrabajo = coleccionBaseTrabajo.productos.find((producto) => producto.id == idShopify);
         // ["PIZZAS","Pizza Clasica"]
