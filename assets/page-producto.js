@@ -1328,13 +1328,12 @@ class PizzaHutProducto extends HTMLElement {
          // INICIALIZAR ELEMENTOS Y PROCESOS CLAVES
          this.cantidadProductoGeneralEtiqueta.innerHTML = 1;
          await this.actualizarEstadoBotonesInferiores();
-
       }
    }
 
    async creacionHTMLGaseosasCervesas() {
       // Obtener coleccion de productos 
-      const { informacionColeccion, productosColeccion } = await this.obtenerColeccionShopify('GASEOSAS');
+      const { informacionColeccion, productosColeccion } = await this.obtenerColeccionShopify('Gaseosas');
       var contenidoHTML = `
         <div 
         style="display: none;"
@@ -1406,7 +1405,7 @@ class PizzaHutProducto extends HTMLElement {
 
    async creacionHTMLPostres() {
       // Obtener coleccion de productos 
-      const { informacionColeccion, productosColeccion } = await this.obtenerColeccionShopify("POSTRES");
+      const { informacionColeccion, productosColeccion } = await this.obtenerColeccionShopify("Postres");
       console.log('productosColeccion POSTRES:', productosColeccion);
 
       var contenidoHTML = `
@@ -1417,6 +1416,10 @@ class PizzaHutProducto extends HTMLElement {
           <div class="ppme-modal-items-extras">
       `;
 
+      console.log('productosColeccion POSTRES:', {
+         productosColeccion,
+         informacionColeccion
+      });
       if (productosColeccion == null || productosColeccion == undefined) return;
       productosColeccion.forEach((producto) => {
          var stockTrabajo = this.obtenerStockGenericoTrabajo(producto);

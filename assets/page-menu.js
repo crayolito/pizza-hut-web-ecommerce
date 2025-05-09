@@ -726,6 +726,9 @@ class PageMenuProductos extends HTMLElement {
               case "Mitad & Mitad":
                 coleccion.productos.forEach((producto) => {
                   const dataMetaFields = JSON.parse(producto.metafields.estructura.json);
+                  const estadosValidos = ["on", "activado", "activo", "active"];
+                  if (!estadosValidos.includes(dataMetaFields.estado)) return;
+
                   contenidoHTMLTodo += `
                     <div data-idshopify="${producto.id}" data-idtrabajo="${dataMetaFields.id}" data-titulo="${producto.titulo}" data-precio="${producto.precio}" data-handle="${producto.handle}"
                       data-tipoproducto="desarrollado" class="producto-es-item">
@@ -757,6 +760,8 @@ class PageMenuProductos extends HTMLElement {
                   const subColeccion = coleccion.subColecciones[claveSubColeccion];
                   subColeccion.productos.forEach((productoSubColeccion) => {
                     const dataMetaFieldsProductoS = JSON.parse(productoSubColeccion.metafields.estructura.json);
+                    const estadosValidos = ["on", "activado", "activo", "active"];
+                    if (!estadosValidos.includes(dataMetaFieldsProductoS.estado)) return;
                     // oBtengo el primero que son los tamanos PCT - PLT- PST
                     const productosTamano = Object.values(subColeccion.ramas)[0];
                     var contenidoVariantes = "";
@@ -832,6 +837,8 @@ class PageMenuProductos extends HTMLElement {
               case "Postres":
                 coleccion.productos.forEach((producto) => {
                   const dataMetaFields = JSON.parse(producto.metafields.estructura.json);
+                  const estadosValidos = ["on", "activado", "activo", "active"];
+                  if (!estadosValidos.includes(dataMetaFields.estado)) return;
                   contenidoHTMLTodo += `
                     <div data-idshopify="${producto.id}" data-idtrabajo="${dataMetaFields.id}" data-titulo="${producto.titulo}" data-precio="${producto.precio}" data-handle="${producto.handle}"
                       data-tipoproducto="basico" class="producto-es-item">
@@ -882,6 +889,8 @@ class PageMenuProductos extends HTMLElement {
 
           coleccionTrabajo.productos.forEach((producto) => {
             const dataMetaFields = JSON.parse(producto.metafields.estructura.json);
+            const estadosValidos = ["on", "activado", "activo", "active"];
+            if (!estadosValidos.includes(dataMetaFields.estado)) return;
             contenidoHTMLTodo += `
                 <div data-idshopify="${producto.id}" data-idtrabajo="${dataMetaFields.id}" data-titulo="${producto.titulo}" data-precio="${producto.precio}" data-handle="${producto.handle}"
                   data-tipoproducto="desarrollado" class="producto-es-item">
@@ -942,6 +951,8 @@ class PageMenuProductos extends HTMLElement {
 
             subProductosTrabajo.forEach((productoSubColeccion) => {
               const dataMetaFieldsProductoS = JSON.parse(productoSubColeccion.metafields.estructura.json);
+              const estadosValidos = ["on", "activado", "activo", "active"];
+              if (!estadosValidos.includes(dataMetaFieldsProductoS.estado)) return;
               // oBtengo el primero que son los tamanos PCT - PLT- PST
               // const productosTamano = Object.values(subColeccion.ramas)[0];
               const productosTamano = Object.values(coleccionTrabajo.subColecciones[subColeccion].ramas)[0];
@@ -1036,6 +1047,9 @@ class PageMenuProductos extends HTMLElement {
 
           coleccionTrabajo.productos.forEach((producto) => {
             const dataMetaFields = JSON.parse(producto.metafields.estructura.json);
+            console.log("Producto: Testeo", dataMetaFields);
+            const estadosValidos = ["on", "activado", "activo", "active"];
+            if (!estadosValidos.includes(dataMetaFields.estado)) return;
             contenidoHTMLTodo += `
                 <div data-idshopify="${producto.id}" data-idtrabajo="${dataMetaFields.id}" data-titulo="${producto.titulo}" data-precio="${producto.precio}" data-handle="${producto.handle}"
                   data-tipoproducto="basico" class="producto-es-item">

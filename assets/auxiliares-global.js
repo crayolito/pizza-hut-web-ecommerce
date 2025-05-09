@@ -1124,7 +1124,7 @@ class ProductosIndex extends HTMLElement {
         }
           </div>
           <div
-            tipo-producto="simple"
+            tipo-producto="complejo"
             class="producto-item-detalle"
           >
             <div class="producto-item-info">
